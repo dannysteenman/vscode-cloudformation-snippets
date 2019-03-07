@@ -8,17 +8,14 @@ You now have access to all available resources provided by [AWS CloudFormation R
 
 ## Usage
 
-TODO
+1. Install the extension
+2. create a YAML file for to start working on Cloudformation
+3. Type **cfn** to get the basic template in which you can add your resources
+4. Start adding adding resources by using their prefix name e.g. ```autoscaling-autoscalinggroup``` equals resource type ```AWS::AutoScaling::AutoScalingGroup```
 
-## Release Notes
+> **Note:** Once you start typing resource types, the corresponding snippet will show-up in the drowndown window.
 
-### 1.0.0
-
-Initial release of the Cloudformation YAML Snippets.
-
-### 1.0.1
-
-...
+![CFN YAML snippet example](https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/images/cfn-yaml-snippet-example.gif)
 
 -----------------------------------------------------------------------------------------------------------
 
