@@ -17,3 +17,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 - Package version
+
+## [1.0.2] - 2019-03-07
+### Added
+- .gitignore
+- .ts to .vscodeignore
+- .vsix to .gitignore
+
+### Changed
+- Package version
