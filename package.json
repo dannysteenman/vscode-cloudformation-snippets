@@ -1,0 +1,20 @@
+{
+    "name": "cloudformation-yaml-snippets",
+    "displayName": "Cloudformation YAML Snippets for VS Code",
+    "description": "The complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.31.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "yaml",
+                "path": "./snippets/snippets.json"
+            }
+        ]
+    }
+}
