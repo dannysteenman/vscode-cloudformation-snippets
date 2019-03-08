@@ -2,9 +2,10 @@
     "name": "cloudformation-yaml-snippets",
     "displayName": "Cloudformation YAML Snippets for VS Code",
     "description": "The complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "publisher": "dsteenman",
-    "icon": "images/AWS-CloudFormation_dark-bg.png",
+    "icon": "images/AWS-CloudFormation-Icon.png",
+    "homepage": "https://dsteenman.github.io",
     "repository": {
         "type": "git",
         "url": "https://github.com/dsteenman/cloudformation-yaml-snippets.git"
@@ -12,8 +13,27 @@
     "engines": {
         "vscode": "^1.31.0"
     },
+    "galleryBanner": {
+        "color": "#2B2C33",
+        "theme": "dark"
+    },
     "categories": [
-        "Snippets"
+        "Snippets",
+        "Other"
+    ],
+    "keywords": [
+        "amazon",
+        "aws",
+        "cfn",
+        "cloudformation",
+        "multi-root ready",
+        "property",
+        "resource",
+        "specification",
+        "stack",
+        "template",
+        "yaml",
+        "yml"
     ],
     "contributes": {
         "snippets": [

@@ -1,12 +1,23 @@
 # Change Log
 
-All notable changes to the "cloudformation-yaml-snippets" extension will be documented in this file.
+## [1.0.3] - 2019-03-08
+### Added
+- Gallery banner
+- Keywords in package.json
+- .vsix to .gitignore
+- Homepage in package.json
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [1.0.0] - 2019-03-07
 ### Changed
-- Initial release of the Cloudformation YAML Snippets.
+- Cloudformation icon for VS Code extension
+
+## [1.0.2] - 2019-03-07
+### Added
+- .gitignore
+- .ts to .vscodeignore
+- .vsix to .gitignore
+
+### Changed
+- Package version
 
 ## [1.0.1] - 2019-03-07
 ### Added
@@ -18,11 +29,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 - Package version
 
-## [1.0.2] - 2019-03-07
-### Added
-- .gitignore
-- .ts to .vscodeignore
-- .vsix to .gitignore
-
+## [1.0.0] - 2019-03-07
 ### Changed
-- Package version
+- Initial release of the Cloudformation YAML Snippets.
+
+---
+
+All notable changes to the "cloudformation-yaml-snippets" extension will be documented in this file.
+
+> **Note:** Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.

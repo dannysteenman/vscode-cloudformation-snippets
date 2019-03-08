@@ -1,6 +1,6 @@
 # Cloudformation YAML snippets for VS Code
 
-The complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification.
+A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) which contains the complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification.
 
 ## Features
 
@@ -8,16 +8,16 @@ You now have access to all available resources provided by [AWS CloudFormation R
 
 ## Usage
 
-1. Install the extension
-2. create a YAML file for to start working on Cloudformation
-3. Type **cfn** to get the basic template in which you can add your resources
-4. Start adding adding resources by using their prefix name e.g. ```autoscaling-autoscalinggroup``` equals resource type ```AWS::AutoScaling::AutoScalingGroup```
+* **Step 1.** Install the extension
+* **Step 2.** create a YAML file for to start working on Cloudformation
+* **Step 3.** Type **cfn** to get the basic template in which you can add your resources
+* **Step 4.** Start adding adding resources by using their prefix name e.g. ```autoscaling-autoscalinggroup``` equals resource type ```AWS::AutoScaling::AutoScalingGroup```
 
 > **Note:** Once you start typing resource types, the corresponding snippet will show-up in the drowndown window.
 
 ![CFN YAML snippet example](https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/images/cfn-yaml-snippet-example.gif)
 
------------------------------------------------------------------------------------------------------------
+---
 
 ## Credits
 
