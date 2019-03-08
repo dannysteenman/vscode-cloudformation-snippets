@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.0.4] - 2019-03-08
+### Added
+- MIT License
+- Code of Conduct
+
 ## [1.0.3] - 2019-03-08
 ### Added
 - Gallery banner
