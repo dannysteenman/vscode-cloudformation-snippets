@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.0] - 2019-03-21
+### Added
+- AWS::Greengrass resource
+
 ## [1.0.4] - 2019-03-08
 ### Added
 - MIT License

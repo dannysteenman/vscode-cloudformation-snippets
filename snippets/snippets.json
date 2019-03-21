@@ -64,6 +64,11 @@
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::PortfolioShare\"\r\n\tProperties:\r\n\t\tAccountId: String #required\r\n\t\tAcceptLanguage: String\r\n\t\tPortfolioId: String #required\r\n",
     "description": "AWS::ServiceCatalog::PortfolioShare\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioshare.html"
   },
+  "AWS::Greengrass::Group": {
+    "prefix": "greengrass-group",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::Group\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tGroupVersion\r\n\t\tRoleArn: String\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::Group\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-group.html"
+  },
   "AWS::Cognito::IdentityPoolRoleAttachment": {
     "prefix": "cognito-identitypoolroleattachment",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::IdentityPoolRoleAttachment\"\r\n\tProperties:\r\n\t\tRoleMappings: Json\r\n\t\tIdentityPoolId: String #required\r\n\t\tRoles: Json\r\n",
@@ -88,6 +93,11 @@
     "prefix": "codepipeline-customactiontype",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodePipeline::CustomActionType\"\r\n\tProperties:\r\n\t\tCategory: String #required\r\n\t\tConfigurationProperties:\r\n\t\t\t- ConfigurationProperties\r\n\t\tInputArtifactDetails: #required\r\n\t\t\tArtifactDetails\r\n\t\tOutputArtifactDetails: #required\r\n\t\t\tArtifactDetails\r\n\t\tProvider: String #required\r\n\t\tSettings:\r\n\t\t\tSettings\r\n\t\tVersion: String\r\n",
     "description": "AWS::CodePipeline::CustomActionType\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html"
+  },
+  "AWS::Greengrass::ConnectorDefinition": {
+    "prefix": "greengrass-connectordefinition",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::ConnectorDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tConnectorDefinitionVersion\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::ConnectorDefinition\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-connectordefinition.html"
   },
   "AWS::EC2::VPCPeeringConnection": {
     "prefix": "ec2-vpcpeeringconnection",
@@ -181,7 +191,7 @@
   },
   "AWS::AppStream::ImageBuilder": {
     "prefix": "appstream-imagebuilder",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::ImageBuilder\"\r\n\tProperties:\r\n\t\tImageName: String\r\n\t\tDescription: String\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDisplayName: String\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tAppstreamAgentVersion: String\r\n\t\tInstanceType: String #required\r\n\t\tName: String\r\n\t\tImageArn: String\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::ImageBuilder\"\r\n\tProperties:\r\n\t\tImageName: String\r\n\t\tDescription: String\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDisplayName: String\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tAppstreamAgentVersion: String\r\n\t\tInstanceType: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String\r\n\t\tImageArn: String\r\n",
     "description": "AWS::AppStream::ImageBuilder\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-imagebuilder.html"
   },
   "AWS::AutoScalingPlans::ScalingPlan": {
@@ -251,7 +261,7 @@
   },
   "AWS::StepFunctions::Activity": {
     "prefix": "stepfunctions-activity",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::StepFunctions::Activity\"\r\n\tProperties:\r\n\t\tName: String #required\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::StepFunctions::Activity\"\r\n\tProperties:\r\n\t\tTags:\r\n\t\t\t- TagsEntry\r\n\t\tName: String #required\r\n",
     "description": "AWS::StepFunctions::Activity\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html"
   },
   "AWS::KinesisAnalytics::ApplicationOutput": {
@@ -276,7 +286,7 @@
   },
   "AWS::AppStream::Stack": {
     "prefix": "appstream-stack",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Stack\"\r\n\tProperties:\r\n\t\tApplicationSettings:\r\n\t\t\tApplicationSettings\r\n\t\tDescription: String\r\n\t\tStorageConnectors:\r\n\t\t\t- StorageConnector\r\n\t\tDeleteStorageConnectors: Boolean\r\n\t\tUserSettings:\r\n\t\t\t- UserSetting\r\n\t\tAttributesToDelete:\r\n\t\t\t- String\r\n\t\tDisplayName: String\r\n\t\tRedirectURL: String\r\n\t\tName: String\r\n\t\tFeedbackURL: String\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Stack\"\r\n\tProperties:\r\n\t\tApplicationSettings:\r\n\t\t\tApplicationSettings\r\n\t\tDescription: String\r\n\t\tStorageConnectors:\r\n\t\t\t- StorageConnector\r\n\t\tDeleteStorageConnectors: Boolean\r\n\t\tUserSettings:\r\n\t\t\t- UserSetting\r\n\t\tAttributesToDelete:\r\n\t\t\t- String\r\n\t\tDisplayName: String\r\n\t\tRedirectURL: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String\r\n\t\tFeedbackURL: String\r\n",
     "description": "AWS::AppStream::Stack\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-stack.html"
   },
   "AWS::AppSync::GraphQLSchema": {
@@ -303,6 +313,11 @@
     "prefix": "servicecatalog-launchtemplateconstraint",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::LaunchTemplateConstraint\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tAcceptLanguage: String\r\n\t\tPortfolioId: String #required\r\n\t\tProductId: String #required\r\n\t\tRules: String #required\r\n",
     "description": "AWS::ServiceCatalog::LaunchTemplateConstraint\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-launchtemplateconstraint.html"
+  },
+  "AWS::Greengrass::ConnectorDefinitionVersion": {
+    "prefix": "greengrass-connectordefinitionversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::ConnectorDefinitionVersion\"\r\n\tProperties:\r\n\t\tConnectors: #required\r\n\t\t\t- Connector\r\n\t\tConnectorDefinitionId: String #required\r\n",
+    "description": "AWS::Greengrass::ConnectorDefinitionVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-connectordefinitionversion.html"
   },
   "AWS::EMR::Cluster": {
     "prefix": "emr-cluster",
@@ -358,6 +373,11 @@
     "prefix": "efs-mounttarget",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::EFS::MountTarget\"\r\n\tProperties:\r\n\t\tFileSystemId: String #required\r\n\t\tIpAddress: String\r\n\t\tSecurityGroups: #required\r\n\t\t\t- String\r\n\t\tSubnetId: String #required\r\n",
     "description": "AWS::EFS::MountTarget\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html"
+  },
+  "AWS::Greengrass::FunctionDefinition": {
+    "prefix": "greengrass-functiondefinition",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::FunctionDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tFunctionDefinitionVersion\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::FunctionDefinition\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-functiondefinition.html"
   },
   "AWS::SSM::Document": {
     "prefix": "ssm-document",
@@ -443,6 +463,16 @@
     "prefix": "certificatemanager-certificate",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::CertificateManager::Certificate\"\r\n\tProperties:\r\n\t\tDomainName: String #required\r\n\t\tDomainValidationOptions:\r\n\t\t\t- DomainValidationOption\r\n\t\tSubjectAlternativeNames:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tValidationMethod: String\r\n",
     "description": "AWS::CertificateManager::Certificate\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html"
+  },
+  "AWS::Greengrass::SubscriptionDefinitionVersion": {
+    "prefix": "greengrass-subscriptiondefinitionversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::SubscriptionDefinitionVersion\"\r\n\tProperties:\r\n\t\tSubscriptionDefinitionId: String #required\r\n\t\tSubscriptions: #required\r\n\t\t\t- Subscription\r\n",
+    "description": "AWS::Greengrass::SubscriptionDefinitionVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-subscriptiondefinitionversion.html"
+  },
+  "AWS::Greengrass::CoreDefinitionVersion": {
+    "prefix": "greengrass-coredefinitionversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::CoreDefinitionVersion\"\r\n\tProperties:\r\n\t\tCores: #required\r\n\t\t\t- Core\r\n\t\tCoreDefinitionId: String #required\r\n",
+    "description": "AWS::Greengrass::CoreDefinitionVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-coredefinitionversion.html"
   },
   "AWS::ApiGateway::Authorizer": {
     "prefix": "apigateway-authorizer",
@@ -664,6 +694,11 @@
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::FlowLog\"\r\n\tProperties:\r\n\t\tDeliverLogsPermissionArn: String\r\n\t\tLogDestination: String\r\n\t\tLogDestinationType: String\r\n\t\tLogGroupName: String\r\n\t\tResourceId: String #required\r\n\t\tResourceType: String #required\r\n\t\tTrafficType: String #required\r\n",
     "description": "AWS::EC2::FlowLog\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html"
   },
+  "AWS::Greengrass::ResourceDefinition": {
+    "prefix": "greengrass-resourcedefinition",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::ResourceDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tResourceDefinitionVersion\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::ResourceDefinition\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-resourcedefinition.html"
+  },
   "AWS::Cognito::IdentityPool": {
     "prefix": "cognito-identitypool",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::IdentityPool\"\r\n\tProperties:\r\n\t\tPushSync:\r\n\t\t\tPushSync\r\n\t\tCognitoIdentityProviders:\r\n\t\t\t- CognitoIdentityProvider\r\n\t\tCognitoEvents: Json\r\n\t\tDeveloperProviderName: String\r\n\t\tCognitoStreams:\r\n\t\t\tCognitoStreams\r\n\t\tIdentityPoolName: String\r\n\t\tAllowUnauthenticatedIdentities: Boolean #required\r\n\t\tSupportedLoginProviders: Json\r\n\t\tSamlProviderARNs:\r\n\t\t\t- String\r\n\t\tOpenIdConnectProviderARNs:\r\n\t\t\t- String\r\n",
@@ -784,6 +819,11 @@
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::OpsWorks::Stack\"\r\n\tProperties:\r\n\t\tAgentVersion: String\r\n\t\tAttributes:\r\n\t\t\tMap\r\n\t\tChefConfiguration:\r\n\t\t\tChefConfiguration\r\n\t\tCloneAppIds:\r\n\t\t\t- String\r\n\t\tClonePermissions: Boolean\r\n\t\tConfigurationManager:\r\n\t\t\tStackConfigurationManager\r\n\t\tCustomCookbooksSource:\r\n\t\t\tSource\r\n\t\tCustomJson: Json\r\n\t\tDefaultAvailabilityZone: String\r\n\t\tDefaultInstanceProfileArn: String #required\r\n\t\tDefaultOs: String\r\n\t\tDefaultRootDeviceType: String\r\n\t\tDefaultSshKeyName: String\r\n\t\tDefaultSubnetId: String\r\n\t\tEcsClusterArn: String\r\n\t\tElasticIps:\r\n\t\t\t- ElasticIp\r\n\t\tHostnameTheme: String\r\n\t\tName: String #required\r\n\t\tRdsDbInstances:\r\n\t\t\t- RdsDbInstance\r\n\t\tServiceRoleArn: String #required\r\n\t\tSourceStackId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tUseCustomCookbooks: Boolean\r\n\t\tUseOpsworksSecurityGroups: Boolean\r\n\t\tVpcId: String\r\n",
     "description": "AWS::OpsWorks::Stack\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html"
   },
+  "AWS::Greengrass::DeviceDefinition": {
+    "prefix": "greengrass-devicedefinition",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::DeviceDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tDeviceDefinitionVersion\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::DeviceDefinition\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-devicedefinition.html"
+  },
   "AWS::DataPipeline::Pipeline": {
     "prefix": "datapipeline-pipeline",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::DataPipeline::Pipeline\"\r\n\tProperties:\r\n\t\tActivate: Boolean\r\n\t\tDescription: String\r\n\t\tName: String #required\r\n\t\tParameterObjects: #required\r\n\t\t\t- ParameterObject\r\n\t\tParameterValues:\r\n\t\t\t- ParameterValue\r\n\t\tPipelineObjects:\r\n\t\t\t- PipelineObject\r\n\t\tPipelineTags:\r\n\t\t\t- PipelineTag\r\n",
@@ -791,7 +831,7 @@
   },
   "AWS::StepFunctions::StateMachine": {
     "prefix": "stepfunctions-statemachine",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::StepFunctions::StateMachine\"\r\n\tProperties:\r\n\t\tDefinitionString: String #required\r\n\t\tStateMachineName: String\r\n\t\tRoleArn: String #required\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::StepFunctions::StateMachine\"\r\n\tProperties:\r\n\t\tDefinitionString: String #required\r\n\t\tStateMachineName: String\r\n\t\tRoleArn: String #required\r\n\t\tTags:\r\n\t\t\t- TagsEntry\r\n",
     "description": "AWS::StepFunctions::StateMachine\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html"
   },
   "AWS::DMS::EventSubscription": {
@@ -848,6 +888,11 @@
     "prefix": "redshift-clusterparametergroup",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::Redshift::ClusterParameterGroup\"\r\n\tProperties:\r\n\t\tDescription: String #required\r\n\t\tParameterGroupFamily: String #required\r\n\t\tParameters:\r\n\t\t\t- Parameter\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
     "description": "AWS::Redshift::ClusterParameterGroup\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html"
+  },
+  "AWS::Greengrass::LoggerDefinition": {
+    "prefix": "greengrass-loggerdefinition",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::LoggerDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tLoggerDefinitionVersion\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::LoggerDefinition\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-loggerdefinition.html"
   },
   "AWS::CloudTrail::Trail": {
     "prefix": "cloudtrail-trail",
@@ -1121,7 +1166,7 @@
   },
   "AWS::SSM::PatchBaseline": {
     "prefix": "ssm-patchbaseline",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::PatchBaseline\"\r\n\tProperties:\r\n\t\tOperatingSystem: String\r\n\t\tApprovedPatches:\r\n\t\t\t- String\r\n\t\tRejectedPatchesAction: String\r\n\t\tPatchGroups:\r\n\t\t\t- String\r\n\t\tDescription: String\r\n\t\tApprovedPatchesComplianceLevel: String\r\n\t\tApprovedPatchesEnableNonSecurity: Boolean\r\n\t\tApprovalRules:\r\n\t\t\tRuleGroup\r\n\t\tGlobalFilters:\r\n\t\t\tPatchFilterGroup\r\n\t\tSources:\r\n\t\t\t- PatchSource\r\n\t\tName: String #required\r\n\t\tRejectedPatches:\r\n\t\t\t- String\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::PatchBaseline\"\r\n\tProperties:\r\n\t\tOperatingSystem: String\r\n\t\tDescription: String\r\n\t\tApprovalRules:\r\n\t\t\tRuleGroup\r\n\t\tSources:\r\n\t\t\t- PatchSource\r\n\t\tName: String #required\r\n\t\tRejectedPatches:\r\n\t\t\t- String\r\n\t\tApprovedPatches:\r\n\t\t\t- String\r\n\t\tRejectedPatchesAction: String\r\n\t\tPatchGroups:\r\n\t\t\t- String\r\n\t\tApprovedPatchesComplianceLevel: String\r\n\t\tApprovedPatchesEnableNonSecurity: Boolean\r\n\t\tGlobalFilters:\r\n\t\t\tPatchFilterGroup\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
     "description": "AWS::SSM::PatchBaseline\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html"
   },
   "AWS::ServiceCatalog::Portfolio": {
@@ -1133,6 +1178,11 @@
     "prefix": "kinesisanalyticsv2-applicationcloudwatchloggingoption",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption\"\r\n\tProperties:\r\n\t\tApplicationName: String #required\r\n\t\tCloudWatchLoggingOption: #required\r\n\t\t\tCloudWatchLoggingOption\r\n",
     "description": "AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-applicationcloudwatchloggingoption.html"
+  },
+  "AWS::Greengrass::CoreDefinition": {
+    "prefix": "greengrass-coredefinition",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::CoreDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tCoreDefinitionVersion\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::CoreDefinition\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-coredefinition.html"
   },
   "AWS::RDS::DBParameterGroup": {
     "prefix": "rds-dbparametergroup",
@@ -1311,7 +1361,7 @@
   },
   "AWS::SageMaker::NotebookInstance": {
     "prefix": "sagemaker-notebookinstance",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::SageMaker::NotebookInstance\"\r\n\tProperties:\r\n\t\tKmsKeyId: String\r\n\t\tVolumeSizeInGB: Integer\r\n\t\tDirectInternetAccess: String\r\n\t\tSubnetId: String\r\n\t\tNotebookInstanceName: String\r\n\t\tInstanceType: String #required\r\n\t\tLifecycleConfigName: String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tRoleArn: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::SageMaker::NotebookInstance\"\r\n\tProperties:\r\n\t\tRootAccess: String\r\n\t\tKmsKeyId: String\r\n\t\tVolumeSizeInGB: Integer\r\n\t\tDirectInternetAccess: String\r\n\t\tSubnetId: String\r\n\t\tNotebookInstanceName: String\r\n\t\tInstanceType: String #required\r\n\t\tLifecycleConfigName: String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tRoleArn: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
     "description": "AWS::SageMaker::NotebookInstance\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html"
   },
   "AWS::ApiGateway::BasePathMapping": {
@@ -1326,7 +1376,7 @@
   },
   "AWS::SSM::MaintenanceWindow": {
     "prefix": "ssm-maintenancewindow",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::MaintenanceWindow\"\r\n\tProperties:\r\n\t\tStartDate: String\r\n\t\tDescription: String\r\n\t\tAllowUnassociatedTargets: Boolean #required\r\n\t\tCutoff: Integer #required\r\n\t\tSchedule: String #required\r\n\t\tDuration: Integer #required\r\n\t\tEndDate: String\r\n\t\tName: String #required\r\n\t\tScheduleTimezone: String\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::MaintenanceWindow\"\r\n\tProperties:\r\n\t\tStartDate: String\r\n\t\tDescription: String\r\n\t\tAllowUnassociatedTargets: Boolean #required\r\n\t\tCutoff: Integer #required\r\n\t\tSchedule: String #required\r\n\t\tDuration: Integer #required\r\n\t\tEndDate: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String #required\r\n\t\tScheduleTimezone: String\r\n",
     "description": "AWS::SSM::MaintenanceWindow\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindow.html"
   },
   "AWS::EC2::EgressOnlyInternetGateway": {
@@ -1384,6 +1434,11 @@
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::RoboMaker::RobotApplication\"\r\n\tProperties:\r\n\t\tCurrentRevisionId: String\r\n\t\tRobotSoftwareSuite: #required\r\n\t\t\tRobotSoftwareSuite\r\n\t\tSources: #required\r\n\t\t\t- SourceConfig\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
     "description": "AWS::RoboMaker::RobotApplication\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html"
   },
+  "AWS::Greengrass::DeviceDefinitionVersion": {
+    "prefix": "greengrass-devicedefinitionversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::DeviceDefinitionVersion\"\r\n\tProperties:\r\n\t\tDeviceDefinitionId: String #required\r\n\t\tDevices: #required\r\n\t\t\t- Device\r\n",
+    "description": "AWS::Greengrass::DeviceDefinitionVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-devicedefinitionversion.html"
+  },
   "AWS::IoT::PolicyPrincipalAttachment": {
     "prefix": "iot-policyprincipalattachment",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT::PolicyPrincipalAttachment\"\r\n\tProperties:\r\n\t\tPolicyName: String #required\r\n\t\tPrincipal: String #required\r\n",
@@ -1423,6 +1478,11 @@
     "prefix": "route53resolver-resolverruleassociation",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::Route53Resolver::ResolverRuleAssociation\"\r\n\tProperties:\r\n\t\tVPCId: String #required\r\n\t\tResolverRuleId: String #required\r\n\t\tName: String\r\n",
     "description": "AWS::Route53Resolver::ResolverRuleAssociation\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverruleassociation.html"
+  },
+  "AWS::Greengrass::SubscriptionDefinition": {
+    "prefix": "greengrass-subscriptiondefinition",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::SubscriptionDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tSubscriptionDefinitionVersion\r\n\t\tName: String #required\r\n",
+    "description": "AWS::Greengrass::SubscriptionDefinition\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-subscriptiondefinition.html"
   },
   "AWS::ApiGateway::VpcLink": {
     "prefix": "apigateway-vpclink",
@@ -1494,10 +1554,20 @@
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::SecretsManager::SecretTargetAttachment\"\r\n\tProperties:\r\n\t\tSecretId: String #required\r\n\t\tTargetType: String #required\r\n\t\tTargetId: String #required\r\n",
     "description": "AWS::SecretsManager::SecretTargetAttachment\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secrettargetattachment.html"
   },
+  "AWS::Greengrass::LoggerDefinitionVersion": {
+    "prefix": "greengrass-loggerdefinitionversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::LoggerDefinitionVersion\"\r\n\tProperties:\r\n\t\tLoggerDefinitionId: String #required\r\n\t\tLoggers: #required\r\n\t\t\t- Logger\r\n",
+    "description": "AWS::Greengrass::LoggerDefinitionVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-loggerdefinitionversion.html"
+  },
   "AWS::DirectoryService::SimpleAD": {
     "prefix": "directoryservice-simplead",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::DirectoryService::SimpleAD\"\r\n\tProperties:\r\n\t\tCreateAlias: Boolean\r\n\t\tDescription: String\r\n\t\tEnableSso: Boolean\r\n\t\tName: String #required\r\n\t\tPassword: String #required\r\n\t\tShortName: String\r\n\t\tSize: String #required\r\n\t\tVpcSettings: #required\r\n\t\t\tVpcSettings\r\n",
     "description": "AWS::DirectoryService::SimpleAD\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html"
+  },
+  "AWS::Greengrass::ResourceDefinitionVersion": {
+    "prefix": "greengrass-resourcedefinitionversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::ResourceDefinitionVersion\"\r\n\tProperties:\r\n\t\tResources: #required\r\n\t\t\t- ResourceInstance\r\n\t\tResourceDefinitionId: String #required\r\n",
+    "description": "AWS::Greengrass::ResourceDefinitionVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-resourcedefinitionversion.html"
   },
   "AWS::EC2::VolumeAttachment": {
     "prefix": "ec2-volumeattachment",
@@ -1646,13 +1716,18 @@
   },
   "AWS::AppStream::Fleet": {
     "prefix": "appstream-fleet",
-    "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Fleet\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tComputeCapacity: #required\r\n\t\t\tComputeCapacity\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tFleetType: String\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tName: String\r\n\t\tImageName: String\r\n\t\tMaxUserDurationInSeconds: Integer\r\n\t\tDisconnectTimeoutInSeconds: Integer\r\n\t\tDisplayName: String\r\n\t\tInstanceType: String #required\r\n\t\tImageArn: String\r\n",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Fleet\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tComputeCapacity: #required\r\n\t\t\tComputeCapacity\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tFleetType: String\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tName: String\r\n\t\tImageName: String\r\n\t\tMaxUserDurationInSeconds: Integer\r\n\t\tDisconnectTimeoutInSeconds: Integer\r\n\t\tDisplayName: String\r\n\t\tInstanceType: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tImageArn: String\r\n",
     "description": "AWS::AppStream::Fleet\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html"
   },
   "AWS::Logs::SubscriptionFilter": {
     "prefix": "logs-subscriptionfilter",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::Logs::SubscriptionFilter\"\r\n\tProperties:\r\n\t\tDestinationArn: String #required\r\n\t\tFilterPattern: String #required\r\n\t\tLogGroupName: String #required\r\n\t\tRoleArn: String\r\n",
     "description": "AWS::Logs::SubscriptionFilter\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html"
+  },
+  "AWS::Greengrass::FunctionDefinitionVersion": {
+    "prefix": "greengrass-functiondefinitionversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::FunctionDefinitionVersion\"\r\n\tProperties:\r\n\t\tDefaultConfig:\r\n\t\t\tDefaultConfig\r\n\t\tFunctions: #required\r\n\t\t\t- Function\r\n\t\tFunctionDefinitionId: String #required\r\n",
+    "description": "AWS::Greengrass::FunctionDefinitionVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-functiondefinitionversion.html"
   },
   "AWS::KinesisAnalytics::ApplicationReferenceDataSource": {
     "prefix": "kinesisanalytics-applicationreferencedatasource",
@@ -1703,6 +1778,11 @@
     "prefix": "waf-xssmatchset",
     "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAF::XssMatchSet\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tXssMatchTuples: #required\r\n\t\t\t- XssMatchTuple\r\n",
     "description": "AWS::WAF::XssMatchSet\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-xssmatchset.html"
+  },
+  "AWS::Greengrass::GroupVersion": {
+    "prefix": "greengrass-groupversion",
+    "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::GroupVersion\"\r\n\tProperties:\r\n\t\tLoggerDefinitionVersionArn: String\r\n\t\tDeviceDefinitionVersionArn: String\r\n\t\tFunctionDefinitionVersionArn: String\r\n\t\tCoreDefinitionVersionArn: String\r\n\t\tResourceDefinitionVersionArn: String\r\n\t\tConnectorDefinitionVersionArn: String\r\n\t\tSubscriptionDefinitionVersionArn: String\r\n\t\tGroupId: String #required\r\n",
+    "description": "AWS::Greengrass::GroupVersion\r\nhttp://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrass-groupversion.html"
   },
   "AWS::Route53::HealthCheck": {
     "prefix": "route53-healthcheck",

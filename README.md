@@ -1,5 +1,9 @@
 # Cloudformation YAML snippets for VS Code
 
+[![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
+[![Current Installs](https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
+[![GitHub stars](https://img.shields.io/github/stars/dsteenman/cloudformation-yaml-snippets.svg?style=social)](https://github.com/dsteenman/cloudformation-yaml-snippets)
+
 A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) which contains the complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification.
 
 ## Features
