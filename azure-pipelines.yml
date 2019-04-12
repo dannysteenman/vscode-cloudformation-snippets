@@ -1,0 +1,52 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+  - none
+
+jobs:
+  - job: "BuildExtension"
+    pool:
+      vmImage: "Ubuntu-16.04"
+
+    steps:
+      - checkout: self
+        persistCredentials: true
+        clean: true
+
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "3.7"
+          architecture: "x64"
+
+      # Install our dependencies
+      - script: |
+          python -m pip install --upgrade pip && pip install -r src/requirements.txt
+        displayName: "Install dependencies"
+
+      # Check for update
+      - bash: |
+          echo "checking for update"
+          python src/update-cfn-resource-snippets.py
+        displayName: Check for update and create snippets if needed
+
+      # Commit the new changes
+      - bash: |
+          set -x -e 
+          sudo npm install -g vsce
+          git config --global user.email "danny@oblcc.com"
+          git config --global user.name "Azure Pipeline"
+          npm version minor --force --no-git-tag-version
+          vsce package
+          package_version=$(cat package.json|grep version|sed 's/[",]//g'|awk '{print $2}')
+          cfn_release_rss_summary=$(python src/feed.py)
+          vsce publish -p $(token)
+          git commit -am "$cfn_release_rss_summary"
+          git tag $package_version
+          gitchangelog|tee "CHANGELOG.md"
+          git commit -am "Changelog version: $package_version"
+          git push origin HEAD:master
+          git push origin --tags
+        displayName: Commit changes and publish package

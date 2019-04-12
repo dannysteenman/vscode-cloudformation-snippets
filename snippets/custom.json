@@ -1,0 +1,102 @@
+{
+	"find-in-map": {
+		"prefix": "find-in-map",
+		"body": [
+			"!FindInMap [ MappingName, keyname, value ]"
+		],
+		"description": "!FindInMap [ MappingName, keyname, value ]",
+		"scope": "source.cloudformation"
+	},
+	"get-attr": {
+		"prefix": "get-attr",
+		"body": "!GetAtt logicalNameOfResource.attributeName",
+		"description": "",
+		"scope": "source.cloudformation"
+	},
+	"get-azs": {
+		"prefix": "get-azs",
+		"body": "!GetAZs ''",
+		"description": "",
+		"scope": "source.cloudformation"
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"!If [condition_name, value_if_true, value_if_false]"
+		],
+		"description": "Intrinsic Function - If",
+		"scope": "source.cloudformation"
+	},
+	"ref": {
+		"prefix": "ref",
+		"body": "!Ref logicalName",
+		"description": "",
+		"scope": "source.cloudformation"
+	},
+	"parameter": {
+		"prefix": "parameter",
+		"body": [
+			"${1:ParameterName}:",
+			"  Description: ${2}",
+			"  Type: ${3|String,Number,CommaDelimitedList|}",
+			"  Default: ${4}"
+		],
+		"description": "",
+		"scope": "source.cloudformation"
+	},
+	"output": {
+		"prefix": "output",
+		"body": [
+			"${1:LogicalID}:",
+			"  Description: ${2}",
+			"  Value:",
+			"  Export: ",
+			"    Name:"
+		],
+		"description": "",
+		"scope": "source.cloudformation"
+	},
+	"tag": {
+		"prefix": "tag",
+		"body": [
+			"Key: ${1:keyname}",
+			"Value: ${2:value}"
+		]
+	},
+	"map": {
+		"prefix": "map",
+		"body": [
+			"${1:mapName}:",
+			"  ${2:mapping01}:",
+			"    ${3:key01}:",
+			"      Name: ${4:value01}",
+			"  ${5:mapping02}:",
+			"    ${6:key02}:",
+			"      Name: ${7:value02}"
+		],
+		"description": "",
+		"scope": "source.cloudformation"
+    },
+    "security-group-egress-cidr": {
+		"prefix": "security-group-egress-cidr",
+		"body": [
+			"IpProtocol: ${1|tcp,udp,ip|}",
+			"FromPort: ${2}",
+			"ToPort: ${3}",
+			"CidrIp: ${4}"
+		],
+		"description": "",
+		"scope": "source.cloudformation"
+	},
+	"security-group-ingress-cidr": {
+		"prefix": "security-group-ingress-cidr",
+		"body": [
+			"IpProtocol: ${1|tcp,udp,ip|}",
+			"FromPort: ${2}",
+			"ToPort: ${3}",
+			"CidrIp: ${4}"
+		],
+		"description": "",
+		"scope": "source.cloudformation"
+	}
+}

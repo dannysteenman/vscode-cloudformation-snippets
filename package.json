@@ -40,7 +40,19 @@
         "snippets": [
             {
                 "language": "yaml",
-                "path": "./snippets/snippets.json"
+                "path": "./snippets/custom.json"
+            },
+            {
+                "language": "yaml",
+                "path": "./snippets/extension.json"
+            },
+            {
+                "language": "yaml",
+                "path": "./snippets/parameter-types.json"
+            },
+            {
+                "language": "yaml",
+                "path": "./snippets/resource-types.json"
             }
         ]
     }
