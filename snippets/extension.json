@@ -1,0 +1,38 @@
+{
+    "cfn": {
+        "prefix": "cfn",
+        "body": [
+            "AWSTemplateFormatVersion: 2010-09-09",
+            "Description: |",
+            "\t${1}",
+            "Parameters:",
+            "\t",
+            "Metadata:",
+            "\t",
+            "Mappings:",
+            "\t",
+            "Conditions:",
+            "\t",
+            "Resources:",
+            "\t",
+            "Transform:",
+            "\t",
+            "Outputs:"
+        ],
+        "description": "Full template"
+    },
+    "cfn-lite": {
+        "prefix": "cfn-lite",
+        "body": [
+            "AWSTemplateFormatVersion: 2010-09-09",
+            "Description: |",
+            "\t${1}",
+            "Parameters:",
+            "\t",
+            "Resources:",
+            "\t",
+            "Outputs:"
+        ],
+        "description": "Short template"
+    }
+}
