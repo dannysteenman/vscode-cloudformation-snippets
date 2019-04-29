@@ -5,7 +5,7 @@
 
 ### Updated
 
-* The following resources were updated: AWS::ECS::TaskDefinition, AWS::ElasticLoadBalancingV2::TargetGroup. [Azure Pipeline]
+* The following resources were updated: AWS::Greengrass::FunctionDefinition and AWS::Greengrass::FunctionDefinitionVersion. [Azure Pipeline]
 
 
 ## 1.2.0 (2019-04-12)
