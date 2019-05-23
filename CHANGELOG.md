@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.5.0 (2019-05-23)
+
+### Updated
+
+* The following resources were updated: AWS::AppSync::GraphQLApi, AWS::Cognito::UserPool, AWS::Glue::Classifier, AWS::Glue::Crawler, AWS::Glue::DevEndpoint, AWS::Glue::Job, and AWS::Glue::Trigger. [Azure Pipeline]
+
+
 ## 1.4.0 (2019-05-14)
 
 ### Updated
