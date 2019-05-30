@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.6.0 (2019-05-30)
+
+### Updated
+
+* The following resources were updated: AWS::CodeCommit::Repository and                AWS::EC2::LaunchTemplate. [Azure Pipeline]
+
+
 ## 1.5.0 (2019-05-23)
 
 ### Updated
