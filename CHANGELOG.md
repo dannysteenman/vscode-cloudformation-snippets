@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.7.0 (2019-06-14)
+
+### Updated
+
+* The following resources were updated: AWS::AppMesh::VirtualNode,                AWS::CodeBuild::Project, AWS::EC2::Host, AWS::EC2::Route, AWS::EC2::VPNConnection,                AWS::ECS::Cluster, AWS::ECS::Service, AWS::ECS::TaskDefinition,                AWS::EFS::MountTarget, AWS::ElasticLoadBalancingV2::ListenerRule, AWS::EMR::Cluster,                AWS::KinesisFirehose::DeliveryStream, AWS::S3::Bucket. [Azure Pipeline]
+
+
 ## 1.6.0 (2019-05-30)
 
 ### Updated
