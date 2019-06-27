@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.8.0 (2019-06-27)
+
+### Updated
+
+* The following resource was updated: AWS::EC2::LaunchTemplate. [Azure Pipeline]
+
+
 ## 1.7.0 (2019-06-14)
 
 ### Updated
