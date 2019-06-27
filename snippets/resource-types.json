@@ -19,6 +19,11 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::Group\"\r\n\tProperties:\r\n\t\tGroupName: String\r\n\t\tManagedPolicyArns:\r\n\t\t\t- String\r\n\t\tPath: String\r\n\t\tPolicies:\r\n\t\t\t- Policy\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
+    "AWS::Backup::BackupPlan": {
+        "prefix": "backup-backupplan",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Backup::BackupPlan\"\r\n\tProperties:\r\n\t\tBackupPlan: #required\r\n\t\t\tBackupPlanResourceType\r\n\t\tBackupPlanTags: Json\r\n",
+        "description": "Attributes:\r\n  VersionId\r\n  BackupPlanId\r\n  BackupPlanArn\r\n"
+    },
     "AWS::WAFRegional::RateBasedRule": {
         "prefix": "wafregional-ratebasedrule",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::RateBasedRule\"\r\n\tProperties:\r\n\t\tMetricName: String #required\r\n\t\tRateLimit: Integer #required\r\n\t\tMatchPredicates:\r\n\t\t\t- Predicate\r\n\t\tRateKey: String #required\r\n\t\tName: String #required\r\n",
@@ -246,7 +251,7 @@
     },
     "AWS::AppMesh::Route": {
         "prefix": "appmesh-route",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::Route\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tVirtualRouterName: String #required\r\n\t\tRouteName: String #required\r\n\t\tSpec: #required\r\n\t\t\tRouteSpec\r\n\t\tTags:\r\n\t\t\t- TagRef\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::Route\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tVirtualRouterName: String #required\r\n\t\tRouteName: String #required\r\n\t\tSpec: #required\r\n\t\t\tRouteSpec\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  VirtualRouterName\r\n  RouteName\r\n  Arn\r\n"
     },
     "AWS::Lambda::EventSourceMapping": {
@@ -326,7 +331,7 @@
     },
     "AWS::ApiGatewayV2::Stage": {
         "prefix": "apigatewayv2-stage",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Stage\"\r\n\tProperties:\r\n\t\tClientCertificateId: String\r\n\t\tDeploymentId: String #required\r\n\t\tDescription: String\r\n\t\tAccessLogSettings:\r\n\t\t\tAccessLogSettings\r\n\t\tRouteSettings: Json\r\n\t\tStageName: String #required\r\n\t\tStageVariables: Json\r\n\t\tApiId: String #required\r\n\t\tDefaultRouteSettings:\r\n\t\t\tRouteSettings\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Stage\"\r\n\tProperties:\r\n\t\tClientCertificateId: String\r\n\t\tDeploymentId: String #required\r\n\t\tDescription: String\r\n\t\tAccessLogSettings:\r\n\t\t\tAccessLogSettings\r\n\t\tRouteSettings: Json\r\n\t\tStageName: String #required\r\n\t\tStageVariables: Json\r\n\t\tApiId: String #required\r\n\t\tDefaultRouteSettings:\r\n\t\t\tRouteSettings\r\n\t\tTags: Json\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::ApiGateway::Model": {
@@ -352,6 +357,11 @@
     "AWS::SES::ReceiptFilter": {
         "prefix": "ses-receiptfilter",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SES::ReceiptFilter\"\r\n\tProperties:\r\n\t\tFilter: #required\r\n\t\t\tFilter\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::Config::RemediationConfiguration": {
+        "prefix": "config-remediationconfiguration",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Config::RemediationConfiguration\"\r\n\tProperties:\r\n\t\tTargetVersion: String\r\n\t\tParameters: Json\r\n\t\tTargetType: String #required\r\n\t\tConfigRuleName: String #required\r\n\t\tResourceType: String\r\n\t\tTargetId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::EC2::FlowLog": {
@@ -551,7 +561,7 @@
     },
     "AWS::Amplify::App": {
         "prefix": "amplify-app",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Amplify::App\"\r\n\tProperties:\r\n\t\tOauthToken: String\r\n\t\tRepository: String #required\r\n\t\tDescription: String\r\n\t\tEnvironmentVariables:\r\n\t\t\t- EnvironmentVariable\r\n\t\tAccessToken: String\r\n\t\tBuildSpec: String\r\n\t\tCustomRules:\r\n\t\t\t- CustomRule\r\n\t\tBasicAuthConfig:\r\n\t\t\tBasicAuthConfig\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String #required\r\n\t\tIAMServiceRole: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Amplify::App\"\r\n\tProperties:\r\n\t\tOauthToken: String\r\n\t\tRepository: String\r\n\t\tDescription: String\r\n\t\tEnvironmentVariables:\r\n\t\t\t- EnvironmentVariable\r\n\t\tAccessToken: String\r\n\t\tBuildSpec: String\r\n\t\tCustomRules:\r\n\t\t\t- CustomRule\r\n\t\tBasicAuthConfig:\r\n\t\t\tBasicAuthConfig\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String #required\r\n\t\tIAMServiceRole: String\r\n",
         "description": "Attributes:\r\n  AppId\r\n  Arn\r\n  DefaultDomain\r\n  AppName\r\n"
     },
     "AWS::Cloud9::EnvironmentEC2": {
@@ -606,7 +616,7 @@
     },
     "AWS::EC2::Instance": {
         "prefix": "ec2-instance",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::Instance\"\r\n\tProperties:\r\n\t\tAdditionalInfo: String\r\n\t\tAffinity: String\r\n\t\tAvailabilityZone: String\r\n\t\tBlockDeviceMappings:\r\n\t\t\t- BlockDeviceMapping\r\n\t\tCreditSpecification:\r\n\t\t\tCreditSpecification\r\n\t\tDisableApiTermination: Boolean\r\n\t\tEbsOptimized: Boolean\r\n\t\tElasticGpuSpecifications:\r\n\t\t\t- ElasticGpuSpecification\r\n\t\tElasticInferenceAccelerators:\r\n\t\t\t- ElasticInferenceAccelerator\r\n\t\tHostId: String\r\n\t\tIamInstanceProfile: String\r\n\t\tImageId: String\r\n\t\tInstanceInitiatedShutdownBehavior: String\r\n\t\tInstanceType: String\r\n\t\tIpv6AddressCount: Integer\r\n\t\tIpv6Addresses:\r\n\t\t\t- InstanceIpv6Address\r\n\t\tKernelId: String\r\n\t\tKeyName: String\r\n\t\tLaunchTemplate:\r\n\t\t\tLaunchTemplateSpecification\r\n\t\tLicenseSpecifications:\r\n\t\t\t- LicenseSpecification\r\n\t\tMonitoring: Boolean\r\n\t\tNetworkInterfaces:\r\n\t\t\t- NetworkInterface\r\n\t\tPlacementGroupName: String\r\n\t\tPrivateIpAddress: String\r\n\t\tRamdiskId: String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tSecurityGroups:\r\n\t\t\t- String\r\n\t\tSourceDestCheck: Boolean\r\n\t\tSsmAssociations:\r\n\t\t\t- SsmAssociation\r\n\t\tSubnetId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTenancy: String\r\n\t\tUserData: String\r\n\t\tVolumes:\r\n\t\t\t- Volume\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::Instance\"\r\n\tProperties:\r\n\t\tAdditionalInfo: String\r\n\t\tAffinity: String\r\n\t\tAvailabilityZone: String\r\n\t\tBlockDeviceMappings:\r\n\t\t\t- BlockDeviceMapping\r\n\t\tCpuOptions:\r\n\t\t\tCpuOptions\r\n\t\tCreditSpecification:\r\n\t\t\tCreditSpecification\r\n\t\tDisableApiTermination: Boolean\r\n\t\tEbsOptimized: Boolean\r\n\t\tElasticGpuSpecifications:\r\n\t\t\t- ElasticGpuSpecification\r\n\t\tElasticInferenceAccelerators:\r\n\t\t\t- ElasticInferenceAccelerator\r\n\t\tHostId: String\r\n\t\tIamInstanceProfile: String\r\n\t\tImageId: String\r\n\t\tInstanceInitiatedShutdownBehavior: String\r\n\t\tInstanceType: String\r\n\t\tIpv6AddressCount: Integer\r\n\t\tIpv6Addresses:\r\n\t\t\t- InstanceIpv6Address\r\n\t\tKernelId: String\r\n\t\tKeyName: String\r\n\t\tLaunchTemplate:\r\n\t\t\tLaunchTemplateSpecification\r\n\t\tLicenseSpecifications:\r\n\t\t\t- LicenseSpecification\r\n\t\tMonitoring: Boolean\r\n\t\tNetworkInterfaces:\r\n\t\t\t- NetworkInterface\r\n\t\tPlacementGroupName: String\r\n\t\tPrivateIpAddress: String\r\n\t\tRamdiskId: String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tSecurityGroups:\r\n\t\t\t- String\r\n\t\tSourceDestCheck: Boolean\r\n\t\tSsmAssociations:\r\n\t\t\t- SsmAssociation\r\n\t\tSubnetId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTenancy: String\r\n\t\tUserData: String\r\n\t\tVolumes:\r\n\t\t\t- Volume\r\n",
         "description": "Attributes:\r\n  AvailabilityZone\r\n  PrivateDnsName\r\n  PrivateIp\r\n  PublicDnsName\r\n  PublicIp\r\n"
     },
     "AWS::EKS::Cluster": {
@@ -694,6 +704,11 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Config::ConfigurationRecorder\"\r\n\tProperties:\r\n\t\tName: String\r\n\t\tRecordingGroup:\r\n\t\t\tRecordingGroup\r\n\t\tRoleARN: String #required\r\n",
         "description": "No Attributes\r\n"
     },
+    "AWS::Backup::BackupVault": {
+        "prefix": "backup-backupvault",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Backup::BackupVault\"\r\n\tProperties:\r\n\t\tBackupVaultTags: Json\r\n\t\tBackupVaultName: String #required\r\n\t\tEncryptionKeyArn: String\r\n\t\tNotifications:\r\n\t\t\tNotificationObjectType\r\n\t\tAccessPolicy: Json\r\n",
+        "description": "Attributes:\r\n  BackupVaultName\r\n  BackupVaultArn\r\n"
+    },
     "AWS::IoT1Click::Placement": {
         "prefix": "iot1click-placement",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT1Click::Placement\"\r\n\tProperties:\r\n\t\tPlacementName: String\r\n\t\tProjectName: String #required\r\n\t\tAssociatedDevices: Json\r\n\t\tAttributes: Json\r\n",
@@ -776,7 +791,7 @@
     },
     "AWS::ApiGatewayV2::Api": {
         "prefix": "apigatewayv2-api",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Api\"\r\n\tProperties:\r\n\t\tRouteSelectionExpression: String #required\r\n\t\tDescription: String\r\n\t\tVersion: String\r\n\t\tProtocolType: String #required\r\n\t\tDisableSchemaValidation: Boolean\r\n\t\tName: String #required\r\n\t\tApiKeySelectionExpression: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Api\"\r\n\tProperties:\r\n\t\tRouteSelectionExpression: String #required\r\n\t\tDescription: String\r\n\t\tVersion: String\r\n\t\tProtocolType: String #required\r\n\t\tDisableSchemaValidation: Boolean\r\n\t\tTags: Json\r\n\t\tName: String #required\r\n\t\tApiKeySelectionExpression: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::WAFRegional::IPSet": {
@@ -791,7 +806,7 @@
     },
     "AWS::RDS::DBInstance": {
         "prefix": "rds-dbinstance",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBInstance\"\r\n\tProperties:\r\n\t\tAllocatedStorage: String\r\n\t\tAllowMajorVersionUpgrade: Boolean\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tAvailabilityZone: String\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tCharacterSetName: String\r\n\t\tCopyTagsToSnapshot: Boolean\r\n\t\tDBClusterIdentifier: String\r\n\t\tDBInstanceClass: String #required\r\n\t\tDBInstanceIdentifier: String\r\n\t\tDBName: String\r\n\t\tDBParameterGroupName: String\r\n\t\tDBSecurityGroups:\r\n\t\t\t- String\r\n\t\tDBSnapshotIdentifier: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tDeleteAutomatedBackups: Boolean\r\n\t\tDeletionProtection: Boolean\r\n\t\tDomain: String\r\n\t\tDomainIAMRoleName: String\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n\t\tEnableIAMDatabaseAuthentication: Boolean\r\n\t\tEnablePerformanceInsights: Boolean\r\n\t\tEngine: String\r\n\t\tEngineVersion: String\r\n\t\tIops: Integer\r\n\t\tKmsKeyId: String\r\n\t\tLicenseModel: String\r\n\t\tMasterUserPassword: String\r\n\t\tMasterUsername: String\r\n\t\tMonitoringInterval: Integer\r\n\t\tMonitoringRoleArn: String\r\n\t\tMultiAZ: Boolean\r\n\t\tOptionGroupName: String\r\n\t\tPerformanceInsightsKMSKeyId: String\r\n\t\tPerformanceInsightsRetentionPeriod: Integer\r\n\t\tPort: String\r\n\t\tPreferredBackupWindow: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tProcessorFeatures:\r\n\t\t\t- ProcessorFeature\r\n\t\tPromotionTier: Integer\r\n\t\tPubliclyAccessible: Boolean\r\n\t\tSourceDBInstanceIdentifier: String\r\n\t\tSourceRegion: String\r\n\t\tStorageEncrypted: Boolean\r\n\t\tStorageType: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTimezone: String\r\n\t\tUseDefaultProcessorFeatures: Boolean\r\n\t\tVPCSecurityGroups:\r\n\t\t\t- String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBInstance\"\r\n\tProperties:\r\n\t\tAllocatedStorage: String\r\n\t\tAllowMajorVersionUpgrade: Boolean\r\n\t\tAssociatedRoles:\r\n\t\t\t- DBInstanceRole\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tAvailabilityZone: String\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tCharacterSetName: String\r\n\t\tCopyTagsToSnapshot: Boolean\r\n\t\tDBClusterIdentifier: String\r\n\t\tDBInstanceClass: String #required\r\n\t\tDBInstanceIdentifier: String\r\n\t\tDBName: String\r\n\t\tDBParameterGroupName: String\r\n\t\tDBSecurityGroups:\r\n\t\t\t- String\r\n\t\tDBSnapshotIdentifier: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tDeleteAutomatedBackups: Boolean\r\n\t\tDeletionProtection: Boolean\r\n\t\tDomain: String\r\n\t\tDomainIAMRoleName: String\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n\t\tEnableIAMDatabaseAuthentication: Boolean\r\n\t\tEnablePerformanceInsights: Boolean\r\n\t\tEngine: String\r\n\t\tEngineVersion: String\r\n\t\tIops: Integer\r\n\t\tKmsKeyId: String\r\n\t\tLicenseModel: String\r\n\t\tMasterUserPassword: String\r\n\t\tMasterUsername: String\r\n\t\tMonitoringInterval: Integer\r\n\t\tMonitoringRoleArn: String\r\n\t\tMultiAZ: Boolean\r\n\t\tOptionGroupName: String\r\n\t\tPerformanceInsightsKMSKeyId: String\r\n\t\tPerformanceInsightsRetentionPeriod: Integer\r\n\t\tPort: String\r\n\t\tPreferredBackupWindow: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tProcessorFeatures:\r\n\t\t\t- ProcessorFeature\r\n\t\tPromotionTier: Integer\r\n\t\tPubliclyAccessible: Boolean\r\n\t\tSourceDBInstanceIdentifier: String\r\n\t\tSourceRegion: String\r\n\t\tStorageEncrypted: Boolean\r\n\t\tStorageType: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTimezone: String\r\n\t\tUseDefaultProcessorFeatures: Boolean\r\n\t\tVPCSecurityGroups:\r\n\t\t\t- String\r\n",
         "description": "Attributes:\r\n  Endpoint.Address\r\n  Endpoint.Port\r\n"
     },
     "AWS::RoboMaker::RobotApplication": {
@@ -931,7 +946,7 @@
     },
     "AWS::AppStream::Fleet": {
         "prefix": "appstream-fleet",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Fleet\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tComputeCapacity: #required\r\n\t\t\tComputeCapacity\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tFleetType: String\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tName: String\r\n\t\tImageName: String\r\n\t\tMaxUserDurationInSeconds: Integer\r\n\t\tDisconnectTimeoutInSeconds: Integer\r\n\t\tDisplayName: String\r\n\t\tInstanceType: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tImageArn: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Fleet\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tComputeCapacity: #required\r\n\t\t\tComputeCapacity\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tFleetType: String\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tName: String\r\n\t\tImageName: String\r\n\t\tMaxUserDurationInSeconds: Integer\r\n\t\tIdleDisconnectTimeoutInSeconds: Integer\r\n\t\tDisconnectTimeoutInSeconds: Integer\r\n\t\tDisplayName: String\r\n\t\tInstanceType: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tImageArn: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Logs::SubscriptionFilter": {
@@ -1002,6 +1017,11 @@
     "AWS::CloudFormation::CustomResource": {
         "prefix": "cloudformation-customresource",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::CloudFormation::CustomResource\"\r\n\tProperties:\r\n\t\tServiceToken: String #required\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::ServiceCatalog::StackSetConstraint": {
+        "prefix": "servicecatalog-stacksetconstraint",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::StackSetConstraint\"\r\n\tProperties:\r\n\t\tDescription: String #required\r\n\t\tStackInstanceControl: String #required\r\n\t\tAcceptLanguage: String\r\n\t\tPortfolioId: String #required\r\n\t\tProductId: String #required\r\n\t\tRegionList: #required\r\n\t\t\t- String\r\n\t\tAdminRole: String #required\r\n\t\tAccountList: #required\r\n\t\t\t- String\r\n\t\tExecutionRole: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::EC2::ClientVpnRoute": {
@@ -1101,12 +1121,12 @@
     },
     "AWS::AppMesh::VirtualNode": {
         "prefix": "appmesh-virtualnode",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::VirtualNode\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tSpec: #required\r\n\t\t\tVirtualNodeSpec\r\n\t\tVirtualNodeName: String #required\r\n\t\tTags:\r\n\t\t\t- TagRef\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::VirtualNode\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tSpec: #required\r\n\t\t\tVirtualNodeSpec\r\n\t\tVirtualNodeName: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  Arn\r\n  VirtualNodeName\r\n"
     },
     "AWS::AppMesh::VirtualRouter": {
         "prefix": "appmesh-virtualrouter",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::VirtualRouter\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tVirtualRouterName: String #required\r\n\t\tSpec: #required\r\n\t\t\tVirtualRouterSpec\r\n\t\tTags:\r\n\t\t\t- TagRef\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::VirtualRouter\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tVirtualRouterName: String #required\r\n\t\tSpec: #required\r\n\t\t\tVirtualRouterSpec\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  VirtualRouterName\r\n  Arn\r\n"
     },
     "AWS::Greengrass::ConnectorDefinition": {
@@ -1131,7 +1151,7 @@
     },
     "AWS::AppMesh::VirtualService": {
         "prefix": "appmesh-virtualservice",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::VirtualService\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tVirtualServiceName: String #required\r\n\t\tSpec: #required\r\n\t\t\tVirtualServiceSpec\r\n\t\tTags:\r\n\t\t\t- TagRef\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::VirtualService\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tVirtualServiceName: String #required\r\n\t\tSpec: #required\r\n\t\t\tVirtualServiceSpec\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  VirtualServiceName\r\n  Arn\r\n"
     },
     "AWS::RDS::DBSecurityGroupIngress": {
@@ -1186,7 +1206,7 @@
     },
     "AWS::IAM::Role": {
         "prefix": "iam-role",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::Role\"\r\n\tProperties:\r\n\t\tAssumeRolePolicyDocument: Json #required\r\n\t\tManagedPolicyArns:\r\n\t\t\t- String\r\n\t\tMaxSessionDuration: Integer\r\n\t\tPath: String\r\n\t\tPermissionsBoundary: String\r\n\t\tPolicies:\r\n\t\t\t- Policy\r\n\t\tRoleName: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::Role\"\r\n\tProperties:\r\n\t\tAssumeRolePolicyDocument: Json #required\r\n\t\tManagedPolicyArns:\r\n\t\t\t- String\r\n\t\tMaxSessionDuration: Integer\r\n\t\tPath: String\r\n\t\tPermissionsBoundary: String\r\n\t\tPolicies:\r\n\t\t\t- Policy\r\n\t\tRoleName: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Arn\r\n  RoleId\r\n"
     },
     "AWS::Neptune::DBParameterGroup": {
@@ -1246,7 +1266,7 @@
     },
     "AWS::ApiGatewayV2::DomainName": {
         "prefix": "apigatewayv2-domainname",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::DomainName\"\r\n\tProperties:\r\n\t\tDomainName: String #required\r\n\t\tDomainNameConfigurations:\r\n\t\t\t- DomainNameConfiguration\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::DomainName\"\r\n\tProperties:\r\n\t\tDomainName: String #required\r\n\t\tDomainNameConfigurations:\r\n\t\t\t- DomainNameConfiguration\r\n\t\tTags: Json\r\n",
         "description": "Attributes:\r\n  RegionalHostedZoneId\r\n  RegionalDomainName\r\n"
     },
     "AWS::Greengrass::FunctionDefinition": {
@@ -1284,9 +1304,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Integration\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tTemplateSelectionExpression: String\r\n\t\tConnectionType: String\r\n\t\tIntegrationMethod: String\r\n\t\tPassthroughBehavior: String\r\n\t\tRequestParameters: Json\r\n\t\tIntegrationUri: String\r\n\t\tCredentialsArn: String\r\n\t\tRequestTemplates: Json\r\n\t\tTimeoutInMillis: Integer\r\n\t\tContentHandlingStrategy: String\r\n\t\tApiId: String #required\r\n\t\tIntegrationType: String #required\r\n",
         "description": "No Attributes\r\n"
     },
+    "AWS::Backup::BackupSelection": {
+        "prefix": "backup-backupselection",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Backup::BackupSelection\"\r\n\tProperties:\r\n\t\tBackupSelection: #required\r\n\t\t\tBackupSelectionResourceType\r\n\t\tBackupPlanId: String #required\r\n",
+        "description": "Attributes:\r\n  BackupPlanId\r\n  SelectionId\r\n"
+    },
     "AWS::CloudWatch::Alarm": {
         "prefix": "cloudwatch-alarm",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CloudWatch::Alarm\"\r\n\tProperties:\r\n\t\tActionsEnabled: Boolean\r\n\t\tAlarmActions:\r\n\t\t\t- String\r\n\t\tAlarmDescription: String\r\n\t\tAlarmName: String\r\n\t\tComparisonOperator: String #required\r\n\t\tDatapointsToAlarm: Integer\r\n\t\tDimensions:\r\n\t\t\t- Dimension\r\n\t\tEvaluateLowSampleCountPercentile: String\r\n\t\tEvaluationPeriods: Integer #required\r\n\t\tExtendedStatistic: String\r\n\t\tInsufficientDataActions:\r\n\t\t\t- String\r\n\t\tMetricName: String\r\n\t\tMetrics:\r\n\t\t\t- MetricDataQuery\r\n\t\tNamespace: String\r\n\t\tOKActions:\r\n\t\t\t- String\r\n\t\tPeriod: Integer\r\n\t\tStatistic: String\r\n\t\tThreshold: Double #required\r\n\t\tTreatMissingData: String\r\n\t\tUnit: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CloudWatch::Alarm\"\r\n\tProperties:\r\n\t\tActionsEnabled: Boolean\r\n\t\tAlarmActions:\r\n\t\t\t- String\r\n\t\tAlarmDescription: String\r\n\t\tAlarmName: String\r\n\t\tComparisonOperator: String #required\r\n\t\tDatapointsToAlarm: Integer\r\n\t\tDimensions:\r\n\t\t\t- Dimension\r\n\t\tEvaluateLowSampleCountPercentile: String\r\n\t\tEvaluationPeriods: Integer #required\r\n\t\tExtendedStatistic: String\r\n\t\tInsufficientDataActions:\r\n\t\t\t- String\r\n\t\tMetricName: String\r\n\t\tMetrics:\r\n\t\t\t- MetricDataQuery\r\n\t\tNamespace: String\r\n\t\tOKActions:\r\n\t\t\t- String\r\n\t\tPeriod: Integer\r\n\t\tStatistic: String\r\n\t\tThreshold: Double\r\n\t\tThresholdMetricId: String\r\n\t\tTreatMissingData: String\r\n\t\tUnit: String\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::Pinpoint::Segment": {
@@ -1351,7 +1376,7 @@
     },
     "AWS::RDS::DBCluster": {
         "prefix": "rds-dbcluster",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBCluster\"\r\n\tProperties:\r\n\t\tAvailabilityZones:\r\n\t\t\t- String\r\n\t\tBacktrackWindow: Long\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tDBClusterIdentifier: String\r\n\t\tDBClusterParameterGroupName: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tDatabaseName: String\r\n\t\tDeletionProtection: Boolean\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n\t\tEnableIAMDatabaseAuthentication: Boolean\r\n\t\tEngine: String #required\r\n\t\tEngineMode: String\r\n\t\tEngineVersion: String\r\n\t\tKmsKeyId: String\r\n\t\tMasterUserPassword: String\r\n\t\tMasterUsername: String\r\n\t\tPort: Integer\r\n\t\tPreferredBackupWindow: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tReplicationSourceIdentifier: String\r\n\t\tScalingConfiguration:\r\n\t\t\tScalingConfiguration\r\n\t\tSnapshotIdentifier: String\r\n\t\tSourceRegion: String\r\n\t\tStorageEncrypted: Boolean\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVpcSecurityGroupIds:\r\n\t\t\t- String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBCluster\"\r\n\tProperties:\r\n\t\tAssociatedRoles:\r\n\t\t\t- DBClusterRole\r\n\t\tAvailabilityZones:\r\n\t\t\t- String\r\n\t\tBacktrackWindow: Long\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tDBClusterIdentifier: String\r\n\t\tDBClusterParameterGroupName: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tDatabaseName: String\r\n\t\tDeletionProtection: Boolean\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n\t\tEnableIAMDatabaseAuthentication: Boolean\r\n\t\tEngine: String #required\r\n\t\tEngineMode: String\r\n\t\tEngineVersion: String\r\n\t\tKmsKeyId: String\r\n\t\tMasterUserPassword: String\r\n\t\tMasterUsername: String\r\n\t\tPort: Integer\r\n\t\tPreferredBackupWindow: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tReplicationSourceIdentifier: String\r\n\t\tRestoreType: String\r\n\t\tScalingConfiguration:\r\n\t\t\tScalingConfiguration\r\n\t\tSnapshotIdentifier: String\r\n\t\tSourceDBClusterIdentifier: String\r\n\t\tSourceRegion: String\r\n\t\tStorageEncrypted: Boolean\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tUseLatestRestorableTime: Boolean\r\n\t\tVpcSecurityGroupIds:\r\n\t\t\t- String\r\n",
         "description": "Attributes:\r\n  Endpoint.Address\r\n  Endpoint.Port\r\n  ReadEndpoint.Address\r\n"
     },
     "Alexa::ASK::Skill": {
@@ -1459,6 +1484,11 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::Resource\"\r\n\tProperties:\r\n\t\tParentId: String #required\r\n\t\tPathPart: String #required\r\n\t\tRestApiId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
+    "AWS::SecurityHub::Hub": {
+        "prefix": "securityhub-hub",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SecurityHub::Hub\"\r\n\tProperties:\r\n\t\tTags: Json\r\n",
+        "description": "No Attributes\r\n"
+    },
     "AWS::IoT1Click::Device": {
         "prefix": "iot1click-device",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT1Click::Device\"\r\n\tProperties:\r\n\t\tDeviceId: String #required\r\n\t\tEnabled: Boolean #required\r\n",
@@ -1561,7 +1591,7 @@
     },
     "AWS::ServiceCatalog::CloudFormationProvisionedProduct": {
         "prefix": "servicecatalog-cloudformationprovisionedproduct",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::CloudFormationProvisionedProduct\"\r\n\tProperties:\r\n\t\tPathId: String\r\n\t\tProvisioningParameters:\r\n\t\t\t- ProvisioningParameter\r\n\t\tProductName: String\r\n\t\tProvisioningArtifactName: String\r\n\t\tNotificationArns:\r\n\t\t\t- String\r\n\t\tAcceptLanguage: String\r\n\t\tProductId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tProvisionedProductName: String\r\n\t\tProvisioningArtifactId: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::CloudFormationProvisionedProduct\"\r\n\tProperties:\r\n\t\tPathId: String\r\n\t\tProvisioningParameters:\r\n\t\t\t- ProvisioningParameter\r\n\t\tProvisioningPreferences:\r\n\t\t\tProvisioningPreferences\r\n\t\tProductName: String\r\n\t\tProvisioningArtifactName: String\r\n\t\tNotificationArns:\r\n\t\t\t- String\r\n\t\tAcceptLanguage: String\r\n\t\tProductId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tProvisionedProductName: String\r\n\t\tProvisioningArtifactId: String\r\n",
         "description": "Attributes:\r\n  CloudformationStackArn\r\n  RecordId\r\n"
     },
     "AWS::ServiceCatalog::LaunchRoleConstraint": {
@@ -1926,7 +1956,7 @@
     },
     "AWS::ECS::TaskDefinition": {
         "prefix": "ecs-taskdefinition",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ECS::TaskDefinition\"\r\n\tProperties:\r\n\t\tContainerDefinitions:\r\n\t\t\t- ContainerDefinition\r\n\t\tCpu: String\r\n\t\tExecutionRoleArn: String\r\n\t\tFamily: String\r\n\t\tMemory: String\r\n\t\tNetworkMode: String\r\n\t\tPlacementConstraints:\r\n\t\t\t- TaskDefinitionPlacementConstraint\r\n\t\tProxyConfiguration:\r\n\t\t\tProxyConfiguration\r\n\t\tRequiresCompatibilities:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTaskRoleArn: String\r\n\t\tVolumes:\r\n\t\t\t- Volume\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ECS::TaskDefinition\"\r\n\tProperties:\r\n\t\tContainerDefinitions:\r\n\t\t\t- ContainerDefinition\r\n\t\tCpu: String\r\n\t\tExecutionRoleArn: String\r\n\t\tFamily: String\r\n\t\tIpcMode: String\r\n\t\tMemory: String\r\n\t\tNetworkMode: String\r\n\t\tPidMode: String\r\n\t\tPlacementConstraints:\r\n\t\t\t- TaskDefinitionPlacementConstraint\r\n\t\tProxyConfiguration:\r\n\t\t\tProxyConfiguration\r\n\t\tRequiresCompatibilities:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTaskRoleArn: String\r\n\t\tVolumes:\r\n\t\t\t- Volume\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::ElastiCache::CacheCluster": {
@@ -1996,7 +2026,7 @@
     },
     "AWS::AppMesh::Mesh": {
         "prefix": "appmesh-mesh",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::Mesh\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tSpec:\r\n\t\t\tMeshSpec\r\n\t\tTags:\r\n\t\t\t- TagRef\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::Mesh\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tSpec:\r\n\t\t\tMeshSpec\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  Arn\r\n"
     },
     "AWS::KinesisAnalytics::ApplicationReferenceDataSource": {
