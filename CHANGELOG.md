@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.9.0 (2019-07-04)
+
+### Updated
+
+* The following resources were updated: AWS::IoTAnalytics::Channel, AWS::IoTAnalytics::Datastore. [Azure Pipeline]
+
+
 ## 1.8.0 (2019-06-27)
 
 ### Updated
