@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.10.0 (2019-07-18)
+
+### New
+
+* The following resource was added: AWS::CloudWatch::AnomalyDetector. [Azure Pipeline]
+
+
 ## 1.9.0 (2019-07-04)
 
 ### Updated
