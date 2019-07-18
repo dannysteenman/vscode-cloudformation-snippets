@@ -564,6 +564,11 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Amplify::App\"\r\n\tProperties:\r\n\t\tOauthToken: String\r\n\t\tRepository: String\r\n\t\tDescription: String\r\n\t\tEnvironmentVariables:\r\n\t\t\t- EnvironmentVariable\r\n\t\tAccessToken: String\r\n\t\tBuildSpec: String\r\n\t\tCustomRules:\r\n\t\t\t- CustomRule\r\n\t\tBasicAuthConfig:\r\n\t\t\tBasicAuthConfig\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String #required\r\n\t\tIAMServiceRole: String\r\n",
         "description": "Attributes:\r\n  AppId\r\n  Arn\r\n  DefaultDomain\r\n  AppName\r\n"
     },
+    "AWS::CloudWatch::AnomalyDetector": {
+        "prefix": "cloudwatch-anomalydetector",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CloudWatch::AnomalyDetector\"\r\n\tProperties:\r\n\t\tMetricName: String #required\r\n\t\tStat: String #required\r\n\t\tConfiguration:\r\n\t\t\tConfiguration\r\n\t\tDimensions:\r\n\t\t\t- Dimension\r\n\t\tNamespace: String #required\r\n",
+        "description": "No Attributes\r\n"
+    },
     "AWS::Cloud9::EnvironmentEC2": {
         "prefix": "cloud9-environmentec2",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cloud9::EnvironmentEC2\"\r\n\tProperties:\r\n\t\tRepositories:\r\n\t\t\t- Repository\r\n\t\tOwnerArn: String\r\n\t\tDescription: String\r\n\t\tAutomaticStopTimeMinutes: Integer\r\n\t\tSubnetId: String\r\n\t\tInstanceType: String #required\r\n\t\tName: String\r\n",
