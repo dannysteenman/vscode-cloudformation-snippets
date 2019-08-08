@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.12.0 (2019-08-08)
+
+### Updated
+
+* The following resources were updated: AWS::Batch::JobDefinition, AWS::Cognito::UserPool,                AWS::Cognito::UserPoolClient, and AWS::Glue::Job. [Azure Pipeline]
+
+
 ## 1.11.0 (2019-07-25)
 
 ### Updated
