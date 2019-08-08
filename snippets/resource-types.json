@@ -751,7 +751,7 @@
     },
     "AWS::Glue::Job": {
         "prefix": "glue-job",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::Job\"\r\n\tProperties:\r\n\t\tRole: String #required\r\n\t\tDefaultArguments: Json\r\n\t\tConnections:\r\n\t\t\tConnectionsList\r\n\t\tMaxRetries: Double\r\n\t\tDescription: String\r\n\t\tLogUri: String\r\n\t\tCommand: #required\r\n\t\t\tJobCommand\r\n\t\tAllocatedCapacity: Double\r\n\t\tExecutionProperty:\r\n\t\t\tExecutionProperty\r\n\t\tSecurityConfiguration: String\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::Job\"\r\n\tProperties:\r\n\t\tConnections:\r\n\t\t\tConnectionsList\r\n\t\tMaxRetries: Double\r\n\t\tDescription: String\r\n\t\tAllocatedCapacity: Double\r\n\t\tName: String\r\n\t\tRole: String #required\r\n\t\tDefaultArguments: Json\r\n\t\tWorkerType: String\r\n\t\tLogUri: String\r\n\t\tCommand: #required\r\n\t\t\tJobCommand\r\n\t\tGlueVersion: String\r\n\t\tExecutionProperty:\r\n\t\t\tExecutionProperty\r\n\t\tSecurityConfiguration: String\r\n\t\tNumberOfWorkers: Integer\r\n\t\tTags: Json\r\n\t\tMaxCapacity: Double\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::S3::Bucket": {
@@ -781,7 +781,7 @@
     },
     "AWS::Cognito::UserPool": {
         "prefix": "cognito-userpool",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPool\"\r\n\tProperties:\r\n\t\tUserPoolTags: Json\r\n\t\tPolicies:\r\n\t\t\tPolicies\r\n\t\tMfaConfiguration: String\r\n\t\tSchema:\r\n\t\t\t- SchemaAttribute\r\n\t\tAdminCreateUserConfig:\r\n\t\t\tAdminCreateUserConfig\r\n\t\tSmsAuthenticationMessage: String\r\n\t\tUserPoolName: String\r\n\t\tSmsVerificationMessage: String\r\n\t\tEmailConfiguration:\r\n\t\t\tEmailConfiguration\r\n\t\tSmsConfiguration:\r\n\t\t\tSmsConfiguration\r\n\t\tAliasAttributes:\r\n\t\t\t- String\r\n\t\tEmailVerificationSubject: String\r\n\t\tLambdaConfig:\r\n\t\t\tLambdaConfig\r\n\t\tUsernameAttributes:\r\n\t\t\t- String\r\n\t\tAutoVerifiedAttributes:\r\n\t\t\t- String\r\n\t\tDeviceConfiguration:\r\n\t\t\tDeviceConfiguration\r\n\t\tEmailVerificationMessage: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPool\"\r\n\tProperties:\r\n\t\tUserPoolTags: Json\r\n\t\tPolicies:\r\n\t\t\tPolicies\r\n\t\tVerificationMessageTemplate:\r\n\t\t\tVerificationMessageTemplate\r\n\t\tMfaConfiguration: String\r\n\t\tSchema:\r\n\t\t\t- SchemaAttribute\r\n\t\tAdminCreateUserConfig:\r\n\t\t\tAdminCreateUserConfig\r\n\t\tSmsAuthenticationMessage: String\r\n\t\tUserPoolName: String\r\n\t\tSmsVerificationMessage: String\r\n\t\tUserPoolAddOns:\r\n\t\t\tUserPoolAddOns\r\n\t\tEmailConfiguration:\r\n\t\t\tEmailConfiguration\r\n\t\tSmsConfiguration:\r\n\t\t\tSmsConfiguration\r\n\t\tAliasAttributes:\r\n\t\t\t- String\r\n\t\tEmailVerificationSubject: String\r\n\t\tLambdaConfig:\r\n\t\t\tLambdaConfig\r\n\t\tUsernameAttributes:\r\n\t\t\t- String\r\n\t\tAutoVerifiedAttributes:\r\n\t\t\t- String\r\n\t\tDeviceConfiguration:\r\n\t\t\tDeviceConfiguration\r\n\t\tEmailVerificationMessage: String\r\n",
         "description": "Attributes:\r\n  ProviderName\r\n  ProviderURL\r\n  Arn\r\n"
     },
     "AWS::EC2::EgressOnlyInternetGateway": {
@@ -841,7 +841,7 @@
     },
     "AWS::Cognito::UserPoolClient": {
         "prefix": "cognito-userpoolclient",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPoolClient\"\r\n\tProperties:\r\n\t\tGenerateSecret: Boolean\r\n\t\tClientName: String\r\n\t\tUserPoolId: String #required\r\n\t\tExplicitAuthFlows:\r\n\t\t\t- String\r\n\t\tRefreshTokenValidity: Double\r\n\t\tReadAttributes:\r\n\t\t\t- String\r\n\t\tWriteAttributes:\r\n\t\t\t- String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPoolClient\"\r\n\tProperties:\r\n\t\tAnalyticsConfiguration:\r\n\t\t\tAnalyticsConfiguration\r\n\t\tGenerateSecret: Boolean\r\n\t\tCallbackURLs:\r\n\t\t\t- String\r\n\t\tAllowedOAuthScopes:\r\n\t\t\t- String\r\n\t\tReadAttributes:\r\n\t\t\t- String\r\n\t\tAllowedOAuthFlowsUserPoolClient: Boolean\r\n\t\tDefaultRedirectURI: String\r\n\t\tSupportedIdentityProviders:\r\n\t\t\t- String\r\n\t\tClientName: String\r\n\t\tUserPoolId: String #required\r\n\t\tAllowedOAuthFlows:\r\n\t\t\t- String\r\n\t\tExplicitAuthFlows:\r\n\t\t\t- String\r\n\t\tLogoutURLs:\r\n\t\t\t- String\r\n\t\tRefreshTokenValidity: Double\r\n\t\tWriteAttributes:\r\n\t\t\t- String\r\n",
         "description": "Attributes:\r\n  ClientSecret\r\n  Name\r\n"
     },
     "AWS::IoTEvents::Input": {
@@ -1056,7 +1056,7 @@
     },
     "AWS::SSM::MaintenanceWindowTask": {
         "prefix": "ssm-maintenancewindowtask",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::MaintenanceWindowTask\"\r\n\tProperties:\r\n\t\tMaxErrors: String #required\r\n\t\tDescription: String\r\n\t\tServiceRoleArn: String #required\r\n\t\tPriority: Integer #required\r\n\t\tMaxConcurrency: String #required\r\n\t\tTargets: #required\r\n\t\t\t- Target\r\n\t\tName: String\r\n\t\tTaskArn: String #required\r\n\t\tTaskInvocationParameters:\r\n\t\t\tTaskInvocationParameters\r\n\t\tWindowId: String\r\n\t\tTaskParameters: Json\r\n\t\tTaskType: String #required\r\n\t\tLoggingInfo:\r\n\t\t\tLoggingInfo\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::MaintenanceWindowTask\"\r\n\tProperties:\r\n\t\tMaxErrors: String #required\r\n\t\tDescription: String\r\n\t\tServiceRoleArn: String\r\n\t\tPriority: Integer #required\r\n\t\tMaxConcurrency: String #required\r\n\t\tTargets: #required\r\n\t\t\t- Target\r\n\t\tName: String\r\n\t\tTaskArn: String #required\r\n\t\tTaskInvocationParameters:\r\n\t\t\tTaskInvocationParameters\r\n\t\tWindowId: String #required\r\n\t\tTaskParameters: Json\r\n\t\tTaskType: String #required\r\n\t\tLoggingInfo:\r\n\t\t\tLoggingInfo\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Transfer::Server": {
@@ -1731,7 +1731,7 @@
     },
     "AWS::CodeCommit::Repository": {
         "prefix": "codecommit-repository",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodeCommit::Repository\"\r\n\tProperties:\r\n\t\tRepositoryName: String #required\r\n\t\tTriggers:\r\n\t\t\t- RepositoryTrigger\r\n\t\tCode:\r\n\t\t\tCode\r\n\t\tRepositoryDescription: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodeCommit::Repository\"\r\n\tProperties:\r\n\t\tRepositoryName: String #required\r\n\t\tTriggers:\r\n\t\t\t- RepositoryTrigger\r\n\t\tCode:\r\n\t\t\tCode\r\n\t\tRepositoryDescription: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  CloneUrlHttp\r\n  CloneUrlSsh\r\n  Arn\r\n  Name\r\n"
     },
     "AWS::SecretsManager::Secret": {
@@ -2112,6 +2112,11 @@
     "AWS::SSM::Association": {
         "prefix": "ssm-association",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::Association\"\r\n\tProperties:\r\n\t\tAssociationName: String\r\n\t\tDocumentVersion: String\r\n\t\tInstanceId: String\r\n\t\tName: String #required\r\n\t\tOutputLocation:\r\n\t\t\tInstanceAssociationOutputLocation\r\n\t\tParameters:\r\n\t\t\tMap\r\n\t\tScheduleExpression: String\r\n\t\tTargets:\r\n\t\t\t- Target\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::CodeStar::GitHubRepository": {
+        "prefix": "codestar-githubrepository",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodeStar::GitHubRepository\"\r\n\tProperties:\r\n\t\tEnableIssues: Boolean\r\n\t\tRepositoryName: String #required\r\n\t\tRepositoryAccessToken: String #required\r\n\t\tRepositoryOwner: String #required\r\n\t\tIsPrivate: Boolean\r\n\t\tCode:\r\n\t\t\tCode\r\n\t\tRepositoryDescription: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Athena::NamedQuery": {
