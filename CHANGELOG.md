@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.13.0 (2019-08-15)
+
+### Updated
+
+* The following resources were updated: AWS::AppSync::GraphQLApi, AWS::EC2::ClientVpnEndpoint, AWS::Greengrass::Group, 			AWS::Greengrass::ConnectorDefinition, 			AWS::Greengrass::CoreDefinition, 			AWS::Greengrass::DeviceDefinition, 			AWS::Greengrass::FunctionDefinition, 			AWS::Greengrass::LoggerDefinition, 			AWS::Greengrass::ResourceDefinition, and 			AWS::Greengrass::SubscriptionDefinition. [Azure Pipeline]
+
+
 ## 1.12.0 (2019-08-08)
 
 ### Updated
