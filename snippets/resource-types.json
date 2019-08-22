@@ -64,6 +64,11 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::SqlInjectionMatchSet\"\r\n\tProperties:\r\n\t\tSqlInjectionMatchTuples:\r\n\t\t\t- SqlInjectionMatchTuple\r\n\t\tName: String #required\r\n",
         "description": "No Attributes\r\n"
     },
+    "AWS::SageMaker::Workteam": {
+        "prefix": "sagemaker-workteam",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SageMaker::Workteam\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tNotificationConfiguration:\r\n\t\t\tNotificationConfiguration\r\n\t\tWorkteamName: String\r\n\t\tMemberDefinitions:\r\n\t\t\t- MemberDefinition\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
+        "description": "Attributes:\r\n  WorkteamName\r\n"
+    },
     "AWS::Kinesis::Stream": {
         "prefix": "kinesis-stream",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Kinesis::Stream\"\r\n\tProperties:\r\n\t\tName: String\r\n\t\tRetentionPeriodHours: Integer\r\n\t\tShardCount: Integer #required\r\n\t\tStreamEncryption:\r\n\t\t\tStreamEncryption\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
@@ -743,6 +748,11 @@
         "prefix": "iot1click-placement",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT1Click::Placement\"\r\n\tProperties:\r\n\t\tPlacementName: String\r\n\t\tProjectName: String #required\r\n\t\tAssociatedDevices: Json\r\n\t\tAttributes: Json\r\n",
         "description": "Attributes:\r\n  PlacementName\r\n  ProjectName\r\n"
+    },
+    "AWS::SSM::MaintenanceWindowTarget": {
+        "prefix": "ssm-maintenancewindowtarget",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::MaintenanceWindowTarget\"\r\n\tProperties:\r\n\t\tOwnerInformation: String\r\n\t\tDescription: String\r\n\t\tWindowId: String #required\r\n\t\tResourceType: String #required\r\n\t\tTargets: #required\r\n\t\t\t- Targets\r\n\t\tName: String\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::EC2::DHCPOptions": {
         "prefix": "ec2-dhcpoptions",
@@ -2181,7 +2191,7 @@
     },
     "AWS::DMS::ReplicationTask": {
         "prefix": "dms-replicationtask",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DMS::ReplicationTask\"\r\n\tProperties:\r\n\t\tReplicationTaskSettings: String\r\n\t\tTableMappings: String #required\r\n\t\tReplicationTaskIdentifier: String\r\n\t\tSourceEndpointArn: String #required\r\n\t\tMigrationType: String #required\r\n\t\tTargetEndpointArn: String #required\r\n\t\tReplicationInstanceArn: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tCdcStartTime: Double\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DMS::ReplicationTask\"\r\n\tProperties:\r\n\t\tReplicationTaskSettings: String\r\n\t\tTableMappings: String #required\r\n\t\tCdcStartPosition: String\r\n\t\tReplicationTaskIdentifier: String\r\n\t\tCdcStopPosition: String\r\n\t\tSourceEndpointArn: String #required\r\n\t\tMigrationType: String #required\r\n\t\tTargetEndpointArn: String #required\r\n\t\tReplicationInstanceArn: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tCdcStartTime: Double\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::ServiceDiscovery::PublicDnsNamespace": {
