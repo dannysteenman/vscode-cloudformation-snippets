@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.14.0 (2019-08-22)
+
+### Updated
+
+* The following resource was updated: AWS::DMS::ReplicationTask. [Azure Pipeline]
+
+
 ## 1.13.0 (2019-08-15)
 
 ### Updated
