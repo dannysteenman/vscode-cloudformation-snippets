@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.15.0 (2019-08-29)
+
+### Updated
+
+* The following resource was updated: Route. [Azure Pipeline]
+
+
 ## 1.14.0 (2019-08-22)
 
 ### Updated
