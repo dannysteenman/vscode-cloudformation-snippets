@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.16.0 (2019-09-05)
+
+### Updated
+
+* The following resources were updated: AWS::ApplicationAutoScaling::ScalableTarget, AWS::DynamoDB::Table, AWS::EC2::Instance,                AWS::ECS::TaskDefinition, AWS::ElastiCache::ReplicationGroup, AWS::Events::Rule, AWS::IAM::Role, and AWS::Lambda::EventSourceMapping. [Azure Pipeline]
+
+
 ## 1.15.0 (2019-08-29)
 
 ### Updated
