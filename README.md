@@ -2,13 +2,13 @@
 
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 [![Current Installs](https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
-[![GitHub stars](https://img.shields.io/github/stars/dsteenman/cloudformation-yaml-snippets.svg?style=social)](https://github.com/dsteenman/cloudformation-yaml-snippets)
+[![Build Status](https://dev.azure.com/dsteenman/Cloudformation%20YAML%20Snippets%20for%20VS%20Code/_apis/build/status/dsteenman.cloudformation-yaml-snippets?branchName=master)](https://dev.azure.com/dsteenman/Cloudformation%20YAML%20Snippets%20for%20VS%20Code/_build/latest?definitionId=1&branchName=master)
 
 A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) which contains the complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification.
 
 ## Features
 
-You now have access to all available resources provided by [AWS CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html) in the form of YAML snippets! 
+You now have access to all available resources provided by [AWS CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html) in the form of YAML snippets!
 
 ## Usage
 
