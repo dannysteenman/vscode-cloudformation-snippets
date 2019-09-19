@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.17.0 (2019-09-19)
+
+### Updated
+
+* The following resource was updated: AWS::AppMesh::Route. [Azure Pipeline]
+
+
 ## 1.16.0 (2019-09-05)
 
 ### Updated
