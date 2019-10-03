@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.18.0 (2019-10-03)
+
+### Updated
+
+* The following resource was updated: AWS::Glue::DevEndpoint. [Azure Pipeline]
+
+
 ## 1.17.0 (2019-09-19)
 
 ### Updated
