@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.19.0 (2019-10-10)
+
+### Updated
+
+* The following resource were updated: AWS::Events::EventBusPolicy, AWS::Events::Rule. [Azure Pipeline]
+
+
 ## 1.18.0 (2019-10-03)
 
 ### Updated
