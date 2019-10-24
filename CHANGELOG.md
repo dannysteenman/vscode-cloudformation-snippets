@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.20.0 (2019-10-24)
+
+### Updated
+
+* The following resource was updated: AWS::MSK::Cluster. [Azure Pipeline]
+
+
 ## 1.19.0 (2019-10-10)
 
 ### Updated
