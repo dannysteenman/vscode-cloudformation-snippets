@@ -34,9 +34,9 @@ jobs:
 
       # Commit the new changes
       - bash: |
-          set -x -e 
+          set -x -e
           sudo npm install -g vsce
-          git config --global user.email "danny@oblcc.com"
+          git config --global user.email "danny.steenman@oblcc.com"
           git config --global user.name "Azure Pipeline"
           npm version minor --force --no-git-tag-version
           vsce package
