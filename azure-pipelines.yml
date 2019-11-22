@@ -36,6 +36,7 @@ jobs:
       - bash: |
           set -x -e
           sudo npm install -g vsce
+          sudo chown -R $(whoami) /home/vsts/
           git config --global user.email "danny.steenman@oblcc.com"
           git config --global user.name "Azure Pipeline"
           npm version minor --force --no-git-tag-version
