@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.24.0 (2019-11-22)
+
+### Updated
+
+* The following resources were updated: AWS::ECS::Cluster, AWS::ECS::Service, and AWS::ECS::TaskDefinition. [Azure Pipeline]
+
+
 ## 1.21.0 (2019-11-07)
 
 ### Updated
