@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.25.0 (2019-11-28)
+
+### New
+
+* The following resource was added: AWS::Lambda::EventInvokeConfig. [Azure Pipeline]
+
+
 ## 1.24.0 (2019-11-22)
 
 ### Updated
