@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.26.0 (2019-12-06)
+
+### Updated
+
+* The following resources were updated: <code class="code">AWS::ApiGatewayV2::Api</code>, <code class="code">AWS::ApiGatewayV2::Authorizer</code>, <code class="code">AWS::ApiGatewayV2::Integration</code>,  <code class="code">AWS::ApiGatewayV2::Stage</code>. [Azure Pipeline]
+
+
 ## 1.25.0 (2019-11-28)
 
 ### New
