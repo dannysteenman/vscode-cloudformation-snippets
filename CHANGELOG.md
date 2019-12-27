@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.28.0 (2019-12-27)
+
+### Updated
+
+* The following resources were updated: AWS::MSK::Cluster, AWS::RDS::DBInstance, and AWS::SSM::Document. [Azure Pipeline]
+
+
 ## 1.27.0 (2019-12-13)
 
 ### Updated
