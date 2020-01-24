@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.29.0 (2020-01-24)
+
+### Updated
+
+* The following resource was updated: AWS::Lambda::Function. [Azure Pipeline]
+
+
 ## 1.28.0 (2019-12-27)
 
 ### Updated
