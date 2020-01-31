@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 1.30.0 (2020-01-31)
+
+### Updated
+
+* The following resources were updated: AWS::Pinpoint::EmailTemplate,                         AWS::Pinpoint::PushTemplate, and AWS::Pinpoint::SmsTemplate. [Azure Pipeline]
+
+
 ## 1.29.0 (2020-01-24)
 
 ### Updated
