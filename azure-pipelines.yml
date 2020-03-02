@@ -40,7 +40,6 @@ jobs:
           git config --global user.email "danny.steenman@oblcc.com"
           git config --global user.name "Azure Pipeline"
           npm version minor --force --no-git-tag-version
-          vsce package
           package_version=$(cat package.json|grep version|sed 's/[",]//g'|awk '{print $2}')
           cfn_release_rss_summary=$(python src/feed.py)
           git commit -am "$cfn_release_rss_summary"
@@ -49,5 +48,6 @@ jobs:
           git commit -am "Changelog version: $package_version"
           git push origin HEAD:master --force
           git push origin --tags
+          vsce package
           vsce publish -p $(token)
         displayName: Commit changes and publish package
