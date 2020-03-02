@@ -1,11 +1,24 @@
 # Changelog
 
 
+## 2.0.0 (2020-03-02)
+
+### New
+
+* You can now use intrinsic functions snippets with this plugin in VS Code
+* Same goes for condition functions.
+
+### Updated
+
+* The following resources were updated: AWS::AppMesh::VirtualNode and AWS::FSx::FileSystem [Azure Pipeline]
+* Reorganized the snippet library
+
+
 ## 1.30.0 (2020-01-31)
 
 ### Updated
 
-* The following resources were updated: AWS::Pinpoint::EmailTemplate,                         AWS::Pinpoint::PushTemplate, and AWS::Pinpoint::SmsTemplate. [Azure Pipeline]
+* The following resources were updated: AWS::Pinpoint::EmailTemplate, AWS::Pinpoint::PushTemplate, and AWS::Pinpoint::SmsTemplate. [Azure Pipeline]
 
 
 ## 1.29.0 (2020-01-24)
@@ -26,14 +39,14 @@
 
 ### Updated
 
-* The following resources were updated: <code class="code">AWS::ApiGatewayV2::Api</code>, <code class="code">AWS::ApiGatewayV2::Authorizer</code>, <code class="code">AWS::ApiGatewayV2::Integration</code>,  <code class="code">AWS::ApiGatewayV2::Stage</code>. [Azure Pipeline]
+* The following resources were updated: AWS::ApiGatewayV2::Api, AWS::ApiGatewayV2::Authorizer, AWS::ApiGatewayV2::Integration,  AWS::ApiGatewayV2::Stage. [Azure Pipeline]
 
 
 ## 1.26.0 (2019-12-06)
 
 ### Updated
 
-* The following resources were updated: <code class="code">AWS::ApiGatewayV2::Api</code>, <code class="code">AWS::ApiGatewayV2::Authorizer</code>, <code class="code">AWS::ApiGatewayV2::Integration</code>,  <code class="code">AWS::ApiGatewayV2::Stage</code>. [Azure Pipeline]
+* The following resources were updated: AWS::ApiGatewayV2::Api, AWS::ApiGatewayV2::Authorizer, AWS::ApiGatewayV2::Integration,  AWS::ApiGatewayV2::Stage. [Azure Pipeline]
 
 
 ## 1.25.0 (2019-11-28)
@@ -188,5 +201,3 @@
 ### New
 
 * The following resource was added: AWS::ServiceCatalog::ResourceUpdateConstraint. [Azure Pipeline]
-
-
