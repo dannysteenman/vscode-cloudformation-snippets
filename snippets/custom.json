@@ -1,39 +1,41 @@
 {
-	"find-in-map": {
-		"prefix": "find-in-map",
+	"CloudFormation-template": {
+		"prefix": "cfn",
 		"body": [
-			"!FindInMap [ MappingName, keyname, value ]"
+			"AWSTemplateFormatVersion: 2010-09-09",
+			"Description: |",
+			"\t${1}",
+			"Parameters:",
+			"\t",
+			"Metadata:",
+			"\t",
+			"Mappings:",
+			"\t",
+			"Conditions:",
+			"\t",
+			"Resources:",
+			"\t",
+			"Transform:",
+			"\t",
+			"Outputs:"
 		],
-		"description": "!FindInMap [ MappingName, keyname, value ]",
-		"scope": "source.cloudformation"
+		"description": "The full YAML-formatted template that contains all template sections"
 	},
-	"get-attr": {
-		"prefix": "get-attr",
-		"body": "!GetAtt logicalNameOfResource.attributeName",
-		"description": "",
-		"scope": "source.cloudformation"
-	},
-	"get-azs": {
-		"prefix": "get-azs",
-		"body": "!GetAZs ''",
-		"description": "",
-		"scope": "source.cloudformation"
-	},
-	"if": {
-		"prefix": "if",
+	"CloudFormation-template-lite": {
+		"prefix": "cfn-lite",
 		"body": [
-			"!If [condition_name, value_if_true, value_if_false]"
+			"AWSTemplateFormatVersion: 2010-09-09",
+			"Description: |",
+			"\t${1}",
+			"Parameters:",
+			"\t",
+			"Resources:",
+			"\t",
+			"Outputs:"
 		],
-		"description": "Intrinsic Function - If",
-		"scope": "source.cloudformation"
+		"description": "The minimalistic YAML-formatted template that contains the necessities to get started"
 	},
-	"ref": {
-		"prefix": "ref",
-		"body": "!Ref logicalName",
-		"description": "",
-		"scope": "source.cloudformation"
-	},
-	"parameter": {
+	"Parameter": {
 		"prefix": "parameter",
 		"body": [
 			"${1:ParameterName}:",
@@ -44,7 +46,7 @@
 		"description": "",
 		"scope": "source.cloudformation"
 	},
-	"output": {
+	"Output": {
 		"prefix": "output",
 		"body": [
 			"${1:LogicalID}:",
@@ -56,14 +58,14 @@
 		"description": "",
 		"scope": "source.cloudformation"
 	},
-	"tag": {
+	"Tag": {
 		"prefix": "tag",
 		"body": [
 			"Key: ${1:keyname}",
 			"Value: ${2:value}"
 		]
 	},
-	"map": {
+	"Map": {
 		"prefix": "map",
 		"body": [
 			"${1:mapName}:",
@@ -76,8 +78,8 @@
 		],
 		"description": "",
 		"scope": "source.cloudformation"
-    },
-    "security-group-egress-cidr": {
+	},
+	"security-group-egress-cidr": {
 		"prefix": "security-group-egress-cidr",
 		"body": [
 			"IpProtocol: ${1|tcp,udp,ip|}",

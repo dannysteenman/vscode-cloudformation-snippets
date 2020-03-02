@@ -43,11 +43,11 @@ jobs:
           vsce package
           package_version=$(cat package.json|grep version|sed 's/[",]//g'|awk '{print $2}')
           cfn_release_rss_summary=$(python src/feed.py)
-          vsce publish -p $(token)
           git commit -am "$cfn_release_rss_summary"
           git tag $package_version
           gitchangelog|tee "CHANGELOG.md"
           git commit -am "Changelog version: $package_version"
-          git push origin HEAD:master
+          git push origin HEAD:master --force
           git push origin --tags
+          vsce publish -p $(token)
         displayName: Commit changes and publish package

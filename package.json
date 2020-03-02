@@ -1,9 +1,9 @@
 {
     "name": "cloudformation-yaml-snippets",
-    "displayName": "Cloudformation YAML Snippets for VS Code",
+    "displayName": "CloudFormation YAML Snippets for VS Code",
     "description": "The complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification",
     "author": "Danny Steenman",
-    "version": "1.30.0",
+    "version": "2.0.0",
     "publisher": "dsteenman",
     "icon": "images/AWS-CloudFormation-Icon.png",
     "homepage": "https://dannysteenman.com",
@@ -44,11 +44,15 @@
         "snippets": [
             {
                 "language": "yaml",
+                "path": "./snippets/condition-functions.json"
+            },
+            {
+                "language": "yaml",
                 "path": "./snippets/custom.json"
             },
             {
                 "language": "yaml",
-                "path": "./snippets/extension.json"
+                "path": "./snippets/intrinsic-functions.json"
             },
             {
                 "language": "yaml",
