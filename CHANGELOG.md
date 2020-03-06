@@ -8,6 +8,13 @@
 * The following resource was added: AWS::CloudWatch::CompositeAlarm. [Azure Pipeline]
 
 
+## 2.0.0 (2020-03-06)
+
+### New
+
+* The following was added: You can now use intrinsic function snippets! [Danny Steenman]
+
+
 ## 1.30.0 (2020-01-31)
 
 ### Updated

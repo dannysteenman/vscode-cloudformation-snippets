@@ -1,14 +1,22 @@
-# Cloudformation YAML snippets for VS Code
+# CloudFormation YAML snippets for VS Code
 
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 [![Current Installs](https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 [![Build Status](https://dev.azure.com/dsteenman/Cloudformation%20YAML%20Snippets%20for%20VS%20Code/_apis/build/status/dsteenman.cloudformation-yaml-snippets?branchName=master)](https://dev.azure.com/dsteenman/Cloudformation%20YAML%20Snippets%20for%20VS%20Code/_build/latest?definitionId=1&branchName=master)
 
-A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) which contains the complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification.
+A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) which contains the complete YAML snippet library for CloudFormation based on the [AWS CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
+
+## New
+
+* You can now use intrinsic functions snippets with this plugin in VS Code
+* Same goes for condition functions.
 
 ## Features
 
-You now have access to all available resources provided by [AWS CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html) in the form of YAML snippets!
+1. This extension is automatically updated every week when AWS releases/updates CloudFormation resources.
+2. It supports all resource types which are available in CloudFormation
+3. Intrinsic functions + conditions are supported
+4. Contains a whole bunch of parameter types
 
 ## Usage
 
@@ -23,9 +31,9 @@ You now have access to all available resources provided by [AWS CloudFormation R
 
 ---
 
-## Credits
+## Support
 
-The YAML snippets were generated using the following script: [Github](https://github.com/mikegchambers/cfn-yaml-snippet)
+If you have a feature request or an issue, please let me know on [Github](https://github.com/dsteenman/cloudformation-yaml-snippets/issues)
 
 ## Legal
 
