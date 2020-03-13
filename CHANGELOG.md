@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.2.0 (2020-03-13)
+
+### Updated
+
+* The following resources were updated: AWS::Greengrass::ResourceDefinition and AWS::Greengrass::ResourceDefinitionVersion. [Azure Pipeline]
+
+
 ## 2.1.0 (2020-03-06)
 
 ### New
