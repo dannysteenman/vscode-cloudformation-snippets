@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.3.0 (2020-03-20)
+
+### New
+
+* The following resources were added: <code class="code">AWS::Cassandra::Keyspace</code> and                     <code class="code">AWS::Cassandra::Table</code>. [Azure Pipeline]
+
+
 ## 2.2.0 (2020-03-13)
 
 ### Updated
