@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.4.0 (2020-03-27)
+
+### Updated
+
+* The following resource was updated: AWS::DMS::Endpoint. [Azure Pipeline]
+
+
 ## 2.3.0 (2020-03-20)
 
 ### New
