@@ -29,15 +29,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::Group\"\r\n\tProperties:\r\n\t\tGroupName: String\r\n\t\tManagedPolicyArns:\r\n\t\t\t- String\r\n\t\tPath: String\r\n\t\tPolicies:\r\n\t\t\t- Policy\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
-    "AWS::WAFRegional::RateBasedRule": {
-        "prefix": "wafregional-ratebasedrule",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::RateBasedRule\"\r\n\tProperties:\r\n\t\tMetricName: String #required\r\n\t\tRateLimit: Integer #required\r\n\t\tMatchPredicates:\r\n\t\t\t- Predicate\r\n\t\tRateKey: String #required\r\n\t\tName: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Backup::BackupPlan": {
         "prefix": "backup-backupplan",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Backup::BackupPlan\"\r\n\tProperties:\r\n\t\tBackupPlan: #required\r\n\t\t\tBackupPlanResourceType\r\n\t\tBackupPlanTags: Json\r\n",
         "description": "Attributes:\r\n  VersionId\r\n  BackupPlanId\r\n  BackupPlanArn\r\n"
+    },
+    "AWS::WAFRegional::RateBasedRule": {
+        "prefix": "wafregional-ratebasedrule",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::RateBasedRule\"\r\n\tProperties:\r\n\t\tMetricName: String #required\r\n\t\tRateLimit: Integer #required\r\n\t\tMatchPredicates:\r\n\t\t\t- Predicate\r\n\t\tRateKey: String #required\r\n\t\tName: String #required\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::Pinpoint::SMSChannel": {
         "prefix": "pinpoint-smschannel",
@@ -79,14 +79,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SageMaker::Workteam\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tNotificationConfiguration:\r\n\t\t\tNotificationConfiguration\r\n\t\tWorkteamName: String\r\n\t\tMemberDefinitions:\r\n\t\t\t- MemberDefinition\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  WorkteamName\r\n"
     },
-    "AWS::Kinesis::Stream": {
-        "prefix": "kinesis-stream",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Kinesis::Stream\"\r\n\tProperties:\r\n\t\tName: String\r\n\t\tRetentionPeriodHours: Integer\r\n\t\tShardCount: Integer #required\r\n\t\tStreamEncryption:\r\n\t\t\tStreamEncryption\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
-    },
     "AWS::RAM::ResourceShare": {
         "prefix": "ram-resourceshare",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::RAM::ResourceShare\"\r\n\tProperties:\r\n\t\tPrincipals:\r\n\t\t\t- String\r\n\t\tAllowExternalPrincipals: Boolean\r\n\t\tResourceArns:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String #required\r\n",
+        "description": "Attributes:\r\n  Arn\r\n"
+    },
+    "AWS::Kinesis::Stream": {
+        "prefix": "kinesis-stream",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Kinesis::Stream\"\r\n\tProperties:\r\n\t\tName: String\r\n\t\tRetentionPeriodHours: Integer\r\n\t\tShardCount: Integer #required\r\n\t\tStreamEncryption:\r\n\t\t\tStreamEncryption\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::AutoScaling::LaunchConfiguration": {
@@ -94,15 +94,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AutoScaling::LaunchConfiguration\"\r\n\tProperties:\r\n\t\tAssociatePublicIpAddress: Boolean\r\n\t\tBlockDeviceMappings:\r\n\t\t\t- BlockDeviceMapping\r\n\t\tClassicLinkVPCId: String\r\n\t\tClassicLinkVPCSecurityGroups:\r\n\t\t\t- String\r\n\t\tEbsOptimized: Boolean\r\n\t\tIamInstanceProfile: String\r\n\t\tImageId: String #required\r\n\t\tInstanceId: String\r\n\t\tInstanceMonitoring: Boolean\r\n\t\tInstanceType: String #required\r\n\t\tKernelId: String\r\n\t\tKeyName: String\r\n\t\tLaunchConfigurationName: String\r\n\t\tPlacementTenancy: String\r\n\t\tRamDiskId: String\r\n\t\tSecurityGroups:\r\n\t\t\t- String\r\n\t\tSpotPrice: String\r\n\t\tUserData: String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::EC2::TransitGateway": {
-        "prefix": "ec2-transitgateway",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TransitGateway\"\r\n\tProperties:\r\n\t\tDefaultRouteTablePropagation: String\r\n\t\tDescription: String\r\n\t\tAutoAcceptSharedAttachments: String\r\n\t\tDefaultRouteTableAssociation: String\r\n\t\tVpnEcmpSupport: String\r\n\t\tDnsSupport: String\r\n\t\tAmazonSideAsn: Integer\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::SQS::Queue": {
         "prefix": "sqs-queue",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SQS::Queue\"\r\n\tProperties:\r\n\t\tContentBasedDeduplication: Boolean\r\n\t\tDelaySeconds: Integer\r\n\t\tFifoQueue: Boolean\r\n\t\tKmsDataKeyReusePeriodSeconds: Integer\r\n\t\tKmsMasterKeyId: String\r\n\t\tMaximumMessageSize: Integer\r\n\t\tMessageRetentionPeriod: Integer\r\n\t\tQueueName: String\r\n\t\tReceiveMessageWaitTimeSeconds: Integer\r\n\t\tRedrivePolicy: Json\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVisibilityTimeout: Integer\r\n",
         "description": "Attributes:\r\n  Arn\r\n  QueueName\r\n"
+    },
+    "AWS::EC2::TransitGateway": {
+        "prefix": "ec2-transitgateway",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TransitGateway\"\r\n\tProperties:\r\n\t\tDefaultRouteTablePropagation: String\r\n\t\tDescription: String\r\n\t\tAutoAcceptSharedAttachments: String\r\n\t\tDefaultRouteTableAssociation: String\r\n\t\tVpnEcmpSupport: String\r\n\t\tDnsSupport: String\r\n\t\tAmazonSideAsn: Integer\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::EC2::CapacityReservation": {
         "prefix": "ec2-capacityreservation",
@@ -154,25 +154,25 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::Policy\"\r\n\tProperties:\r\n\t\tGroups:\r\n\t\t\t- String\r\n\t\tPolicyDocument: Json #required\r\n\t\tPolicyName: String #required\r\n\t\tRoles:\r\n\t\t\t- String\r\n\t\tUsers:\r\n\t\t\t- String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::NetworkManager::Link": {
-        "prefix": "networkmanager-link",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::Link\"\r\n\tProperties:\r\n\t\tGlobalNetworkId: String #required\r\n\t\tSiteId: String #required\r\n\t\tBandwidth: #required\r\n\t\t\tBandwidth\r\n\t\tProvider: String\r\n\t\tDescription: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tType: String\r\n",
-        "description": "Attributes:\r\n  LinkArn\r\n  LinkId\r\n"
-    },
     "AWS::StepFunctions::Activity": {
         "prefix": "stepfunctions-activity",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::StepFunctions::Activity\"\r\n\tProperties:\r\n\t\tTags:\r\n\t\t\t- TagsEntry\r\n\t\tName: String #required\r\n",
         "description": "Attributes:\r\n  Name\r\n"
     },
-    "AWS::CodeStarConnections::Connection": {
-        "prefix": "codestarconnections-connection",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodeStarConnections::Connection\"\r\n\tProperties:\r\n\t\tConnectionName: String #required\r\n\t\tProviderType: String #required\r\n",
-        "description": "Attributes:\r\n  ConnectionArn\r\n  ConnectionStatus\r\n  OwnerAccountId\r\n"
+    "AWS::NetworkManager::Link": {
+        "prefix": "networkmanager-link",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::Link\"\r\n\tProperties:\r\n\t\tGlobalNetworkId: String #required\r\n\t\tSiteId: String #required\r\n\t\tBandwidth: #required\r\n\t\t\tBandwidth\r\n\t\tProvider: String\r\n\t\tDescription: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tType: String\r\n",
+        "description": "Attributes:\r\n  LinkArn\r\n  LinkId\r\n"
     },
     "AWS::KinesisAnalytics::ApplicationOutput": {
         "prefix": "kinesisanalytics-applicationoutput",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::KinesisAnalytics::ApplicationOutput\"\r\n\tProperties:\r\n\t\tApplicationName: String #required\r\n\t\tOutput: #required\r\n\t\t\tOutput\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::CodeStarConnections::Connection": {
+        "prefix": "codestarconnections-connection",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodeStarConnections::Connection\"\r\n\tProperties:\r\n\t\tConnectionName: String #required\r\n\t\tProviderType: String #required\r\n",
+        "description": "Attributes:\r\n  ConnectionArn\r\n  ConnectionStatus\r\n  OwnerAccountId\r\n"
     },
     "AWS::Cognito::UserPoolRiskConfigurationAttachment": {
         "prefix": "cognito-userpoolriskconfigurationattachment",
@@ -184,9 +184,9 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Stack\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tStorageConnectors:\r\n\t\t\t- StorageConnector\r\n\t\tDeleteStorageConnectors: Boolean\r\n\t\tEmbedHostDomains:\r\n\t\t\t- String\r\n\t\tUserSettings:\r\n\t\t\t- UserSetting\r\n\t\tAttributesToDelete:\r\n\t\t\t- String\r\n\t\tRedirectURL: String\r\n\t\tName: String\r\n\t\tFeedbackURL: String\r\n\t\tApplicationSettings:\r\n\t\t\tApplicationSettings\r\n\t\tDisplayName: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tAccessEndpoints:\r\n\t\t\t- AccessEndpoint\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::EC2::TransitGatewayRouteTableAssociation": {
-        "prefix": "ec2-transitgatewayroutetableassociation",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TransitGatewayRouteTableAssociation\"\r\n\tProperties:\r\n\t\tTransitGatewayRouteTableId: String #required\r\n\t\tTransitGatewayAttachmentId: String #required\r\n",
+    "AWS::EC2::Volume": {
+        "prefix": "ec2-volume",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::Volume\"\r\n\tProperties:\r\n\t\tAutoEnableIO: Boolean\r\n\t\tAvailabilityZone: String #required\r\n\t\tEncrypted: Boolean\r\n\t\tIops: Integer\r\n\t\tKmsKeyId: String\r\n\t\tMultiAttachEnabled: Boolean\r\n\t\tSize: Integer\r\n\t\tSnapshotId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVolumeType: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::AppSync::GraphQLSchema": {
@@ -194,9 +194,9 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppSync::GraphQLSchema\"\r\n\tProperties:\r\n\t\tDefinition: String\r\n\t\tDefinitionS3Location: String\r\n\t\tApiId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::EC2::Volume": {
-        "prefix": "ec2-volume",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::Volume\"\r\n\tProperties:\r\n\t\tAutoEnableIO: Boolean\r\n\t\tAvailabilityZone: String #required\r\n\t\tEncrypted: Boolean\r\n\t\tIops: Integer\r\n\t\tKmsKeyId: String\r\n\t\tSize: Integer\r\n\t\tSnapshotId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVolumeType: String\r\n",
+    "AWS::EC2::TransitGatewayRouteTableAssociation": {
+        "prefix": "ec2-transitgatewayroutetableassociation",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TransitGatewayRouteTableAssociation\"\r\n\tProperties:\r\n\t\tTransitGatewayRouteTableId: String #required\r\n\t\tTransitGatewayAttachmentId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::IAM::ServiceLinkedRole": {
@@ -214,15 +214,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::ConnectorDefinitionVersion\"\r\n\tProperties:\r\n\t\tConnectors: #required\r\n\t\t\t- Connector\r\n\t\tConnectorDefinitionId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::AppSync::GraphQLApi": {
-        "prefix": "appsync-graphqlapi",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppSync::GraphQLApi\"\r\n\tProperties:\r\n\t\tOpenIDConnectConfig:\r\n\t\t\tOpenIDConnectConfig\r\n\t\tXrayEnabled: Boolean\r\n\t\tUserPoolConfig:\r\n\t\t\tUserPoolConfig\r\n\t\tTags:\r\n\t\t\tTags\r\n\t\tName: String #required\r\n\t\tAuthenticationType: String #required\r\n\t\tLogConfig:\r\n\t\t\tLogConfig\r\n\t\tAdditionalAuthenticationProviders:\r\n\t\t\tAdditionalAuthenticationProviders\r\n",
-        "description": "Attributes:\r\n  GraphQLUrl\r\n  Arn\r\n  ApiId\r\n"
-    },
     "AWS::CloudFront::StreamingDistribution": {
         "prefix": "cloudfront-streamingdistribution",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::CloudFront::StreamingDistribution\"\r\n\tProperties:\r\n\t\tStreamingDistributionConfig: #required\r\n\t\t\tStreamingDistributionConfig\r\n\t\tTags: #required\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  DomainName\r\n"
+    },
+    "AWS::AppSync::GraphQLApi": {
+        "prefix": "appsync-graphqlapi",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppSync::GraphQLApi\"\r\n\tProperties:\r\n\t\tOpenIDConnectConfig:\r\n\t\t\tOpenIDConnectConfig\r\n\t\tXrayEnabled: Boolean\r\n\t\tUserPoolConfig:\r\n\t\t\tUserPoolConfig\r\n\t\tTags:\r\n\t\t\tTags\r\n\t\tName: String #required\r\n\t\tAuthenticationType: String #required\r\n\t\tLogConfig:\r\n\t\t\tLogConfig\r\n\t\tAdditionalAuthenticationProviders:\r\n\t\t\tAdditionalAuthenticationProviders\r\n",
+        "description": "Attributes:\r\n  GraphQLUrl\r\n  Arn\r\n  ApiId\r\n"
     },
     "AWS::Cognito::UserPoolIdentityProvider": {
         "prefix": "cognito-userpoolidentityprovider",
@@ -279,14 +279,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SageMaker::NotebookInstanceLifecycleConfig\"\r\n\tProperties:\r\n\t\tOnStart:\r\n\t\t\t- NotebookInstanceLifecycleHook\r\n\t\tNotebookInstanceLifecycleConfigName: String\r\n\t\tOnCreate:\r\n\t\t\t- NotebookInstanceLifecycleHook\r\n",
         "description": "Attributes:\r\n  NotebookInstanceLifecycleConfigName\r\n"
     },
-    "AWS::Cognito::UserPoolGroup": {
-        "prefix": "cognito-userpoolgroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPoolGroup\"\r\n\tProperties:\r\n\t\tGroupName: String\r\n\t\tDescription: String\r\n\t\tUserPoolId: String #required\r\n\t\tPrecedence: Double\r\n\t\tRoleArn: String\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::ApiGateway::Deployment": {
         "prefix": "apigateway-deployment",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::Deployment\"\r\n\tProperties:\r\n\t\tDeploymentCanarySettings:\r\n\t\t\tDeploymentCanarySettings\r\n\t\tDescription: String\r\n\t\tRestApiId: String #required\r\n\t\tStageDescription:\r\n\t\t\tStageDescription\r\n\t\tStageName: String\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::Cognito::UserPoolGroup": {
+        "prefix": "cognito-userpoolgroup",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPoolGroup\"\r\n\tProperties:\r\n\t\tGroupName: String\r\n\t\tDescription: String\r\n\t\tUserPoolId: String #required\r\n\t\tPrecedence: Double\r\n\t\tRoleArn: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::LakeFormation::Permissions": {
@@ -309,15 +309,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::OpsWorks::App\"\r\n\tProperties:\r\n\t\tAppSource:\r\n\t\t\tSource\r\n\t\tAttributes:\r\n\t\t\tMap\r\n\t\tDataSources:\r\n\t\t\t- DataSource\r\n\t\tDescription: String\r\n\t\tDomains:\r\n\t\t\t- String\r\n\t\tEnableSsl: Boolean\r\n\t\tEnvironment:\r\n\t\t\t- EnvironmentVariable\r\n\t\tName: String #required\r\n\t\tShortname: String\r\n\t\tSslConfiguration:\r\n\t\t\tSslConfiguration\r\n\t\tStackId: String #required\r\n\t\tType: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::EKS::Nodegroup": {
-        "prefix": "eks-nodegroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EKS::Nodegroup\"\r\n\tProperties:\r\n\t\tScalingConfig:\r\n\t\t\tScalingConfig\r\n\t\tLabels: Json\r\n\t\tReleaseVersion: String\r\n\t\tNodegroupName: String\r\n\t\tSubnets: #required\r\n\t\t\t- String\r\n\t\tNodeRole: String #required\r\n\t\tAmiType: String\r\n\t\tForceUpdateEnabled: Boolean\r\n\t\tVersion: String\r\n\t\tRemoteAccess:\r\n\t\t\tRemoteAccess\r\n\t\tDiskSize: Double\r\n\t\tClusterName: String #required\r\n\t\tInstanceTypes:\r\n\t\t\t- String\r\n\t\tTags: Json\r\n",
-        "description": "Attributes:\r\n  NodegroupName\r\n  ClusterName\r\n  Arn\r\n"
-    },
     "AWS::AppMesh::Route": {
         "prefix": "appmesh-route",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::Route\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tVirtualRouterName: String #required\r\n\t\tMeshOwner: String\r\n\t\tRouteName: String #required\r\n\t\tSpec: #required\r\n\t\t\tRouteSpec\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  VirtualRouterName\r\n  MeshOwner\r\n  ResourceOwner\r\n  RouteName\r\n  Arn\r\n"
+    },
+    "AWS::EKS::Nodegroup": {
+        "prefix": "eks-nodegroup",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EKS::Nodegroup\"\r\n\tProperties:\r\n\t\tScalingConfig:\r\n\t\t\tScalingConfig\r\n\t\tLabels: Json\r\n\t\tReleaseVersion: String\r\n\t\tNodegroupName: String\r\n\t\tSubnets: #required\r\n\t\t\t- String\r\n\t\tNodeRole: String #required\r\n\t\tAmiType: String\r\n\t\tForceUpdateEnabled: Boolean\r\n\t\tVersion: String\r\n\t\tRemoteAccess:\r\n\t\t\tRemoteAccess\r\n\t\tDiskSize: Double\r\n\t\tClusterName: String #required\r\n\t\tInstanceTypes:\r\n\t\t\t- String\r\n\t\tTags: Json\r\n",
+        "description": "Attributes:\r\n  NodegroupName\r\n  ClusterName\r\n  Arn\r\n"
     },
     "AWS::Lambda::EventSourceMapping": {
         "prefix": "lambda-eventsourcemapping",
@@ -384,14 +384,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VPCEndpointConnectionNotification\"\r\n\tProperties:\r\n\t\tConnectionEvents: #required\r\n\t\t\t- String\r\n\t\tVPCEndpointId: String\r\n\t\tServiceId: String\r\n\t\tConnectionNotificationArn: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::NetworkManager::CustomerGatewayAssociation": {
-        "prefix": "networkmanager-customergatewayassociation",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::CustomerGatewayAssociation\"\r\n\tProperties:\r\n\t\tGlobalNetworkId: String #required\r\n\t\tCustomerGatewayArn: String #required\r\n\t\tDeviceId: String #required\r\n\t\tLinkId: String\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Lambda::LayerVersion": {
         "prefix": "lambda-layerversion",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Lambda::LayerVersion\"\r\n\tProperties:\r\n\t\tCompatibleRuntimes:\r\n\t\t\t- String\r\n\t\tLicenseInfo: String\r\n\t\tDescription: String\r\n\t\tLayerName: String\r\n\t\tContent: #required\r\n\t\t\tContent\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::NetworkManager::CustomerGatewayAssociation": {
+        "prefix": "networkmanager-customergatewayassociation",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::CustomerGatewayAssociation\"\r\n\tProperties:\r\n\t\tGlobalNetworkId: String #required\r\n\t\tCustomerGatewayArn: String #required\r\n\t\tDeviceId: String #required\r\n\t\tLinkId: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::ApiGateway::DocumentationPart": {
@@ -434,14 +434,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::Model\"\r\n\tProperties:\r\n\t\tContentType: String\r\n\t\tDescription: String\r\n\t\tName: String\r\n\t\tRestApiId: String #required\r\n\t\tSchema: Json\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::GuardDuty::ThreatIntelSet": {
-        "prefix": "guardduty-threatintelset",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::GuardDuty::ThreatIntelSet\"\r\n\tProperties:\r\n\t\tFormat: String #required\r\n\t\tActivate: Boolean #required\r\n\t\tDetectorId: String #required\r\n\t\tName: String\r\n\t\tLocation: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::WAFRegional::RegexPatternSet": {
         "prefix": "wafregional-regexpatternset",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::RegexPatternSet\"\r\n\tProperties:\r\n\t\tRegexPatternStrings: #required\r\n\t\t\t- String\r\n\t\tName: String #required\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::GuardDuty::ThreatIntelSet": {
+        "prefix": "guardduty-threatintelset",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::GuardDuty::ThreatIntelSet\"\r\n\tProperties:\r\n\t\tFormat: String #required\r\n\t\tActivate: Boolean #required\r\n\t\tDetectorId: String #required\r\n\t\tName: String\r\n\t\tLocation: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Logs::MetricFilter": {
@@ -454,14 +454,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SES::ReceiptFilter\"\r\n\tProperties:\r\n\t\tFilter: #required\r\n\t\t\tFilter\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::Glue::Workflow": {
-        "prefix": "glue-workflow",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::Workflow\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tDefaultRunProperties: Json\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Config::RemediationConfiguration": {
         "prefix": "config-remediationconfiguration",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Config::RemediationConfiguration\"\r\n\tProperties:\r\n\t\tTargetVersion: String\r\n\t\tExecutionControls:\r\n\t\t\tExecutionControls\r\n\t\tParameters: Json\r\n\t\tTargetType: String #required\r\n\t\tConfigRuleName: String #required\r\n\t\tResourceType: String\r\n\t\tRetryAttemptSeconds: Integer\r\n\t\tMaximumAutomaticAttempts: Integer\r\n\t\tTargetId: String #required\r\n\t\tAutomatic: Boolean\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::Glue::Workflow": {
+        "prefix": "glue-workflow",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::Workflow\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tDefaultRunProperties: Json\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::EC2::FlowLog": {
@@ -839,30 +839,30 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EMR::Step\"\r\n\tProperties:\r\n\t\tActionOnFailure: String #required\r\n\t\tHadoopJarStep: #required\r\n\t\t\tHadoopJarStepConfig\r\n\t\tJobFlowId: String #required\r\n\t\tName: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::Backup::BackupVault": {
-        "prefix": "backup-backupvault",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Backup::BackupVault\"\r\n\tProperties:\r\n\t\tBackupVaultTags: Json\r\n\t\tBackupVaultName: String #required\r\n\t\tEncryptionKeyArn: String\r\n\t\tNotifications:\r\n\t\t\tNotificationObjectType\r\n\t\tAccessPolicy: Json\r\n",
-        "description": "Attributes:\r\n  BackupVaultName\r\n  BackupVaultArn\r\n"
-    },
     "AWS::Config::ConfigurationRecorder": {
         "prefix": "config-configurationrecorder",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Config::ConfigurationRecorder\"\r\n\tProperties:\r\n\t\tName: String\r\n\t\tRecordingGroup:\r\n\t\t\tRecordingGroup\r\n\t\tRoleARN: String #required\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::Backup::BackupVault": {
+        "prefix": "backup-backupvault",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Backup::BackupVault\"\r\n\tProperties:\r\n\t\tBackupVaultTags: Json\r\n\t\tBackupVaultName: String #required\r\n\t\tEncryptionKeyArn: String\r\n\t\tNotifications:\r\n\t\t\tNotificationObjectType\r\n\t\tAccessPolicy: Json\r\n",
+        "description": "Attributes:\r\n  BackupVaultName\r\n  BackupVaultArn\r\n"
     },
     "AWS::AppConfig::ConfigurationProfile": {
         "prefix": "appconfig-configurationprofile",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppConfig::ConfigurationProfile\"\r\n\tProperties:\r\n\t\tLocationUri: String #required\r\n\t\tDescription: String\r\n\t\tValidators:\r\n\t\t\t- Validators\r\n\t\tRetrievalRoleArn: String\r\n\t\tApplicationId: String #required\r\n\t\tTags:\r\n\t\t\t- Tags\r\n\t\tName: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::SSM::MaintenanceWindowTarget": {
-        "prefix": "ssm-maintenancewindowtarget",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::MaintenanceWindowTarget\"\r\n\tProperties:\r\n\t\tOwnerInformation: String\r\n\t\tDescription: String\r\n\t\tWindowId: String #required\r\n\t\tResourceType: String #required\r\n\t\tTargets: #required\r\n\t\t\t- Targets\r\n\t\tName: String\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::IoT1Click::Placement": {
         "prefix": "iot1click-placement",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT1Click::Placement\"\r\n\tProperties:\r\n\t\tPlacementName: String\r\n\t\tProjectName: String #required\r\n\t\tAssociatedDevices: Json\r\n\t\tAttributes: Json\r\n",
         "description": "Attributes:\r\n  PlacementName\r\n  ProjectName\r\n"
+    },
+    "AWS::SSM::MaintenanceWindowTarget": {
+        "prefix": "ssm-maintenancewindowtarget",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::MaintenanceWindowTarget\"\r\n\tProperties:\r\n\t\tOwnerInformation: String\r\n\t\tDescription: String\r\n\t\tWindowId: String #required\r\n\t\tResourceType: String #required\r\n\t\tTargets: #required\r\n\t\t\t- Targets\r\n\t\tName: String\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::EC2::DHCPOptions": {
         "prefix": "ec2-dhcpoptions",
@@ -879,15 +879,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::User\"\r\n\tProperties:\r\n\t\tGroups:\r\n\t\t\t- String\r\n\t\tLoginProfile:\r\n\t\t\tLoginProfile\r\n\t\tManagedPolicyArns:\r\n\t\t\t- String\r\n\t\tPath: String\r\n\t\tPermissionsBoundary: String\r\n\t\tPolicies:\r\n\t\t\t- Policy\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tUserName: String\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
-    "AWS::Cognito::UserPoolResourceServer": {
-        "prefix": "cognito-userpoolresourceserver",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPoolResourceServer\"\r\n\tProperties:\r\n\t\tUserPoolId: String #required\r\n\t\tIdentifier: String #required\r\n\t\tScopes:\r\n\t\t\t- ResourceServerScopeType\r\n\t\tName: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::OpsWorks::Instance": {
         "prefix": "opsworks-instance",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::OpsWorks::Instance\"\r\n\tProperties:\r\n\t\tAgentVersion: String\r\n\t\tAmiId: String\r\n\t\tArchitecture: String\r\n\t\tAutoScalingType: String\r\n\t\tAvailabilityZone: String\r\n\t\tBlockDeviceMappings:\r\n\t\t\t- BlockDeviceMapping\r\n\t\tEbsOptimized: Boolean\r\n\t\tElasticIps:\r\n\t\t\t- String\r\n\t\tHostname: String\r\n\t\tInstallUpdatesOnBoot: Boolean\r\n\t\tInstanceType: String #required\r\n\t\tLayerIds: #required\r\n\t\t\t- String\r\n\t\tOs: String\r\n\t\tRootDeviceType: String\r\n\t\tSshKeyName: String\r\n\t\tStackId: String #required\r\n\t\tSubnetId: String\r\n\t\tTenancy: String\r\n\t\tTimeBasedAutoScaling:\r\n\t\t\tTimeBasedAutoScaling\r\n\t\tVirtualizationType: String\r\n\t\tVolumes:\r\n\t\t\t- String\r\n",
         "description": "Attributes:\r\n  AvailabilityZone\r\n  PrivateDnsName\r\n  PrivateIp\r\n  PublicDnsName\r\n  PublicIp\r\n"
+    },
+    "AWS::Cognito::UserPoolResourceServer": {
+        "prefix": "cognito-userpoolresourceserver",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPoolResourceServer\"\r\n\tProperties:\r\n\t\tUserPoolId: String #required\r\n\t\tIdentifier: String #required\r\n\t\tScopes:\r\n\t\t\t- ResourceServerScopeType\r\n\t\tName: String #required\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::SES::ConfigurationSet": {
         "prefix": "ses-configurationset",
@@ -896,13 +896,18 @@
     },
     "AWS::CloudWatch::InsightRule": {
         "prefix": "cloudwatch-insightrule",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CloudWatch::InsightRule\"\r\n\tProperties:\r\n\t\tRuleState: String #required\r\n\t\tRuleBody: String #required\r\n\t\tRuleName: String #required\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CloudWatch::InsightRule\"\r\n\tProperties:\r\n\t\tRuleState: String #required\r\n\t\tRuleBody: String #required\r\n\t\tRuleName: String #required\r\n\t\tTags:\r\n\t\t\tTags\r\n",
         "description": "Attributes:\r\n  Arn\r\n  RuleName\r\n"
     },
     "AWS::ManagedBlockchain::Node": {
         "prefix": "managedblockchain-node",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ManagedBlockchain::Node\"\r\n\tProperties:\r\n\t\tMemberId: String #required\r\n\t\tNetworkId: String #required\r\n\t\tNodeConfiguration: #required\r\n\t\t\tNodeConfiguration\r\n",
         "description": "Attributes:\r\n  MemberId\r\n  NodeId\r\n  Arn\r\n  NetworkId\r\n"
+    },
+    "AWS::Detective::MemberInvitation": {
+        "prefix": "detective-memberinvitation",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Detective::MemberInvitation\"\r\n\tProperties:\r\n\t\tGraphArn: String #required\r\n\t\tMemberId: String #required\r\n\t\tMemberEmailAddress: String #required\r\n\t\tMessage: String\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::IoTAnalytics::Datastore": {
         "prefix": "iotanalytics-datastore",
@@ -954,30 +959,30 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::EgressOnlyInternetGateway\"\r\n\tProperties:\r\n\t\tVpcId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::DLM::LifecyclePolicy": {
-        "prefix": "dlm-lifecyclepolicy",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DLM::LifecyclePolicy\"\r\n\tProperties:\r\n\t\tExecutionRoleArn: String\r\n\t\tDescription: String\r\n\t\tState: String\r\n\t\tPolicyDetails:\r\n\t\t\tPolicyDetails\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
-    },
     "AWS::ApiGatewayV2::Api": {
         "prefix": "apigatewayv2-api",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Api\"\r\n\tProperties:\r\n\t\tRouteSelectionExpression: String\r\n\t\tBodyS3Location:\r\n\t\t\tBodyS3Location\r\n\t\tDescription: String\r\n\t\tBasePath: String\r\n\t\tFailOnWarnings: Boolean\r\n\t\tDisableSchemaValidation: Boolean\r\n\t\tName: String\r\n\t\tTarget: String\r\n\t\tCredentialsArn: String\r\n\t\tCorsConfiguration:\r\n\t\t\tCors\r\n\t\tVersion: String\r\n\t\tProtocolType: String\r\n\t\tRouteKey: String\r\n\t\tBody: Json\r\n\t\tTags: Json\r\n\t\tApiKeySelectionExpression: String\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::DLM::LifecyclePolicy": {
+        "prefix": "dlm-lifecyclepolicy",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DLM::LifecyclePolicy\"\r\n\tProperties:\r\n\t\tExecutionRoleArn: String\r\n\t\tDescription: String\r\n\t\tState: String\r\n\t\tPolicyDetails:\r\n\t\t\tPolicyDetails\r\n",
+        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::EC2::NetworkInterfaceAttachment": {
         "prefix": "ec2-networkinterfaceattachment",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::NetworkInterfaceAttachment\"\r\n\tProperties:\r\n\t\tDeleteOnTermination: Boolean\r\n\t\tDeviceIndex: String #required\r\n\t\tInstanceId: String #required\r\n\t\tNetworkInterfaceId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::WAFRegional::IPSet": {
-        "prefix": "wafregional-ipset",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::IPSet\"\r\n\tProperties:\r\n\t\tIPSetDescriptors:\r\n\t\t\t- IPSetDescriptor\r\n\t\tName: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::RDS::DBInstance": {
         "prefix": "rds-dbinstance",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBInstance\"\r\n\tProperties:\r\n\t\tAllocatedStorage: String\r\n\t\tAllowMajorVersionUpgrade: Boolean\r\n\t\tAssociatedRoles:\r\n\t\t\t- DBInstanceRole\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tAvailabilityZone: String\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tCACertificateIdentifier: String\r\n\t\tCharacterSetName: String\r\n\t\tCopyTagsToSnapshot: Boolean\r\n\t\tDBClusterIdentifier: String\r\n\t\tDBInstanceClass: String #required\r\n\t\tDBInstanceIdentifier: String\r\n\t\tDBName: String\r\n\t\tDBParameterGroupName: String\r\n\t\tDBSecurityGroups:\r\n\t\t\t- String\r\n\t\tDBSnapshotIdentifier: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tDeleteAutomatedBackups: Boolean\r\n\t\tDeletionProtection: Boolean\r\n\t\tDomain: String\r\n\t\tDomainIAMRoleName: String\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n\t\tEnableIAMDatabaseAuthentication: Boolean\r\n\t\tEnablePerformanceInsights: Boolean\r\n\t\tEngine: String\r\n\t\tEngineVersion: String\r\n\t\tIops: Integer\r\n\t\tKmsKeyId: String\r\n\t\tLicenseModel: String\r\n\t\tMasterUserPassword: String\r\n\t\tMasterUsername: String\r\n\t\tMaxAllocatedStorage: Integer\r\n\t\tMonitoringInterval: Integer\r\n\t\tMonitoringRoleArn: String\r\n\t\tMultiAZ: Boolean\r\n\t\tOptionGroupName: String\r\n\t\tPerformanceInsightsKMSKeyId: String\r\n\t\tPerformanceInsightsRetentionPeriod: Integer\r\n\t\tPort: String\r\n\t\tPreferredBackupWindow: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tProcessorFeatures:\r\n\t\t\t- ProcessorFeature\r\n\t\tPromotionTier: Integer\r\n\t\tPubliclyAccessible: Boolean\r\n\t\tSourceDBInstanceIdentifier: String\r\n\t\tSourceRegion: String\r\n\t\tStorageEncrypted: Boolean\r\n\t\tStorageType: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTimezone: String\r\n\t\tUseDefaultProcessorFeatures: Boolean\r\n\t\tVPCSecurityGroups:\r\n\t\t\t- String\r\n",
         "description": "Attributes:\r\n  Endpoint.Address\r\n  Endpoint.Port\r\n"
+    },
+    "AWS::WAFRegional::IPSet": {
+        "prefix": "wafregional-ipset",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::IPSet\"\r\n\tProperties:\r\n\t\tIPSetDescriptors:\r\n\t\t\t- IPSetDescriptor\r\n\t\tName: String #required\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::RoboMaker::RobotApplication": {
         "prefix": "robomaker-robotapplication",
@@ -994,15 +999,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceDiscovery::HttpNamespace\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tName: String #required\r\n",
         "description": "Attributes:\r\n  Id\r\n  Arn\r\n"
     },
-    "AWS::ApiGateway::Stage": {
-        "prefix": "apigateway-stage",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::Stage\"\r\n\tProperties:\r\n\t\tAccessLogSetting:\r\n\t\t\tAccessLogSetting\r\n\t\tCacheClusterEnabled: Boolean\r\n\t\tCacheClusterSize: String\r\n\t\tCanarySetting:\r\n\t\t\tCanarySetting\r\n\t\tClientCertificateId: String\r\n\t\tDeploymentId: String\r\n\t\tDescription: String\r\n\t\tDocumentationVersion: String\r\n\t\tMethodSettings:\r\n\t\t\t- MethodSetting\r\n\t\tRestApiId: String #required\r\n\t\tStageName: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTracingEnabled: Boolean\r\n\t\tVariables:\r\n\t\t\tMap\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::SageMaker::CodeRepository": {
         "prefix": "sagemaker-coderepository",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SageMaker::CodeRepository\"\r\n\tProperties:\r\n\t\tCodeRepositoryName: String\r\n\t\tGitConfig: #required\r\n\t\t\tGitConfig\r\n",
         "description": "Attributes:\r\n  CodeRepositoryName\r\n"
+    },
+    "AWS::ApiGateway::Stage": {
+        "prefix": "apigateway-stage",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::Stage\"\r\n\tProperties:\r\n\t\tAccessLogSetting:\r\n\t\t\tAccessLogSetting\r\n\t\tCacheClusterEnabled: Boolean\r\n\t\tCacheClusterSize: String\r\n\t\tCanarySetting:\r\n\t\t\tCanarySetting\r\n\t\tClientCertificateId: String\r\n\t\tDeploymentId: String\r\n\t\tDescription: String\r\n\t\tDocumentationVersion: String\r\n\t\tMethodSettings:\r\n\t\t\t- MethodSetting\r\n\t\tRestApiId: String #required\r\n\t\tStageName: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTracingEnabled: Boolean\r\n\t\tVariables:\r\n\t\t\tMap\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::SDB::Domain": {
         "prefix": "sdb-domain",
@@ -1096,7 +1101,7 @@
     },
     "AWS::CodeBuild::ReportGroup": {
         "prefix": "codebuild-reportgroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodeBuild::ReportGroup\"\r\n\tProperties:\r\n\t\tType: String #required\r\n\t\tExportConfig: #required\r\n\t\t\tReportExportConfig\r\n\t\tName: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodeBuild::ReportGroup\"\r\n\tProperties:\r\n\t\tType: String #required\r\n\t\tExportConfig: #required\r\n\t\t\tReportExportConfig\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::OpsWorks::UserProfile": {
@@ -1121,7 +1126,7 @@
     },
     "AWS::KinesisAnalyticsV2::Application": {
         "prefix": "kinesisanalyticsv2-application",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::KinesisAnalyticsV2::Application\"\r\n\tProperties:\r\n\t\tApplicationName: String\r\n\t\tRuntimeEnvironment: String #required\r\n\t\tApplicationConfiguration:\r\n\t\t\tApplicationConfiguration\r\n\t\tApplicationDescription: String\r\n\t\tServiceExecutionRole: String #required\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::KinesisAnalyticsV2::Application\"\r\n\tProperties:\r\n\t\tApplicationName: String\r\n\t\tRuntimeEnvironment: String #required\r\n\t\tApplicationConfiguration:\r\n\t\t\tApplicationConfiguration\r\n\t\tApplicationDescription: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tServiceExecutionRole: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::EC2::VPNConnection": {
@@ -1134,14 +1139,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::Fleet\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tComputeCapacity: #required\r\n\t\t\tComputeCapacity\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tFleetType: String\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tName: String #required\r\n\t\tImageName: String\r\n\t\tMaxUserDurationInSeconds: Integer\r\n\t\tIdleDisconnectTimeoutInSeconds: Integer\r\n\t\tDisconnectTimeoutInSeconds: Integer\r\n\t\tDisplayName: String\r\n\t\tInstanceType: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tImageArn: String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::FMS::NotificationChannel": {
-        "prefix": "fms-notificationchannel",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::FMS::NotificationChannel\"\r\n\tProperties:\r\n\t\tSnsRoleName: String #required\r\n\t\tSnsTopicArn: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Logs::SubscriptionFilter": {
         "prefix": "logs-subscriptionfilter",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Logs::SubscriptionFilter\"\r\n\tProperties:\r\n\t\tDestinationArn: String #required\r\n\t\tFilterPattern: String #required\r\n\t\tLogGroupName: String #required\r\n\t\tRoleArn: String\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::FMS::NotificationChannel": {
+        "prefix": "fms-notificationchannel",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::FMS::NotificationChannel\"\r\n\tProperties:\r\n\t\tSnsRoleName: String #required\r\n\t\tSnsTopicArn: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Greengrass::FunctionDefinitionVersion": {
@@ -1189,15 +1194,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::Device\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tGlobalNetworkId: String #required\r\n\t\tLocation:\r\n\t\t\tLocation\r\n\t\tModel: String\r\n\t\tSerialNumber: String\r\n\t\tSiteId: String\r\n\t\tType: String\r\n\t\tVendor: String\r\n",
         "description": "Attributes:\r\n  DeviceArn\r\n  DeviceId\r\n"
     },
-    "AWS::RDS::DBClusterParameterGroup": {
-        "prefix": "rds-dbclusterparametergroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBClusterParameterGroup\"\r\n\tProperties:\r\n\t\tDescription: String #required\r\n\t\tFamily: String #required\r\n\t\tParameters: Json #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Neptune::DBInstance": {
         "prefix": "neptune-dbinstance",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Neptune::DBInstance\"\r\n\tProperties:\r\n\t\tDBParameterGroupName: String\r\n\t\tDBInstanceClass: String #required\r\n\t\tAllowMajorVersionUpgrade: Boolean\r\n\t\tDBClusterIdentifier: String\r\n\t\tAvailabilityZone: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tDBSubnetGroupName: String\r\n\t\tDBInstanceIdentifier: String\r\n\t\tDBSnapshotIdentifier: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Endpoint\r\n  Port\r\n"
+    },
+    "AWS::RDS::DBClusterParameterGroup": {
+        "prefix": "rds-dbclusterparametergroup",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBClusterParameterGroup\"\r\n\tProperties:\r\n\t\tDescription: String #required\r\n\t\tFamily: String #required\r\n\t\tParameters: Json #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::EC2::VPCEndpointService": {
         "prefix": "ec2-vpcendpointservice",
@@ -1254,15 +1259,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::MLTransform\"\r\n\tProperties:\r\n\t\tRole: String #required\r\n\t\tMaxRetries: Integer\r\n\t\tWorkerType: String\r\n\t\tDescription: String\r\n\t\tTimeout: Integer\r\n\t\tGlueVersion: String\r\n\t\tTransformParameters: #required\r\n\t\t\tTransformParameters\r\n\t\tInputRecordTables: #required\r\n\t\t\tInputRecordTables\r\n\t\tNumberOfWorkers: Integer\r\n\t\tName: String\r\n\t\tMaxCapacity: Double\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::Transfer::Server": {
-        "prefix": "transfer-server",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Transfer::Server\"\r\n\tProperties:\r\n\t\tLoggingRole: String\r\n\t\tIdentityProviderDetails:\r\n\t\t\tIdentityProviderDetails\r\n\t\tEndpointType: String\r\n\t\tEndpointDetails:\r\n\t\t\tEndpointDetails\r\n\t\tIdentityProviderType: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
-        "description": "Attributes:\r\n  ServerId\r\n  Arn\r\n"
-    },
     "AWS::ApiGateway::UsagePlanKey": {
         "prefix": "apigateway-usageplankey",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::UsagePlanKey\"\r\n\tProperties:\r\n\t\tKeyId: String #required\r\n\t\tKeyType: String #required\r\n\t\tUsagePlanId: String #required\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::Transfer::Server": {
+        "prefix": "transfer-server",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Transfer::Server\"\r\n\tProperties:\r\n\t\tLoggingRole: String\r\n\t\tIdentityProviderDetails:\r\n\t\t\tIdentityProviderDetails\r\n\t\tEndpointType: String\r\n\t\tEndpointDetails:\r\n\t\t\tEndpointDetails\r\n\t\tIdentityProviderType: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
+        "description": "Attributes:\r\n  ServerId\r\n  Arn\r\n"
     },
     "AWS::EMR::SecurityConfiguration": {
         "prefix": "emr-securityconfiguration",
@@ -1279,25 +1284,25 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Pinpoint::APNSChannel\"\r\n\tProperties:\r\n\t\tBundleId: String\r\n\t\tPrivateKey: String\r\n\t\tEnabled: Boolean\r\n\t\tDefaultAuthenticationMethod: String\r\n\t\tTokenKey: String\r\n\t\tApplicationId: String #required\r\n\t\tTeamId: String\r\n\t\tCertificate: String\r\n\t\tTokenKeyId: String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::Glue::Classifier": {
-        "prefix": "glue-classifier",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::Classifier\"\r\n\tProperties:\r\n\t\tXMLClassifier:\r\n\t\t\tXMLClassifier\r\n\t\tJsonClassifier:\r\n\t\t\tJsonClassifier\r\n\t\tCsvClassifier:\r\n\t\t\tCsvClassifier\r\n\t\tGrokClassifier:\r\n\t\t\tGrokClassifier\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::RoboMaker::Fleet": {
         "prefix": "robomaker-fleet",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::RoboMaker::Fleet\"\r\n\tProperties:\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
-    "AWS::AmazonMQ::Broker": {
-        "prefix": "amazonmq-broker",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AmazonMQ::Broker\"\r\n\tProperties:\r\n\t\tSecurityGroups:\r\n\t\t\t- String\r\n\t\tStorageType: String\r\n\t\tEngineVersion: String #required\r\n\t\tConfiguration:\r\n\t\t\tConfigurationId\r\n\t\tMaintenanceWindowStartTime:\r\n\t\t\tMaintenanceWindow\r\n\t\tHostInstanceType: String #required\r\n\t\tAutoMinorVersionUpgrade: Boolean #required\r\n\t\tUsers: #required\r\n\t\t\t- User\r\n\t\tLogs:\r\n\t\t\tLogList\r\n\t\tSubnetIds:\r\n\t\t\t- String\r\n\t\tBrokerName: String #required\r\n\t\tDeploymentMode: String #required\r\n\t\tEngineType: String #required\r\n\t\tPubliclyAccessible: Boolean #required\r\n\t\tEncryptionOptions:\r\n\t\t\tEncryptionOptions\r\n\t\tTags:\r\n\t\t\t- TagsEntry\r\n",
-        "description": "Attributes:\r\n  IpAddresses\r\n  OpenWireEndpoints\r\n  ConfigurationRevision\r\n  StompEndpoints\r\n  MqttEndpoints\r\n  AmqpEndpoints\r\n  Arn\r\n  ConfigurationId\r\n  WssEndpoints\r\n"
+    "AWS::Glue::Classifier": {
+        "prefix": "glue-classifier",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::Classifier\"\r\n\tProperties:\r\n\t\tXMLClassifier:\r\n\t\t\tXMLClassifier\r\n\t\tJsonClassifier:\r\n\t\t\tJsonClassifier\r\n\t\tCsvClassifier:\r\n\t\t\tCsvClassifier\r\n\t\tGrokClassifier:\r\n\t\t\tGrokClassifier\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::ElasticBeanstalk::ConfigurationTemplate": {
         "prefix": "elasticbeanstalk-configurationtemplate",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElasticBeanstalk::ConfigurationTemplate\"\r\n\tProperties:\r\n\t\tApplicationName: String #required\r\n\t\tDescription: String\r\n\t\tEnvironmentId: String\r\n\t\tOptionSettings:\r\n\t\t\t- ConfigurationOptionSetting\r\n\t\tPlatformArn: String\r\n\t\tSolutionStackName: String\r\n\t\tSourceConfiguration:\r\n\t\t\tSourceConfiguration\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::AmazonMQ::Broker": {
+        "prefix": "amazonmq-broker",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AmazonMQ::Broker\"\r\n\tProperties:\r\n\t\tSecurityGroups:\r\n\t\t\t- String\r\n\t\tStorageType: String\r\n\t\tEngineVersion: String #required\r\n\t\tConfiguration:\r\n\t\t\tConfigurationId\r\n\t\tMaintenanceWindowStartTime:\r\n\t\t\tMaintenanceWindow\r\n\t\tHostInstanceType: String #required\r\n\t\tAutoMinorVersionUpgrade: Boolean #required\r\n\t\tUsers: #required\r\n\t\t\t- User\r\n\t\tLogs:\r\n\t\t\tLogList\r\n\t\tSubnetIds:\r\n\t\t\t- String\r\n\t\tBrokerName: String #required\r\n\t\tDeploymentMode: String #required\r\n\t\tEngineType: String #required\r\n\t\tPubliclyAccessible: Boolean #required\r\n\t\tEncryptionOptions:\r\n\t\t\tEncryptionOptions\r\n\t\tTags:\r\n\t\t\t- TagsEntry\r\n",
+        "description": "Attributes:\r\n  IpAddresses\r\n  OpenWireEndpoints\r\n  ConfigurationRevision\r\n  StompEndpoints\r\n  MqttEndpoints\r\n  AmqpEndpoints\r\n  Arn\r\n  ConfigurationId\r\n  WssEndpoints\r\n"
     },
     "AWS::AppSync::DataSource": {
         "prefix": "appsync-datasource",
@@ -1309,15 +1314,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ECS::PrimaryTaskSet\"\r\n\tProperties:\r\n\t\tCluster: String #required\r\n\t\tTaskSetId: String #required\r\n\t\tService: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::Greengrass::Group": {
-        "prefix": "greengrass-group",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::Group\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tGroupVersion\r\n\t\tRoleArn: String\r\n\t\tTags: Json\r\n\t\tName: String #required\r\n",
-        "description": "Attributes:\r\n  RoleAttachedAt\r\n  LatestVersionArn\r\n  Id\r\n  Arn\r\n  RoleArn\r\n  Name\r\n"
-    },
     "AWS::Cognito::IdentityPoolRoleAttachment": {
         "prefix": "cognito-identitypoolroleattachment",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::IdentityPoolRoleAttachment\"\r\n\tProperties:\r\n\t\tRoleMappings: Json\r\n\t\tIdentityPoolId: String #required\r\n\t\tRoles: Json\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::Greengrass::Group": {
+        "prefix": "greengrass-group",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::Group\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tGroupVersion\r\n\t\tRoleArn: String\r\n\t\tTags: Json\r\n\t\tName: String #required\r\n",
+        "description": "Attributes:\r\n  RoleAttachedAt\r\n  LatestVersionArn\r\n  Id\r\n  Arn\r\n  RoleArn\r\n  Name\r\n"
     },
     "AWS::PinpointEmail::Identity": {
         "prefix": "pinpointemail-identity",
@@ -1359,14 +1364,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::PlacementGroup\"\r\n\tProperties:\r\n\t\tStrategy: String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::WAFRegional::SizeConstraintSet": {
-        "prefix": "wafregional-sizeconstraintset",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::SizeConstraintSet\"\r\n\tProperties:\r\n\t\tSizeConstraints:\r\n\t\t\t- SizeConstraint\r\n\t\tName: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::ApiGateway::RequestValidator": {
         "prefix": "apigateway-requestvalidator",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::RequestValidator\"\r\n\tProperties:\r\n\t\tName: String\r\n\t\tRestApiId: String #required\r\n\t\tValidateRequestBody: Boolean\r\n\t\tValidateRequestParameters: Boolean\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::WAFRegional::SizeConstraintSet": {
+        "prefix": "wafregional-sizeconstraintset",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAFRegional::SizeConstraintSet\"\r\n\tProperties:\r\n\t\tSizeConstraints:\r\n\t\t\t- SizeConstraint\r\n\t\tName: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::AppMesh::VirtualService": {
@@ -1399,15 +1404,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodePipeline::Webhook\"\r\n\tProperties:\r\n\t\tAuthenticationConfiguration: #required\r\n\t\t\tWebhookAuthConfiguration\r\n\t\tFilters: #required\r\n\t\t\t- WebhookFilterRule\r\n\t\tAuthentication: String #required\r\n\t\tTargetPipeline: String #required\r\n\t\tTargetAction: String #required\r\n\t\tName: String\r\n\t\tTargetPipelineVersion: Integer #required\r\n\t\tRegisterWithThirdParty: Boolean\r\n",
         "description": "Attributes:\r\n  Url\r\n"
     },
-    "AWS::AppStream::ImageBuilder": {
-        "prefix": "appstream-imagebuilder",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::ImageBuilder\"\r\n\tProperties:\r\n\t\tImageName: String\r\n\t\tDescription: String\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDisplayName: String\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tAppstreamAgentVersion: String\r\n\t\tInstanceType: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String #required\r\n\t\tImageArn: String\r\n\t\tAccessEndpoints:\r\n\t\t\t- AccessEndpoint\r\n",
-        "description": "Attributes:\r\n  StreamingUrl\r\n"
-    },
     "AWS::AutoScalingPlans::ScalingPlan": {
         "prefix": "autoscalingplans-scalingplan",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AutoScalingPlans::ScalingPlan\"\r\n\tProperties:\r\n\t\tApplicationSource: #required\r\n\t\t\tApplicationSource\r\n\t\tScalingInstructions: #required\r\n\t\t\t- ScalingInstruction\r\n",
         "description": "Attributes:\r\n  ScalingPlanName\r\n  ScalingPlanVersion\r\n"
+    },
+    "AWS::AppStream::ImageBuilder": {
+        "prefix": "appstream-imagebuilder",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppStream::ImageBuilder\"\r\n\tProperties:\r\n\t\tImageName: String\r\n\t\tDescription: String\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tEnableDefaultInternetAccess: Boolean\r\n\t\tDisplayName: String\r\n\t\tDomainJoinInfo:\r\n\t\t\tDomainJoinInfo\r\n\t\tAppstreamAgentVersion: String\r\n\t\tInstanceType: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String #required\r\n\t\tImageArn: String\r\n\t\tAccessEndpoints:\r\n\t\t\t- AccessEndpoint\r\n",
+        "description": "Attributes:\r\n  StreamingUrl\r\n"
     },
     "AWS::WAFRegional::XssMatchSet": {
         "prefix": "wafregional-xssmatchset",
@@ -1489,15 +1494,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VPNConnectionRoute\"\r\n\tProperties:\r\n\t\tDestinationCidrBlock: String #required\r\n\t\tVpnConnectionId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::DirectoryService::MicrosoftAD": {
-        "prefix": "directoryservice-microsoftad",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DirectoryService::MicrosoftAD\"\r\n\tProperties:\r\n\t\tCreateAlias: Boolean\r\n\t\tEdition: String\r\n\t\tEnableSso: Boolean\r\n\t\tName: String #required\r\n\t\tPassword: String #required\r\n\t\tShortName: String\r\n\t\tVpcSettings: #required\r\n\t\t\tVpcSettings\r\n",
-        "description": "Attributes:\r\n  Alias\r\n  DnsIpAddresses\r\n"
-    },
     "AWS::WAF::Rule": {
         "prefix": "waf-rule",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::WAF::Rule\"\r\n\tProperties:\r\n\t\tMetricName: String #required\r\n\t\tName: String #required\r\n\t\tPredicates:\r\n\t\t\t- Predicate\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::DirectoryService::MicrosoftAD": {
+        "prefix": "directoryservice-microsoftad",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DirectoryService::MicrosoftAD\"\r\n\tProperties:\r\n\t\tCreateAlias: Boolean\r\n\t\tEdition: String\r\n\t\tEnableSso: Boolean\r\n\t\tName: String #required\r\n\t\tPassword: String #required\r\n\t\tShortName: String\r\n\t\tVpcSettings: #required\r\n\t\t\tVpcSettings\r\n",
+        "description": "Attributes:\r\n  Alias\r\n  DnsIpAddresses\r\n"
     },
     "AWS::ApiGatewayV2::DomainName": {
         "prefix": "apigatewayv2-domainname",
@@ -1519,24 +1524,24 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SageMaker::Model\"\r\n\tProperties:\r\n\t\tExecutionRoleArn: String #required\r\n\t\tPrimaryContainer:\r\n\t\t\tContainerDefinition\r\n\t\tModelName: String\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n\t\tContainers:\r\n\t\t\t- ContainerDefinition\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  ModelName\r\n"
     },
-    "AWS::Config::DeliveryChannel": {
-        "prefix": "config-deliverychannel",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Config::DeliveryChannel\"\r\n\tProperties:\r\n\t\tConfigSnapshotDeliveryProperties:\r\n\t\t\tConfigSnapshotDeliveryProperties\r\n\t\tName: String\r\n\t\tS3BucketName: String #required\r\n\t\tS3KeyPrefix: String\r\n\t\tSnsTopicARN: String\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::EC2::NetworkInterfacePermission": {
         "prefix": "ec2-networkinterfacepermission",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::NetworkInterfacePermission\"\r\n\tProperties:\r\n\t\tAwsAccountId: String #required\r\n\t\tNetworkInterfaceId: String #required\r\n\t\tPermission: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::EC2::TrafficMirrorFilter": {
-        "prefix": "ec2-trafficmirrorfilter",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TrafficMirrorFilter\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tNetworkServices:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
+    "AWS::Config::DeliveryChannel": {
+        "prefix": "config-deliverychannel",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Config::DeliveryChannel\"\r\n\tProperties:\r\n\t\tConfigSnapshotDeliveryProperties:\r\n\t\t\tConfigSnapshotDeliveryProperties\r\n\t\tName: String\r\n\t\tS3BucketName: String #required\r\n\t\tS3KeyPrefix: String\r\n\t\tSnsTopicARN: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::GameLift::Build": {
         "prefix": "gamelift-build",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::GameLift::Build\"\r\n\tProperties:\r\n\t\tName: String\r\n\t\tOperatingSystem: String\r\n\t\tStorageLocation:\r\n\t\t\tS3Location\r\n\t\tVersion: String\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::EC2::TrafficMirrorFilter": {
+        "prefix": "ec2-trafficmirrorfilter",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TrafficMirrorFilter\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tNetworkServices:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Config::OrganizationConfigRule": {
@@ -1551,7 +1556,7 @@
     },
     "AWS::ApiGatewayV2::Integration": {
         "prefix": "apigatewayv2-integration",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Integration\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tTemplateSelectionExpression: String\r\n\t\tConnectionType: String\r\n\t\tIntegrationMethod: String\r\n\t\tPassthroughBehavior: String\r\n\t\tRequestParameters: Json\r\n\t\tIntegrationUri: String\r\n\t\tPayloadFormatVersion: String\r\n\t\tCredentialsArn: String\r\n\t\tRequestTemplates: Json\r\n\t\tTimeoutInMillis: Integer\r\n\t\tTlsConfig:\r\n\t\t\tTlsConfig\r\n\t\tContentHandlingStrategy: String\r\n\t\tApiId: String #required\r\n\t\tIntegrationType: String #required\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Integration\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tTemplateSelectionExpression: String\r\n\t\tConnectionType: String\r\n\t\tIntegrationMethod: String\r\n\t\tPassthroughBehavior: String\r\n\t\tRequestParameters: Json\r\n\t\tConnectionId: String\r\n\t\tIntegrationUri: String\r\n\t\tPayloadFormatVersion: String\r\n\t\tCredentialsArn: String\r\n\t\tRequestTemplates: Json\r\n\t\tTimeoutInMillis: Integer\r\n\t\tTlsConfig:\r\n\t\t\tTlsConfig\r\n\t\tContentHandlingStrategy: String\r\n\t\tApiId: String #required\r\n\t\tIntegrationType: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Pinpoint::Segment": {
@@ -1639,15 +1644,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::PinpointEmail::ConfigurationSet\"\r\n\tProperties:\r\n\t\tSendingOptions:\r\n\t\t\tSendingOptions\r\n\t\tTrackingOptions:\r\n\t\t\tTrackingOptions\r\n\t\tReputationOptions:\r\n\t\t\tReputationOptions\r\n\t\tDeliveryOptions:\r\n\t\t\tDeliveryOptions\r\n\t\tTags:\r\n\t\t\t- Tags\r\n\t\tName: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "Alexa::ASK::Skill": {
-        "prefix": "alexa-ask-skill",
-        "body": "${1:LogicalID}:\r\n\tType: \"Alexa::ASK::Skill\"\r\n\tProperties:\r\n\t\tAuthenticationConfiguration: #required\r\n\t\t\tAuthenticationConfiguration\r\n\t\tVendorId: String #required\r\n\t\tSkillPackage: #required\r\n\t\t\tSkillPackage\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::RDS::DBCluster": {
         "prefix": "rds-dbcluster",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::DBCluster\"\r\n\tProperties:\r\n\t\tAssociatedRoles:\r\n\t\t\t- DBClusterRole\r\n\t\tAvailabilityZones:\r\n\t\t\t- String\r\n\t\tBacktrackWindow: Long\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tDBClusterIdentifier: String\r\n\t\tDBClusterParameterGroupName: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tDatabaseName: String\r\n\t\tDeletionProtection: Boolean\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n\t\tEnableHttpEndpoint: Boolean\r\n\t\tEnableIAMDatabaseAuthentication: Boolean\r\n\t\tEngine: String #required\r\n\t\tEngineMode: String\r\n\t\tEngineVersion: String\r\n\t\tKmsKeyId: String\r\n\t\tMasterUserPassword: String\r\n\t\tMasterUsername: String\r\n\t\tPort: Integer\r\n\t\tPreferredBackupWindow: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tReplicationSourceIdentifier: String\r\n\t\tRestoreType: String\r\n\t\tScalingConfiguration:\r\n\t\t\tScalingConfiguration\r\n\t\tSnapshotIdentifier: String\r\n\t\tSourceDBClusterIdentifier: String\r\n\t\tSourceRegion: String\r\n\t\tStorageEncrypted: Boolean\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tUseLatestRestorableTime: Boolean\r\n\t\tVpcSecurityGroupIds:\r\n\t\t\t- String\r\n",
         "description": "Attributes:\r\n  Endpoint.Address\r\n  Endpoint.Port\r\n  ReadEndpoint.Address\r\n"
+    },
+    "Alexa::ASK::Skill": {
+        "prefix": "alexa-ask-skill",
+        "body": "${1:LogicalID}:\r\n\tType: \"Alexa::ASK::Skill\"\r\n\tProperties:\r\n\t\tAuthenticationConfiguration: #required\r\n\t\t\tAuthenticationConfiguration\r\n\t\tVendorId: String #required\r\n\t\tSkillPackage: #required\r\n\t\t\tSkillPackage\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::EC2::ClientVpnEndpoint": {
         "prefix": "ec2-clientvpnendpoint",
@@ -1699,30 +1704,30 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGateway::ApiKey\"\r\n\tProperties:\r\n\t\tCustomerId: String\r\n\t\tDescription: String\r\n\t\tEnabled: Boolean\r\n\t\tGenerateDistinctId: Boolean\r\n\t\tName: String\r\n\t\tStageKeys:\r\n\t\t\t- StageKey\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tValue: String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::EC2::SubnetRouteTableAssociation": {
-        "prefix": "ec2-subnetroutetableassociation",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::SubnetRouteTableAssociation\"\r\n\tProperties:\r\n\t\tRouteTableId: String #required\r\n\t\tSubnetId: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Glue::Table": {
         "prefix": "glue-table",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Glue::Table\"\r\n\tProperties:\r\n\t\tTableInput: #required\r\n\t\t\tTableInput\r\n\t\tDatabaseName: String #required\r\n\t\tCatalogId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::ElastiCache::SecurityGroup": {
-        "prefix": "elasticache-securitygroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElastiCache::SecurityGroup\"\r\n\tProperties:\r\n\t\tDescription: String #required\r\n",
+    "AWS::EC2::SubnetRouteTableAssociation": {
+        "prefix": "ec2-subnetroutetableassociation",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::SubnetRouteTableAssociation\"\r\n\tProperties:\r\n\t\tRouteTableId: String #required\r\n\t\tSubnetId: String #required\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::IAM::InstanceProfile": {
+        "prefix": "iam-instanceprofile",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::InstanceProfile\"\r\n\tProperties:\r\n\t\tInstanceProfileName: String\r\n\t\tPath: String\r\n\t\tRoles: #required\r\n\t\t\t- String\r\n",
+        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::IoT::Policy": {
         "prefix": "iot-policy",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT::Policy\"\r\n\tProperties:\r\n\t\tPolicyDocument: Json #required\r\n\t\tPolicyName: String\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
-    "AWS::IAM::InstanceProfile": {
-        "prefix": "iam-instanceprofile",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::InstanceProfile\"\r\n\tProperties:\r\n\t\tInstanceProfileName: String\r\n\t\tPath: String\r\n\t\tRoles: #required\r\n\t\t\t- String\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
+    "AWS::ElastiCache::SecurityGroup": {
+        "prefix": "elasticache-securitygroup",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElastiCache::SecurityGroup\"\r\n\tProperties:\r\n\t\tDescription: String #required\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::CodeDeploy::DeploymentGroup": {
         "prefix": "codedeploy-deploymentgroup",
@@ -1836,7 +1841,7 @@
     },
     "AWS::FSx::FileSystem": {
         "prefix": "fsx-filesystem",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::FSx::FileSystem\"\r\n\tProperties:\r\n\t\tKmsKeyId: String\r\n\t\tStorageCapacity: Integer\r\n\t\tFileSystemType: String #required\r\n\t\tLustreConfiguration:\r\n\t\t\tLustreConfiguration\r\n\t\tBackupId: String\r\n\t\tSubnetIds: #required\r\n\t\t\t- String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tWindowsConfiguration:\r\n\t\t\tWindowsConfiguration\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::FSx::FileSystem\"\r\n\tProperties:\r\n\t\tStorageType: String\r\n\t\tKmsKeyId: String\r\n\t\tStorageCapacity: Integer\r\n\t\tFileSystemType: String #required\r\n\t\tLustreConfiguration:\r\n\t\t\tLustreConfiguration\r\n\t\tBackupId: String\r\n\t\tSubnetIds: #required\r\n\t\t\t- String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tWindowsConfiguration:\r\n\t\t\tWindowsConfiguration\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::OpsWorks::Stack": {
@@ -1899,15 +1904,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::LoggerDefinition\"\r\n\tProperties:\r\n\t\tInitialVersion:\r\n\t\t\tLoggerDefinitionVersion\r\n\t\tTags: Json\r\n\t\tName: String #required\r\n",
         "description": "Attributes:\r\n  LatestVersionArn\r\n  Id\r\n  Arn\r\n  Name\r\n"
     },
-    "AWS::ServiceCatalog::LaunchRoleConstraint": {
-        "prefix": "servicecatalog-launchroleconstraint",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::LaunchRoleConstraint\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tLocalRoleName: String\r\n\t\tAcceptLanguage: String\r\n\t\tPortfolioId: String #required\r\n\t\tProductId: String #required\r\n\t\tRoleArn: String\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::ServiceCatalog::CloudFormationProvisionedProduct": {
         "prefix": "servicecatalog-cloudformationprovisionedproduct",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::CloudFormationProvisionedProduct\"\r\n\tProperties:\r\n\t\tPathId: String\r\n\t\tProvisioningParameters:\r\n\t\t\t- ProvisioningParameter\r\n\t\tProvisioningPreferences:\r\n\t\t\tProvisioningPreferences\r\n\t\tProductName: String\r\n\t\tProvisioningArtifactName: String\r\n\t\tNotificationArns:\r\n\t\t\t- String\r\n\t\tAcceptLanguage: String\r\n\t\tProductId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tProvisionedProductName: String\r\n\t\tProvisioningArtifactId: String\r\n",
         "description": "Attributes:\r\n  CloudformationStackArn\r\n  RecordId\r\n"
+    },
+    "AWS::ServiceCatalog::LaunchRoleConstraint": {
+        "prefix": "servicecatalog-launchroleconstraint",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ServiceCatalog::LaunchRoleConstraint\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tLocalRoleName: String\r\n\t\tAcceptLanguage: String\r\n\t\tPortfolioId: String #required\r\n\t\tProductId: String #required\r\n\t\tRoleArn: String\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::EC2::SubnetCidrBlock": {
         "prefix": "ec2-subnetcidrblock",
@@ -1934,14 +1939,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::NatGateway\"\r\n\tProperties:\r\n\t\tAllocationId: String #required\r\n\t\tSubnetId: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::RDS::OptionGroup": {
-        "prefix": "rds-optiongroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::OptionGroup\"\r\n\tProperties:\r\n\t\tEngineName: String #required\r\n\t\tMajorEngineVersion: String #required\r\n\t\tOptionConfigurations: #required\r\n\t\t\t- OptionConfiguration\r\n\t\tOptionGroupDescription: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::ElastiCache::SecurityGroupIngress": {
         "prefix": "elasticache-securitygroupingress",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElastiCache::SecurityGroupIngress\"\r\n\tProperties:\r\n\t\tCacheSecurityGroupName: String #required\r\n\t\tEC2SecurityGroupName: String #required\r\n\t\tEC2SecurityGroupOwnerId: String\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::RDS::OptionGroup": {
+        "prefix": "rds-optiongroup",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::RDS::OptionGroup\"\r\n\tProperties:\r\n\t\tEngineName: String #required\r\n\t\tMajorEngineVersion: String #required\r\n\t\tOptionConfigurations: #required\r\n\t\t\t- OptionConfiguration\r\n\t\tOptionGroupDescription: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::ElastiCache::ReplicationGroup": {
@@ -1954,15 +1959,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cognito::UserPoolUser\"\r\n\tProperties:\r\n\t\tValidationData:\r\n\t\t\t- AttributeType\r\n\t\tUserPoolId: String #required\r\n\t\tUsername: String\r\n\t\tMessageAction: String\r\n\t\tClientMetadata: Json\r\n\t\tDesiredDeliveryMediums:\r\n\t\t\t- String\r\n\t\tForceAliasCreation: Boolean\r\n\t\tUserAttributes:\r\n\t\t\t- AttributeType\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::ApiGatewayV2::Model": {
-        "prefix": "apigatewayv2-model",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Model\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tContentType: String\r\n\t\tSchema: Json #required\r\n\t\tApiId: String #required\r\n\t\tName: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::AppSync::FunctionConfiguration": {
         "prefix": "appsync-functionconfiguration",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppSync::FunctionConfiguration\"\r\n\tProperties:\r\n\t\tResponseMappingTemplateS3Location: String\r\n\t\tDescription: String\r\n\t\tDataSourceName: String #required\r\n\t\tRequestMappingTemplate: String\r\n\t\tResponseMappingTemplate: String\r\n\t\tFunctionVersion: String #required\r\n\t\tRequestMappingTemplateS3Location: String\r\n\t\tApiId: String #required\r\n\t\tName: String #required\r\n",
         "description": "Attributes:\r\n  FunctionId\r\n  FunctionArn\r\n  DataSourceName\r\n  Name\r\n"
+    },
+    "AWS::ApiGatewayV2::Model": {
+        "prefix": "apigatewayv2-model",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ApiGatewayV2::Model\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tContentType: String\r\n\t\tSchema: Json #required\r\n\t\tApiId: String #required\r\n\t\tName: String #required\r\n",
+        "description": "No Attributes\r\n"
     },
     "AWS::CloudFormation::WaitCondition": {
         "prefix": "cloudformation-waitcondition",
@@ -1984,14 +1989,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Pinpoint::PushTemplate\"\r\n\tProperties:\r\n\t\tGCM:\r\n\t\t\tAndroidPushNotificationTemplate\r\n\t\tBaidu:\r\n\t\t\tAndroidPushNotificationTemplate\r\n\t\tTemplateName: String #required\r\n\t\tADM:\r\n\t\t\tAndroidPushNotificationTemplate\r\n\t\tAPNS:\r\n\t\t\tAPNSPushNotificationTemplate\r\n\t\tTemplateDescription: String\r\n\t\tDefaultSubstitutions: String\r\n\t\tDefault:\r\n\t\t\tDefaultPushNotificationTemplate\r\n\t\tTags: Json\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
-    "AWS::EC2::TrafficMirrorFilterRule": {
-        "prefix": "ec2-trafficmirrorfilterrule",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TrafficMirrorFilterRule\"\r\n\tProperties:\r\n\t\tDestinationPortRange:\r\n\t\t\tTrafficMirrorPortRange\r\n\t\tDescription: String\r\n\t\tSourcePortRange:\r\n\t\t\tTrafficMirrorPortRange\r\n\t\tRuleAction: String #required\r\n\t\tSourceCidrBlock: String #required\r\n\t\tRuleNumber: Integer #required\r\n\t\tDestinationCidrBlock: String #required\r\n\t\tTrafficMirrorFilterId: String #required\r\n\t\tTrafficDirection: String #required\r\n\t\tProtocol: Integer\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::AppConfig::DeploymentStrategy": {
         "prefix": "appconfig-deploymentstrategy",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppConfig::DeploymentStrategy\"\r\n\tProperties:\r\n\t\tReplicateTo: String #required\r\n\t\tGrowthType: String\r\n\t\tDescription: String\r\n\t\tDeploymentDurationInMinutes: Double #required\r\n\t\tGrowthFactor: Double #required\r\n\t\tFinalBakeTimeInMinutes: Double\r\n\t\tTags:\r\n\t\t\t- Tags\r\n\t\tName: String #required\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::EC2::TrafficMirrorFilterRule": {
+        "prefix": "ec2-trafficmirrorfilterrule",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::TrafficMirrorFilterRule\"\r\n\tProperties:\r\n\t\tDestinationPortRange:\r\n\t\t\tTrafficMirrorPortRange\r\n\t\tDescription: String\r\n\t\tSourcePortRange:\r\n\t\t\tTrafficMirrorPortRange\r\n\t\tRuleAction: String #required\r\n\t\tSourceCidrBlock: String #required\r\n\t\tRuleNumber: Integer #required\r\n\t\tDestinationCidrBlock: String #required\r\n\t\tTrafficMirrorFilterId: String #required\r\n\t\tTrafficDirection: String #required\r\n\t\tProtocol: Integer\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::ApiGateway::RestApi": {
@@ -2039,14 +2044,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::GlobalNetwork\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Arn\r\n  Id\r\n"
     },
-    "AWS::NetworkManager::TransitGatewayRegistration": {
-        "prefix": "networkmanager-transitgatewayregistration",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::TransitGatewayRegistration\"\r\n\tProperties:\r\n\t\tGlobalNetworkId: String #required\r\n\t\tTransitGatewayArn: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::SQS::QueuePolicy": {
         "prefix": "sqs-queuepolicy",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SQS::QueuePolicy\"\r\n\tProperties:\r\n\t\tPolicyDocument: Json #required\r\n\t\tQueues: #required\r\n\t\t\t- String\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::NetworkManager::TransitGatewayRegistration": {
+        "prefix": "networkmanager-transitgatewayregistration",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::TransitGatewayRegistration\"\r\n\tProperties:\r\n\t\tGlobalNetworkId: String #required\r\n\t\tTransitGatewayArn: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::EFS::FileSystem": {
@@ -2134,6 +2139,11 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElasticBeanstalk::Environment\"\r\n\tProperties:\r\n\t\tApplicationName: String #required\r\n\t\tCNAMEPrefix: String\r\n\t\tDescription: String\r\n\t\tEnvironmentName: String\r\n\t\tOptionSettings:\r\n\t\t\t- OptionSetting\r\n\t\tPlatformArn: String\r\n\t\tSolutionStackName: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTemplateName: String\r\n\t\tTier:\r\n\t\t\tTier\r\n\t\tVersionLabel: String\r\n",
         "description": "Attributes:\r\n  EndpointURL\r\n"
     },
+    "AWS::ResourceGroups::Group": {
+        "prefix": "resourcegroups-group",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ResourceGroups::Group\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tDescription: String\r\n\t\tResourceQuery:\r\n\t\t\tResourceQuery\r\n\t\tTags:\r\n\t\t\t- Json\r\n",
+        "description": "Attributes:\r\n  Arn\r\n"
+    },
     "AWS::Lambda::Function": {
         "prefix": "lambda-function",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Lambda::Function\"\r\n\tProperties:\r\n\t\tCode: #required\r\n\t\t\tCode\r\n\t\tDeadLetterConfig:\r\n\t\t\tDeadLetterConfig\r\n\t\tDescription: String\r\n\t\tEnvironment:\r\n\t\t\tEnvironment\r\n\t\tFunctionName: String\r\n\t\tHandler: String #required\r\n\t\tKmsKeyArn: String\r\n\t\tLayers:\r\n\t\t\t- String\r\n\t\tMemorySize: Integer\r\n\t\tReservedConcurrentExecutions: Integer\r\n\t\tRole: String #required\r\n\t\tRuntime: String #required\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTimeout: Integer\r\n\t\tTracingConfig:\r\n\t\t\tTracingConfig\r\n\t\tVpcConfig:\r\n\t\t\tVpcConfig\r\n",
@@ -2143,11 +2153,6 @@
         "prefix": "iotanalytics-pipeline",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoTAnalytics::Pipeline\"\r\n\tProperties:\r\n\t\tPipelineName: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tPipelineActivities: #required\r\n\t\t\t- Activity\r\n",
         "description": "No Attributes\r\n"
-    },
-    "AWS::ResourceGroups::Group": {
-        "prefix": "resourcegroups-group",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ResourceGroups::Group\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tDescription: String\r\n\t\tResourceQuery:\r\n\t\t\tResourceQuery\r\n\t\tTags:\r\n\t\t\t- Json\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::EC2::TransitGatewayRoute": {
         "prefix": "ec2-transitgatewayroute",
@@ -2239,14 +2244,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IAM::ManagedPolicy\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tGroups:\r\n\t\t\t- String\r\n\t\tManagedPolicyName: String\r\n\t\tPath: String\r\n\t\tPolicyDocument: Json #required\r\n\t\tRoles:\r\n\t\t\t- String\r\n\t\tUsers:\r\n\t\t\t- String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::IoT::PolicyPrincipalAttachment": {
-        "prefix": "iot-policyprincipalattachment",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT::PolicyPrincipalAttachment\"\r\n\tProperties:\r\n\t\tPolicyName: String #required\r\n\t\tPrincipal: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Greengrass::DeviceDefinitionVersion": {
         "prefix": "greengrass-devicedefinitionversion",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::DeviceDefinitionVersion\"\r\n\tProperties:\r\n\t\tDeviceDefinitionId: String #required\r\n\t\tDevices: #required\r\n\t\t\t- Device\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::IoT::PolicyPrincipalAttachment": {
+        "prefix": "iot-policyprincipalattachment",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT::PolicyPrincipalAttachment\"\r\n\tProperties:\r\n\t\tPolicyName: String #required\r\n\t\tPrincipal: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::ApplicationAutoScaling::ScalableTarget": {
@@ -2324,11 +2329,6 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::DirectoryService::SimpleAD\"\r\n\tProperties:\r\n\t\tCreateAlias: Boolean\r\n\t\tDescription: String\r\n\t\tEnableSso: Boolean\r\n\t\tName: String #required\r\n\t\tPassword: String #required\r\n\t\tShortName: String\r\n\t\tSize: String #required\r\n\t\tVpcSettings: #required\r\n\t\t\tVpcSettings\r\n",
         "description": "Attributes:\r\n  Alias\r\n  DnsIpAddresses\r\n"
     },
-    "AWS::EC2::VolumeAttachment": {
-        "prefix": "ec2-volumeattachment",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VolumeAttachment\"\r\n\tProperties:\r\n\t\tDevice: String #required\r\n\t\tInstanceId: String #required\r\n\t\tVolumeId: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Greengrass::ResourceDefinitionVersion": {
         "prefix": "greengrass-resourcedefinitionversion",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Greengrass::ResourceDefinitionVersion\"\r\n\tProperties:\r\n\t\tResources: #required\r\n\t\t\t- ResourceInstance\r\n\t\tResourceDefinitionId: String #required\r\n",
@@ -2337,6 +2337,11 @@
     "AWS::SecretsManager::SecretTargetAttachment": {
         "prefix": "secretsmanager-secrettargetattachment",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SecretsManager::SecretTargetAttachment\"\r\n\tProperties:\r\n\t\tSecretId: String #required\r\n\t\tTargetType: String #required\r\n\t\tTargetId: String #required\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::EC2::VolumeAttachment": {
+        "prefix": "ec2-volumeattachment",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VolumeAttachment\"\r\n\tProperties:\r\n\t\tDevice: String #required\r\n\t\tInstanceId: String #required\r\n\t\tVolumeId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Pinpoint::EmailChannel": {
@@ -2364,15 +2369,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::NetworkManager::Site\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tGlobalNetworkId: String #required\r\n\t\tLocation:\r\n\t\t\tLocation\r\n",
         "description": "Attributes:\r\n  SiteArn\r\n  SiteId\r\n"
     },
-    "AWS::ElastiCache::CacheCluster": {
-        "prefix": "elasticache-cachecluster",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElastiCache::CacheCluster\"\r\n\tProperties:\r\n\t\tAZMode: String\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tCacheNodeType: String #required\r\n\t\tCacheParameterGroupName: String\r\n\t\tCacheSecurityGroupNames:\r\n\t\t\t- String\r\n\t\tCacheSubnetGroupName: String\r\n\t\tClusterName: String\r\n\t\tEngine: String #required\r\n\t\tEngineVersion: String\r\n\t\tNotificationTopicArn: String\r\n\t\tNumCacheNodes: Integer #required\r\n\t\tPort: Integer\r\n\t\tPreferredAvailabilityZone: String\r\n\t\tPreferredAvailabilityZones:\r\n\t\t\t- String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tSnapshotArns:\r\n\t\t\t- String\r\n\t\tSnapshotName: String\r\n\t\tSnapshotRetentionLimit: Integer\r\n\t\tSnapshotWindow: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVpcSecurityGroupIds:\r\n\t\t\t- String\r\n",
-        "description": "Attributes:\r\n  ConfigurationEndpoint.Address\r\n  ConfigurationEndpoint.Port\r\n  RedisEndpoint.Address\r\n  RedisEndpoint.Port\r\n"
-    },
     "AWS::IoT::ThingPrincipalAttachment": {
         "prefix": "iot-thingprincipalattachment",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT::ThingPrincipalAttachment\"\r\n\tProperties:\r\n\t\tPrincipal: String #required\r\n\t\tThingName: String #required\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::ElastiCache::CacheCluster": {
+        "prefix": "elasticache-cachecluster",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElastiCache::CacheCluster\"\r\n\tProperties:\r\n\t\tAZMode: String\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tCacheNodeType: String #required\r\n\t\tCacheParameterGroupName: String\r\n\t\tCacheSecurityGroupNames:\r\n\t\t\t- String\r\n\t\tCacheSubnetGroupName: String\r\n\t\tClusterName: String\r\n\t\tEngine: String #required\r\n\t\tEngineVersion: String\r\n\t\tNotificationTopicArn: String\r\n\t\tNumCacheNodes: Integer #required\r\n\t\tPort: Integer\r\n\t\tPreferredAvailabilityZone: String\r\n\t\tPreferredAvailabilityZones:\r\n\t\t\t- String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tSnapshotArns:\r\n\t\t\t- String\r\n\t\tSnapshotName: String\r\n\t\tSnapshotRetentionLimit: Integer\r\n\t\tSnapshotWindow: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVpcSecurityGroupIds:\r\n\t\t\t- String\r\n",
+        "description": "Attributes:\r\n  ConfigurationEndpoint.Address\r\n  ConfigurationEndpoint.Port\r\n  RedisEndpoint.Address\r\n  RedisEndpoint.Port\r\n"
     },
     "AWS::Cognito::UserPoolDomain": {
         "prefix": "cognito-userpooldomain",
@@ -2404,14 +2409,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElasticLoadBalancingV2::TargetGroup\"\r\n\tProperties:\r\n\t\tHealthCheckEnabled: Boolean\r\n\t\tHealthCheckIntervalSeconds: Integer\r\n\t\tHealthCheckPath: String\r\n\t\tHealthCheckPort: String\r\n\t\tHealthCheckProtocol: String\r\n\t\tHealthCheckTimeoutSeconds: Integer\r\n\t\tHealthyThresholdCount: Integer\r\n\t\tMatcher:\r\n\t\t\tMatcher\r\n\t\tName: String\r\n\t\tPort: Integer\r\n\t\tProtocol: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTargetGroupAttributes:\r\n\t\t\t- TargetGroupAttribute\r\n\t\tTargetType: String\r\n\t\tTargets:\r\n\t\t\t- TargetDescription\r\n\t\tUnhealthyThresholdCount: Integer\r\n\t\tVpcId: String\r\n",
         "description": "Attributes:\r\n  LoadBalancerArns\r\n  TargetGroupFullName\r\n  TargetGroupName\r\n"
     },
-    "AWS::EC2::VPCGatewayAttachment": {
-        "prefix": "ec2-vpcgatewayattachment",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VPCGatewayAttachment\"\r\n\tProperties:\r\n\t\tInternetGatewayId: String\r\n\t\tVpcId: String #required\r\n\t\tVpnGatewayId: String\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::RoboMaker::Robot": {
         "prefix": "robomaker-robot",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::RoboMaker::Robot\"\r\n\tProperties:\r\n\t\tFleet: String\r\n\t\tArchitecture: String #required\r\n\t\tGreengrassGroupId: String #required\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::EC2::VPCGatewayAttachment": {
+        "prefix": "ec2-vpcgatewayattachment",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VPCGatewayAttachment\"\r\n\tProperties:\r\n\t\tInternetGatewayId: String\r\n\t\tVpcId: String #required\r\n\t\tVpnGatewayId: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Glue::Trigger": {
@@ -2426,18 +2431,18 @@
     },
     "AWS::SSM::Parameter": {
         "prefix": "ssm-parameter",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::Parameter\"\r\n\tProperties:\r\n\t\tType: String #required\r\n\t\tDescription: String\r\n\t\tPolicies: String\r\n\t\tAllowedPattern: String\r\n\t\tTier: String\r\n\t\tValue: String #required\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::Parameter\"\r\n\tProperties:\r\n\t\tType: String #required\r\n\t\tDescription: String\r\n\t\tPolicies: String\r\n\t\tAllowedPattern: String\r\n\t\tTier: String\r\n\t\tValue: String #required\r\n\t\tDataType: String\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
         "description": "Attributes:\r\n  Type\r\n  Value\r\n"
-    },
-    "AWS::AppMesh::Mesh": {
-        "prefix": "appmesh-mesh",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::Mesh\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tSpec:\r\n\t\t\tMeshSpec\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
-        "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  MeshOwner\r\n  ResourceOwner\r\n  Arn\r\n"
     },
     "AWS::Inspector::AssessmentTemplate": {
         "prefix": "inspector-assessmenttemplate",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Inspector::AssessmentTemplate\"\r\n\tProperties:\r\n\t\tAssessmentTargetArn: String #required\r\n\t\tDurationInSeconds: Integer #required\r\n\t\tAssessmentTemplateName: String\r\n\t\tRulesPackageArns: #required\r\n\t\t\t- String\r\n\t\tUserAttributesForFindings:\r\n\t\t\t- Tag\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
+    },
+    "AWS::AppMesh::Mesh": {
+        "prefix": "appmesh-mesh",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AppMesh::Mesh\"\r\n\tProperties:\r\n\t\tMeshName: String #required\r\n\t\tSpec:\r\n\t\t\tMeshSpec\r\n\t\tTags:\r\n\t\t\t- Tag\r\n",
+        "description": "Attributes:\r\n  Uid\r\n  MeshName\r\n  MeshOwner\r\n  ResourceOwner\r\n  Arn\r\n"
     },
     "AWS::KinesisAnalytics::ApplicationReferenceDataSource": {
         "prefix": "kinesisanalytics-applicationreferencedatasource",
@@ -2489,15 +2494,15 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Lambda::Permission\"\r\n\tProperties:\r\n\t\tAction: String #required\r\n\t\tEventSourceToken: String\r\n\t\tFunctionName: String #required\r\n\t\tPrincipal: String #required\r\n\t\tSourceAccount: String\r\n\t\tSourceArn: String\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::IoT::Certificate": {
-        "prefix": "iot-certificate",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT::Certificate\"\r\n\tProperties:\r\n\t\tCertificateSigningRequest: String #required\r\n\t\tStatus: String #required\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
-    },
     "AWS::GuardDuty::IPSet": {
         "prefix": "guardduty-ipset",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::GuardDuty::IPSet\"\r\n\tProperties:\r\n\t\tFormat: String #required\r\n\t\tActivate: Boolean #required\r\n\t\tDetectorId: String #required\r\n\t\tName: String\r\n\t\tLocation: String #required\r\n",
         "description": "No Attributes\r\n"
+    },
+    "AWS::IoT::Certificate": {
+        "prefix": "iot-certificate",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::IoT::Certificate\"\r\n\tProperties:\r\n\t\tCertificateSigningRequest: String #required\r\n\t\tStatus: String #required\r\n",
+        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::SSM::Association": {
         "prefix": "ssm-association",
@@ -2526,7 +2531,7 @@
     },
     "AWS::AutoScaling::AutoScalingGroup": {
         "prefix": "autoscaling-autoscalinggroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AutoScaling::AutoScalingGroup\"\r\n\tProperties:\r\n\t\tAutoScalingGroupName: String\r\n\t\tAvailabilityZones:\r\n\t\t\t- String\r\n\t\tCooldown: String\r\n\t\tDesiredCapacity: String\r\n\t\tHealthCheckGracePeriod: Integer\r\n\t\tHealthCheckType: String\r\n\t\tInstanceId: String\r\n\t\tLaunchConfigurationName: String\r\n\t\tLaunchTemplate:\r\n\t\t\tLaunchTemplateSpecification\r\n\t\tLifecycleHookSpecificationList:\r\n\t\t\t- LifecycleHookSpecification\r\n\t\tLoadBalancerNames:\r\n\t\t\t- String\r\n\t\tMaxSize: String #required\r\n\t\tMetricsCollection:\r\n\t\t\t- MetricsCollection\r\n\t\tMinSize: String #required\r\n\t\tMixedInstancesPolicy:\r\n\t\t\tMixedInstancesPolicy\r\n\t\tNotificationConfigurations:\r\n\t\t\t- NotificationConfiguration\r\n\t\tPlacementGroup: String\r\n\t\tServiceLinkedRoleARN: String\r\n\t\tTags:\r\n\t\t\t- TagProperty\r\n\t\tTargetGroupARNs:\r\n\t\t\t- String\r\n\t\tTerminationPolicies:\r\n\t\t\t- String\r\n\t\tVPCZoneIdentifier:\r\n\t\t\t- String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::AutoScaling::AutoScalingGroup\"\r\n\tProperties:\r\n\t\tAutoScalingGroupName: String\r\n\t\tAvailabilityZones:\r\n\t\t\t- String\r\n\t\tCooldown: String\r\n\t\tDesiredCapacity: String\r\n\t\tHealthCheckGracePeriod: Integer\r\n\t\tHealthCheckType: String\r\n\t\tInstanceId: String\r\n\t\tLaunchConfigurationName: String\r\n\t\tLaunchTemplate:\r\n\t\t\tLaunchTemplateSpecification\r\n\t\tLifecycleHookSpecificationList:\r\n\t\t\t- LifecycleHookSpecification\r\n\t\tLoadBalancerNames:\r\n\t\t\t- String\r\n\t\tMaxInstanceLifetime: Integer\r\n\t\tMaxSize: String #required\r\n\t\tMetricsCollection:\r\n\t\t\t- MetricsCollection\r\n\t\tMinSize: String #required\r\n\t\tMixedInstancesPolicy:\r\n\t\t\tMixedInstancesPolicy\r\n\t\tNotificationConfigurations:\r\n\t\t\t- NotificationConfiguration\r\n\t\tPlacementGroup: String\r\n\t\tServiceLinkedRoleARN: String\r\n\t\tTags:\r\n\t\t\t- TagProperty\r\n\t\tTargetGroupARNs:\r\n\t\t\t- String\r\n\t\tTerminationPolicies:\r\n\t\t\t- String\r\n\t\tVPCZoneIdentifier:\r\n\t\t\t- String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::EventSchemas::Registry": {
@@ -2539,14 +2544,14 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Route53Resolver::ResolverEndpoint\"\r\n\tProperties:\r\n\t\tIpAddresses: #required\r\n\t\t\t- IpAddressRequest\r\n\t\tDirection: String #required\r\n\t\tSecurityGroupIds: #required\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tName: String\r\n",
         "description": "Attributes:\r\n  ResolverEndpointId\r\n  IpAddressCount\r\n  Arn\r\n  Direction\r\n  HostVPCId\r\n  Name\r\n"
     },
-    "AWS::EC2::VPCDHCPOptionsAssociation": {
-        "prefix": "ec2-vpcdhcpoptionsassociation",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VPCDHCPOptionsAssociation\"\r\n\tProperties:\r\n\t\tDhcpOptionsId: String #required\r\n\t\tVpcId: String #required\r\n",
-        "description": "No Attributes\r\n"
-    },
     "AWS::Cassandra::Keyspace": {
         "prefix": "cassandra-keyspace",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Cassandra::Keyspace\"\r\n\tProperties:\r\n\t\tKeyspaceName: String\r\n",
+        "description": "No Attributes\r\n"
+    },
+    "AWS::EC2::VPCDHCPOptionsAssociation": {
+        "prefix": "ec2-vpcdhcpoptionsassociation",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::VPCDHCPOptionsAssociation\"\r\n\tProperties:\r\n\t\tDhcpOptionsId: String #required\r\n\t\tVpcId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::DMS::ReplicationTask": {
