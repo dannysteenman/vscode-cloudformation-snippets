@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.6.0 (2020-04-10)
+
+### Updated
+
+* The following resource was updated: AWS::CloudWatch::InsightRule. [Azure Pipeline]
+
+
 ## 2.5.0 (2020-04-03)
 
 ### Updated
