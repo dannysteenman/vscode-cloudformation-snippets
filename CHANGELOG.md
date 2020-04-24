@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.7.0 (2020-04-24)
+
+### Updated
+
+* The following resource was updated: AWS::Glue::DevEndpoint. [Azure Pipeline]
+
+
 ## 2.6.0 (2020-04-10)
 
 ### Updated
