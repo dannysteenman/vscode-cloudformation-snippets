@@ -746,7 +746,7 @@
     },
     "AWS::MediaConvert::JobTemplate": {
         "prefix": "mediaconvert-jobtemplate",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::MediaConvert::JobTemplate\"\r\n\tProperties:\r\n\t\tCategory: String\r\n\t\tDescription: String\r\n\t\tAccelerationSettings:\r\n\t\t\tAccelerationSettings\r\n\t\tPriority: Integer\r\n\t\tStatusUpdateInterval: String\r\n\t\tSettingsJson: Json #required\r\n\t\tQueue: String\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::MediaConvert::JobTemplate\"\r\n\tProperties:\r\n\t\tCategory: String\r\n\t\tDescription: String\r\n\t\tAccelerationSettings:\r\n\t\t\tAccelerationSettings\r\n\t\tPriority: Integer\r\n\t\tStatusUpdateInterval: String\r\n\t\tSettingsJson: Json #required\r\n\t\tQueue: String\r\n\t\tHopDestinations:\r\n\t\t\t- HopDestination\r\n\t\tTags: Json\r\n\t\tName: String\r\n",
         "description": "Attributes:\r\n  Arn\r\n  Name\r\n"
     },
     "AWS::EC2::Instance": {
@@ -781,7 +781,7 @@
     },
     "AWS::DocDB::DBCluster": {
         "prefix": "docdb-dbcluster",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DocDB::DBCluster\"\r\n\tProperties:\r\n\t\tStorageEncrypted: Boolean\r\n\t\tEngineVersion: String\r\n\t\tKmsKeyId: String\r\n\t\tAvailabilityZones:\r\n\t\t\t- String\r\n\t\tSnapshotIdentifier: String\r\n\t\tPort: Integer\r\n\t\tDBClusterIdentifier: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tPreferredBackupWindow: String\r\n\t\tMasterUserPassword: String #required\r\n\t\tVpcSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tMasterUsername: String #required\r\n\t\tDBClusterParameterGroupName: String\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::DocDB::DBCluster\"\r\n\tProperties:\r\n\t\tStorageEncrypted: Boolean\r\n\t\tEngineVersion: String\r\n\t\tKmsKeyId: String\r\n\t\tAvailabilityZones:\r\n\t\t\t- String\r\n\t\tSnapshotIdentifier: String\r\n\t\tPort: Integer\r\n\t\tDBClusterIdentifier: String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tDBSubnetGroupName: String\r\n\t\tDeletionProtection: Boolean\r\n\t\tPreferredBackupWindow: String\r\n\t\tMasterUserPassword: String #required\r\n\t\tVpcSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tMasterUsername: String #required\r\n\t\tDBClusterParameterGroupName: String\r\n\t\tBackupRetentionPeriod: Integer\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tEnableCloudwatchLogsExports:\r\n\t\t\t- String\r\n",
         "description": "Attributes:\r\n  ClusterResourceId\r\n  Endpoint\r\n  Port\r\n  ReadEndpoint\r\n"
     },
     "AWS::CloudWatch::CompositeAlarm": {
@@ -1339,11 +1339,6 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Events::Rule\"\r\n\tProperties:\r\n\t\tDescription: String\r\n\t\tEventBusName: String\r\n\t\tEventPattern: Json\r\n\t\tName: String\r\n\t\tRoleArn: String\r\n\t\tScheduleExpression: String\r\n\t\tState: String\r\n\t\tTargets:\r\n\t\t\t- Target\r\n",
         "description": "Attributes:\r\n  Arn\r\n"
     },
-    "AWS::ImageBuilder::Component": {
-        "prefix": "imagebuilder-component",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ImageBuilder::Component\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tVersion: String #required\r\n\t\tDescription: String\r\n\t\tChangeDescription: String\r\n\t\tPlatform: String #required\r\n\t\tData: String\r\n\t\tKmsKeyId: String\r\n\t\tTags:\r\n\t\t\tMap\r\n\t\tUri: String\r\n",
-        "description": "Attributes:\r\n  Arn\r\n  Type\r\n  Encrypted\r\n"
-    },
     "AWS::CodePipeline::CustomActionType": {
         "prefix": "codepipeline-customactiontype",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::CodePipeline::CustomActionType\"\r\n\tProperties:\r\n\t\tCategory: String #required\r\n\t\tConfigurationProperties:\r\n\t\t\t- ConfigurationProperties\r\n\t\tInputArtifactDetails: #required\r\n\t\t\tArtifactDetails\r\n\t\tOutputArtifactDetails: #required\r\n\t\t\tArtifactDetails\r\n\t\tProvider: String #required\r\n\t\tSettings:\r\n\t\t\tSettings\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVersion: String #required\r\n",
@@ -1418,11 +1413,6 @@
         "prefix": "autoscalingplans-scalingplan",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::AutoScalingPlans::ScalingPlan\"\r\n\tProperties:\r\n\t\tApplicationSource: #required\r\n\t\t\tApplicationSource\r\n\t\tScalingInstructions: #required\r\n\t\t\t- ScalingInstruction\r\n",
         "description": "Attributes:\r\n  ScalingPlanName\r\n  ScalingPlanVersion\r\n"
-    },
-    "AWS::ImageBuilder::InfrastructureConfiguration": {
-        "prefix": "imagebuilder-infrastructureconfiguration",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ImageBuilder::InfrastructureConfiguration\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tDescription: String\r\n\t\tInstanceTypes:\r\n\t\t\t- String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tLogging:\r\n\t\t\tLogging\r\n\t\tSubnetId: String\r\n\t\tKeyPair: String\r\n\t\tTerminateInstanceOnFailure: Boolean\r\n\t\tInstanceProfileName: String #required\r\n\t\tSnsTopicArn: String\r\n\t\tTags:\r\n\t\t\tMap\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::WAFRegional::XssMatchSet": {
         "prefix": "wafregional-xssmatchset",
@@ -1643,11 +1633,6 @@
         "prefix": "gamelift-matchmakingruleset",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::GameLift::MatchmakingRuleSet\"\r\n\tProperties:\r\n\t\tRuleSetBody: String #required\r\n\t\tName: String #required\r\n",
         "description": "Attributes:\r\n  Arn\r\n  Name\r\n"
-    },
-    "AWS::ImageBuilder::ImagePipeline": {
-        "prefix": "imagebuilder-imagepipeline",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ImageBuilder::ImagePipeline\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tDescription: String\r\n\t\tImageTestsConfiguration:\r\n\t\t\tImageTestsConfiguration\r\n\t\tStatus: String\r\n\t\tSchedule:\r\n\t\t\tSchedule\r\n\t\tImageRecipeArn: String #required\r\n\t\tDistributionConfigurationArn: String\r\n\t\tInfrastructureConfigurationArn: String #required\r\n\t\tTags:\r\n\t\t\tMap\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::EC2::SecurityGroupIngress": {
         "prefix": "ec2-securitygroupingress",
@@ -2194,11 +2179,6 @@
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::NetworkAcl\"\r\n\tProperties:\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVpcId: String #required\r\n",
         "description": "No Attributes\r\n"
     },
-    "AWS::ImageBuilder::DistributionConfiguration": {
-        "prefix": "imagebuilder-distributionconfiguration",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ImageBuilder::DistributionConfiguration\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tDescription: String\r\n\t\tDistributions: #required\r\n\t\t\t- Distribution\r\n\t\tTags:\r\n\t\t\tMap\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
-    },
     "AWS::Config::ConfigRule": {
         "prefix": "config-configrule",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::Config::ConfigRule\"\r\n\tProperties:\r\n\t\tConfigRuleName: String\r\n\t\tDescription: String\r\n\t\tInputParameters: Json\r\n\t\tMaximumExecutionFrequency: String\r\n\t\tScope:\r\n\t\t\tScope\r\n\t\tSource: #required\r\n\t\t\tSource\r\n",
@@ -2528,11 +2508,6 @@
         "prefix": "ssm-association",
         "body": "${1:LogicalID}:\r\n\tType: \"AWS::SSM::Association\"\r\n\tProperties:\r\n\t\tAssociationName: String\r\n\t\tDocumentVersion: String\r\n\t\tInstanceId: String\r\n\t\tName: String #required\r\n\t\tOutputLocation:\r\n\t\t\tInstanceAssociationOutputLocation\r\n\t\tParameters:\r\n\t\t\tMap\r\n\t\tScheduleExpression: String\r\n\t\tTargets:\r\n\t\t\t- Target\r\n",
         "description": "No Attributes\r\n"
-    },
-    "AWS::ImageBuilder::ImageRecipe": {
-        "prefix": "imagebuilder-imagerecipe",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ImageBuilder::ImageRecipe\"\r\n\tProperties:\r\n\t\tName: String #required\r\n\t\tDescription: String\r\n\t\tVersion: String #required\r\n\t\tComponents: #required\r\n\t\t\t- ComponentConfiguration\r\n\t\tBlockDeviceMappings:\r\n\t\t\t- InstanceBlockDeviceMapping\r\n\t\tParentImage: String #required\r\n\t\tTags:\r\n\t\t\tMap\r\n",
-        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::CodeStar::GitHubRepository": {
         "prefix": "codestar-githubrepository",
