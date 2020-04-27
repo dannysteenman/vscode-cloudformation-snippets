@@ -35,6 +35,10 @@ A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marke
 
 If you have a feature request or an issue, please let me know on [Github](https://github.com/dsteenman/cloudformation-yaml-snippets/issues)
 
+## Tips and tricks
+
+ If you want to boost your productivity even more with VS Code and CloudFormation. Check [this article](https://dannys.space/level-up-cloudformation-with-vs-code) I wrote to help you level up your templating game!
+
 ## Legal
 
 All content of the YAML file has copyright by Amazon Web Services, Inc. or its
