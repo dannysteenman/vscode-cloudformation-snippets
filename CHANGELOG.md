@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.8.0 (2020-05-01)
+
+### Updated
+
+* The following resource was updated: AWS::FSx::FileSystem. [Azure Pipeline]
+
+
 ## 2.7.0 (2020-04-24)
 
 ### Updated
