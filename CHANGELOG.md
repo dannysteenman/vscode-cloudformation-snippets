@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.9.0 (2020-05-08)
+
+### Updated
+
+* The following resource was updated: AWS::Synthetics::Canary. [Azure Pipeline]
+
+
 ## 2.8.0 (2020-05-01)
 
 ### Updated
