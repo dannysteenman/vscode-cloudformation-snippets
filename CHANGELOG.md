@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.10.0 (2020-05-15)
+
+### Updated
+
+* The following resource was updated: AWS::IoTEvents::DetectorModel. [Azure Pipeline]
+
+
 ## 2.9.0 (2020-05-08)
 
 ### Updated
