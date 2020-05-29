@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.11.0 (2020-05-29)
+
+### Updated
+
+* The following resources was updated: AWS::CodeBuild::ReportGroup. [Azure Pipeline]
+
+
 ## 2.10.0 (2020-05-15)
 
 ### Updated
