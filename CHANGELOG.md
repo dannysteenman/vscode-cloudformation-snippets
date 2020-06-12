@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.12.0 (2020-06-12)
+
+### New
+
+* The following resource was added: AWS::IoT::ProvisioningTemplate. [Azure Pipeline]
+
+
 ## 2.11.0 (2020-05-29)
 
 ### Updated
