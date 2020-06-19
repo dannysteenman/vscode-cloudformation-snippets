@@ -21,7 +21,7 @@ A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marke
 ## Usage
 
 * **Step 1.** Install the extension
-* **Step 2.** create a YAML file for to start working on Cloudformation
+* **Step 2.** create a YAML file to start working on CloudFormation
 * **Step 3.** Type **cfn** to get the basic template in which you can add your resources
 * **Step 4.** Start adding adding resources by using their prefix name e.g. ```autoscaling-autoscalinggroup``` equals resource type ```AWS::AutoScaling::AutoScalingGroup```
 
@@ -37,7 +37,7 @@ If you have a feature request or an issue, please let me know on [Github](https:
 
 ## Tips and tricks
 
- If you want to boost your productivity even more with VS Code and CloudFormation. Check [this article](https://dannys.space/level-up-cloudformation-with-vs-code) I wrote to help you level up your templating game!
+ If you want to boost your productivity even more with VS Code and CloudFormation. Check [this article](https://dannys.cloud/level-up-cloudformation-with-vs-code) I wrote to help you level up your templating game!
 
 ## Legal
 
