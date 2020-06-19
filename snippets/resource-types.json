@@ -201,7 +201,7 @@
     },
     "AWS::EC2::Volume": {
         "prefix": "ec2-volume",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::Volume\"\r\n\tProperties:\r\n\t\tAutoEnableIO: Boolean\r\n\t\tAvailabilityZone: String #required\r\n\t\tEncrypted: Boolean\r\n\t\tIops: Integer\r\n\t\tKmsKeyId: String\r\n\t\tMultiAttachEnabled: Boolean\r\n\t\tSize: Integer\r\n\t\tSnapshotId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVolumeType: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EC2::Volume\"\r\n\tProperties:\r\n\t\tAutoEnableIO: Boolean\r\n\t\tAvailabilityZone: String #required\r\n\t\tEncrypted: Boolean\r\n\t\tIops: Integer\r\n\t\tKmsKeyId: String\r\n\t\tMultiAttachEnabled: Boolean\r\n\t\tOutpostArn: String\r\n\t\tSize: Integer\r\n\t\tSnapshotId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tVolumeType: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::IAM::ServiceLinkedRole": {
@@ -271,7 +271,7 @@
     },
     "AWS::SNS::Topic": {
         "prefix": "sns-topic",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SNS::Topic\"\r\n\tProperties:\r\n\t\tDisplayName: String\r\n\t\tKmsMasterKeyId: String\r\n\t\tSubscription:\r\n\t\t\t- Subscription\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTopicName: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::SNS::Topic\"\r\n\tProperties:\r\n\t\tContentBasedDeduplication: Boolean\r\n\t\tDisplayName: String\r\n\t\tFifoTopic: Boolean\r\n\t\tKmsMasterKeyId: String\r\n\t\tSubscription:\r\n\t\t\t- Subscription\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTopicName: String\r\n",
         "description": "Attributes:\r\n  TopicName\r\n"
     },
     "AWS::ServiceCatalog::TagOption": {
@@ -1631,7 +1631,7 @@
     },
     "AWS::CertificateManager::Certificate": {
         "prefix": "certificatemanager-certificate",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CertificateManager::Certificate\"\r\n\tProperties:\r\n\t\tDomainName: String #required\r\n\t\tDomainValidationOptions:\r\n\t\t\t- DomainValidationOption\r\n\t\tSubjectAlternativeNames:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tValidationMethod: String\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::CertificateManager::Certificate\"\r\n\tProperties:\r\n\t\tCertificateAuthorityArn: String\r\n\t\tCertificateTransparencyLoggingPreference: String\r\n\t\tDomainName: String #required\r\n\t\tDomainValidationOptions:\r\n\t\t\t- DomainValidationOption\r\n\t\tSubjectAlternativeNames:\r\n\t\t\t- String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tValidationMethod: String\r\n",
         "description": "No Attributes\r\n"
     },
     "AWS::Greengrass::SubscriptionDefinitionVersion": {
@@ -2016,8 +2016,8 @@
     },
     "AWS::ElastiCache::ReplicationGroup": {
         "prefix": "elasticache-replicationgroup",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElastiCache::ReplicationGroup\"\r\n\tProperties:\r\n\t\tAtRestEncryptionEnabled: Boolean\r\n\t\tAuthToken: String\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tAutomaticFailoverEnabled: Boolean\r\n\t\tCacheNodeType: String\r\n\t\tCacheParameterGroupName: String\r\n\t\tCacheSecurityGroupNames:\r\n\t\t\t- String\r\n\t\tCacheSubnetGroupName: String\r\n\t\tEngine: String\r\n\t\tEngineVersion: String\r\n\t\tKmsKeyId: String\r\n\t\tNodeGroupConfiguration:\r\n\t\t\t- NodeGroupConfiguration\r\n\t\tNotificationTopicArn: String\r\n\t\tNumCacheClusters: Integer\r\n\t\tNumNodeGroups: Integer\r\n\t\tPort: Integer\r\n\t\tPreferredCacheClusterAZs:\r\n\t\t\t- String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tPrimaryClusterId: String\r\n\t\tReplicasPerNodeGroup: Integer\r\n\t\tReplicationGroupDescription: String #required\r\n\t\tReplicationGroupId: String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tSnapshotArns:\r\n\t\t\t- String\r\n\t\tSnapshotName: String\r\n\t\tSnapshotRetentionLimit: Integer\r\n\t\tSnapshotWindow: String\r\n\t\tSnapshottingClusterId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTransitEncryptionEnabled: Boolean\r\n",
-        "description": "Attributes:\r\n  ConfigurationEndPoint.Address\r\n  ConfigurationEndPoint.Port\r\n  PrimaryEndPoint.Address\r\n  PrimaryEndPoint.Port\r\n  ReadEndPoint.Addresses\r\n  ReadEndPoint.Addresses.List\r\n  ReadEndPoint.Ports\r\n  ReadEndPoint.Ports.List\r\n"
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ElastiCache::ReplicationGroup\"\r\n\tProperties:\r\n\t\tAtRestEncryptionEnabled: Boolean\r\n\t\tAuthToken: String\r\n\t\tAutoMinorVersionUpgrade: Boolean\r\n\t\tAutomaticFailoverEnabled: Boolean\r\n\t\tCacheNodeType: String\r\n\t\tCacheParameterGroupName: String\r\n\t\tCacheSecurityGroupNames:\r\n\t\t\t- String\r\n\t\tCacheSubnetGroupName: String\r\n\t\tEngine: String\r\n\t\tEngineVersion: String\r\n\t\tKmsKeyId: String\r\n\t\tMultiAZEnabled: Boolean\r\n\t\tNodeGroupConfiguration:\r\n\t\t\t- NodeGroupConfiguration\r\n\t\tNotificationTopicArn: String\r\n\t\tNumCacheClusters: Integer\r\n\t\tNumNodeGroups: Integer\r\n\t\tPort: Integer\r\n\t\tPreferredCacheClusterAZs:\r\n\t\t\t- String\r\n\t\tPreferredMaintenanceWindow: String\r\n\t\tPrimaryClusterId: String\r\n\t\tReplicasPerNodeGroup: Integer\r\n\t\tReplicationGroupDescription: String #required\r\n\t\tReplicationGroupId: String\r\n\t\tSecurityGroupIds:\r\n\t\t\t- String\r\n\t\tSnapshotArns:\r\n\t\t\t- String\r\n\t\tSnapshotName: String\r\n\t\tSnapshotRetentionLimit: Integer\r\n\t\tSnapshotWindow: String\r\n\t\tSnapshottingClusterId: String\r\n\t\tTags:\r\n\t\t\t- Tag\r\n\t\tTransitEncryptionEnabled: Boolean\r\n",
+        "description": "Attributes:\r\n  ConfigurationEndPoint.Address\r\n  ConfigurationEndPoint.Port\r\n  PrimaryEndPoint.Address\r\n  PrimaryEndPoint.Port\r\n  ReadEndPoint.Addresses\r\n  ReadEndPoint.Addresses.List\r\n  ReadEndPoint.Ports\r\n  ReadEndPoint.Ports.List\r\n  ReaderEndPoint.Address\r\n  ReaderEndPoint.Port\r\n"
     },
     "AWS::Cognito::UserPoolUser": {
         "prefix": "cognito-userpooluser",
@@ -2131,8 +2131,8 @@
     },
     "AWS::EFS::FileSystem": {
         "prefix": "efs-filesystem",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EFS::FileSystem\"\r\n\tProperties:\r\n\t\tEncrypted: Boolean\r\n\t\tFileSystemTags:\r\n\t\t\t- ElasticFileSystemTag\r\n\t\tKmsKeyId: String\r\n\t\tLifecyclePolicies:\r\n\t\t\t- LifecyclePolicy\r\n\t\tPerformanceMode: String\r\n\t\tProvisionedThroughputInMibps: Double\r\n\t\tThroughputMode: String\r\n",
-        "description": "No Attributes\r\n"
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::EFS::FileSystem\"\r\n\tProperties:\r\n\t\tEncrypted: Boolean\r\n\t\tFileSystemTags:\r\n\t\t\t- ElasticFileSystemTag\r\n\t\tKmsKeyId: String\r\n\t\tLifecyclePolicies:\r\n\t\t\t- LifecyclePolicy\r\n\t\tPerformanceMode: String\r\n\t\tProvisionedThroughputInMibps: Double\r\n\t\tThroughputMode: String\r\n\t\tFileSystemPolicy: Json\r\n",
+        "description": "Attributes:\r\n  FileSystemId\r\n"
     },
     "AWS::CodeCommit::Repository": {
         "prefix": "codecommit-repository",
@@ -2611,8 +2611,8 @@
     },
     "AWS::Chatbot::SlackChannelConfiguration": {
         "prefix": "chatbot-slackchannelconfiguration",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Chatbot::SlackChannelConfiguration\"\r\n\tProperties:\r\n\t\tSlackWorkspaceId: String #required\r\n\t\tSlackChannelId: String #required\r\n\t\tConfigurationName: String #required\r\n\t\tIamRoleArn: String #required\r\n\t\tSnsTopicArns:\r\n\t\t\t- String\r\n\t\tLoggingLevel: String\r\n\t\tArn: String\r\n",
-        "description": "No Attributes\r\n"
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::Chatbot::SlackChannelConfiguration\"\r\n\tProperties:\r\n\t\tSlackWorkspaceId: String #required\r\n\t\tSlackChannelId: String #required\r\n\t\tConfigurationName: String #required\r\n\t\tIamRoleArn: String #required\r\n\t\tSnsTopicArns:\r\n\t\t\t- String\r\n\t\tLoggingLevel: String\r\n",
+        "description": "Attributes:\r\n  Arn\r\n"
     },
     "AWS::Inspector::AssessmentTarget": {
         "prefix": "inspector-assessmenttarget",
@@ -2636,7 +2636,7 @@
     },
     "AWS::ImageBuilder::Image": {
         "prefix": "imagebuilder-image",
-        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ImageBuilder::Image\"\r\n\tProperties:\r\n\t\tImageTestsConfiguration:\r\n\t\t\tImageTestsConfiguration\r\n\t\tImageRecipeArn: String #required\r\n\t\tDistributionConfigurationArn: String\r\n\t\tInfrastructureConfigurationArn: String #required\r\n\t\tOutputResources:\r\n\t\t\tOutputResources\r\n\t\tTags:\r\n\t\t\tMap\r\n",
+        "body": "${1:LogicalID}:\r\n\tType: \"AWS::ImageBuilder::Image\"\r\n\tProperties:\r\n\t\tImageTestsConfiguration:\r\n\t\t\tImageTestsConfiguration\r\n\t\tImageRecipeArn: String #required\r\n\t\tDistributionConfigurationArn: String\r\n\t\tInfrastructureConfigurationArn: String #required\r\n\t\tTags:\r\n\t\t\tMap\r\n",
         "description": "Attributes:\r\n  Arn\r\n  ImageId\r\n"
     },
     "AWS::EC2::VPCDHCPOptionsAssociation": {
