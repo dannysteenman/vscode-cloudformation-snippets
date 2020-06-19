@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.13.0 (2020-06-19)
+
+### Updated
+
+* The following resource was updated: AWS::EFS::FileSystem. [Azure Pipeline]
+
+
 ## 2.12.0 (2020-06-12)
 
 ### New
