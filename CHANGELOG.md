@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.14.0 (2020-06-26)
+
+### Updated
+
+* The following resources were updated: AWS::AppMesh::VirtualNode and AWS::AppMesh::Route. [Azure Pipeline]
+
+
 ## 2.13.0 (2020-06-19)
 
 ### Updated
