@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.15.0 (2020-07-10)
+
+### Updated
+
+* The following resource was updated: AWS::Amplify::Domain. [Azure Pipeline]
+
+
 ## 2.14.0 (2020-06-26)
 
 ### Updated
