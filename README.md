@@ -38,19 +38,15 @@ If you have a feature request or an issue, please let me know on [Github](https:
 ## Tips and tricks
 
  If you want to boost your productivity even more with VS Code and CloudFormation. Check [this article](https://dannys.cloud/level-up-cloudformation-with-vs-code) I wrote to help you level up your templating game!
+<br>
+<br>
 
-## Social
+---
+<br>
 
  <p align='center'>
+ <a href="https://dannys.cloud"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/homepage.png"></a>&nbsp;&nbsp;
 <a href="https://dev.to/dsteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/devto.png"></a>&nbsp;&nbsp;
 <a href="https://twitter.com/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/twitter.png"></a>&nbsp;&nbsp;
 <a href="https://www.linkedin.com/in/dannysteenman/"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/linkedin.png"></a>
 </p>
-
-## Legal
-
-All content of the YAML file has copyright by Amazon Web Services, Inc. or its
-affiliates, and was published under the terms that can be found at
-https://aws.amazon.com/terms/
-
-[Resource Types Reference]: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html
