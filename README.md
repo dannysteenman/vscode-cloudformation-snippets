@@ -2,7 +2,7 @@
 
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 [![Current Installs](https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
-[![Build Status](https://dev.azure.com/dsteenman/Cloudformation%20YAML%20Snippets%20for%20VS%20Code/_apis/build/status/dsteenman.cloudformation-yaml-snippets?branchName=master)](https://dev.azure.com/dsteenman/Cloudformation%20YAML%20Snippets%20for%20VS%20Code/_build/latest?definitionId=1&branchName=master)
+[![Rating](https://vsmarketplacebadge.apphb.com/rating-star/dsteenman.cloudformation-yaml-snippets.svg)](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 
 A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) which contains the complete YAML snippet library for CloudFormation based on the [AWS CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
 
@@ -38,6 +38,14 @@ If you have a feature request or an issue, please let me know on [Github](https:
 ## Tips and tricks
 
  If you want to boost your productivity even more with VS Code and CloudFormation. Check [this article](https://dannys.cloud/level-up-cloudformation-with-vs-code) I wrote to help you level up your templating game!
+
+## Social
+
+ <p align='center'>
+<a href="https://dev.to/dsteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/devto.png"></a>&nbsp;&nbsp;
+<a href="https://twitter.com/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/twitter.png"></a>&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/dannysteenman/"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/linkedin.png"></a>
+</p>
 
 ## Legal
 
