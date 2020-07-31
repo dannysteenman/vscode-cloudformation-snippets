@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.16.0 (2020-07-31)
+
+### Updated
+
+* The following resource was updated: AWS::EC2::FlowLog. [Azure Pipeline]
+
+
 ## 2.15.0 (2020-07-10)
 
 ### Updated
