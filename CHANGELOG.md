@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.17.0 (2020-08-07)
+
+### Updated
+
+* The following resources were updated: AWS::ECS::TaskDefinition. [Azure Pipeline]
+
+
 ## 2.16.0 (2020-07-31)
 
 ### Updated
