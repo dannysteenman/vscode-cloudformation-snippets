@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.19.0 (2020-08-28)
+
+### Updated
+
+* The following resource was updated: AWS::KMS::Key. [Azure Pipeline]
+
+
 ## 2.18.0 (2020-08-14)
 
 ### Updated
