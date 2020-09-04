@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.20.0 (2020-09-04)
+
+### Updated
+
+* The following resource was updated: AWS::CodeCommit::Repository Code. [Azure Pipeline]
+
+
 ## 2.19.0 (2020-08-28)
 
 ### Updated
