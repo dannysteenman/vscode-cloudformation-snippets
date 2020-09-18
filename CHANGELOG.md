@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.22.0 (2020-09-18)
+
+### Updated
+
+* The following resource was updated: <code class="code">AWS::ApiGatewayV2::DomainName</code>. [Azure Pipeline]
+
+
 ## 2.21.0 (2020-09-11)
 
 ### Updated
