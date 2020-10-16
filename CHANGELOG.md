@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.23.0 (2020-10-16)
+
+### Updated
+
+* The following resource was updated: AWS::AmazonMQ::Broker. [Azure Pipeline]
+
+
 ## 2.22.0 (2020-09-18)
 
 ### Updated
