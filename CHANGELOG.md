@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.24.0 (2020-10-23)
+
+### Updated
+
+* The following resources were updated: <code class="code">AWS::AppStream::Fleet</code> and <code class="code">AWS::AppStream::ImageBuilder</code> [Azure Pipeline]
+
+
 ## 2.23.0 (2020-10-16)
 
 ### Updated
