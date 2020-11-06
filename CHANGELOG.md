@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.25.0 (2020-11-06)
+
+### Updated
+
+* The following resources were updated: AWS::CodeArtifact::Domain and AWS::CodeArtifact::Repository. [Azure Pipeline]
+
+
 ## 2.24.0 (2020-10-23)
 
 ### Updated
