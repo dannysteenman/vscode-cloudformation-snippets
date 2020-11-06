@@ -3,7 +3,7 @@
     "displayName": "CloudFormation YAML Snippets for VS Code",
     "description": "The complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification",
     "author": "Danny Steenman",
-    "version": "2.24.0",
+    "version": "2.25.0",
     "publisher": "dsteenman",
     "icon": "images/AWS-CloudFormation-Icon.png",
     "homepage": "https://dannys.cloud",
