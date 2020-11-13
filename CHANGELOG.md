@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.26.0 (2020-11-13)
+
+### Updated
+
+* The following resource was updated:                AWS::Kendra::DataSource. [Azure Pipeline]
+
+
 ## 2.25.0 (2020-11-06)
 
 ### Updated
