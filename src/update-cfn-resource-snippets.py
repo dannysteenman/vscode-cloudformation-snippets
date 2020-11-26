@@ -41,105 +41,88 @@ def check_for_update(url):
             create_cfn_snippet(response.json())
 
 
+def fetch_description(resource_type):
+    description = resource_type["Documentation"].replace("http://", "https://")
+
+    # Adding resource type attributes next to the documantation url if it's available.
+    if "Attributes" in resource_type:
+        description += "\r\n\n" + "Attributes: " + "\r\n"
+        for a in resource_type["Attributes"]:
+            description += "  " + a + "\r\n"
+
+    return description
+
+
 def create_cfn_snippet(response_data):
     # Start the output data
     output = {}
 
-    scope = "source.cloudformation"
-
     # Add the resources to the output
-    # print(response_data)
     for resource_type in response_data["ResourceTypes"]:
+        description = fetch_description(response_data["ResourceTypes"][resource_type])
         prefix = resource_type.replace("AWS::", "").replace("::", "-")
-        prefix = prefix.lower()
 
         body = ""
-        description = ""
         body += "${1:LogicalID}:\r\n"
-
-        # add a name placeholder
         body += '\tType: "' + resource_type + '"\r\n'
         body += "\tProperties:\r\n"
 
-        description = "Attributes:\r\n"
-        if "Attributes" in response_data["ResourceTypes"][resource_type]:
-            for a in response_data["ResourceTypes"][resource_type]["Attributes"]:
-                # description = description + "Attributes: " + "\r\n\t" + a
-                description = description + "  " + a + "\r\n"
-        else:
-            description = "No Attributes\r\n"
+        # for each resources 'properties'
+        resource_properties = response_data["ResourceTypes"][resource_type][
+            "Properties"
+        ]
 
-        # for each resources 'properties':
-        for p in response_data["ResourceTypes"][resource_type]["Properties"]:
-
-            required = response_data["ResourceTypes"][resource_type]["Properties"][p][
-                "Required"
-            ]
+        counter = 1
+        for resource_property in sorted(resource_properties):
+            required = resource_properties[resource_property]["Required"]
 
             item = ""
-            itemList = 0
+            itemlist = False
 
-            if (
-                "PrimitiveType"
-                in response_data["ResourceTypes"][resource_type]["Properties"][p]
-            ):
-                item = response_data["ResourceTypes"][resource_type]["Properties"][p][
-                    "PrimitiveType"
-                ]
+            if "PrimitiveItemType" in resource_properties[resource_property]:
+                item = resource_properties[resource_property]["PrimitiveItemType"]
+            if "PrimitiveType" in resource_properties[resource_property]:
+                item = resource_properties[resource_property]["PrimitiveType"]
+            if "ItemType" in resource_properties[resource_property]:
+                item = resource_properties[resource_property]["ItemType"]
 
-            if (
-                "PrimitiveItemType"
-                in response_data["ResourceTypes"][resource_type]["Properties"][p]
-            ):
-                item = response_data["ResourceTypes"][resource_type]["Properties"][p][
-                    "PrimitiveItemType"
-                ]
-
-            if (
-                "ItemType"
-                in response_data["ResourceTypes"][resource_type]["Properties"][p]
-            ):
-                item = response_data["ResourceTypes"][resource_type]["Properties"][p][
-                    "ItemType"
-                ]
-
-            if "Type" in response_data["ResourceTypes"][resource_type]["Properties"][p]:
-                if (
-                    response_data["ResourceTypes"][resource_type]["Properties"][p][
-                        "Type"
-                    ]
-                    == "List"
-                ):
-                    itemList = 1
+            if "Type" in resource_properties[resource_property]:
+                counter += 1
+                body += "\t\t" + resource_property + ":" + ""
+                body += " #required\r\n" if required else "\r\n"
+                # If the Type is a List, the body should be adapted so that the user knows the property is of type list.
+                if resource_properties[resource_property]["Type"] == "List":
+                    body += "\t\t\t- " + "${" + str(counter) + ":" + item + "}" + "\r\n"
                 else:
-                    itemList = 2
-                    item = response_data["ResourceTypes"][resource_type]["Properties"][
-                        p
-                    ]["Type"]
+                    item = resource_properties[resource_property]["Type"]
+                    body += "\t\t\t" + "${" + str(counter) + ":" + item + "}" + "\r\n"
 
-            ###########################
+                itemlist = True
 
-            if itemList == 0:
-                body += "\t\t" + p + ": " + item + ""
+            if not itemlist:
+                counter += 1
+                body += (
+                    "\t\t"
+                    + resource_property
+                    + ": "
+                    + "${"
+                    + str(counter)
+                    + ":"
+                    + item
+                    + "}"
+                    + ""
+                )
                 body += " #required\r\n" if required else "\r\n"
-            elif itemList == 1:
-                body += "\t\t" + p + ":" + ""
-                body += " #required\r\n" if required else "\r\n"
-                body += "\t\t\t- " + item + "\r\n"
-
-            elif itemList == 2:
-                body += "\t\t" + p + ":" + ""
-                body += " #required\r\n" if required else "\r\n"
-                body += "\t\t\t" + item + "\r\n"
 
             output[resource_type] = {
-                "prefix": prefix,
                 "body": body,
                 "description": description,
+                "prefix": prefix.lower(),
+                "scope": "source.cloudformation",
             }
 
-    with open("snippets/resource-types.json", "w") as text_file:
-        text_file.write(json.dumps(output, sort_keys=True, indent=4))
+    with open("snippets/resource-types.json", "w") as file:
+        file.write(json.dumps(output, sort_keys=True, indent=4))
 
 
 # Run cfn resource updater
