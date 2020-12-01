@@ -1,67 +1,70 @@
 {
-    "name": "cloudformation-yaml-snippets",
-    "displayName": "CloudFormation YAML Snippets for VS Code",
-    "description": "The complete YAML snippet library for Cloudformation based on the AWS CloudFormation Resource Specification",
-    "author": "Danny Steenman",
-    "version": "3.0.0",
-    "publisher": "dsteenman",
-    "icon": "images/AWS-CloudFormation-Icon.png",
-    "homepage": "https://dannys.cloud",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dsteenman/cloudformation-yaml-snippets.git"
-    },
-    "engines": {
-        "vscode": "^1.31.0"
-    },
-    "galleryBanner": {
-        "color": "#2B2C33",
-        "theme": "dark"
-    },
-    "categories": [
-        "Formatters",
-        "Other",
-        "Programming Languages",
-        "Snippets"
-    ],
-    "keywords": [
-        "amazon",
-        "autocompletion",
-        "aws",
-        "cfn",
-        "cloudformation",
-        "multi-root ready",
-        "property",
-        "resource",
-        "specification",
-        "stack",
-        "template",
-        "yaml",
-        "yml"
-    ],
-    "contributes": {
-        "snippets": [
-            {
-                "language": "yaml",
-                "path": "./snippets/condition-functions.json"
-            },
-            {
-                "language": "yaml",
-                "path": "./snippets/custom.json"
-            },
-            {
-                "language": "yaml",
-                "path": "./snippets/intrinsic-functions.json"
-            },
-            {
-                "language": "yaml",
-                "path": "./snippets/parameter-types.json"
-            },
-            {
-                "language": "yaml",
-                "path": "./snippets/resource-types.json"
-            }
-        ]
-    }
+  "name": "cloudformation-yaml-snippets",
+  "displayName": "CloudFormation Resource Snippets",
+  "description": "This VSCode extension adds autocompletion for all the resources and properties that AWS CloudFormation supports. It get's updated automatically every week by fetching the resources from the official AWS CloudFormation resource specification!",
+  "author": "Danny Steenman",
+  "version": "3.0.0",
+  "publisher": "dsteenman",
+  "icon": "images/AWS-CloudFormation-Icon.png",
+  "homepage": "https://dannys.cloud",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsteenman/cloudformation-yaml-snippets.git"
+  },
+  "engines": {
+    "vscode": "^1.31.0"
+  },
+  "galleryBanner": {
+    "color": "#2B2C33",
+    "theme": "dark"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "amazon",
+    "autocompletion",
+    "aws",
+    "cfn",
+    "cloud",
+    "cloudformation",
+    "iac",
+    "infrastructure",
+    "intellisense",
+    "multi-root ready",
+    "property",
+    "resource",
+    "specification",
+    "stack",
+    "template",
+    "type",
+    "yaml",
+    "yml"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "yaml",
+        "path": "./snippets/condition-functions.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/custom.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/intrinsic-functions.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/parameter-types.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/resource-types.json"
+      }
+    ]
+  }
 }
