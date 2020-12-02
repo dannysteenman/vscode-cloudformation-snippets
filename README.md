@@ -31,7 +31,7 @@ This [VSCode extension](https://marketplace.visualstudio.com/items?itemName=dste
 
 > **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
-![CFN YAML snippet example](https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/images/cfn-yaml-snippet-example.gif)
+![CFN YAML snippet example](https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/images/cfn-yaml-snippet-example.gif)
 
 ---
 
@@ -49,8 +49,8 @@ If you have a feature request or an issue, please let me know on [Github](https:
 <br>
 
  <p align='center'>
- <a href="https://dannys.cloud"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/homepage.png"></a>&nbsp;&nbsp;
-<a href="https://dev.to/dsteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/devto.png"></a>&nbsp;&nbsp;
-<a href="https://twitter.com/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/twitter.png"></a>&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/dannysteenman/"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/master/icon/linkedin.png"></a>
+ <a href="https://dannys.cloud"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/homepage.png"></a>&nbsp;&nbsp;
+<a href="https://dev.to/dsteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/devto.png"></a>&nbsp;&nbsp;
+<a href="https://twitter.com/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/twitter.png"></a>&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/dannysteenman/"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/linkedin.png"></a>
 </p>
