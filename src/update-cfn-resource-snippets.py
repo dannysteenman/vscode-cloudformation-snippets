@@ -41,14 +41,52 @@ def check_for_update(url):
             create_cfn_snippet(response.json())
 
 
+def parse_body(body, counter, resource_properties, resource_property):
+    required = resource_properties[resource_property]["Required"]
+
+    item = ""
+
+    if "PrimitiveItemType" in resource_properties[resource_property]:
+        item = resource_properties[resource_property]["PrimitiveItemType"]
+    if "PrimitiveType" in resource_properties[resource_property]:
+        item = resource_properties[resource_property]["PrimitiveType"]
+    if "ItemType" in resource_properties[resource_property]:
+        item = resource_properties[resource_property]["ItemType"]
+
+    if "Type" in resource_properties[resource_property]:
+        body.append(
+            " " * 4 + resource_property + ":" + (" #required" if required else "")
+        )
+        # If the Type is a List, the body should be adapted so that the user knows the property is of type list.
+        if resource_properties[resource_property]["Type"] == "List":
+            body.append(" " * 6 + "- " + "${" + str(counter) + ":" + item + "}")
+        else:
+            item = resource_properties[resource_property]["Type"]
+            body.append(" " * 6 + "${" + str(counter) + ":" + item + "}")
+    else:
+        body.append(
+            " " * 4
+            + resource_property
+            + ": "
+            + "${"
+            + str(counter)
+            + ":"
+            + item
+            + "}"
+            + (" #required" if required else "")
+        )
+
+    return body
+
+
 def fetch_description(resource_type):
-    description = resource_type["Documentation"].replace("http://", "https://")
+    description = [resource_type["Documentation"].replace("http://", "https://")]
 
     # Adding resource type attributes next to the documantation url if it's available.
     if "Attributes" in resource_type:
-        description += "\r\n\n" + "Attributes: " + "\r\n"
-        for a in resource_type["Attributes"]:
-            description += "  " + a + "\r\n"
+        description.append("Attributes: ")
+        for attribute in resource_type["Attributes"]:
+            description.append("  " + attribute)
 
     return description
 
@@ -61,61 +99,22 @@ def create_cfn_snippet(response_data):
     for resource_type in response_data["ResourceTypes"]:
         description = fetch_description(response_data["ResourceTypes"][resource_type])
         prefix = resource_type.replace("AWS::", "").replace("::", "-")
-
-        body = ""
-        body += "${1:LogicalID}:\r\n"
-        body += '\tType: "' + resource_type + '"\r\n'
-        body += "\tProperties:\r\n"
+        body = ["${1:LogicalID}:", "  Type: " + resource_type, "  Properties:"]
 
         # for each resources 'properties'
         resource_properties = response_data["ResourceTypes"][resource_type][
             "Properties"
         ]
 
-        counter = 1
-        for resource_property in sorted(resource_properties):
-            required = resource_properties[resource_property]["Required"]
-
-            item = ""
-            itemlist = False
-
-            if "PrimitiveItemType" in resource_properties[resource_property]:
-                item = resource_properties[resource_property]["PrimitiveItemType"]
-            if "PrimitiveType" in resource_properties[resource_property]:
-                item = resource_properties[resource_property]["PrimitiveType"]
-            if "ItemType" in resource_properties[resource_property]:
-                item = resource_properties[resource_property]["ItemType"]
-
-            if "Type" in resource_properties[resource_property]:
-                counter += 1
-                body += "\t\t" + resource_property + ":" + ""
-                body += " #required\r\n" if required else "\r\n"
-                # If the Type is a List, the body should be adapted so that the user knows the property is of type list.
-                if resource_properties[resource_property]["Type"] == "List":
-                    body += "\t\t\t- " + "${" + str(counter) + ":" + item + "}" + "\r\n"
-                else:
-                    item = resource_properties[resource_property]["Type"]
-                    body += "\t\t\t" + "${" + str(counter) + ":" + item + "}" + "\r\n"
-
-                itemlist = True
-
-            if not itemlist:
-                counter += 1
-                body += (
-                    "\t\t"
-                    + resource_property
-                    + ": "
-                    + "${"
-                    + str(counter)
-                    + ":"
-                    + item
-                    + "}"
-                    + ""
-                )
-                body += " #required\r\n" if required else "\r\n"
+        for counter, resource_property in enumerate(
+            sorted(resource_properties), start=2
+        ):
+            updated_body = parse_body(
+                body, counter, resource_properties, resource_property
+            )
 
             output[resource_type] = {
-                "body": body,
+                "body": updated_body,
                 "description": description,
                 "prefix": prefix.lower(),
                 "scope": "source.cloudformation",
