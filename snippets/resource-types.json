@@ -1733,6 +1733,38 @@
         "prefix": "athena-workgroup",
         "scope": "source.cloudformation"
     },
+    "AWS::AuditManager::Assessment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AuditManager::Assessment",
+            "  Properties:",
+            "    assessmentReportsDestination:",
+            "      ${2:AssessmentReportsDestination}",
+            "    awsAccount:",
+            "      ${3:AWSAccount}",
+            "    description: ${4:String}",
+            "    frameworkId: ${5:String}",
+            "    name: ${6:String}",
+            "    roles:",
+            "      ${7:Roles}",
+            "    scope:",
+            "      ${8:Scope}",
+            "    status: ${9:String}",
+            "    tags:",
+            "      ${10:Tags}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-auditmanager-assessment.html",
+            "Attributes: ",
+            "  frameworkId",
+            "  assessmentId",
+            "  arn",
+            "  delegations",
+            "  creationTime"
+        ],
+        "prefix": "auditmanager-assessment",
+        "scope": "source.cloudformation"
+    },
     "AWS::AutoScaling::AutoScalingGroup": {
         "body": [
             "${1:LogicalID}:",
@@ -1808,7 +1840,7 @@
             "    KeyName: ${13:String}",
             "    LaunchConfigurationName: ${14:String}",
             "    MetadataOptions:",
-            "      ${15:MetadataOption}",
+            "      ${15:MetadataOptions}",
             "    PlacementTenancy: ${16:String}",
             "    RamDiskId: ${17:String}",
             "    SecurityGroups:",
@@ -1992,12 +2024,15 @@
             "    NodeProperties:",
             "      ${4:NodeProperties}",
             "    Parameters: ${5:Json}",
+            "    PlatformCapabilities:",
+            "      - ${6:String}",
+            "    PropagateTags: ${7:Boolean}",
             "    RetryStrategy:",
-            "      ${6:RetryStrategy}",
-            "    Tags: ${7:Json}",
+            "      ${8:RetryStrategy}",
+            "    Tags: ${9:Json}",
             "    Timeout:",
-            "      ${8:Timeout}",
-            "    Type: ${9:String} #required"
+            "      ${10:Timeout}",
+            "    Type: ${11:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html"
@@ -2191,6 +2226,44 @@
         "prefix": "cloudformation-macro",
         "scope": "source.cloudformation"
     },
+    "AWS::CloudFormation::ModuleDefaultVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::ModuleDefaultVersion",
+            "  Properties:",
+            "    Arn: ${2:String}",
+            "    ModuleName: ${3:String}",
+            "    VersionId: ${4:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduledefaultversion.html"
+        ],
+        "prefix": "cloudformation-moduledefaultversion",
+        "scope": "source.cloudformation"
+    },
+    "AWS::CloudFormation::ModuleVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::ModuleVersion",
+            "  Properties:",
+            "    ModuleName: ${2:String} #required",
+            "    ModulePackage: ${3:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduleversion.html",
+            "Attributes: ",
+            "  Arn",
+            "  Description",
+            "  DocumentationUrl",
+            "  IsDefaultVersion",
+            "  Schema",
+            "  TimeCreated",
+            "  VersionId",
+            "  Visibility"
+        ],
+        "prefix": "cloudformation-moduleversion",
+        "scope": "source.cloudformation"
+    },
     "AWS::CloudFormation::Stack": {
         "body": [
             "${1:LogicalID}:",
@@ -2227,10 +2300,10 @@
             "      ${7:OperationPreferences}",
             "    Parameters:",
             "      - ${8:Parameter}",
-            "    PermissionModel: ${9:String}",
+            "    PermissionModel: ${9:String} #required",
             "    StackInstancesGroup:",
             "      - ${10:StackInstances}",
-            "    StackSetName: ${11:String}",
+            "    StackSetName: ${11:String} #required",
             "    Tags:",
             "      - ${12:Tag}",
             "    TemplateBody: ${13:String}",
@@ -2580,9 +2653,10 @@
             "  Type: AWS::CodeArtifact::Domain",
             "  Properties:",
             "    DomainName: ${2:String} #required",
-            "    PermissionsPolicyDocument: ${3:Json}",
+            "    EncryptionKey: ${3:String}",
+            "    PermissionsPolicyDocument: ${4:Json}",
             "    Tags:",
-            "      - ${4:Tag}"
+            "      - ${5:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-domain.html",
@@ -2601,14 +2675,16 @@
             "  Type: AWS::CodeArtifact::Repository",
             "  Properties:",
             "    Description: ${2:String}",
+            "    DomainName: ${3:String} #required",
+            "    DomainOwner: ${4:String}",
             "    ExternalConnections:",
-            "      - ${3:String}",
-            "    PermissionsPolicyDocument: ${4:Json}",
-            "    RepositoryName: ${5:String} #required",
+            "      - ${5:String}",
+            "    PermissionsPolicyDocument: ${6:Json}",
+            "    RepositoryName: ${7:String} #required",
             "    Tags:",
-            "      - ${6:Tag}",
+            "      - ${8:Tag}",
             "    Upstreams:",
-            "      - ${7:String}"
+            "      - ${9:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-repository.html",
@@ -2827,7 +2903,9 @@
             "    ConnectionArn: ${2:String}",
             "    Name: ${3:String} #required",
             "    Owner: ${4:String}",
-            "    Type: ${5:String} #required"
+            "    Tags:",
+            "      - ${5:Tag}",
+            "    Type: ${6:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codegurureviewer-repositoryassociation.html",
@@ -3506,7 +3584,9 @@
             "    ExecutionRoleArn: ${3:String}",
             "    PolicyDetails:",
             "      ${4:PolicyDetails}",
-            "    State: ${5:String}"
+            "    State: ${5:String}",
+            "    Tags:",
+            "      - ${6:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dlm-lifecyclepolicy.html",
@@ -3807,6 +3887,38 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-memberinvitation.html"
         ],
         "prefix": "detective-memberinvitation",
+        "scope": "source.cloudformation"
+    },
+    "AWS::DevOpsGuru::NotificationChannel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DevOpsGuru::NotificationChannel",
+            "  Properties:",
+            "    Config: #required",
+            "      ${2:NotificationChannelConfig}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-notificationchannel.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "devopsguru-notificationchannel",
+        "scope": "source.cloudformation"
+    },
+    "AWS::DevOpsGuru::ResourceCollection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DevOpsGuru::ResourceCollection",
+            "  Properties:",
+            "    ResourceCollectionFilter: #required",
+            "      ${2:ResourceCollectionFilter}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-resourcecollection.html",
+            "Attributes: ",
+            "  ResourceCollectionType"
+        ],
+        "prefix": "devopsguru-resourcecollection",
         "scope": "source.cloudformation"
     },
     "AWS::DirectoryService::MicrosoftAD": {
@@ -4312,43 +4424,45 @@
             "      - ${10:ElasticGpuSpecification}",
             "    ElasticInferenceAccelerators:",
             "      - ${11:ElasticInferenceAccelerator}",
+            "    EnclaveOptions:",
+            "      ${12:EnclaveOptions}",
             "    HibernationOptions:",
-            "      ${12:HibernationOptions}",
-            "    HostId: ${13:String}",
-            "    HostResourceGroupArn: ${14:String}",
-            "    IamInstanceProfile: ${15:String}",
-            "    ImageId: ${16:String}",
-            "    InstanceInitiatedShutdownBehavior: ${17:String}",
-            "    InstanceType: ${18:String}",
-            "    Ipv6AddressCount: ${19:Integer}",
+            "      ${13:HibernationOptions}",
+            "    HostId: ${14:String}",
+            "    HostResourceGroupArn: ${15:String}",
+            "    IamInstanceProfile: ${16:String}",
+            "    ImageId: ${17:String}",
+            "    InstanceInitiatedShutdownBehavior: ${18:String}",
+            "    InstanceType: ${19:String}",
+            "    Ipv6AddressCount: ${20:Integer}",
             "    Ipv6Addresses:",
-            "      - ${20:InstanceIpv6Address}",
-            "    KernelId: ${21:String}",
-            "    KeyName: ${22:String}",
+            "      - ${21:InstanceIpv6Address}",
+            "    KernelId: ${22:String}",
+            "    KeyName: ${23:String}",
             "    LaunchTemplate:",
-            "      ${23:LaunchTemplateSpecification}",
+            "      ${24:LaunchTemplateSpecification}",
             "    LicenseSpecifications:",
-            "      - ${24:LicenseSpecification}",
-            "    Monitoring: ${25:Boolean}",
+            "      - ${25:LicenseSpecification}",
+            "    Monitoring: ${26:Boolean}",
             "    NetworkInterfaces:",
-            "      - ${26:NetworkInterface}",
-            "    PlacementGroupName: ${27:String}",
-            "    PrivateIpAddress: ${28:String}",
-            "    RamdiskId: ${29:String}",
+            "      - ${27:NetworkInterface}",
+            "    PlacementGroupName: ${28:String}",
+            "    PrivateIpAddress: ${29:String}",
+            "    RamdiskId: ${30:String}",
             "    SecurityGroupIds:",
-            "      - ${30:String}",
-            "    SecurityGroups:",
             "      - ${31:String}",
-            "    SourceDestCheck: ${32:Boolean}",
+            "    SecurityGroups:",
+            "      - ${32:String}",
+            "    SourceDestCheck: ${33:Boolean}",
             "    SsmAssociations:",
-            "      - ${33:SsmAssociation}",
-            "    SubnetId: ${34:String}",
+            "      - ${34:SsmAssociation}",
+            "    SubnetId: ${35:String}",
             "    Tags:",
-            "      - ${35:Tag}",
-            "    Tenancy: ${36:String}",
-            "    UserData: ${37:String}",
+            "      - ${36:Tag}",
+            "    Tenancy: ${37:String}",
+            "    UserData: ${38:String}",
             "    Volumes:",
-            "      - ${38:Volume}"
+            "      - ${39:Volume}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html",
@@ -4484,6 +4598,58 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html"
         ],
         "prefix": "ec2-networkaclentry",
+        "scope": "source.cloudformation"
+    },
+    "AWS::EC2::NetworkInsightsAnalysis": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::NetworkInsightsAnalysis",
+            "  Properties:",
+            "    FilterInArns:",
+            "      - ${2:String}",
+            "    NetworkInsightsPathId: ${3:String} #required",
+            "    StatusMessage: ${4:String}",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html",
+            "Attributes: ",
+            "  NetworkInsightsAnalysisId",
+            "  NetworkInsightsAnalysisArn",
+            "  StartDate",
+            "  Status",
+            "  NetworkPathFound",
+            "  ForwardPathComponents",
+            "  ReturnPathComponents",
+            "  Explanations",
+            "  AlternatePathHints"
+        ],
+        "prefix": "ec2-networkinsightsanalysis",
+        "scope": "source.cloudformation"
+    },
+    "AWS::EC2::NetworkInsightsPath": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::NetworkInsightsPath",
+            "  Properties:",
+            "    Destination: ${2:String} #required",
+            "    DestinationIp: ${3:String}",
+            "    DestinationPort: ${4:Integer}",
+            "    Protocol: ${5:String} #required",
+            "    Source: ${6:String} #required",
+            "    SourceIp: ${7:String}",
+            "    Tags:",
+            "      - ${8:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html",
+            "Attributes: ",
+            "  NetworkInsightsPathId",
+            "  NetworkInsightsPathArn",
+            "  CreatedDate"
+        ],
+        "prefix": "ec2-networkinsightspath",
         "scope": "source.cloudformation"
     },
     "AWS::EC2::NetworkInterface": {
@@ -5201,7 +5367,8 @@
             "    SnapshotId: ${10:String}",
             "    Tags:",
             "      - ${11:Tag}",
-            "    VolumeType: ${12:String}"
+            "    Throughput: ${12:Integer}",
+            "    VolumeType: ${13:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html"
@@ -5222,6 +5389,23 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html"
         ],
         "prefix": "ec2-volumeattachment",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ECR::PublicRepository": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ECR::PublicRepository",
+            "  Properties:",
+            "    RepositoryCatalogData: ${2:Json}",
+            "    RepositoryName: ${3:String}",
+            "    RepositoryPolicyText: ${4:}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-publicrepository.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "ecr-publicrepository",
         "scope": "source.cloudformation"
     },
     "AWS::ECR::Repository": {
@@ -5534,25 +5718,26 @@
             "  Type: AWS::EKS::Nodegroup",
             "  Properties:",
             "    AmiType: ${2:String}",
-            "    ClusterName: ${3:String} #required",
-            "    DiskSize: ${4:Double}",
-            "    ForceUpdateEnabled: ${5:Boolean}",
+            "    CapacityType: ${3:String}",
+            "    ClusterName: ${4:String} #required",
+            "    DiskSize: ${5:Double}",
+            "    ForceUpdateEnabled: ${6:Boolean}",
             "    InstanceTypes:",
-            "      - ${6:String}",
-            "    Labels: ${7:Json}",
+            "      - ${7:String}",
+            "    Labels: ${8:Json}",
             "    LaunchTemplate:",
-            "      ${8:LaunchTemplateSpecification}",
-            "    NodeRole: ${9:String} #required",
-            "    NodegroupName: ${10:String}",
-            "    ReleaseVersion: ${11:String}",
+            "      ${9:LaunchTemplateSpecification}",
+            "    NodeRole: ${10:String} #required",
+            "    NodegroupName: ${11:String}",
+            "    ReleaseVersion: ${12:String}",
             "    RemoteAccess:",
-            "      ${12:RemoteAccess}",
+            "      ${13:RemoteAccess}",
             "    ScalingConfig:",
-            "      ${13:ScalingConfig}",
+            "      ${14:ScalingConfig}",
             "    Subnets: #required",
-            "      - ${14:String}",
-            "    Tags: ${15:Json}",
-            "    Version: ${16:String}"
+            "      - ${15:String}",
+            "    Tags: ${16:Json}",
+            "    Version: ${17:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html",
@@ -5786,7 +5971,9 @@
             "    SnapshottingClusterId: ${31:String}",
             "    Tags:",
             "      - ${32:Tag}",
-            "    TransitEncryptionEnabled: ${33:Boolean}"
+            "    TransitEncryptionEnabled: ${33:Boolean}",
+            "    UserGroupIds:",
+            "      - ${34:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html",
@@ -5847,6 +6034,51 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html"
         ],
         "prefix": "elasticache-subnetgroup",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ElastiCache::User": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ElastiCache::User",
+            "  Properties:",
+            "    AccessString: ${2:String}",
+            "    Engine: ${3:String} #required",
+            "    NoPasswordRequired: ${4:Boolean}",
+            "    Passwords:",
+            "      ${5:PasswordList}",
+            "    UserId: ${6:String} #required",
+            "    UserName: ${7:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html",
+            "Attributes: ",
+            "  Status",
+            "  UserGroupIds",
+            "  Authentication",
+            "  Arn"
+        ],
+        "prefix": "elasticache-user",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ElastiCache::UserGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ElastiCache::UserGroup",
+            "  Properties:",
+            "    Engine: ${2:String} #required",
+            "    UserGroupId: ${3:String} #required",
+            "    UserIds:",
+            "      ${4:UserIdList}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-usergroup.html",
+            "Attributes: ",
+            "  Status",
+            "  ReplicationGroupIds",
+            "  PendingChanges",
+            "  Arn"
+        ],
+        "prefix": "elasticache-usergroup",
         "scope": "source.cloudformation"
     },
     "AWS::ElasticBeanstalk::Application": {
@@ -6229,10 +6461,11 @@
             "${1:LogicalID}:",
             "  Type: AWS::Events::Archive",
             "  Properties:",
-            "    Description: ${2:String}",
-            "    EventPattern: ${3:Json}",
-            "    RetentionDays: ${4:Integer}",
-            "    SourceArn: ${5:String} #required"
+            "    ArchiveName: ${2:String}",
+            "    Description: ${3:String}",
+            "    EventPattern: ${4:Json}",
+            "    RetentionDays: ${5:Integer}",
+            "    SourceArn: ${6:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-archive.html",
@@ -7283,6 +7516,27 @@
         "prefix": "greengrass-subscriptiondefinitionversion",
         "scope": "source.cloudformation"
     },
+    "AWS::GreengrassV2::ComponentVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::GreengrassV2::ComponentVersion",
+            "  Properties:",
+            "    InlineRecipe: ${2:String}",
+            "    LambdaFunction:",
+            "      ${3:LambdaFunctionRecipeSource}",
+            "    Tags:",
+            "      ${4:Map}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-componentversion.html",
+            "Attributes: ",
+            "  Arn",
+            "  ComponentName",
+            "  ComponentVersion"
+        ],
+        "prefix": "greengrassv2-componentversion",
+        "scope": "source.cloudformation"
+    },
     "AWS::GuardDuty::Detector": {
         "body": [
             "${1:LogicalID}:",
@@ -8065,7 +8319,9 @@
             "  Properties:",
             "    HttpUrlProperties:",
             "      ${2:HttpUrlDestinationSummary}",
-            "    Status: ${3:String}"
+            "    Status: ${3:String}",
+            "    VpcProperties:",
+            "      ${4:VpcDestinationProperties}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicruledestination.html",
@@ -8195,6 +8451,26 @@
         "prefix": "iotevents-input",
         "scope": "source.cloudformation"
     },
+    "AWS::IoTSiteWise::AccessPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTSiteWise::AccessPolicy",
+            "  Properties:",
+            "    AccessPolicyIdentity: #required",
+            "      ${2:AccessPolicyIdentity}",
+            "    AccessPolicyPermission: ${3:String} #required",
+            "    AccessPolicyResource: #required",
+            "      ${4:AccessPolicyResource}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-accesspolicy.html",
+            "Attributes: ",
+            "  AccessPolicyId",
+            "  AccessPolicyArn"
+        ],
+        "prefix": "iotsitewise-accesspolicy",
+        "scope": "source.cloudformation"
+    },
     "AWS::IoTSiteWise::Asset": {
         "body": [
             "${1:LogicalID}:",
@@ -8241,6 +8517,27 @@
         "prefix": "iotsitewise-assetmodel",
         "scope": "source.cloudformation"
     },
+    "AWS::IoTSiteWise::Dashboard": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTSiteWise::Dashboard",
+            "  Properties:",
+            "    DashboardDefinition: ${2:String} #required",
+            "    DashboardDescription: ${3:String} #required",
+            "    DashboardName: ${4:String} #required",
+            "    ProjectId: ${5:String}",
+            "    Tags:",
+            "      - ${6:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-dashboard.html",
+            "Attributes: ",
+            "  DashboardId",
+            "  DashboardArn"
+        ],
+        "prefix": "iotsitewise-dashboard",
+        "scope": "source.cloudformation"
+    },
     "AWS::IoTSiteWise::Gateway": {
         "body": [
             "${1:LogicalID}:",
@@ -8262,6 +8559,50 @@
         "prefix": "iotsitewise-gateway",
         "scope": "source.cloudformation"
     },
+    "AWS::IoTSiteWise::Portal": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTSiteWise::Portal",
+            "  Properties:",
+            "    PortalContactEmail: ${2:String} #required",
+            "    PortalDescription: ${3:String}",
+            "    PortalName: ${4:String} #required",
+            "    RoleArn: ${5:String} #required",
+            "    Tags:",
+            "      - ${6:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html",
+            "Attributes: ",
+            "  PortalArn",
+            "  PortalClientId",
+            "  PortalId",
+            "  PortalStartUrl",
+            "  PortalStatus"
+        ],
+        "prefix": "iotsitewise-portal",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoTSiteWise::Project": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTSiteWise::Project",
+            "  Properties:",
+            "    PortalId: ${2:String} #required",
+            "    ProjectDescription: ${3:String}",
+            "    ProjectName: ${4:String} #required",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-project.html",
+            "Attributes: ",
+            "  ProjectId",
+            "  ProjectArn"
+        ],
+        "prefix": "iotsitewise-project",
+        "scope": "source.cloudformation"
+    },
     "AWS::IoTThingsGraph::FlowTemplate": {
         "body": [
             "${1:LogicalID}:",
@@ -8275,6 +8616,122 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotthingsgraph-flowtemplate.html"
         ],
         "prefix": "iotthingsgraph-flowtemplate",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoTWireless::Destination": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::Destination",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    Expression: ${3:String} #required",
+            "    ExpressionType: ${4:String} #required",
+            "    Name: ${5:String} #required",
+            "    NextToken: ${6:String}",
+            "    RoleArn: ${7:String} #required",
+            "    Tags:",
+            "      - ${8:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-destination.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "iotwireless-destination",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoTWireless::DeviceProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::DeviceProfile",
+            "  Properties:",
+            "    LoRaWANDeviceProfile:",
+            "      ${2:LoRaWANDeviceProfile}",
+            "    Name: ${3:String}",
+            "    NextToken: ${4:String}",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-deviceprofile.html",
+            "Attributes: ",
+            "  Arn",
+            "  Id"
+        ],
+        "prefix": "iotwireless-deviceprofile",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoTWireless::ServiceProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::ServiceProfile",
+            "  Properties:",
+            "    LoRaWANGetServiceProfileInfo:",
+            "      ${2:LoRaWANGetServiceProfileInfo}",
+            "    LoRaWANServiceProfile:",
+            "      ${3:LoRaWANServiceProfile}",
+            "    Name: ${4:String}",
+            "    NextToken: ${5:String}",
+            "    Tags:",
+            "      - ${6:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html",
+            "Attributes: ",
+            "  Arn",
+            "  Id"
+        ],
+        "prefix": "iotwireless-serviceprofile",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoTWireless::WirelessDevice": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::WirelessDevice",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    DestinationName: ${3:String} #required",
+            "    LoRaWANDevice:",
+            "      ${4:LoRaWANDevice}",
+            "    Name: ${5:String}",
+            "    NextToken: ${6:String}",
+            "    Tags:",
+            "      - ${7:Tag}",
+            "    Type: ${8:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdevice.html",
+            "Attributes: ",
+            "  Arn",
+            "  Id",
+            "  ThingArn",
+            "  ThingName"
+        ],
+        "prefix": "iotwireless-wirelessdevice",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoTWireless::WirelessGateway": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::WirelessGateway",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    LoRaWANGateway: #required",
+            "      ${3:LoRaWANGateway}",
+            "    Name: ${4:String}",
+            "    NextToken: ${5:String}",
+            "    Tags:",
+            "      - ${6:Tag}",
+            "    ThingName: ${7:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html",
+            "Attributes: ",
+            "  Arn",
+            "  Id",
+            "  ThingArn"
+        ],
+        "prefix": "iotwireless-wirelessgateway",
         "scope": "source.cloudformation"
     },
     "AWS::KMS::Alias": {
@@ -8380,7 +8837,10 @@
             "    ServerSideEncryptionConfiguration:",
             "      ${8:ServerSideEncryptionConfiguration}",
             "    Tags:",
-            "      ${9:TagList}"
+            "      ${9:TagList}",
+            "    UserContextPolicy: ${10:String}",
+            "    UserTokenConfigurations:",
+            "      ${11:UserTokenConfigurationList}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-index.html",
@@ -8697,21 +9157,25 @@
             "    DestinationConfig:",
             "      ${4:DestinationConfig}",
             "    Enabled: ${5:Boolean}",
-            "    EventSourceArn: ${6:String} #required",
+            "    EventSourceArn: ${6:String}",
             "    FunctionName: ${7:String} #required",
-            "    MaximumBatchingWindowInSeconds: ${8:Integer}",
-            "    MaximumRecordAgeInSeconds: ${9:Integer}",
-            "    MaximumRetryAttempts: ${10:Integer}",
-            "    ParallelizationFactor: ${11:Integer}",
-            "    PartialBatchResponse: ${12:Boolean}",
+            "    FunctionResponseTypes:",
+            "      - ${8:String}",
+            "    MaximumBatchingWindowInSeconds: ${9:Integer}",
+            "    MaximumRecordAgeInSeconds: ${10:Integer}",
+            "    MaximumRetryAttempts: ${11:Integer}",
+            "    ParallelizationFactor: ${12:Integer}",
+            "    PartialBatchResponse: ${13:Boolean}",
             "    Queues:",
-            "      - ${13:String}",
+            "      - ${14:String}",
+            "    SelfManagedEventSource:",
+            "      ${15:SelfManagedEventSource}",
             "    SourceAccessConfigurations:",
-            "      - ${14:SourceAccessConfiguration}",
-            "    StartingPosition: ${15:String}",
+            "      - ${16:SourceAccessConfiguration}",
+            "    StartingPosition: ${17:String}",
             "    Topics:",
-            "      - ${16:String}",
-            "    TumblingWindowInSeconds: ${17:Integer}"
+            "      - ${18:String}",
+            "    TumblingWindowInSeconds: ${19:Integer}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html",
@@ -8737,21 +9201,24 @@
             "    FileSystemConfigs:",
             "      - ${7:FileSystemConfig}",
             "    FunctionName: ${8:String}",
-            "    Handler: ${9:String} #required",
-            "    KmsKeyArn: ${10:String}",
+            "    Handler: ${9:String}",
+            "    ImageConfig:",
+            "      ${10:ImageConfig}",
+            "    KmsKeyArn: ${11:String}",
             "    Layers:",
-            "      - ${11:String}",
-            "    MemorySize: ${12:Integer}",
-            "    ReservedConcurrentExecutions: ${13:Integer}",
-            "    Role: ${14:String} #required",
-            "    Runtime: ${15:String} #required",
+            "      - ${12:String}",
+            "    MemorySize: ${13:Integer}",
+            "    PackageType: ${14:String}",
+            "    ReservedConcurrentExecutions: ${15:Integer}",
+            "    Role: ${16:String} #required",
+            "    Runtime: ${17:String}",
             "    Tags:",
-            "      - ${16:Tag}",
-            "    Timeout: ${17:Integer}",
+            "      - ${18:Tag}",
+            "    Timeout: ${19:Integer}",
             "    TracingConfig:",
-            "      ${18:TracingConfig}",
+            "      ${20:TracingConfig}",
             "    VpcConfig:",
-            "      ${19:VpcConfig}"
+            "      ${21:VpcConfig}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html",
@@ -8831,6 +9298,86 @@
             "  Version"
         ],
         "prefix": "lambda-version",
+        "scope": "source.cloudformation"
+    },
+    "AWS::LicenseManager::Grant": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LicenseManager::Grant",
+            "  Properties:",
+            "    AllowedOperations:",
+            "      ${2:AllowedOperationList}",
+            "    ClientToken: ${3:String}",
+            "    Filters:",
+            "      ${4:FilterList}",
+            "    GrantArns:",
+            "      ${5:ArnList}",
+            "    GrantName: ${6:String}",
+            "    GrantStatus: ${7:String}",
+            "    GrantedOperations:",
+            "      ${8:AllowedOperationList}",
+            "    GranteePrincipalArn: ${9:String}",
+            "    HomeRegion: ${10:String}",
+            "    LicenseArn: ${11:String}",
+            "    MaxResults: ${12:Integer}",
+            "    NextToken: ${13:String}",
+            "    ParentArn: ${14:String}",
+            "    Principals:",
+            "      ${15:ArnList}",
+            "    SourceVersion: ${16:String}",
+            "    Status: ${17:String}",
+            "    StatusReason: ${18:String}",
+            "    Tags:",
+            "      ${19:TagList}",
+            "    Version: ${20:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-grant.html",
+            "Attributes: ",
+            "  GrantArn"
+        ],
+        "prefix": "licensemanager-grant",
+        "scope": "source.cloudformation"
+    },
+    "AWS::LicenseManager::License": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LicenseManager::License",
+            "  Properties:",
+            "    Beneficiary: ${2:String}",
+            "    ClientToken: ${3:String}",
+            "    ConsumptionConfiguration: #required",
+            "      ${4:ConsumptionConfiguration}",
+            "    Entitlements: #required",
+            "      ${5:EntitlementList}",
+            "    Filters:",
+            "      ${6:FilterList}",
+            "    HomeRegion: ${7:String} #required",
+            "    Issuer: #required",
+            "      ${8:IssuerData}",
+            "    LicenseArns:",
+            "      ${9:ArnList}",
+            "    LicenseMetadata:",
+            "      ${10:MetadataList}",
+            "    LicenseName: ${11:String}",
+            "    MaxResults: ${12:Integer}",
+            "    NextToken: ${13:String}",
+            "    ProductName: ${14:String}",
+            "    ProductSKU: ${15:String}",
+            "    SourceVersion: ${16:String}",
+            "    Status: ${17:String}",
+            "    Tags:",
+            "      ${18:TagList}",
+            "    Validity: #required",
+            "      ${19:ValidityDateFormat}",
+            "    Version: ${20:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-license.html",
+            "Attributes: ",
+            "  LicenseArn"
+        ],
+        "prefix": "licensemanager-license",
         "scope": "source.cloudformation"
     },
     "AWS::Logs::Destination": {
@@ -8941,6 +9488,47 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html"
         ],
         "prefix": "msk-cluster",
+        "scope": "source.cloudformation"
+    },
+    "AWS::MWAA::Environment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MWAA::Environment",
+            "  Properties:",
+            "    AirflowConfigurationOptions:",
+            "      ${2:AirflowConfigurationOptions}",
+            "    AirflowVersion: ${3:String}",
+            "    DagS3Path: ${4:String}",
+            "    EnvironmentClass: ${5:String}",
+            "    ExecutionRoleArn: ${6:String}",
+            "    KmsKey: ${7:String}",
+            "    LoggingConfiguration:",
+            "      ${8:LoggingConfiguration}",
+            "    MaxWorkers: ${9:Integer}",
+            "    NetworkConfiguration:",
+            "      ${10:NetworkConfiguration}",
+            "    PluginsS3ObjectVersion: ${11:String}",
+            "    PluginsS3Path: ${12:String}",
+            "    RequirementsS3ObjectVersion: ${13:String}",
+            "    RequirementsS3Path: ${14:String}",
+            "    SourceBucketArn: ${15:String}",
+            "    Tags:",
+            "      ${16:TagMap}",
+            "    WebserverAccessMode: ${17:String}",
+            "    WebserverUrl: ${18:String}",
+            "    WeeklyMaintenanceWindowStart: ${19:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html",
+            "Attributes: ",
+            "  Name",
+            "  Status",
+            "  Arn",
+            "  CreatedAt",
+            "  ServiceRoleArn",
+            "  LastUpdate"
+        ],
+        "prefix": "mwaa-environment",
         "scope": "source.cloudformation"
     },
     "AWS::Macie::CustomDataIdentifier": {
@@ -9481,7 +10069,7 @@
             "    SubnetMappings: #required",
             "      - ${8:SubnetMapping}",
             "    Tags:",
-            "      ${9:Tags}",
+            "      - ${9:Tag}",
             "    VpcId: ${10:String} #required"
         ],
         "description": [
@@ -9504,7 +10092,7 @@
             "      ${3:FirewallPolicy}",
             "    FirewallPolicyName: ${4:String} #required",
             "    Tags:",
-            "      ${5:Tags}"
+            "      - ${5:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewallpolicy.html",
@@ -9520,14 +10108,13 @@
             "${1:LogicalID}:",
             "  Type: AWS::NetworkFirewall::LoggingConfiguration",
             "  Properties:",
+            "    FirewallArn: ${2:String} #required",
+            "    FirewallName: ${3:String}",
             "    LoggingConfiguration: #required",
-            "      ${2:LoggingConfiguration}"
+            "      ${4:LoggingConfiguration}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-loggingconfiguration.html",
-            "Attributes: ",
-            "  FirewallName",
-            "  FirewallArn"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-loggingconfiguration.html"
         ],
         "prefix": "networkfirewall-loggingconfiguration",
         "scope": "source.cloudformation"
@@ -9541,16 +10128,16 @@
             "    Description: ${3:String}",
             "    RuleGroup:",
             "      ${4:RuleGroup}",
-            "    RuleGroupId: ${5:String}",
-            "    RuleGroupName: ${6:String} #required",
+            "    RuleGroupName: ${5:String} #required",
             "    Tags:",
-            "      ${7:Tags}",
-            "    Type: ${8:String} #required"
+            "      - ${6:Tag}",
+            "    Type: ${7:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-rulegroup.html",
             "Attributes: ",
-            "  RuleGroupArn"
+            "  RuleGroupArn",
+            "  RuleGroupId"
         ],
         "prefix": "networkfirewall-rulegroup",
         "scope": "source.cloudformation"
@@ -11731,6 +12318,20 @@
         "prefix": "sso-assignment",
         "scope": "source.cloudformation"
     },
+    "AWS::SSO::InstanceAccessControlAttributeConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSO::InstanceAccessControlAttributeConfiguration",
+            "  Properties:",
+            "    InstanceAccessControlAttributeConfiguration: ${2:Json} #required",
+            "    InstanceArn: ${3:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instanceaccesscontrolattributeconfiguration.html"
+        ],
+        "prefix": "sso-instanceaccesscontrolattributeconfiguration",
+        "scope": "source.cloudformation"
+    },
     "AWS::SSO::PermissionSet": {
         "body": [
             "${1:LogicalID}:",
@@ -11772,18 +12373,91 @@
         "prefix": "sagemaker-coderepository",
         "scope": "source.cloudformation"
     },
+    "AWS::SageMaker::DataQualityJobDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::DataQualityJobDefinition",
+            "  Properties:",
+            "    DataQualityAppSpecification: #required",
+            "      ${2:DataQualityAppSpecification}",
+            "    DataQualityBaselineConfig:",
+            "      ${3:DataQualityBaselineConfig}",
+            "    DataQualityJobInput: #required",
+            "      ${4:DataQualityJobInput}",
+            "    DataQualityJobOutputConfig: #required",
+            "      ${5:MonitoringOutputConfig}",
+            "    JobDefinitionName: ${6:String}",
+            "    JobResources: #required",
+            "      ${7:MonitoringResources}",
+            "    NetworkConfig:",
+            "      ${8:NetworkConfig}",
+            "    RoleArn: ${9:String} #required",
+            "    StoppingCondition:",
+            "      ${10:StoppingCondition}",
+            "    Tags:",
+            "      - ${11:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-dataqualityjobdefinition.html",
+            "Attributes: ",
+            "  JobDefinitionArn",
+            "  CreationTime"
+        ],
+        "prefix": "sagemaker-dataqualityjobdefinition",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::Device": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::Device",
+            "  Properties:",
+            "    Device:",
+            "      ${2:Device}",
+            "    Tags:",
+            "      ${3:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-device.html",
+            "Attributes: ",
+            "  DeviceFleetName"
+        ],
+        "prefix": "sagemaker-device",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::DeviceFleet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::DeviceFleet",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    OutputConfig: #required",
+            "      ${3:EdgeOutputConfig}",
+            "    RoleArn: ${4:String} #required",
+            "    Tags:",
+            "      ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-devicefleet.html",
+            "Attributes: ",
+            "  DeviceFleetName"
+        ],
+        "prefix": "sagemaker-devicefleet",
+        "scope": "source.cloudformation"
+    },
     "AWS::SageMaker::Endpoint": {
         "body": [
             "${1:LogicalID}:",
             "  Type: AWS::SageMaker::Endpoint",
             "  Properties:",
-            "    EndpointConfigName: ${2:String} #required",
-            "    EndpointName: ${3:String}",
+            "    DeploymentConfig:",
+            "      ${2:DeploymentConfig}",
+            "    EndpointConfigName: ${3:String} #required",
+            "    EndpointName: ${4:String}",
             "    ExcludeRetainedVariantProperties:",
-            "      - ${4:VariantProperty}",
-            "    RetainAllVariantProperties: ${5:Boolean}",
+            "      - ${5:VariantProperty}",
+            "    RetainAllVariantProperties: ${6:Boolean}",
             "    Tags:",
-            "      - ${6:Tag}"
+            "      - ${7:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpoint.html",
@@ -11840,6 +12514,126 @@
         "prefix": "sagemaker-model",
         "scope": "source.cloudformation"
     },
+    "AWS::SageMaker::ModelBiasJobDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::ModelBiasJobDefinition",
+            "  Properties:",
+            "    JobDefinitionName: ${2:String}",
+            "    JobResources: #required",
+            "      ${3:MonitoringResources}",
+            "    ModelBiasAppSpecification: #required",
+            "      ${4:ModelBiasAppSpecification}",
+            "    ModelBiasBaselineConfig:",
+            "      ${5:ModelBiasBaselineConfig}",
+            "    ModelBiasJobInput: #required",
+            "      ${6:ModelBiasJobInput}",
+            "    ModelBiasJobOutputConfig: #required",
+            "      ${7:MonitoringOutputConfig}",
+            "    NetworkConfig:",
+            "      ${8:NetworkConfig}",
+            "    RoleArn: ${9:String} #required",
+            "    StoppingCondition:",
+            "      ${10:StoppingCondition}",
+            "    Tags:",
+            "      - ${11:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelbiasjobdefinition.html",
+            "Attributes: ",
+            "  JobDefinitionArn",
+            "  CreationTime"
+        ],
+        "prefix": "sagemaker-modelbiasjobdefinition",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::ModelExplainabilityJobDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::ModelExplainabilityJobDefinition",
+            "  Properties:",
+            "    JobDefinitionName: ${2:String}",
+            "    JobResources: #required",
+            "      ${3:MonitoringResources}",
+            "    ModelExplainabilityAppSpecification: #required",
+            "      ${4:ModelExplainabilityAppSpecification}",
+            "    ModelExplainabilityBaselineConfig:",
+            "      ${5:ModelExplainabilityBaselineConfig}",
+            "    ModelExplainabilityJobInput: #required",
+            "      ${6:ModelExplainabilityJobInput}",
+            "    ModelExplainabilityJobOutputConfig: #required",
+            "      ${7:MonitoringOutputConfig}",
+            "    NetworkConfig:",
+            "      ${8:NetworkConfig}",
+            "    RoleArn: ${9:String} #required",
+            "    StoppingCondition:",
+            "      ${10:StoppingCondition}",
+            "    Tags:",
+            "      - ${11:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelexplainabilityjobdefinition.html",
+            "Attributes: ",
+            "  JobDefinitionArn",
+            "  CreationTime"
+        ],
+        "prefix": "sagemaker-modelexplainabilityjobdefinition",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::ModelPackageGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::ModelPackageGroup",
+            "  Properties:",
+            "    ModelPackageGroupDescription: ${2:String}",
+            "    ModelPackageGroupName: ${3:String} #required",
+            "    ModelPackageGroupPolicy: ${4:}",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelpackagegroup.html",
+            "Attributes: ",
+            "  ModelPackageGroupArn",
+            "  CreationTime",
+            "  ModelPackageGroupStatus"
+        ],
+        "prefix": "sagemaker-modelpackagegroup",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::ModelQualityJobDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::ModelQualityJobDefinition",
+            "  Properties:",
+            "    JobDefinitionName: ${2:String}",
+            "    JobResources: #required",
+            "      ${3:MonitoringResources}",
+            "    ModelQualityAppSpecification: #required",
+            "      ${4:ModelQualityAppSpecification}",
+            "    ModelQualityBaselineConfig:",
+            "      ${5:ModelQualityBaselineConfig}",
+            "    ModelQualityJobInput: #required",
+            "      ${6:ModelQualityJobInput}",
+            "    ModelQualityJobOutputConfig: #required",
+            "      ${7:MonitoringOutputConfig}",
+            "    NetworkConfig:",
+            "      ${8:NetworkConfig}",
+            "    RoleArn: ${9:String} #required",
+            "    StoppingCondition:",
+            "      ${10:StoppingCondition}",
+            "    Tags:",
+            "      - ${11:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelqualityjobdefinition.html",
+            "Attributes: ",
+            "  JobDefinitionArn",
+            "  CreationTime"
+        ],
+        "prefix": "sagemaker-modelqualityjobdefinition",
+        "scope": "source.cloudformation"
+    },
     "AWS::SageMaker::MonitoringSchedule": {
         "body": [
             "${1:LogicalID}:",
@@ -11849,17 +12643,17 @@
             "    FailureReason: ${3:String}",
             "    LastMonitoringExecutionSummary:",
             "      ${4:MonitoringExecutionSummary}",
-            "    MonitoringScheduleArn: ${5:String}",
             "    MonitoringScheduleConfig: #required",
-            "      ${6:MonitoringScheduleConfig}",
-            "    MonitoringScheduleName: ${7:String} #required",
-            "    MonitoringScheduleStatus: ${8:String}",
+            "      ${5:MonitoringScheduleConfig}",
+            "    MonitoringScheduleName: ${6:String} #required",
+            "    MonitoringScheduleStatus: ${7:String}",
             "    Tags:",
-            "      - ${9:Tag}"
+            "      - ${8:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-monitoringschedule.html",
             "Attributes: ",
+            "  MonitoringScheduleArn",
             "  CreationTime",
             "  LastModifiedTime"
         ],
@@ -11915,6 +12709,48 @@
             "  NotebookInstanceLifecycleConfigName"
         ],
         "prefix": "sagemaker-notebookinstancelifecycleconfig",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::Pipeline": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::Pipeline",
+            "  Properties:",
+            "    PipelineDefinition: ${2:Json} #required",
+            "    PipelineDescription: ${3:String}",
+            "    PipelineDisplayName: ${4:String}",
+            "    PipelineName: ${5:String} #required",
+            "    RoleArn: ${6:String} #required",
+            "    Tags:",
+            "      - ${7:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-pipeline.html"
+        ],
+        "prefix": "sagemaker-pipeline",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::Project": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::Project",
+            "  Properties:",
+            "    ProjectDescription: ${2:String}",
+            "    ProjectName: ${3:String} #required",
+            "    ServiceCatalogProvisioningDetails: ${4:Json} #required",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-project.html",
+            "Attributes: ",
+            "  ProjectArn",
+            "  ProjectId",
+            "  CreationTime",
+            "  ServiceCatalogProvisionedProductDetails",
+            "  ProjectStatus"
+        ],
+        "prefix": "sagemaker-project",
         "scope": "source.cloudformation"
     },
     "AWS::SageMaker::Workteam": {

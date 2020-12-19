@@ -3,7 +3,7 @@
   "displayName": "CloudFormation Resource Snippets",
   "description": "This VSCode extension adds autocompletion for all the resources and properties that AWS CloudFormation supports. It get's updated automatically every week by fetching the resources from the official AWS CloudFormation resource specification!",
   "author": "Danny Steenman",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "publisher": "dsteenman",
   "icon": "images/AWS-CloudFormation-Icon.png",
   "homepage": "https://dannys.cloud",
