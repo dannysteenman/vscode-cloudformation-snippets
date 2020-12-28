@@ -1,10 +1,10 @@
-# CloudFormation Snippets for VSCode
+# CloudFormation Snippets for VS Code
 
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 [![Current Installs](https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 [![Rating](https://vsmarketplacebadge.apphb.com/rating-star/dsteenman.cloudformation-yaml-snippets.svg)](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 
-This [VSCode extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) adds autocompletion for all the resources that AWS CloudFormation supports. It get's updated automatically every week by fetching the resources from the official [AWS CloudFormation resource specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
+This [VS Code extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) adds autocompletion for all the resources that AWS CloudFormation supports. It get's updated automatically every week by fetching the resources from the official [AWS CloudFormation resource specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
 
 ## New (Nov 2020)
 
@@ -25,7 +25,7 @@ This [VSCode extension](https://marketplace.visualstudio.com/items?itemName=dste
 
 * **Step 1.** Install this extension
 * **Step 2.** create a `.yml` file to start working on CloudFormation
-* **Step 3.** Check in the bottom right-hand corner of the VSCode editor that the file type is listed as "YAML".
+* **Step 3.** Check in the bottom right-hand corner of the VS Code editor that the file type is listed as "YAML".
 * **Step 4.** To start with the basic template structure, type **cfn** to get the YAML formatted template fragment.
 * **Step 5.** Start adding resources in the resource section by using their prefix name e.g. ```autoscaling-autoscalinggroup``` equals resource type ```AWS::AutoScaling::AutoScalingGroup```
 
