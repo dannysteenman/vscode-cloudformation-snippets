@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.5.0 (2021-01-17)
+------------------
+- The following resource was updated: AWS::MSK::Cluster. [Github
+  Actions]
+- Fix syntax. [Danny Steenman]
+- Updated git log depth for GH Actions + GH username. [Danny Steenman]
+
+
 3.4.0 (2021-01-08)
 ------------------
 - The following resource was updated:
