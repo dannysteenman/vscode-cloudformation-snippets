@@ -31,17 +31,17 @@ This [VS Code extension](https://marketplace.visualstudio.com/items?itemName=dst
 
 > **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
-![CFN YAML snippet example](https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/images/cfn-yaml-snippet-example.gif)
+![CFN YAML snippet example](https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/images/cfn-yaml-snippet-example.gif)
 
 ---
 
 ## Support
 
-If you have a feature request or an issue, please let me know on [Github](https://github.com/dsteenman/cloudformation-yaml-snippets/issues)
+If you have a feature request or an issue, please let me know on [Github](https://github.com/dannysteenman/cloudformation-yaml-snippets/issues)
 
 ## Tips and tricks
 
- If you want to boost your productivity even more with VS Code and CloudFormation. Check [this article](https://dannys.cloud/level-up-cloudformation-with-vs-code) I wrote to help you level up your templating game!
+ If you want to boost your productivity even more with VS Code and CloudFormation. Have a look at [this article](https://dannys.cloud/level-up-cloudformation-with-vs-code) that I wrote to help you level up your CloudFormation templating game!
 <br>
 <br>
 
@@ -49,8 +49,8 @@ If you have a feature request or an issue, please let me know on [Github](https:
 <br>
 
  <p align='center'>
- <a href="https://dannys.cloud"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/homepage.png"></a>&nbsp;&nbsp;
-<a href="https://dev.to/dsteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/devto.png"></a>&nbsp;&nbsp;
-<a href="https://twitter.com/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/twitter.png"></a>&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/dannysteenman/"><img height="30" src="https://raw.githubusercontent.com/dsteenman/cloudformation-yaml-snippets/main/icon/linkedin.png"></a>
+ <a href="https://dannys.cloud"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/homepage.png"></a>&nbsp;&nbsp;
+<a href="https://dev.to/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/devto.png"></a>&nbsp;&nbsp;
+<a href="https://twitter.com/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/twitter.png"></a>&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/dannysteenman/"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/linkedin.png"></a>
 </p>
