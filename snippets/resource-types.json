@@ -6092,6 +6092,26 @@
         "prefix": "emr-step",
         "scope": "source.cloudformation"
     },
+    "AWS::EMRContainers::VirtualCluster": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EMRContainers::VirtualCluster",
+            "  Properties:",
+            "    ContainerProvider: #required",
+            "      ${2:ContainerProvider}",
+            "    Name: ${3:String} #required",
+            "    Tags:",
+            "      - ${4:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-virtualcluster.html",
+            "Attributes: ",
+            "  Arn",
+            "  Id"
+        ],
+        "prefix": "emrcontainers-virtualcluster",
+        "scope": "source.cloudformation"
+    },
     "AWS::ElastiCache::CacheCluster": {
         "body": [
             "${1:LogicalID}:",
@@ -6264,16 +6284,12 @@
             "  Type: AWS::ElastiCache::User",
             "  Properties:",
             "    AccessString: ${2:String}",
-            "    Authentication:",
-            "      ${3:Authentication}",
-            "    Engine: ${4:String} #required",
-            "    NoPasswordRequired: ${5:Boolean}",
+            "    Engine: ${3:String} #required",
+            "    NoPasswordRequired: ${4:Boolean}",
             "    Passwords:",
-            "      - ${6:String}",
-            "    UserGroupIds:",
-            "      - ${7:String}",
-            "    UserId: ${8:String} #required",
-            "    UserName: ${9:String} #required"
+            "      - ${5:String}",
+            "    UserId: ${6:String} #required",
+            "    UserName: ${7:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html",
@@ -6290,13 +6306,9 @@
             "  Type: AWS::ElastiCache::UserGroup",
             "  Properties:",
             "    Engine: ${2:String} #required",
-            "    PendingChanges:",
-            "      ${3:UserGroupPendingChanges}",
-            "    ReplicationGroupIds:",
-            "      - ${4:String}",
-            "    UserGroupId: ${5:String} #required",
+            "    UserGroupId: ${3:String} #required",
             "    UserIds:",
-            "      - ${6:String}"
+            "      - ${4:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-usergroup.html",
@@ -8613,10 +8625,12 @@
             "    DatastoreName: ${2:String}",
             "    DatastoreStorage:",
             "      ${3:DatastoreStorage}",
+            "    FileFormatConfiguration:",
+            "      ${4:FileFormatConfiguration}",
             "    RetentionPeriod:",
-            "      ${4:RetentionPeriod}",
+            "      ${5:RetentionPeriod}",
             "    Tags:",
-            "      - ${5:Tag}"
+            "      - ${6:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-datastore.html"
@@ -9536,34 +9550,18 @@
             "  Properties:",
             "    AllowedOperations:",
             "      - ${2:String}",
-            "    ClientToken: ${3:String}",
-            "    Filters:",
-            "      - ${4:Filter}",
-            "    GrantArns:",
-            "      - ${5:String}",
-            "    GrantName: ${6:String}",
-            "    GrantStatus: ${7:String}",
-            "    GrantedOperations:",
-            "      - ${8:String}",
-            "    GranteePrincipalArn: ${9:String}",
-            "    HomeRegion: ${10:String}",
-            "    LicenseArn: ${11:String}",
-            "    MaxResults: ${12:Integer}",
-            "    NextToken: ${13:String}",
-            "    ParentArn: ${14:String}",
+            "    GrantName: ${3:String}",
+            "    HomeRegion: ${4:String}",
+            "    LicenseArn: ${5:String}",
             "    Principals:",
-            "      - ${15:String}",
-            "    SourceVersion: ${16:String}",
-            "    Status: ${17:String}",
-            "    StatusReason: ${18:String}",
-            "    Tags:",
-            "      - ${19:Tag}",
-            "    Version: ${20:String}"
+            "      - ${6:String}",
+            "    Status: ${7:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-grant.html",
             "Attributes: ",
-            "  GrantArn"
+            "  GrantArn",
+            "  Version"
         ],
         "prefix": "licensemanager-grant",
         "scope": "source.cloudformation"
@@ -9574,37 +9572,27 @@
             "  Type: AWS::LicenseManager::License",
             "  Properties:",
             "    Beneficiary: ${2:String}",
-            "    ClientToken: ${3:String}",
             "    ConsumptionConfiguration: #required",
-            "      ${4:ConsumptionConfiguration}",
+            "      ${3:ConsumptionConfiguration}",
             "    Entitlements: #required",
-            "      - ${5:Entitlement}",
-            "    Filters:",
-            "      - ${6:Filter}",
-            "    HomeRegion: ${7:String} #required",
+            "      - ${4:Entitlement}",
+            "    HomeRegion: ${5:String} #required",
             "    Issuer: #required",
-            "      ${8:IssuerData}",
-            "    LicenseArns:",
-            "      - ${9:String}",
+            "      ${6:IssuerData}",
             "    LicenseMetadata:",
-            "      - ${10:Metadata}",
-            "    LicenseName: ${11:String}",
-            "    MaxResults: ${12:Integer}",
-            "    NextToken: ${13:String}",
-            "    ProductName: ${14:String}",
-            "    ProductSKU: ${15:String}",
-            "    SourceVersion: ${16:String}",
-            "    Status: ${17:String}",
-            "    Tags:",
-            "      - ${18:Tag}",
+            "      - ${7:Metadata}",
+            "    LicenseName: ${8:String} #required",
+            "    ProductName: ${9:String} #required",
+            "    ProductSKU: ${10:String}",
+            "    Status: ${11:String}",
             "    Validity: #required",
-            "      ${19:ValidityDateFormat}",
-            "    Version: ${20:String}"
+            "      ${12:ValidityDateFormat}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-license.html",
             "Attributes: ",
-            "  LicenseArn"
+            "  LicenseArn",
+            "  Version"
         ],
         "prefix": "licensemanager-license",
         "scope": "source.cloudformation"
@@ -11354,6 +11342,128 @@
         "prefix": "qldb-stream",
         "scope": "source.cloudformation"
     },
+    "AWS::QuickSight::Analysis": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QuickSight::Analysis",
+            "  Properties:",
+            "    AnalysisId: ${2:String} #required",
+            "    AwsAccountId: ${3:String} #required",
+            "    Errors:",
+            "      - ${4:AnalysisError}",
+            "    Name: ${5:String}",
+            "    Parameters:",
+            "      ${6:Parameters}",
+            "    Permissions:",
+            "      - ${7:ResourcePermission}",
+            "    SourceEntity:",
+            "      ${8:AnalysisSourceEntity}",
+            "    Tags:",
+            "      - ${9:Tag}",
+            "    ThemeArn: ${10:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreatedTime",
+            "  DataSetArns",
+            "  LastUpdatedTime",
+            "  Sheets",
+            "  Status"
+        ],
+        "prefix": "quicksight-analysis",
+        "scope": "source.cloudformation"
+    },
+    "AWS::QuickSight::Dashboard": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QuickSight::Dashboard",
+            "  Properties:",
+            "    AwsAccountId: ${2:String} #required",
+            "    DashboardId: ${3:String} #required",
+            "    DashboardPublishOptions:",
+            "      ${4:DashboardPublishOptions}",
+            "    Name: ${5:String}",
+            "    Parameters:",
+            "      ${6:Parameters}",
+            "    Permissions:",
+            "      - ${7:ResourcePermission}",
+            "    SourceEntity:",
+            "      ${8:DashboardSourceEntity}",
+            "    Tags:",
+            "      - ${9:Tag}",
+            "    ThemeArn: ${10:String}",
+            "    VersionDescription: ${11:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreatedTime",
+            "  LastPublishedTime",
+            "  LastUpdatedTime",
+            "  Version"
+        ],
+        "prefix": "quicksight-dashboard",
+        "scope": "source.cloudformation"
+    },
+    "AWS::QuickSight::Template": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QuickSight::Template",
+            "  Properties:",
+            "    AwsAccountId: ${2:String} #required",
+            "    Name: ${3:String}",
+            "    Permissions:",
+            "      - ${4:ResourcePermission}",
+            "    SourceEntity:",
+            "      ${5:TemplateSourceEntity}",
+            "    Tags:",
+            "      - ${6:Tag}",
+            "    TemplateId: ${7:String} #required",
+            "    VersionDescription: ${8:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-template.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreatedTime",
+            "  LastUpdatedTime",
+            "  Version"
+        ],
+        "prefix": "quicksight-template",
+        "scope": "source.cloudformation"
+    },
+    "AWS::QuickSight::Theme": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QuickSight::Theme",
+            "  Properties:",
+            "    AwsAccountId: ${2:String} #required",
+            "    BaseThemeId: ${3:String}",
+            "    Configuration:",
+            "      ${4:ThemeConfiguration}",
+            "    Name: ${5:String}",
+            "    Permissions:",
+            "      - ${6:ResourcePermission}",
+            "    Tags:",
+            "      - ${7:Tag}",
+            "    ThemeId: ${8:String} #required",
+            "    VersionDescription: ${9:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-theme.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreatedTime",
+            "  LastUpdatedTime",
+            "  Type",
+            "  Version"
+        ],
+        "prefix": "quicksight-theme",
+        "scope": "source.cloudformation"
+    },
     "AWS::RAM::ResourceShare": {
         "body": [
             "${1:LogicalID}:",
@@ -12199,15 +12309,14 @@
             "  Type: AWS::S3::AccessPoint",
             "  Properties:",
             "    Bucket: ${2:String} #required",
-            "    CreationDate: ${3:String}",
-            "    Name: ${4:String}",
-            "    NetworkOrigin: ${5:String}",
-            "    Policy: ${6:Json}",
-            "    PolicyStatus: ${7:Json}",
+            "    Name: ${3:String}",
+            "    NetworkOrigin: ${4:String}",
+            "    Policy: ${5:Json}",
+            "    PolicyStatus: ${6:Json}",
             "    PublicAccessBlockConfiguration:",
-            "      ${8:PublicAccessBlockConfiguration}",
+            "      ${7:PublicAccessBlockConfiguration}",
             "    VpcConfiguration:",
-            "      ${9:VpcConfiguration}"
+            "      ${8:VpcConfiguration}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html"
@@ -13445,7 +13554,8 @@
             "  Properties:",
             "    AcceptLanguage: ${2:String}",
             "    AccountId: ${3:String} #required",
-            "    PortfolioId: ${4:String} #required"
+            "    PortfolioId: ${4:String} #required",
+            "    ShareTagOptions: ${5:Boolean}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioshare.html"
@@ -13520,6 +13630,83 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoptionassociation.html"
         ],
         "prefix": "servicecatalog-tagoptionassociation",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ServiceCatalogAppRegistry::Application": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ServiceCatalogAppRegistry::Application",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    Name: ${3:String} #required",
+            "    Tags:",
+            "      ${4:Map}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-application.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "servicecatalogappregistry-application",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ServiceCatalogAppRegistry::AttributeGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ServiceCatalogAppRegistry::AttributeGroup",
+            "  Properties:",
+            "    Attributes: #required",
+            "      ${2:Attributes}",
+            "    Description: ${3:String}",
+            "    Name: ${4:String} #required",
+            "    Tags:",
+            "      ${5:Map}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-attributegroup.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "servicecatalogappregistry-attributegroup",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation",
+            "  Properties:",
+            "    Application: ${2:String} #required",
+            "    AttributeGroup: ${3:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-attributegroupassociation.html",
+            "Attributes: ",
+            "  ApplicationArn",
+            "  AttributeGroupArn",
+            "  Id"
+        ],
+        "prefix": "servicecatalogappregistry-attributegroupassociation",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ServiceCatalogAppRegistry::ResourceAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ServiceCatalogAppRegistry::ResourceAssociation",
+            "  Properties:",
+            "    Application: ${2:String} #required",
+            "    Resource: ${3:String} #required",
+            "    ResourceType: ${4:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-resourceassociation.html",
+            "Attributes: ",
+            "  ApplicationArn",
+            "  ResourceArn",
+            "  Id"
+        ],
+        "prefix": "servicecatalogappregistry-resourceassociation",
         "scope": "source.cloudformation"
     },
     "AWS::ServiceDiscovery::HttpNamespace": {
