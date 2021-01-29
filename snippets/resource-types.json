@@ -4,12 +4,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::ACMPCA::Certificate",
             "  Properties:",
-            "    CertificateAuthorityArn: ${2:String} #required",
-            "    CertificateSigningRequest: ${3:String} #required",
-            "    SigningAlgorithm: ${4:String} #required",
-            "    TemplateArn: ${5:String}",
+            "    ApiPassthrough:",
+            "      ${2:ApiPassthrough}",
+            "    CertificateAuthorityArn: ${3:String} #required",
+            "    CertificateSigningRequest: ${4:String} #required",
+            "    SigningAlgorithm: ${5:String} #required",
+            "    TemplateArn: ${6:String}",
             "    Validity: #required",
-            "      ${6:Validity}"
+            "      ${7:Validity}",
+            "    ValidityNotBefore:",
+            "      ${8:Validity}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificate.html",
@@ -138,13 +142,14 @@
             "${1:LogicalID}:",
             "  Type: AWS::AmazonMQ::Configuration",
             "  Properties:",
-            "    Data: ${2:String} #required",
-            "    Description: ${3:String}",
-            "    EngineType: ${4:String} #required",
-            "    EngineVersion: ${5:String} #required",
-            "    Name: ${6:String} #required",
+            "    AuthenticationStrategy: ${2:String}",
+            "    Data: ${3:String} #required",
+            "    Description: ${4:String}",
+            "    EngineType: ${5:String} #required",
+            "    EngineVersion: ${6:String} #required",
+            "    Name: ${7:String} #required",
             "    Tags:",
-            "      - ${7:TagsEntry}"
+            "      - ${8:TagsEntry}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-configuration.html",
@@ -893,17 +898,18 @@
             "  Properties:",
             "    AccessLogSettings:",
             "      ${2:AccessLogSettings}",
-            "    ApiId: ${3:String} #required",
-            "    AutoDeploy: ${4:Boolean}",
-            "    ClientCertificateId: ${5:String}",
+            "    AccessPolicyId: ${3:String}",
+            "    ApiId: ${4:String} #required",
+            "    AutoDeploy: ${5:Boolean}",
+            "    ClientCertificateId: ${6:String}",
             "    DefaultRouteSettings:",
-            "      ${6:RouteSettings}",
-            "    DeploymentId: ${7:String}",
-            "    Description: ${8:String}",
-            "    RouteSettings: ${9:Json}",
-            "    StageName: ${10:String} #required",
-            "    StageVariables: ${11:Json}",
-            "    Tags: ${12:Json}"
+            "      ${7:RouteSettings}",
+            "    DeploymentId: ${8:String}",
+            "    Description: ${9:String}",
+            "    RouteSettings: ${10:Json}",
+            "    StageName: ${11:String} #required",
+            "    StageVariables: ${12:Json}",
+            "    Tags: ${13:Json}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-stage.html"
@@ -5679,10 +5685,12 @@
             "    ClusterName: ${3:String}",
             "    ClusterSettings:",
             "      - ${4:ClusterSettings}",
+            "    Configuration:",
+            "      ${5:ClusterConfiguration}",
             "    DefaultCapacityProviderStrategy:",
-            "      - ${5:CapacityProviderStrategyItem}",
+            "      - ${6:CapacityProviderStrategyItem}",
             "    Tags:",
-            "      - ${6:Tag}"
+            "      - ${7:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html",
@@ -9678,6 +9686,21 @@
         "prefix": "logs-subscriptionfilter",
         "scope": "source.cloudformation"
     },
+    "AWS::LookoutVision::Project": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LookoutVision::Project",
+            "  Properties:",
+            "    ProjectName: ${2:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lookoutvision-project.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "lookoutvision-project",
+        "scope": "source.cloudformation"
+    },
     "AWS::MSK::Cluster": {
         "body": [
             "${1:LogicalID}:",
@@ -9963,16 +9986,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::MediaConnect::FlowVpcInterface",
             "  Properties:",
-            "    RoleArn: ${2:String} #required",
+            "    FlowArn: ${2:String} #required",
+            "    Name: ${3:String} #required",
+            "    RoleArn: ${4:String} #required",
             "    SecurityGroupIds: #required",
-            "      - ${3:String}",
-            "    SubnetId: ${4:String} #required"
+            "      - ${5:String}",
+            "    SubnetId: ${6:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowvpcinterface.html",
             "Attributes: ",
-            "  FlowArn",
-            "  Name",
             "  NetworkInterfaceIds"
         ],
         "prefix": "mediaconnect-flowvpcinterface",
@@ -12310,16 +12333,17 @@
             "  Properties:",
             "    Bucket: ${2:String} #required",
             "    Name: ${3:String}",
-            "    NetworkOrigin: ${4:String}",
-            "    Policy: ${5:Json}",
-            "    PolicyStatus: ${6:Json}",
+            "    Policy: ${4:Json}",
             "    PublicAccessBlockConfiguration:",
-            "      ${7:PublicAccessBlockConfiguration}",
+            "      ${5:PublicAccessBlockConfiguration}",
             "    VpcConfiguration:",
-            "      ${8:VpcConfiguration}"
+            "      ${6:VpcConfiguration}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html",
+            "Attributes: ",
+            "  PolicyStatus",
+            "  NetworkOrigin"
         ],
         "prefix": "s3-accesspoint",
         "scope": "source.cloudformation"
@@ -12711,12 +12735,12 @@
             "    Description: ${2:String}",
             "    LoggingInfo:",
             "      ${3:LoggingInfo}",
-            "    MaxConcurrency: ${4:String} #required",
-            "    MaxErrors: ${5:String} #required",
+            "    MaxConcurrency: ${4:String}",
+            "    MaxErrors: ${5:String}",
             "    Name: ${6:String}",
             "    Priority: ${7:Integer} #required",
             "    ServiceRoleArn: ${8:String}",
-            "    Targets: #required",
+            "    Targets:",
             "      - ${9:Target}",
             "    TaskArn: ${10:String} #required",
             "    TaskInvocationParameters:",
@@ -12835,8 +12859,7 @@
             "  Properties:",
             "    AccessControlAttributes:",
             "      - ${2:AccessControlAttribute}",
-            "    InstanceAccessControlAttributeConfiguration: ${3:Json}",
-            "    InstanceArn: ${4:String} #required"
+            "    InstanceArn: ${3:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instanceaccesscontrolattributeconfiguration.html"
@@ -12927,7 +12950,7 @@
             "      ${2:Device}",
             "    DeviceFleetName: ${3:String} #required",
             "    Tags:",
-            "      ${4:Tag}"
+            "      - ${4:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-device.html"
@@ -12946,7 +12969,7 @@
             "      ${4:EdgeOutputConfig}",
             "    RoleArn: ${5:String} #required",
             "    Tags:",
-            "      ${6:Tag}"
+            "      - ${6:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-devicefleet.html"
@@ -12999,6 +13022,29 @@
         "prefix": "sagemaker-endpointconfig",
         "scope": "source.cloudformation"
     },
+    "AWS::SageMaker::FeatureGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::FeatureGroup",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    EventTimeFeatureName: ${3:String} #required",
+            "    FeatureDefinitions: #required",
+            "      - ${4:FeatureDefinition}",
+            "    FeatureGroupName: ${5:String} #required",
+            "    OfflineStoreConfig: ${6:Json}",
+            "    OnlineStoreConfig: ${7:Json}",
+            "    RecordIdentifierFeatureName: ${8:String} #required",
+            "    RoleArn: ${9:String}",
+            "    Tags:",
+            "      - ${10:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-featuregroup.html"
+        ],
+        "prefix": "sagemaker-featuregroup",
+        "scope": "source.cloudformation"
+    },
     "AWS::SageMaker::Model": {
         "body": [
             "${1:LogicalID}:",
@@ -13008,13 +13054,15 @@
             "      - ${2:ContainerDefinition}",
             "    EnableNetworkIsolation: ${3:Boolean}",
             "    ExecutionRoleArn: ${4:String} #required",
-            "    ModelName: ${5:String}",
+            "    InferenceExecutionConfig:",
+            "      ${5:InferenceExecutionConfig}",
+            "    ModelName: ${6:String}",
             "    PrimaryContainer:",
-            "      ${6:ContainerDefinition}",
+            "      ${7:ContainerDefinition}",
             "    Tags:",
-            "      - ${7:Tag}",
+            "      - ${8:Tag}",
             "    VpcConfig:",
-            "      ${8:VpcConfig}"
+            "      ${9:VpcConfig}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html",
