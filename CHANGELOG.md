@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.6.0 (2021-01-29)
+------------------
+- The following resource was updated: <code
+  class="code">AWS::ApiGatewayV2::Stage</code>. [Github Actions]
+
+
 3.5.0 (2021-01-17)
 ------------------
 - The following resource was updated: AWS::MSK::Cluster. [Github
