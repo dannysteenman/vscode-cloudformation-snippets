@@ -1103,7 +1103,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::AppMesh::GatewayRoute",
             "  Properties:",
-            "    GatewayRouteName: ${2:String} #required",
+            "    GatewayRouteName: ${2:String}",
             "    MeshName: ${3:String} #required",
             "    MeshOwner: ${4:String}",
             "    Spec: #required",
@@ -1131,7 +1131,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::AppMesh::Mesh",
             "  Properties:",
-            "    MeshName: ${2:String} #required",
+            "    MeshName: ${2:String}",
             "    Spec:",
             "      ${3:MeshSpec}",
             "    Tags:",
@@ -1156,7 +1156,7 @@
             "  Properties:",
             "    MeshName: ${2:String} #required",
             "    MeshOwner: ${3:String}",
-            "    RouteName: ${4:String} #required",
+            "    RouteName: ${4:String}",
             "    Spec: #required",
             "      ${5:RouteSpec}",
             "    Tags:",
@@ -1188,7 +1188,7 @@
             "      ${4:VirtualGatewaySpec}",
             "    Tags:",
             "      - ${5:Tag}",
-            "    VirtualGatewayName: ${6:String} #required"
+            "    VirtualGatewayName: ${6:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualgateway.html",
@@ -1214,7 +1214,7 @@
             "      ${4:VirtualNodeSpec}",
             "    Tags:",
             "      - ${5:Tag}",
-            "    VirtualNodeName: ${6:String} #required"
+            "    VirtualNodeName: ${6:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualnode.html",
@@ -1240,7 +1240,7 @@
             "      ${4:VirtualRouterSpec}",
             "    Tags:",
             "      - ${5:Tag}",
-            "    VirtualRouterName: ${6:String} #required"
+            "    VirtualRouterName: ${6:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appmesh-virtualrouter.html",
@@ -2108,7 +2108,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::Cassandra::Keyspace",
             "  Properties:",
-            "    KeyspaceName: ${2:String}"
+            "    KeyspaceName: ${2:String}",
+            "    Tags:",
+            "      - ${3:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-keyspace.html"
@@ -2128,9 +2130,12 @@
             "    KeyspaceName: ${4:String} #required",
             "    PartitionKeyColumns: #required",
             "      - ${5:Column}",
+            "    PointInTimeRecoveryEnabled: ${6:Boolean}",
             "    RegularColumns:",
-            "      - ${6:Column}",
-            "    TableName: ${7:String}"
+            "      - ${7:Column}",
+            "    TableName: ${8:String}",
+            "    Tags:",
+            "      - ${9:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html"
@@ -2643,9 +2648,10 @@
             "    IncludeFilters:",
             "      - ${4:MetricStreamFilter}",
             "    Name: ${5:String}",
-            "    RoleArn: ${6:String} #required",
+            "    OutputFormat: ${6:String}",
+            "    RoleArn: ${7:String} #required",
             "    Tags:",
-            "      - ${7:Tag}"
+            "      - ${8:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-metricstream.html",
@@ -5636,6 +5642,37 @@
         "prefix": "ecr-publicrepository",
         "scope": "source.cloudformation"
     },
+    "AWS::ECR::RegistryPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ECR::RegistryPolicy",
+            "  Properties:",
+            "    PolicyText: ${2:Json} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registrypolicy.html",
+            "Attributes: ",
+            "  RegistryId"
+        ],
+        "prefix": "ecr-registrypolicy",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ECR::ReplicationConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ECR::ReplicationConfiguration",
+            "  Properties:",
+            "    ReplicationConfiguration: #required",
+            "      ${2:ReplicationConfiguration}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-replicationconfiguration.html",
+            "Attributes: ",
+            "  RegistryId"
+        ],
+        "prefix": "ecr-replicationconfiguration",
+        "scope": "source.cloudformation"
+    },
     "AWS::ECR::Repository": {
         "body": [
             "${1:LogicalID}:",
@@ -5729,27 +5766,28 @@
             "      ${5:DeploymentController}",
             "    DesiredCount: ${6:Integer}",
             "    EnableECSManagedTags: ${7:Boolean}",
-            "    HealthCheckGracePeriodSeconds: ${8:Integer}",
-            "    LaunchType: ${9:String}",
+            "    EnableExecuteCommand: ${8:Boolean}",
+            "    HealthCheckGracePeriodSeconds: ${9:Integer}",
+            "    LaunchType: ${10:String}",
             "    LoadBalancers:",
-            "      - ${10:LoadBalancer}",
+            "      - ${11:LoadBalancer}",
             "    NetworkConfiguration:",
-            "      ${11:NetworkConfiguration}",
+            "      ${12:NetworkConfiguration}",
             "    PlacementConstraints:",
-            "      - ${12:PlacementConstraint}",
+            "      - ${13:PlacementConstraint}",
             "    PlacementStrategies:",
-            "      - ${13:PlacementStrategy}",
-            "    PlatformVersion: ${14:String}",
-            "    PropagateTags: ${15:String}",
-            "    Role: ${16:String}",
-            "    SchedulingStrategy: ${17:String}",
-            "    ServiceArn: ${18:String}",
-            "    ServiceName: ${19:String}",
+            "      - ${14:PlacementStrategy}",
+            "    PlatformVersion: ${15:String}",
+            "    PropagateTags: ${16:String}",
+            "    Role: ${17:String}",
+            "    SchedulingStrategy: ${18:String}",
+            "    ServiceArn: ${19:String}",
+            "    ServiceName: ${20:String}",
             "    ServiceRegistries:",
-            "      - ${20:ServiceRegistry}",
+            "      - ${21:ServiceRegistry}",
             "    Tags:",
-            "      - ${21:Tag}",
-            "    TaskDefinition: ${22:String}"
+            "      - ${22:Tag}",
+            "    TaskDefinition: ${23:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
@@ -6161,6 +6199,31 @@
             "  RedisEndpoint.Port"
         ],
         "prefix": "elasticache-cachecluster",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ElastiCache::GlobalReplicationGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ElastiCache::GlobalReplicationGroup",
+            "  Properties:",
+            "    AutomaticFailoverEnabled: ${2:Boolean}",
+            "    CacheNodeType: ${3:String}",
+            "    EngineVersion: ${4:String}",
+            "    GlobalNodeGroupCount: ${5:Integer}",
+            "    GlobalReplicationGroupDescription: ${6:String}",
+            "    GlobalReplicationGroupIdSuffix: ${7:String}",
+            "    Members: #required",
+            "      - ${8:GlobalReplicationGroupMember}",
+            "    RegionalConfigurations:",
+            "      - ${9:RegionalConfiguration}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-globalreplicationgroup.html",
+            "Attributes: ",
+            "  GlobalReplicationGroupId",
+            "  Status"
+        ],
+        "prefix": "elasticache-globalreplicationgroup",
         "scope": "source.cloudformation"
     },
     "AWS::ElastiCache::ParameterGroup": {
@@ -8156,6 +8219,37 @@
         "prefix": "imagebuilder-component",
         "scope": "source.cloudformation"
     },
+    "AWS::ImageBuilder::ContainerRecipe": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ImageBuilder::ContainerRecipe",
+            "  Properties:",
+            "    Components: #required",
+            "      - ${2:ComponentConfiguration}",
+            "    ContainerType: ${3:String} #required",
+            "    Description: ${4:String}",
+            "    DockerfileTemplateData: ${5:String}",
+            "    DockerfileTemplateUri: ${6:String}",
+            "    ImageOsVersionOverride: ${7:String}",
+            "    KmsKeyId: ${8:String}",
+            "    Name: ${9:String} #required",
+            "    ParentImage: ${10:String} #required",
+            "    PlatformOverride: ${11:String}",
+            "    Tags:",
+            "      ${12:Map}",
+            "    TargetRepository: #required",
+            "      ${13:TargetContainerRepository}",
+            "    Version: ${14:String} #required",
+            "    WorkingDirectory: ${15:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-containerrecipe.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "imagebuilder-containerrecipe",
+        "scope": "source.cloudformation"
+    },
     "AWS::ImageBuilder::DistributionConfiguration": {
         "body": [
             "${1:LogicalID}:",
@@ -8878,10 +8972,9 @@
             "    Expression: ${3:String} #required",
             "    ExpressionType: ${4:String} #required",
             "    Name: ${5:String} #required",
-            "    NextToken: ${6:String}",
-            "    RoleArn: ${7:String} #required",
+            "    RoleArn: ${6:String} #required",
             "    Tags:",
-            "      - ${8:Tag}"
+            "      - ${7:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-destination.html",
@@ -8896,12 +8989,11 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTWireless::DeviceProfile",
             "  Properties:",
-            "    LoRaWANDeviceProfile:",
+            "    LoRaWAN:",
             "      ${2:LoRaWANDeviceProfile}",
             "    Name: ${3:String}",
-            "    NextToken: ${4:String}",
             "    Tags:",
-            "      - ${5:Tag}"
+            "      - ${4:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-deviceprofile.html",
@@ -8917,18 +9009,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTWireless::ServiceProfile",
             "  Properties:",
-            "    LoRaWANGetServiceProfileInfo:",
-            "      ${2:LoRaWANGetServiceProfileInfo}",
-            "    LoRaWANServiceProfile:",
-            "      ${3:LoRaWANServiceProfile}",
-            "    Name: ${4:String}",
-            "    NextToken: ${5:String}",
+            "    LoRaWAN:",
+            "      ${2:LoRaWANServiceProfile}",
+            "    Name: ${3:String}",
             "    Tags:",
-            "      - ${6:Tag}"
+            "      - ${4:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html",
             "Attributes: ",
+            "  LoRaWANResponse",
             "  Arn",
             "  Id"
         ],
@@ -8942,10 +9032,10 @@
             "  Properties:",
             "    Description: ${2:String}",
             "    DestinationName: ${3:String} #required",
-            "    LoRaWANDevice:",
-            "      ${4:LoRaWANDevice}",
-            "    Name: ${5:String}",
-            "    NextToken: ${6:String}",
+            "    LastUplinkReceivedAt: ${4:String}",
+            "    LoRaWAN:",
+            "      ${5:LoRaWANDevice}",
+            "    Name: ${6:String}",
             "    Tags:",
             "      - ${7:Tag}",
             "    Type: ${8:String} #required"
@@ -8967,10 +9057,10 @@
             "  Type: AWS::IoTWireless::WirelessGateway",
             "  Properties:",
             "    Description: ${2:String}",
-            "    LoRaWANGateway: #required",
-            "      ${3:LoRaWANGateway}",
-            "    Name: ${4:String}",
-            "    NextToken: ${5:String}",
+            "    LastUplinkReceivedAt: ${3:String}",
+            "    LoRaWAN: #required",
+            "      ${4:LoRaWANGateway}",
+            "    Name: ${5:String}",
             "    Tags:",
             "      - ${6:Tag}",
             "    ThingName: ${7:String}"
@@ -9745,28 +9835,24 @@
             "    LoggingConfiguration:",
             "      ${8:LoggingConfiguration}",
             "    MaxWorkers: ${9:Integer}",
+            "    Name: ${10:String} #required",
             "    NetworkConfiguration:",
-            "      ${10:NetworkConfiguration}",
-            "    PluginsS3ObjectVersion: ${11:String}",
-            "    PluginsS3Path: ${12:String}",
-            "    RequirementsS3ObjectVersion: ${13:String}",
-            "    RequirementsS3Path: ${14:String}",
-            "    SourceBucketArn: ${15:String}",
+            "      ${11:NetworkConfiguration}",
+            "    PluginsS3ObjectVersion: ${12:String}",
+            "    PluginsS3Path: ${13:String}",
+            "    RequirementsS3ObjectVersion: ${14:String}",
+            "    RequirementsS3Path: ${15:String}",
+            "    SourceBucketArn: ${16:String}",
             "    Tags:",
-            "      ${16:TagMap}",
-            "    WebserverAccessMode: ${17:String}",
-            "    WebserverUrl: ${18:String}",
+            "      ${17:TagMap}",
+            "    WebserverAccessMode: ${18:String}",
             "    WeeklyMaintenanceWindowStart: ${19:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html",
             "Attributes: ",
-            "  Name",
-            "  Status",
             "  Arn",
-            "  CreatedAt",
-            "  ServiceRoleArn",
-            "  LastUpdate"
+            "  WebserverUrl"
         ],
         "prefix": "mwaa-environment",
         "scope": "source.cloudformation"
@@ -13054,15 +13140,13 @@
             "      - ${2:ContainerDefinition}",
             "    EnableNetworkIsolation: ${3:Boolean}",
             "    ExecutionRoleArn: ${4:String} #required",
-            "    InferenceExecutionConfig:",
-            "      ${5:InferenceExecutionConfig}",
-            "    ModelName: ${6:String}",
+            "    ModelName: ${5:String}",
             "    PrimaryContainer:",
-            "      ${7:ContainerDefinition}",
+            "      ${6:ContainerDefinition}",
             "    Tags:",
-            "      - ${8:Tag}",
+            "      - ${7:Tag}",
             "    VpcConfig:",
-            "      ${9:VpcConfig}"
+            "      ${8:VpcConfig}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html",
