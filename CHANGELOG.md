@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.7.0 (2021-02-05)
+------------------
+- The following resource was updated:
+  AWS::ElastiCache::GlobalReplicationGroup. [Github Actions]
+
+
 3.6.0 (2021-01-29)
 ------------------
 - The following resource was updated: <code
