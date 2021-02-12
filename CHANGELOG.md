@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+3.8.0 (2021-02-12)
+------------------
+- The following resources were added:
+  AWS::EC2::TransitGatewayMulticastDomain,
+  AWS::EC2::TransitGatewayMulticastDomainAssociation,
+  AWS::EC2::TransitGatewayMulticastGroupMembers and
+  AWS::EC2::TransitGatewayMulticastGroupSource. [Github Actions]
+
+
 3.7.0 (2021-02-05)
 ------------------
 - The following resource was updated:
