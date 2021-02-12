@@ -301,7 +301,9 @@
             "    Value: ${9:String}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html",
+            "Attributes: ",
+            "  APIKeyId"
         ],
         "prefix": "apigateway-apikey",
         "scope": "source.cloudformation"
@@ -2280,6 +2282,47 @@
         "prefix": "cloudformation-moduleversion",
         "scope": "source.cloudformation"
     },
+    "AWS::CloudFormation::ResourceDefaultVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::ResourceDefaultVersion",
+            "  Properties:",
+            "    TypeName: ${2:String}",
+            "    TypeVersionArn: ${3:String}",
+            "    VersionId: ${4:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-resourcedefaultversion.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "cloudformation-resourcedefaultversion",
+        "scope": "source.cloudformation"
+    },
+    "AWS::CloudFormation::ResourceVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::ResourceVersion",
+            "  Properties:",
+            "    ExecutionRoleArn: ${2:String}",
+            "    LoggingConfig:",
+            "      ${3:LoggingConfig}",
+            "    SchemaHandlerPackage: ${4:String} #required",
+            "    TypeName: ${5:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-resourceversion.html",
+            "Attributes: ",
+            "  Arn",
+            "  TypeArn",
+            "  IsDefaultVersion",
+            "  ProvisioningType",
+            "  VersionId",
+            "  Visibility"
+        ],
+        "prefix": "cloudformation-resourceversion",
+        "scope": "source.cloudformation"
+    },
     "AWS::CloudFormation::Stack": {
         "body": [
             "${1:LogicalID}:",
@@ -3655,32 +3698,48 @@
             "  Properties:",
             "    CertificateArn: ${2:String}",
             "    DatabaseName: ${3:String}",
+            "    DocDbSettings:",
+            "      ${4:DocDbSettings}",
             "    DynamoDbSettings:",
-            "      ${4:DynamoDbSettings}",
+            "      ${5:DynamoDbSettings}",
             "    ElasticsearchSettings:",
-            "      ${5:ElasticsearchSettings}",
-            "    EndpointIdentifier: ${6:String}",
-            "    EndpointType: ${7:String} #required",
-            "    EngineName: ${8:String} #required",
-            "    ExtraConnectionAttributes: ${9:String}",
+            "      ${6:ElasticsearchSettings}",
+            "    EndpointIdentifier: ${7:String}",
+            "    EndpointType: ${8:String} #required",
+            "    EngineName: ${9:String} #required",
+            "    ExtraConnectionAttributes: ${10:String}",
+            "    IbmDb2Settings:",
+            "      ${11:IbmDb2Settings}",
             "    KafkaSettings:",
-            "      ${10:KafkaSettings}",
+            "      ${12:KafkaSettings}",
             "    KinesisSettings:",
-            "      ${11:KinesisSettings}",
-            "    KmsKeyId: ${12:String}",
+            "      ${13:KinesisSettings}",
+            "    KmsKeyId: ${14:String}",
+            "    MicrosoftSqlServerSettings:",
+            "      ${15:MicrosoftSqlServerSettings}",
             "    MongoDbSettings:",
-            "      ${13:MongoDbSettings}",
+            "      ${16:MongoDbSettings}",
+            "    MySqlSettings:",
+            "      ${17:MySqlSettings}",
             "    NeptuneSettings:",
-            "      ${14:NeptuneSettings}",
-            "    Password: ${15:String}",
-            "    Port: ${16:Integer}",
+            "      ${18:NeptuneSettings}",
+            "    OracleSettings:",
+            "      ${19:OracleSettings}",
+            "    Password: ${20:String}",
+            "    Port: ${21:Integer}",
+            "    PostgreSqlSettings:",
+            "      ${22:PostgreSqlSettings}",
+            "    RedshiftSettings:",
+            "      ${23:RedshiftSettings}",
             "    S3Settings:",
-            "      ${17:S3Settings}",
-            "    ServerName: ${18:String}",
-            "    SslMode: ${19:String}",
+            "      ${24:S3Settings}",
+            "    ServerName: ${25:String}",
+            "    SslMode: ${26:String}",
+            "    SybaseSettings:",
+            "      ${27:SybaseSettings}",
             "    Tags:",
-            "      - ${20:Tag}",
-            "    Username: ${21:String}"
+            "      - ${28:Tag}",
+            "    Username: ${29:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html",
@@ -5297,6 +5356,94 @@
         "prefix": "ec2-transitgatewayattachment",
         "scope": "source.cloudformation"
     },
+    "AWS::EC2::TransitGatewayMulticastDomain": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::TransitGatewayMulticastDomain",
+            "  Properties:",
+            "    Options: ${2:Json}",
+            "    Tags:",
+            "      - ${3:Tag}",
+            "    TransitGatewayId: ${4:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html",
+            "Attributes: ",
+            "  TransitGatewayMulticastDomainId",
+            "  TransitGatewayMulticastDomainArn",
+            "  State",
+            "  CreationTime"
+        ],
+        "prefix": "ec2-transitgatewaymulticastdomain",
+        "scope": "source.cloudformation"
+    },
+    "AWS::EC2::TransitGatewayMulticastDomainAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::TransitGatewayMulticastDomainAssociation",
+            "  Properties:",
+            "    State: ${2:String}",
+            "    SubnetId: ${3:String}",
+            "    TransitGatewayAttachmentId: ${4:String}",
+            "    TransitGatewayMulticastDomainId: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html",
+            "Attributes: ",
+            "  ResourceId",
+            "  ResourceType"
+        ],
+        "prefix": "ec2-transitgatewaymulticastdomainassociation",
+        "scope": "source.cloudformation"
+    },
+    "AWS::EC2::TransitGatewayMulticastGroupMember": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::TransitGatewayMulticastGroupMember",
+            "  Properties:",
+            "    GroupIpAddress: ${2:String}",
+            "    NetworkInterfaceId: ${3:String}",
+            "    TransitGatewayAttachmentId: ${4:String}",
+            "    TransitGatewayMulticastDomainId: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html",
+            "Attributes: ",
+            "  SubnetId",
+            "  ResourceId",
+            "  ResourceType",
+            "  GroupMember",
+            "  GroupSource",
+            "  MemberType",
+            "  SourceType"
+        ],
+        "prefix": "ec2-transitgatewaymulticastgroupmember",
+        "scope": "source.cloudformation"
+    },
+    "AWS::EC2::TransitGatewayMulticastGroupSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::TransitGatewayMulticastGroupSource",
+            "  Properties:",
+            "    GroupIpAddress: ${2:String}",
+            "    NetworkInterfaceId: ${3:String}",
+            "    TransitGatewayAttachmentId: ${4:String}",
+            "    TransitGatewayMulticastDomainId: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html",
+            "Attributes: ",
+            "  SubnetId",
+            "  ResourceId",
+            "  ResourceType",
+            "  GroupMember",
+            "  GroupSource",
+            "  MemberType",
+            "  SourceType"
+        ],
+        "prefix": "ec2-transitgatewaymulticastgroupsource",
+        "scope": "source.cloudformation"
+    },
     "AWS::EC2::TransitGatewayRoute": {
         "body": [
             "${1:LogicalID}:",
@@ -5722,12 +5869,10 @@
             "    ClusterName: ${3:String}",
             "    ClusterSettings:",
             "      - ${4:ClusterSettings}",
-            "    Configuration:",
-            "      ${5:ClusterConfiguration}",
             "    DefaultCapacityProviderStrategy:",
-            "      - ${6:CapacityProviderStrategyItem}",
+            "      - ${5:CapacityProviderStrategyItem}",
             "    Tags:",
-            "      - ${7:Tag}"
+            "      - ${6:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html",
@@ -5766,28 +5911,27 @@
             "      ${5:DeploymentController}",
             "    DesiredCount: ${6:Integer}",
             "    EnableECSManagedTags: ${7:Boolean}",
-            "    EnableExecuteCommand: ${8:Boolean}",
-            "    HealthCheckGracePeriodSeconds: ${9:Integer}",
-            "    LaunchType: ${10:String}",
+            "    HealthCheckGracePeriodSeconds: ${8:Integer}",
+            "    LaunchType: ${9:String}",
             "    LoadBalancers:",
-            "      - ${11:LoadBalancer}",
+            "      - ${10:LoadBalancer}",
             "    NetworkConfiguration:",
-            "      ${12:NetworkConfiguration}",
+            "      ${11:NetworkConfiguration}",
             "    PlacementConstraints:",
-            "      - ${13:PlacementConstraint}",
+            "      - ${12:PlacementConstraint}",
             "    PlacementStrategies:",
-            "      - ${14:PlacementStrategy}",
-            "    PlatformVersion: ${15:String}",
-            "    PropagateTags: ${16:String}",
-            "    Role: ${17:String}",
-            "    SchedulingStrategy: ${18:String}",
-            "    ServiceArn: ${19:String}",
-            "    ServiceName: ${20:String}",
+            "      - ${13:PlacementStrategy}",
+            "    PlatformVersion: ${14:String}",
+            "    PropagateTags: ${15:String}",
+            "    Role: ${16:String}",
+            "    SchedulingStrategy: ${17:String}",
+            "    ServiceArn: ${18:String}",
+            "    ServiceName: ${19:String}",
             "    ServiceRegistries:",
-            "      - ${21:ServiceRegistry}",
+            "      - ${20:ServiceRegistry}",
             "    Tags:",
-            "      - ${22:Tag}",
-            "    TaskDefinition: ${23:String}"
+            "      - ${21:Tag}",
+            "    TaskDefinition: ${22:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
@@ -9947,7 +10091,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::ManagedBlockchain::Node",
             "  Properties:",
-            "    MemberId: ${2:String} #required",
+            "    MemberId: ${2:String}",
             "    NetworkId: ${3:String} #required",
             "    NodeConfiguration: #required",
             "      ${4:NodeConfiguration}"
@@ -10173,7 +10317,9 @@
             "    LogLevel: ${8:String}",
             "    Name: ${9:String}",
             "    RoleArn: ${10:String}",
-            "    Tags: ${11:Json}"
+            "    Tags: ${11:Json}",
+            "    Vpc:",
+            "      ${12:VpcOutputSettings}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channel.html",
@@ -12977,6 +13123,47 @@
         "prefix": "sso-permissionset",
         "scope": "source.cloudformation"
     },
+    "AWS::SageMaker::App": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::App",
+            "  Properties:",
+            "    AppName: ${2:String} #required",
+            "    AppType: ${3:String} #required",
+            "    DomainId: ${4:String} #required",
+            "    ResourceSpec:",
+            "      ${5:ResourceSpec}",
+            "    Tags:",
+            "      - ${6:Tag}",
+            "    UserProfileName: ${7:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-app.html",
+            "Attributes: ",
+            "  AppArn"
+        ],
+        "prefix": "sagemaker-app",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::AppImageConfig": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::AppImageConfig",
+            "  Properties:",
+            "    AppImageConfigName: ${2:String} #required",
+            "    KernelGatewayImageConfig:",
+            "      ${3:KernelGatewayImageConfig}",
+            "    Tags:",
+            "      - ${4:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-appimageconfig.html",
+            "Attributes: ",
+            "  AppImageConfigArn"
+        ],
+        "prefix": "sagemaker-appimageconfig",
+        "scope": "source.cloudformation"
+    },
     "AWS::SageMaker::CodeRepository": {
         "body": [
             "${1:LogicalID}:",
@@ -13061,6 +13248,35 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-devicefleet.html"
         ],
         "prefix": "sagemaker-devicefleet",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::Domain": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::Domain",
+            "  Properties:",
+            "    AppNetworkAccessType: ${2:String}",
+            "    AuthMode: ${3:String} #required",
+            "    DefaultUserSettings: #required",
+            "      ${4:UserSettings}",
+            "    DomainName: ${5:String} #required",
+            "    KmsKeyId: ${6:String}",
+            "    SubnetIds: #required",
+            "      - ${7:String}",
+            "    Tags:",
+            "      - ${8:Tag}",
+            "    VpcId: ${9:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-domain.html",
+            "Attributes: ",
+            "  DomainArn",
+            "  Url",
+            "  DomainId",
+            "  HomeEfsFileSystemId",
+            "  SingleSignOnManagedApplicationInstanceId"
+        ],
+        "prefix": "sagemaker-domain",
         "scope": "source.cloudformation"
     },
     "AWS::SageMaker::Endpoint": {
@@ -13395,6 +13611,28 @@
         "prefix": "sagemaker-project",
         "scope": "source.cloudformation"
     },
+    "AWS::SageMaker::UserProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::UserProfile",
+            "  Properties:",
+            "    DomainId: ${2:String} #required",
+            "    SingleSignOnUserIdentifier: ${3:String}",
+            "    SingleSignOnUserValue: ${4:String}",
+            "    Tags:",
+            "      - ${5:Tag}",
+            "    UserProfileName: ${6:String} #required",
+            "    UserSettings:",
+            "      ${7:UserSettings}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-userprofile.html",
+            "Attributes: ",
+            "  UserProfileArn"
+        ],
+        "prefix": "sagemaker-userprofile",
+        "scope": "source.cloudformation"
+    },
     "AWS::SageMaker::Workteam": {
         "body": [
             "${1:LogicalID}:",
@@ -13710,6 +13948,41 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-resourceupdateconstraint.html"
         ],
         "prefix": "servicecatalog-resourceupdateconstraint",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ServiceCatalog::ServiceAction": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ServiceCatalog::ServiceAction",
+            "  Properties:",
+            "    AcceptLanguage: ${2:String}",
+            "    Definition: #required",
+            "      - ${3:DefinitionParameter}",
+            "    DefinitionType: ${4:String} #required",
+            "    Description: ${5:String}",
+            "    Name: ${6:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-serviceaction.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "servicecatalog-serviceaction",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ServiceCatalog::ServiceActionAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ServiceCatalog::ServiceActionAssociation",
+            "  Properties:",
+            "    ProductId: ${2:String} #required",
+            "    ProvisioningArtifactId: ${3:String} #required",
+            "    ServiceActionId: ${4:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-serviceactionassociation.html"
+        ],
+        "prefix": "servicecatalog-serviceactionassociation",
         "scope": "source.cloudformation"
     },
     "AWS::ServiceCatalog::StackSetConstraint": {
