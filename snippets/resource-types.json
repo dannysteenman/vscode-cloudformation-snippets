@@ -2769,33 +2769,34 @@
             "      ${4:ProjectBuildBatchConfig}",
             "    Cache:",
             "      ${5:ProjectCache}",
-            "    Description: ${6:String}",
-            "    EncryptionKey: ${7:String}",
+            "    ConcurrentBuildLimit: ${6:Integer}",
+            "    Description: ${7:String}",
+            "    EncryptionKey: ${8:String}",
             "    Environment: #required",
-            "      ${8:Environment}",
+            "      ${9:Environment}",
             "    FileSystemLocations:",
-            "      - ${9:ProjectFileSystemLocation}",
+            "      - ${10:ProjectFileSystemLocation}",
             "    LogsConfig:",
-            "      ${10:LogsConfig}",
-            "    Name: ${11:String}",
-            "    QueuedTimeoutInMinutes: ${12:Integer}",
+            "      ${11:LogsConfig}",
+            "    Name: ${12:String}",
+            "    QueuedTimeoutInMinutes: ${13:Integer}",
             "    SecondaryArtifacts:",
-            "      - ${13:Artifacts}",
+            "      - ${14:Artifacts}",
             "    SecondarySourceVersions:",
-            "      - ${14:ProjectSourceVersion}",
+            "      - ${15:ProjectSourceVersion}",
             "    SecondarySources:",
-            "      - ${15:Source}",
-            "    ServiceRole: ${16:String} #required",
+            "      - ${16:Source}",
+            "    ServiceRole: ${17:String} #required",
             "    Source: #required",
-            "      ${17:Source}",
-            "    SourceVersion: ${18:String}",
+            "      ${18:Source}",
+            "    SourceVersion: ${19:String}",
             "    Tags:",
-            "      - ${19:Tag}",
-            "    TimeoutInMinutes: ${20:Integer}",
+            "      - ${20:Tag}",
+            "    TimeoutInMinutes: ${21:Integer}",
             "    Triggers:",
-            "      ${21:ProjectTriggers}",
+            "      ${22:ProjectTriggers}",
             "    VpcConfig:",
-            "      ${22:VpcConfig}"
+            "      ${23:VpcConfig}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html",
@@ -3870,20 +3871,21 @@
             "    DatasetName: ${2:String}",
             "    EncryptionKeyArn: ${3:String}",
             "    EncryptionMode: ${4:String}",
-            "    LogSubscription: ${5:String}",
-            "    MaxCapacity: ${6:Integer}",
-            "    MaxRetries: ${7:Integer}",
-            "    Name: ${8:String} #required",
-            "    OutputLocation: ${9:Json}",
+            "    JobSample: ${5:Json}",
+            "    LogSubscription: ${6:String}",
+            "    MaxCapacity: ${7:Integer}",
+            "    MaxRetries: ${8:Integer}",
+            "    Name: ${9:String} #required",
+            "    OutputLocation: ${10:Json}",
             "    Outputs:",
-            "      - ${10:Output}",
-            "    ProjectName: ${11:String}",
-            "    Recipe: ${12:Json}",
-            "    RoleArn: ${13:String} #required",
+            "      - ${11:Output}",
+            "    ProjectName: ${12:String}",
+            "    Recipe: ${13:Json}",
+            "    RoleArn: ${14:String} #required",
             "    Tags:",
-            "      - ${14:Tag}",
-            "    Timeout: ${15:Integer}",
-            "    Type: ${16:String} #required"
+            "      - ${15:Tag}",
+            "    Timeout: ${16:Integer}",
+            "    Type: ${17:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html"
@@ -4371,21 +4373,23 @@
             "      - ${4:GlobalSecondaryIndex}",
             "    KeySchema: #required",
             "      - ${5:KeySchema}",
+            "    KinesisStreamSpecification:",
+            "      ${6:KinesisStreamSpecification}",
             "    LocalSecondaryIndexes:",
-            "      - ${6:LocalSecondaryIndex}",
+            "      - ${7:LocalSecondaryIndex}",
             "    PointInTimeRecoverySpecification:",
-            "      ${7:PointInTimeRecoverySpecification}",
+            "      ${8:PointInTimeRecoverySpecification}",
             "    ProvisionedThroughput:",
-            "      ${8:ProvisionedThroughput}",
+            "      ${9:ProvisionedThroughput}",
             "    SSESpecification:",
-            "      ${9:SSESpecification}",
+            "      ${10:SSESpecification}",
             "    StreamSpecification:",
-            "      ${10:StreamSpecification}",
-            "    TableName: ${11:String}",
+            "      ${11:StreamSpecification}",
+            "    TableName: ${12:String}",
             "    Tags:",
-            "      - ${12:Tag}",
+            "      - ${13:Tag}",
             "    TimeToLiveSpecification:",
-            "      ${13:TimeToLiveSpecification}"
+            "      ${14:TimeToLiveSpecification}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html",
@@ -5356,6 +5360,28 @@
         "prefix": "ec2-transitgatewayattachment",
         "scope": "source.cloudformation"
     },
+    "AWS::EC2::TransitGatewayConnect": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::TransitGatewayConnect",
+            "  Properties:",
+            "    Options: #required",
+            "      ${2:TransitGatewayConnectOptions}",
+            "    Tags:",
+            "      - ${3:Tag}",
+            "    TransportTransitGatewayAttachmentId: ${4:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html",
+            "Attributes: ",
+            "  TransitGatewayAttachmentId",
+            "  TransitGatewayId",
+            "  State",
+            "  CreationTime"
+        ],
+        "prefix": "ec2-transitgatewayconnect",
+        "scope": "source.cloudformation"
+    },
     "AWS::EC2::TransitGatewayMulticastDomain": {
         "body": [
             "${1:LogicalID}:",
@@ -5364,7 +5390,7 @@
             "    Options: ${2:Json}",
             "    Tags:",
             "      - ${3:Tag}",
-            "    TransitGatewayId: ${4:String}"
+            "    TransitGatewayId: ${4:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html",
@@ -5382,16 +5408,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::TransitGatewayMulticastDomainAssociation",
             "  Properties:",
-            "    State: ${2:String}",
-            "    SubnetId: ${3:String}",
-            "    TransitGatewayAttachmentId: ${4:String}",
-            "    TransitGatewayMulticastDomainId: ${5:String}"
+            "    SubnetId: ${2:String} #required",
+            "    TransitGatewayAttachmentId: ${3:String} #required",
+            "    TransitGatewayMulticastDomainId: ${4:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html",
             "Attributes: ",
             "  ResourceId",
-            "  ResourceType"
+            "  ResourceType",
+            "  State"
         ],
         "prefix": "ec2-transitgatewaymulticastdomainassociation",
         "scope": "source.cloudformation"
@@ -5401,14 +5427,14 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::TransitGatewayMulticastGroupMember",
             "  Properties:",
-            "    GroupIpAddress: ${2:String}",
-            "    NetworkInterfaceId: ${3:String}",
-            "    TransitGatewayAttachmentId: ${4:String}",
-            "    TransitGatewayMulticastDomainId: ${5:String}"
+            "    GroupIpAddress: ${2:String} #required",
+            "    NetworkInterfaceId: ${3:String} #required",
+            "    TransitGatewayMulticastDomainId: ${4:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html",
             "Attributes: ",
+            "  TransitGatewayAttachmentId",
             "  SubnetId",
             "  ResourceId",
             "  ResourceType",
@@ -5425,14 +5451,14 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::TransitGatewayMulticastGroupSource",
             "  Properties:",
-            "    GroupIpAddress: ${2:String}",
-            "    NetworkInterfaceId: ${3:String}",
-            "    TransitGatewayAttachmentId: ${4:String}",
-            "    TransitGatewayMulticastDomainId: ${5:String}"
+            "    GroupIpAddress: ${2:String} #required",
+            "    NetworkInterfaceId: ${3:String} #required",
+            "    TransitGatewayMulticastDomainId: ${4:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html",
             "Attributes: ",
+            "  TransitGatewayAttachmentId",
             "  SubnetId",
             "  ResourceId",
             "  ResourceType",
@@ -5779,7 +5805,9 @@
             "  Properties:",
             "    RepositoryCatalogData: ${2:Json}",
             "    RepositoryName: ${3:String}",
-            "    RepositoryPolicyText: ${4:Json}"
+            "    RepositoryPolicyText: ${4:Json}",
+            "    Tags:",
+            "      - ${5:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-publicrepository.html",
@@ -6074,6 +6102,27 @@
         "prefix": "efs-mounttarget",
         "scope": "source.cloudformation"
     },
+    "AWS::EKS::Addon": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EKS::Addon",
+            "  Properties:",
+            "    AddonName: ${2:String} #required",
+            "    AddonVersion: ${3:String}",
+            "    ClusterName: ${4:String} #required",
+            "    ResolveConflicts: ${5:String}",
+            "    ServiceAccountRoleArn: ${6:String}",
+            "    Tags:",
+            "      - ${7:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-addon.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "eks-addon",
+        "scope": "source.cloudformation"
+    },
     "AWS::EKS::Cluster": {
         "body": [
             "${1:LogicalID}:",
@@ -6282,6 +6331,51 @@
         "prefix": "emr-step",
         "scope": "source.cloudformation"
     },
+    "AWS::EMR::Studio": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EMR::Studio",
+            "  Properties:",
+            "    AuthMode: ${2:String} #required",
+            "    DefaultS3Location: ${3:String} #required",
+            "    Description: ${4:String}",
+            "    EngineSecurityGroupId: ${5:String} #required",
+            "    Name: ${6:String} #required",
+            "    ServiceRole: ${7:String} #required",
+            "    SubnetIds: #required",
+            "      - ${8:String}",
+            "    Tags:",
+            "      - ${9:Tag}",
+            "    UserRole: ${10:String} #required",
+            "    VpcId: ${11:String} #required",
+            "    WorkspaceSecurityGroupId: ${12:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html",
+            "Attributes: ",
+            "  Arn",
+            "  StudioId",
+            "  Url"
+        ],
+        "prefix": "emr-studio",
+        "scope": "source.cloudformation"
+    },
+    "AWS::EMR::StudioSessionMapping": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EMR::StudioSessionMapping",
+            "  Properties:",
+            "    IdentityName: ${2:String} #required",
+            "    IdentityType: ${3:String} #required",
+            "    SessionPolicyArn: ${4:String} #required",
+            "    StudioId: ${5:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html"
+        ],
+        "prefix": "emr-studiosessionmapping",
+        "scope": "source.cloudformation"
+    },
     "AWS::EMRContainers::VirtualCluster": {
         "body": [
             "${1:LogicalID}:",
@@ -6352,14 +6446,15 @@
             "  Properties:",
             "    AutomaticFailoverEnabled: ${2:Boolean}",
             "    CacheNodeType: ${3:String}",
-            "    EngineVersion: ${4:String}",
-            "    GlobalNodeGroupCount: ${5:Integer}",
-            "    GlobalReplicationGroupDescription: ${6:String}",
-            "    GlobalReplicationGroupIdSuffix: ${7:String}",
+            "    CacheParameterGroupName: ${4:String}",
+            "    EngineVersion: ${5:String}",
+            "    GlobalNodeGroupCount: ${6:Integer}",
+            "    GlobalReplicationGroupDescription: ${7:String}",
+            "    GlobalReplicationGroupIdSuffix: ${8:String}",
             "    Members: #required",
-            "      - ${8:GlobalReplicationGroupMember}",
+            "      - ${9:GlobalReplicationGroupMember}",
             "    RegionalConfigurations:",
-            "      - ${9:RegionalConfiguration}"
+            "      - ${10:RegionalConfiguration}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-globalreplicationgroup.html",
@@ -6771,15 +6866,16 @@
             "    Name: ${10:String}",
             "    Port: ${11:Integer}",
             "    Protocol: ${12:String}",
+            "    ProtocolVersion: ${13:String}",
             "    Tags:",
-            "      - ${13:Tag}",
+            "      - ${14:Tag}",
             "    TargetGroupAttributes:",
-            "      - ${14:TargetGroupAttribute}",
-            "    TargetType: ${15:String}",
+            "      - ${15:TargetGroupAttribute}",
+            "    TargetType: ${16:String}",
             "    Targets:",
-            "      - ${16:TargetDescription}",
-            "    UnhealthyThresholdCount: ${17:Integer}",
-            "    VpcId: ${18:String}"
+            "      - ${17:TargetDescription}",
+            "    UnhealthyThresholdCount: ${18:Integer}",
+            "    VpcId: ${19:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html",
@@ -8172,6 +8268,27 @@
         "prefix": "iam-managedpolicy",
         "scope": "source.cloudformation"
     },
+    "AWS::IAM::OIDCProvider": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IAM::OIDCProvider",
+            "  Properties:",
+            "    ClientIdList:",
+            "      - ${2:String}",
+            "    Tags:",
+            "      - ${3:Tag}",
+            "    ThumbprintList: #required",
+            "      - ${4:String}",
+            "    Url: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "iam-oidcprovider",
+        "scope": "source.cloudformation"
+    },
     "AWS::IAM::Policy": {
         "body": [
             "${1:LogicalID}:",
@@ -8217,6 +8334,45 @@
             "  RoleId"
         ],
         "prefix": "iam-role",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IAM::SAMLProvider": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IAM::SAMLProvider",
+            "  Properties:",
+            "    Name: ${2:String}",
+            "    SamlMetadataDocument: ${3:String} #required",
+            "    Tags:",
+            "      - ${4:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "iam-samlprovider",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IAM::ServerCertificate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IAM::ServerCertificate",
+            "  Properties:",
+            "    CertificateBody: ${2:String}",
+            "    CertificateChain: ${3:String}",
+            "    Path: ${4:String}",
+            "    PrivateKey: ${5:String}",
+            "    ServerCertificateName: ${6:String}",
+            "    Tags:",
+            "      - ${7:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "iam-servercertificate",
         "scope": "source.cloudformation"
     },
     "AWS::IAM::ServiceLinkedRole": {
@@ -8276,6 +8432,26 @@
         "prefix": "iam-usertogroupaddition",
         "scope": "source.cloudformation"
     },
+    "AWS::IAM::VirtualMFADevice": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IAM::VirtualMFADevice",
+            "  Properties:",
+            "    Path: ${2:String}",
+            "    Tags:",
+            "      - ${3:Tag}",
+            "    Users: #required",
+            "      - ${4:String}",
+            "    VirtualMfaDeviceName: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html",
+            "Attributes: ",
+            "  SerialNumber"
+        ],
+        "prefix": "iam-virtualmfadevice",
+        "scope": "source.cloudformation"
+    },
     "AWS::IVS::Channel": {
         "body": [
             "${1:LogicalID}:",
@@ -8284,9 +8460,10 @@
             "    Authorized: ${2:Boolean}",
             "    LatencyMode: ${3:String}",
             "    Name: ${4:String}",
+            "    RecordingConfigurationArn: ${5:String}",
             "    Tags:",
-            "      - ${5:Tag}",
-            "    Type: ${6:String}"
+            "      - ${6:Tag}",
+            "    Type: ${7:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html",
@@ -8419,14 +8596,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::ImageBuilder::Image",
             "  Properties:",
-            "    DistributionConfigurationArn: ${2:String}",
-            "    EnhancedImageMetadataEnabled: ${3:Boolean}",
-            "    ImageRecipeArn: ${4:String} #required",
+            "    ContainerRecipeArn: ${2:String}",
+            "    DistributionConfigurationArn: ${3:String}",
+            "    EnhancedImageMetadataEnabled: ${4:Boolean}",
+            "    ImageRecipeArn: ${5:String}",
             "    ImageTestsConfiguration:",
-            "      ${5:ImageTestsConfiguration}",
-            "    InfrastructureConfigurationArn: ${6:String} #required",
+            "      ${6:ImageTestsConfiguration}",
+            "    InfrastructureConfigurationArn: ${7:String} #required",
             "    Tags:",
-            "      ${7:Map}"
+            "      ${8:Map}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html",
@@ -8443,19 +8621,20 @@
             "${1:LogicalID}:",
             "  Type: AWS::ImageBuilder::ImagePipeline",
             "  Properties:",
-            "    Description: ${2:String}",
-            "    DistributionConfigurationArn: ${3:String}",
-            "    EnhancedImageMetadataEnabled: ${4:Boolean}",
-            "    ImageRecipeArn: ${5:String} #required",
+            "    ContainerRecipeArn: ${2:String}",
+            "    Description: ${3:String}",
+            "    DistributionConfigurationArn: ${4:String}",
+            "    EnhancedImageMetadataEnabled: ${5:Boolean}",
+            "    ImageRecipeArn: ${6:String}",
             "    ImageTestsConfiguration:",
-            "      ${6:ImageTestsConfiguration}",
-            "    InfrastructureConfigurationArn: ${7:String} #required",
-            "    Name: ${8:String} #required",
+            "      ${7:ImageTestsConfiguration}",
+            "    InfrastructureConfigurationArn: ${8:String} #required",
+            "    Name: ${9:String} #required",
             "    Schedule:",
-            "      ${9:Schedule}",
-            "    Status: ${10:String}",
+            "      ${10:Schedule}",
+            "    Status: ${11:String}",
             "    Tags:",
-            "      ${11:Map}"
+            "      ${12:Map}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagepipeline.html",
@@ -8848,14 +9027,16 @@
             "    ContentDeliveryRules:",
             "      - ${3:DatasetContentDeliveryRule}",
             "    DatasetName: ${4:String}",
+            "    LateDataRules:",
+            "      - ${5:LateDataRule}",
             "    RetentionPeriod:",
-            "      ${5:RetentionPeriod}",
+            "      ${6:RetentionPeriod}",
             "    Tags:",
-            "      - ${6:Tag}",
+            "      - ${7:Tag}",
             "    Triggers:",
-            "      - ${7:Trigger}",
+            "      - ${8:Trigger}",
             "    VersioningConfiguration:",
-            "      ${8:VersioningConfiguration}"
+            "      ${9:VersioningConfiguration}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-dataset.html"
@@ -8988,14 +9169,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTSiteWise::AssetModel",
             "  Properties:",
-            "    AssetModelDescription: ${2:String}",
+            "    AssetModelCompositeModels:",
+            "      - ${2:AssetModelCompositeModel}",
+            "    AssetModelDescription: ${3:String}",
             "    AssetModelHierarchies:",
-            "      - ${3:AssetModelHierarchy}",
-            "    AssetModelName: ${4:String} #required",
+            "      - ${4:AssetModelHierarchy}",
+            "    AssetModelName: ${5:String} #required",
             "    AssetModelProperties:",
-            "      - ${5:AssetModelProperty}",
+            "      - ${6:AssetModelProperty}",
             "    Tags:",
-            "      - ${6:Tag}"
+            "      - ${7:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-assetmodel.html",
@@ -9053,12 +9236,13 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTSiteWise::Portal",
             "  Properties:",
-            "    PortalContactEmail: ${2:String} #required",
-            "    PortalDescription: ${3:String}",
-            "    PortalName: ${4:String} #required",
-            "    RoleArn: ${5:String} #required",
+            "    PortalAuthMode: ${2:String}",
+            "    PortalContactEmail: ${3:String} #required",
+            "    PortalDescription: ${4:String}",
+            "    PortalName: ${5:String} #required",
+            "    RoleArn: ${6:String} #required",
             "    Tags:",
-            "      - ${6:Tag}"
+            "      - ${7:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html",
@@ -9066,8 +9250,7 @@
             "  PortalArn",
             "  PortalClientId",
             "  PortalId",
-            "  PortalStartUrl",
-            "  PortalStatus"
+            "  PortalStartUrl"
         ],
         "prefix": "iotsitewise-portal",
         "scope": "source.cloudformation"
@@ -9162,7 +9345,24 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html",
             "Attributes: ",
-            "  LoRaWANResponse",
+            "  UlRate",
+            "  UlBucketSize",
+            "  UlRatePolicy",
+            "  DlRate",
+            "  DlBucketSize",
+            "  DlRatePolicy",
+            "  DevStatusReqFreq",
+            "  ReportDevStatusBattery",
+            "  ReportDevStatusMargin",
+            "  DrMin",
+            "  DrMax",
+            "  ChannelMask",
+            "  PrAllowed",
+            "  HrAllowed",
+            "  RaAllowed",
+            "  NwkGeoLoc",
+            "  TargetPer",
+            "  MinGwDiversity",
             "  Arn",
             "  Id"
         ],
@@ -9182,14 +9382,14 @@
             "    Name: ${6:String}",
             "    Tags:",
             "      - ${7:Tag}",
-            "    Type: ${8:String} #required"
+            "    ThingArn: ${8:String}",
+            "    Type: ${9:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdevice.html",
             "Attributes: ",
             "  Arn",
             "  Id",
-            "  ThingArn",
             "  ThingName"
         ],
         "prefix": "iotwireless-wirelessdevice",
@@ -9207,14 +9407,14 @@
             "    Name: ${5:String}",
             "    Tags:",
             "      - ${6:Tag}",
-            "    ThingName: ${7:String}"
+            "    ThingArn: ${7:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html",
             "Attributes: ",
             "  Arn",
             "  Id",
-            "  ThingArn"
+            "  ThingName"
         ],
         "prefix": "iotwireless-wirelessgateway",
         "scope": "source.cloudformation"
@@ -10416,8 +10616,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-channel.html",
             "Attributes: ",
-            "  Arn",
-            "  HlsIngest"
+            "  Arn"
         ],
         "prefix": "mediapackage-channel",
         "scope": "source.cloudformation"
@@ -11657,8 +11856,7 @@
             "  Arn",
             "  CreatedTime",
             "  LastPublishedTime",
-            "  LastUpdatedTime",
-            "  Version"
+            "  LastUpdatedTime"
         ],
         "prefix": "quicksight-dashboard",
         "scope": "source.cloudformation"
@@ -11684,8 +11882,7 @@
             "Attributes: ",
             "  Arn",
             "  CreatedTime",
-            "  LastUpdatedTime",
-            "  Version"
+            "  LastUpdatedTime"
         ],
         "prefix": "quicksight-template",
         "scope": "source.cloudformation"
@@ -11713,8 +11910,7 @@
             "  Arn",
             "  CreatedTime",
             "  LastUpdatedTime",
-            "  Type",
-            "  Version"
+            "  Type"
         ],
         "prefix": "quicksight-theme",
         "scope": "source.cloudformation"
@@ -12574,7 +12770,6 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html",
             "Attributes: ",
-            "  PolicyStatus",
             "  NetworkOrigin"
         ],
         "prefix": "s3-accesspoint",
@@ -13347,6 +13542,45 @@
         "prefix": "sagemaker-featuregroup",
         "scope": "source.cloudformation"
     },
+    "AWS::SageMaker::Image": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::Image",
+            "  Properties:",
+            "    ImageDescription: ${2:String}",
+            "    ImageDisplayName: ${3:String}",
+            "    ImageName: ${4:String} #required",
+            "    ImageRoleArn: ${5:String} #required",
+            "    Tags:",
+            "      - ${6:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-image.html",
+            "Attributes: ",
+            "  ImageArn"
+        ],
+        "prefix": "sagemaker-image",
+        "scope": "source.cloudformation"
+    },
+    "AWS::SageMaker::ImageVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::ImageVersion",
+            "  Properties:",
+            "    BaseImage: ${2:String} #required",
+            "    ImageName: ${3:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-imageversion.html",
+            "Attributes: ",
+            "  ImageArn",
+            "  ImageVersionArn",
+            "  ContainerImage",
+            "  Version"
+        ],
+        "prefix": "sagemaker-imageversion",
+        "scope": "source.cloudformation"
+    },
     "AWS::SageMaker::Model": {
         "body": [
             "${1:LogicalID}:",
@@ -13356,13 +13590,15 @@
             "      - ${2:ContainerDefinition}",
             "    EnableNetworkIsolation: ${3:Boolean}",
             "    ExecutionRoleArn: ${4:String} #required",
-            "    ModelName: ${5:String}",
+            "    InferenceExecutionConfig:",
+            "      ${5:InferenceExecutionConfig}",
+            "    ModelName: ${6:String}",
             "    PrimaryContainer:",
-            "      ${6:ContainerDefinition}",
+            "      ${7:ContainerDefinition}",
             "    Tags:",
-            "      - ${7:Tag}",
+            "      - ${8:Tag}",
             "    VpcConfig:",
-            "      ${8:VpcConfig}"
+            "      ${9:VpcConfig}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html",
@@ -13605,7 +13841,6 @@
             "  ProjectArn",
             "  ProjectId",
             "  CreationTime",
-            "  ServiceCatalogProvisionedProductDetails",
             "  ProjectStatus"
         ],
         "prefix": "sagemaker-project",
@@ -13806,8 +14041,7 @@
             "Attributes: ",
             "  ProvisionedProductId",
             "  RecordId",
-            "  CloudformationStackArn",
-            "  Outputs"
+            "  CloudformationStackArn"
         ],
         "prefix": "servicecatalog-cloudformationprovisionedproduct",
         "scope": "source.cloudformation"
@@ -14275,20 +14509,22 @@
             "${1:LogicalID}:",
             "  Type: AWS::StepFunctions::StateMachine",
             "  Properties:",
+            "    Definition:",
+            "      ${2:Definition}",
             "    DefinitionS3Location:",
-            "      ${2:S3Location}",
-            "    DefinitionString: ${3:String}",
+            "      ${3:S3Location}",
+            "    DefinitionString: ${4:String}",
             "    DefinitionSubstitutions:",
-            "      ${4:Map}",
+            "      ${5:Map}",
             "    LoggingConfiguration:",
-            "      ${5:LoggingConfiguration}",
-            "    RoleArn: ${6:String} #required",
-            "    StateMachineName: ${7:String}",
-            "    StateMachineType: ${8:String}",
+            "      ${6:LoggingConfiguration}",
+            "    RoleArn: ${7:String} #required",
+            "    StateMachineName: ${8:String}",
+            "    StateMachineType: ${9:String}",
             "    Tags:",
-            "      - ${9:TagsEntry}",
+            "      - ${10:TagsEntry}",
             "    TracingConfiguration:",
-            "      ${10:TracingConfiguration}"
+            "      ${11:TracingConfiguration}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html",
