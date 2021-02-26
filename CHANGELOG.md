@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.9.0 (2021-02-26)
+------------------
+- The following resource was updated: AWS::SageMaker::Model. [Github
+  Actions]
+
+
 3.8.0 (2021-02-12)
 ------------------
 - The following resources were added:
