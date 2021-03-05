@@ -1741,6 +1741,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html",
             "Attributes: ",
+            "  EffectiveEngineVersion",
             "  CreationTime"
         ],
         "prefix": "athena-workgroup",
@@ -1993,7 +1994,8 @@
             "  Properties:",
             "    AccessPolicy: ${2:Json}",
             "    BackupVaultName: ${3:String} #required",
-            "    BackupVaultTags: ${4:Json}",
+            "    BackupVaultTags:",
+            "      ${4:Map}",
             "    EncryptionKeyArn: ${5:String}",
             "    Notifications:",
             "      ${6:NotificationObjectType}"
@@ -2196,14 +2198,15 @@
             "    AutomaticStopTimeMinutes: ${2:Integer}",
             "    ConnectionType: ${3:String}",
             "    Description: ${4:String}",
-            "    InstanceType: ${5:String} #required",
-            "    Name: ${6:String}",
-            "    OwnerArn: ${7:String}",
+            "    ImageId: ${5:String}",
+            "    InstanceType: ${6:String} #required",
+            "    Name: ${7:String}",
+            "    OwnerArn: ${8:String}",
             "    Repositories:",
-            "      - ${8:Repository}",
-            "    SubnetId: ${9:String}",
+            "      - ${9:Repository}",
+            "    SubnetId: ${10:String}",
             "    Tags:",
-            "      - ${10:Tag}"
+            "      - ${11:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html",
@@ -2265,7 +2268,7 @@
             "  Type: AWS::CloudFormation::ModuleVersion",
             "  Properties:",
             "    ModuleName: ${2:String} #required",
-            "    ModulePackage: ${3:String}"
+            "    ModulePackage: ${3:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduleversion.html",
@@ -3851,11 +3854,12 @@
             "${1:LogicalID}:",
             "  Type: AWS::DataBrew::Dataset",
             "  Properties:",
-            "    FormatOptions: ${2:Json}",
-            "    Input: ${3:Json} #required",
-            "    Name: ${4:String} #required",
+            "    Format: ${2:String}",
+            "    FormatOptions: ${3:Json}",
+            "    Input: ${4:Json} #required",
+            "    Name: ${5:String} #required",
             "    Tags:",
-            "      - ${5:Tag}"
+            "      - ${6:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-dataset.html"
@@ -4173,10 +4177,11 @@
             "${1:LogicalID}:",
             "  Type: AWS::Detective::MemberInvitation",
             "  Properties:",
-            "    GraphArn: ${2:String} #required",
-            "    MemberEmailAddress: ${3:String} #required",
-            "    MemberId: ${4:String} #required",
-            "    Message: ${5:String}"
+            "    DisableEmailNotification: ${2:Boolean}",
+            "    GraphArn: ${3:String} #required",
+            "    MemberEmailAddress: ${4:String} #required",
+            "    MemberId: ${5:String} #required",
+            "    Message: ${6:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-memberinvitation.html"
@@ -7008,6 +7013,26 @@
         "prefix": "eventschemas-schema",
         "scope": "source.cloudformation"
     },
+    "AWS::Events::ApiDestination": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Events::ApiDestination",
+            "  Properties:",
+            "    ConnectionArn: ${2:String} #required",
+            "    Description: ${3:String}",
+            "    HttpMethod: ${4:String} #required",
+            "    InvocationEndpoint: ${5:String} #required",
+            "    InvocationRateLimitPerSecond: ${6:Integer}",
+            "    Name: ${7:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-apidestination.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "events-apidestination",
+        "scope": "source.cloudformation"
+    },
     "AWS::Events::Archive": {
         "body": [
             "${1:LogicalID}:",
@@ -7026,6 +7051,25 @@
             "  Arn"
         ],
         "prefix": "events-archive",
+        "scope": "source.cloudformation"
+    },
+    "AWS::Events::Connection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Events::Connection",
+            "  Properties:",
+            "    AuthParameters: ${2:Json} #required",
+            "    AuthorizationType: ${3:String} #required",
+            "    Description: ${4:String}",
+            "    Name: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-connection.html",
+            "Attributes: ",
+            "  Arn",
+            "  SecretArn"
+        ],
+        "prefix": "events-connection",
         "scope": "source.cloudformation"
     },
     "AWS::Events::EventBus": {
@@ -8460,10 +8504,9 @@
             "    Authorized: ${2:Boolean}",
             "    LatencyMode: ${3:String}",
             "    Name: ${4:String}",
-            "    RecordingConfigurationArn: ${5:String}",
             "    Tags:",
-            "      - ${6:Tag}",
-            "    Type: ${7:String}"
+            "      - ${5:Tag}",
+            "    Type: ${6:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html",
@@ -8809,6 +8852,24 @@
         "prefix": "iot1click-project",
         "scope": "source.cloudformation"
     },
+    "AWS::IoT::AccountAuditConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::AccountAuditConfiguration",
+            "  Properties:",
+            "    AccountId: ${2:String} #required",
+            "    AuditCheckConfigurations: #required",
+            "      ${3:AuditCheckConfigurations}",
+            "    AuditNotificationTargetConfigurations:",
+            "      ${4:AuditNotificationTargetConfigurations}",
+            "    RoleArn: ${5:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-accountauditconfiguration.html"
+        ],
+        "prefix": "iot-accountauditconfiguration",
+        "scope": "source.cloudformation"
+    },
     "AWS::IoT::Authorizer": {
         "body": [
             "${1:LogicalID}:",
@@ -8852,6 +8913,45 @@
         "prefix": "iot-certificate",
         "scope": "source.cloudformation"
     },
+    "AWS::IoT::CustomMetric": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::CustomMetric",
+            "  Properties:",
+            "    DisplayName: ${2:String}",
+            "    MetricName: ${3:String}",
+            "    MetricType: ${4:String} #required",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-custommetric.html",
+            "Attributes: ",
+            "  MetricArn"
+        ],
+        "prefix": "iot-custommetric",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoT::Dimension": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::Dimension",
+            "  Properties:",
+            "    Name: ${2:String}",
+            "    StringValues: #required",
+            "      - ${3:String}",
+            "    Tags:",
+            "      - ${4:Tag}",
+            "    Type: ${5:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-dimension.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "iot-dimension",
+        "scope": "source.cloudformation"
+    },
     "AWS::IoT::DomainConfiguration": {
         "body": [
             "${1:LogicalID}:",
@@ -8877,6 +8977,27 @@
             "  ServerCertificates"
         ],
         "prefix": "iot-domainconfiguration",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoT::MitigationAction": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::MitigationAction",
+            "  Properties:",
+            "    ActionName: ${2:String}",
+            "    ActionParams: #required",
+            "      ${3:ActionParams}",
+            "    RoleArn: ${4:String} #required",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-mitigationaction.html",
+            "Attributes: ",
+            "  MitigationActionArn",
+            "  MitigationActionId"
+        ],
+        "prefix": "iot-mitigationaction",
         "scope": "source.cloudformation"
     },
     "AWS::IoT::Policy": {
@@ -8930,6 +9051,54 @@
             "  TemplateArn"
         ],
         "prefix": "iot-provisioningtemplate",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoT::ScheduledAudit": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::ScheduledAudit",
+            "  Properties:",
+            "    DayOfMonth: ${2:String}",
+            "    DayOfWeek: ${3:String}",
+            "    Frequency: ${4:String} #required",
+            "    ScheduledAuditName: ${5:String}",
+            "    Tags:",
+            "      - ${6:Tag}",
+            "    TargetCheckNames: #required",
+            "      - ${7:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-scheduledaudit.html",
+            "Attributes: ",
+            "  ScheduledAuditArn"
+        ],
+        "prefix": "iot-scheduledaudit",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoT::SecurityProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::SecurityProfile",
+            "  Properties:",
+            "    AdditionalMetricsToRetainV2:",
+            "      - ${2:MetricToRetain}",
+            "    AlertTargets:",
+            "      ${3:Map}",
+            "    Behaviors:",
+            "      - ${4:Behavior}",
+            "    SecurityProfileDescription: ${5:String}",
+            "    SecurityProfileName: ${6:String}",
+            "    Tags:",
+            "      - ${7:Tag}",
+            "    TargetArns:",
+            "      - ${8:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-securityprofile.html",
+            "Attributes: ",
+            "  SecurityProfileArn"
+        ],
+        "prefix": "iot-securityprofile",
         "scope": "source.cloudformation"
     },
     "AWS::IoT::Thing": {
@@ -12862,6 +13031,81 @@
         "prefix": "s3-storagelens",
         "scope": "source.cloudformation"
     },
+    "AWS::S3Outposts::AccessPoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3Outposts::AccessPoint",
+            "  Properties:",
+            "    Bucket: ${2:String} #required",
+            "    Name: ${3:String} #required",
+            "    Policy: ${4:Json}",
+            "    VpcConfiguration: #required",
+            "      ${5:VpcConfiguration}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-accesspoint.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "s3outposts-accesspoint",
+        "scope": "source.cloudformation"
+    },
+    "AWS::S3Outposts::Bucket": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3Outposts::Bucket",
+            "  Properties:",
+            "    BucketName: ${2:String} #required",
+            "    LifecycleConfiguration:",
+            "      ${3:LifecycleConfiguration}",
+            "    OutpostId: ${4:String} #required",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-bucket.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "s3outposts-bucket",
+        "scope": "source.cloudformation"
+    },
+    "AWS::S3Outposts::BucketPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3Outposts::BucketPolicy",
+            "  Properties:",
+            "    Bucket: ${2:String} #required",
+            "    PolicyDocument: ${3:Json} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-bucketpolicy.html"
+        ],
+        "prefix": "s3outposts-bucketpolicy",
+        "scope": "source.cloudformation"
+    },
+    "AWS::S3Outposts::Endpoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3Outposts::Endpoint",
+            "  Properties:",
+            "    OutpostId: ${2:String} #required",
+            "    SecurityGroupId: ${3:String} #required",
+            "    SubnetId: ${4:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html",
+            "Attributes: ",
+            "  Arn",
+            "  CidrBlock",
+            "  CreationTime",
+            "  Id",
+            "  NetworkInterfaces",
+            "  Status"
+        ],
+        "prefix": "s3outposts-endpoint",
+        "scope": "source.cloudformation"
+    },
     "AWS::SDB::Domain": {
         "body": [
             "${1:LogicalID}:",
@@ -13933,9 +14177,11 @@
             "      ${3:GenerateSecretString}",
             "    KmsKeyId: ${4:String}",
             "    Name: ${5:String}",
-            "    SecretString: ${6:String}",
+            "    ReplicaRegions:",
+            "      - ${6:ReplicaRegion}",
+            "    SecretString: ${7:String}",
             "    Tags:",
-            "      - ${7:Tag}"
+            "      - ${8:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html"
