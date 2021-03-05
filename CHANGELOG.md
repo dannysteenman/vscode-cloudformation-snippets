@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.10.0 (2021-03-05)
+-------------------
+- The following new resource was updated:                <code
+  class="code">AWS::SecretsManager::Secret</code> [Github Actions]
+
+
 3.9.0 (2021-02-26)
 ------------------
 - The following resource was updated: AWS::SageMaker::Model. [Github
