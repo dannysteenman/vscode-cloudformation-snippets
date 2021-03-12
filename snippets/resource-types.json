@@ -1546,16 +1546,18 @@
             "    AdditionalAuthenticationProviders:",
             "      ${2:AdditionalAuthenticationProviders}",
             "    AuthenticationType: ${3:String} #required",
+            "    LambdaAuthorizerConfig:",
+            "      ${4:LambdaAuthorizerConfig}",
             "    LogConfig:",
-            "      ${4:LogConfig}",
-            "    Name: ${5:String} #required",
+            "      ${5:LogConfig}",
+            "    Name: ${6:String} #required",
             "    OpenIDConnectConfig:",
-            "      ${6:OpenIDConnectConfig}",
+            "      ${7:OpenIDConnectConfig}",
             "    Tags:",
-            "      ${7:Tags}",
+            "      ${8:Tags}",
             "    UserPoolConfig:",
-            "      ${8:UserPoolConfig}",
-            "    XrayEnabled: ${9:Boolean}"
+            "      ${9:UserPoolConfig}",
+            "    XrayEnabled: ${10:Boolean}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
@@ -1957,14 +1959,15 @@
             "  Properties:",
             "    BackupPlan: #required",
             "      ${2:BackupPlanResourceType}",
-            "    BackupPlanTags: ${3:Json}"
+            "    BackupPlanTags:",
+            "      ${3:Map}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupplan.html",
             "Attributes: ",
-            "  VersionId",
+            "  BackupPlanArn",
             "  BackupPlanId",
-            "  BackupPlanArn"
+            "  VersionId"
         ],
         "prefix": "backup-backupplan",
         "scope": "source.cloudformation"
@@ -2089,6 +2092,50 @@
         "prefix": "budgets-budget",
         "scope": "source.cloudformation"
     },
+    "AWS::CE::AnomalyMonitor": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CE::AnomalyMonitor",
+            "  Properties:",
+            "    MonitorDimension: ${2:String}",
+            "    MonitorName: ${3:String} #required",
+            "    MonitorSpecification: ${4:String}",
+            "    MonitorType: ${5:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalymonitor.html",
+            "Attributes: ",
+            "  MonitorArn",
+            "  CreationDate",
+            "  LastEvaluatedDate",
+            "  LastUpdatedDate",
+            "  DimensionalValueCount"
+        ],
+        "prefix": "ce-anomalymonitor",
+        "scope": "source.cloudformation"
+    },
+    "AWS::CE::AnomalySubscription": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CE::AnomalySubscription",
+            "  Properties:",
+            "    Frequency: ${2:String} #required",
+            "    MonitorArnList: #required",
+            "      - ${3:String}",
+            "    Subscribers: #required",
+            "      - ${4:Subscriber}",
+            "    SubscriptionName: ${5:String} #required",
+            "    Threshold: ${6:Double} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalysubscription.html",
+            "Attributes: ",
+            "  SubscriptionArn",
+            "  AccountId"
+        ],
+        "prefix": "ce-anomalysubscription",
+        "scope": "source.cloudformation"
+    },
     "AWS::CE::CostCategory": {
         "body": [
             "${1:LogicalID}:",
@@ -2145,6 +2192,22 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html"
         ],
         "prefix": "cassandra-table",
+        "scope": "source.cloudformation"
+    },
+    "AWS::CertificateManager::Account": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CertificateManager::Account",
+            "  Properties:",
+            "    ExpiryEventsConfiguration: #required",
+            "      ${2:ExpiryEventsConfiguration}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-account.html",
+            "Attributes: ",
+            "  AccountId"
+        ],
+        "prefix": "certificatemanager-account",
         "scope": "source.cloudformation"
     },
     "AWS::CertificateManager::Certificate": {
@@ -4374,12 +4437,12 @@
             "    AttributeDefinitions:",
             "      - ${2:AttributeDefinition}",
             "    BillingMode: ${3:String}",
+            "    ContributorInsightsSpecification:",
+            "      ${4:ContributorInsightsSpecification}",
             "    GlobalSecondaryIndexes:",
-            "      - ${4:GlobalSecondaryIndex}",
+            "      - ${5:GlobalSecondaryIndex}",
             "    KeySchema: #required",
-            "      - ${5:KeySchema}",
-            "    KinesisStreamSpecification:",
-            "      ${6:KinesisStreamSpecification}",
+            "      - ${6:KeySchema}",
             "    LocalSecondaryIndexes:",
             "      - ${7:LocalSecondaryIndex}",
             "    PointInTimeRecoverySpecification:",
@@ -4799,7 +4862,9 @@
             "  Properties:",
             "    LaunchTemplateData:",
             "      ${2:LaunchTemplateData}",
-            "    LaunchTemplateName: ${3:String}"
+            "    LaunchTemplateName: ${3:String}",
+            "    TagSpecifications:",
+            "      ${4:TagSpecifications}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html",
@@ -5902,10 +5967,12 @@
             "    ClusterName: ${3:String}",
             "    ClusterSettings:",
             "      - ${4:ClusterSettings}",
+            "    Configuration:",
+            "      ${5:ClusterConfiguration}",
             "    DefaultCapacityProviderStrategy:",
-            "      - ${5:CapacityProviderStrategyItem}",
+            "      - ${6:CapacityProviderStrategyItem}",
             "    Tags:",
-            "      - ${6:Tag}"
+            "      - ${7:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html",
@@ -5913,6 +5980,23 @@
             "  Arn"
         ],
         "prefix": "ecs-cluster",
+        "scope": "source.cloudformation"
+    },
+    "AWS::ECS::ClusterCapacityProviderAssociations": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ECS::ClusterCapacityProviderAssociations",
+            "  Properties:",
+            "    CapacityProviders: #required",
+            "      - ${2:String}",
+            "    Cluster: ${3:String} #required",
+            "    DefaultCapacityProviderStrategy: #required",
+            "      - ${4:CapacityProviderStrategy}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-clustercapacityproviderassociations.html"
+        ],
+        "prefix": "ecs-clustercapacityproviderassociations",
         "scope": "source.cloudformation"
     },
     "AWS::ECS::PrimaryTaskSet": {
@@ -5944,27 +6028,28 @@
             "      ${5:DeploymentController}",
             "    DesiredCount: ${6:Integer}",
             "    EnableECSManagedTags: ${7:Boolean}",
-            "    HealthCheckGracePeriodSeconds: ${8:Integer}",
-            "    LaunchType: ${9:String}",
+            "    EnableExecuteCommand: ${8:Boolean}",
+            "    HealthCheckGracePeriodSeconds: ${9:Integer}",
+            "    LaunchType: ${10:String}",
             "    LoadBalancers:",
-            "      - ${10:LoadBalancer}",
+            "      - ${11:LoadBalancer}",
             "    NetworkConfiguration:",
-            "      ${11:NetworkConfiguration}",
+            "      ${12:NetworkConfiguration}",
             "    PlacementConstraints:",
-            "      - ${12:PlacementConstraint}",
+            "      - ${13:PlacementConstraint}",
             "    PlacementStrategies:",
-            "      - ${13:PlacementStrategy}",
-            "    PlatformVersion: ${14:String}",
-            "    PropagateTags: ${15:String}",
-            "    Role: ${16:String}",
-            "    SchedulingStrategy: ${17:String}",
-            "    ServiceArn: ${18:String}",
-            "    ServiceName: ${19:String}",
+            "      - ${14:PlacementStrategy}",
+            "    PlatformVersion: ${15:String}",
+            "    PropagateTags: ${16:String}",
+            "    Role: ${17:String}",
+            "    SchedulingStrategy: ${18:String}",
+            "    ServiceArn: ${19:String}",
+            "    ServiceName: ${20:String}",
             "    ServiceRegistries:",
-            "      - ${20:ServiceRegistry}",
+            "      - ${21:ServiceRegistry}",
             "    Tags:",
-            "      - ${21:Tag}",
-            "    TaskDefinition: ${22:String}"
+            "      - ${22:Tag}",
+            "    TaskDefinition: ${23:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
@@ -6066,18 +6151,19 @@
             "${1:LogicalID}:",
             "  Type: AWS::EFS::FileSystem",
             "  Properties:",
+            "    AvailabilityZoneName: ${2:String}",
             "    BackupPolicy:",
-            "      ${2:BackupPolicy}",
-            "    Encrypted: ${3:Boolean}",
-            "    FileSystemPolicy: ${4:Json}",
+            "      ${3:BackupPolicy}",
+            "    Encrypted: ${4:Boolean}",
+            "    FileSystemPolicy: ${5:Json}",
             "    FileSystemTags:",
-            "      - ${5:ElasticFileSystemTag}",
-            "    KmsKeyId: ${6:String}",
+            "      - ${6:ElasticFileSystemTag}",
+            "    KmsKeyId: ${7:String}",
             "    LifecyclePolicies:",
-            "      - ${7:LifecyclePolicy}",
-            "    PerformanceMode: ${8:String}",
-            "    ProvisionedThroughputInMibps: ${9:Double}",
-            "    ThroughputMode: ${10:String}"
+            "      - ${8:LifecyclePolicy}",
+            "    PerformanceMode: ${9:String}",
+            "    ProvisionedThroughputInMibps: ${10:Double}",
+            "    ThroughputMode: ${11:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",
@@ -12297,6 +12383,32 @@
         "prefix": "rds-dbproxy",
         "scope": "source.cloudformation"
     },
+    "AWS::RDS::DBProxyEndpoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RDS::DBProxyEndpoint",
+            "  Properties:",
+            "    DBProxyEndpointName: ${2:String} #required",
+            "    DBProxyName: ${3:String} #required",
+            "    Tags:",
+            "      - ${4:TagFormat}",
+            "    TargetRole: ${5:String}",
+            "    VpcSecurityGroupIds:",
+            "      - ${6:String}",
+            "    VpcSubnetIds: #required",
+            "      - ${7:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxyendpoint.html",
+            "Attributes: ",
+            "  DBProxyEndpointArn",
+            "  VpcId",
+            "  Endpoint",
+            "  IsDefault"
+        ],
+        "prefix": "rds-dbproxyendpoint",
+        "scope": "source.cloudformation"
+    },
     "AWS::RDS::DBProxyTargetGroup": {
         "body": [
             "${1:LogicalID}:",
@@ -13500,7 +13612,9 @@
             "    SyncType: ${10:String}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcedatasync.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcedatasync.html",
+            "Attributes: ",
+            "  SyncName"
         ],
         "prefix": "ssm-resourcedatasync",
         "scope": "source.cloudformation"
