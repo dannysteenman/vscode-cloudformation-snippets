@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.11.0 (2021-03-12)
+-------------------
+- The following resource was updated: AWS::EC2::LaunchTemplate. [Github
+  Actions]
+
+
 3.10.0 (2021-03-05)
 -------------------
 - The following new resource was updated:                <code
