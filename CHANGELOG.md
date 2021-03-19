@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.12.0 (2021-03-19)
+-------------------
+- The following resource was added: AWS::FIS::ExperimentTemplate.
+  [Github Actions]
+
+
 3.11.0 (2021-03-12)
 -------------------
 - The following resource was updated: AWS::EC2::LaunchTemplate. [Github
