@@ -1984,6 +1984,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupselection.html",
             "Attributes: ",
+            "  Id",
             "  BackupPlanId",
             "  SelectionId"
         ],
@@ -4864,7 +4865,7 @@
             "      ${2:LaunchTemplateData}",
             "    LaunchTemplateName: ${3:String}",
             "    TagSpecifications:",
-            "      ${4:TagSpecifications}"
+            "      - ${4:TagSpecification}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html",
@@ -7216,6 +7217,30 @@
             "  Arn"
         ],
         "prefix": "events-rule",
+        "scope": "source.cloudformation"
+    },
+    "AWS::FIS::ExperimentTemplate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::FIS::ExperimentTemplate",
+            "  Properties:",
+            "    actions:",
+            "      ${2:Map}",
+            "    description: ${3:String} #required",
+            "    roleArn: ${4:String} #required",
+            "    stopConditions: #required",
+            "      - ${5:ExperimentTemplateStopCondition}",
+            "    tags: #required",
+            "      ${6:Map}",
+            "    targets: #required",
+            "      ${7:Map}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html",
+            "Attributes: ",
+            "  id"
+        ],
+        "prefix": "fis-experimenttemplate",
         "scope": "source.cloudformation"
     },
     "AWS::FMS::NotificationChannel": {
@@ -12378,7 +12403,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxy.html",
             "Attributes: ",
             "  DBProxyArn",
-            "  Endpoint"
+            "  Endpoint",
+            "  VpcId"
         ],
         "prefix": "rds-dbproxy",
         "scope": "source.cloudformation"
@@ -13141,6 +13167,38 @@
             "  StorageLensArn"
         ],
         "prefix": "s3-storagelens",
+        "scope": "source.cloudformation"
+    },
+    "AWS::S3ObjectLambda::AccessPoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3ObjectLambda::AccessPoint",
+            "  Properties:",
+            "    Name: ${2:String} #required",
+            "    ObjectLambdaConfiguration:",
+            "      ${3:ObjectLambdaConfiguration}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationDate"
+        ],
+        "prefix": "s3objectlambda-accesspoint",
+        "scope": "source.cloudformation"
+    },
+    "AWS::S3ObjectLambda::AccessPointPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3ObjectLambda::AccessPointPolicy",
+            "  Properties:",
+            "    ObjectLambdaAccessPoint: ${2:String} #required",
+            "    PolicyDocument: ${3:Json} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspointpolicy.html"
+        ],
+        "prefix": "s3objectlambda-accesspointpolicy",
         "scope": "source.cloudformation"
     },
     "AWS::S3Outposts::AccessPoint": {
@@ -14655,8 +14713,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::ServiceCatalogAppRegistry::AttributeGroup",
             "  Properties:",
-            "    Attributes: #required",
-            "      ${2:Attributes}",
+            "    Attributes: ${2:Json} #required",
             "    Description: ${3:String}",
             "    Name: ${4:String} #required",
             "    Tags:",
@@ -14796,7 +14853,8 @@
             "    Name: ${6:String}",
             "    NamespaceId: ${7:String}",
             "    Tags:",
-            "      - ${8:Tag}"
+            "      - ${8:Tag}",
+            "    Type: ${9:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html",
