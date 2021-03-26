@@ -1100,6 +1100,28 @@
         "prefix": "appflow-flow",
         "scope": "source.cloudformation"
     },
+    "AWS::AppIntegrations::EventIntegration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppIntegrations::EventIntegration",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    EventBridgeBus: ${3:String} #required",
+            "    EventFilter: #required",
+            "      ${4:EventFilter}",
+            "    Name: ${5:String} #required",
+            "    Tags:",
+            "      - ${6:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-eventintegration.html",
+            "Attributes: ",
+            "  EventIntegrationArn",
+            "  Associations"
+        ],
+        "prefix": "appintegrations-eventintegration",
+        "scope": "source.cloudformation"
+    },
     "AWS::AppMesh::GatewayRoute": {
         "body": [
             "${1:LogicalID}:",
@@ -1546,18 +1568,16 @@
             "    AdditionalAuthenticationProviders:",
             "      ${2:AdditionalAuthenticationProviders}",
             "    AuthenticationType: ${3:String} #required",
-            "    LambdaAuthorizerConfig:",
-            "      ${4:LambdaAuthorizerConfig}",
             "    LogConfig:",
-            "      ${5:LogConfig}",
-            "    Name: ${6:String} #required",
+            "      ${4:LogConfig}",
+            "    Name: ${5:String} #required",
             "    OpenIDConnectConfig:",
-            "      ${7:OpenIDConnectConfig}",
+            "      ${6:OpenIDConnectConfig}",
             "    Tags:",
-            "      ${8:Tags}",
+            "      ${7:Tags}",
             "    UserPoolConfig:",
-            "      ${9:UserPoolConfig}",
-            "    XrayEnabled: ${10:Boolean}"
+            "      ${8:UserPoolConfig}",
+            "    XrayEnabled: ${9:Boolean}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
@@ -3659,6 +3679,75 @@
             "  QueryId"
         ],
         "prefix": "config-storedquery",
+        "scope": "source.cloudformation"
+    },
+    "AWS::CustomerProfiles::Domain": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CustomerProfiles::Domain",
+            "  Properties:",
+            "    DeadLetterQueueUrl: ${2:String}",
+            "    DefaultEncryptionKey: ${3:String}",
+            "    DefaultExpirationDays: ${4:Integer}",
+            "    DomainName: ${5:String} #required",
+            "    Tags:",
+            "      - ${6:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html",
+            "Attributes: ",
+            "  CreatedAt",
+            "  LastUpdatedAt"
+        ],
+        "prefix": "customerprofiles-domain",
+        "scope": "source.cloudformation"
+    },
+    "AWS::CustomerProfiles::Integration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CustomerProfiles::Integration",
+            "  Properties:",
+            "    DomainName: ${2:String} #required",
+            "    ObjectTypeName: ${3:String}",
+            "    Tags:",
+            "      - ${4:Tag}",
+            "    Uri: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html",
+            "Attributes: ",
+            "  CreatedAt",
+            "  LastUpdatedAt"
+        ],
+        "prefix": "customerprofiles-integration",
+        "scope": "source.cloudformation"
+    },
+    "AWS::CustomerProfiles::ObjectType": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CustomerProfiles::ObjectType",
+            "  Properties:",
+            "    AllowProfileCreation: ${2:Boolean}",
+            "    Description: ${3:String}",
+            "    DomainName: ${4:String} #required",
+            "    EncryptionKey: ${5:String}",
+            "    ExpirationDays: ${6:Integer}",
+            "    Fields:",
+            "      - ${7:FieldMap}",
+            "    Keys:",
+            "      - ${8:KeyMap}",
+            "    ObjectTypeName: ${9:String}",
+            "    Tags:",
+            "      - ${10:Tag}",
+            "    TemplateId: ${11:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-objecttype.html",
+            "Attributes: ",
+            "  CreatedAt",
+            "  LastUpdatedAt"
+        ],
+        "prefix": "customerprofiles-objecttype",
         "scope": "source.cloudformation"
     },
     "AWS::DAX::Cluster": {
@@ -10398,6 +10487,45 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html"
         ],
         "prefix": "logs-subscriptionfilter",
+        "scope": "source.cloudformation"
+    },
+    "AWS::LookoutMetrics::Alert": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LookoutMetrics::Alert",
+            "  Properties:",
+            "    Action: ${2:Json} #required",
+            "    AlertDescription: ${3:String}",
+            "    AlertName: ${4:String}",
+            "    AlertSensitivityThreshold: ${5:Integer} #required",
+            "    AnomalyDetectorArn: ${6:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lookoutmetrics-alert.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "lookoutmetrics-alert",
+        "scope": "source.cloudformation"
+    },
+    "AWS::LookoutMetrics::AnomalyDetector": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LookoutMetrics::AnomalyDetector",
+            "  Properties:",
+            "    AnomalyDetectorConfig: ${2:Json} #required",
+            "    AnomalyDetectorDescription: ${3:String}",
+            "    AnomalyDetectorName: ${4:String}",
+            "    KmsKeyArn: ${5:String}",
+            "    MetricSetList: #required",
+            "      - ${6:MetricSet}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lookoutmetrics-anomalydetector.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "lookoutmetrics-anomalydetector",
         "scope": "source.cloudformation"
     },
     "AWS::LookoutVision::Project": {
