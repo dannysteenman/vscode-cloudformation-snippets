@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+3.13.0 (2021-03-26)
+-------------------
+- The following resources were added: AWS::CustomerProfiles::Domain,
+  AWS::CustomerProfiles::Integration and
+  AWS::CustomerProfiles::ObjectType. [Github Actions]
+- Added github issue + pr templates. [Danny Steenman]
+- Create FUNDING.yml. [Danny]
+
+
 3.12.0 (2021-03-19)
 -------------------
 - The following resource was added: AWS::FIS::ExperimentTemplate.
