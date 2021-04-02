@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.14.0 (2021-04-02)
+-------------------
+- The following resources were updated: AWS::DataBrew::Dataset and
+  AWS::DataBrew::Job. [Github Actions]
+
+
 3.13.0 (2021-03-26)
 -------------------
 - The following resources were added: AWS::CustomerProfiles::Domain,
