@@ -2188,9 +2188,10 @@
             "${1:LogicalID}:",
             "  Type: AWS::CE::CostCategory",
             "  Properties:",
-            "    Name: ${2:String} #required",
-            "    RuleVersion: ${3:String} #required",
-            "    Rules: ${4:String} #required"
+            "    DefaultValue: ${2:String}",
+            "    Name: ${3:String} #required",
+            "    RuleVersion: ${4:String} #required",
+            "    Rules: ${5:String} #required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-costcategory.html",
@@ -3916,15 +3917,16 @@
             "      ${22:PostgreSqlSettings}",
             "    RedshiftSettings:",
             "      ${23:RedshiftSettings}",
+            "    ResourceIdentifier: ${24:String}",
             "    S3Settings:",
-            "      ${24:S3Settings}",
-            "    ServerName: ${25:String}",
-            "    SslMode: ${26:String}",
+            "      ${25:S3Settings}",
+            "    ServerName: ${26:String}",
+            "    SslMode: ${27:String}",
             "    SybaseSettings:",
-            "      ${27:SybaseSettings}",
+            "      ${28:SybaseSettings}",
             "    Tags:",
-            "      - ${28:Tag}",
-            "    Username: ${29:String}"
+            "      - ${29:Tag}",
+            "    Username: ${30:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html",
@@ -3973,10 +3975,11 @@
             "    ReplicationInstanceClass: ${11:String} #required",
             "    ReplicationInstanceIdentifier: ${12:String}",
             "    ReplicationSubnetGroupIdentifier: ${13:String}",
+            "    ResourceIdentifier: ${14:String}",
             "    Tags:",
-            "      - ${14:Tag}",
+            "      - ${15:Tag}",
             "    VpcSecurityGroupIds:",
-            "      - ${15:String}"
+            "      - ${16:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html",
@@ -4017,12 +4020,13 @@
             "    ReplicationInstanceArn: ${6:String} #required",
             "    ReplicationTaskIdentifier: ${7:String}",
             "    ReplicationTaskSettings: ${8:String}",
-            "    SourceEndpointArn: ${9:String} #required",
-            "    TableMappings: ${10:String} #required",
+            "    ResourceIdentifier: ${9:String}",
+            "    SourceEndpointArn: ${10:String} #required",
+            "    TableMappings: ${11:String} #required",
             "    Tags:",
-            "      - ${11:Tag}",
-            "    TargetEndpointArn: ${12:String} #required",
-            "    TaskData: ${13:String}"
+            "      - ${12:Tag}",
+            "    TargetEndpointArn: ${13:String} #required",
+            "    TaskData: ${14:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html"
@@ -4565,21 +4569,23 @@
             "      - ${5:GlobalSecondaryIndex}",
             "    KeySchema: #required",
             "      - ${6:KeySchema}",
+            "    KinesisStreamSpecification:",
+            "      ${7:KinesisStreamSpecification}",
             "    LocalSecondaryIndexes:",
-            "      - ${7:LocalSecondaryIndex}",
+            "      - ${8:LocalSecondaryIndex}",
             "    PointInTimeRecoverySpecification:",
-            "      ${8:PointInTimeRecoverySpecification}",
+            "      ${9:PointInTimeRecoverySpecification}",
             "    ProvisionedThroughput:",
-            "      ${9:ProvisionedThroughput}",
+            "      ${10:ProvisionedThroughput}",
             "    SSESpecification:",
-            "      ${10:SSESpecification}",
+            "      ${11:SSESpecification}",
             "    StreamSpecification:",
-            "      ${11:StreamSpecification}",
-            "    TableName: ${12:String}",
+            "      ${12:StreamSpecification}",
+            "    TableName: ${13:String}",
             "    Tags:",
-            "      - ${13:Tag}",
+            "      - ${14:Tag}",
             "    TimeToLiveSpecification:",
-            "      ${14:TimeToLiveSpecification}"
+            "      ${15:TimeToLiveSpecification}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html",
@@ -4832,6 +4838,24 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html"
         ],
         "prefix": "ec2-egressonlyinternetgateway",
+        "scope": "source.cloudformation"
+    },
+    "AWS::EC2::EnclaveCertificateIamRoleAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::EnclaveCertificateIamRoleAssociation",
+            "  Properties:",
+            "    CertificateArn: ${2:String} #required",
+            "    RoleArn: ${3:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-enclavecertificateiamroleassociation.html",
+            "Attributes: ",
+            "  CertificateS3BucketName",
+            "  CertificateS3ObjectKey",
+            "  EncryptionKmsKeyId"
+        ],
+        "prefix": "ec2-enclavecertificateiamroleassociation",
         "scope": "source.cloudformation"
     },
     "AWS::EC2::FlowLog": {
@@ -6276,16 +6300,17 @@
             "    AvailabilityZoneName: ${2:String}",
             "    BackupPolicy:",
             "      ${3:BackupPolicy}",
-            "    Encrypted: ${4:Boolean}",
-            "    FileSystemPolicy: ${5:Json}",
+            "    BypassPolicyLockoutSafetyCheck: ${4:Boolean}",
+            "    Encrypted: ${5:Boolean}",
+            "    FileSystemPolicy: ${6:Json}",
             "    FileSystemTags:",
-            "      - ${6:ElasticFileSystemTag}",
-            "    KmsKeyId: ${7:String}",
+            "      - ${7:ElasticFileSystemTag}",
+            "    KmsKeyId: ${8:String}",
             "    LifecyclePolicies:",
-            "      - ${8:LifecyclePolicy}",
-            "    PerformanceMode: ${9:String}",
-            "    ProvisionedThroughputInMibps: ${10:Double}",
-            "    ThroughputMode: ${11:String}"
+            "      - ${9:LifecyclePolicy}",
+            "    PerformanceMode: ${10:String}",
+            "    ProvisionedThroughputInMibps: ${11:Double}",
+            "    ThroughputMode: ${12:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",
@@ -6686,7 +6711,9 @@
             "    CacheParameterGroupFamily: ${2:String} #required",
             "    Description: ${3:String} #required",
             "    Properties:",
-            "      ${4:Map}"
+            "      ${4:Map}",
+            "    Tags:",
+            "      - ${5:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html"
@@ -6762,7 +6789,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::ElastiCache::SecurityGroup",
             "  Properties:",
-            "    Description: ${2:String} #required"
+            "    Description: ${2:String} #required",
+            "    Tags:",
+            "      - ${3:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html"
@@ -6793,7 +6822,9 @@
             "    CacheSubnetGroupName: ${2:String}",
             "    Description: ${3:String} #required",
             "    SubnetIds: #required",
-            "      - ${4:String}"
+            "      - ${4:String}",
+            "    Tags:",
+            "      - ${5:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html"
@@ -7486,29 +7517,27 @@
             "    DesiredEC2Instances: ${5:Integer}",
             "    EC2InboundPermissions:",
             "      - ${6:IpPermission}",
-            "    EC2InstanceType: ${7:String} #required",
+            "    EC2InstanceType: ${7:String}",
             "    FleetType: ${8:String}",
             "    InstanceRoleARN: ${9:String}",
-            "    LogPaths:",
-            "      - ${10:String}",
-            "    MaxSize: ${11:Integer}",
+            "    MaxSize: ${10:Integer}",
             "    MetricGroups:",
-            "      - ${12:String}",
-            "    MinSize: ${13:Integer}",
-            "    Name: ${14:String} #required",
-            "    NewGameSessionProtectionPolicy: ${15:String}",
-            "    PeerVpcAwsAccountId: ${16:String}",
-            "    PeerVpcId: ${17:String}",
+            "      - ${11:String}",
+            "    MinSize: ${12:Integer}",
+            "    Name: ${13:String}",
+            "    NewGameSessionProtectionPolicy: ${14:String}",
+            "    PeerVpcAwsAccountId: ${15:String}",
+            "    PeerVpcId: ${16:String}",
             "    ResourceCreationLimitPolicy:",
-            "      ${18:ResourceCreationLimitPolicy}",
+            "      ${17:ResourceCreationLimitPolicy}",
             "    RuntimeConfiguration:",
-            "      ${19:RuntimeConfiguration}",
-            "    ScriptId: ${20:String}",
-            "    ServerLaunchParameters: ${21:String}",
-            "    ServerLaunchPath: ${22:String}"
+            "      ${18:RuntimeConfiguration}",
+            "    ScriptId: ${19:String}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html",
+            "Attributes: ",
+            "  FleetId"
         ],
         "prefix": "gamelift-fleet",
         "scope": "source.cloudformation"
@@ -8804,9 +8833,10 @@
             "    Authorized: ${2:Boolean}",
             "    LatencyMode: ${3:String}",
             "    Name: ${4:String}",
+            "    RecordingConfigurationArn: ${5:String}",
             "    Tags:",
-            "      - ${5:Tag}",
-            "    Type: ${6:String}"
+            "      - ${6:Tag}",
+            "    Type: ${7:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html",
@@ -8835,6 +8865,26 @@
             "  Arn"
         ],
         "prefix": "ivs-playbackkeypair",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IVS::RecordingConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IVS::RecordingConfiguration",
+            "  Properties:",
+            "    DestinationConfiguration: #required",
+            "      ${2:DestinationConfiguration}",
+            "    Name: ${3:String}",
+            "    Tags:",
+            "      - ${4:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html",
+            "Attributes: ",
+            "  Arn",
+            "  State"
+        ],
+        "prefix": "ivs-recordingconfiguration",
         "scope": "source.cloudformation"
     },
     "AWS::IVS::StreamKey": {
@@ -8877,6 +8927,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-component.html",
             "Attributes: ",
             "  Arn",
+            "  Name",
             "  Type",
             "  Encrypted"
         ],
@@ -8895,21 +8946,24 @@
             "    DockerfileTemplateData: ${5:String}",
             "    DockerfileTemplateUri: ${6:String}",
             "    ImageOsVersionOverride: ${7:String}",
-            "    KmsKeyId: ${8:String}",
-            "    Name: ${9:String} #required",
-            "    ParentImage: ${10:String} #required",
-            "    PlatformOverride: ${11:String}",
+            "    InstanceConfiguration:",
+            "      ${8:InstanceConfiguration}",
+            "    KmsKeyId: ${9:String}",
+            "    Name: ${10:String} #required",
+            "    ParentImage: ${11:String} #required",
+            "    PlatformOverride: ${12:String}",
             "    Tags:",
-            "      ${12:Map}",
+            "      ${13:Map}",
             "    TargetRepository: #required",
-            "      ${13:TargetContainerRepository}",
-            "    Version: ${14:String} #required",
-            "    WorkingDirectory: ${15:String}"
+            "      ${14:TargetContainerRepository}",
+            "    Version: ${15:String} #required",
+            "    WorkingDirectory: ${16:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-containerrecipe.html",
             "Attributes: ",
-            "  Arn"
+            "  Arn",
+            "  Name"
         ],
         "prefix": "imagebuilder-containerrecipe",
         "scope": "source.cloudformation"
@@ -8929,7 +8983,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-distributionconfiguration.html",
             "Attributes: ",
-            "  Arn"
+            "  Arn",
+            "  Name"
         ],
         "prefix": "imagebuilder-distributionconfiguration",
         "scope": "source.cloudformation"
@@ -8982,7 +9037,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagepipeline.html",
             "Attributes: ",
-            "  Arn"
+            "  Arn",
+            "  Name"
         ],
         "prefix": "imagebuilder-imagepipeline",
         "scope": "source.cloudformation"
@@ -9007,7 +9063,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html",
             "Attributes: ",
-            "  Arn"
+            "  Arn",
+            "  Name"
         ],
         "prefix": "imagebuilder-imagerecipe",
         "scope": "source.cloudformation"
@@ -9038,7 +9095,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-infrastructureconfiguration.html",
             "Attributes: ",
-            "  Arn"
+            "  Arn",
+            "  Name"
         ],
         "prefix": "imagebuilder-infrastructureconfiguration",
         "scope": "source.cloudformation"
@@ -9436,8 +9494,10 @@
             "  Type: AWS::IoT::TopicRule",
             "  Properties:",
             "    RuleName: ${2:String}",
+            "    Tags:",
+            "      - ${3:Tag}",
             "    TopicRulePayload: #required",
-            "      ${3:TopicRulePayload}"
+            "      ${4:TopicRulePayload}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html",
@@ -9556,13 +9616,13 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTEvents::DetectorModel",
             "  Properties:",
-            "    DetectorModelDefinition:",
+            "    DetectorModelDefinition: #required",
             "      ${2:DetectorModelDefinition}",
             "    DetectorModelDescription: ${3:String}",
             "    DetectorModelName: ${4:String}",
             "    EvaluationMethod: ${5:String}",
             "    Key: ${6:String}",
-            "    RoleArn: ${7:String}",
+            "    RoleArn: ${7:String} #required",
             "    Tags:",
             "      - ${8:Tag}"
         ],
@@ -9577,7 +9637,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTEvents::Input",
             "  Properties:",
-            "    InputDefinition:",
+            "    InputDefinition: #required",
             "      ${2:InputDefinition}",
             "    InputDescription: ${3:String}",
             "    InputName: ${4:String}",
@@ -10695,8 +10755,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::MWAA::Environment",
             "  Properties:",
-            "    AirflowConfigurationOptions:",
-            "      ${2:AirflowConfigurationOptions}",
+            "    AirflowConfigurationOptions: ${2:Json}",
             "    AirflowVersion: ${3:String}",
             "    DagS3Path: ${4:String}",
             "    EnvironmentClass: ${5:String}",
@@ -10705,18 +10764,19 @@
             "    LoggingConfiguration:",
             "      ${8:LoggingConfiguration}",
             "    MaxWorkers: ${9:Integer}",
-            "    Name: ${10:String} #required",
+            "    MinWorkers: ${10:Integer}",
+            "    Name: ${11:String} #required",
             "    NetworkConfiguration:",
-            "      ${11:NetworkConfiguration}",
-            "    PluginsS3ObjectVersion: ${12:String}",
-            "    PluginsS3Path: ${13:String}",
-            "    RequirementsS3ObjectVersion: ${14:String}",
-            "    RequirementsS3Path: ${15:String}",
-            "    SourceBucketArn: ${16:String}",
+            "      ${12:NetworkConfiguration}",
+            "    PluginsS3ObjectVersion: ${13:String}",
+            "    PluginsS3Path: ${14:String}",
+            "    RequirementsS3ObjectVersion: ${15:String}",
+            "    RequirementsS3Path: ${16:String}",
+            "    SourceBucketArn: ${17:String}",
             "    Tags:",
-            "      ${17:TagMap}",
-            "    WebserverAccessMode: ${18:String}",
-            "    WeeklyMaintenanceWindowStart: ${19:String}"
+            "      ${18:TagMap}",
+            "    WebserverAccessMode: ${19:String}",
+            "    WeeklyMaintenanceWindowStart: ${20:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html",
