@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.15.0 (2021-04-16)
+-------------------
+- The following resource was updated: AWS::CloudFormation::StackSet.
+  [Github Actions]
+
+
 3.14.0 (2021-04-02)
 -------------------
 - The following resources were updated: AWS::DataBrew::Dataset and
