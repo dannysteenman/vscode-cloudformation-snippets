@@ -1954,6 +1954,22 @@
         "prefix": "autoscaling-scheduledaction",
         "scope": "source.cloudformation"
     },
+    "AWS::AutoScaling::WarmPool": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AutoScaling::WarmPool",
+            "  Properties:",
+            "    AutoScalingGroupName: ${2:String} #required",
+            "    MaxGroupPreparedCapacity: ${3:Integer}",
+            "    MinSize: ${4:Integer}",
+            "    PoolState: ${5:String}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html"
+        ],
+        "prefix": "autoscaling-warmpool",
+        "scope": "source.cloudformation"
+    },
     "AWS::AutoScalingPlans::ScalingPlan": {
         "body": [
             "${1:LogicalID}:",
@@ -4361,6 +4377,22 @@
         "prefix": "datasync-task",
         "scope": "source.cloudformation"
     },
+    "AWS::Detective::Graph": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Detective::Graph",
+            "  Properties:",
+            "    Tags:",
+            "      - ${2:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-graph.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "detective-graph",
+        "scope": "source.cloudformation"
+    },
     "AWS::Detective::MemberInvitation": {
         "body": [
             "${1:LogicalID}:",
@@ -6383,7 +6415,8 @@
             "  ClusterSecurityGroupId",
             "  EncryptionConfigKeyArn",
             "  Arn",
-            "  CertificateAuthorityData"
+            "  CertificateAuthorityData",
+            "  OpenIdConnectIssuerUrl"
         ],
         "prefix": "eks-cluster",
         "scope": "source.cloudformation"
@@ -6649,22 +6682,24 @@
             "    ClusterName: ${8:String}",
             "    Engine: ${9:String} #required",
             "    EngineVersion: ${10:String}",
-            "    NotificationTopicArn: ${11:String}",
-            "    NumCacheNodes: ${12:Integer} #required",
-            "    Port: ${13:Integer}",
-            "    PreferredAvailabilityZone: ${14:String}",
+            "    LogDeliveryConfigurations:",
+            "      - ${11:LogDeliveryConfigurationRequest}",
+            "    NotificationTopicArn: ${12:String}",
+            "    NumCacheNodes: ${13:Integer} #required",
+            "    Port: ${14:Integer}",
+            "    PreferredAvailabilityZone: ${15:String}",
             "    PreferredAvailabilityZones:",
-            "      - ${15:String}",
-            "    PreferredMaintenanceWindow: ${16:String}",
+            "      - ${16:String}",
+            "    PreferredMaintenanceWindow: ${17:String}",
             "    SnapshotArns:",
-            "      - ${17:String}",
-            "    SnapshotName: ${18:String}",
-            "    SnapshotRetentionLimit: ${19:Integer}",
-            "    SnapshotWindow: ${20:String}",
+            "      - ${18:String}",
+            "    SnapshotName: ${19:String}",
+            "    SnapshotRetentionLimit: ${20:Integer}",
+            "    SnapshotWindow: ${21:String}",
             "    Tags:",
-            "      - ${21:Tag}",
+            "      - ${22:Tag}",
             "    VpcSecurityGroupIds:",
-            "      - ${22:String}"
+            "      - ${23:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html",
@@ -6739,33 +6774,35 @@
             "    EngineVersion: ${11:String}",
             "    GlobalReplicationGroupId: ${12:String}",
             "    KmsKeyId: ${13:String}",
-            "    MultiAZEnabled: ${14:Boolean}",
+            "    LogDeliveryConfigurations:",
+            "      - ${14:LogDeliveryConfigurationRequest}",
+            "    MultiAZEnabled: ${15:Boolean}",
             "    NodeGroupConfiguration:",
-            "      - ${15:NodeGroupConfiguration}",
-            "    NotificationTopicArn: ${16:String}",
-            "    NumCacheClusters: ${17:Integer}",
-            "    NumNodeGroups: ${18:Integer}",
-            "    Port: ${19:Integer}",
+            "      - ${16:NodeGroupConfiguration}",
+            "    NotificationTopicArn: ${17:String}",
+            "    NumCacheClusters: ${18:Integer}",
+            "    NumNodeGroups: ${19:Integer}",
+            "    Port: ${20:Integer}",
             "    PreferredCacheClusterAZs:",
-            "      - ${20:String}",
-            "    PreferredMaintenanceWindow: ${21:String}",
-            "    PrimaryClusterId: ${22:String}",
-            "    ReplicasPerNodeGroup: ${23:Integer}",
-            "    ReplicationGroupDescription: ${24:String} #required",
-            "    ReplicationGroupId: ${25:String}",
+            "      - ${21:String}",
+            "    PreferredMaintenanceWindow: ${22:String}",
+            "    PrimaryClusterId: ${23:String}",
+            "    ReplicasPerNodeGroup: ${24:Integer}",
+            "    ReplicationGroupDescription: ${25:String} #required",
+            "    ReplicationGroupId: ${26:String}",
             "    SecurityGroupIds:",
-            "      - ${26:String}",
-            "    SnapshotArns:",
             "      - ${27:String}",
-            "    SnapshotName: ${28:String}",
-            "    SnapshotRetentionLimit: ${29:Integer}",
-            "    SnapshotWindow: ${30:String}",
-            "    SnapshottingClusterId: ${31:String}",
+            "    SnapshotArns:",
+            "      - ${28:String}",
+            "    SnapshotName: ${29:String}",
+            "    SnapshotRetentionLimit: ${30:Integer}",
+            "    SnapshotWindow: ${31:String}",
+            "    SnapshottingClusterId: ${32:String}",
             "    Tags:",
-            "      - ${32:Tag}",
-            "    TransitEncryptionEnabled: ${33:Boolean}",
+            "      - ${33:Tag}",
+            "    TransitEncryptionEnabled: ${34:Boolean}",
             "    UserGroupIds:",
-            "      - ${34:String}"
+            "      - ${35:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html",
@@ -9650,6 +9687,32 @@
         "prefix": "iotevents-input",
         "scope": "source.cloudformation"
     },
+    "AWS::IoTFleetHub::Application": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTFleetHub::Application",
+            "  Properties:",
+            "    ApplicationDescription: ${2:String}",
+            "    ApplicationName: ${3:String} #required",
+            "    RoleArn: ${4:String} #required",
+            "    Tags:",
+            "      - ${5:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleethub-application.html",
+            "Attributes: ",
+            "  ApplicationId",
+            "  ApplicationArn",
+            "  ApplicationUrl",
+            "  ApplicationState",
+            "  ApplicationCreationDate",
+            "  ApplicationLastUpdateDate",
+            "  SsoClientId",
+            "  ErrorMessage"
+        ],
+        "prefix": "iotfleethub-application",
+        "scope": "source.cloudformation"
+    },
     "AWS::IoTSiteWise::AccessPolicy": {
         "body": [
             "${1:LogicalID}:",
@@ -9860,6 +9923,30 @@
         "prefix": "iotwireless-deviceprofile",
         "scope": "source.cloudformation"
     },
+    "AWS::IoTWireless::PartnerAccount": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::PartnerAccount",
+            "  Properties:",
+            "    AccountLinked: ${2:Boolean}",
+            "    Fingerprint: ${3:String}",
+            "    PartnerAccountId: ${4:String}",
+            "    PartnerType: ${5:String}",
+            "    Sidewalk:",
+            "      ${6:SidewalkAccountInfo}",
+            "    SidewalkUpdate:",
+            "      ${7:SidewalkUpdateAccount}",
+            "    Tags:",
+            "      - ${8:Tag}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "iotwireless-partneraccount",
+        "scope": "source.cloudformation"
+    },
     "AWS::IoTWireless::ServiceProfile": {
         "body": [
             "${1:LogicalID}:",
@@ -9896,6 +9983,30 @@
             "  Id"
         ],
         "prefix": "iotwireless-serviceprofile",
+        "scope": "source.cloudformation"
+    },
+    "AWS::IoTWireless::TaskDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::TaskDefinition",
+            "  Properties:",
+            "    AutoCreateTasks: ${2:Boolean} #required",
+            "    LoRaWANUpdateGatewayTaskEntry:",
+            "      ${3:LoRaWANUpdateGatewayTaskEntry}",
+            "    Name: ${4:String}",
+            "    Tags:",
+            "      - ${5:Tag}",
+            "    TaskDefinitionType: ${6:String}",
+            "    Update:",
+            "      ${7:UpdateWirelessGatewayTaskCreate}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-taskdefinition.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "iotwireless-taskdefinition",
         "scope": "source.cloudformation"
     },
     "AWS::IoTWireless::WirelessDevice": {
@@ -11659,6 +11770,110 @@
         "prefix": "networkmanager-transitgatewayregistration",
         "scope": "source.cloudformation"
     },
+    "AWS::NimbleStudio::LaunchProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::NimbleStudio::LaunchProfile",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    Ec2SubnetIds: #required",
+            "      - ${3:String}",
+            "    LaunchProfileProtocolVersions: #required",
+            "      - ${4:String}",
+            "    Name: ${5:String} #required",
+            "    StreamConfiguration: #required",
+            "      ${6:StreamConfiguration}",
+            "    StudioComponentIds: #required",
+            "      - ${7:String}",
+            "    StudioId: ${8:String} #required",
+            "    Tags:",
+            "      ${9:Map}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-launchprofile.html",
+            "Attributes: ",
+            "  LaunchProfileId"
+        ],
+        "prefix": "nimblestudio-launchprofile",
+        "scope": "source.cloudformation"
+    },
+    "AWS::NimbleStudio::StreamingImage": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::NimbleStudio::StreamingImage",
+            "  Properties:",
+            "    Description: ${2:String}",
+            "    Ec2ImageId: ${3:String} #required",
+            "    Name: ${4:String} #required",
+            "    StudioId: ${5:String} #required",
+            "    Tags:",
+            "      ${6:Map}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-streamingimage.html",
+            "Attributes: ",
+            "  StreamingImageId",
+            "  Owner",
+            "  EulaIds",
+            "  Platform"
+        ],
+        "prefix": "nimblestudio-streamingimage",
+        "scope": "source.cloudformation"
+    },
+    "AWS::NimbleStudio::Studio": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::NimbleStudio::Studio",
+            "  Properties:",
+            "    AdminRoleArn: ${2:String} #required",
+            "    DisplayName: ${3:String} #required",
+            "    StudioEncryptionConfiguration:",
+            "      ${4:StudioEncryptionConfiguration}",
+            "    StudioName: ${5:String} #required",
+            "    Tags:",
+            "      ${6:Map}",
+            "    UserRoleArn: ${7:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-studio.html",
+            "Attributes: ",
+            "  HomeRegion",
+            "  SsoClientId",
+            "  StudioId",
+            "  StudioUrl"
+        ],
+        "prefix": "nimblestudio-studio",
+        "scope": "source.cloudformation"
+    },
+    "AWS::NimbleStudio::StudioComponent": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::NimbleStudio::StudioComponent",
+            "  Properties:",
+            "    Configuration:",
+            "      ${2:StudioComponentConfiguration}",
+            "    Description: ${3:String}",
+            "    Ec2SecurityGroupIds:",
+            "      - ${4:String}",
+            "    InitializationScripts:",
+            "      - ${5:StudioComponentInitializationScript}",
+            "    Name: ${6:String} #required",
+            "    ScriptParameters:",
+            "      - ${7:ScriptParameterKeyValue}",
+            "    StudioId: ${8:String} #required",
+            "    Subtype: ${9:String}",
+            "    Tags:",
+            "      ${10:Map}",
+            "    Type: ${11:String} #required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-studiocomponent.html",
+            "Attributes: ",
+            "  StudioComponentId"
+        ],
+        "prefix": "nimblestudio-studiocomponent",
+        "scope": "source.cloudformation"
+    },
     "AWS::OpsWorks::App": {
         "body": [
             "${1:LogicalID}:",
@@ -13069,12 +13284,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::ResourceGroups::Group",
             "  Properties:",
-            "    Description: ${2:String}",
-            "    Name: ${3:String} #required",
+            "    Configuration:",
+            "      - ${2:ConfigurationItem}",
+            "    Description: ${3:String}",
+            "    Name: ${4:String} #required",
             "    ResourceQuery:",
-            "      ${4:ResourceQuery}",
+            "      ${5:ResourceQuery}",
+            "    Resources:",
+            "      - ${6:String}",
             "    Tags:",
-            "      - ${5:Tag}"
+            "      - ${7:Tag}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resourcegroups-group.html",
@@ -13784,6 +14003,24 @@
         "prefix": "ses-configurationseteventdestination",
         "scope": "source.cloudformation"
     },
+    "AWS::SES::ContactList": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SES::ContactList",
+            "  Properties:",
+            "    ContactListName: ${2:String}",
+            "    Description: ${3:String}",
+            "    Tags:",
+            "      - ${4:Tag}",
+            "    Topics:",
+            "      - ${5:Topic}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html"
+        ],
+        "prefix": "ses-contactlist",
+        "scope": "source.cloudformation"
+    },
     "AWS::SES::ReceiptFilter": {
         "body": [
             "${1:LogicalID}:",
@@ -13980,11 +14217,18 @@
             "${1:LogicalID}:",
             "  Type: AWS::SSM::Document",
             "  Properties:",
-            "    Content: ${2:Json} #required",
-            "    DocumentType: ${3:String}",
-            "    Name: ${4:String}",
+            "    Attachments:",
+            "      - ${2:AttachmentsSource}",
+            "    Content: ${3:Json} #required",
+            "    DocumentFormat: ${4:String}",
+            "    DocumentType: ${5:String}",
+            "    Name: ${6:String}",
+            "    Requires:",
+            "      - ${7:DocumentRequires}",
             "    Tags:",
-            "      - ${5:Tag}"
+            "      - ${8:Tag}",
+            "    TargetType: ${9:String}",
+            "    VersionName: ${10:String}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html"

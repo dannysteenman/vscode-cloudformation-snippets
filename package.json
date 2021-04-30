@@ -3,7 +3,7 @@
   "displayName": "CloudFormation Snippets",
   "description": "Adds autocompletion for all AWS CloudFormation resources. The snippets are updated automatically every week by fetching the data from the official AWS CloudFormation resource specification.",
   "author": "Danny Steenman",
-  "version": "3.15.0",
+  "version": "3.16.0",
   "publisher": "dsteenman",
   "icon": "images/AWS-CloudFormation-Icon.png",
   "homepage": "https://dannys.cloud",
