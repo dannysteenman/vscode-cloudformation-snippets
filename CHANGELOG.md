@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.16.0 (2021-04-30)
+-------------------
+- The following resource was updated: AWS::Detective::Graph. [Github
+  Actions]
+
+
 3.15.0 (2021-04-16)
 -------------------
 - The following resource was updated: AWS::CloudFormation::StackSet.
