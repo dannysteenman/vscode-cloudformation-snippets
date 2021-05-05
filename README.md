@@ -6,10 +6,7 @@
 
 This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.
 
-## New (Nov 2020)
-
-* Added a placeholder functionality so you can quickly jump to the next placeholder in the properties section with `Tab`.
-* Added matching documentation URLs in the description of every resource type.
+---
 
 ## Features
 
@@ -18,7 +15,7 @@ This extension adds snippets for all the AWS CloudFormation resources into Visua
 3. The CloudFormation snippets are automatically updated every week after AWS updates their [CloudFormation Resource Specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
 4. Intrinsic functions + conditions are supported.
 5. Contains a whole bunch of parameter types.
-6. Quickly update the properties of each resource type using `Tab`.
+6. Has builtin support for placeholders. This means you can quickly jump from property to property in each resource by using `Tab`
 7. Every resource type contains the matching documentation URL in its description.
 
 ## Usage
@@ -29,12 +26,11 @@ This extension adds snippets for all the AWS CloudFormation resources into Visua
 * **Step 4.** To start with the basic template structure, type **cfn** to get the YAML formatted template fragment.
 * **Step 5.** Start adding resources in the resource section by using their prefix name e.g. ```autoscaling-autoscalinggroup``` equals resource type ```AWS::AutoScaling::AutoScalingGroup```
 
-> **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
-
 ![CloudFormation Snippets example](https://raw.githubusercontent.com/dannysteenman/vscode-cloudformation-snippets/main/images/cfn-snippets-extension-example.gif)
 
----
+> **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
+---
 ## Support
 
 If you have a feature request or an issue, please let me know on [Github](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues)
@@ -48,8 +44,6 @@ Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-clo
 ## Tips and tricks
 
  If you want to boost your productivity even more with VS Code and CloudFormation. Have a look at [this article](https://dannys.cloud/level-up-cloudformation-with-vs-code) that I wrote to help you level up your CloudFormation templating game!
-<br>
-<br>
 
 ---
 
