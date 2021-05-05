@@ -1,16 +1,16 @@
 {
   "name": "cloudformation-yaml-snippets",
   "displayName": "CloudFormation Snippets",
-  "description": "Adds autocompletion for all AWS CloudFormation resources. The snippets are updated automatically every week by fetching the data from the official AWS CloudFormation resource specification.",
+  "description": "This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.",
   "author": "Danny Steenman",
   "version": "3.16.0",
   "publisher": "dsteenman",
-  "icon": "images/AWS-CloudFormation-Icon.png",
+  "icon": "images/cfn-snippets-extension-icon.png",
   "homepage": "https://dannys.cloud",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dannysteenman/cloudformation-yaml-snippets.git"
+    "url": "https://github.com/dannysteenman/vscode-cloudformation-snippets.git"
   },
   "engines": {
     "vscode": "^1.31.0"
@@ -20,29 +20,30 @@
     "theme": "dark"
   },
   "categories": [
-    "Snippets",
-    "Programming Languages",
-    "Other"
+    "Snippets"
   ],
   "keywords": [
-    "amazon",
-    "autocompletion",
-    "aws",
-    "cfn",
-    "cloud",
     "cloudformation",
-    "iac",
-    "infrastructure",
-    "intellisense",
-    "multi-root ready",
-    "property",
-    "resource",
-    "specification",
-    "stack",
     "template",
-    "type",
     "yaml",
     "yml"
+  ],
+  "badges": [
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets",
+      "description": "Version"
+    },
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets",
+      "description": "Installs"
+    },
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/rating-star/dsteenman.cloudformation-yaml-snippets.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets",
+      "description": "Ratings"
+    }
   ],
   "contributes": {
     "snippets": [

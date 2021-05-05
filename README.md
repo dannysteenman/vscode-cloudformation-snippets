@@ -1,10 +1,10 @@
 # CloudFormation Snippets for VS Code
 
-[![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
-[![Current Installs](https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
+[![Version](https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 [![Rating](https://vsmarketplacebadge.apphb.com/rating-star/dsteenman.cloudformation-yaml-snippets.svg)](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets)
 
-This [VS Code extension](https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets) adds autocompletion for all the resources that AWS CloudFormation supports. It get's updated automatically every week by fetching the resources from the official [AWS CloudFormation resource specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
+This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.
 
 ## New (Nov 2020)
 
@@ -13,9 +13,9 @@ This [VS Code extension](https://marketplace.visualstudio.com/items?itemName=dst
 
 ## Features
 
-1. This extension contains snippets for all available CloudFormation resources
+1. Supports all resources that are defined by CloudFormation
 2. CloudFormation autocompletion for every resource (includes properties).
-3. Automatically updated every week after AWS updates their CloudFormation Resource Specification.
+3. The CloudFormation snippets are automatically updated every week after AWS updates their [CloudFormation Resource Specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
 4. Intrinsic functions + conditions are supported.
 5. Contains a whole bunch of parameter types.
 6. Quickly update the properties of each resource type using `Tab`.
@@ -31,13 +31,19 @@ This [VS Code extension](https://marketplace.visualstudio.com/items?itemName=dst
 
 > **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
-![CFN YAML snippet example](https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/images/cfn-yaml-snippet-example.gif)
+![CloudFormation Snippets example](https://raw.githubusercontent.com/dannysteenman/vscode-cloudformation-snippets/main/images/cfn-snippets-extension-example.gif)
 
 ---
 
 ## Support
 
-If you have a feature request or an issue, please let me know on [Github](https://github.com/dannysteenman/cloudformation-yaml-snippets/issues)
+If you have a feature request or an issue, please let me know on [Github](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues)
+
+## Contributing
+
+If you want to add more snippets, your contribution is more than welcome!
+
+Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-cloudformation-snippets/blob/main/.github/CONTRIBUTING.md).
 
 ## Tips and tricks
 
@@ -46,11 +52,11 @@ If you have a feature request or an issue, please let me know on [Github](https:
 <br>
 
 ---
-<br>
 
- <p align='center'>
- <a href="https://dannys.cloud"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/homepage.png"></a>&nbsp;&nbsp;
-<a href="https://dev.to/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/devto.png"></a>&nbsp;&nbsp;
-<a href="https://twitter.com/dannysteenman"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/twitter.png"></a>&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/dannysteenman/"><img height="30" src="https://raw.githubusercontent.com/dannysteenman/cloudformation-yaml-snippets/main/icon/linkedin.png"></a>
+## Author
+
+**[Danny Steenman](https://dannys.cloud)**
+
+<p align="left">
+  <a href="https://twitter.com/intent/follow?screen_name=dannysteenman&tw_p=followbutton"><img src="https://img.shields.io/twitter/follow/dannysteenman?label=%40dannysteenman&style=social"></a>
 </p>
