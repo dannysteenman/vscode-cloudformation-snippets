@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.18.0 (2021-05-09)
+-------------------
+- The following resources were updated: AWS::GameLift:Fleet,
+  AWS::GameLift::GameSessionQueue. [Github Actions]
+- Updated example tutorial gif + removed comma seperation. [Danny
+  Steenman]
+
+
 3.17.0 (2021-05-09)
 -------------------
 - The following resources were updated: AWS::GameLift:Fleet,
