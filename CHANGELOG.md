@@ -2,6 +2,17 @@ Changelog
 =========
 
 
+3.17.0 (2021-05-09)
+-------------------
+- The following resources were updated: AWS::GameLift:Fleet,
+  AWS::GameLift::GameSessionQueue. [Github Actions]
+- Updated code to go one level deeper in the properties and return more
+  values + fixed scope to `yaml`. [Danny Steenman]
+- Update readme. [Danny Steenman]
+- Updated repository name + package.json and added contribution
+  guidelines. [Danny Steenman]
+
+
 3.16.0 (2021-04-30)
 -------------------
 - The following resource was updated: AWS::Detective::Graph. [Github
