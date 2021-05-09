@@ -54,7 +54,7 @@ def parse_body(body, counter, resource_properties, resource_property, resource_t
             body.append(
                 " " * 4 + f"{resource_property}:" + (" # Required" if required else "")
             )
-            body.append(" " * 6 + resource_property[:-1])
+            body.append(" " * 6 + resource_property)
         else:
             item = resource_properties[resource_property]["Type"]
             body.append(" " * 4 + resource_property + ":")
@@ -118,7 +118,6 @@ def set_value_type(body, property, item, counter, required, indent):
             + ('"${' if item == "String" else "${")
             + f"{str(counter)}{value_type[item]}"
             + ('}"' if item == "String" else "}")
-            + ","
             + (" # Required" if required else "")
         )
     except KeyError:
