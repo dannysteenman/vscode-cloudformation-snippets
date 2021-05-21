@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.19.0 (2021-05-21)
+-------------------
+- The following resource was added:
+  AWS::EC2::EnclaveCertificateIamRoleAssociation. [Github Actions]
+
+
 3.18.0 (2021-05-09)
 -------------------
 - The following resources were updated: AWS::GameLift:Fleet,
