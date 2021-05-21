@@ -597,7 +597,9 @@
             "    ValidateRequestParameters: ${5|false,true|}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html",
+            "Attributes: ",
+            "  RequestValidatorId"
         ],
         "prefix": "apigateway-requestvalidator",
         "scope": "yaml"
@@ -1426,6 +1428,42 @@
             "  Arn"
         ],
         "prefix": "appmesh-virtualservice",
+        "scope": "yaml"
+    },
+    "AWS::AppRunner::Service": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppRunner::Service",
+            "  Properties:",
+            "    AutoScalingConfigurationArn: \"${2:String}\"",
+            "    EncryptionConfiguration:",
+            "      KmsKey: \"${3:String}\"",
+            "    HealthCheckConfiguration:",
+            "      HealthyThreshold: ${4:Number}",
+            "      Interval: ${5:Number}",
+            "      Path: \"${6:String}\"",
+            "      Protocol: \"${7:String}\"",
+            "      Timeout: ${8:Number}",
+            "      UnhealthyThreshold: ${9:Number}",
+            "    InstanceConfiguration:",
+            "      Cpu: \"${5:String}\"",
+            "      InstanceRoleArn: \"${6:String}\"",
+            "      Memory: \"${7:String}\"",
+            "    ServiceName: \"${6:String}\"",
+            "    SourceConfiguration:",
+            "      AutoDeploymentsEnabled: ${8|false,true|}",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-service.html",
+            "Attributes: ",
+            "  ServiceId",
+            "  ServiceArn",
+            "  ServiceUrl",
+            "  Status"
+        ],
+        "prefix": "apprunner-service",
         "scope": "yaml"
     },
     "AWS::AppStream::DirectoryConfig": {
@@ -2716,28 +2754,29 @@
             "    AutoDeployment:",
             "      Enabled: ${3|false,true|}",
             "      RetainStacksOnAccountRemoval: ${4|false,true|}",
+            "    CallAs: \"${4:String}\"",
             "    Capabilities:",
             "      Capabilities",
-            "    Description: \"${5:String}\"",
-            "    ExecutionRoleName: \"${6:String}\"",
+            "    Description: \"${6:String}\"",
+            "    ExecutionRoleName: \"${7:String}\"",
             "    OperationPreferences:",
-            "      FailureToleranceCount: ${7:Number}",
-            "      FailureTolerancePercentage: ${8:Number}",
-            "      MaxConcurrentCount: ${9:Number}",
-            "      MaxConcurrentPercentage: ${10:Number}",
-            "      RegionConcurrencyType: \"${11:String}\"",
+            "      FailureToleranceCount: ${8:Number}",
+            "      FailureTolerancePercentage: ${9:Number}",
+            "      MaxConcurrentCount: ${10:Number}",
+            "      MaxConcurrentPercentage: ${11:Number}",
+            "      RegionConcurrencyType: \"${12:String}\"",
             "      RegionOrder:",
             "        -",
             "    Parameters:",
             "      Parameters",
-            "    PermissionModel: \"${9:String}\" # Required",
+            "    PermissionModel: \"${10:String}\" # Required",
             "    StackInstancesGroup:",
             "      StackInstancesGroup",
-            "    StackSetName: \"${11:String}\" # Required",
+            "    StackSetName: \"${12:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TemplateBody: \"${13:String}\"",
-            "    TemplateURL: \"${14:String}\""
+            "    TemplateBody: \"${14:String}\"",
+            "    TemplateURL: \"${15:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stackset.html",
@@ -4176,10 +4215,16 @@
             "  Type: AWS::CustomerProfiles::Integration",
             "  Properties:",
             "    DomainName: \"${2:String}\" # Required",
-            "    ObjectTypeName: \"${3:String}\"",
+            "    FlowDefinition:",
+            "      Description: \"${3:String}\"",
+            "      FlowName: \"${4:String}\"",
+            "      KmsArn: \"${5:String}\"",
+            "      Tasks:",
+            "        -",
+            "    ObjectTypeName: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    Uri: \"${5:String}\""
+            "    Uri: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html",
@@ -5082,6 +5127,43 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbsubnetgroup.html"
         ],
         "prefix": "docdb-dbsubnetgroup",
+        "scope": "yaml"
+    },
+    "AWS::DynamoDB::GlobalTable": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DynamoDB::GlobalTable",
+            "  Properties:",
+            "    AttributeDefinitions: # Required",
+            "      AttributeDefinitions",
+            "    BillingMode: \"${3:String}\"",
+            "    GlobalSecondaryIndexes:",
+            "      GlobalSecondaryIndexes",
+            "    KeySchema: # Required",
+            "      KeySchema",
+            "    LocalSecondaryIndexes:",
+            "      LocalSecondaryIndexes",
+            "    Replicas: # Required",
+            "      Replicas",
+            "    SSESpecification:",
+            "      SSEEnabled: ${8|false,true|}",
+            "      SSEType: \"${9:String}\"",
+            "    StreamSpecification:",
+            "      StreamViewType: \"${9:String}\"",
+            "    TableName: \"${10:String}\"",
+            "    TimeToLiveSpecification:",
+            "      AttributeName: \"${11:String}\"",
+            "      Enabled: ${12|false,true|}",
+            "    WriteProvisionedThroughputSettings:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-globaltable.html",
+            "Attributes: ",
+            "  Arn",
+            "  StreamArn",
+            "  TableId"
+        ],
+        "prefix": "dynamodb-globaltable",
         "scope": "yaml"
     },
     "AWS::DynamoDB::Table": {
@@ -6283,6 +6365,28 @@
             "  SourceType"
         ],
         "prefix": "ec2-transitgatewaymulticastgroupsource",
+        "scope": "yaml"
+    },
+    "AWS::EC2::TransitGatewayPeeringAttachment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::TransitGatewayPeeringAttachment",
+            "  Properties:",
+            "    PeerAccountId: \"${2:String}\" # Required",
+            "    PeerRegion: \"${3:String}\" # Required",
+            "    PeerTransitGatewayId: \"${4:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    TransitGatewayId: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html",
+            "Attributes: ",
+            "  TransitGatewayAttachmentId",
+            "  State",
+            "  CreationTime"
+        ],
+        "prefix": "ec2-transitgatewaypeeringattachment",
         "scope": "yaml"
     },
     "AWS::EC2::TransitGatewayRoute": {
@@ -10590,6 +10694,25 @@
         "prefix": "iotanalytics-pipeline",
         "scope": "yaml"
     },
+    "AWS::IoTCoreDeviceAdvisor::SuiteDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTCoreDeviceAdvisor::SuiteDefinition",
+            "  Properties:",
+            "    SuiteDefinitionConfiguration: ${2:JSON} # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotcoredeviceadvisor-suitedefinition.html",
+            "Attributes: ",
+            "  SuiteDefinitionId",
+            "  SuiteDefinitionArn",
+            "  SuiteDefinitionVersion"
+        ],
+        "prefix": "iotcoredeviceadvisor-suitedefinition",
+        "scope": "yaml"
+    },
     "AWS::IoTEvents::DetectorModel": {
         "body": [
             "${1:LogicalID}:",
@@ -11492,16 +11615,15 @@
             "    MaximumRecordAgeInSeconds: ${10:Number}",
             "    MaximumRetryAttempts: ${11:Number}",
             "    ParallelizationFactor: ${12:Number}",
-            "    PartialBatchResponse: ${13|false,true|}",
             "    Queues:",
             "      Queues",
             "    SelfManagedEventSource:",
             "    SourceAccessConfigurations:",
             "      SourceAccessConfigurations",
-            "    StartingPosition: \"${17:String}\"",
+            "    StartingPosition: \"${16:String}\"",
             "    Topics:",
             "      Topics",
-            "    TumblingWindowInSeconds: ${19:Number}"
+            "    TumblingWindowInSeconds: ${18:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html",
@@ -11570,15 +11692,17 @@
             "${1:LogicalID}:",
             "  Type: AWS::Lambda::LayerVersion",
             "  Properties:",
+            "    CompatibleArchitectures:",
+            "      CompatibleArchitectures",
             "    CompatibleRuntimes:",
             "      CompatibleRuntimes",
             "    Content:",
-            "      S3Bucket: \"${3:String}\"",
-            "      S3Key: \"${4:String}\"",
-            "      S3ObjectVersion: \"${5:String}\"",
-            "    Description: \"${4:String}\"",
-            "    LayerName: \"${5:String}\"",
-            "    LicenseInfo: \"${6:String}\""
+            "      S3Bucket: \"${4:String}\"",
+            "      S3Key: \"${5:String}\"",
+            "      S3ObjectVersion: \"${6:String}\"",
+            "    Description: \"${5:String}\"",
+            "    LayerName: \"${6:String}\"",
+            "    LicenseInfo: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html"
@@ -12377,7 +12501,11 @@
             "  Type: AWS::MediaPackage::Channel",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    Id: \"${3:String}\" # Required",
+            "    EgressAccessLogs:",
+            "      LogGroupName: \"${3:String}\"",
+            "    Id: \"${4:String}\" # Required",
+            "    IngressAccessLogs:",
+            "      LogGroupName: \"${5:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -12417,6 +12545,8 @@
             "      SegmentDurationSeconds: ${14:Number}",
             "      SegmentTemplateFormat: \"${15:String}\"",
             "      SuggestedPresentationDelaySeconds: ${17:Number}",
+            "      UtcTiming: \"${18:String}\"",
+            "      UtcTimingUri: \"${19:String}\"",
             "    Description: \"${6:String}\"",
             "    HlsPackage:",
             "      AdMarkers: \"${7:String}\"",
@@ -12459,14 +12589,16 @@
             "    CmafPackage:",
             "      HlsManifests:",
             "        -",
-            "      SegmentDurationSeconds: ${4:Number}",
+            "      IncludeEncoderConfigurationInSegments: ${4|false,true|}",
+            "      SegmentDurationSeconds: ${5:Number}",
             "    DashPackage:",
             "      DashManifests:",
             "        -",
+            "      IncludeEncoderConfigurationInSegments: ${5|false,true|}",
             "      PeriodTriggers:",
             "        -",
-            "      SegmentDurationSeconds: ${6:Number}",
-            "      SegmentTemplateFormat: \"${7:String}\"",
+            "      SegmentDurationSeconds: ${7:Number}",
+            "      SegmentTemplateFormat: \"${8:String}\"",
             "    HlsPackage:",
             "      HlsManifests:",
             "        -",
@@ -12497,7 +12629,9 @@
             "    Authorization:",
             "      CdnIdentifierSecret: \"${2:String}\"",
             "      SecretsRoleArn: \"${3:String}\"",
-            "    Id: \"${3:String}\" # Required",
+            "    EgressAccessLogs:",
+            "      LogGroupName: \"${3:String}\"",
+            "    Id: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -15452,19 +15586,21 @@
             "    ApplyOnlyAtCronInterval: ${2|false,true|}",
             "    AssociationName: \"${3:String}\"",
             "    AutomationTargetParameterName: \"${4:String}\"",
-            "    ComplianceSeverity: \"${5:String}\"",
-            "    DocumentVersion: \"${6:String}\"",
-            "    InstanceId: \"${7:String}\"",
-            "    MaxConcurrency: \"${8:String}\"",
-            "    MaxErrors: \"${9:String}\"",
-            "    Name: \"${10:String}\" # Required",
+            "    CalendarNames:",
+            "      CalendarNames",
+            "    ComplianceSeverity: \"${6:String}\"",
+            "    DocumentVersion: \"${7:String}\"",
+            "    InstanceId: \"${8:String}\"",
+            "    MaxConcurrency: \"${9:String}\"",
+            "    MaxErrors: \"${10:String}\"",
+            "    Name: \"${11:String}\" # Required",
             "    OutputLocation:",
             "    Parameters:",
-            "    ScheduleExpression: \"${13:String}\"",
-            "    SyncCompliance: \"${14:String}\"",
+            "    ScheduleExpression: \"${14:String}\"",
+            "    SyncCompliance: \"${15:String}\"",
             "    Targets:",
             "      Targets",
-            "    WaitForSuccessTimeoutSeconds: ${16:Number}"
+            "    WaitForSuccessTimeoutSeconds: ${17:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html",
@@ -15658,6 +15794,93 @@
             "  SyncName"
         ],
         "prefix": "ssm-resourcedatasync",
+        "scope": "yaml"
+    },
+    "AWS::SSMContacts::Contact": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSMContacts::Contact",
+            "  Properties:",
+            "    Alias: \"${2:String}\" # Required",
+            "    DisplayName: \"${3:String}\" # Required",
+            "    Plan: # Required",
+            "      Plan",
+            "    Type: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-contact.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "ssmcontacts-contact",
+        "scope": "yaml"
+    },
+    "AWS::SSMContacts::ContactChannel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSMContacts::ContactChannel",
+            "  Properties:",
+            "    ChannelAddress: \"${2:String}\" # Required",
+            "    ChannelName: \"${3:String}\" # Required",
+            "    ChannelType: \"${4:String}\" # Required",
+            "    ContactId: \"${5:String}\" # Required",
+            "    DeferActivation: ${6|false,true|}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-contactchannel.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "ssmcontacts-contactchannel",
+        "scope": "yaml"
+    },
+    "AWS::SSMIncidents::ReplicationSet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSMIncidents::ReplicationSet",
+            "  Properties:",
+            "    DeletionProtected: ${2|false,true|}",
+            "    Regions: # Required",
+            "      Regions"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-replicationset.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "ssmincidents-replicationset",
+        "scope": "yaml"
+    },
+    "AWS::SSMIncidents::ResponsePlan": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSMIncidents::ResponsePlan",
+            "  Properties:",
+            "    Actions:",
+            "      Actions",
+            "    ChatChannel:",
+            "      ChatbotSns:",
+            "        -",
+            "    DisplayName: \"${4:String}\"",
+            "    Engagements:",
+            "      Engagements",
+            "    IncidentTemplate:",
+            "      DedupeString: \"${6:String}\"",
+            "      Impact: ${7:Number}",
+            "      NotificationTargets:",
+            "        -",
+            "      Summary: \"${9:String}\"",
+            "      Title: \"${10:String}\"",
+            "    Name: \"${7:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-responseplan.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "ssmincidents-responseplan",
         "scope": "yaml"
     },
     "AWS::SSO::Assignment": {
