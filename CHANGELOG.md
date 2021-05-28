@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.20.0 (2021-05-28)
+-------------------
+- The following resources were updated: AWS::MediaPackage::Channel,
+  AWS::MediaPackage::OriginEndpoint,
+  AWS::MediaPackage::PackagingConfiguration, and
+  AWS::MediaPackage::PackagingGroup. [Github Actions]
+
+
 3.19.0 (2021-05-21)
 -------------------
 - The following resource was added:
