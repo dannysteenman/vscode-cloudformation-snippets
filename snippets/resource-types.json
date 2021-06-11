@@ -849,7 +849,7 @@
             "    AuthorizerType: \"${6:String}\" # Required",
             "    AuthorizerUri: \"${7:String}\"",
             "    EnableSimpleResponses: ${8|false,true|}",
-            "    IdentitySource: # Required",
+            "    IdentitySource:",
             "      IdentitySource",
             "    IdentityValidationExpression: \"${10:String}\"",
             "    JwtConfiguration:",
@@ -1965,7 +1965,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html",
             "Attributes: ",
-            "  EffectiveEngineVersion",
+            "  WorkGroupConfiguration.EngineVersion.EffectiveEngineVersion",
             "  CreationTime"
         ],
         "prefix": "athena-workgroup",
@@ -2000,7 +2000,6 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-auditmanager-assessment.html",
             "Attributes: ",
-            "  FrameworkId",
             "  AssessmentId",
             "  Arn",
             "  Delegations",
@@ -2018,31 +2017,32 @@
             "    AvailabilityZones:",
             "      AvailabilityZones",
             "    CapacityRebalance: ${4|false,true|}",
-            "    Cooldown: \"${5:String}\"",
-            "    DesiredCapacity: \"${6:String}\"",
-            "    HealthCheckGracePeriod: ${7:Number}",
-            "    HealthCheckType: \"${8:String}\"",
-            "    InstanceId: \"${9:String}\"",
-            "    LaunchConfigurationName: \"${10:String}\"",
+            "    Context: \"${5:String}\"",
+            "    Cooldown: \"${6:String}\"",
+            "    DesiredCapacity: \"${7:String}\"",
+            "    HealthCheckGracePeriod: ${8:Number}",
+            "    HealthCheckType: \"${9:String}\"",
+            "    InstanceId: \"${10:String}\"",
+            "    LaunchConfigurationName: \"${11:String}\"",
             "    LaunchTemplate:",
-            "      LaunchTemplateId: \"${11:String}\"",
-            "      LaunchTemplateName: \"${12:String}\"",
-            "      Version: \"${13:String}\"",
+            "      LaunchTemplateId: \"${12:String}\"",
+            "      LaunchTemplateName: \"${13:String}\"",
+            "      Version: \"${14:String}\"",
             "    LifecycleHookSpecificationList:",
             "      LifecycleHookSpecificationList",
             "    LoadBalancerNames:",
             "      LoadBalancerNames",
-            "    MaxInstanceLifetime: ${14:Number}",
-            "    MaxSize: \"${15:String}\" # Required",
+            "    MaxInstanceLifetime: ${15:Number}",
+            "    MaxSize: \"${16:String}\" # Required",
             "    MetricsCollection:",
             "      MetricsCollection",
-            "    MinSize: \"${17:String}\" # Required",
+            "    MinSize: \"${18:String}\" # Required",
             "    MixedInstancesPolicy:",
-            "    NewInstancesProtectedFromScaleIn: ${19|false,true|}",
+            "    NewInstancesProtectedFromScaleIn: ${20|false,true|}",
             "    NotificationConfigurations:",
             "      NotificationConfigurations",
-            "    PlacementGroup: \"${21:String}\"",
-            "    ServiceLinkedRoleARN: \"${22:String}\"",
+            "    PlacementGroup: \"${22:String}\"",
+            "    ServiceLinkedRoleARN: \"${23:String}\"",
             "    Tags:",
             "      Tags",
             "    TargetGroupARNs:",
@@ -2928,6 +2928,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html",
             "Attributes: ",
             "  FunctionARN",
+            "  FunctionMetadata.FunctionARN",
             "  Stage"
         ],
         "prefix": "cloudfront-function",
@@ -4296,24 +4297,26 @@
             "  Properties:",
             "    AvailabilityZones:",
             "      AvailabilityZones",
-            "    ClusterName: \"${3:String}\"",
-            "    Description: \"${4:String}\"",
-            "    IAMRoleARN: \"${5:String}\" # Required",
-            "    NodeType: \"${6:String}\" # Required",
-            "    NotificationTopicARN: \"${7:String}\"",
-            "    ParameterGroupName: \"${8:String}\"",
-            "    PreferredMaintenanceWindow: \"${9:String}\"",
-            "    ReplicationFactor: ${10:Number} # Required",
+            "    ClusterEndpointEncryptionType: \"${3:String}\"",
+            "    ClusterName: \"${4:String}\"",
+            "    Description: \"${5:String}\"",
+            "    IAMRoleARN: \"${6:String}\" # Required",
+            "    NodeType: \"${7:String}\" # Required",
+            "    NotificationTopicARN: \"${8:String}\"",
+            "    ParameterGroupName: \"${9:String}\"",
+            "    PreferredMaintenanceWindow: \"${10:String}\"",
+            "    ReplicationFactor: ${11:Number} # Required",
             "    SSESpecification:",
-            "      SSEEnabled: ${11|false,true|}",
+            "      SSEEnabled: ${12|false,true|}",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    SubnetGroupName: \"${13:String}\"",
-            "    Tags: ${14:JSON}"
+            "    SubnetGroupName: \"${14:String}\"",
+            "    Tags: ${15:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html",
             "Attributes: ",
+            "  ClusterDiscoveryEndpointURL",
             "  ClusterDiscoveryEndpoint",
             "  Arn"
         ],
@@ -5443,7 +5446,9 @@
             "    ValidUntil: \"${12:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html",
+            "Attributes: ",
+            "  FleetId"
         ],
         "prefix": "ec2-ec2fleet",
         "scope": "yaml"
@@ -5748,8 +5753,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::NatGateway",
             "  Properties:",
-            "    AllocationId: \"${2:String}\" # Required",
-            "    SubnetId: \"${3:String}\" # Required",
+            "    AllocationId: \"${2:String}\"",
+            "    ConnectivityType: \"${3:String}\"",
+            "    SubnetId: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -6086,7 +6092,9 @@
             "      ValidUntil: \"${21:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ec2-spotfleet",
         "scope": "yaml"
@@ -6260,7 +6268,9 @@
             "    VpnEcmpSupport: \"${10:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ec2-transitgateway",
         "scope": "yaml"
@@ -8307,6 +8317,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html",
             "Attributes: ",
+            "  DNSName",
             "  LustreMountName"
         ],
         "prefix": "fsx-filesystem",
@@ -8378,6 +8389,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-detector.html",
             "Attributes: ",
             "  DetectorVersionId",
+            "  EventType.Arn",
+            "  EventType.CreatedTime",
+            "  EventType.LastUpdatedTime",
             "  Arn",
             "  CreatedTime",
             "  LastUpdatedTime"
@@ -11090,24 +11104,24 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html",
             "Attributes: ",
-            "  UlRate",
-            "  UlBucketSize",
-            "  UlRatePolicy",
-            "  DlRate",
-            "  DlBucketSize",
-            "  DlRatePolicy",
-            "  DevStatusReqFreq",
-            "  ReportDevStatusBattery",
-            "  ReportDevStatusMargin",
-            "  DrMin",
-            "  DrMax",
-            "  ChannelMask",
-            "  PrAllowed",
-            "  HrAllowed",
-            "  RaAllowed",
-            "  NwkGeoLoc",
-            "  TargetPer",
-            "  MinGwDiversity",
+            "  LoRaWAN.UlRate",
+            "  LoRaWAN.UlBucketSize",
+            "  LoRaWAN.UlRatePolicy",
+            "  LoRaWAN.DlRate",
+            "  LoRaWAN.DlBucketSize",
+            "  LoRaWAN.DlRatePolicy",
+            "  LoRaWAN.DevStatusReqFreq",
+            "  LoRaWAN.ReportDevStatusBattery",
+            "  LoRaWAN.ReportDevStatusMargin",
+            "  LoRaWAN.DrMin",
+            "  LoRaWAN.DrMax",
+            "  LoRaWAN.ChannelMask",
+            "  LoRaWAN.PrAllowed",
+            "  LoRaWAN.HrAllowed",
+            "  LoRaWAN.RaAllowed",
+            "  LoRaWAN.NwkGeoLoc",
+            "  LoRaWAN.TargetPer",
+            "  LoRaWAN.MinGwDiversity",
             "  Arn",
             "  Id"
         ],
@@ -11405,9 +11419,10 @@
             "  Properties:",
             "    ApplicationConfiguration:",
             "    ApplicationDescription: \"${3:String}\"",
-            "    ApplicationName: \"${4:String}\"",
-            "    RuntimeEnvironment: \"${5:String}\" # Required",
-            "    ServiceExecutionRole: \"${6:String}\" # Required",
+            "    ApplicationMode: \"${4:String}\"",
+            "    ApplicationName: \"${5:String}\"",
+            "    RuntimeEnvironment: \"${6:String}\" # Required",
+            "    ServiceExecutionRole: \"${7:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -11685,26 +11700,25 @@
             "      FileSystemConfigs",
             "    FunctionName: \"${8:String}\"",
             "    Handler: \"${9:String}\"",
-            "    Id: \"${10:String}\"",
             "    ImageConfig:",
             "      Command:",
             "        -",
             "      EntryPoint:",
             "        -",
-            "      WorkingDirectory: \"${13:String}\"",
-            "    KmsKeyArn: \"${12:String}\"",
+            "      WorkingDirectory: \"${12:String}\"",
+            "    KmsKeyArn: \"${11:String}\"",
             "    Layers:",
             "      Layers",
-            "    MemorySize: ${14:Number}",
-            "    PackageType: \"${15:String}\"",
-            "    ReservedConcurrentExecutions: ${16:Number}",
-            "    Role: \"${17:String}\" # Required",
-            "    Runtime: \"${18:String}\"",
+            "    MemorySize: ${13:Number}",
+            "    PackageType: \"${14:String}\"",
+            "    ReservedConcurrentExecutions: ${15:Number}",
+            "    Role: \"${16:String}\" # Required",
+            "    Runtime: \"${17:String}\"",
             "    Tags:",
             "      Tags",
-            "    Timeout: ${20:Number}",
+            "    Timeout: ${19:Number}",
             "    TracingConfig:",
-            "      Mode: \"${21:String}\"",
+            "      Mode: \"${20:String}\"",
             "    VpcConfig:",
             "      SecurityGroupIds:",
             "        -",
@@ -11724,17 +11738,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::Lambda::LayerVersion",
             "  Properties:",
-            "    CompatibleArchitectures:",
-            "      CompatibleArchitectures",
             "    CompatibleRuntimes:",
             "      CompatibleRuntimes",
             "    Content:",
-            "      S3Bucket: \"${4:String}\"",
-            "      S3Key: \"${5:String}\"",
-            "      S3ObjectVersion: \"${6:String}\"",
-            "    Description: \"${5:String}\"",
-            "    LayerName: \"${6:String}\"",
-            "    LicenseInfo: \"${7:String}\""
+            "      S3Bucket: \"${3:String}\"",
+            "      S3Key: \"${4:String}\"",
+            "      S3ObjectVersion: \"${5:String}\"",
+            "    Description: \"${4:String}\"",
+            "    LayerName: \"${5:String}\"",
+            "    LicenseInfo: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html"
@@ -11849,6 +11861,126 @@
             "  Version"
         ],
         "prefix": "licensemanager-license",
+        "scope": "yaml"
+    },
+    "AWS::Location::GeofenceCollection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Location::GeofenceCollection",
+            "  Properties:",
+            "    CollectionName: \"${2:String}\" # Required",
+            "    Description: \"${3:String}\"",
+            "    KmsKeyId: \"${4:String}\"",
+            "    PricingPlan: \"${5:String}\" # Required",
+            "    PricingPlanDataSource: \"${6:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-geofencecollection.html",
+            "Attributes: ",
+            "  CollectionArn",
+            "  CreateTime",
+            "  UpdateTime"
+        ],
+        "prefix": "location-geofencecollection",
+        "scope": "yaml"
+    },
+    "AWS::Location::Map": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Location::Map",
+            "  Properties:",
+            "    Configuration:",
+            "      Style: \"${2:String}\"",
+            "    Description: \"${3:String}\"",
+            "    MapName: \"${4:String}\" # Required",
+            "    PricingPlan: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-map.html",
+            "Attributes: ",
+            "  CreateTime",
+            "  DataSource",
+            "  MapArn",
+            "  UpdateTime"
+        ],
+        "prefix": "location-map",
+        "scope": "yaml"
+    },
+    "AWS::Location::PlaceIndex": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Location::PlaceIndex",
+            "  Properties:",
+            "    DataSource: \"${2:String}\" # Required",
+            "    DataSourceConfiguration:",
+            "      IntendedUse: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
+            "    IndexName: \"${5:String}\" # Required",
+            "    PricingPlan: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-placeindex.html",
+            "Attributes: ",
+            "  CreateTime",
+            "  IndexArn",
+            "  UpdateTime"
+        ],
+        "prefix": "location-placeindex",
+        "scope": "yaml"
+    },
+    "AWS::Location::RouteCalculator": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Location::RouteCalculator",
+            "  Properties:",
+            "    CalculatorName: \"${2:String}\" # Required",
+            "    DataSource: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    PricingPlan: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-routecalculator.html",
+            "Attributes: ",
+            "  CalculatorArn",
+            "  CreateTime",
+            "  UpdateTime"
+        ],
+        "prefix": "location-routecalculator",
+        "scope": "yaml"
+    },
+    "AWS::Location::Tracker": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Location::Tracker",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    KmsKeyId: \"${3:String}\"",
+            "    PricingPlan: \"${4:String}\" # Required",
+            "    PricingPlanDataSource: \"${5:String}\"",
+            "    TrackerName: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html",
+            "Attributes: ",
+            "  CreateTime",
+            "  TrackerArn",
+            "  UpdateTime"
+        ],
+        "prefix": "location-tracker",
+        "scope": "yaml"
+    },
+    "AWS::Location::TrackerConsumer": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Location::TrackerConsumer",
+            "  Properties:",
+            "    ConsumerArn: \"${2:String}\" # Required",
+            "    TrackerName: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-trackerconsumer.html"
+        ],
+        "prefix": "location-trackerconsumer",
         "scope": "yaml"
     },
     "AWS::Logs::Destination": {
@@ -12069,7 +12201,7 @@
             "Attributes: ",
             "  Arn",
             "  WebserverUrl",
-            "  CloudWatchLogGroupArn"
+            "  LoggingConfiguration.DagProcessingLogs.CloudWatchLogGroupArn"
         ],
         "prefix": "mwaa-environment",
         "scope": "yaml"
@@ -12213,8 +12345,8 @@
             "Attributes: ",
             "  FlowArn",
             "  FlowAvailabilityZone",
-            "  SourceArn",
-            "  IngestIp"
+            "  Source.SourceArn",
+            "  Source.IngestIp"
         ],
         "prefix": "mediaconnect-flow",
         "scope": "yaml"
@@ -14173,6 +14305,8 @@
             "  Properties:",
             "    AllowExternalPrincipals: ${2|false,true|}",
             "    Name: \"${3:String}\" # Required",
+            "    PermissionArns:",
+            "      PermissionArns",
             "    Principals:",
             "      Principals",
             "    ResourceArns:",
@@ -15262,7 +15396,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelens.html",
             "Attributes: ",
-            "  StorageLensArn"
+            "  StorageLensConfiguration.StorageLensArn"
         ],
         "prefix": "s3-storagelens",
         "scope": "yaml"
@@ -15574,18 +15708,20 @@
             "  Type: AWS::SQS::Queue",
             "  Properties:",
             "    ContentBasedDeduplication: ${2|false,true|}",
-            "    DelaySeconds: ${3:Number}",
-            "    FifoQueue: ${4|false,true|}",
-            "    KmsDataKeyReusePeriodSeconds: ${5:Number}",
-            "    KmsMasterKeyId: \"${6:String}\"",
-            "    MaximumMessageSize: ${7:Number}",
-            "    MessageRetentionPeriod: ${8:Number}",
-            "    QueueName: \"${9:String}\"",
-            "    ReceiveMessageWaitTimeSeconds: ${10:Number}",
-            "    RedrivePolicy: ${11:JSON}",
+            "    DeduplicationScope: \"${3:String}\"",
+            "    DelaySeconds: ${4:Number}",
+            "    FifoQueue: ${5|false,true|}",
+            "    FifoThroughputLimit: \"${6:String}\"",
+            "    KmsDataKeyReusePeriodSeconds: ${7:Number}",
+            "    KmsMasterKeyId: \"${8:String}\"",
+            "    MaximumMessageSize: ${9:Number}",
+            "    MessageRetentionPeriod: ${10:Number}",
+            "    QueueName: \"${11:String}\"",
+            "    ReceiveMessageWaitTimeSeconds: ${12:Number}",
+            "    RedrivePolicy: ${13:JSON}",
             "    Tags:",
             "      Tags",
-            "    VisibilityTimeout: ${13:Number}"
+            "    VisibilityTimeout: ${15:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html",
@@ -16026,7 +16162,9 @@
             "    GitConfig:",
             "      Branch: \"${3:String}\"",
             "      RepositoryUrl: \"${4:String}\"",
-            "      SecretArn: \"${5:String}\""
+            "      SecretArn: \"${5:String}\"",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-coderepository.html",
@@ -17371,8 +17509,9 @@
             "      VpcId: \"${8:String}\"",
             "    EndpointType: \"${5:String}\"",
             "    IdentityProviderDetails:",
-            "      InvocationRole: \"${6:String}\"",
-            "      Url: \"${7:String}\"",
+            "      DirectoryId: \"${6:String}\"",
+            "      InvocationRole: \"${7:String}\"",
+            "      Url: \"${8:String}\"",
             "    IdentityProviderType: \"${7:String}\"",
             "    LoggingRole: \"${8:String}\"",
             "    Protocols:",
