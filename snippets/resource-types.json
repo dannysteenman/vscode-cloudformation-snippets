@@ -282,8 +282,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html",
             "Attributes: ",
-            "  BranchName",
-            "  Arn"
+            "  Arn",
+            "  BranchName"
         ],
         "prefix": "amplify-branch",
         "scope": "yaml"
@@ -2157,7 +2157,8 @@
             "    MaxSize: ${5:Number}",
             "    MinSize: ${6:Number}",
             "    Recurrence: \"${7:String}\"",
-            "    StartTime: \"${8:String}\""
+            "    StartTime: \"${8:String}\"",
+            "    TimeZone: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html"
@@ -3508,12 +3509,13 @@
             "${1:LogicalID}:",
             "  Type: AWS::CodeGuruReviewer::RepositoryAssociation",
             "  Properties:",
-            "    ConnectionArn: \"${2:String}\"",
-            "    Name: \"${3:String}\" # Required",
-            "    Owner: \"${4:String}\"",
+            "    BucketName: \"${2:String}\"",
+            "    ConnectionArn: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
+            "    Owner: \"${5:String}\"",
             "    Tags:",
             "      Tags",
-            "    Type: \"${6:String}\" # Required"
+            "    Type: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codegurureviewer-repositoryassociation.html",
@@ -3813,23 +3815,24 @@
             "      CallbackURLs",
             "    ClientName: \"${8:String}\"",
             "    DefaultRedirectURI: \"${9:String}\"",
+            "    EnableTokenRevocation: ${10|false,true|}",
             "    ExplicitAuthFlows:",
             "      ExplicitAuthFlows",
-            "    GenerateSecret: ${11|false,true|}",
-            "    IdTokenValidity: ${12:Number}",
+            "    GenerateSecret: ${12|false,true|}",
+            "    IdTokenValidity: ${13:Number}",
             "    LogoutURLs:",
             "      LogoutURLs",
-            "    PreventUserExistenceErrors: \"${14:String}\"",
+            "    PreventUserExistenceErrors: \"${15:String}\"",
             "    ReadAttributes:",
             "      ReadAttributes",
-            "    RefreshTokenValidity: ${16:Number}",
+            "    RefreshTokenValidity: ${17:Number}",
             "    SupportedIdentityProviders:",
             "      SupportedIdentityProviders",
             "    TokenValidityUnits:",
-            "      AccessToken: \"${18:String}\"",
-            "      IdToken: \"${19:String}\"",
-            "      RefreshToken: \"${20:String}\"",
-            "    UserPoolId: \"${19:String}\" # Required",
+            "      AccessToken: \"${19:String}\"",
+            "      IdToken: \"${20:String}\"",
+            "      RefreshToken: \"${21:String}\"",
+            "    UserPoolId: \"${20:String}\" # Required",
             "    WriteAttributes:",
             "      WriteAttributes"
         ],
@@ -7202,7 +7205,10 @@
             "    Tags: ${16:JSON}",
             "    Taints:",
             "      Taints",
-            "    Version: \"${18:String}\""
+            "    UpdateConfig:",
+            "      MaxUnavailable: ${18:Number}",
+            "      MaxUnavailablePercentage: ${19:Number}",
+            "    Version: \"${19:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html",
@@ -11230,7 +11236,8 @@
             "    KeyPolicy: ${5:JSON} # Required",
             "    KeySpec: \"${6:String}\"",
             "    KeyUsage: \"${7:String}\"",
-            "    PendingWindowInDays: ${8:Number}",
+            "    MultiRegion: ${8|false,true|}",
+            "    PendingWindowInDays: ${9:Number}",
             "    Tags:",
             "      Tags"
         ],
@@ -11241,6 +11248,28 @@
             "  KeyId"
         ],
         "prefix": "kms-key",
+        "scope": "yaml"
+    },
+    "AWS::KMS::ReplicaKey": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::KMS::ReplicaKey",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Enabled: ${3|false,true|}",
+            "    KeyPolicy: ${4:JSON} # Required",
+            "    PendingWindowInDays: ${5:Number}",
+            "    PrimaryKeyArn: \"${6:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-replicakey.html",
+            "Attributes: ",
+            "  Arn",
+            "  KeyId"
+        ],
+        "prefix": "kms-replicakey",
         "scope": "yaml"
     },
     "AWS::Kendra::DataSource": {
@@ -12191,10 +12220,11 @@
             "    PluginsS3Path: \"${14:String}\"",
             "    RequirementsS3ObjectVersion: \"${15:String}\"",
             "    RequirementsS3Path: \"${16:String}\"",
-            "    SourceBucketArn: \"${17:String}\"",
+            "    Schedulers: ${17:Number}",
+            "    SourceBucketArn: \"${18:String}\"",
             "    Tags:",
-            "    WebserverAccessMode: \"${19:String}\"",
-            "    WeeklyMaintenanceWindowStart: \"${20:String}\""
+            "    WebserverAccessMode: \"${20:String}\"",
+            "    WeeklyMaintenanceWindowStart: \"${21:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html",
@@ -14696,24 +14726,25 @@
             "    DBName: \"${11:String}\" # Required",
             "    ElasticIp: \"${12:String}\"",
             "    Encrypted: ${13|false,true|}",
-            "    HsmClientCertificateIdentifier: \"${14:String}\"",
-            "    HsmConfigurationIdentifier: \"${15:String}\"",
+            "    Endpoint: ${14:JSON}",
+            "    HsmClientCertificateIdentifier: \"${15:String}\"",
+            "    HsmConfigurationIdentifier: \"${16:String}\"",
             "    IamRoles:",
             "      IamRoles",
-            "    KmsKeyId: \"${17:String}\"",
+            "    KmsKeyId: \"${18:String}\"",
             "    LoggingProperties:",
-            "      BucketName: \"${18:String}\"",
-            "      S3KeyPrefix: \"${19:String}\"",
-            "    MasterUserPassword: \"${19:String}\" # Required",
-            "    MasterUsername: \"${20:String}\" # Required",
-            "    NodeType: \"${21:String}\" # Required",
-            "    NumberOfNodes: ${22:Number}",
-            "    OwnerAccount: \"${23:String}\"",
-            "    Port: ${24:Number}",
-            "    PreferredMaintenanceWindow: \"${25:String}\"",
-            "    PubliclyAccessible: ${26|false,true|}",
-            "    SnapshotClusterIdentifier: \"${27:String}\"",
-            "    SnapshotIdentifier: \"${28:String}\"",
+            "      BucketName: \"${19:String}\"",
+            "      S3KeyPrefix: \"${20:String}\"",
+            "    MasterUserPassword: \"${20:String}\" # Required",
+            "    MasterUsername: \"${21:String}\" # Required",
+            "    NodeType: \"${22:String}\" # Required",
+            "    NumberOfNodes: ${23:Number}",
+            "    OwnerAccount: \"${24:String}\"",
+            "    Port: ${25:Number}",
+            "    PreferredMaintenanceWindow: \"${26:String}\"",
+            "    PubliclyAccessible: ${27|false,true|}",
+            "    SnapshotClusterIdentifier: \"${28:String}\"",
+            "    SnapshotIdentifier: \"${29:String}\"",
             "    Tags:",
             "      Tags",
             "    VpcSecurityGroupIds:",
@@ -14722,8 +14753,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
             "Attributes: ",
-            "  Endpoint.Address",
-            "  Endpoint.Port"
+            "  Id"
         ],
         "prefix": "redshift-cluster",
         "scope": "yaml"
@@ -17514,9 +17544,11 @@
             "      Url: \"${8:String}\"",
             "    IdentityProviderType: \"${7:String}\"",
             "    LoggingRole: \"${8:String}\"",
+            "    ProtocolDetails:",
+            "      PassiveIp: \"${9:String}\"",
             "    Protocols:",
             "      Protocols",
-            "    SecurityPolicyName: \"${10:String}\"",
+            "    SecurityPolicyName: \"${11:String}\"",
             "    Tags:",
             "      Tags"
         ],
