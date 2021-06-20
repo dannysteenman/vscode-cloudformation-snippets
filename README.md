@@ -52,5 +52,5 @@ Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-clo
 **[Danny Steenman](https://dannys.cloud)**
 
 <p align="left">
-  <a href="https://twitter.com/intent/follow?screen_name=dannysteenman&tw_p=followbutton"><img src="https://img.shields.io/twitter/follow/dannysteenman?label=%40dannysteenman&style=social"></a>
+  <a href="https://dannys.cloud/twitter"><img src="https://img.shields.io/twitter/follow/dannysteenman?label=%40dannysteenman&style=social"></a>
 </p>
