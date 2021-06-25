@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+3.23.0 (2021-06-25)
+-------------------
+- The following resources were added:
+  AWS::CloudFormation::PublicTypeVersion,
+  AWS::CloudFormation::Publisher, and
+  AWS::CloudFormation::TypeActivation. [Github Actions]
+- Update README.md. [Danny]
+
+
 3.22.0 (2021-06-18)
 -------------------
 - The following resources were updated: AWS::AppMesh::VirtualNode,
