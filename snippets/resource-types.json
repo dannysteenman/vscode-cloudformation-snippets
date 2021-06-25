@@ -249,9 +249,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html",
             "Attributes: ",
             "  AppId",
+            "  AppName",
             "  Arn",
-            "  DefaultDomain",
-            "  AppName"
+            "  DefaultDomain"
         ],
         "prefix": "amplify-app",
         "scope": "yaml"
@@ -1743,23 +1743,27 @@
             "  Properties:",
             "    AdditionalAuthenticationProviders:",
             "    AuthenticationType: \"${3:String}\" # Required",
+            "    LambdaAuthorizerConfig:",
+            "      AuthorizerResultTtlInSeconds: ${4:Number}",
+            "      AuthorizerUri: \"${5:String}\"",
+            "      IdentityValidationExpression: \"${6:String}\"",
             "    LogConfig:",
-            "      CloudWatchLogsRoleArn: \"${4:String}\"",
-            "      ExcludeVerboseContent: ${5|false,true|}",
-            "      FieldLogLevel: \"${6:String}\"",
-            "    Name: \"${5:String}\" # Required",
+            "      CloudWatchLogsRoleArn: \"${5:String}\"",
+            "      ExcludeVerboseContent: ${6|false,true|}",
+            "      FieldLogLevel: \"${7:String}\"",
+            "    Name: \"${6:String}\" # Required",
             "    OpenIDConnectConfig:",
-            "      AuthTTL: ${6:Number}",
-            "      ClientId: \"${7:String}\"",
-            "      IatTTL: ${8:Number}",
-            "      Issuer: \"${9:String}\"",
+            "      AuthTTL: ${7:Number}",
+            "      ClientId: \"${8:String}\"",
+            "      IatTTL: ${9:Number}",
+            "      Issuer: \"${10:String}\"",
             "    Tags:",
             "    UserPoolConfig:",
-            "      AppIdClientRegex: \"${8:String}\"",
-            "      AwsRegion: \"${9:String}\"",
-            "      DefaultAction: \"${10:String}\"",
-            "      UserPoolId: \"${11:String}\"",
-            "    XrayEnabled: ${9|false,true|}"
+            "      AppIdClientRegex: \"${9:String}\"",
+            "      AwsRegion: \"${10:String}\"",
+            "      DefaultAction: \"${11:String}\"",
+            "      UserPoolId: \"${12:String}\"",
+            "    XrayEnabled: ${10|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
@@ -2711,6 +2715,46 @@
         "prefix": "cloudformation-moduleversion",
         "scope": "yaml"
     },
+    "AWS::CloudFormation::PublicTypeVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::PublicTypeVersion",
+            "  Properties:",
+            "    Arn: \"${2:String}\"",
+            "    LogDeliveryBucket: \"${3:String}\"",
+            "    PublicVersionNumber: \"${4:String}\"",
+            "    Type: \"${5:String}\"",
+            "    TypeName: \"${6:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publictypeversion.html",
+            "Attributes: ",
+            "  TypeVersionArn",
+            "  PublisherId",
+            "  PublicTypeArn"
+        ],
+        "prefix": "cloudformation-publictypeversion",
+        "scope": "yaml"
+    },
+    "AWS::CloudFormation::Publisher": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::Publisher",
+            "  Properties:",
+            "    AcceptTermsAndConditions: ${2|false,true|} # Required",
+            "    ConnectionArn: \"${3:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publisher.html",
+            "Attributes: ",
+            "  PublisherId",
+            "  PublisherStatus",
+            "  PublisherProfile",
+            "  IdentityProvider"
+        ],
+        "prefix": "cloudformation-publisher",
+        "scope": "yaml"
+    },
     "AWS::CloudFormation::ResourceDefaultVersion": {
         "body": [
             "${1:LogicalID}:",
@@ -2811,6 +2855,32 @@
             "  StackSetId"
         ],
         "prefix": "cloudformation-stackset",
+        "scope": "yaml"
+    },
+    "AWS::CloudFormation::TypeActivation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::TypeActivation",
+            "  Properties:",
+            "    AutoUpdate: ${2|false,true|}",
+            "    ExecutionRoleArn: \"${3:String}\"",
+            "    LoggingConfig:",
+            "      LogGroupName: \"${4:String}\"",
+            "      LogRoleArn: \"${5:String}\"",
+            "    MajorVersion: \"${5:String}\"",
+            "    PublicTypeArn: \"${6:String}\"",
+            "    PublisherId: \"${7:String}\"",
+            "    Type: \"${8:String}\"",
+            "    TypeName: \"${9:String}\"",
+            "    TypeNameAlias: \"${10:String}\"",
+            "    VersionBump: \"${11:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-typeactivation.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "cloudformation-typeactivation",
         "scope": "yaml"
     },
     "AWS::CloudFormation::WaitCondition": {
@@ -4216,6 +4286,27 @@
             "  QueryId"
         ],
         "prefix": "config-storedquery",
+        "scope": "yaml"
+    },
+    "AWS::Connect::QuickConnect": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::QuickConnect",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    InstanceArn: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    QuickConnectConfig:",
+            "      QuickConnectType: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-quickconnect.html",
+            "Attributes: ",
+            "  QuickConnectArn"
+        ],
+        "prefix": "connect-quickconnect",
         "scope": "yaml"
     },
     "AWS::CustomerProfiles::Domain": {
@@ -8312,13 +8403,13 @@
             "      ActiveDirectoryId: \"${11:String}\"",
             "      Aliases:",
             "        -",
-            "      AutomaticBackupRetentionDays: ${13:Number}",
-            "      CopyTagsToBackups: ${14|false,true|}",
-            "      DailyAutomaticBackupStartTime: \"${15:String}\"",
-            "      DeploymentType: \"${16:String}\"",
-            "      PreferredSubnetId: \"${17:String}\"",
-            "      ThroughputCapacity: ${19:Number}",
-            "      WeeklyMaintenanceStartTime: \"${20:String}\""
+            "      AutomaticBackupRetentionDays: ${14:Number}",
+            "      CopyTagsToBackups: ${15|false,true|}",
+            "      DailyAutomaticBackupStartTime: \"${16:String}\"",
+            "      DeploymentType: \"${17:String}\"",
+            "      PreferredSubnetId: \"${18:String}\"",
+            "      ThroughputCapacity: ${20:Number}",
+            "      WeeklyMaintenanceStartTime: \"${21:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html",
@@ -14087,8 +14178,9 @@
             "  Type: AWS::QLDB::Ledger",
             "  Properties:",
             "    DeletionProtection: ${2|false,true|}",
-            "    Name: \"${3:String}\"",
-            "    PermissionsMode: \"${4:String}\" # Required",
+            "    KmsKey: \"${3:String}\"",
+            "    Name: \"${4:String}\"",
+            "    PermissionsMode: \"${5:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -14726,7 +14818,9 @@
             "    DBName: \"${11:String}\" # Required",
             "    ElasticIp: \"${12:String}\"",
             "    Encrypted: ${13|false,true|}",
-            "    Endpoint: ${14:JSON}",
+            "    Endpoint:",
+            "      Address: \"${14:String}\"",
+            "      Port: \"${15:String}\"",
             "    HsmClientCertificateIdentifier: \"${15:String}\"",
             "    HsmConfigurationIdentifier: \"${16:String}\"",
             "    IamRoles:",
@@ -14753,7 +14847,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
             "Attributes: ",
-            "  Id"
+            "  Id",
+            "  Endpoint.Port",
+            "  Endpoint.Address"
         ],
         "prefix": "redshift-cluster",
         "scope": "yaml"
@@ -17516,7 +17612,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-table.html",
             "Attributes: ",
-            "  Arn"
+            "  Arn",
+            "  Name"
         ],
         "prefix": "timestream-table",
         "scope": "yaml"
