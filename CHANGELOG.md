@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.25.0 (2021-07-16)
+-------------------
+- The following resource was updated:
+  AWS::Budgets::BudgetsAction.Subscribers. [Github Actions]
+
+
 3.24.0 (2021-07-02)
 -------------------
 - The following resource was updated: AWS::FSx::FileSystem. [Github
