@@ -305,14 +305,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-domain.html",
             "Attributes: ",
-            "  AutoSubDomainIAMRole",
-            "  DomainName",
-            "  StatusReason",
-            "  EnableAutoSubDomain",
             "  Arn",
-            "  DomainStatus",
             "  AutoSubDomainCreationPatterns",
-            "  CertificateRecord"
+            "  AutoSubDomainIAMRole",
+            "  CertificateRecord",
+            "  DomainName",
+            "  DomainStatus",
+            "  EnableAutoSubDomain",
+            "  StatusReason"
         ],
         "prefix": "amplify-domain",
         "scope": "yaml"
@@ -2544,13 +2544,16 @@
             "      Mode: \"${2:String}\"",
             "    ClusteringKeyColumns:",
             "      ClusteringKeyColumns",
-            "    KeyspaceName: \"${4:String}\" # Required",
+            "    EncryptionSpecification:",
+            "      EncryptionType: \"${4:String}\"",
+            "      KmsKeyIdentifier: \"${5:String}\"",
+            "    KeyspaceName: \"${5:String}\" # Required",
             "    PartitionKeyColumns: # Required",
             "      PartitionKeyColumns",
-            "    PointInTimeRecoveryEnabled: ${6|false,true|}",
+            "    PointInTimeRecoveryEnabled: ${7|false,true|}",
             "    RegularColumns:",
             "      RegularColumns",
-            "    TableName: \"${8:String}\"",
+            "    TableName: \"${9:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -6362,15 +6365,19 @@
             "  Type: AWS::EC2::TransitGateway",
             "  Properties:",
             "    AmazonSideAsn: ${2:Number}",
-            "    AutoAcceptSharedAttachments: \"${3:String}\"",
-            "    DefaultRouteTableAssociation: \"${4:String}\"",
-            "    DefaultRouteTablePropagation: \"${5:String}\"",
-            "    Description: \"${6:String}\"",
-            "    DnsSupport: \"${7:String}\"",
-            "    MulticastSupport: \"${8:String}\"",
+            "    AssociationDefaultRouteTableId: \"${3:String}\"",
+            "    AutoAcceptSharedAttachments: \"${4:String}\"",
+            "    DefaultRouteTableAssociation: \"${5:String}\"",
+            "    DefaultRouteTablePropagation: \"${6:String}\"",
+            "    Description: \"${7:String}\"",
+            "    DnsSupport: \"${8:String}\"",
+            "    MulticastSupport: \"${9:String}\"",
+            "    PropagationDefaultRouteTableId: \"${10:String}\"",
             "    Tags:",
             "      Tags",
-            "    VpnEcmpSupport: \"${10:String}\""
+            "    TransitGatewayCidrBlocks:",
+            "      TransitGatewayCidrBlocks",
+            "    VpnEcmpSupport: \"${13:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html",
@@ -6620,7 +6627,9 @@
             "  Properties:",
             "    AmazonProvidedIpv6CidrBlock: ${2|false,true|}",
             "    CidrBlock: \"${3:String}\"",
-            "    VpcId: \"${4:String}\" # Required"
+            "    Ipv6CidrBlock: \"${4:String}\"",
+            "    Ipv6Pool: \"${5:String}\"",
+            "    VpcId: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html"
@@ -8967,14 +8976,16 @@
             "    DatabaseName: \"${5:String}\"",
             "    Description: \"${6:String}\"",
             "    Name: \"${7:String}\"",
-            "    Role: \"${8:String}\" # Required",
+            "    RecrawlPolicy:",
+            "      RecrawlBehavior: \"${8:String}\"",
+            "    Role: \"${9:String}\" # Required",
             "    Schedule:",
-            "      ScheduleExpression: \"${9:String}\"",
+            "      ScheduleExpression: \"${10:String}\"",
             "    SchemaChangePolicy:",
-            "      DeleteBehavior: \"${10:String}\"",
-            "      UpdateBehavior: \"${11:String}\"",
-            "    TablePrefix: \"${11:String}\"",
-            "    Tags: ${12:JSON}",
+            "      DeleteBehavior: \"${11:String}\"",
+            "      UpdateBehavior: \"${12:String}\"",
+            "    TablePrefix: \"${12:String}\"",
+            "    Tags: ${13:JSON}",
             "    Targets:",
             "      CatalogTargets:",
             "        -",
@@ -9012,10 +9023,12 @@
             "  Properties:",
             "    CatalogId: \"${2:String}\" # Required",
             "    DatabaseInput:",
-            "      Description: \"${3:String}\"",
-            "      LocationUri: \"${4:String}\"",
-            "      Name: \"${5:String}\"",
-            "      Parameters: ${6:JSON}"
+            "      CreateTableDefaultPermissions:",
+            "        -",
+            "      Description: \"${4:String}\"",
+            "      LocationUri: \"${5:String}\"",
+            "      Name: \"${6:String}\"",
+            "      Parameters: ${7:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html"
@@ -10281,16 +10294,18 @@
             "${1:LogicalID}:",
             "  Type: AWS::ImageBuilder::ImageRecipe",
             "  Properties:",
+            "    AdditionalInstanceConfiguration:",
+            "      UserDataOverride: \"${3:String}\"",
             "    BlockDeviceMappings:",
             "      BlockDeviceMappings",
             "    Components: # Required",
             "      Components",
-            "    Description: \"${4:String}\"",
-            "    Name: \"${5:String}\" # Required",
-            "    ParentImage: \"${6:String}\" # Required",
+            "    Description: \"${5:String}\"",
+            "    Name: \"${6:String}\" # Required",
+            "    ParentImage: \"${7:String}\" # Required",
             "    Tags:",
-            "    Version: \"${8:String}\" # Required",
-            "    WorkingDirectory: \"${9:String}\""
+            "    Version: \"${9:String}\" # Required",
+            "    WorkingDirectory: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html",
@@ -12205,6 +12220,20 @@
         "prefix": "logs-querydefinition",
         "scope": "yaml"
     },
+    "AWS::Logs::ResourcePolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Logs::ResourcePolicy",
+            "  Properties:",
+            "    PolicyDocument: \"${2:String}\" # Required",
+            "    PolicyName: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-resourcepolicy.html"
+        ],
+        "prefix": "logs-resourcepolicy",
+        "scope": "yaml"
+    },
     "AWS::Logs::SubscriptionFilter": {
         "body": [
             "${1:LogicalID}:",
@@ -12221,12 +12250,36 @@
         "prefix": "logs-subscriptionfilter",
         "scope": "yaml"
     },
+    "AWS::LookoutEquipment::InferenceScheduler": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LookoutEquipment::InferenceScheduler",
+            "  Properties:",
+            "    DataDelayOffsetInMinutes: ${2:Number}",
+            "    DataInputConfiguration: ${3:JSON} # Required",
+            "    DataOutputConfiguration: ${4:JSON} # Required",
+            "    DataUploadFrequency: \"${5:String}\" # Required",
+            "    InferenceSchedulerName: \"${6:String}\"",
+            "    ModelName: \"${7:String}\" # Required",
+            "    RoleArn: \"${8:String}\" # Required",
+            "    ServerSideKmsKeyId: \"${9:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lookoutequipment-inferencescheduler.html",
+            "Attributes: ",
+            "  InferenceSchedulerArn"
+        ],
+        "prefix": "lookoutequipment-inferencescheduler",
+        "scope": "yaml"
+    },
     "AWS::LookoutMetrics::Alert": {
         "body": [
             "${1:LogicalID}:",
             "  Type: AWS::LookoutMetrics::Alert",
             "  Properties:",
-            "    Action: ${2:JSON} # Required",
+            "    Action:",
             "    AlertDescription: \"${3:String}\"",
             "    AlertName: \"${4:String}\"",
             "    AlertSensitivityThreshold: ${5:Number} # Required",
@@ -12245,7 +12298,8 @@
             "${1:LogicalID}:",
             "  Type: AWS::LookoutMetrics::AnomalyDetector",
             "  Properties:",
-            "    AnomalyDetectorConfig: ${2:JSON} # Required",
+            "    AnomalyDetectorConfig:",
+            "      AnomalyDetectorFrequency: \"${2:String}\"",
             "    AnomalyDetectorDescription: \"${3:String}\"",
             "    AnomalyDetectorName: \"${4:String}\"",
             "    KmsKeyArn: \"${5:String}\"",
@@ -14332,8 +14386,9 @@
             "    PhysicalTableMap:",
             "    RowLevelPermissionDataSet:",
             "      Arn: \"${13:String}\"",
-            "      Namespace: \"${14:String}\"",
-            "      PermissionPolicy: \"${15:String}\"",
+            "      FormatVersion: \"${14:String}\"",
+            "      Namespace: \"${15:String}\"",
+            "      PermissionPolicy: \"${16:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -15421,8 +15476,8 @@
             "  Type: AWS::S3::AccessPoint",
             "  Properties:",
             "    Bucket: \"${2:String}\" # Required",
-            "    Name: \"${3:String}\"",
-            "    Policy: ${4:JSON}",
+            "    Policy: ${3:JSON}",
+            "    PolicyStatus: ${4:JSON}",
             "    PublicAccessBlockConfiguration:",
             "      BlockPublicAcls: ${5|false,true|}",
             "      BlockPublicPolicy: ${6|false,true|}",
@@ -15434,7 +15489,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html",
             "Attributes: ",
-            "  NetworkOrigin"
+            "  Name",
+            "  NetworkOrigin",
+            "  Arn"
         ],
         "prefix": "s3-accesspoint",
         "scope": "yaml"
