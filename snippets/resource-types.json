@@ -4729,30 +4729,37 @@
             "  Properties:",
             "    DataCatalogOutputs:",
             "      DataCatalogOutputs",
-            "    DatasetName: \"${3:String}\"",
-            "    EncryptionKeyArn: \"${4:String}\"",
-            "    EncryptionMode: \"${5:String}\"",
+            "    DatabaseOutputs:",
+            "      DatabaseOutputs",
+            "    DatasetName: \"${4:String}\"",
+            "    EncryptionKeyArn: \"${5:String}\"",
+            "    EncryptionMode: \"${6:String}\"",
             "    JobSample:",
-            "      Mode: \"${6:String}\"",
-            "      Size: ${7:Number}",
-            "    LogSubscription: \"${7:String}\"",
-            "    MaxCapacity: ${8:Number}",
-            "    MaxRetries: ${9:Number}",
-            "    Name: \"${10:String}\" # Required",
+            "      Mode: \"${7:String}\"",
+            "      Size: ${8:Number}",
+            "    LogSubscription: \"${8:String}\"",
+            "    MaxCapacity: ${9:Number}",
+            "    MaxRetries: ${10:Number}",
+            "    Name: \"${11:String}\" # Required",
             "    OutputLocation:",
-            "      Bucket: \"${11:String}\"",
-            "      Key: \"${12:String}\"",
+            "      Bucket: \"${12:String}\"",
+            "      Key: \"${13:String}\"",
             "    Outputs:",
             "      Outputs",
-            "    ProjectName: \"${13:String}\"",
+            "    ProfileConfiguration:",
+            "      ColumnStatisticsConfigurations:",
+            "        -",
+            "      ProfileColumns:",
+            "        -",
+            "    ProjectName: \"${15:String}\"",
             "    Recipe:",
-            "      Name: \"${14:String}\"",
-            "      Version: \"${15:String}\"",
-            "    RoleArn: \"${15:String}\" # Required",
+            "      Name: \"${16:String}\"",
+            "      Version: \"${17:String}\"",
+            "    RoleArn: \"${17:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    Timeout: ${17:Number}",
-            "    Type: \"${18:String}\" # Required"
+            "    Timeout: ${19:Number}",
+            "    Type: \"${20:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html"
@@ -5029,10 +5036,11 @@
             "      PosixPermissions: \"${12:String}\"",
             "      PreserveDeletedFiles: \"${13:String}\"",
             "      PreserveDevices: \"${14:String}\"",
-            "      TaskQueueing: \"${15:String}\"",
-            "      TransferMode: \"${16:String}\"",
-            "      Uid: \"${17:String}\"",
-            "      VerifyMode: \"${18:String}\"",
+            "      SecurityDescriptorCopyFlags: \"${15:String}\"",
+            "      TaskQueueing: \"${16:String}\"",
+            "      TransferMode: \"${17:String}\"",
+            "      Uid: \"${18:String}\"",
+            "      VerifyMode: \"${19:String}\"",
             "    Schedule:",
             "      ScheduleExpression: \"${7:String}\"",
             "    SourceLocationArn: \"${8:String}\" # Required",
@@ -8423,13 +8431,13 @@
             "      ActiveDirectoryId: \"${11:String}\"",
             "      Aliases:",
             "        -",
-            "      AutomaticBackupRetentionDays: ${13:Number}",
-            "      CopyTagsToBackups: ${14|false,true|}",
-            "      DailyAutomaticBackupStartTime: \"${15:String}\"",
-            "      DeploymentType: \"${16:String}\"",
-            "      PreferredSubnetId: \"${17:String}\"",
-            "      ThroughputCapacity: ${19:Number}",
-            "      WeeklyMaintenanceStartTime: \"${20:String}\""
+            "      AutomaticBackupRetentionDays: ${14:Number}",
+            "      CopyTagsToBackups: ${15|false,true|}",
+            "      DailyAutomaticBackupStartTime: \"${16:String}\"",
+            "      DeploymentType: \"${17:String}\"",
+            "      PreferredSubnetId: \"${18:String}\"",
+            "      ThroughputCapacity: ${20:Number}",
+            "      WeeklyMaintenanceStartTime: \"${21:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html",
@@ -15252,6 +15260,168 @@
         "prefix": "route53-recordsetgroup",
         "scope": "yaml"
     },
+    "AWS::Route53RecoveryControl::Cluster": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryControl::Cluster",
+            "  Properties:",
+            "    Name: \"${2:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-cluster.html",
+            "Attributes: ",
+            "  ClusterArn",
+            "  Status",
+            "  ClusterEndpoints"
+        ],
+        "prefix": "route53recoverycontrol-cluster",
+        "scope": "yaml"
+    },
+    "AWS::Route53RecoveryControl::ControlPanel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryControl::ControlPanel",
+            "  Properties:",
+            "    ClusterArn: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-controlpanel.html",
+            "Attributes: ",
+            "  ControlPanelArn",
+            "  Status",
+            "  DefaultControlPanel",
+            "  RoutingControlCount"
+        ],
+        "prefix": "route53recoverycontrol-controlpanel",
+        "scope": "yaml"
+    },
+    "AWS::Route53RecoveryControl::RoutingControl": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryControl::RoutingControl",
+            "  Properties:",
+            "    ClusterArn: \"${2:String}\"",
+            "    ControlPanelArn: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-routingcontrol.html",
+            "Attributes: ",
+            "  RoutingControlArn",
+            "  Status"
+        ],
+        "prefix": "route53recoverycontrol-routingcontrol",
+        "scope": "yaml"
+    },
+    "AWS::Route53RecoveryControl::SafetyRule": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryControl::SafetyRule",
+            "  Properties:",
+            "    AssertionRule:",
+            "      AssertedControls:",
+            "        -",
+            "      WaitPeriodMs: ${3:Number}",
+            "    ControlPanelArn: \"${3:String}\" # Required",
+            "    GatingRule:",
+            "      GatingControls:",
+            "        -",
+            "      TargetControls:",
+            "        -",
+            "      WaitPeriodMs: ${6:Number}",
+            "    Name: \"${5:String}\" # Required",
+            "    RuleConfig:",
+            "      Inverted: ${6|false,true|}",
+            "      Threshold: ${7:Number}",
+            "      Type: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-safetyrule.html",
+            "Attributes: ",
+            "  SafetyRuleArn",
+            "  Status"
+        ],
+        "prefix": "route53recoverycontrol-safetyrule",
+        "scope": "yaml"
+    },
+    "AWS::Route53RecoveryReadiness::Cell": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryReadiness::Cell",
+            "  Properties:",
+            "    CellName: \"${2:String}\" # Required",
+            "    Cells:",
+            "      Cells",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-cell.html",
+            "Attributes: ",
+            "  CellArn",
+            "  ParentReadinessScopes"
+        ],
+        "prefix": "route53recoveryreadiness-cell",
+        "scope": "yaml"
+    },
+    "AWS::Route53RecoveryReadiness::ReadinessCheck": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryReadiness::ReadinessCheck",
+            "  Properties:",
+            "    ReadinessCheckName: \"${2:String}\" # Required",
+            "    ResourceSetName: \"${3:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-readinesscheck.html",
+            "Attributes: ",
+            "  ReadinessCheckArn"
+        ],
+        "prefix": "route53recoveryreadiness-readinesscheck",
+        "scope": "yaml"
+    },
+    "AWS::Route53RecoveryReadiness::RecoveryGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryReadiness::RecoveryGroup",
+            "  Properties:",
+            "    Cells:",
+            "      Cells",
+            "    RecoveryGroupName: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-recoverygroup.html",
+            "Attributes: ",
+            "  RecoveryGroupArn"
+        ],
+        "prefix": "route53recoveryreadiness-recoverygroup",
+        "scope": "yaml"
+    },
+    "AWS::Route53RecoveryReadiness::ResourceSet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53RecoveryReadiness::ResourceSet",
+            "  Properties:",
+            "    ResourceSetName: \"${2:String}\" # Required",
+            "    ResourceSetType: \"${3:String}\" # Required",
+            "    Resources: # Required",
+            "      Resources",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-resourceset.html",
+            "Attributes: ",
+            "  ResourceSetArn"
+        ],
+        "prefix": "route53recoveryreadiness-resourceset",
+        "scope": "yaml"
+    },
     "AWS::Route53Resolver::FirewallDomainList": {
         "body": [
             "${1:LogicalID}:",
@@ -15699,9 +15869,11 @@
             "${1:LogicalID}:",
             "  Type: AWS::S3Outposts::Endpoint",
             "  Properties:",
-            "    OutpostId: \"${2:String}\" # Required",
-            "    SecurityGroupId: \"${3:String}\" # Required",
-            "    SubnetId: \"${4:String}\" # Required"
+            "    AccessType: \"${2:String}\"",
+            "    CustomerOwnedIpv4Pool: \"${3:String}\"",
+            "    OutpostId: \"${4:String}\" # Required",
+            "    SecurityGroupId: \"${5:String}\" # Required",
+            "    SubnetId: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html",
