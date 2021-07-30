@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.27.0 (2021-07-30)
+-------------------
+- The following resource was updated: AWS::DataBrew::Job. [Github
+  Actions]
+
+
 3.26.0 (2021-07-23)
 -------------------
 - The following resources were added:
