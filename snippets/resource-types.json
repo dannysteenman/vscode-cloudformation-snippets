@@ -614,7 +614,9 @@
             "    RestApiId: \"${4:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html",
+            "Attributes: ",
+            "  ResourceId"
         ],
         "prefix": "apigateway-resource",
         "scope": "yaml"
@@ -1746,23 +1748,27 @@
             "  Properties:",
             "    AdditionalAuthenticationProviders:",
             "    AuthenticationType: \"${3:String}\" # Required",
+            "    LambdaAuthorizerConfig:",
+            "      AuthorizerResultTtlInSeconds: ${4:Number}",
+            "      AuthorizerUri: \"${5:String}\"",
+            "      IdentityValidationExpression: \"${6:String}\"",
             "    LogConfig:",
-            "      CloudWatchLogsRoleArn: \"${4:String}\"",
-            "      ExcludeVerboseContent: ${5|false,true|}",
-            "      FieldLogLevel: \"${6:String}\"",
-            "    Name: \"${5:String}\" # Required",
+            "      CloudWatchLogsRoleArn: \"${5:String}\"",
+            "      ExcludeVerboseContent: ${6|false,true|}",
+            "      FieldLogLevel: \"${7:String}\"",
+            "    Name: \"${6:String}\" # Required",
             "    OpenIDConnectConfig:",
-            "      AuthTTL: ${6:Number}",
-            "      ClientId: \"${7:String}\"",
-            "      IatTTL: ${8:Number}",
-            "      Issuer: \"${9:String}\"",
+            "      AuthTTL: ${7:Number}",
+            "      ClientId: \"${8:String}\"",
+            "      IatTTL: ${9:Number}",
+            "      Issuer: \"${10:String}\"",
             "    Tags:",
             "    UserPoolConfig:",
-            "      AppIdClientRegex: \"${8:String}\"",
-            "      AwsRegion: \"${9:String}\"",
-            "      DefaultAction: \"${10:String}\"",
-            "      UserPoolId: \"${11:String}\"",
-            "    XrayEnabled: ${9|false,true|}"
+            "      AppIdClientRegex: \"${9:String}\"",
+            "      AwsRegion: \"${10:String}\"",
+            "      DefaultAction: \"${11:String}\"",
+            "      UserPoolId: \"${12:String}\"",
+            "    XrayEnabled: ${10|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
@@ -1942,6 +1948,22 @@
         "prefix": "athena-namedquery",
         "scope": "yaml"
     },
+    "AWS::Athena::PreparedStatement": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Athena::PreparedStatement",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    QueryStatement: \"${3:String}\" # Required",
+            "    StatementName: \"${4:String}\" # Required",
+            "    WorkGroup: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html"
+        ],
+        "prefix": "athena-preparedstatement",
+        "scope": "yaml"
+    },
     "AWS::Athena::WorkGroup": {
         "body": [
             "${1:LogicalID}:",
@@ -1969,6 +1991,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html",
             "Attributes: ",
             "  WorkGroupConfiguration.EngineVersion.EffectiveEngineVersion",
+            "  WorkGroupConfigurationUpdates.EngineVersion.EffectiveEngineVersion",
             "  CreationTime"
         ],
         "prefix": "athena-workgroup",
@@ -12403,7 +12426,11 @@
             "Attributes: ",
             "  Arn",
             "  WebserverUrl",
-            "  LoggingConfiguration.DagProcessingLogs.CloudWatchLogGroupArn"
+            "  LoggingConfiguration.DagProcessingLogs.CloudWatchLogGroupArn",
+            "  LoggingConfiguration.SchedulerLogs.CloudWatchLogGroupArn",
+            "  LoggingConfiguration.WebserverLogs.CloudWatchLogGroupArn",
+            "  LoggingConfiguration.WorkerLogs.CloudWatchLogGroupArn",
+            "  LoggingConfiguration.TaskLogs.CloudWatchLogGroupArn"
         ],
         "prefix": "mwaa-environment",
         "scope": "yaml"
@@ -15646,15 +15673,16 @@
             "  Type: AWS::S3::AccessPoint",
             "  Properties:",
             "    Bucket: \"${2:String}\" # Required",
-            "    Policy: ${3:JSON}",
-            "    PolicyStatus: ${4:JSON}",
+            "    Name: \"${3:String}\"",
+            "    Policy: ${4:JSON}",
+            "    PolicyStatus: ${5:JSON}",
             "    PublicAccessBlockConfiguration:",
-            "      BlockPublicAcls: ${5|false,true|}",
-            "      BlockPublicPolicy: ${6|false,true|}",
-            "      IgnorePublicAcls: ${7|false,true|}",
-            "      RestrictPublicBuckets: ${8|false,true|}",
+            "      BlockPublicAcls: ${6|false,true|}",
+            "      BlockPublicPolicy: ${7|false,true|}",
+            "      IgnorePublicAcls: ${8|false,true|}",
+            "      RestrictPublicBuckets: ${9|false,true|}",
             "    VpcConfiguration:",
-            "      VpcId: \"${6:String}\""
+            "      VpcId: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html",
@@ -17819,7 +17847,11 @@
             "        -",
             "      SubnetIds:",
             "        -",
-            "      VpcId: \"${15:String}\""
+            "      VpcId: \"${15:String}\"",
+            "    VisualReference:",
+            "      BaseCanaryRunId: \"${14:String}\"",
+            "      BaseScreenshots:",
+            "        -"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-canary.html",
