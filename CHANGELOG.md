@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.29.0 (2021-08-13)
+-------------------
+- The following resource was updated: AWS::WAFv2::WebACL. [Github
+  Actions]
+
+
 3.28.0 (2021-08-06)
 -------------------
 - The following resource was updated: AWS::AppSync::GraphQLApi. [Github
