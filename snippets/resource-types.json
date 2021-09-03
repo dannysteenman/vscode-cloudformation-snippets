@@ -325,7 +325,9 @@
             "    CloudWatchRoleArn: \"${2:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "apigateway-account",
         "scope": "yaml"
@@ -714,7 +716,9 @@
             "    UsagePlanName: \"${7:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "apigateway-usageplan",
         "scope": "yaml"
@@ -2514,7 +2518,8 @@
             "    DefaultValue: \"${2:String}\"",
             "    Name: \"${3:String}\" # Required",
             "    RuleVersion: \"${4:String}\" # Required",
-            "    Rules: \"${5:String}\" # Required"
+            "    Rules: \"${5:String}\" # Required",
+            "    SplitChargeRules: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-costcategory.html",
@@ -3149,15 +3154,18 @@
             "    EventSelectors:",
             "      EventSelectors",
             "    IncludeGlobalServiceEvents: ${6|false,true|}",
-            "    IsLogging: ${7|false,true|} # Required",
-            "    IsMultiRegionTrail: ${8|false,true|}",
-            "    KMSKeyId: \"${9:String}\"",
-            "    S3BucketName: \"${10:String}\" # Required",
-            "    S3KeyPrefix: \"${11:String}\"",
-            "    SnsTopicName: \"${12:String}\"",
+            "    InsightSelectors:",
+            "      InsightSelectors",
+            "    IsLogging: ${8|false,true|} # Required",
+            "    IsMultiRegionTrail: ${9|false,true|}",
+            "    IsOrganizationTrail: ${10|false,true|}",
+            "    KMSKeyId: \"${11:String}\"",
+            "    S3BucketName: \"${12:String}\" # Required",
+            "    S3KeyPrefix: \"${13:String}\"",
+            "    SnsTopicName: \"${14:String}\"",
             "    Tags:",
             "      Tags",
-            "    TrailName: \"${14:String}\""
+            "    TrailName: \"${16:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html",
@@ -3778,7 +3786,9 @@
             "      Targets"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarnotifications-notificationrule.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarnotifications-notificationrule.html",
+            "Attributes: ",
+            "  Arn"
         ],
         "prefix": "codestarnotifications-notificationrule",
         "scope": "yaml"
@@ -5058,25 +5068,27 @@
             "    DestinationLocationArn: \"${3:String}\" # Required",
             "    Excludes:",
             "      Excludes",
-            "    Name: \"${5:String}\"",
+            "    Includes:",
+            "      Includes",
+            "    Name: \"${6:String}\"",
             "    Options:",
-            "      Atime: \"${6:String}\"",
-            "      BytesPerSecond: ${7:Number}",
-            "      Gid: \"${8:String}\"",
-            "      LogLevel: \"${9:String}\"",
-            "      Mtime: \"${10:String}\"",
-            "      OverwriteMode: \"${11:String}\"",
-            "      PosixPermissions: \"${12:String}\"",
-            "      PreserveDeletedFiles: \"${13:String}\"",
-            "      PreserveDevices: \"${14:String}\"",
-            "      SecurityDescriptorCopyFlags: \"${15:String}\"",
-            "      TaskQueueing: \"${16:String}\"",
-            "      TransferMode: \"${17:String}\"",
-            "      Uid: \"${18:String}\"",
-            "      VerifyMode: \"${19:String}\"",
+            "      Atime: \"${7:String}\"",
+            "      BytesPerSecond: ${8:Number}",
+            "      Gid: \"${9:String}\"",
+            "      LogLevel: \"${10:String}\"",
+            "      Mtime: \"${11:String}\"",
+            "      OverwriteMode: \"${12:String}\"",
+            "      PosixPermissions: \"${13:String}\"",
+            "      PreserveDeletedFiles: \"${14:String}\"",
+            "      PreserveDevices: \"${15:String}\"",
+            "      SecurityDescriptorCopyFlags: \"${16:String}\"",
+            "      TaskQueueing: \"${17:String}\"",
+            "      TransferMode: \"${18:String}\"",
+            "      Uid: \"${19:String}\"",
+            "      VerifyMode: \"${20:String}\"",
             "    Schedule:",
-            "      ScheduleExpression: \"${7:String}\"",
-            "    SourceLocationArn: \"${8:String}\" # Required",
+            "      ScheduleExpression: \"${8:String}\"",
+            "    SourceLocationArn: \"${9:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -8073,22 +8085,23 @@
             "    HealthCheckProtocol: \"${6:String}\"",
             "    HealthCheckTimeoutSeconds: ${7:Number}",
             "    HealthyThresholdCount: ${8:Number}",
+            "    IpAddressType: \"${9:String}\"",
             "    Matcher:",
-            "      GrpcCode: \"${9:String}\"",
-            "      HttpCode: \"${10:String}\"",
-            "    Name: \"${10:String}\"",
-            "    Port: ${11:Number}",
-            "    Protocol: \"${12:String}\"",
-            "    ProtocolVersion: \"${13:String}\"",
+            "      GrpcCode: \"${10:String}\"",
+            "      HttpCode: \"${11:String}\"",
+            "    Name: \"${11:String}\"",
+            "    Port: ${12:Number}",
+            "    Protocol: \"${13:String}\"",
+            "    ProtocolVersion: \"${14:String}\"",
             "    Tags:",
             "      Tags",
             "    TargetGroupAttributes:",
             "      TargetGroupAttributes",
-            "    TargetType: \"${16:String}\"",
+            "    TargetType: \"${17:String}\"",
             "    Targets:",
             "      Targets",
-            "    UnhealthyThresholdCount: ${18:Number}",
-            "    VpcId: \"${19:String}\""
+            "    UnhealthyThresholdCount: ${19:Number}",
+            "    VpcId: \"${20:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html",
@@ -8169,8 +8182,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::EventSchemas::Discoverer",
             "  Properties:",
-            "    Description: \"${2:String}\"",
-            "    SourceArn: \"${3:String}\" # Required",
+            "    CrossAccount: ${2|false,true|}",
+            "    Description: \"${3:String}\"",
+            "    SourceArn: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -8178,7 +8192,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-discoverer.html",
             "Attributes: ",
             "  DiscovererArn",
-            "  DiscovererId"
+            "  DiscovererId",
+            "  CrossAccount"
         ],
         "prefix": "eventschemas-discoverer",
         "scope": "yaml"
@@ -10625,6 +10640,37 @@
         "prefix": "iot-domainconfiguration",
         "scope": "yaml"
     },
+    "AWS::IoT::FleetMetric": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::FleetMetric",
+            "  Properties:",
+            "    AggregationField: \"${2:String}\"",
+            "    AggregationType:",
+            "      Name: \"${3:String}\"",
+            "      Values:",
+            "        -",
+            "    Description: \"${4:String}\"",
+            "    IndexName: \"${5:String}\"",
+            "    MetricName: \"${6:String}\" # Required",
+            "    Period: ${7:Number}",
+            "    QueryString: \"${8:String}\"",
+            "    QueryVersion: \"${9:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Unit: \"${11:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html",
+            "Attributes: ",
+            "  MetricArn",
+            "  CreationDate",
+            "  LastModifiedDate",
+            "  Version"
+        ],
+        "prefix": "iot-fleetmetric",
+        "scope": "yaml"
+    },
     "AWS::IoT::MitigationAction": {
         "body": [
             "${1:LogicalID}:",
@@ -11694,10 +11740,10 @@
             "    ExtendedS3DestinationConfiguration:",
             "      BucketARN: \"${6:String}\"",
             "      CompressionFormat: \"${9:String}\"",
-            "      ErrorOutputPrefix: \"${12:String}\"",
-            "      Prefix: \"${13:String}\"",
-            "      RoleARN: \"${15:String}\"",
-            "      S3BackupMode: \"${17:String}\"",
+            "      ErrorOutputPrefix: \"${13:String}\"",
+            "      Prefix: \"${14:String}\"",
+            "      RoleARN: \"${16:String}\"",
+            "      S3BackupMode: \"${18:String}\"",
             "    HttpEndpointDestinationConfiguration:",
             "      RoleARN: \"${13:String}\"",
             "      S3BackupMode: \"${14:String}\"",
@@ -12075,6 +12121,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-geofencecollection.html",
             "Attributes: ",
             "  CollectionArn",
+            "  Arn",
             "  CreateTime",
             "  UpdateTime"
         ],
@@ -12141,6 +12188,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-routecalculator.html",
             "Attributes: ",
             "  CalculatorArn",
+            "  Arn",
             "  CreateTime",
             "  UpdateTime"
         ],
@@ -12163,6 +12211,7 @@
             "Attributes: ",
             "  CreateTime",
             "  TrackerArn",
+            "  Arn",
             "  UpdateTime"
         ],
         "prefix": "location-tracker",
@@ -12467,9 +12516,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-customdataidentifier.html",
             "Attributes: ",
             "  Id",
-            "  Arn",
-            "  CreatedAt",
-            "  Deleted"
+            "  Arn"
         ],
         "prefix": "macie-customdataidentifier",
         "scope": "yaml"
@@ -14946,41 +14993,40 @@
             "    DeferMaintenance: ${16|false,true|}",
             "    DeferMaintenanceDuration: ${17:Number}",
             "    DeferMaintenanceEndTime: \"${18:String}\"",
-            "    DeferMaintenanceIdentifier: \"${19:String}\"",
-            "    DeferMaintenanceStartTime: \"${20:String}\"",
-            "    DestinationRegion: \"${21:String}\"",
-            "    ElasticIp: \"${22:String}\"",
-            "    Encrypted: ${23|false,true|}",
+            "    DeferMaintenanceStartTime: \"${19:String}\"",
+            "    DestinationRegion: \"${20:String}\"",
+            "    ElasticIp: \"${21:String}\"",
+            "    Encrypted: ${22|false,true|}",
             "    Endpoint:",
-            "      Address: \"${24:String}\"",
-            "      Port: \"${25:String}\"",
-            "    EnhancedVpcRouting: ${25|false,true|}",
-            "    HsmClientCertificateIdentifier: \"${26:String}\"",
-            "    HsmConfigurationIdentifier: \"${27:String}\"",
+            "      Address: \"${23:String}\"",
+            "      Port: \"${24:String}\"",
+            "    EnhancedVpcRouting: ${24|false,true|}",
+            "    HsmClientCertificateIdentifier: \"${25:String}\"",
+            "    HsmConfigurationIdentifier: \"${26:String}\"",
             "    IamRoles:",
             "      IamRoles",
-            "    KmsKeyId: \"${29:String}\"",
+            "    KmsKeyId: \"${28:String}\"",
             "    LoggingProperties:",
-            "      BucketName: \"${30:String}\"",
-            "      S3KeyPrefix: \"${31:String}\"",
-            "    MaintenanceTrackName: \"${31:String}\"",
-            "    ManualSnapshotRetentionPeriod: ${32:Number}",
-            "    MasterUserPassword: \"${33:String}\" # Required",
-            "    MasterUsername: \"${34:String}\" # Required",
-            "    NodeType: \"${35:String}\" # Required",
-            "    NumberOfNodes: ${36:Number}",
-            "    OwnerAccount: \"${37:String}\"",
-            "    Port: ${38:Number}",
-            "    PreferredMaintenanceWindow: \"${39:String}\"",
-            "    PubliclyAccessible: ${40|false,true|}",
-            "    ResourceAction: \"${41:String}\"",
-            "    RevisionTarget: \"${42:String}\"",
-            "    RotateEncryptionKey: ${43|false,true|}",
-            "    SnapshotClusterIdentifier: \"${44:String}\"",
-            "    SnapshotCopyGrantName: \"${45:String}\"",
-            "    SnapshotCopyManual: ${46|false,true|}",
-            "    SnapshotCopyRetentionPeriod: ${47:Number}",
-            "    SnapshotIdentifier: \"${48:String}\"",
+            "      BucketName: \"${29:String}\"",
+            "      S3KeyPrefix: \"${30:String}\"",
+            "    MaintenanceTrackName: \"${30:String}\"",
+            "    ManualSnapshotRetentionPeriod: ${31:Number}",
+            "    MasterUserPassword: \"${32:String}\" # Required",
+            "    MasterUsername: \"${33:String}\" # Required",
+            "    NodeType: \"${34:String}\" # Required",
+            "    NumberOfNodes: ${35:Number}",
+            "    OwnerAccount: \"${36:String}\"",
+            "    Port: ${37:Number}",
+            "    PreferredMaintenanceWindow: \"${38:String}\"",
+            "    PubliclyAccessible: ${39|false,true|}",
+            "    ResourceAction: \"${40:String}\"",
+            "    RevisionTarget: \"${41:String}\"",
+            "    RotateEncryptionKey: ${42|false,true|}",
+            "    SnapshotClusterIdentifier: \"${43:String}\"",
+            "    SnapshotCopyGrantName: \"${44:String}\"",
+            "    SnapshotCopyManual: ${45|false,true|}",
+            "    SnapshotCopyRetentionPeriod: ${46:Number}",
+            "    SnapshotIdentifier: \"${47:String}\"",
             "    Tags:",
             "      Tags",
             "    VpcSecurityGroupIds:",
@@ -14991,7 +15037,8 @@
             "Attributes: ",
             "  Id",
             "  Endpoint.Port",
-            "  Endpoint.Address"
+            "  Endpoint.Address",
+            "  DeferMaintenanceIdentifier"
         ],
         "prefix": "redshift-cluster",
         "scope": "yaml"
@@ -15092,7 +15139,7 @@
             "  Type: AWS::RoboMaker::Fleet",
             "  Properties:",
             "    Name: \"${2:String}\"",
-            "    Tags: ${3:JSON}"
+            "    Tags:"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-fleet.html",
@@ -15111,10 +15158,12 @@
             "    Fleet: \"${3:String}\"",
             "    GreengrassGroupId: \"${4:String}\" # Required",
             "    Name: \"${5:String}\"",
-            "    Tags: ${6:JSON}"
+            "    Tags:"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robot.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robot.html",
+            "Attributes: ",
+            "  Arn"
         ],
         "prefix": "robomaker-robot",
         "scope": "yaml"
@@ -15151,7 +15200,10 @@
             "    CurrentRevisionId: \"${3:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplicationversion.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplicationversion.html",
+            "Attributes: ",
+            "  ApplicationVersion",
+            "  Arn"
         ],
         "prefix": "robomaker-robotapplicationversion",
         "scope": "yaml"
@@ -15174,13 +15226,13 @@
             "      Version: \"${7:String}\"",
             "    Sources: # Required",
             "      Sources",
-            "    Tags: ${8:JSON}"
+            "    Tags:"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html",
             "Attributes: ",
-            "  CurrentRevisionId",
-            "  Arn"
+            "  Arn",
+            "  CurrentRevisionId"
         ],
         "prefix": "robomaker-simulationapplication",
         "scope": "yaml"
@@ -15194,7 +15246,10 @@
             "    CurrentRevisionId: \"${3:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplicationversion.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplicationversion.html",
+            "Attributes: ",
+            "  ApplicationVersion",
+            "  Arn"
         ],
         "prefix": "robomaker-simulationapplicationversion",
         "scope": "yaml"
@@ -15813,6 +15868,43 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html"
         ],
         "prefix": "s3-bucketpolicy",
+        "scope": "yaml"
+    },
+    "AWS::S3::MultiRegionAccessPoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3::MultiRegionAccessPoint",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    PublicAccessBlockConfiguration:",
+            "      BlockPublicAcls: ${3|false,true|}",
+            "      BlockPublicPolicy: ${4|false,true|}",
+            "      IgnorePublicAcls: ${5|false,true|}",
+            "      RestrictPublicBuckets: ${6|false,true|}",
+            "    Regions: # Required",
+            "      Regions"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspoint.html",
+            "Attributes: ",
+            "  Alias",
+            "  CreatedAt"
+        ],
+        "prefix": "s3-multiregionaccesspoint",
+        "scope": "yaml"
+    },
+    "AWS::S3::MultiRegionAccessPointPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::S3::MultiRegionAccessPointPolicy",
+            "  Properties:",
+            "    MrapName: \"${2:String}\" # Required",
+            "    Policy: ${3:JSON} # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html"
+        ],
+        "prefix": "s3-multiregionaccesspointpolicy",
         "scope": "yaml"
     },
     "AWS::S3::StorageLens": {
@@ -17964,7 +18056,10 @@
             "      Protocols",
             "    SecurityPolicyName: \"${11:String}\"",
             "    Tags:",
-            "      Tags"
+            "      Tags",
+            "    WorkflowDetails:",
+            "      OnUpload:",
+            "        -"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html",
