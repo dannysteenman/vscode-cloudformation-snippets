@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.31.0 (2021-09-03)
+-------------------
+- The following resource was updated: AWS::Transfer::Server. [Github
+  Actions]
+
+
 3.30.0 (2021-08-20)
 -------------------
 - The following resource was updated: AWS::Elasticsearch::Domain.
