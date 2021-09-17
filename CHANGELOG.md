@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.32.0 (2021-09-17)
+-------------------
+- The following resource was updated: AWS::CloudTrail::Trail. [Github
+  Actions]
+
+
 3.31.0 (2021-09-03)
 -------------------
 - The following resource was updated: AWS::Transfer::Server. [Github
