@@ -6653,6 +6653,31 @@
         "prefix": "ec2-transitgatewayroutetablepropagation",
         "scope": "yaml"
     },
+    "AWS::EC2::TransitGatewayVpcAttachment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::TransitGatewayVpcAttachment",
+            "  Properties:",
+            "    AddSubnetIds:",
+            "      AddSubnetIds",
+            "    Options: ${3:JSON}",
+            "    RemoveSubnetIds:",
+            "      RemoveSubnetIds",
+            "    SubnetIds:",
+            "      SubnetIds",
+            "    Tags:",
+            "      Tags",
+            "    TransitGatewayId: \"${7:String}\"",
+            "    VpcId: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayvpcattachment.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "ec2-transitgatewayvpcattachment",
+        "scope": "yaml"
+    },
     "AWS::EC2::VPC": {
         "body": [
             "${1:LogicalID}:",
