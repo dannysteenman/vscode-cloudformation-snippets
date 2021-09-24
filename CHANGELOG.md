@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.33.0 (2021-09-24)
+-------------------
+- The following resource was updated: AWS::AppSync::DataSource. [Github
+  Actions]
+
+
 3.32.0 (2021-09-17)
 -------------------
 - The following resource was updated: AWS::CloudTrail::Trail. [Github
