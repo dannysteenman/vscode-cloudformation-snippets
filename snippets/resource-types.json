@@ -83,6 +83,42 @@
         "prefix": "acmpca-certificateauthorityactivation",
         "scope": "yaml"
     },
+    "AWS::ACMPCA::Permission": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ACMPCA::Permission",
+            "  Properties:",
+            "    Actions: # Required",
+            "      Actions",
+            "    CertificateAuthorityArn: \"${3:String}\" # Required",
+            "    Principal: \"${4:String}\" # Required",
+            "    SourceAccount: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html"
+        ],
+        "prefix": "acmpca-permission",
+        "scope": "yaml"
+    },
+    "AWS::APS::Workspace": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::APS::Workspace",
+            "  Properties:",
+            "    Alias: \"${2:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-workspace.html",
+            "Attributes: ",
+            "  WorkspaceId",
+            "  Arn",
+            "  PrometheusEndpoint"
+        ],
+        "prefix": "aps-workspace",
+        "scope": "yaml"
+    },
     "AWS::AccessAnalyzer::Analyzer": {
         "body": [
             "${1:LogicalID}:",
@@ -526,7 +562,9 @@
             "    StatusCode: \"${6:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "apigateway-gatewayresponse",
         "scope": "yaml"
@@ -1703,10 +1741,13 @@
             "    LambdaConfig:",
             "      LambdaFunctionArn: \"${7:String}\"",
             "    Name: \"${8:String}\" # Required",
+            "    OpenSearchServiceConfig:",
+            "      AwsRegion: \"${9:String}\"",
+            "      Endpoint: \"${10:String}\"",
             "    RelationalDatabaseConfig:",
-            "      RelationalDatabaseSourceType: \"${10:String}\"",
-            "    ServiceRoleArn: \"${10:String}\"",
-            "    Type: \"${11:String}\" # Required"
+            "      RelationalDatabaseSourceType: \"${11:String}\"",
+            "    ServiceRoleArn: \"${11:String}\"",
+            "    Type: \"${12:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html",
@@ -2297,10 +2338,14 @@
             "    BackupVaultName: \"${3:String}\" # Required",
             "    BackupVaultTags:",
             "    EncryptionKeyArn: \"${5:String}\"",
+            "    LockConfiguration:",
+            "      changeableForDays: ${6:Number}",
+            "      maxRetentionDays: ${7:Number}",
+            "      minRetentionDays: ${8:Number}",
             "    Notifications:",
             "      BackupVaultEvents:",
             "        -",
-            "      SNSTopicArn: \"${7:String}\""
+            "      SNSTopicArn: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupvault.html",
@@ -4124,7 +4169,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-aggregationauthorization.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-aggregationauthorization.html",
+            "Attributes: ",
+            "  AggregationAuthorizationArn"
         ],
         "prefix": "config-aggregationauthorization",
         "scope": "yaml"
@@ -7285,6 +7332,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html",
             "Attributes: ",
+            "  Id",
             "  IpAddress"
         ],
         "prefix": "efs-mounttarget",
@@ -7566,15 +7614,17 @@
             "    DefaultS3Location: \"${3:String}\" # Required",
             "    Description: \"${4:String}\"",
             "    EngineSecurityGroupId: \"${5:String}\" # Required",
-            "    Name: \"${6:String}\" # Required",
-            "    ServiceRole: \"${7:String}\" # Required",
+            "    IdpAuthUrl: \"${6:String}\"",
+            "    IdpRelayStateParameterName: \"${7:String}\"",
+            "    Name: \"${8:String}\" # Required",
+            "    ServiceRole: \"${9:String}\" # Required",
             "    SubnetIds: # Required",
             "      SubnetIds",
             "    Tags:",
             "      Tags",
-            "    UserRole: \"${10:String}\" # Required",
-            "    VpcId: \"${11:String}\" # Required",
-            "    WorkspaceSecurityGroupId: \"${12:String}\" # Required"
+            "    UserRole: \"${12:String}\"",
+            "    VpcId: \"${13:String}\" # Required",
+            "    WorkspaceSecurityGroupId: \"${14:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html",
@@ -9892,6 +9942,30 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html"
         ],
         "prefix": "guardduty-threatintelset",
+        "scope": "yaml"
+    },
+    "AWS::HealthLake::FHIRDatastore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::HealthLake::FHIRDatastore",
+            "  Properties:",
+            "    DatastoreName: \"${2:String}\"",
+            "    DatastoreTypeVersion: \"${3:String}\" # Required",
+            "    PreloadDataConfig:",
+            "      PreloadDataType: \"${4:String}\"",
+            "    SseConfiguration:",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-healthlake-fhirdatastore.html",
+            "Attributes: ",
+            "  DatastoreArn",
+            "  DatastoreEndpoint",
+            "  DatastoreId",
+            "  DatastoreStatus"
+        ],
+        "prefix": "healthlake-fhirdatastore",
         "scope": "yaml"
     },
     "AWS::IAM::AccessKey": {
@@ -13149,6 +13223,133 @@
         "prefix": "mediastore-container",
         "scope": "yaml"
     },
+    "AWS::MemoryDB::ACL": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MemoryDB::ACL",
+            "  Properties:",
+            "    ACLName: \"${2:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    UserNames:",
+            "      UserNames"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-acl.html",
+            "Attributes: ",
+            "  Status",
+            "  Arn"
+        ],
+        "prefix": "memorydb-acl",
+        "scope": "yaml"
+    },
+    "AWS::MemoryDB::Cluster": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MemoryDB::Cluster",
+            "  Properties:",
+            "    ACLName: \"${2:String}\"",
+            "    AutoMinorVersionUpgrade: ${3|false,true|}",
+            "    ClusterEndpoint:",
+            "      Address: \"${4:String}\"",
+            "      Port: ${5:Number}",
+            "    ClusterName: \"${5:String}\" # Required",
+            "    Description: \"${6:String}\"",
+            "    EngineVersion: \"${7:String}\"",
+            "    FinalSnapshotName: \"${8:String}\"",
+            "    KmsKeyId: \"${9:String}\"",
+            "    MaintenanceWindow: \"${10:String}\"",
+            "    NodeType: \"${11:String}\"",
+            "    NumReplicasPerShard: ${12:Number}",
+            "    NumShards: ${13:Number}",
+            "    ParameterGroupName: \"${14:String}\"",
+            "    Port: ${15:Number}",
+            "    SecurityGroupIds:",
+            "      SecurityGroupIds",
+            "    SnapshotArns:",
+            "      SnapshotArns",
+            "    SnapshotName: \"${18:String}\"",
+            "    SnapshotRetentionLimit: ${19:Number}",
+            "    SnapshotWindow: \"${20:String}\"",
+            "    SnsTopicArn: \"${21:String}\"",
+            "    SnsTopicStatus: \"${22:String}\"",
+            "    SubnetGroupName: \"${23:String}\"",
+            "    TLSEnabled: ${24|false,true|}",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-cluster.html",
+            "Attributes: ",
+            "  Status",
+            "  ParameterGroupStatus",
+            "  ARN",
+            "  ClusterEndpoint.Address",
+            "  ClusterEndpoint.Port"
+        ],
+        "prefix": "memorydb-cluster",
+        "scope": "yaml"
+    },
+    "AWS::MemoryDB::ParameterGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MemoryDB::ParameterGroup",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Family: \"${3:String}\"",
+            "    ParameterGroupName: \"${4:String}\" # Required",
+            "    Parameters: ${5:JSON}",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-parametergroup.html",
+            "Attributes: ",
+            "  ARN"
+        ],
+        "prefix": "memorydb-parametergroup",
+        "scope": "yaml"
+    },
+    "AWS::MemoryDB::SubnetGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MemoryDB::SubnetGroup",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    SubnetGroupName: \"${3:String}\" # Required",
+            "    SubnetIds:",
+            "      SubnetIds",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-subnetgroup.html",
+            "Attributes: ",
+            "  ARN"
+        ],
+        "prefix": "memorydb-subnetgroup",
+        "scope": "yaml"
+    },
+    "AWS::MemoryDB::User": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MemoryDB::User",
+            "  Properties:",
+            "    AccessString: \"${2:String}\" # Required",
+            "    AuthenticationMode: ${3:JSON} # Required",
+            "    Tags:",
+            "      Tags",
+            "    UserName: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-user.html",
+            "Attributes: ",
+            "  Status",
+            "  Arn"
+        ],
+        "prefix": "memorydb-user",
+        "scope": "yaml"
+    },
     "AWS::Neptune::DBCluster": {
         "body": [
             "${1:LogicalID}:",
@@ -13612,6 +13813,70 @@
             "  StudioComponentId"
         ],
         "prefix": "nimblestudio-studiocomponent",
+        "scope": "yaml"
+    },
+    "AWS::OpenSearchService::Domain": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::OpenSearchService::Domain",
+            "  Properties:",
+            "    AccessPolicies: ${2:JSON}",
+            "    AdvancedOptions:",
+            "    AdvancedSecurityOptions:",
+            "      Enabled: ${4|false,true|}",
+            "      InternalUserDatabaseEnabled: ${5|false,true|}",
+            "    ClusterConfig:",
+            "      DedicatedMasterCount: ${5:Number}",
+            "      DedicatedMasterEnabled: ${6|false,true|}",
+            "      DedicatedMasterType: \"${7:String}\"",
+            "      InstanceCount: ${8:Number}",
+            "      InstanceType: \"${9:String}\"",
+            "      WarmCount: ${10:Number}",
+            "      WarmEnabled: ${11|false,true|}",
+            "      WarmType: \"${12:String}\"",
+            "      ZoneAwarenessEnabled: ${14|false,true|}",
+            "    CognitoOptions:",
+            "      Enabled: ${6|false,true|}",
+            "      IdentityPoolId: \"${7:String}\"",
+            "      RoleArn: \"${8:String}\"",
+            "      UserPoolId: \"${9:String}\"",
+            "    DomainEndpointOptions:",
+            "      CustomEndpoint: \"${7:String}\"",
+            "      CustomEndpointCertificateArn: \"${8:String}\"",
+            "      CustomEndpointEnabled: ${9|false,true|}",
+            "      EnforceHTTPS: ${10|false,true|}",
+            "      TLSSecurityPolicy: \"${11:String}\"",
+            "    DomainName: \"${8:String}\"",
+            "    EBSOptions:",
+            "      EBSEnabled: ${9|false,true|}",
+            "      Iops: ${10:Number}",
+            "      VolumeSize: ${11:Number}",
+            "      VolumeType: \"${12:String}\"",
+            "    EncryptionAtRestOptions:",
+            "      Enabled: ${10|false,true|}",
+            "      KmsKeyId: \"${11:String}\"",
+            "    EngineVersion: \"${11:String}\"",
+            "    LogPublishingOptions:",
+            "    NodeToNodeEncryptionOptions:",
+            "      Enabled: ${13|false,true|}",
+            "    SnapshotOptions:",
+            "      AutomatedSnapshotStartHour: ${14:Number}",
+            "    Tags:",
+            "      Tags",
+            "    VPCOptions:",
+            "      SecurityGroupIds:",
+            "        -",
+            "      SubnetIds:",
+            "        -"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-domain.html",
+            "Attributes: ",
+            "  DomainEndpoint",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "opensearchservice-domain",
         "scope": "yaml"
     },
     "AWS::OpsWorks::App": {
@@ -15239,17 +15504,18 @@
             "  Type: AWS::RoboMaker::SimulationApplication",
             "  Properties:",
             "    CurrentRevisionId: \"${2:String}\"",
-            "    Name: \"${3:String}\"",
+            "    Environment: \"${3:String}\"",
+            "    Name: \"${4:String}\"",
             "    RenderingEngine:",
-            "      Name: \"${4:String}\"",
-            "      Version: \"${5:String}\"",
-            "    RobotSoftwareSuite:",
             "      Name: \"${5:String}\"",
             "      Version: \"${6:String}\"",
-            "    SimulationSoftwareSuite:",
+            "    RobotSoftwareSuite:",
             "      Name: \"${6:String}\"",
             "      Version: \"${7:String}\"",
-            "    Sources: # Required",
+            "    SimulationSoftwareSuite:",
+            "      Name: \"${7:String}\"",
+            "      Version: \"${8:String}\"",
+            "    Sources:",
             "      Sources",
             "    Tags:"
         ],
@@ -16271,10 +16537,11 @@
             "    MessageRetentionPeriod: ${10:Number}",
             "    QueueName: \"${11:String}\"",
             "    ReceiveMessageWaitTimeSeconds: ${12:Number}",
-            "    RedrivePolicy: ${13:JSON}",
+            "    RedriveAllowPolicy: ${13:JSON}",
+            "    RedrivePolicy: ${14:JSON}",
             "    Tags:",
             "      Tags",
-            "    VisibilityTimeout: ${15:Number}"
+            "    VisibilityTimeout: ${16:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html",
