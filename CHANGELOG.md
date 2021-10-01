@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.34.0 (2021-10-01)
+-------------------
+- The following resource was updated: AWS::APS::Workspace. [Github
+  Actions]
+
+
 3.33.0 (2021-09-24)
 -------------------
 - The following resource was updated: AWS::AppSync::DataSource. [Github
