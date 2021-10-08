@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+3.35.0 (2021-10-08)
+-------------------
+- The following resources were added. [Github Actions]
+
+
 3.34.0 (2021-10-01)
 -------------------
 - The following resource was updated: AWS::APS::Workspace. [Github
