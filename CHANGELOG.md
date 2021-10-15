@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.36.0 (2021-10-15)
+-------------------
+- The following resources were added: AWS::DeviceFarm::DevicePool,
+  AWS::DeviceFarm::InstanceProfile, AWS::DeviceFarm::NetworkProfile,
+  AWS::DeviceFarm::Project AWS::DeviceFarm::TestGridProject, and
+  AWS::DeviceFarm::VPCEConfiguration. [Github Actions]
+
+
 3.35.0 (2021-10-08)
 -------------------
 - The following resources were added. [Github Actions]
