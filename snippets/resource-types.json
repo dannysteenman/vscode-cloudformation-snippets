@@ -2449,7 +2449,8 @@
             "    ServiceRole: \"${4:String}\"",
             "    State: \"${5:String}\"",
             "    Tags: ${6:JSON}",
-            "    Type: \"${7:String}\" # Required"
+            "    Type: \"${7:String}\" # Required",
+            "    UnmanagedvCpus: ${8:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html"
@@ -2500,10 +2501,11 @@
             "      Attempts: ${8:Number}",
             "      EvaluateOnExit:",
             "        -",
-            "    Tags: ${9:JSON}",
+            "    SchedulingPriority: ${9:Number}",
+            "    Tags: ${10:JSON}",
             "    Timeout:",
-            "      AttemptDurationSeconds: ${10:Number}",
-            "    Type: \"${11:String}\" # Required"
+            "      AttemptDurationSeconds: ${11:Number}",
+            "    Type: \"${12:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html"
@@ -2520,8 +2522,9 @@
             "      ComputeEnvironmentOrder",
             "    JobQueueName: \"${3:String}\"",
             "    Priority: ${4:Number} # Required",
-            "    State: \"${5:String}\"",
-            "    Tags: ${6:JSON}"
+            "    SchedulingPolicyArn: \"${5:String}\"",
+            "    State: \"${6:String}\"",
+            "    Tags: ${7:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html"
@@ -3496,9 +3499,10 @@
             "      Type: \"${10:String}\"",
             "    BadgeEnabled: ${3|false,true|}",
             "    BuildBatchConfig:",
-            "      CombineArtifacts: ${4|false,true|}",
-            "      ServiceRole: \"${6:String}\"",
-            "      TimeoutInMins: ${7:Number}",
+            "      BatchReportMode: \"${4:String}\"",
+            "      CombineArtifacts: ${5|false,true|}",
+            "      ServiceRole: \"${7:String}\"",
+            "      TimeoutInMins: ${8:Number}",
             "    Cache:",
             "      Location: \"${5:String}\"",
             "      Modes:",
@@ -3883,13 +3887,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::CodeStarNotifications::NotificationRule",
             "  Properties:",
-            "    DetailType: \"${2:String}\" # Required",
+            "    CreatedBy: \"${2:String}\"",
+            "    DetailType: \"${3:String}\" # Required",
+            "    EventTypeId: \"${4:String}\"",
             "    EventTypeIds: # Required",
             "      EventTypeIds",
-            "    Name: \"${4:String}\" # Required",
-            "    Resource: \"${5:String}\" # Required",
-            "    Status: \"${6:String}\"",
-            "    Tags: ${7:JSON}",
+            "    Name: \"${6:String}\" # Required",
+            "    Resource: \"${7:String}\" # Required",
+            "    Status: \"${8:String}\"",
+            "    Tags: ${9:JSON}",
+            "    TargetAddress: \"${10:String}\"",
             "    Targets: # Required",
             "      Targets"
         ],
@@ -6049,7 +6056,9 @@
             "    VpcId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkacl.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ec2-networkacl",
         "scope": "yaml"
@@ -6074,7 +6083,9 @@
             "    RuleNumber: ${10:Number} # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkaclentry.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ec2-networkaclentry",
         "scope": "yaml"
@@ -6264,7 +6275,9 @@
             "    VpcId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html",
+            "Attributes: ",
+            "  RouteTableId"
         ],
         "prefix": "ec2-routetable",
         "scope": "yaml"
@@ -7284,9 +7297,12 @@
             "      Type: \"${15:String}\"",
             "    RequiresCompatibilities:",
             "      RequiresCompatibilities",
+            "    RuntimePlatform:",
+            "      CpuArchitecture: \"${15:String}\"",
+            "      OperatingSystemFamily: \"${16:String}\"",
             "    Tags:",
             "      Tags",
-            "    TaskRoleArn: \"${16:String}\"",
+            "    TaskRoleArn: \"${17:String}\"",
             "    Volumes:",
             "      Volumes"
         ],
@@ -10833,6 +10849,31 @@
         "prefix": "iot-fleetmetric",
         "scope": "yaml"
     },
+    "AWS::IoT::JobTemplate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::JobTemplate",
+            "  Properties:",
+            "    AbortConfig: ${2:JSON}",
+            "    Description: \"${3:String}\" # Required",
+            "    Document: \"${4:String}\"",
+            "    DocumentSource: \"${5:String}\"",
+            "    JobArn: \"${6:String}\"",
+            "    JobExecutionsRolloutConfig: ${7:JSON}",
+            "    JobTemplateId: \"${8:String}\" # Required",
+            "    PresignedUrlConfig: ${9:JSON}",
+            "    Tags:",
+            "      Tags",
+            "    TimeoutConfig: ${11:JSON}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "iot-jobtemplate",
+        "scope": "yaml"
+    },
     "AWS::IoT::MitigationAction": {
         "body": [
             "${1:LogicalID}:",
@@ -12457,9 +12498,10 @@
             "  Properties:",
             "    Description: \"${2:String}\"",
             "    KmsKeyId: \"${3:String}\"",
-            "    PricingPlan: \"${4:String}\" # Required",
-            "    PricingPlanDataSource: \"${5:String}\"",
-            "    TrackerName: \"${6:String}\" # Required"
+            "    PositionFiltering: \"${4:String}\"",
+            "    PricingPlan: \"${5:String}\" # Required",
+            "    PricingPlanDataSource: \"${6:String}\"",
+            "    TrackerName: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html",
@@ -13409,7 +13451,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::MemoryDB::Cluster",
             "  Properties:",
-            "    ACLName: \"${2:String}\"",
+            "    ACLName: \"${2:String}\" # Required",
             "    AutoMinorVersionUpgrade: ${3|false,true|}",
             "    ClusterEndpoint:",
             "      Address: \"${4:String}\"",
@@ -13420,7 +13462,7 @@
             "    FinalSnapshotName: \"${8:String}\"",
             "    KmsKeyId: \"${9:String}\"",
             "    MaintenanceWindow: \"${10:String}\"",
-            "    NodeType: \"${11:String}\"",
+            "    NodeType: \"${11:String}\" # Required",
             "    NumReplicasPerShard: ${12:Number}",
             "    NumShards: ${13:Number}",
             "    ParameterGroupName: \"${14:String}\"",
@@ -13457,7 +13499,7 @@
             "  Type: AWS::MemoryDB::ParameterGroup",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    Family: \"${3:String}\"",
+            "    Family: \"${3:String}\" # Required",
             "    ParameterGroupName: \"${4:String}\" # Required",
             "    Parameters: ${5:JSON}",
             "    Tags:",
@@ -13478,7 +13520,7 @@
             "  Properties:",
             "    Description: \"${2:String}\"",
             "    SubnetGroupName: \"${3:String}\" # Required",
-            "    SubnetIds:",
+            "    SubnetIds: # Required",
             "      SubnetIds",
             "    Tags:",
             "      Tags"
@@ -13916,10 +13958,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-streamingimage.html",
             "Attributes: ",
-            "  StreamingImageId",
-            "  Owner",
             "  EulaIds",
-            "  Platform"
+            "  Owner",
+            "  Platform",
+            "  StreamingImageId"
         ],
         "prefix": "nimblestudio-streamingimage",
         "scope": "yaml"
@@ -15833,7 +15875,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::Route53RecoveryControl::Cluster",
             "  Properties:",
-            "    Name: \"${2:String}\""
+            "    Name: \"${2:String}\"",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-cluster.html",
@@ -15851,7 +15895,9 @@
             "  Type: AWS::Route53RecoveryControl::ControlPanel",
             "  Properties:",
             "    ClusterArn: \"${2:String}\"",
-            "    Name: \"${3:String}\" # Required"
+            "    Name: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-controlpanel.html",
@@ -15902,7 +15948,9 @@
             "    RuleConfig:",
             "      Inverted: ${6|false,true|}",
             "      Threshold: ${7:Number}",
-            "      Type: \"${8:String}\""
+            "      Type: \"${8:String}\"",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-safetyrule.html",
@@ -17597,14 +17645,15 @@
             "    KmsKeyId: \"${7:String}\"",
             "    LifecycleConfigName: \"${8:String}\"",
             "    NotebookInstanceName: \"${9:String}\"",
-            "    RoleArn: \"${10:String}\" # Required",
-            "    RootAccess: \"${11:String}\"",
+            "    PlatformIdentifier: \"${10:String}\"",
+            "    RoleArn: \"${11:String}\" # Required",
+            "    RootAccess: \"${12:String}\"",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    SubnetId: \"${13:String}\"",
+            "    SubnetId: \"${14:String}\"",
             "    Tags:",
             "      Tags",
-            "    VolumeSizeInGB: ${15:Number}"
+            "    VolumeSizeInGB: ${16:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html",
@@ -18360,6 +18409,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html",
             "Attributes: ",
+            "  Arn",
             "  Name"
         ],
         "prefix": "stepfunctions-activity",
@@ -18404,26 +18454,27 @@
             "${1:LogicalID}:",
             "  Type: AWS::Synthetics::Canary",
             "  Properties:",
-            "    ArtifactS3Location: \"${2:String}\" # Required",
+            "    ArtifactConfig:",
+            "    ArtifactS3Location: \"${3:String}\" # Required",
             "    Code:",
-            "      Handler: \"${3:String}\"",
-            "      S3Bucket: \"${4:String}\"",
-            "      S3Key: \"${5:String}\"",
-            "      S3ObjectVersion: \"${6:String}\"",
-            "      Script: \"${7:String}\"",
-            "    ExecutionRoleArn: \"${4:String}\" # Required",
-            "    FailureRetentionPeriod: ${5:Number}",
-            "    Name: \"${6:String}\" # Required",
+            "      Handler: \"${4:String}\"",
+            "      S3Bucket: \"${5:String}\"",
+            "      S3Key: \"${6:String}\"",
+            "      S3ObjectVersion: \"${7:String}\"",
+            "      Script: \"${8:String}\"",
+            "    ExecutionRoleArn: \"${5:String}\" # Required",
+            "    FailureRetentionPeriod: ${6:Number}",
+            "    Name: \"${7:String}\" # Required",
             "    RunConfig:",
-            "      ActiveTracing: ${7|false,true|}",
-            "      MemoryInMB: ${9:Number}",
-            "      TimeoutInSeconds: ${10:Number}",
-            "    RuntimeVersion: \"${8:String}\" # Required",
+            "      ActiveTracing: ${8|false,true|}",
+            "      MemoryInMB: ${10:Number}",
+            "      TimeoutInSeconds: ${11:Number}",
+            "    RuntimeVersion: \"${9:String}\" # Required",
             "    Schedule:",
-            "      DurationInSeconds: \"${9:String}\"",
-            "      Expression: \"${10:String}\"",
-            "    StartCanaryAfterCreation: ${10|false,true|} # Required",
-            "    SuccessRetentionPeriod: ${11:Number}",
+            "      DurationInSeconds: \"${10:String}\"",
+            "      Expression: \"${11:String}\"",
+            "    StartCanaryAfterCreation: ${11|false,true|} # Required",
+            "    SuccessRetentionPeriod: ${12:Number}",
             "    Tags:",
             "      Tags",
             "    VPCConfig:",
@@ -18431,9 +18482,9 @@
             "        -",
             "      SubnetIds:",
             "        -",
-            "      VpcId: \"${15:String}\"",
+            "      VpcId: \"${16:String}\"",
             "    VisualReference:",
-            "      BaseCanaryRunId: \"${14:String}\"",
+            "      BaseCanaryRunId: \"${15:String}\"",
             "      BaseScreenshots:",
             "        -"
         ],
@@ -18978,6 +19029,75 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webaclassociation.html"
         ],
         "prefix": "wafv2-webaclassociation",
+        "scope": "yaml"
+    },
+    "AWS::Wisdom::Assistant": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Wisdom::Assistant",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    ServerSideEncryptionConfiguration:",
+            "      KmsKeyId: \"${4:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Type: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-assistant.html",
+            "Attributes: ",
+            "  AssistantArn",
+            "  AssistantId"
+        ],
+        "prefix": "wisdom-assistant",
+        "scope": "yaml"
+    },
+    "AWS::Wisdom::AssistantAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Wisdom::AssistantAssociation",
+            "  Properties:",
+            "    AssistantId: \"${2:String}\" # Required",
+            "    Association:",
+            "      KnowledgeBaseId: \"${3:String}\"",
+            "    AssociationType: \"${4:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-assistantassociation.html",
+            "Attributes: ",
+            "  AssistantAssociationArn",
+            "  AssistantArn",
+            "  AssistantAssociationId"
+        ],
+        "prefix": "wisdom-assistantassociation",
+        "scope": "yaml"
+    },
+    "AWS::Wisdom::KnowledgeBase": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Wisdom::KnowledgeBase",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    KnowledgeBaseType: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    RenderingConfiguration:",
+            "      TemplateUri: \"${5:String}\"",
+            "    ServerSideEncryptionConfiguration:",
+            "      KmsKeyId: \"${6:String}\"",
+            "    SourceConfiguration:",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wisdom-knowledgebase.html",
+            "Attributes: ",
+            "  KnowledgeBaseArn",
+            "  KnowledgeBaseId"
+        ],
+        "prefix": "wisdom-knowledgebase",
         "scope": "yaml"
     },
     "AWS::WorkSpaces::ConnectionAlias": {
