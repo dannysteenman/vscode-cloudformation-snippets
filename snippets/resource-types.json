@@ -423,14 +423,16 @@
             "    AuthorizerUri: \"${5:String}\"",
             "    IdentitySource: \"${6:String}\"",
             "    IdentityValidationExpression: \"${7:String}\"",
-            "    Name: \"${8:String}\"",
+            "    Name: \"${8:String}\" # Required",
             "    ProviderARNs:",
             "      ProviderARNs",
             "    RestApiId: \"${10:String}\" # Required",
             "    Type: \"${11:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html",
+            "Attributes: ",
+            "  AuthorizerId"
         ],
         "prefix": "apigateway-authorizer",
         "scope": "yaml"
@@ -2208,7 +2210,7 @@
             "    RoleARN: \"${9:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-lifecyclehook.html"
         ],
         "prefix": "autoscaling-lifecyclehook",
         "scope": "yaml"
@@ -2332,12 +2334,15 @@
             "  Properties:",
             "    BackupPlanId: \"${2:String}\" # Required",
             "    BackupSelection:",
-            "      IamRoleArn: \"${3:String}\"",
+            "      Conditions: ${3:JSON}",
+            "      IamRoleArn: \"${4:String}\"",
             "      ListOfTags:",
+            "        -",
+            "      NotResources:",
             "        -",
             "      Resources:",
             "        -",
-            "      SelectionName: \"${6:String}\""
+            "      SelectionName: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupselection.html",
@@ -2566,7 +2571,7 @@
             "    Definition:",
             "    ExecutionRoleArn: \"${7:String}\" # Required",
             "    NotificationType: \"${8:String}\" # Required",
-            "    Subscribers:",
+            "    Subscribers: # Required",
             "      Subscribers"
         ],
         "description": [
@@ -2691,16 +2696,17 @@
             "      Mode: \"${2:String}\"",
             "    ClusteringKeyColumns:",
             "      ClusteringKeyColumns",
+            "    DefaultTimeToLive: ${4:Number}",
             "    EncryptionSpecification:",
-            "      EncryptionType: \"${4:String}\"",
-            "      KmsKeyIdentifier: \"${5:String}\"",
-            "    KeyspaceName: \"${5:String}\" # Required",
+            "      EncryptionType: \"${5:String}\"",
+            "      KmsKeyIdentifier: \"${6:String}\"",
+            "    KeyspaceName: \"${6:String}\" # Required",
             "    PartitionKeyColumns: # Required",
             "      PartitionKeyColumns",
-            "    PointInTimeRecoveryEnabled: ${7|false,true|}",
+            "    PointInTimeRecoveryEnabled: ${8|false,true|}",
             "    RegularColumns:",
             "      RegularColumns",
-            "    TableName: \"${9:String}\"",
+            "    TableName: \"${10:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -4458,6 +4464,28 @@
         "prefix": "config-storedquery",
         "scope": "yaml"
     },
+    "AWS::Connect::HoursOfOperation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::HoursOfOperation",
+            "  Properties:",
+            "    Config: # Required",
+            "      Config",
+            "    Description: \"${3:String}\"",
+            "    InstanceArn: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    TimeZone: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-hoursofoperation.html",
+            "Attributes: ",
+            "  HoursOfOperationArn"
+        ],
+        "prefix": "connect-hoursofoperation",
+        "scope": "yaml"
+    },
     "AWS::Connect::QuickConnect": {
         "body": [
             "${1:LogicalID}:",
@@ -4477,6 +4505,56 @@
             "  QuickConnectArn"
         ],
         "prefix": "connect-quickconnect",
+        "scope": "yaml"
+    },
+    "AWS::Connect::User": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::User",
+            "  Properties:",
+            "    DirectoryUserId: \"${2:String}\"",
+            "    HierarchyGroupArn: \"${3:String}\"",
+            "    IdentityInfo:",
+            "      Email: \"${4:String}\"",
+            "      FirstName: \"${5:String}\"",
+            "      LastName: \"${6:String}\"",
+            "    InstanceArn: \"${5:String}\" # Required",
+            "    Password: \"${6:String}\"",
+            "    PhoneConfig:",
+            "      AfterContactWorkTimeLimit: ${7:Number}",
+            "      AutoAccept: ${8|false,true|}",
+            "      DeskPhoneNumber: \"${9:String}\"",
+            "      PhoneType: \"${10:String}\"",
+            "    RoutingProfileArn: \"${8:String}\" # Required",
+            "    SecurityProfileArns: # Required",
+            "      SecurityProfileArns",
+            "    Tags:",
+            "      Tags",
+            "    Username: \"${11:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-user.html",
+            "Attributes: ",
+            "  UserArn"
+        ],
+        "prefix": "connect-user",
+        "scope": "yaml"
+    },
+    "AWS::Connect::UserHierarchyGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::UserHierarchyGroup",
+            "  Properties:",
+            "    InstanceArn: \"${2:String}\" # Required",
+            "    Name: \"${3:String}\" # Required",
+            "    ParentGroupArn: \"${4:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-userhierarchygroup.html",
+            "Attributes: ",
+            "  UserHierarchyGroupArn"
+        ],
+        "prefix": "connect-userhierarchygroup",
         "scope": "yaml"
     },
     "AWS::CustomerProfiles::Domain": {
@@ -6275,9 +6353,7 @@
             "    VpcId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html",
-            "Attributes: ",
-            "  RouteTableId"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html"
         ],
         "prefix": "ec2-routetable",
         "scope": "yaml"
@@ -8591,7 +8667,8 @@
             "    ResourceType: \"${9:String}\" # Required",
             "    ResourceTypeList:",
             "      ResourceTypeList",
-            "    SecurityServicePolicyData: ${11:JSON} # Required",
+            "    ResourcesCleanUp: ${11|false,true|}",
+            "    SecurityServicePolicyData: ${12:JSON} # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -10560,19 +10637,22 @@
             "  Type: AWS::ImageBuilder::InfrastructureConfiguration",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    InstanceProfileName: \"${3:String}\" # Required",
+            "    InstanceMetadataOptions:",
+            "      HttpPutResponseHopLimit: ${3:Number}",
+            "      HttpTokens: \"${4:String}\"",
+            "    InstanceProfileName: \"${4:String}\" # Required",
             "    InstanceTypes:",
             "      InstanceTypes",
-            "    KeyPair: \"${5:String}\"",
+            "    KeyPair: \"${6:String}\"",
             "    Logging:",
-            "    Name: \"${7:String}\" # Required",
+            "    Name: \"${8:String}\" # Required",
             "    ResourceTags:",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    SnsTopicArn: \"${10:String}\"",
-            "    SubnetId: \"${11:String}\"",
+            "    SnsTopicArn: \"${11:String}\"",
+            "    SubnetId: \"${12:String}\"",
             "    Tags:",
-            "    TerminateInstanceOnFailure: ${13|false,true|}"
+            "    TerminateInstanceOnFailure: ${14|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-infrastructureconfiguration.html",
@@ -12777,7 +12857,7 @@
             "    RequirementsS3Path: \"${16:String}\"",
             "    Schedulers: ${17:Number}",
             "    SourceBucketArn: \"${18:String}\"",
-            "    Tags:",
+            "    Tags: ${19:JSON}",
             "    WebserverAccessMode: \"${20:String}\"",
             "    WeeklyMaintenanceWindowStart: \"${21:String}\""
         ],
@@ -14348,6 +14428,84 @@
         "prefix": "opsworkscm-server",
         "scope": "yaml"
     },
+    "AWS::Panorama::ApplicationInstance": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Panorama::ApplicationInstance",
+            "  Properties:",
+            "    ApplicationInstanceIdToReplace: \"${2:String}\"",
+            "    DefaultRuntimeContextDevice: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    DeviceId: \"${5:String}\"",
+            "    ManifestOverridesPayload:",
+            "      PayloadData: \"${6:String}\"",
+            "    ManifestPayload:",
+            "      PayloadData: \"${7:String}\"",
+            "    Name: \"${8:String}\"",
+            "    RuntimeRoleArn: \"${9:String}\"",
+            "    StatusFilter: \"${10:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-applicationinstance.html",
+            "Attributes: ",
+            "  DefaultRuntimeContextDeviceName",
+            "  ApplicationInstanceId",
+            "  Status",
+            "  HealthStatus",
+            "  StatusDescription",
+            "  CreatedTime",
+            "  LastUpdatedTime",
+            "  Arn"
+        ],
+        "prefix": "panorama-applicationinstance",
+        "scope": "yaml"
+    },
+    "AWS::Panorama::Package": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Panorama::Package",
+            "  Properties:",
+            "    PackageName: \"${2:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-package.html",
+            "Attributes: ",
+            "  PackageId",
+            "  Arn",
+            "  CreatedTime"
+        ],
+        "prefix": "panorama-package",
+        "scope": "yaml"
+    },
+    "AWS::Panorama::PackageVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Panorama::PackageVersion",
+            "  Properties:",
+            "    MarkLatest: ${2|false,true|}",
+            "    OwnerAccount: \"${3:String}\"",
+            "    PackageId: \"${4:String}\" # Required",
+            "    PackageVersion: \"${5:String}\" # Required",
+            "    PatchVersion: \"${6:String}\" # Required",
+            "    UpdatedLatestPatchVersion: \"${7:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-packageversion.html",
+            "Attributes: ",
+            "  PackageArn",
+            "  IsLatestPatch",
+            "  PackageName",
+            "  Status",
+            "  StatusDescription",
+            "  RegisteredTime"
+        ],
+        "prefix": "panorama-packageversion",
+        "scope": "yaml"
+    },
     "AWS::Pinpoint::ADMChannel": {
         "body": [
             "${1:LogicalID}:",
@@ -15601,6 +15759,21 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html"
         ],
         "prefix": "redshift-clustersubnetgroup",
+        "scope": "yaml"
+    },
+    "AWS::Rekognition::Project": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Rekognition::Project",
+            "  Properties:",
+            "    ProjectName: \"${2:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-project.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "rekognition-project",
         "scope": "yaml"
     },
     "AWS::ResourceGroups::Group": {
