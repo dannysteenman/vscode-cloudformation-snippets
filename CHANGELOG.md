@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.37.0 (2021-10-22)
+-------------------
+- The following resource was updated: <code
+  class="code">AWS::Cassandra::Table</code>. [Github Actions]
+- Update my website :) [Danny Steenman]
+
+
 3.36.0 (2021-10-15)
 -------------------
 - The following resources were added: AWS::DeviceFarm::DevicePool,
