@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.38.0 (2021-10-29)
+-------------------
+- The following resource was updated: AWS::EC2::EC2Fleet. [Github
+  Actions]
+
+
 3.37.0 (2021-10-22)
 -------------------
 - The following resource was updated: <code
