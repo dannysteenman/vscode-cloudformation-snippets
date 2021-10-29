@@ -807,6 +807,8 @@
             "  Properties:",
             "    Description: \"${2:String}\"",
             "    Name: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags",
             "    TargetArns: # Required",
             "      TargetArns"
         ],
@@ -2114,29 +2116,30 @@
             "    Context: \"${5:String}\"",
             "    Cooldown: \"${6:String}\"",
             "    DesiredCapacity: \"${7:String}\"",
-            "    HealthCheckGracePeriod: ${8:Number}",
-            "    HealthCheckType: \"${9:String}\"",
-            "    InstanceId: \"${10:String}\"",
-            "    LaunchConfigurationName: \"${11:String}\"",
+            "    DesiredCapacityType: \"${8:String}\"",
+            "    HealthCheckGracePeriod: ${9:Number}",
+            "    HealthCheckType: \"${10:String}\"",
+            "    InstanceId: \"${11:String}\"",
+            "    LaunchConfigurationName: \"${12:String}\"",
             "    LaunchTemplate:",
-            "      LaunchTemplateId: \"${12:String}\"",
-            "      LaunchTemplateName: \"${13:String}\"",
-            "      Version: \"${14:String}\"",
+            "      LaunchTemplateId: \"${13:String}\"",
+            "      LaunchTemplateName: \"${14:String}\"",
+            "      Version: \"${15:String}\"",
             "    LifecycleHookSpecificationList:",
             "      LifecycleHookSpecificationList",
             "    LoadBalancerNames:",
             "      LoadBalancerNames",
-            "    MaxInstanceLifetime: ${15:Number}",
-            "    MaxSize: \"${16:String}\" # Required",
+            "    MaxInstanceLifetime: ${16:Number}",
+            "    MaxSize: \"${17:String}\" # Required",
             "    MetricsCollection:",
             "      MetricsCollection",
-            "    MinSize: \"${18:String}\" # Required",
+            "    MinSize: \"${19:String}\" # Required",
             "    MixedInstancesPolicy:",
-            "    NewInstancesProtectedFromScaleIn: ${20|false,true|}",
+            "    NewInstancesProtectedFromScaleIn: ${21|false,true|}",
             "    NotificationConfigurations:",
             "      NotificationConfigurations",
-            "    PlacementGroup: \"${22:String}\"",
-            "    ServiceLinkedRoleARN: \"${23:String}\"",
+            "    PlacementGroup: \"${23:String}\"",
+            "    ServiceLinkedRoleARN: \"${24:String}\"",
             "    Tags:",
             "      Tags",
             "    TargetGroupARNs:",
@@ -5624,6 +5627,31 @@
         "prefix": "ec2-capacityreservation",
         "scope": "yaml"
     },
+    "AWS::EC2::CapacityReservationFleet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::CapacityReservationFleet",
+            "  Properties:",
+            "    AllocationStrategy: \"${2:String}\"",
+            "    EndDate: \"${3:String}\"",
+            "    InstanceMatchCriteria: \"${4:String}\"",
+            "    InstanceTypeSpecifications:",
+            "      InstanceTypeSpecifications",
+            "    NoRemoveEndDate: ${6|false,true|}",
+            "    RemoveEndDate: ${7|false,true|}",
+            "    TagSpecifications:",
+            "      TagSpecifications",
+            "    Tenancy: \"${9:String}\"",
+            "    TotalTargetCapacity: ${10:Number}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservationfleet.html",
+            "Attributes: ",
+            "  CapacityReservationFleetId"
+        ],
+        "prefix": "ec2-capacityreservationfleet",
+        "scope": "yaml"
+    },
     "AWS::EC2::CarrierGateway": {
         "body": [
             "${1:LogicalID}:",
@@ -5786,17 +5814,19 @@
             "      AllocationStrategy: \"${7:String}\"",
             "      InstanceInterruptionBehavior: \"${8:String}\"",
             "      InstancePoolsToUseCount: ${9:Number}",
-            "      MaxTotalPrice: \"${10:String}\"",
-            "      MinTargetCapacity: ${11:Number}",
-            "      SingleAvailabilityZone: ${12|false,true|}",
-            "      SingleInstanceType: ${13|false,true|}",
+            "      MaintenanceStrategies: ${10:JSON}",
+            "      MaxTotalPrice: \"${11:String}\"",
+            "      MinTargetCapacity: ${12:Number}",
+            "      SingleAvailabilityZone: ${13|false,true|}",
+            "      SingleInstanceType: ${14|false,true|}",
             "    TagSpecifications:",
             "      TagSpecifications",
             "    TargetCapacitySpecification:",
             "      DefaultTargetCapacityType: \"${9:String}\"",
             "      OnDemandTargetCapacity: ${10:Number}",
             "      SpotTargetCapacity: ${11:Number}",
-            "      TotalTargetCapacity: ${12:Number}",
+            "      TargetCapacityUnitType: \"${12:String}\"",
+            "      TotalTargetCapacity: ${13:Number}",
             "    TerminateInstancesWithExpiration: ${10|false,true|}",
             "    Type: \"${11:String}\"",
             "    ValidFrom: \"${12:String}\"",
@@ -6353,7 +6383,9 @@
             "    VpcId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html",
+            "Attributes: ",
+            "  RouteTableId"
         ],
         "prefix": "ec2-routetable",
         "scope": "yaml"
@@ -6450,10 +6482,11 @@
             "      SpotMaxTotalPrice: \"${16:String}\"",
             "      SpotPrice: \"${17:String}\"",
             "      TargetCapacity: ${18:Number}",
-            "      TerminateInstancesWithExpiration: ${19|false,true|}",
-            "      Type: \"${20:String}\"",
-            "      ValidFrom: \"${21:String}\"",
-            "      ValidUntil: \"${22:String}\""
+            "      TargetCapacityUnitType: \"${19:String}\"",
+            "      TerminateInstancesWithExpiration: ${20|false,true|}",
+            "      Type: \"${21:String}\"",
+            "      ValidFrom: \"${22:String}\"",
+            "      ValidUntil: \"${23:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html",
@@ -12401,6 +12434,37 @@
         "prefix": "licensemanager-license",
         "scope": "yaml"
     },
+    "AWS::Lightsail::Database": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Lightsail::Database",
+            "  Properties:",
+            "    AvailabilityZone: \"${2:String}\"",
+            "    BackupRetention: ${3|false,true|}",
+            "    CaCertificateIdentifier: \"${4:String}\"",
+            "    MasterDatabaseName: \"${5:String}\" # Required",
+            "    MasterUserPassword: \"${6:String}\"",
+            "    MasterUsername: \"${7:String}\" # Required",
+            "    PreferredBackupWindow: \"${8:String}\"",
+            "    PreferredMaintenanceWindow: \"${9:String}\"",
+            "    PubliclyAccessible: ${10|false,true|}",
+            "    RelationalDatabaseBlueprintId: \"${11:String}\" # Required",
+            "    RelationalDatabaseBundleId: \"${12:String}\" # Required",
+            "    RelationalDatabaseName: \"${13:String}\" # Required",
+            "    RelationalDatabaseParameters:",
+            "      RelationalDatabaseParameters",
+            "    RotateMasterUserPassword: ${15|false,true|}",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-database.html",
+            "Attributes: ",
+            "  DatabaseArn"
+        ],
+        "prefix": "lightsail-database",
+        "scope": "yaml"
+    },
     "AWS::Lightsail::Disk": {
         "body": [
             "${1:LogicalID}:",
@@ -12446,17 +12510,19 @@
             "        -",
             "      RamSizeInGb: ${8:Number}",
             "    InstanceName: \"${7:String}\" # Required",
+            "    KeyPairName: \"${8:String}\"",
             "    Location:",
-            "      AvailabilityZone: \"${8:String}\"",
-            "      RegionName: \"${9:String}\"",
+            "      AvailabilityZone: \"${9:String}\"",
+            "      RegionName: \"${10:String}\"",
             "    Networking:",
             "      Ports:",
             "        -",
             "    State:",
-            "      Code: ${10:Number}",
-            "      Name: \"${11:String}\"",
+            "      Code: ${11:Number}",
+            "      Name: \"${12:String}\"",
             "    Tags:",
-            "      Tags"
+            "      Tags",
+            "    UserData: \"${13:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instance.html",
@@ -12475,11 +12541,27 @@
             "  Networking.MonthlyTransfer.GbPerMonthAllocated",
             "  UserName",
             "  SshKeyName",
-            "  UserData",
-            "  KeyPairName",
             "  InstanceArn"
         ],
         "prefix": "lightsail-instance",
+        "scope": "yaml"
+    },
+    "AWS::Lightsail::StaticIp": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Lightsail::StaticIp",
+            "  Properties:",
+            "    AttachedTo: \"${2:String}\"",
+            "    StaticIpName: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-staticip.html",
+            "Attributes: ",
+            "  IsAttached",
+            "  IpAddress",
+            "  StaticIpArn"
+        ],
+        "prefix": "lightsail-staticip",
         "scope": "yaml"
     },
     "AWS::Location::GeofenceCollection": {
@@ -14683,20 +14765,22 @@
             "      Daily: ${8:Number}",
             "      MaximumDuration: ${9:Number}",
             "      MessagesPerSecond: ${10:Number}",
-            "      Total: ${11:Number}",
+            "      Session: ${11:Number}",
+            "      Total: ${12:Number}",
             "    MessageConfiguration:",
             "    Name: \"${10:String}\" # Required",
+            "    Priority: ${11:Number}",
             "    Schedule:",
-            "      EndTime: \"${11:String}\"",
-            "      Frequency: \"${13:String}\"",
-            "      IsLocalTime: ${14|false,true|}",
-            "      StartTime: \"${16:String}\"",
-            "      TimeZone: \"${17:String}\"",
-            "    SegmentId: \"${12:String}\" # Required",
-            "    SegmentVersion: ${13:Number}",
-            "    Tags: ${14:JSON}",
-            "    TreatmentDescription: \"${15:String}\"",
-            "    TreatmentName: \"${16:String}\""
+            "      EndTime: \"${12:String}\"",
+            "      Frequency: \"${14:String}\"",
+            "      IsLocalTime: ${15|false,true|}",
+            "      StartTime: \"${17:String}\"",
+            "      TimeZone: \"${18:String}\"",
+            "    SegmentId: \"${13:String}\" # Required",
+            "    SegmentVersion: ${14:Number}",
+            "    Tags: ${15:JSON}",
+            "    TreatmentDescription: \"${16:String}\"",
+            "    TreatmentName: \"${17:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-campaign.html",
@@ -16295,6 +16379,24 @@
         "prefix": "route53resolver-firewallrulegroupassociation",
         "scope": "yaml"
     },
+    "AWS::Route53Resolver::ResolverConfig": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53Resolver::ResolverConfig",
+            "  Properties:",
+            "    AutodefinedReverseFlag: \"${2:String}\" # Required",
+            "    ResourceId: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html",
+            "Attributes: ",
+            "  Id",
+            "  OwnerId",
+            "  AutodefinedReverse"
+        ],
+        "prefix": "route53resolver-resolverconfig",
+        "scope": "yaml"
+    },
     "AWS::Route53Resolver::ResolverDNSSECConfig": {
         "body": [
             "${1:LogicalID}:",
@@ -16401,10 +16503,10 @@
             "Attributes: ",
             "  ResolverEndpointId",
             "  DomainName",
-            "  ResolverRuleId",
-            "  Arn",
+            "  Name",
             "  TargetIps",
-            "  Name"
+            "  Arn",
+            "  ResolverRuleId"
         ],
         "prefix": "route53resolver-resolverrule",
         "scope": "yaml"
