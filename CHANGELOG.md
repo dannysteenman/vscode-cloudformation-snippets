@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.39.0 (2021-11-19)
+-------------------
+- The following resources were updated: <code
+  class="code">AWS::AppStream::Fleet</code> [Github Actions]
+- Fix vsce publish in github action. [Danny Steenman]
+
+
 3.38.0 (2021-10-29)
 -------------------
 - The following resource was updated: AWS::EC2::EC2Fleet. [Github
