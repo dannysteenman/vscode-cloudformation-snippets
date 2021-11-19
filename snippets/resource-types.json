@@ -106,7 +106,7 @@
             "  Type: AWS::APS::RuleGroupsNamespace",
             "  Properties:",
             "    Data: \"${2:String}\" # Required",
-            "    Name: \"${3:String}\"",
+            "    Name: \"${3:String}\" # Required",
             "    Tags:",
             "      Tags",
             "    Workspace: \"${5:String}\" # Required"
@@ -1160,6 +1160,7 @@
             "    RetrievalRoleArn: \"${6:String}\"",
             "    Tags:",
             "      Tags",
+            "    Type: \"${8:String}\"",
             "    Validators:",
             "      Validators"
         ],
@@ -1326,6 +1327,7 @@
             "    MeshName: \"${3:String}\" # Required",
             "    MeshOwner: \"${4:String}\"",
             "    Spec:",
+            "      Priority: ${8:Number}",
             "    Tags:",
             "      Tags",
             "    VirtualGatewayName: \"${7:String}\" # Required"
@@ -1538,6 +1540,80 @@
         "prefix": "apprunner-service",
         "scope": "yaml"
     },
+    "AWS::AppStream::AppBlock": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppStream::AppBlock",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DisplayName: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
+            "    SetupScriptDetails:",
+            "      ExecutableParameters: \"${5:String}\"",
+            "      ExecutablePath: \"${6:String}\"",
+            "      TimeoutInSeconds: ${8:Number}",
+            "    SourceS3Location:",
+            "      S3Bucket: \"${6:String}\"",
+            "      S3Key: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreatedTime"
+        ],
+        "prefix": "appstream-appblock",
+        "scope": "yaml"
+    },
+    "AWS::AppStream::Application": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppStream::Application",
+            "  Properties:",
+            "    AppBlockArn: \"${2:String}\" # Required",
+            "    AttributesToDelete:",
+            "      AttributesToDelete",
+            "    Description: \"${4:String}\"",
+            "    DisplayName: \"${5:String}\"",
+            "    IconS3Location:",
+            "      S3Bucket: \"${6:String}\"",
+            "      S3Key: \"${7:String}\"",
+            "    InstanceFamilies: # Required",
+            "      InstanceFamilies",
+            "    LaunchParameters: \"${8:String}\"",
+            "    LaunchPath: \"${9:String}\" # Required",
+            "    Name: \"${10:String}\" # Required",
+            "    Platforms: # Required",
+            "      Platforms",
+            "    Tags:",
+            "      Tags",
+            "    WorkingDirectory: \"${13:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreatedTime"
+        ],
+        "prefix": "appstream-application",
+        "scope": "yaml"
+    },
+    "AWS::AppStream::ApplicationFleetAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppStream::ApplicationFleetAssociation",
+            "  Properties:",
+            "    ApplicationArn: \"${2:String}\" # Required",
+            "    FleetName: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationfleetassociation.html"
+        ],
+        "prefix": "appstream-applicationfleetassociation",
+        "scope": "yaml"
+    },
     "AWS::AppStream::DirectoryConfig": {
         "body": [
             "${1:LogicalID}:",
@@ -1576,11 +1652,15 @@
             "    ImageArn: \"${11:String}\"",
             "    ImageName: \"${12:String}\"",
             "    InstanceType: \"${13:String}\" # Required",
-            "    MaxUserDurationInSeconds: ${14:Number}",
-            "    Name: \"${15:String}\" # Required",
-            "    StreamView: \"${16:String}\"",
+            "    MaxConcurrentSessions: ${14:Number}",
+            "    MaxUserDurationInSeconds: ${15:Number}",
+            "    Name: \"${16:String}\" # Required",
+            "    Platform: \"${17:String}\"",
+            "    StreamView: \"${18:String}\"",
             "    Tags:",
             "      Tags",
+            "    UsbDeviceFilterStrings:",
+            "      UsbDeviceFilterStrings",
             "    VpcConfig:",
             "      SecurityGroupIds:",
             "        -",
@@ -2540,6 +2620,27 @@
         "prefix": "batch-jobqueue",
         "scope": "yaml"
     },
+    "AWS::Batch::SchedulingPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Batch::SchedulingPolicy",
+            "  Properties:",
+            "    FairsharePolicy:",
+            "      ComputeReservation: ${2:Number}",
+            "      ShareDecaySeconds: ${3:Number}",
+            "      ShareDistribution:",
+            "        -",
+            "    Name: \"${3:String}\"",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-schedulingpolicy.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "batch-schedulingpolicy",
+        "scope": "yaml"
+    },
     "AWS::Budgets::Budget": {
         "body": [
             "${1:LogicalID}:",
@@ -2763,12 +2864,15 @@
             "  Type: AWS::Chatbot::SlackChannelConfiguration",
             "  Properties:",
             "    ConfigurationName: \"${2:String}\" # Required",
-            "    IamRoleArn: \"${3:String}\" # Required",
-            "    LoggingLevel: \"${4:String}\"",
-            "    SlackChannelId: \"${5:String}\" # Required",
-            "    SlackWorkspaceId: \"${6:String}\" # Required",
+            "    GuardrailPolicies:",
+            "      GuardrailPolicies",
+            "    IamRoleArn: \"${4:String}\" # Required",
+            "    LoggingLevel: \"${5:String}\"",
+            "    SlackChannelId: \"${6:String}\" # Required",
+            "    SlackWorkspaceId: \"${7:String}\" # Required",
             "    SnsTopicArns:",
-            "      SnsTopicArns"
+            "      SnsTopicArns",
+            "    UserRoleRequired: ${9|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-slackchannelconfiguration.html",
@@ -2988,24 +3092,25 @@
             "      Capabilities",
             "    Description: \"${6:String}\"",
             "    ExecutionRoleName: \"${7:String}\"",
+            "    ManagedExecution: ${8:JSON}",
             "    OperationPreferences:",
-            "      FailureToleranceCount: ${8:Number}",
-            "      FailureTolerancePercentage: ${9:Number}",
-            "      MaxConcurrentCount: ${10:Number}",
-            "      MaxConcurrentPercentage: ${11:Number}",
-            "      RegionConcurrencyType: \"${12:String}\"",
+            "      FailureToleranceCount: ${9:Number}",
+            "      FailureTolerancePercentage: ${10:Number}",
+            "      MaxConcurrentCount: ${11:Number}",
+            "      MaxConcurrentPercentage: ${12:Number}",
+            "      RegionConcurrencyType: \"${13:String}\"",
             "      RegionOrder:",
             "        -",
             "    Parameters:",
             "      Parameters",
-            "    PermissionModel: \"${10:String}\" # Required",
+            "    PermissionModel: \"${11:String}\" # Required",
             "    StackInstancesGroup:",
             "      StackInstancesGroup",
-            "    StackSetName: \"${12:String}\" # Required",
+            "    StackSetName: \"${13:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TemplateBody: \"${14:String}\"",
-            "    TemplateURL: \"${15:String}\""
+            "    TemplateBody: \"${15:String}\"",
+            "    TemplateURL: \"${16:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stackset.html",
@@ -3149,9 +3254,7 @@
             "    FunctionConfig:",
             "      Comment: \"${4:String}\"",
             "      Runtime: \"${5:String}\"",
-            "    FunctionMetadata:",
-            "      FunctionARN: \"${5:String}\"",
-            "    Name: \"${6:String}\" # Required"
+            "    Name: \"${5:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html",
@@ -3239,6 +3342,24 @@
             "  Arn"
         ],
         "prefix": "cloudfront-realtimelogconfig",
+        "scope": "yaml"
+    },
+    "AWS::CloudFront::ResponseHeadersPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFront::ResponseHeadersPolicy",
+            "  Properties:",
+            "    ResponseHeadersPolicyConfig:",
+            "      Comment: \"${2:String}\"",
+            "      Name: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-responseheaderspolicy.html",
+            "Attributes: ",
+            "  Id",
+            "  LastModifiedTime"
+        ],
+        "prefix": "cloudfront-responseheaderspolicy",
         "scope": "yaml"
     },
     "AWS::CloudFront::StreamingDistribution": {
@@ -3347,9 +3468,18 @@
             "      MetricTimeZone: \"${3:String}\"",
             "    Dimensions:",
             "      Dimensions",
-            "    MetricName: \"${4:String}\" # Required",
-            "    Namespace: \"${5:String}\" # Required",
-            "    Stat: \"${6:String}\" # Required"
+            "    MetricMathAnomalyDetector:",
+            "      MetricDataQueries:",
+            "        -",
+            "    MetricName: \"${5:String}\"",
+            "    Namespace: \"${6:String}\"",
+            "    SingleMetricAnomalyDetector:",
+            "      Dimensions:",
+            "        -",
+            "      MetricName: \"${8:String}\"",
+            "      Namespace: \"${9:String}\"",
+            "      Stat: \"${10:String}\"",
+            "    Stat: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-anomalydetector.html"
@@ -4771,11 +4901,30 @@
             "      SecretsManagerSecretId: \"${12:String}\"",
             "    KafkaSettings:",
             "      Broker: \"${12:String}\"",
-            "      Topic: \"${13:String}\"",
+            "      IncludeControlDetails: ${13|false,true|}",
+            "      IncludeNullAndEmpty: ${14|false,true|}",
+            "      IncludeTableAlterOperations: ${15|false,true|}",
+            "      IncludeTransactionDetails: ${16|false,true|}",
+            "      NoHexPrefix: ${17|false,true|}",
+            "      PartitionIncludeSchemaTable: ${18|false,true|}",
+            "      SaslPassword: \"${19:String}\"",
+            "      SaslUserName: \"${20:String}\"",
+            "      SecurityProtocol: \"${21:String}\"",
+            "      SslCaCertificateArn: \"${22:String}\"",
+            "      SslClientCertificateArn: \"${23:String}\"",
+            "      SslClientKeyArn: \"${24:String}\"",
+            "      SslClientKeyPassword: \"${25:String}\"",
+            "      Topic: \"${26:String}\"",
             "    KinesisSettings:",
-            "      MessageFormat: \"${13:String}\"",
-            "      ServiceAccessRoleArn: \"${14:String}\"",
-            "      StreamArn: \"${15:String}\"",
+            "      IncludeControlDetails: ${13|false,true|}",
+            "      IncludeNullAndEmpty: ${14|false,true|}",
+            "      IncludeTableAlterOperations: ${15|false,true|}",
+            "      IncludeTransactionDetails: ${16|false,true|}",
+            "      MessageFormat: \"${17:String}\"",
+            "      NoHexPrefix: ${18|false,true|}",
+            "      PartitionIncludeSchemaTable: ${19|false,true|}",
+            "      ServiceAccessRoleArn: \"${20:String}\"",
+            "      StreamArn: \"${21:String}\"",
             "    KmsKeyId: \"${14:String}\"",
             "    MicrosoftSqlServerSettings:",
             "      SecretsManagerAccessRoleArn: \"${15:String}\"",
@@ -4815,26 +4964,34 @@
             "    PostgreSqlSettings:",
             "      SecretsManagerAccessRoleArn: \"${22:String}\"",
             "      SecretsManagerSecretId: \"${23:String}\"",
+            "    RedisSettings:",
+            "      AuthPassword: \"${23:String}\"",
+            "      AuthType: \"${24:String}\"",
+            "      AuthUserName: \"${25:String}\"",
+            "      Port: ${26:Number}",
+            "      ServerName: \"${27:String}\"",
+            "      SslCaCertificateArn: \"${28:String}\"",
+            "      SslSecurityProtocol: \"${29:String}\"",
             "    RedshiftSettings:",
-            "      SecretsManagerAccessRoleArn: \"${23:String}\"",
-            "      SecretsManagerSecretId: \"${24:String}\"",
-            "    ResourceIdentifier: \"${24:String}\"",
+            "      SecretsManagerAccessRoleArn: \"${24:String}\"",
+            "      SecretsManagerSecretId: \"${25:String}\"",
+            "    ResourceIdentifier: \"${25:String}\"",
             "    S3Settings:",
-            "      BucketFolder: \"${25:String}\"",
-            "      BucketName: \"${26:String}\"",
-            "      CompressionType: \"${27:String}\"",
-            "      CsvDelimiter: \"${28:String}\"",
-            "      CsvRowDelimiter: \"${29:String}\"",
-            "      ExternalTableDefinition: \"${30:String}\"",
-            "      ServiceAccessRoleArn: \"${31:String}\"",
-            "    ServerName: \"${26:String}\"",
-            "    SslMode: \"${27:String}\"",
+            "      BucketFolder: \"${26:String}\"",
+            "      BucketName: \"${27:String}\"",
+            "      CompressionType: \"${28:String}\"",
+            "      CsvDelimiter: \"${29:String}\"",
+            "      CsvRowDelimiter: \"${30:String}\"",
+            "      ExternalTableDefinition: \"${31:String}\"",
+            "      ServiceAccessRoleArn: \"${32:String}\"",
+            "    ServerName: \"${27:String}\"",
+            "    SslMode: \"${28:String}\"",
             "    SybaseSettings:",
-            "      SecretsManagerAccessRoleArn: \"${28:String}\"",
-            "      SecretsManagerSecretId: \"${29:String}\"",
+            "      SecretsManagerAccessRoleArn: \"${29:String}\"",
+            "      SecretsManagerSecretId: \"${30:String}\"",
             "    Tags:",
             "      Tags",
-            "    Username: \"${30:String}\""
+            "    Username: \"${31:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html",
@@ -5000,7 +5157,9 @@
             "    Tags:",
             "      Tags",
             "    Timeout: ${19:Number}",
-            "    Type: \"${20:String}\" # Required"
+            "    Type: \"${20:String}\" # Required",
+            "    ValidationConfigurations:",
+            "      ValidationConfigurations"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html"
@@ -5045,6 +5204,25 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-recipe.html"
         ],
         "prefix": "databrew-recipe",
+        "scope": "yaml"
+    },
+    "AWS::DataBrew::Ruleset": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataBrew::Ruleset",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Rules: # Required",
+            "      Rules",
+            "    Tags:",
+            "      Tags",
+            "    TargetArn: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html"
+        ],
+        "prefix": "databrew-ruleset",
         "scope": "yaml"
     },
     "AWS::DataBrew::Schedule": {
@@ -5157,6 +5335,39 @@
             "  LocationUri"
         ],
         "prefix": "datasync-locationfsxwindows",
+        "scope": "yaml"
+    },
+    "AWS::DataSync::LocationHDFS": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataSync::LocationHDFS",
+            "  Properties:",
+            "    AgentArns: # Required",
+            "      AgentArns",
+            "    AuthenticationType: \"${3:String}\" # Required",
+            "    BlockSize: ${4:Number}",
+            "    KerberosKeytab: \"${5:String}\"",
+            "    KerberosKrb5Conf: \"${6:String}\"",
+            "    KerberosPrincipal: \"${7:String}\"",
+            "    KmsKeyProviderUri: \"${8:String}\"",
+            "    NameNodes: # Required",
+            "      NameNodes",
+            "    QopConfiguration:",
+            "      DataTransferProtection: \"${10:String}\"",
+            "      RpcProtection: \"${11:String}\"",
+            "    ReplicationFactor: ${11:Number}",
+            "    SimpleUser: \"${12:String}\"",
+            "    Subdirectory: \"${13:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationhdfs.html",
+            "Attributes: ",
+            "  LocationArn",
+            "  LocationUri"
+        ],
+        "prefix": "datasync-locationhdfs",
         "scope": "yaml"
     },
     "AWS::DataSync::LocationNFS": {
@@ -5611,9 +5822,11 @@
             "    InstanceMatchCriteria: \"${8:String}\"",
             "    InstancePlatform: \"${9:String}\" # Required",
             "    InstanceType: \"${10:String}\" # Required",
+            "    OutPostArn: \"${11:String}\"",
+            "    PlacementGroupArn: \"${12:String}\"",
             "    TagSpecifications:",
             "      TagSpecifications",
-            "    Tenancy: \"${12:String}\""
+            "    Tenancy: \"${14:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html",
@@ -5814,7 +6027,6 @@
             "      AllocationStrategy: \"${7:String}\"",
             "      InstanceInterruptionBehavior: \"${8:String}\"",
             "      InstancePoolsToUseCount: ${9:Number}",
-            "      MaintenanceStrategies: ${10:JSON}",
             "      MaxTotalPrice: \"${11:String}\"",
             "      MinTargetCapacity: ${12:Number}",
             "      SingleAvailabilityZone: ${13|false,true|}",
@@ -6050,7 +6262,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html",
+            "Attributes: ",
+            "  InternetGatewayId"
         ],
         "prefix": "ec2-internetgateway",
         "scope": "yaml"
@@ -6809,19 +7023,21 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::TransitGatewayPeeringAttachment",
             "  Properties:",
-            "    PeerAccountId: \"${2:String}\" # Required",
-            "    PeerRegion: \"${3:String}\" # Required",
-            "    PeerTransitGatewayId: \"${4:String}\" # Required",
+            "    Options:",
+            "      DynamicRouting: \"${2:String}\"",
+            "    PeerAccountId: \"${3:String}\" # Required",
+            "    PeerRegion: \"${4:String}\" # Required",
+            "    PeerTransitGatewayId: \"${5:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TransitGatewayId: \"${6:String}\" # Required"
+            "    TransitGatewayId: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html",
             "Attributes: ",
-            "  TransitGatewayAttachmentId",
             "  State",
-            "  CreationTime"
+            "  CreationTime",
+            "  TransitGatewayAttachmentId"
         ],
         "prefix": "ec2-transitgatewaypeeringattachment",
         "scope": "yaml"
@@ -6960,7 +7176,9 @@
             "    VpcId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-dhcp-options-assoc.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcdhcpoptionsassociation.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ec2-vpcdhcpoptionsassociation",
         "scope": "yaml"
@@ -7556,23 +7774,30 @@
             "      EncryptionConfig",
             "    KubernetesNetworkConfig:",
             "      ServiceIpv4Cidr: \"${3:String}\"",
-            "    Name: \"${4:String}\"",
+            "    Logging:",
+            "    Name: \"${5:String}\"",
             "    ResourcesVpcConfig:",
+            "      EndpointPrivateAccess: ${6|false,true|}",
+            "      EndpointPublicAccess: ${7|false,true|}",
+            "      PublicAccessCidrs:",
+            "        -",
             "      SecurityGroupIds:",
             "        -",
             "      SubnetIds:",
             "        -",
-            "    RoleArn: \"${6:String}\" # Required",
-            "    Version: \"${7:String}\""
+            "    RoleArn: \"${7:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    Version: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html",
             "Attributes: ",
+            "  Arn",
             "  Endpoint",
+            "  CertificateAuthorityData",
             "  ClusterSecurityGroupId",
             "  EncryptionConfigKeyArn",
-            "  Arn",
-            "  CertificateAuthorityData",
             "  OpenIdConnectIssuerUrl"
         ],
         "prefix": "eks-cluster",
@@ -8721,39 +8946,51 @@
             "  Properties:",
             "    BackupId: \"${2:String}\"",
             "    FileSystemType: \"${3:String}\" # Required",
-            "    KmsKeyId: \"${4:String}\"",
+            "    FileSystemTypeVersion: \"${4:String}\"",
+            "    KmsKeyId: \"${5:String}\"",
             "    LustreConfiguration:",
-            "      AutoImportPolicy: \"${5:String}\"",
-            "      AutomaticBackupRetentionDays: ${6:Number}",
-            "      CopyTagsToBackups: ${7|false,true|}",
+            "      AutoImportPolicy: \"${6:String}\"",
+            "      AutomaticBackupRetentionDays: ${7:Number}",
+            "      CopyTagsToBackups: ${8|false,true|}",
+            "      DailyAutomaticBackupStartTime: \"${9:String}\"",
+            "      DataCompressionType: \"${10:String}\"",
+            "      DeploymentType: \"${11:String}\"",
+            "      DriveCacheType: \"${12:String}\"",
+            "      ExportPath: \"${13:String}\"",
+            "      ImportPath: \"${14:String}\"",
+            "      ImportedFileChunkSize: ${15:Number}",
+            "      PerUnitStorageThroughput: ${16:Number}",
+            "      WeeklyMaintenanceStartTime: \"${17:String}\"",
+            "    OntapConfiguration:",
+            "      AutomaticBackupRetentionDays: ${7:Number}",
             "      DailyAutomaticBackupStartTime: \"${8:String}\"",
-            "      DataCompressionType: \"${9:String}\"",
-            "      DeploymentType: \"${10:String}\"",
-            "      DriveCacheType: \"${11:String}\"",
-            "      ExportPath: \"${12:String}\"",
-            "      ImportPath: \"${13:String}\"",
-            "      ImportedFileChunkSize: ${14:Number}",
-            "      PerUnitStorageThroughput: ${15:Number}",
+            "      DeploymentType: \"${9:String}\"",
+            "      EndpointIpAddressRange: \"${11:String}\"",
+            "      FsxAdminPassword: \"${12:String}\"",
+            "      PreferredSubnetId: \"${13:String}\"",
+            "      RouteTableIds:",
+            "        -",
+            "      ThroughputCapacity: ${15:Number}",
             "      WeeklyMaintenanceStartTime: \"${16:String}\"",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    StorageCapacity: ${7:Number}",
-            "    StorageType: \"${8:String}\"",
+            "    StorageCapacity: ${9:Number}",
+            "    StorageType: \"${10:String}\"",
             "    SubnetIds: # Required",
             "      SubnetIds",
             "    Tags:",
             "      Tags",
             "    WindowsConfiguration:",
-            "      ActiveDirectoryId: \"${11:String}\"",
+            "      ActiveDirectoryId: \"${13:String}\"",
             "      Aliases:",
             "        -",
-            "      AutomaticBackupRetentionDays: ${14:Number}",
-            "      CopyTagsToBackups: ${15|false,true|}",
-            "      DailyAutomaticBackupStartTime: \"${16:String}\"",
-            "      DeploymentType: \"${17:String}\"",
-            "      PreferredSubnetId: \"${18:String}\"",
-            "      ThroughputCapacity: ${20:Number}",
-            "      WeeklyMaintenanceStartTime: \"${21:String}\""
+            "      AutomaticBackupRetentionDays: ${16:Number}",
+            "      CopyTagsToBackups: ${17|false,true|}",
+            "      DailyAutomaticBackupStartTime: \"${18:String}\"",
+            "      DeploymentType: \"${19:String}\"",
+            "      PreferredSubnetId: \"${20:String}\"",
+            "      ThroughputCapacity: ${22:Number}",
+            "      WeeklyMaintenanceStartTime: \"${23:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html",
@@ -8769,17 +9006,23 @@
             "${1:LogicalID}:",
             "  Type: AWS::FinSpace::Environment",
             "  Properties:",
-            "    Description: \"${2:String}\"",
-            "    FederationMode: \"${3:String}\"",
+            "    DataBundles:",
+            "      DataBundles",
+            "    Description: \"${3:String}\"",
+            "    FederationMode: \"${4:String}\"",
             "    FederationParameters:",
-            "      ApplicationCallBackURL: \"${4:String}\"",
-            "      AttributeMap: ${5:JSON}",
-            "      FederationProviderName: \"${6:String}\"",
-            "      FederationURN: \"${7:String}\"",
-            "      SamlMetadataDocument: \"${8:String}\"",
-            "      SamlMetadataURL: \"${9:String}\"",
-            "    KmsKeyId: \"${5:String}\"",
-            "    Name: \"${6:String}\" # Required"
+            "      ApplicationCallBackURL: \"${5:String}\"",
+            "      AttributeMap: ${6:JSON}",
+            "      FederationProviderName: \"${7:String}\"",
+            "      FederationURN: \"${8:String}\"",
+            "      SamlMetadataDocument: \"${9:String}\"",
+            "      SamlMetadataURL: \"${10:String}\"",
+            "    KmsKeyId: \"${6:String}\"",
+            "    Name: \"${7:String}\" # Required",
+            "    SuperuserParameters:",
+            "      EmailAddress: \"${8:String}\"",
+            "      FirstName: \"${9:String}\"",
+            "      LastName: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html",
@@ -10987,6 +11230,21 @@
         "prefix": "iot-jobtemplate",
         "scope": "yaml"
     },
+    "AWS::IoT::Logging": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::Logging",
+            "  Properties:",
+            "    AccountId: \"${2:String}\" # Required",
+            "    DefaultLogLevel: \"${3:String}\" # Required",
+            "    RoleArn: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-logging.html"
+        ],
+        "prefix": "iot-logging",
+        "scope": "yaml"
+    },
     "AWS::IoT::MitigationAction": {
         "body": [
             "${1:LogicalID}:",
@@ -11059,6 +11317,23 @@
             "  TemplateArn"
         ],
         "prefix": "iot-provisioningtemplate",
+        "scope": "yaml"
+    },
+    "AWS::IoT::ResourceSpecificLogging": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::ResourceSpecificLogging",
+            "  Properties:",
+            "    LogLevel: \"${2:String}\" # Required",
+            "    TargetName: \"${3:String}\" # Required",
+            "    TargetType: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-resourcespecificlogging.html",
+            "Attributes: ",
+            "  TargetId"
+        ],
+        "prefix": "iot-resourcespecificlogging",
         "scope": "yaml"
     },
     "AWS::IoT::ScheduledAudit": {
@@ -11581,6 +11856,65 @@
             "  Id"
         ],
         "prefix": "iotwireless-deviceprofile",
+        "scope": "yaml"
+    },
+    "AWS::IoTWireless::FuotaTask": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::FuotaTask",
+            "  Properties:",
+            "    AssociateMulticastGroup: \"${2:String}\"",
+            "    AssociateWirelessDevice: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
+            "    DisassociateMulticastGroup: \"${5:String}\"",
+            "    DisassociateWirelessDevice: \"${6:String}\"",
+            "    FirmwareUpdateImage: \"${7:String}\" # Required",
+            "    FirmwareUpdateRole: \"${8:String}\" # Required",
+            "    LoRaWAN:",
+            "      RfRegion: \"${9:String}\"",
+            "      StartTime: \"${10:String}\"",
+            "    Name: \"${10:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html",
+            "Attributes: ",
+            "  LoRaWAN.StartTime",
+            "  Arn",
+            "  Id",
+            "  FuotaTaskStatus"
+        ],
+        "prefix": "iotwireless-fuotatask",
+        "scope": "yaml"
+    },
+    "AWS::IoTWireless::MulticastGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::MulticastGroup",
+            "  Properties:",
+            "    AssociateWirelessDevice: \"${2:String}\"",
+            "    Description: \"${3:String}\"",
+            "    DisassociateWirelessDevice: \"${4:String}\"",
+            "    LoRaWAN:",
+            "      DlClass: \"${5:String}\"",
+            "      NumberOfDevicesInGroup: ${6:Number}",
+            "      NumberOfDevicesRequested: ${7:Number}",
+            "      RfRegion: \"${8:String}\"",
+            "    Name: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html",
+            "Attributes: ",
+            "  LoRaWAN.NumberOfDevicesRequested",
+            "  LoRaWAN.NumberOfDevicesInGroup",
+            "  Arn",
+            "  Id",
+            "  Status"
+        ],
+        "prefix": "iotwireless-multicastgroup",
         "scope": "yaml"
     },
     "AWS::IoTWireless::PartnerAccount": {
@@ -12221,23 +12555,24 @@
             "    DestinationConfig:",
             "    Enabled: ${5|false,true|}",
             "    EventSourceArn: \"${6:String}\"",
-            "    FunctionName: \"${7:String}\" # Required",
+            "    FilterCriteria: ${7:JSON}",
+            "    FunctionName: \"${8:String}\" # Required",
             "    FunctionResponseTypes:",
             "      FunctionResponseTypes",
-            "    MaximumBatchingWindowInSeconds: ${9:Number}",
-            "    MaximumRecordAgeInSeconds: ${10:Number}",
-            "    MaximumRetryAttempts: ${11:Number}",
-            "    ParallelizationFactor: ${12:Number}",
+            "    MaximumBatchingWindowInSeconds: ${10:Number}",
+            "    MaximumRecordAgeInSeconds: ${11:Number}",
+            "    MaximumRetryAttempts: ${12:Number}",
+            "    ParallelizationFactor: ${13:Number}",
             "    Queues:",
             "      Queues",
             "    SelfManagedEventSource:",
             "    SourceAccessConfigurations:",
             "      SourceAccessConfigurations",
-            "    StartingPosition: \"${16:String}\"",
-            "    StartingPositionTimestamp: ${17:Number}",
+            "    StartingPosition: \"${17:String}\"",
+            "    StartingPositionTimestamp: ${18:Number}",
             "    Topics:",
             "      Topics",
-            "    TumblingWindowInSeconds: ${19:Number}"
+            "    TumblingWindowInSeconds: ${20:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html",
@@ -12511,18 +12846,12 @@
             "      RamSizeInGb: ${8:Number}",
             "    InstanceName: \"${7:String}\" # Required",
             "    KeyPairName: \"${8:String}\"",
-            "    Location:",
-            "      AvailabilityZone: \"${9:String}\"",
-            "      RegionName: \"${10:String}\"",
             "    Networking:",
             "      Ports:",
             "        -",
-            "    State:",
-            "      Code: ${11:Number}",
-            "      Name: \"${12:String}\"",
             "    Tags:",
             "      Tags",
-            "    UserData: \"${13:String}\""
+            "    UserData: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instance.html",
@@ -12715,7 +13044,9 @@
             "  Properties:",
             "    KmsKeyId: \"${2:String}\"",
             "    LogGroupName: \"${3:String}\"",
-            "    RetentionInDays: ${4:Number}"
+            "    RetentionInDays: ${4:Number}",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html",
@@ -12891,7 +13222,7 @@
             "      BrokerAZDistribution: \"${2:String}\"",
             "      ClientSubnets:",
             "        -",
-            "      InstanceType: \"${4:String}\"",
+            "      InstanceType: \"${5:String}\"",
             "      SecurityGroups:",
             "        -",
             "    ClientAuthentication:",
@@ -13615,31 +13946,28 @@
             "  Properties:",
             "    ACLName: \"${2:String}\" # Required",
             "    AutoMinorVersionUpgrade: ${3|false,true|}",
-            "    ClusterEndpoint:",
-            "      Address: \"${4:String}\"",
-            "      Port: ${5:Number}",
-            "    ClusterName: \"${5:String}\" # Required",
-            "    Description: \"${6:String}\"",
-            "    EngineVersion: \"${7:String}\"",
-            "    FinalSnapshotName: \"${8:String}\"",
-            "    KmsKeyId: \"${9:String}\"",
-            "    MaintenanceWindow: \"${10:String}\"",
-            "    NodeType: \"${11:String}\" # Required",
-            "    NumReplicasPerShard: ${12:Number}",
-            "    NumShards: ${13:Number}",
-            "    ParameterGroupName: \"${14:String}\"",
-            "    Port: ${15:Number}",
+            "    ClusterName: \"${4:String}\" # Required",
+            "    Description: \"${5:String}\"",
+            "    EngineVersion: \"${6:String}\"",
+            "    FinalSnapshotName: \"${7:String}\"",
+            "    KmsKeyId: \"${8:String}\"",
+            "    MaintenanceWindow: \"${9:String}\"",
+            "    NodeType: \"${10:String}\" # Required",
+            "    NumReplicasPerShard: ${11:Number}",
+            "    NumShards: ${12:Number}",
+            "    ParameterGroupName: \"${13:String}\"",
+            "    Port: ${14:Number}",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
             "    SnapshotArns:",
             "      SnapshotArns",
-            "    SnapshotName: \"${18:String}\"",
-            "    SnapshotRetentionLimit: ${19:Number}",
-            "    SnapshotWindow: \"${20:String}\"",
-            "    SnsTopicArn: \"${21:String}\"",
-            "    SnsTopicStatus: \"${22:String}\"",
-            "    SubnetGroupName: \"${23:String}\"",
-            "    TLSEnabled: ${24|false,true|}",
+            "    SnapshotName: \"${17:String}\"",
+            "    SnapshotRetentionLimit: ${18:Number}",
+            "    SnapshotWindow: \"${19:String}\"",
+            "    SnsTopicArn: \"${20:String}\"",
+            "    SnsTopicStatus: \"${21:String}\"",
+            "    SubnetGroupName: \"${22:String}\"",
+            "    TLSEnabled: ${23|false,true|}",
             "    Tags:",
             "      Tags"
         ],
@@ -13874,6 +14202,8 @@
             "  Properties:",
             "    Description: \"${2:String}\"",
             "    FirewallPolicy:",
+            "      StatefulDefaultActions:",
+            "        -",
             "      StatefulRuleGroupReferences:",
             "        -",
             "      StatelessCustomActions:",
@@ -14860,6 +15190,27 @@
         "prefix": "pinpoint-gcmchannel",
         "scope": "yaml"
     },
+    "AWS::Pinpoint::InAppTemplate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Pinpoint::InAppTemplate",
+            "  Properties:",
+            "    Content:",
+            "      Content",
+            "    CustomConfig: ${3:JSON}",
+            "    Layout: \"${4:String}\"",
+            "    Tags: ${5:JSON}",
+            "    TemplateDescription: \"${6:String}\"",
+            "    TemplateName: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "pinpoint-inapptemplate",
+        "scope": "yaml"
+    },
     "AWS::Pinpoint::PushTemplate": {
         "body": [
             "${1:LogicalID}:",
@@ -15733,36 +16084,33 @@
             "    DestinationRegion: \"${20:String}\"",
             "    ElasticIp: \"${21:String}\"",
             "    Encrypted: ${22|false,true|}",
-            "    Endpoint:",
-            "      Address: \"${23:String}\"",
-            "      Port: \"${24:String}\"",
-            "    EnhancedVpcRouting: ${24|false,true|}",
-            "    HsmClientCertificateIdentifier: \"${25:String}\"",
-            "    HsmConfigurationIdentifier: \"${26:String}\"",
+            "    EnhancedVpcRouting: ${23|false,true|}",
+            "    HsmClientCertificateIdentifier: \"${24:String}\"",
+            "    HsmConfigurationIdentifier: \"${25:String}\"",
             "    IamRoles:",
             "      IamRoles",
-            "    KmsKeyId: \"${28:String}\"",
+            "    KmsKeyId: \"${27:String}\"",
             "    LoggingProperties:",
-            "      BucketName: \"${29:String}\"",
-            "      S3KeyPrefix: \"${30:String}\"",
-            "    MaintenanceTrackName: \"${30:String}\"",
-            "    ManualSnapshotRetentionPeriod: ${31:Number}",
-            "    MasterUserPassword: \"${32:String}\" # Required",
-            "    MasterUsername: \"${33:String}\" # Required",
-            "    NodeType: \"${34:String}\" # Required",
-            "    NumberOfNodes: ${35:Number}",
-            "    OwnerAccount: \"${36:String}\"",
-            "    Port: ${37:Number}",
-            "    PreferredMaintenanceWindow: \"${38:String}\"",
-            "    PubliclyAccessible: ${39|false,true|}",
-            "    ResourceAction: \"${40:String}\"",
-            "    RevisionTarget: \"${41:String}\"",
-            "    RotateEncryptionKey: ${42|false,true|}",
-            "    SnapshotClusterIdentifier: \"${43:String}\"",
-            "    SnapshotCopyGrantName: \"${44:String}\"",
-            "    SnapshotCopyManual: ${45|false,true|}",
-            "    SnapshotCopyRetentionPeriod: ${46:Number}",
-            "    SnapshotIdentifier: \"${47:String}\"",
+            "      BucketName: \"${28:String}\"",
+            "      S3KeyPrefix: \"${29:String}\"",
+            "    MaintenanceTrackName: \"${29:String}\"",
+            "    ManualSnapshotRetentionPeriod: ${30:Number}",
+            "    MasterUserPassword: \"${31:String}\" # Required",
+            "    MasterUsername: \"${32:String}\" # Required",
+            "    NodeType: \"${33:String}\" # Required",
+            "    NumberOfNodes: ${34:Number}",
+            "    OwnerAccount: \"${35:String}\"",
+            "    Port: ${36:Number}",
+            "    PreferredMaintenanceWindow: \"${37:String}\"",
+            "    PubliclyAccessible: ${38|false,true|}",
+            "    ResourceAction: \"${39:String}\"",
+            "    RevisionTarget: \"${40:String}\"",
+            "    RotateEncryptionKey: ${41|false,true|}",
+            "    SnapshotClusterIdentifier: \"${42:String}\"",
+            "    SnapshotCopyGrantName: \"${43:String}\"",
+            "    SnapshotCopyManual: ${44|false,true|}",
+            "    SnapshotCopyRetentionPeriod: ${45:Number}",
+            "    SnapshotIdentifier: \"${46:String}\"",
             "    Tags:",
             "      Tags",
             "    VpcSecurityGroupIds:",
@@ -15843,6 +16191,109 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html"
         ],
         "prefix": "redshift-clustersubnetgroup",
+        "scope": "yaml"
+    },
+    "AWS::Redshift::EndpointAccess": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Redshift::EndpointAccess",
+            "  Properties:",
+            "    ClusterIdentifier: \"${2:String}\"",
+            "    EndpointName: \"${3:String}\" # Required",
+            "    ResourceOwner: \"${4:String}\"",
+            "    SubnetGroupName: \"${5:String}\"",
+            "    VpcSecurityGroupIds: # Required",
+            "      VpcSecurityGroupIds"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointaccess.html",
+            "Attributes: ",
+            "  Address",
+            "  VpcSecurityGroups",
+            "  EndpointStatus",
+            "  EndpointCreateTime",
+            "  Port"
+        ],
+        "prefix": "redshift-endpointaccess",
+        "scope": "yaml"
+    },
+    "AWS::Redshift::EndpointAuthorization": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Redshift::EndpointAuthorization",
+            "  Properties:",
+            "    Account: \"${2:String}\" # Required",
+            "    ClusterIdentifier: \"${3:String}\" # Required",
+            "    Force: ${4|false,true|}",
+            "    VpcIds:",
+            "      VpcIds"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointauthorization.html",
+            "Attributes: ",
+            "  Grantor",
+            "  Grantee",
+            "  AuthorizeTime",
+            "  ClusterStatus",
+            "  Status",
+            "  AllowedAllVPCs",
+            "  AllowedVPCs",
+            "  EndpointCount"
+        ],
+        "prefix": "redshift-endpointauthorization",
+        "scope": "yaml"
+    },
+    "AWS::Redshift::EventSubscription": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Redshift::EventSubscription",
+            "  Properties:",
+            "    Enabled: ${2|false,true|}",
+            "    EventCategories:",
+            "      EventCategories",
+            "    Severity: \"${4:String}\"",
+            "    SnsTopicArn: \"${5:String}\"",
+            "    SourceIds:",
+            "      SourceIds",
+            "    SourceType: \"${7:String}\"",
+            "    SubscriptionName: \"${8:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-eventsubscription.html",
+            "Attributes: ",
+            "  CustomerAwsId",
+            "  CustSubscriptionId",
+            "  Status",
+            "  SubscriptionCreationTime",
+            "  SourceIdsList",
+            "  EventCategoriesList"
+        ],
+        "prefix": "redshift-eventsubscription",
+        "scope": "yaml"
+    },
+    "AWS::Redshift::ScheduledAction": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Redshift::ScheduledAction",
+            "  Properties:",
+            "    Enable: ${2|false,true|}",
+            "    EndTime: \"${3:String}\"",
+            "    IamRole: \"${4:String}\"",
+            "    Schedule: \"${5:String}\"",
+            "    ScheduledActionDescription: \"${6:String}\"",
+            "    ScheduledActionName: \"${7:String}\" # Required",
+            "    StartTime: \"${8:String}\"",
+            "    TargetAction:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-scheduledaction.html",
+            "Attributes: ",
+            "  State",
+            "  NextInvocations"
+        ],
+        "prefix": "redshift-scheduledaction",
         "scope": "yaml"
     },
     "AWS::Rekognition::Project": {
@@ -16045,7 +16496,7 @@
             "      Comment: \"${2:String}\"",
             "    HostedZoneTags:",
             "      HostedZoneTags",
-            "    Name: \"${4:String}\" # Required",
+            "    Name: \"${4:String}\"",
             "    QueryLoggingConfig:",
             "      CloudWatchLogsLogGroupArn: \"${5:String}\"",
             "    VPCs:",
@@ -16708,7 +17159,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::S3ObjectLambda::AccessPoint",
             "  Properties:",
-            "    Name: \"${2:String}\" # Required",
+            "    Name: \"${2:String}\"",
             "    ObjectLambdaConfiguration:",
             "      AllowedFeatures:",
             "        -",
@@ -17603,6 +18054,7 @@
             "    ExcludeRetainedVariantProperties:",
             "      ExcludeRetainedVariantProperties",
             "    RetainAllVariantProperties: ${6|false,true|}",
+            "    RetainDeploymentConfig: ${7|false,true|}",
             "    Tags:",
             "      Tags"
         ],
@@ -18070,8 +18522,10 @@
             "      MasterSecretKmsKeyArn: \"${4:String}\"",
             "      RotationLambdaName: \"${5:String}\"",
             "      RotationType: \"${6:String}\"",
-            "      VpcSecurityGroupIds: \"${7:String}\"",
-            "      VpcSubnetIds: \"${8:String}\"",
+            "      SuperuserSecretArn: \"${7:String}\"",
+            "      SuperuserSecretKmsKeyArn: \"${8:String}\"",
+            "      VpcSecurityGroupIds: \"${9:String}\"",
+            "      VpcSubnetIds: \"${10:String}\"",
             "    RotationLambdaARN: \"${3:String}\"",
             "    RotationRules:",
             "      AutomaticallyAfterDays: ${4:Number}",
@@ -18829,8 +19283,9 @@
             "    EndpointType: \"${5:String}\"",
             "    IdentityProviderDetails:",
             "      DirectoryId: \"${6:String}\"",
-            "      InvocationRole: \"${7:String}\"",
-            "      Url: \"${8:String}\"",
+            "      Function: \"${7:String}\"",
+            "      InvocationRole: \"${8:String}\"",
+            "      Url: \"${9:String}\"",
             "    IdentityProviderType: \"${7:String}\"",
             "    LoggingRole: \"${8:String}\"",
             "    ProtocolDetails:",
