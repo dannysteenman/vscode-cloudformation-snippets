@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.41.0 (2021-12-17)
+-------------------
+- The following resources were updated: AWS::WAFv2::WebACL and
+  AWS::WAFv2::RuleGroup. [Github Actions]
+
+
 3.40.0 (2021-12-10)
 -------------------
 - The following resources were updated: AWS::WAFv2::WebACL and
