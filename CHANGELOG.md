@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.42.0 (2022-01-07)
+-------------------
+- The following property was updated: <code
+  class="code">AWS::EKS::Cluster KubernetesNetworkConfig</code> [Github
+  Actions]
+
+
 3.41.0 (2021-12-17)
 -------------------
 - The following resources were updated: AWS::WAFv2::WebACL and
