@@ -1656,6 +1656,21 @@
         "prefix": "appstream-application",
         "scope": "yaml"
     },
+    "AWS::AppStream::ApplicationEntitlementAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppStream::ApplicationEntitlementAssociation",
+            "  Properties:",
+            "    ApplicationIdentifier: \"${2:String}\" # Required",
+            "    EntitlementName: \"${3:String}\" # Required",
+            "    StackName: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationentitlementassociation.html"
+        ],
+        "prefix": "appstream-applicationentitlementassociation",
+        "scope": "yaml"
+    },
     "AWS::AppStream::ApplicationFleetAssociation": {
         "body": [
             "${1:LogicalID}:",
@@ -1686,6 +1701,27 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-directoryconfig.html"
         ],
         "prefix": "appstream-directoryconfig",
+        "scope": "yaml"
+    },
+    "AWS::AppStream::Entitlement": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppStream::Entitlement",
+            "  Properties:",
+            "    AppVisibility: \"${2:String}\" # Required",
+            "    Attributes: # Required",
+            "      Attributes",
+            "    Description: \"${4:String}\"",
+            "    Name: \"${5:String}\" # Required",
+            "    StackName: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html",
+            "Attributes: ",
+            "  CreatedTime",
+            "  LastModifiedTime"
+        ],
+        "prefix": "appstream-entitlement",
         "scope": "yaml"
     },
     "AWS::AppStream::Fleet": {
@@ -4596,28 +4632,43 @@
             "    ExcludedAccounts:",
             "      ExcludedAccounts",
             "    OrganizationConfigRuleName: \"${3:String}\" # Required",
-            "    OrganizationCustomRuleMetadata:",
-            "      Description: \"${4:String}\"",
-            "      InputParameters: \"${5:String}\"",
-            "      LambdaFunctionArn: \"${6:String}\"",
-            "      MaximumExecutionFrequency: \"${7:String}\"",
+            "    OrganizationCustomCodeRuleMetadata:",
+            "      CodeText: \"${4:String}\"",
+            "      DebugLogDeliveryAccounts:",
+            "        -",
+            "      Description: \"${6:String}\"",
+            "      InputParameters: \"${7:String}\"",
+            "      MaximumExecutionFrequency: \"${8:String}\"",
             "      OrganizationConfigRuleTriggerTypes:",
             "        -",
+            "      ResourceIdScope: \"${10:String}\"",
+            "      ResourceTypesScope:",
+            "        -",
+            "      Runtime: \"${12:String}\"",
+            "      TagKeyScope: \"${13:String}\"",
+            "      TagValueScope: \"${14:String}\"",
+            "    OrganizationCustomRuleMetadata:",
+            "      Description: \"${5:String}\"",
+            "      InputParameters: \"${6:String}\"",
+            "      LambdaFunctionArn: \"${7:String}\"",
+            "      MaximumExecutionFrequency: \"${8:String}\"",
+            "      OrganizationConfigRuleTriggerTypes:",
+            "        -",
+            "      ResourceIdScope: \"${10:String}\"",
+            "      ResourceTypesScope:",
+            "        -",
+            "      TagKeyScope: \"${12:String}\"",
+            "      TagValueScope: \"${13:String}\"",
+            "    OrganizationManagedRuleMetadata:",
+            "      Description: \"${6:String}\"",
+            "      InputParameters: \"${7:String}\"",
+            "      MaximumExecutionFrequency: \"${8:String}\"",
             "      ResourceIdScope: \"${9:String}\"",
             "      ResourceTypesScope:",
             "        -",
-            "      TagKeyScope: \"${11:String}\"",
-            "      TagValueScope: \"${12:String}\"",
-            "    OrganizationManagedRuleMetadata:",
-            "      Description: \"${5:String}\"",
-            "      InputParameters: \"${6:String}\"",
-            "      MaximumExecutionFrequency: \"${7:String}\"",
-            "      ResourceIdScope: \"${8:String}\"",
-            "      ResourceTypesScope:",
-            "        -",
-            "      RuleIdentifier: \"${10:String}\"",
-            "      TagKeyScope: \"${11:String}\"",
-            "      TagValueScope: \"${12:String}\""
+            "      RuleIdentifier: \"${11:String}\"",
+            "      TagKeyScope: \"${12:String}\"",
+            "      TagValueScope: \"${13:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconfigrule.html"
@@ -6263,16 +6314,17 @@
             "  Type: AWS::EC2::FlowLog",
             "  Properties:",
             "    DeliverLogsPermissionArn: \"${2:String}\"",
-            "    LogDestination: \"${3:String}\"",
-            "    LogDestinationType: \"${4:String}\"",
-            "    LogFormat: \"${5:String}\"",
-            "    LogGroupName: \"${6:String}\"",
-            "    MaxAggregationInterval: ${7:Number}",
-            "    ResourceId: \"${8:String}\" # Required",
-            "    ResourceType: \"${9:String}\" # Required",
+            "    DestinationOptions: ${3:JSON}",
+            "    LogDestination: \"${4:String}\"",
+            "    LogDestinationType: \"${5:String}\"",
+            "    LogFormat: \"${6:String}\"",
+            "    LogGroupName: \"${7:String}\"",
+            "    MaxAggregationInterval: ${8:Number}",
+            "    ResourceId: \"${9:String}\" # Required",
+            "    ResourceType: \"${10:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TrafficType: \"${11:String}\" # Required"
+            "    TrafficType: \"${12:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html",
@@ -6399,7 +6451,6 @@
             "  Properties:",
             "    Description: \"${2:String}\"",
             "    IpamId: \"${3:String}\" # Required",
-            "    IpamScopeType: \"${4:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -6409,6 +6460,7 @@
             "  IpamScopeId",
             "  Arn",
             "  IpamArn",
+            "  IpamScopeType",
             "  IsDefault",
             "  PoolCount"
         ],
@@ -6523,21 +6575,21 @@
             "        -",
             "      ImageId: \"${13:String}\"",
             "      InstanceInitiatedShutdownBehavior: \"${14:String}\"",
-            "      InstanceType: \"${16:String}\"",
-            "      KernelId: \"${17:String}\"",
-            "      KeyName: \"${18:String}\"",
+            "      InstanceType: \"${17:String}\"",
+            "      KernelId: \"${18:String}\"",
+            "      KeyName: \"${19:String}\"",
             "      LicenseSpecifications:",
             "        -",
             "      NetworkInterfaces:",
             "        -",
-            "      RamDiskId: \"${24:String}\"",
+            "      RamDiskId: \"${25:String}\"",
             "      SecurityGroupIds:",
             "        -",
             "      SecurityGroups:",
             "        -",
             "      TagSpecifications:",
             "        -",
-            "      UserData: \"${28:String}\"",
+            "      UserData: \"${29:String}\"",
             "    LaunchTemplateName: \"${3:String}\"",
             "    TagSpecifications:",
             "      TagSpecifications"
@@ -6648,6 +6700,53 @@
             "  Id"
         ],
         "prefix": "ec2-networkaclentry",
+        "scope": "yaml"
+    },
+    "AWS::EC2::NetworkInsightsAccessScope": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::NetworkInsightsAccessScope",
+            "  Properties:",
+            "    ExcludePaths:",
+            "      ExcludePaths",
+            "    MatchPaths:",
+            "      MatchPaths",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscope.html",
+            "Attributes: ",
+            "  NetworkInsightsAccessScopeId",
+            "  NetworkInsightsAccessScopeArn",
+            "  CreatedDate",
+            "  UpdatedDate"
+        ],
+        "prefix": "ec2-networkinsightsaccessscope",
+        "scope": "yaml"
+    },
+    "AWS::EC2::NetworkInsightsAccessScopeAnalysis": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::NetworkInsightsAccessScopeAnalysis",
+            "  Properties:",
+            "    NetworkInsightsAccessScopeId: \"${2:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscopeanalysis.html",
+            "Attributes: ",
+            "  NetworkInsightsAccessScopeAnalysisId",
+            "  NetworkInsightsAccessScopeAnalysisArn",
+            "  Status",
+            "  StatusMessage",
+            "  StartDate",
+            "  EndDate",
+            "  FindingsFound",
+            "  AnalyzedEniCount"
+        ],
+        "prefix": "ec2-networkinsightsaccessscopeanalysis",
         "scope": "yaml"
     },
     "AWS::EC2::NetworkInsightsAnalysis": {
@@ -9057,7 +9156,9 @@
             "  Type: AWS::Events::EventBus",
             "  Properties:",
             "    EventSourceName: \"${2:String}\"",
-            "    Name: \"${3:String}\" # Required"
+            "    Name: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbus.html",
@@ -9686,7 +9787,9 @@
             "        -",
             "      PriorityOrder:",
             "        -",
-            "    TimeoutInSeconds: ${9:Number}"
+            "    Tags:",
+            "      Tags",
+            "    TimeoutInSeconds: ${10:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html",
@@ -9717,7 +9820,9 @@
             "    Name: \"${12:String}\" # Required",
             "    NotificationTarget: \"${13:String}\"",
             "    RequestTimeoutSeconds: ${14:Number} # Required",
-            "    RuleSetName: \"${15:String}\" # Required"
+            "    RuleSetName: \"${15:String}\" # Required",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html",
@@ -9734,7 +9839,9 @@
             "  Type: AWS::GameLift::MatchmakingRuleSet",
             "  Properties:",
             "    Name: \"${2:String}\" # Required",
-            "    RuleSetBody: \"${3:String}\" # Required"
+            "    RuleSetBody: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingruleset.html",
@@ -9756,7 +9863,9 @@
             "      Key: \"${4:String}\"",
             "      ObjectVersion: \"${5:String}\"",
             "      RoleArn: \"${6:String}\"",
-            "    Version: \"${4:String}\""
+            "    Tags:",
+            "      Tags",
+            "    Version: \"${5:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html",
@@ -11348,6 +11457,86 @@
         "prefix": "inspector-resourcegroup",
         "scope": "yaml"
     },
+    "AWS::InspectorV2::Filter": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::InspectorV2::Filter",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    FilterAction: \"${3:String}\" # Required",
+            "    FilterCriteria:",
+            "      AwsAccountId:",
+            "        -",
+            "      ComponentId:",
+            "        -",
+            "      ComponentType:",
+            "        -",
+            "      Ec2InstanceImageId:",
+            "        -",
+            "      Ec2InstanceSubnetId:",
+            "        -",
+            "      Ec2InstanceVpcId:",
+            "        -",
+            "      EcrImageArchitecture:",
+            "        -",
+            "      EcrImageHash:",
+            "        -",
+            "      EcrImagePushedAt:",
+            "        -",
+            "      EcrImageRegistry:",
+            "        -",
+            "      EcrImageRepositoryName:",
+            "        -",
+            "      EcrImageTags:",
+            "        -",
+            "      FindingArn:",
+            "        -",
+            "      FindingStatus:",
+            "        -",
+            "      FindingType:",
+            "        -",
+            "      FirstObservedAt:",
+            "        -",
+            "      InspectorScore:",
+            "        -",
+            "      LastObservedAt:",
+            "        -",
+            "      NetworkProtocol:",
+            "        -",
+            "      PortRange:",
+            "        -",
+            "      RelatedVulnerabilities:",
+            "        -",
+            "      ResourceId:",
+            "        -",
+            "      ResourceTags:",
+            "        -",
+            "      ResourceType:",
+            "        -",
+            "      Severity:",
+            "        -",
+            "      Title:",
+            "        -",
+            "      UpdatedAt:",
+            "        -",
+            "      VendorSeverity:",
+            "        -",
+            "      VulnerabilityId:",
+            "        -",
+            "      VulnerabilitySource:",
+            "        -",
+            "      VulnerablePackages:",
+            "        -",
+            "    Name: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-filter.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "inspectorv2-filter",
+        "scope": "yaml"
+    },
     "AWS::IoT1Click::Device": {
         "body": [
             "${1:LogicalID}:",
@@ -11571,12 +11760,13 @@
             "    Document: \"${4:String}\"",
             "    DocumentSource: \"${5:String}\"",
             "    JobArn: \"${6:String}\"",
-            "    JobExecutionsRolloutConfig: ${7:JSON}",
-            "    JobTemplateId: \"${8:String}\" # Required",
-            "    PresignedUrlConfig: ${9:JSON}",
+            "    JobExecutionsRetryConfig: ${7:JSON}",
+            "    JobExecutionsRolloutConfig: ${8:JSON}",
+            "    JobTemplateId: \"${9:String}\" # Required",
+            "    PresignedUrlConfig: ${10:JSON}",
             "    Tags:",
             "      Tags",
-            "    TimeoutConfig: ${11:JSON}"
+            "    TimeoutConfig: ${12:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html",
@@ -11830,7 +12020,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-channel.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-channel.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "iotanalytics-channel",
         "scope": "yaml"
@@ -11859,7 +12051,9 @@
             "      Unlimited: ${10|false,true|}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-dataset.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-dataset.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "iotanalytics-dataset",
         "scope": "yaml"
@@ -11882,7 +12076,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-datastore.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotanalytics-datastore.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "iotanalytics-datastore",
         "scope": "yaml"
@@ -12799,6 +12995,46 @@
         "prefix": "kinesisfirehose-deliverystream",
         "scope": "yaml"
     },
+    "AWS::KinesisVideo::SignalingChannel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::KinesisVideo::SignalingChannel",
+            "  Properties:",
+            "    MessageTtlSeconds: ${2:Number}",
+            "    Name: \"${3:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Type: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-signalingchannel.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "kinesisvideo-signalingchannel",
+        "scope": "yaml"
+    },
+    "AWS::KinesisVideo::Stream": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::KinesisVideo::Stream",
+            "  Properties:",
+            "    DataRetentionInHours: ${2:Number}",
+            "    DeviceName: \"${3:String}\"",
+            "    KmsKeyId: \"${4:String}\"",
+            "    MediaType: \"${5:String}\"",
+            "    Name: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-stream.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "kinesisvideo-stream",
+        "scope": "yaml"
+    },
     "AWS::LakeFormation::DataLakeSettings": {
         "body": [
             "${1:LogicalID}:",
@@ -13227,6 +13463,62 @@
         "prefix": "licensemanager-license",
         "scope": "yaml"
     },
+    "AWS::Lightsail::Alarm": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Lightsail::Alarm",
+            "  Properties:",
+            "    AlarmName: \"${2:String}\" # Required",
+            "    ComparisonOperator: \"${3:String}\" # Required",
+            "    ContactProtocols:",
+            "      ContactProtocols",
+            "    DatapointsToAlarm: ${5:Number}",
+            "    EvaluationPeriods: ${6:Number} # Required",
+            "    MetricName: \"${7:String}\" # Required",
+            "    MonitoredResourceName: \"${8:String}\" # Required",
+            "    NotificationEnabled: ${9|false,true|}",
+            "    NotificationTriggers:",
+            "      NotificationTriggers",
+            "    Threshold: ${11:Number} # Required",
+            "    TreatMissingData: \"${12:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-alarm.html",
+            "Attributes: ",
+            "  AlarmArn",
+            "  State"
+        ],
+        "prefix": "lightsail-alarm",
+        "scope": "yaml"
+    },
+    "AWS::Lightsail::Bucket": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Lightsail::Bucket",
+            "  Properties:",
+            "    AccessRules:",
+            "      AllowPublicOverrides: ${2|false,true|}",
+            "      GetObject: \"${3:String}\"",
+            "    BucketName: \"${3:String}\" # Required",
+            "    BundleId: \"${4:String}\" # Required",
+            "    ObjectVersioning: ${5|false,true|}",
+            "    ReadOnlyAccessAccounts:",
+            "      ReadOnlyAccessAccounts",
+            "    ResourcesReceivingAccess:",
+            "      ResourcesReceivingAccess",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-bucket.html",
+            "Attributes: ",
+            "  BucketArn",
+            "  Url",
+            "  AbleToUpdateBundle"
+        ],
+        "prefix": "lightsail-bucket",
+        "scope": "yaml"
+    },
     "AWS::Lightsail::Database": {
         "body": [
             "${1:LogicalID}:",
@@ -13331,6 +13623,51 @@
             "  InstanceArn"
         ],
         "prefix": "lightsail-instance",
+        "scope": "yaml"
+    },
+    "AWS::Lightsail::LoadBalancer": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Lightsail::LoadBalancer",
+            "  Properties:",
+            "    AttachedInstances:",
+            "      AttachedInstances",
+            "    HealthCheckPath: \"${3:String}\"",
+            "    InstancePort: ${4:Number} # Required",
+            "    IpAddressType: \"${5:String}\"",
+            "    LoadBalancerName: \"${6:String}\" # Required",
+            "    SessionStickinessEnabled: ${7|false,true|}",
+            "    SessionStickinessLBCookieDurationSeconds: \"${8:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-loadbalancer.html",
+            "Attributes: ",
+            "  LoadBalancerArn"
+        ],
+        "prefix": "lightsail-loadbalancer",
+        "scope": "yaml"
+    },
+    "AWS::Lightsail::LoadBalancerTlsCertificate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Lightsail::LoadBalancerTlsCertificate",
+            "  Properties:",
+            "    CertificateAlternativeNames:",
+            "      CertificateAlternativeNames",
+            "    CertificateDomainName: \"${3:String}\" # Required",
+            "    CertificateName: \"${4:String}\" # Required",
+            "    IsAttached: ${5|false,true|}",
+            "    LoadBalancerName: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-loadbalancertlscertificate.html",
+            "Attributes: ",
+            "  LoadBalancerTlsCertificateArn",
+            "  Status"
+        ],
+        "prefix": "lightsail-loadbalancertlscertificate",
         "scope": "yaml"
     },
     "AWS::Lightsail::StaticIp": {
@@ -14879,6 +15216,7 @@
             "      Ec2InstanceTypes:",
             "        -",
             "      MaxSessionLengthInMinutes: ${8:Number}",
+            "      MaxStoppedSessionLengthInMinutes: ${9:Number}",
             "      StreamingImageIds:",
             "        -",
             "    StudioComponentIds: # Required",
@@ -16347,8 +16685,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxy.html",
             "Attributes: ",
             "  DBProxyArn",
-            "  Endpoint",
-            "  VpcId"
+            "  Endpoint"
         ],
         "prefix": "rds-dbproxy",
         "scope": "yaml"
@@ -16535,8 +16872,8 @@
             "      Telemetries:",
             "        -",
             "    CwLogEnabled: ${3|false,true|}",
-            "    Domain: \"${4:String}\"",
-            "    Name: \"${5:String}\"",
+            "    Domain: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -19962,6 +20299,7 @@
             "    LoggingRole: \"${8:String}\"",
             "    ProtocolDetails:",
             "      PassiveIp: \"${9:String}\"",
+            "      TlsSessionResumptionMode: \"${10:String}\"",
             "    Protocols:",
             "      Protocols",
             "    SecurityPolicyName: \"${11:String}\"",
