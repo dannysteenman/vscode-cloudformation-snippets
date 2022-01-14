@@ -1998,14 +1998,15 @@
             "    DataSourceName: \"${3:String}\" # Required",
             "    Description: \"${4:String}\"",
             "    FunctionVersion: \"${5:String}\" # Required",
-            "    Name: \"${6:String}\" # Required",
-            "    RequestMappingTemplate: \"${7:String}\"",
-            "    RequestMappingTemplateS3Location: \"${8:String}\"",
-            "    ResponseMappingTemplate: \"${9:String}\"",
-            "    ResponseMappingTemplateS3Location: \"${10:String}\"",
+            "    MaxBatchSize: ${6:Number}",
+            "    Name: \"${7:String}\" # Required",
+            "    RequestMappingTemplate: \"${8:String}\"",
+            "    RequestMappingTemplateS3Location: \"${9:String}\"",
+            "    ResponseMappingTemplate: \"${10:String}\"",
+            "    ResponseMappingTemplateS3Location: \"${11:String}\"",
             "    SyncConfig:",
-            "      ConflictDetection: \"${11:String}\"",
-            "      ConflictHandler: \"${12:String}\""
+            "      ConflictDetection: \"${12:String}\"",
+            "      ConflictHandler: \"${13:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html",
@@ -2085,17 +2086,18 @@
             "    DataSourceName: \"${4:String}\"",
             "    FieldName: \"${5:String}\" # Required",
             "    Kind: \"${6:String}\"",
+            "    MaxBatchSize: ${7:Number}",
             "    PipelineConfig:",
             "      Functions:",
             "        -",
-            "    RequestMappingTemplate: \"${8:String}\"",
-            "    RequestMappingTemplateS3Location: \"${9:String}\"",
-            "    ResponseMappingTemplate: \"${10:String}\"",
-            "    ResponseMappingTemplateS3Location: \"${11:String}\"",
+            "    RequestMappingTemplate: \"${9:String}\"",
+            "    RequestMappingTemplateS3Location: \"${10:String}\"",
+            "    ResponseMappingTemplate: \"${11:String}\"",
+            "    ResponseMappingTemplateS3Location: \"${12:String}\"",
             "    SyncConfig:",
-            "      ConflictDetection: \"${12:String}\"",
-            "      ConflictHandler: \"${13:String}\"",
-            "    TypeName: \"${13:String}\" # Required"
+            "      ConflictDetection: \"${13:String}\"",
+            "      ConflictHandler: \"${14:String}\"",
+            "    TypeName: \"${14:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html",
@@ -2483,9 +2485,11 @@
             "  Type: AWS::AutoScaling::WarmPool",
             "  Properties:",
             "    AutoScalingGroupName: \"${2:String}\" # Required",
-            "    MaxGroupPreparedCapacity: ${3:Number}",
-            "    MinSize: ${4:Number}",
-            "    PoolState: \"${5:String}\""
+            "    InstanceReusePolicy:",
+            "      ReuseOnScaleIn: ${3|false,true|}",
+            "    MaxGroupPreparedCapacity: ${4:Number}",
+            "    MinSize: ${5:Number}",
+            "    PoolState: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html"
@@ -6099,23 +6103,27 @@
             "    ClientConnectOptions:",
             "      Enabled: ${4|false,true|}",
             "      LambdaFunctionArn: \"${5:String}\"",
+            "    ClientLoginBannerOptions:",
+            "      BannerText: \"${5:String}\"",
+            "      Enabled: ${6|false,true|}",
             "    ConnectionLogOptions:",
-            "      CloudwatchLogGroup: \"${5:String}\"",
-            "      CloudwatchLogStream: \"${6:String}\"",
-            "      Enabled: ${7|false,true|}",
-            "    Description: \"${6:String}\"",
+            "      CloudwatchLogGroup: \"${6:String}\"",
+            "      CloudwatchLogStream: \"${7:String}\"",
+            "      Enabled: ${8|false,true|}",
+            "    Description: \"${7:String}\"",
             "    DnsServers:",
             "      DnsServers",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    SelfServicePortal: \"${9:String}\"",
-            "    ServerCertificateArn: \"${10:String}\" # Required",
-            "    SplitTunnel: ${11|false,true|}",
+            "    SelfServicePortal: \"${10:String}\"",
+            "    ServerCertificateArn: \"${11:String}\" # Required",
+            "    SessionTimeoutHours: ${12:Number}",
+            "    SplitTunnel: ${13|false,true|}",
             "    TagSpecifications:",
             "      TagSpecifications",
-            "    TransportProtocol: \"${13:String}\"",
-            "    VpcId: \"${14:String}\"",
-            "    VpnPort: ${15:Number}"
+            "    TransportProtocol: \"${15:String}\"",
+            "    VpcId: \"${16:String}\"",
+            "    VpnPort: ${17:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html"
@@ -6361,7 +6369,9 @@
             "    InstanceType: \"${5:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html",
+            "Attributes: ",
+            "  HostId"
         ],
         "prefix": "ec2-host",
         "scope": "yaml"
@@ -7695,7 +7705,9 @@
             "    VpnGatewayId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngatewayroutepropagation.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ec2-vpngatewayroutepropagation",
         "scope": "yaml"
@@ -9495,6 +9507,48 @@
         "prefix": "finspace-environment",
         "scope": "yaml"
     },
+    "AWS::Forecast::Dataset": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Forecast::Dataset",
+            "  Properties:",
+            "    DataFrequency: \"${2:String}\"",
+            "    DatasetName: \"${3:String}\" # Required",
+            "    DatasetType: \"${4:String}\" # Required",
+            "    Domain: \"${5:String}\" # Required",
+            "    EncryptionConfig: ${6:JSON}",
+            "    Schema: ${7:JSON} # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-forecast-dataset.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "forecast-dataset",
+        "scope": "yaml"
+    },
+    "AWS::Forecast::DatasetGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Forecast::DatasetGroup",
+            "  Properties:",
+            "    DatasetArns:",
+            "      DatasetArns",
+            "    DatasetGroupName: \"${3:String}\" # Required",
+            "    Domain: \"${4:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-forecast-datasetgroup.html",
+            "Attributes: ",
+            "  DatasetGroupArn"
+        ],
+        "prefix": "forecast-datasetgroup",
+        "scope": "yaml"
+    },
     "AWS::FraudDetector::Detector": {
         "body": [
             "${1:LogicalID}:",
@@ -10024,6 +10078,8 @@
             "      DynamoDBTargets:",
             "        -",
             "      JdbcTargets:",
+            "        -",
+            "      MongoDBTargets:",
             "        -",
             "      S3Targets:",
             "        -"
@@ -19389,11 +19445,12 @@
             "${1:LogicalID}:",
             "  Type: AWS::SageMaker::Pipeline",
             "  Properties:",
-            "    PipelineDefinition: ${2:JSON} # Required",
-            "    PipelineDescription: \"${3:String}\"",
-            "    PipelineDisplayName: \"${4:String}\"",
-            "    PipelineName: \"${5:String}\" # Required",
-            "    RoleArn: \"${6:String}\" # Required",
+            "    ParallelismConfiguration: ${2:JSON}",
+            "    PipelineDefinition: ${3:JSON} # Required",
+            "    PipelineDescription: \"${4:String}\"",
+            "    PipelineDisplayName: \"${5:String}\"",
+            "    PipelineName: \"${6:String}\" # Required",
+            "    RoleArn: \"${7:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
