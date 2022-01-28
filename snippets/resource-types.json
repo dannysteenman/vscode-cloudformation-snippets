@@ -1352,6 +1352,31 @@
         "prefix": "appflow-flow",
         "scope": "yaml"
     },
+    "AWS::AppIntegrations::DataIntegration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppIntegrations::DataIntegration",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    KmsKey: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    ScheduleConfig:",
+            "      FirstExecutionFrom: \"${5:String}\"",
+            "      Object: \"${6:String}\"",
+            "      ScheduleExpression: \"${7:String}\"",
+            "    SourceURI: \"${6:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html",
+            "Attributes: ",
+            "  Id",
+            "  DataIntegrationArn"
+        ],
+        "prefix": "appintegrations-dataintegration",
+        "scope": "yaml"
+    },
     "AWS::AppIntegrations::EventIntegration": {
         "body": [
             "${1:LogicalID}:",
@@ -11248,7 +11273,10 @@
             "    DestinationConfiguration:",
             "    Name: \"${3:String}\"",
             "    Tags:",
-            "      Tags"
+            "      Tags",
+            "    ThumbnailConfiguration:",
+            "      RecordingMode: \"${5:String}\"",
+            "      TargetIntervalSeconds: ${6:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html",
@@ -12762,6 +12790,37 @@
         "prefix": "kms-replicakey",
         "scope": "yaml"
     },
+    "AWS::KafkaConnect::Connector": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::KafkaConnect::Connector",
+            "  Properties:",
+            "    Capacity:",
+            "    ConnectorConfiguration:",
+            "    ConnectorDescription: \"${4:String}\"",
+            "    ConnectorName: \"${5:String}\" # Required",
+            "    KafkaCluster:",
+            "    KafkaClusterClientAuthentication:",
+            "      AuthenticationType: \"${7:String}\"",
+            "    KafkaClusterEncryptionInTransit:",
+            "      EncryptionType: \"${8:String}\"",
+            "    KafkaConnectVersion: \"${9:String}\" # Required",
+            "    LogDelivery:",
+            "    Plugins: # Required",
+            "      Plugins",
+            "    ServiceExecutionRoleArn: \"${12:String}\" # Required",
+            "    WorkerConfiguration:",
+            "      Revision: ${13:Number}",
+            "      WorkerConfigurationArn: \"${14:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kafkaconnect-connector.html",
+            "Attributes: ",
+            "  ConnectorArn"
+        ],
+        "prefix": "kafkaconnect-connector",
+        "scope": "yaml"
+    },
     "AWS::Kendra::DataSource": {
         "body": [
             "${1:LogicalID}:",
@@ -13851,7 +13910,7 @@
             "    CollectionName: \"${2:String}\" # Required",
             "    Description: \"${3:String}\"",
             "    KmsKeyId: \"${4:String}\"",
-            "    PricingPlan: \"${5:String}\" # Required",
+            "    PricingPlan: \"${5:String}\"",
             "    PricingPlanDataSource: \"${6:String}\""
         ],
         "description": [
@@ -13874,7 +13933,7 @@
             "      Style: \"${2:String}\"",
             "    Description: \"${3:String}\"",
             "    MapName: \"${4:String}\" # Required",
-            "    PricingPlan: \"${5:String}\" # Required"
+            "    PricingPlan: \"${5:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-map.html",
@@ -13898,7 +13957,7 @@
             "      IntendedUse: \"${3:String}\"",
             "    Description: \"${4:String}\"",
             "    IndexName: \"${5:String}\" # Required",
-            "    PricingPlan: \"${6:String}\" # Required"
+            "    PricingPlan: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-placeindex.html",
@@ -13919,7 +13978,7 @@
             "    CalculatorName: \"${2:String}\" # Required",
             "    DataSource: \"${3:String}\" # Required",
             "    Description: \"${4:String}\"",
-            "    PricingPlan: \"${5:String}\" # Required"
+            "    PricingPlan: \"${5:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-routecalculator.html",
@@ -13940,7 +13999,7 @@
             "    Description: \"${2:String}\"",
             "    KmsKeyId: \"${3:String}\"",
             "    PositionFiltering: \"${4:String}\"",
-            "    PricingPlan: \"${5:String}\" # Required",
+            "    PricingPlan: \"${5:String}\"",
             "    PricingPlanDataSource: \"${6:String}\"",
             "    TrackerName: \"${7:String}\" # Required"
         ],
@@ -17384,6 +17443,23 @@
         "prefix": "refactorspaces-service",
         "scope": "yaml"
     },
+    "AWS::Rekognition::Collection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Rekognition::Collection",
+            "  Properties:",
+            "    CollectionId: \"${2:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-collection.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "rekognition-collection",
+        "scope": "yaml"
+    },
     "AWS::Rekognition::Project": {
         "body": [
             "${1:LogicalID}:",
@@ -19657,10 +19733,13 @@
             "      SuperuserSecretKmsKeyArn: \"${8:String}\"",
             "      VpcSecurityGroupIds: \"${9:String}\"",
             "      VpcSubnetIds: \"${10:String}\"",
-            "    RotationLambdaARN: \"${3:String}\"",
+            "    RotateImmediatelyOnUpdate: ${3|false,true|}",
+            "    RotationLambdaARN: \"${4:String}\"",
             "    RotationRules:",
-            "      AutomaticallyAfterDays: ${4:Number}",
-            "    SecretId: \"${5:String}\" # Required"
+            "      AutomaticallyAfterDays: ${5:Number}",
+            "      Duration: \"${6:String}\"",
+            "      ScheduleExpression: \"${7:String}\"",
+            "    SecretId: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-rotationschedule.html"
@@ -20417,8 +20496,9 @@
             "  Type: AWS::Timestream::Table",
             "  Properties:",
             "    DatabaseName: \"${2:String}\" # Required",
-            "    RetentionProperties: ${3:JSON}",
-            "    TableName: \"${4:String}\"",
+            "    MagneticStoreWriteProperties: ${3:JSON}",
+            "    RetentionProperties: ${4:JSON}",
+            "    TableName: \"${5:String}\"",
             "    Tags:",
             "      Tags"
         ],
