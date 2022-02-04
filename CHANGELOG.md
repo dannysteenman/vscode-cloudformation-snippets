@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.46.0 (2022-02-04)
+-------------------
+- The following resource was updated: <a href="https://docs.aws.amazon.c
+  om/AWSCloudFormation/latest/UserGuide/AWSCloudFormation/latest/UserGui
+  de/aws-resource-events-rule.html" rel="noopener noreferrer"
+  target="_blank">AWS::Events::Rule</a>. [Github Actions]
+
+
 3.45.0 (2022-01-28)
 -------------------
 - The following resource was updated: AWS::GuardDuty::Detector. [Github
