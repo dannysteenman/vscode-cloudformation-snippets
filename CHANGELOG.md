@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.47.0 (2022-02-11)
+-------------------
+- The following resources were added:
+  AWS::CloudFormation::HookDefaultVersion,
+  AWS::CloudFormation::HookTypeConfig, and
+  AWS::CloudFormation::HookVersion. [Github Actions]
+
+
 3.46.0 (2022-02-04)
 -------------------
 - The following resource was updated: <a href="https://docs.aws.amazon.c
