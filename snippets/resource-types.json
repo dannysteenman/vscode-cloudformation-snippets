@@ -1604,9 +1604,10 @@
             "      Cpu: \"${5:String}\"",
             "      InstanceRoleArn: \"${6:String}\"",
             "      Memory: \"${7:String}\"",
-            "    ServiceName: \"${6:String}\"",
+            "    NetworkConfiguration:",
+            "    ServiceName: \"${7:String}\"",
             "    SourceConfiguration:",
-            "      AutoDeploymentsEnabled: ${8|false,true|}",
+            "      AutoDeploymentsEnabled: ${9|false,true|}",
             "    Tags:",
             "      Tags"
         ],
@@ -1619,6 +1620,28 @@
             "  Status"
         ],
         "prefix": "apprunner-service",
+        "scope": "yaml"
+    },
+    "AWS::AppRunner::VpcConnector": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppRunner::VpcConnector",
+            "  Properties:",
+            "    SecurityGroups:",
+            "      SecurityGroups",
+            "    Subnets: # Required",
+            "      Subnets",
+            "    Tags:",
+            "      Tags",
+            "    VpcConnectorName: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-vpcconnector.html",
+            "Attributes: ",
+            "  VpcConnectorArn",
+            "  VpcConnectorRevision"
+        ],
+        "prefix": "apprunner-vpcconnector",
         "scope": "yaml"
     },
     "AWS::AppStream::AppBlock": {
@@ -2427,7 +2450,7 @@
             "    UserData: \"${20:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-launchconfiguration.html"
         ],
         "prefix": "autoscaling-launchconfiguration",
         "scope": "yaml"
@@ -3076,6 +3099,65 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html"
         ],
         "prefix": "cloudformation-customresource",
+        "scope": "yaml"
+    },
+    "AWS::CloudFormation::HookDefaultVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::HookDefaultVersion",
+            "  Properties:",
+            "    TypeName: \"${2:String}\"",
+            "    TypeVersionArn: \"${3:String}\"",
+            "    VersionId: \"${4:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookdefaultversion.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "cloudformation-hookdefaultversion",
+        "scope": "yaml"
+    },
+    "AWS::CloudFormation::HookTypeConfig": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::HookTypeConfig",
+            "  Properties:",
+            "    Configuration: \"${2:String}\" # Required",
+            "    ConfigurationAlias: \"${3:String}\"",
+            "    TypeArn: \"${4:String}\"",
+            "    TypeName: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html",
+            "Attributes: ",
+            "  ConfigurationArn"
+        ],
+        "prefix": "cloudformation-hooktypeconfig",
+        "scope": "yaml"
+    },
+    "AWS::CloudFormation::HookVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFormation::HookVersion",
+            "  Properties:",
+            "    ExecutionRoleArn: \"${2:String}\"",
+            "    LoggingConfig:",
+            "      LogGroupName: \"${3:String}\"",
+            "      LogRoleArn: \"${4:String}\"",
+            "    SchemaHandlerPackage: \"${4:String}\" # Required",
+            "    TypeName: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html",
+            "Attributes: ",
+            "  Arn",
+            "  TypeArn",
+            "  IsDefaultVersion",
+            "  VersionId",
+            "  Visibility"
+        ],
+        "prefix": "cloudformation-hookversion",
         "scope": "yaml"
     },
     "AWS::CloudFormation::Macro": {
@@ -4939,10 +5021,12 @@
             "      KmsArn: \"${5:String}\"",
             "      Tasks:",
             "        -",
-            "    ObjectTypeName: \"${4:String}\" # Required",
+            "    ObjectTypeName: \"${4:String}\"",
+            "    ObjectTypeNames:",
+            "      ObjectTypeNames",
             "    Tags:",
             "      Tags",
-            "    Uri: \"${6:String}\""
+            "    Uri: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html",
@@ -5898,21 +5982,22 @@
             "    AvailabilityZones:",
             "      AvailabilityZones",
             "    BackupRetentionPeriod: ${3:Number}",
-            "    DBClusterIdentifier: \"${4:String}\"",
-            "    DBClusterParameterGroupName: \"${5:String}\"",
-            "    DBSubnetGroupName: \"${6:String}\"",
-            "    DeletionProtection: ${7|false,true|}",
+            "    CopyTagsToSnapshot: ${4|false,true|}",
+            "    DBClusterIdentifier: \"${5:String}\"",
+            "    DBClusterParameterGroupName: \"${6:String}\"",
+            "    DBSubnetGroupName: \"${7:String}\"",
+            "    DeletionProtection: ${8|false,true|}",
             "    EnableCloudwatchLogsExports:",
             "      EnableCloudwatchLogsExports",
-            "    EngineVersion: \"${9:String}\"",
-            "    KmsKeyId: \"${10:String}\"",
-            "    MasterUserPassword: \"${11:String}\" # Required",
-            "    MasterUsername: \"${12:String}\" # Required",
-            "    Port: ${13:Number}",
-            "    PreferredBackupWindow: \"${14:String}\"",
-            "    PreferredMaintenanceWindow: \"${15:String}\"",
-            "    SnapshotIdentifier: \"${16:String}\"",
-            "    StorageEncrypted: ${17|false,true|}",
+            "    EngineVersion: \"${10:String}\"",
+            "    KmsKeyId: \"${11:String}\"",
+            "    MasterUserPassword: \"${12:String}\" # Required",
+            "    MasterUsername: \"${13:String}\" # Required",
+            "    Port: ${14:Number}",
+            "    PreferredBackupWindow: \"${15:String}\"",
+            "    PreferredMaintenanceWindow: \"${16:String}\"",
+            "    SnapshotIdentifier: \"${17:String}\"",
+            "    StorageEncrypted: ${18|false,true|}",
             "    Tags:",
             "      Tags",
             "    VpcSecurityGroupIds:",
@@ -7137,13 +7222,20 @@
             "  Properties:",
             "    AssignIpv6AddressOnCreation: ${2|false,true|}",
             "    AvailabilityZone: \"${3:String}\"",
-            "    CidrBlock: \"${4:String}\" # Required",
-            "    Ipv6CidrBlock: \"${5:String}\"",
-            "    MapPublicIpOnLaunch: ${6|false,true|}",
-            "    OutpostArn: \"${7:String}\"",
+            "    AvailabilityZoneId: \"${4:String}\"",
+            "    CidrBlock: \"${5:String}\" # Required",
+            "    EnableDns64: ${6|false,true|}",
+            "    Ipv6CidrBlock: \"${7:String}\"",
+            "    Ipv6Native: ${8|false,true|}",
+            "    MapPublicIpOnLaunch: ${9|false,true|}",
+            "    OutpostArn: \"${10:String}\"",
+            "    PrivateDnsNameOptionsOnLaunch:",
+            "      EnableResourceNameDnsAAAARecord: ${11|false,true|}",
+            "      EnableResourceNameDnsARecord: ${12|false,true|}",
+            "      HostnameType: \"${13:String}\"",
             "    Tags:",
             "      Tags",
-            "    VpcId: \"${9:String}\" # Required"
+            "    VpcId: \"${13:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html",
@@ -7557,6 +7649,8 @@
             "    EnableDnsHostnames: ${3|false,true|}",
             "    EnableDnsSupport: ${4|false,true|}",
             "    InstanceTenancy: \"${5:String}\"",
+            "    Ipv4IpamPoolId: \"${6:String}\"",
+            "    Ipv4NetmaskLength: ${7:Number}",
             "    Tags:",
             "      Tags"
         ],
@@ -7579,9 +7673,13 @@
             "  Properties:",
             "    AmazonProvidedIpv6CidrBlock: ${2|false,true|}",
             "    CidrBlock: \"${3:String}\"",
-            "    Ipv6CidrBlock: \"${4:String}\"",
-            "    Ipv6Pool: \"${5:String}\"",
-            "    VpcId: \"${6:String}\" # Required"
+            "    Ipv4IpamPoolId: \"${4:String}\"",
+            "    Ipv4NetmaskLength: ${5:Number}",
+            "    Ipv6CidrBlock: \"${6:String}\"",
+            "    Ipv6IpamPoolId: \"${7:String}\"",
+            "    Ipv6NetmaskLength: ${8:Number}",
+            "    Ipv6Pool: \"${9:String}\"",
+            "    VpcId: \"${10:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html"
@@ -8295,8 +8393,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html",
             "Attributes: ",
-            "  NodegroupName",
             "  ClusterName",
+            "  NodegroupName",
+            "  Id",
             "  Arn"
         ],
         "prefix": "eks-nodegroup",
@@ -18631,7 +18730,9 @@
             "      TextPart: \"${5:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ses-template",
         "scope": "yaml"
@@ -18718,8 +18819,9 @@
             "    VisibilityTimeout: ${16:Number}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html",
             "Attributes: ",
+            "  QueueUrl",
             "  Arn",
             "  QueueName"
         ],
