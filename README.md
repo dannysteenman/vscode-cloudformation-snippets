@@ -54,3 +54,11 @@ Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-clo
 <p align="left">
   <a href="https://twitter.com/dannysteenman"><img src="https://img.shields.io/twitter/follow/dannysteenman?label=%40dannysteenman&style=social"></a>
 </p>
+
+---
+
+## Support my work
+
+If you found this VS Code extension helpful, please consider showing your support by buying me a coffee.
+
+<a href="https://www.buymeacoffee.com/dannysteenman" target="_blank"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=dannysteenman&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
