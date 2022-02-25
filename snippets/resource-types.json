@@ -382,23 +382,22 @@
             "    Children:",
             "      Children",
             "    CollectionProperties:",
-            "    ComponentType: \"${5:String}\"",
-            "    Name: \"${6:String}\"",
+            "    ComponentType: \"${5:String}\" # Required",
+            "    Events:",
+            "    Name: \"${7:String}\" # Required",
             "    Overrides:",
             "    Properties:",
-            "    SourceId: \"${9:String}\"",
+            "    SourceId: \"${10:String}\"",
             "    Tags:",
-            "    Variants:",
+            "    Variants: # Required",
             "      Variants"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-component.html",
             "Attributes: ",
             "  AppId",
-            "  CreatedAt",
             "  EnvironmentName",
-            "  Id",
-            "  ModifiedAt"
+            "  Id"
         ],
         "prefix": "amplifyuibuilder-component",
         "scope": "yaml"
@@ -5662,6 +5661,27 @@
         "prefix": "datasync-locationefs",
         "scope": "yaml"
     },
+    "AWS::DataSync::LocationFSxLustre": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataSync::LocationFSxLustre",
+            "  Properties:",
+            "    FsxFilesystemArn: \"${2:String}\" # Required",
+            "    SecurityGroupArns: # Required",
+            "      SecurityGroupArns",
+            "    Subdirectory: \"${4:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxlustre.html",
+            "Attributes: ",
+            "  LocationArn",
+            "  LocationUri"
+        ],
+        "prefix": "datasync-locationfsxlustre",
+        "scope": "yaml"
+    },
     "AWS::DataSync::LocationFSxWindows": {
         "body": [
             "${1:LogicalID}:",
@@ -9340,7 +9360,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::Events::Connection",
             "  Properties:",
-            "    AuthParameters: ${2:JSON} # Required",
+            "    AuthParameters:",
             "    AuthorizationType: \"${3:String}\" # Required",
             "    Description: \"${4:String}\"",
             "    Name: \"${5:String}\""
@@ -20700,12 +20720,14 @@
             "      Url: \"${9:String}\"",
             "    IdentityProviderType: \"${7:String}\"",
             "    LoggingRole: \"${8:String}\"",
+            "    PostAuthenticationLoginBanner: \"${9:String}\"",
+            "    PreAuthenticationLoginBanner: \"${10:String}\"",
             "    ProtocolDetails:",
-            "      PassiveIp: \"${9:String}\"",
-            "      TlsSessionResumptionMode: \"${10:String}\"",
+            "      PassiveIp: \"${11:String}\"",
+            "      TlsSessionResumptionMode: \"${12:String}\"",
             "    Protocols:",
             "      Protocols",
-            "    SecurityPolicyName: \"${11:String}\"",
+            "    SecurityPolicyName: \"${13:String}\"",
             "    Tags:",
             "      Tags",
             "    WorkflowDetails:",
