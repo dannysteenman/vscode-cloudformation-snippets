@@ -387,7 +387,8 @@
             "    Name: \"${7:String}\" # Required",
             "    Overrides:",
             "    Properties:",
-            "    SourceId: \"${10:String}\"",
+            "    SchemaVersion: \"${10:String}\"",
+            "    SourceId: \"${11:String}\"",
             "    Tags:",
             "    Variants: # Required",
             "      Variants"
@@ -497,8 +498,9 @@
             "  Properties:",
             "    BasePath: \"${2:String}\"",
             "    DomainName: \"${3:String}\" # Required",
-            "    RestApiId: \"${4:String}\"",
-            "    Stage: \"${5:String}\""
+            "    Id: \"${4:String}\"",
+            "    RestApiId: \"${5:String}\"",
+            "    Stage: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html"
@@ -7652,12 +7654,12 @@
             "    Options: ${3:JSON}",
             "    RemoveSubnetIds:",
             "      RemoveSubnetIds",
-            "    SubnetIds:",
+            "    SubnetIds: # Required",
             "      SubnetIds",
             "    Tags:",
             "      Tags",
-            "    TransitGatewayId: \"${7:String}\"",
-            "    VpcId: \"${8:String}\""
+            "    TransitGatewayId: \"${7:String}\" # Required",
+            "    VpcId: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayvpcattachment.html",
@@ -8391,6 +8393,34 @@
             "  Arn"
         ],
         "prefix": "eks-fargateprofile",
+        "scope": "yaml"
+    },
+    "AWS::EKS::IdentityProviderConfig": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EKS::IdentityProviderConfig",
+            "  Properties:",
+            "    ClusterName: \"${2:String}\" # Required",
+            "    IdentityProviderConfigName: \"${3:String}\"",
+            "    Oidc:",
+            "      ClientId: \"${4:String}\"",
+            "      GroupsClaim: \"${5:String}\"",
+            "      GroupsPrefix: \"${6:String}\"",
+            "      IssuerUrl: \"${7:String}\"",
+            "      RequiredClaims:",
+            "        -",
+            "      UsernameClaim: \"${9:String}\"",
+            "      UsernamePrefix: \"${10:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Type: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html",
+            "Attributes: ",
+            "  IdentityProviderConfigArn"
+        ],
+        "prefix": "eks-identityproviderconfig",
         "scope": "yaml"
     },
     "AWS::EKS::Nodegroup": {
@@ -11581,7 +11611,8 @@
             "Attributes: ",
             "  Arn",
             "  Name",
-            "  ImageId"
+            "  ImageId",
+            "  ImageUri"
         ],
         "prefix": "imagebuilder-image",
         "scope": "yaml"
@@ -14401,6 +14432,21 @@
         "prefix": "lookoutvision-project",
         "scope": "yaml"
     },
+    "AWS::MSK::BatchScramSecret": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MSK::BatchScramSecret",
+            "  Properties:",
+            "    ClusterArn: \"${2:String}\" # Required",
+            "    SecretArnList:",
+            "      SecretArnList"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-batchscramsecret.html"
+        ],
+        "prefix": "msk-batchscramsecret",
+        "scope": "yaml"
+    },
     "AWS::MSK::Cluster": {
         "body": [
             "${1:LogicalID}:",
@@ -14418,18 +14464,40 @@
             "    ConfigurationInfo:",
             "      Arn: \"${5:String}\"",
             "      Revision: ${6:Number}",
+            "    CurrentVersion: \"${6:String}\"",
             "    EncryptionInfo:",
-            "    EnhancedMonitoring: \"${7:String}\"",
-            "    KafkaVersion: \"${8:String}\" # Required",
+            "    EnhancedMonitoring: \"${8:String}\"",
+            "    KafkaVersion: \"${9:String}\" # Required",
             "    LoggingInfo:",
-            "    NumberOfBrokerNodes: ${10:Number} # Required",
+            "    NumberOfBrokerNodes: ${11:Number} # Required",
             "    OpenMonitoring:",
-            "    Tags: ${12:JSON}"
+            "    Tags:"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-cluster.html",
+            "Attributes: ",
+            "  Arn"
         ],
         "prefix": "msk-cluster",
+        "scope": "yaml"
+    },
+    "AWS::MSK::Configuration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MSK::Configuration",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    KafkaVersionsList:",
+            "      KafkaVersionsList",
+            "    Name: \"${4:String}\"",
+            "    ServerProperties: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-configuration.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "msk-configuration",
         "scope": "yaml"
     },
     "AWS::MWAA::Environment": {
