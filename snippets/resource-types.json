@@ -7251,29 +7251,23 @@
             "  Properties:",
             "    AssignIpv6AddressOnCreation: ${2|false,true|}",
             "    AvailabilityZone: \"${3:String}\"",
-            "    AvailabilityZoneId: \"${4:String}\"",
-            "    CidrBlock: \"${5:String}\" # Required",
-            "    EnableDns64: ${6|false,true|}",
-            "    Ipv6CidrBlock: \"${7:String}\"",
-            "    Ipv6Native: ${8|false,true|}",
-            "    MapPublicIpOnLaunch: ${9|false,true|}",
-            "    OutpostArn: \"${10:String}\"",
-            "    PrivateDnsNameOptionsOnLaunch:",
-            "      EnableResourceNameDnsAAAARecord: ${11|false,true|}",
-            "      EnableResourceNameDnsARecord: ${12|false,true|}",
-            "      HostnameType: \"${13:String}\"",
+            "    CidrBlock: \"${4:String}\" # Required",
+            "    Ipv6CidrBlock: \"${5:String}\"",
+            "    MapPublicIpOnLaunch: ${6|false,true|}",
+            "    OutpostArn: \"${7:String}\"",
             "    Tags:",
             "      Tags",
-            "    VpcId: \"${13:String}\" # Required"
+            "    VpcId: \"${9:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html",
             "Attributes: ",
-            "  AvailabilityZone",
-            "  Ipv6CidrBlocks",
+            "  VpcId",
             "  NetworkAclAssociationId",
             "  OutpostArn",
-            "  VpcId"
+            "  AvailabilityZone",
+            "  Id",
+            "  Ipv6CidrBlocks"
         ],
         "prefix": "ec2-subnet",
         "scope": "yaml"
@@ -7566,14 +7560,12 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::TransitGatewayPeeringAttachment",
             "  Properties:",
-            "    Options:",
-            "      DynamicRouting: \"${2:String}\"",
-            "    PeerAccountId: \"${3:String}\" # Required",
-            "    PeerRegion: \"${4:String}\" # Required",
-            "    PeerTransitGatewayId: \"${5:String}\" # Required",
+            "    PeerAccountId: \"${2:String}\" # Required",
+            "    PeerRegion: \"${3:String}\" # Required",
+            "    PeerTransitGatewayId: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TransitGatewayId: \"${7:String}\" # Required"
+            "    TransitGatewayId: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html",
@@ -9575,7 +9567,11 @@
             "  Properties:",
             "    Actions:",
             "    Description: \"${3:String}\" # Required",
-            "    RoleArn: \"${4:String}\" # Required",
+            "    LogConfiguration:",
+            "      CloudWatchLogsConfiguration: ${4:JSON}",
+            "      LogSchemaVersion: ${5:Number}",
+            "      S3Configuration: ${6:JSON}",
+            "    RoleArn: \"${5:String}\" # Required",
             "    StopConditions: # Required",
             "      StopConditions",
             "    Tags:",
@@ -16173,6 +16169,89 @@
             "  RegisteredTime"
         ],
         "prefix": "panorama-packageversion",
+        "scope": "yaml"
+    },
+    "AWS::Personalize::Dataset": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Personalize::Dataset",
+            "  Properties:",
+            "    DatasetGroupArn: \"${2:String}\" # Required",
+            "    DatasetImportJob:",
+            "      DataSource: ${3:JSON}",
+            "      DatasetArn: \"${4:String}\"",
+            "      DatasetImportJobArn: \"${5:String}\"",
+            "      JobName: \"${6:String}\"",
+            "      RoleArn: \"${7:String}\"",
+            "    DatasetType: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    SchemaArn: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-dataset.html",
+            "Attributes: ",
+            "  DatasetArn"
+        ],
+        "prefix": "personalize-dataset",
+        "scope": "yaml"
+    },
+    "AWS::Personalize::DatasetGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Personalize::DatasetGroup",
+            "  Properties:",
+            "    Domain: \"${2:String}\"",
+            "    KmsKeyArn: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
+            "    RoleArn: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-datasetgroup.html",
+            "Attributes: ",
+            "  DatasetGroupArn"
+        ],
+        "prefix": "personalize-datasetgroup",
+        "scope": "yaml"
+    },
+    "AWS::Personalize::Schema": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Personalize::Schema",
+            "  Properties:",
+            "    Domain: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Schema: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-schema.html",
+            "Attributes: ",
+            "  SchemaArn"
+        ],
+        "prefix": "personalize-schema",
+        "scope": "yaml"
+    },
+    "AWS::Personalize::Solution": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Personalize::Solution",
+            "  Properties:",
+            "    DatasetGroupArn: \"${2:String}\" # Required",
+            "    EventType: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
+            "    PerformAutoML: ${5|false,true|}",
+            "    PerformHPO: ${6|false,true|}",
+            "    RecipeArn: \"${7:String}\"",
+            "    SolutionConfig:",
+            "      AutoMLConfig: ${9:JSON}",
+            "      EventValueThreshold: \"${10:String}\"",
+            "      HpoConfig: ${12:JSON}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-solution.html",
+            "Attributes: ",
+            "  SolutionArn"
+        ],
+        "prefix": "personalize-solution",
         "scope": "yaml"
     },
     "AWS::Pinpoint::ADMChannel": {
