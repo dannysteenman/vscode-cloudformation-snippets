@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.53.0 (2022-03-25)
+-------------------
+- The following resource was updated: AWS::Lambda::Function. [Github
+  Actions]
+
+
 3.52.0 (2022-03-18)
 -------------------
 - The following resources were updated: AWS::ACMPCA::Certificate and
