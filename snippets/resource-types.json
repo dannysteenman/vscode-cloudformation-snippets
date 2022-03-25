@@ -3905,10 +3905,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-metricstream.html",
             "Attributes: ",
-            "  Arn",
             "  CreationDate",
-            "  LastUpdateDate",
-            "  State"
+            "  State",
+            "  Arn",
+            "  LastUpdateDate"
         ],
         "prefix": "cloudwatch-metricstream",
         "scope": "yaml"
@@ -6043,7 +6043,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::DevOpsGuru::ResourceCollection",
             "  Properties:",
-            "    ResourceCollectionFilter:"
+            "    ResourceCollectionFilter:",
+            "      Tags:",
+            "        -"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-resourcecollection.html",
@@ -6172,7 +6174,8 @@
             "    DBClusterIdentifier: \"${4:String}\" # Required",
             "    DBInstanceClass: \"${5:String}\" # Required",
             "    DBInstanceIdentifier: \"${6:String}\"",
-            "    PreferredMaintenanceWindow: \"${7:String}\"",
+            "    EnablePerformanceInsights: ${7|false,true|}",
+            "    PreferredMaintenanceWindow: \"${8:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -9819,6 +9822,89 @@
         "prefix": "fsx-filesystem",
         "scope": "yaml"
     },
+    "AWS::FSx::Snapshot": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::FSx::Snapshot",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    VolumeId: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-snapshot.html",
+            "Attributes: ",
+            "  ResourceARN"
+        ],
+        "prefix": "fsx-snapshot",
+        "scope": "yaml"
+    },
+    "AWS::FSx::StorageVirtualMachine": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::FSx::StorageVirtualMachine",
+            "  Properties:",
+            "    ActiveDirectoryConfiguration:",
+            "      NetBiosName: \"${2:String}\"",
+            "    FileSystemId: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    RootVolumeSecurityStyle: \"${5:String}\"",
+            "    SvmAdminPassword: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-storagevirtualmachine.html",
+            "Attributes: ",
+            "  ResourceARN",
+            "  StorageVirtualMachineId",
+            "  UUID"
+        ],
+        "prefix": "fsx-storagevirtualmachine",
+        "scope": "yaml"
+    },
+    "AWS::FSx::Volume": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::FSx::Volume",
+            "  Properties:",
+            "    BackupId: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    OntapConfiguration:",
+            "      JunctionPath: \"${4:String}\"",
+            "      SecurityStyle: \"${5:String}\"",
+            "      SizeInMegabytes: \"${6:String}\"",
+            "      StorageEfficiencyEnabled: \"${7:String}\"",
+            "      StorageVirtualMachineId: \"${8:String}\"",
+            "    OpenZFSConfiguration:",
+            "      CopyTagsToSnapshots: ${5|false,true|}",
+            "      DataCompressionType: \"${6:String}\"",
+            "      NfsExports:",
+            "        -",
+            "      Options:",
+            "        -",
+            "      ParentVolumeId: \"${10:String}\"",
+            "      ReadOnly: ${11|false,true|}",
+            "      RecordSizeKiB: ${12:Number}",
+            "      StorageCapacityQuotaGiB: ${13:Number}",
+            "      StorageCapacityReservationGiB: ${14:Number}",
+            "      UserAndGroupQuotas:",
+            "        -",
+            "    Tags:",
+            "      Tags",
+            "    VolumeType: \"${7:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-volume.html",
+            "Attributes: ",
+            "  ResourceARN",
+            "  VolumeId",
+            "  UUID"
+        ],
+        "prefix": "fsx-volume",
+        "scope": "yaml"
+    },
     "AWS::FinSpace::Environment": {
         "body": [
             "${1:LogicalID}:",
@@ -12531,6 +12617,30 @@
         "prefix": "iotcoredeviceadvisor-suitedefinition",
         "scope": "yaml"
     },
+    "AWS::IoTEvents::AlarmModel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTEvents::AlarmModel",
+            "  Properties:",
+            "    AlarmCapabilities:",
+            "    AlarmEventActions:",
+            "      AlarmActions:",
+            "        -",
+            "    AlarmModelDescription: \"${4:String}\"",
+            "    AlarmModelName: \"${5:String}\"",
+            "    AlarmRule:",
+            "    Key: \"${7:String}\"",
+            "    RoleArn: \"${8:String}\" # Required",
+            "    Severity: ${9:Number}",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotevents-alarmmodel.html"
+        ],
+        "prefix": "iotevents-alarmmodel",
+        "scope": "yaml"
+    },
     "AWS::IoTEvents::DetectorModel": {
         "body": [
             "${1:LogicalID}:",
@@ -13645,29 +13755,31 @@
             "      TargetArn: \"${5:String}\"",
             "    Description: \"${6:String}\"",
             "    Environment:",
+            "    EphemeralStorage:",
+            "      Size: ${8:Number}",
             "    FileSystemConfigs:",
             "      FileSystemConfigs",
-            "    FunctionName: \"${9:String}\"",
-            "    Handler: \"${10:String}\"",
+            "    FunctionName: \"${10:String}\"",
+            "    Handler: \"${11:String}\"",
             "    ImageConfig:",
             "      Command:",
             "        -",
             "      EntryPoint:",
             "        -",
-            "      WorkingDirectory: \"${13:String}\"",
-            "    KmsKeyArn: \"${12:String}\"",
+            "      WorkingDirectory: \"${14:String}\"",
+            "    KmsKeyArn: \"${13:String}\"",
             "    Layers:",
             "      Layers",
-            "    MemorySize: ${14:Number}",
-            "    PackageType: \"${15:String}\"",
-            "    ReservedConcurrentExecutions: ${16:Number}",
-            "    Role: \"${17:String}\" # Required",
-            "    Runtime: \"${18:String}\"",
+            "    MemorySize: ${15:Number}",
+            "    PackageType: \"${16:String}\"",
+            "    ReservedConcurrentExecutions: ${17:Number}",
+            "    Role: \"${18:String}\" # Required",
+            "    Runtime: \"${19:String}\"",
             "    Tags:",
             "      Tags",
-            "    Timeout: ${20:Number}",
+            "    Timeout: ${21:Number}",
             "    TracingConfig:",
-            "      Mode: \"${21:String}\"",
+            "      Mode: \"${22:String}\"",
             "    VpcConfig:",
             "      SecurityGroupIds:",
             "        -",
@@ -13730,8 +13842,9 @@
             "    EventSourceToken: \"${3:String}\"",
             "    FunctionName: \"${4:String}\" # Required",
             "    Principal: \"${5:String}\" # Required",
-            "    SourceAccount: \"${6:String}\"",
-            "    SourceArn: \"${7:String}\""
+            "    PrincipalOrgID: \"${6:String}\"",
+            "    SourceAccount: \"${7:String}\"",
+            "    SourceArn: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html"
@@ -13777,6 +13890,11 @@
             "    IdleSessionTTLInSeconds: ${8:Number} # Required",
             "    Name: \"${9:String}\" # Required",
             "    RoleArn: \"${10:String}\" # Required",
+            "    TestBotAliasSettings:",
+            "      BotAliasLocaleSettings:",
+            "        -",
+            "      Description: \"${13:String}\"",
+            "      SentimentAnalysisSettings: ${14:JSON}",
             "    TestBotAliasTags:",
             "      TestBotAliasTags"
         ],
