@@ -2,6 +2,22 @@ Changelog
 =========
 
 
+3.56.0 (2022-04-11)
+-------------------
+
+Fix
+~~~
+- Vsx registry publishing action. [Danny Steenman]
+
+Other
+~~~~~
+- The following resource was added: <a href="https://docs.aws.amazon.com
+  /AWSCloudFormation/latest/UserGuide/AWSCloudFormation/latest/UserGuide
+  /aws-resource-events-endpoint.html" rel="noopener noreferrer"
+  target="_blank">AWS::Events::Endpoint</a>. [Github Actions]
+- Feat: publish extension to the open vsx registry. [Danny Steenman]
+
+
 3.55.0 (2022-04-08)
 -------------------
 - The following resource was updated: <a href="https://docs.aws.amazon.c
