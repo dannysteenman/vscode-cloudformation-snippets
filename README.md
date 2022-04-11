@@ -8,6 +8,11 @@ This extension adds snippets for all the AWS CloudFormation resources into Visua
 
 ---
 
+## New
+
+- Added support for [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14) by publishing this extension to the [Open VSX Registry](https://open-vsx.org/extension/dsteenman/cloudformation-yaml-snippets)
+
+
 ## Features
 
 1. Supports all resources that are defined by CloudFormation

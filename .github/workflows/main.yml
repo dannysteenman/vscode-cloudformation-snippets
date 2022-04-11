@@ -39,9 +39,14 @@ jobs:
           git commit -am "Changelog version: $package_version"
           git push
           git push origin --tags
-      - name: Publish to vscode marketplace
+      - name: Publish to VS Code marketplace
         uses: lannonbr/vsce-action@3.0.0
         with:
           args: "publish -p $VSCE_TOKEN"
         env:
           VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+      - name: Publish to Open VSX Registry
+        env:
+          OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
+        run: |
+          npx ovsx publish -p $OPEN_VSX_TOKEN *.vsix
