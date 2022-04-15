@@ -1588,6 +1588,27 @@
         "prefix": "appmesh-virtualservice",
         "scope": "yaml"
     },
+    "AWS::AppRunner::ObservabilityConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppRunner::ObservabilityConfiguration",
+            "  Properties:",
+            "    ObservabilityConfigurationName: \"${2:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    TraceConfiguration:",
+            "      Vendor: \"${4:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-observabilityconfiguration.html",
+            "Attributes: ",
+            "  ObservabilityConfigurationArn",
+            "  ObservabilityConfigurationRevision",
+            "  Latest"
+        ],
+        "prefix": "apprunner-observabilityconfiguration",
+        "scope": "yaml"
+    },
     "AWS::AppRunner::Service": {
         "body": [
             "${1:LogicalID}:",
@@ -1608,9 +1629,12 @@
             "      InstanceRoleArn: \"${6:String}\"",
             "      Memory: \"${7:String}\"",
             "    NetworkConfiguration:",
-            "    ServiceName: \"${7:String}\"",
+            "    ObservabilityConfiguration:",
+            "      ObservabilityConfigurationArn: \"${7:String}\"",
+            "      ObservabilityEnabled: ${8|false,true|}",
+            "    ServiceName: \"${8:String}\"",
             "    SourceConfiguration:",
-            "      AutoDeploymentsEnabled: ${9|false,true|}",
+            "      AutoDeploymentsEnabled: ${10|false,true|}",
             "    Tags:",
             "      Tags"
         ],
@@ -1799,7 +1823,10 @@
             "    MaxUserDurationInSeconds: ${15:Number}",
             "    Name: \"${16:String}\" # Required",
             "    Platform: \"${17:String}\"",
-            "    StreamView: \"${18:String}\"",
+            "    SessionScriptS3Location:",
+            "      S3Bucket: \"${18:String}\"",
+            "      S3Key: \"${19:String}\"",
+            "    StreamView: \"${19:String}\"",
             "    Tags:",
             "      Tags",
             "    UsbDeviceFilterStrings:",
@@ -2309,19 +2336,12 @@
             "      BytesScannedCutoffPerQuery: ${7:Number}",
             "      EnforceWorkGroupConfiguration: ${8|false,true|}",
             "      PublishCloudWatchMetricsEnabled: ${10|false,true|}",
-            "      RequesterPaysEnabled: ${11|false,true|}",
-            "    WorkGroupConfigurationUpdates:",
-            "      BytesScannedCutoffPerQuery: ${8:Number}",
-            "      EnforceWorkGroupConfiguration: ${9|false,true|}",
-            "      PublishCloudWatchMetricsEnabled: ${11|false,true|}",
-            "      RemoveBytesScannedCutoffPerQuery: ${12|false,true|}",
-            "      RequesterPaysEnabled: ${13|false,true|}"
+            "      RequesterPaysEnabled: ${11|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html",
             "Attributes: ",
             "  WorkGroupConfiguration.EngineVersion.EffectiveEngineVersion",
-            "  WorkGroupConfigurationUpdates.EngineVersion.EffectiveEngineVersion",
             "  CreationTime"
         ],
         "prefix": "athena-workgroup",
@@ -2715,16 +2735,11 @@
             "      Subnets:",
             "        -",
             "      Type: \"${19:String}\"",
-            "      UpdateToLatestImageVersion: ${20|false,true|}",
-            "    ReplaceComputeEnvironment: ${4|false,true|}",
-            "    ServiceRole: \"${5:String}\"",
-            "    State: \"${6:String}\"",
+            "    ServiceRole: \"${4:String}\"",
+            "    State: \"${5:String}\"",
             "    Tags:",
-            "    Type: \"${8:String}\" # Required",
-            "    UnmanagedvCpus: ${9:Number}",
-            "    UpdatePolicy:",
-            "      JobExecutionTimeoutMinutes: ${10:Number}",
-            "      TerminateJobsOnUpdate: ${11|false,true|}"
+            "    Type: \"${7:String}\" # Required",
+            "    UnmanagedvCpus: ${8:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html",
@@ -2982,7 +2997,9 @@
             "    MonitorDimension: \"${2:String}\"",
             "    MonitorName: \"${3:String}\" # Required",
             "    MonitorSpecification: \"${4:String}\"",
-            "    MonitorType: \"${5:String}\" # Required"
+            "    MonitorType: \"${5:String}\" # Required",
+            "    ResourceTags:",
+            "      ResourceTags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalymonitor.html",
@@ -3004,10 +3021,12 @@
             "    Frequency: \"${2:String}\" # Required",
             "    MonitorArnList: # Required",
             "      MonitorArnList",
+            "    ResourceTags:",
+            "      ResourceTags",
             "    Subscribers: # Required",
             "      Subscribers",
-            "    SubscriptionName: \"${5:String}\" # Required",
-            "    Threshold: ${6:Number} # Required"
+            "    SubscriptionName: \"${6:String}\" # Required",
+            "    Threshold: ${7:Number} # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalysubscription.html",
@@ -3904,16 +3923,18 @@
             "    Name: \"${5:String}\"",
             "    OutputFormat: \"${6:String}\" # Required",
             "    RoleArn: \"${7:String}\" # Required",
+            "    StatisticsConfigurations:",
+            "      StatisticsConfigurations",
             "    Tags:",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-metricstream.html",
             "Attributes: ",
-            "  CreationDate",
-            "  State",
             "  Arn",
-            "  LastUpdateDate"
+            "  CreationDate",
+            "  LastUpdateDate",
+            "  State"
         ],
         "prefix": "cloudwatch-metricstream",
         "scope": "yaml"
@@ -7617,9 +7638,8 @@
             "  Type: AWS::EC2::TrafficMirrorTarget",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    GatewayLoadBalancerEndpointId: \"${3:String}\"",
-            "    NetworkInterfaceId: \"${4:String}\"",
-            "    NetworkLoadBalancerArn: \"${5:String}\"",
+            "    NetworkInterfaceId: \"${3:String}\"",
+            "    NetworkLoadBalancerArn: \"${4:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -19529,7 +19549,8 @@
             "    Tags:",
             "      Tags",
             "    TargetType: \"${9:String}\"",
-            "    VersionName: \"${10:String}\""
+            "    UpdateMethod: \"${10:String}\"",
+            "    VersionName: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html"
