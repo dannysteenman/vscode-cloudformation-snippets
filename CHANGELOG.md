@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.57.0 (2022-04-15)
+-------------------
+- The following resources were updated: <code
+  class="code">AWS::AppStream::Fleet</code> [Github Actions]
+
+
 3.56.0 (2022-04-11)
 -------------------
 
