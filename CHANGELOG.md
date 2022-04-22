@@ -2,6 +2,16 @@ Changelog
 =========
 
 
+3.58.0 (2022-04-22)
+-------------------
+- New parameters were added to AWS::Evidently::Experiment and
+  AWS::Evidently::Launch. [Github Actions]
+- Chore: update vscode publisher name. [Danny Steenman]
+
+  temporary disable openvsx publish step, see issue:
+  https://github.com/eclipse/openvsx/issues/427
+
+
 3.57.0 (2022-04-15)
 -------------------
 - The following resources were updated: <code
