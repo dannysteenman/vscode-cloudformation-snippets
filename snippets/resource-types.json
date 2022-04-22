@@ -2735,11 +2735,16 @@
             "      Subnets:",
             "        -",
             "      Type: \"${19:String}\"",
-            "    ServiceRole: \"${4:String}\"",
-            "    State: \"${5:String}\"",
+            "      UpdateToLatestImageVersion: ${20|false,true|}",
+            "    ReplaceComputeEnvironment: ${4|false,true|}",
+            "    ServiceRole: \"${5:String}\"",
+            "    State: \"${6:String}\"",
             "    Tags:",
-            "    Type: \"${7:String}\" # Required",
-            "    UnmanagedvCpus: ${8:Number}"
+            "    Type: \"${8:String}\" # Required",
+            "    UnmanagedvCpus: ${9:Number}",
+            "    UpdatePolicy:",
+            "      JobExecutionTimeoutMinutes: ${10:Number}",
+            "      TerminateJobsOnUpdate: ${11|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html",
@@ -2858,7 +2863,9 @@
             "      PricingPlanArn: \"${3:String}\"",
             "    Description: \"${4:String}\"",
             "    Name: \"${5:String}\" # Required",
-            "    PrimaryAccountId: \"${6:String}\" # Required"
+            "    PrimaryAccountId: \"${6:String}\" # Required",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-billinggroup.html",
@@ -2885,7 +2892,9 @@
             "    CustomLineItemChargeDetails:",
             "      Type: \"${6:String}\"",
             "    Description: \"${5:String}\"",
-            "    Name: \"${6:String}\" # Required"
+            "    Name: \"${6:String}\" # Required",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-customlineitem.html",
@@ -2908,7 +2917,9 @@
             "    Description: \"${2:String}\"",
             "    Name: \"${3:String}\" # Required",
             "    PricingRuleArns:",
-            "      PricingRuleArns"
+            "      PricingRuleArns",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingplan.html",
@@ -2931,7 +2942,9 @@
             "    Name: \"${4:String}\" # Required",
             "    Scope: \"${5:String}\" # Required",
             "    Service: \"${6:String}\"",
-            "    Type: \"${7:String}\" # Required"
+            "    Tags:",
+            "      Tags",
+            "    Type: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingrule.html",
@@ -3816,7 +3829,7 @@
             "    Unit: \"${22:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-alarm.html",
             "Attributes: ",
             "  Arn"
         ],
@@ -5050,6 +5063,28 @@
             "  HoursOfOperationArn"
         ],
         "prefix": "connect-hoursofoperation",
+        "scope": "yaml"
+    },
+    "AWS::Connect::PhoneNumber": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::PhoneNumber",
+            "  Properties:",
+            "    CountryCode: \"${2:String}\" # Required",
+            "    Description: \"${3:String}\"",
+            "    Prefix: \"${4:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    TargetArn: \"${6:String}\" # Required",
+            "    Type: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-phonenumber.html",
+            "Attributes: ",
+            "  PhoneNumberArn",
+            "  Address"
+        ],
+        "prefix": "connect-phonenumber",
         "scope": "yaml"
     },
     "AWS::Connect::QuickConnect": {
@@ -9751,7 +9786,12 @@
             "        -",
             "    Project: \"${6:String}\" # Required",
             "    RandomizationSalt: \"${7:String}\"",
-            "    SamplingRate: ${8:Number}",
+            "    RunningStatus:",
+            "      AnalysisCompleteTime: \"${8:String}\"",
+            "      DesiredState: \"${9:String}\"",
+            "      Reason: \"${10:String}\"",
+            "      Status: \"${11:String}\"",
+            "    SamplingRate: ${9:Number}",
             "    Tags:",
             "      Tags",
             "    Treatments: # Required",
@@ -9796,13 +9836,17 @@
             "  Type: AWS::Evidently::Launch",
             "  Properties:",
             "    Description: \"${2:String}\"",
+            "    ExecutionStatus:",
+            "      DesiredState: \"${3:String}\"",
+            "      Reason: \"${4:String}\"",
+            "      Status: \"${5:String}\"",
             "    Groups: # Required",
             "      Groups",
             "    MetricMonitors:",
             "      MetricMonitors",
-            "    Name: \"${5:String}\" # Required",
-            "    Project: \"${6:String}\" # Required",
-            "    RandomizationSalt: \"${7:String}\"",
+            "    Name: \"${6:String}\" # Required",
+            "    Project: \"${7:String}\" # Required",
+            "    RandomizationSalt: \"${8:String}\"",
             "    ScheduledSplitsConfig: # Required",
             "      ScheduledSplitsConfig",
             "    Tags:",
@@ -13044,6 +13088,101 @@
         "prefix": "iotthingsgraph-flowtemplate",
         "scope": "yaml"
     },
+    "AWS::IoTTwinMaker::ComponentType": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTTwinMaker::ComponentType",
+            "  Properties:",
+            "    ComponentTypeId: \"${2:String}\" # Required",
+            "    Description: \"${3:String}\"",
+            "    ExtendsFrom:",
+            "      ExtendsFrom",
+            "    Functions:",
+            "    IsSingleton: ${6|false,true|}",
+            "    PropertyDefinitions:",
+            "    Tags:",
+            "    WorkspaceId: \"${9:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-componenttype.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationDateTime",
+            "  UpdateDateTime",
+            "  IsAbstract",
+            "  IsSchemaInitialized"
+        ],
+        "prefix": "iottwinmaker-componenttype",
+        "scope": "yaml"
+    },
+    "AWS::IoTTwinMaker::Entity": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTTwinMaker::Entity",
+            "  Properties:",
+            "    Components:",
+            "    Description: \"${3:String}\"",
+            "    EntityId: \"${4:String}\"",
+            "    EntityName: \"${5:String}\" # Required",
+            "    ParentEntityId: \"${6:String}\"",
+            "    Tags:",
+            "    WorkspaceId: \"${8:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-entity.html",
+            "Attributes: ",
+            "  HasChildEntities",
+            "  Arn",
+            "  CreationDateTime",
+            "  UpdateDateTime"
+        ],
+        "prefix": "iottwinmaker-entity",
+        "scope": "yaml"
+    },
+    "AWS::IoTTwinMaker::Scene": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTTwinMaker::Scene",
+            "  Properties:",
+            "    Capabilities:",
+            "      Capabilities",
+            "    ContentLocation: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    SceneId: \"${5:String}\" # Required",
+            "    Tags:",
+            "    WorkspaceId: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-scene.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationDateTime",
+            "  UpdateDateTime"
+        ],
+        "prefix": "iottwinmaker-scene",
+        "scope": "yaml"
+    },
+    "AWS::IoTTwinMaker::Workspace": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTTwinMaker::Workspace",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Role: \"${3:String}\" # Required",
+            "    S3Location: \"${4:String}\" # Required",
+            "    Tags:",
+            "    WorkspaceId: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-workspace.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationDateTime",
+            "  UpdateDateTime"
+        ],
+        "prefix": "iottwinmaker-workspace",
+        "scope": "yaml"
+    },
     "AWS::IoTWireless::Destination": {
         "body": [
             "${1:LogicalID}:",
@@ -14908,7 +15047,7 @@
             "    Description: \"${2:String}\"",
             "    KafkaVersionsList:",
             "      KafkaVersionsList",
-            "    Name: \"${4:String}\"",
+            "    Name: \"${4:String}\" # Required",
             "    ServerProperties: \"${5:String}\" # Required"
         ],
         "description": [
