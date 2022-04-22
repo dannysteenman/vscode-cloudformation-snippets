@@ -4,7 +4,7 @@
   "description": "This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.",
   "author": "Danny Steenman",
   "version": "3.57.0",
-  "publisher": "dsteenman",
+  "publisher": "dannysteenman",
   "icon": "images/cfn-snippets-extension-icon.png",
   "homepage": "https://towardsthecloud.com",
   "license": "MIT",
@@ -31,18 +31,18 @@
   ],
   "badges": [
     {
-      "url": "https://vsmarketplacebadge.apphb.com/version/dsteenman.cloudformation-yaml-snippets.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets",
+      "url": "https://vsmarketplacebadge.apphb.com/version/dannysteenman.cloudformation-yaml-snippets.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets",
       "description": "Version"
     },
     {
-      "url": "https://vsmarketplacebadge.apphb.com/installs-short/dsteenman.cloudformation-yaml-snippets.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets",
+      "url": "https://vsmarketplacebadge.apphb.com/installs-short/dannysteenman.cloudformation-yaml-snippets.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets",
       "description": "Installs"
     },
     {
-      "url": "https://vsmarketplacebadge.apphb.com/rating-star/dsteenman.cloudformation-yaml-snippets.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=dsteenman.cloudformation-yaml-snippets",
+      "url": "https://vsmarketplacebadge.apphb.com/rating-star/dannysteenman.cloudformation-yaml-snippets.svg",
+      "href": "https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets",
       "description": "Ratings"
     }
   ],
