@@ -48,7 +48,7 @@ Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-clo
 
 ## Tips and tricks
 
- If you want to boost your productivity even more with VS Code and CloudFormation. Have a look at [this article](https://towardsthecloud.com/level-up-cloudformation-with-vs-code) that I wrote to help you level up your CloudFormation templating game!
+ If you want to boost your productivity even more with VS Code and CloudFormation. Have a look at [this article](https://towardsthecloud.com/blog/level-up-cloudformation-vscode) that I wrote to help you level up your CloudFormation templating game!
 
 ---
 
