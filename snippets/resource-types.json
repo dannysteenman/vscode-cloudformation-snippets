@@ -3829,7 +3829,7 @@
             "    Unit: \"${22:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-alarm.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html",
             "Attributes: ",
             "  Arn"
         ],
@@ -7036,6 +7036,26 @@
         "prefix": "ec2-internetgateway",
         "scope": "yaml"
     },
+    "AWS::EC2::KeyPair": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::KeyPair",
+            "  Properties:",
+            "    KeyName: \"${2:String}\" # Required",
+            "    KeyType: \"${3:String}\"",
+            "    PublicKeyMaterial: \"${4:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-keypair.html",
+            "Attributes: ",
+            "  KeyFingerprint",
+            "  KeyPairId"
+        ],
+        "prefix": "ec2-keypair",
+        "scope": "yaml"
+    },
     "AWS::EC2::LaunchTemplate": {
         "body": [
             "${1:LogicalID}:",
@@ -7725,7 +7745,9 @@
             "    VpcId: \"${5:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "ec2-transitgatewayattachment",
         "scope": "yaml"
@@ -7951,7 +7973,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::VPC",
             "  Properties:",
-            "    CidrBlock: \"${2:String}\" # Required",
+            "    CidrBlock: \"${2:String}\"",
             "    EnableDnsHostnames: ${3|false,true|}",
             "    EnableDnsSupport: ${4|false,true|}",
             "    InstanceTenancy: \"${5:String}\"",
@@ -7963,6 +7985,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html",
             "Attributes: ",
+            "  VpcId",
             "  CidrBlock",
             "  CidrBlockAssociations",
             "  DefaultNetworkAcl",
@@ -18401,6 +18424,49 @@
         "prefix": "rekognition-project",
         "scope": "yaml"
     },
+    "AWS::Rekognition::StreamProcessor": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Rekognition::StreamProcessor",
+            "  Properties:",
+            "    BoundingBoxRegionsOfInterest:",
+            "      BoundingBoxRegionsOfInterest",
+            "    ConnectedHomeSettings:",
+            "      Labels:",
+            "        -",
+            "      MinConfidence: ${4:Number}",
+            "    DataSharingPreference:",
+            "      OptIn: ${4|false,true|}",
+            "    FaceSearchSettings:",
+            "      CollectionId: \"${5:String}\"",
+            "      FaceMatchThreshold: ${6:Number}",
+            "    KinesisDataStream:",
+            "      Arn: \"${6:String}\"",
+            "    KinesisVideoStream:",
+            "      Arn: \"${7:String}\"",
+            "    KmsKeyId: \"${8:String}\"",
+            "    Name: \"${9:String}\"",
+            "    NotificationChannel:",
+            "      Arn: \"${10:String}\"",
+            "    PolygonRegionsOfInterest:",
+            "      PolygonRegionsOfInterest",
+            "    RoleArn: \"${12:String}\" # Required",
+            "    S3Destination:",
+            "      BucketName: \"${13:String}\"",
+            "      ObjectKeyPrefix: \"${14:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-streamprocessor.html",
+            "Attributes: ",
+            "  Arn",
+            "  Status",
+            "  StatusMessage"
+        ],
+        "prefix": "rekognition-streamprocessor",
+        "scope": "yaml"
+    },
     "AWS::ResilienceHub::App": {
         "body": [
             "${1:LogicalID}:",
@@ -19611,9 +19677,10 @@
             "    ReceiveMessageWaitTimeSeconds: ${12:Number}",
             "    RedriveAllowPolicy: ${13:JSON}",
             "    RedrivePolicy: ${14:JSON}",
+            "    SqsManagedSseEnabled: ${15|false,true|}",
             "    Tags:",
             "      Tags",
-            "    VisibilityTimeout: ${16:Number}"
+            "    VisibilityTimeout: ${17:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html",
@@ -19659,10 +19726,11 @@
             "    OutputLocation:",
             "    Parameters:",
             "    ScheduleExpression: \"${14:String}\"",
-            "    SyncCompliance: \"${15:String}\"",
+            "    ScheduleOffset: ${15:Number}",
+            "    SyncCompliance: \"${16:String}\"",
             "    Targets:",
             "      Targets",
-            "    WaitForSuccessTimeoutSeconds: ${17:Number}"
+            "    WaitForSuccessTimeoutSeconds: ${18:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html",
@@ -20660,15 +20728,16 @@
             "  Type: AWS::SecretsManager::RotationSchedule",
             "  Properties:",
             "    HostedRotationLambda:",
-            "      KmsKeyArn: \"${2:String}\"",
-            "      MasterSecretArn: \"${3:String}\"",
-            "      MasterSecretKmsKeyArn: \"${4:String}\"",
-            "      RotationLambdaName: \"${5:String}\"",
-            "      RotationType: \"${6:String}\"",
-            "      SuperuserSecretArn: \"${7:String}\"",
-            "      SuperuserSecretKmsKeyArn: \"${8:String}\"",
-            "      VpcSecurityGroupIds: \"${9:String}\"",
-            "      VpcSubnetIds: \"${10:String}\"",
+            "      ExcludeCharacters: \"${2:String}\"",
+            "      KmsKeyArn: \"${3:String}\"",
+            "      MasterSecretArn: \"${4:String}\"",
+            "      MasterSecretKmsKeyArn: \"${5:String}\"",
+            "      RotationLambdaName: \"${6:String}\"",
+            "      RotationType: \"${7:String}\"",
+            "      SuperuserSecretArn: \"${8:String}\"",
+            "      SuperuserSecretKmsKeyArn: \"${9:String}\"",
+            "      VpcSecurityGroupIds: \"${10:String}\"",
+            "      VpcSubnetIds: \"${11:String}\"",
             "    RotateImmediatelyOnUpdate: ${3|false,true|}",
             "    RotationLambdaARN: \"${4:String}\"",
             "    RotationRules:",
@@ -21547,6 +21616,26 @@
             "  Arn"
         ],
         "prefix": "transfer-workflow",
+        "scope": "yaml"
+    },
+    "AWS::VoiceID::Domain": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VoiceID::Domain",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    ServerSideEncryptionConfiguration:",
+            "      KmsKeyId: \"${4:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-voiceid-domain.html",
+            "Attributes: ",
+            "  DomainId"
+        ],
+        "prefix": "voiceid-domain",
         "scope": "yaml"
     },
     "AWS::WAF::ByteMatchSet": {
