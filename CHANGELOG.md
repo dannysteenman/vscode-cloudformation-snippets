@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.60.0 (2022-05-13)
+-------------------
+- The following resource was updated: AWS::Synthetics::Canary. [Github
+  Actions]
+
+
 3.59.0 (2022-05-06)
 -------------------
 - The following resources were updated: AWS::WAFv2::WebACL and
