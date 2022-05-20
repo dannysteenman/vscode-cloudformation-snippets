@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.61.0 (2022-05-20)
+-------------------
+- The following resource was updated: AWS::Cognito::UserPoolClient.
+  [Github Actions]
+
+
 3.60.0 (2022-05-13)
 -------------------
 - The following resource was updated: AWS::Synthetics::Canary. [Github
