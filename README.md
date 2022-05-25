@@ -36,6 +36,11 @@ This extension adds snippets for all the AWS CloudFormation resources into Visua
 > **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
 ---
+## AWS CloudFormation Attributes (GetAtt) Cheat Sheet
+
+It can be difficult to find out which attributes are available for each AWS CloudFormation resource type. Therefore I made an [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/library/aws-cloudformation-resource-attributes?ref=vscode) that lists the attributes in a single table overview to easily find the attributes.
+
+---
 ## Support
 
 If you have a feature request or an issue, please let me know on [Github](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues)
@@ -46,12 +51,7 @@ If you want to add more snippets, your contribution is more than welcome!
 
 Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-cloudformation-snippets/blob/main/.github/CONTRIBUTING.md).
 
-## Tips and tricks
-
- If you want to boost your productivity even more with VS Code and CloudFormation. Have a look at [this article](https://towardsthecloud.com/blog/level-up-cloudformation-vscode) that I wrote to help you level up your CloudFormation templating game!
-
 ---
-
 ## Author
 
 **[Danny Steenman](https://towardsthecloud.com)**
@@ -59,8 +59,6 @@ Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-clo
 <p align="left">
   <a href="https://twitter.com/dannysteenman"><img src="https://img.shields.io/twitter/follow/dannysteenman?label=%40dannysteenman&style=social"></a>
 </p>
-
----
 
 ## Support my work
 
