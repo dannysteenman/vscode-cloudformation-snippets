@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.62.0 (2022-05-27)
+-------------------
+- The following property was updated:
+  AWS::IoTEvents::AlarmModel.IotSiteWise. [Github Actions]
+- Feat: add cheat sheet to readme. [Danny Steenman]
+
+
 3.61.0 (2022-05-20)
 -------------------
 - The following resource was updated: AWS::Cognito::UserPoolClient.
