@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.63.0 (2022-06-03)
+-------------------
+- The following property was updated:
+  AWS::IoTEvents::AlarmModel.IotSiteWise. [Github Actions]
+
+
 3.62.0 (2022-05-27)
 -------------------
 - The following property was updated:
