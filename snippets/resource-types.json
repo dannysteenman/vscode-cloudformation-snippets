@@ -7157,7 +7157,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html",
+            "Attributes: ",
+            "  NatGatewayId"
         ],
         "prefix": "ec2-natgateway",
         "scope": "yaml"
@@ -18217,7 +18219,10 @@
             "    SnsTopicArn: \"${4:String}\" # Required",
             "    SourceIds:",
             "      SourceIds",
-            "    SourceType: \"${6:String}\""
+            "    SourceType: \"${6:String}\"",
+            "    SubscriptionName: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html"
@@ -18719,10 +18724,11 @@
             "${1:LogicalID}:",
             "  Type: AWS::ResilienceHub::App",
             "  Properties:",
-            "    AppTemplateBody: \"${2:String}\" # Required",
-            "    Description: \"${3:String}\"",
-            "    Name: \"${4:String}\" # Required",
-            "    ResiliencyPolicyArn: \"${5:String}\"",
+            "    AppAssessmentSchedule: \"${2:String}\"",
+            "    AppTemplateBody: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    Name: \"${5:String}\" # Required",
+            "    ResiliencyPolicyArn: \"${6:String}\"",
             "    ResourceMappings: # Required",
             "      ResourceMappings",
             "    Tags:"
