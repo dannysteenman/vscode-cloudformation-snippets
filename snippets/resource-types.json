@@ -5113,6 +5113,33 @@
         "prefix": "connect-quickconnect",
         "scope": "yaml"
     },
+    "AWS::Connect::TaskTemplate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::TaskTemplate",
+            "  Properties:",
+            "    ClientToken: \"${2:String}\"",
+            "    Constraints: ${3:JSON}",
+            "    ContactFlowArn: \"${4:String}\"",
+            "    Defaults:",
+            "      Defaults",
+            "    Description: \"${6:String}\"",
+            "    Fields:",
+            "      Fields",
+            "    InstanceArn: \"${8:String}\" # Required",
+            "    Name: \"${9:String}\"",
+            "    Status: \"${10:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-tasktemplate.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "connect-tasktemplate",
+        "scope": "yaml"
+    },
     "AWS::Connect::User": {
         "body": [
             "${1:LogicalID}:",
@@ -5906,12 +5933,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::DataSync::LocationEFS",
             "  Properties:",
+            "    AccessPointArn: \"${2:String}\"",
             "    Ec2Config:",
             "      SecurityGroupArns:",
             "        -",
-            "      SubnetArn: \"${3:String}\"",
-            "    EfsFilesystemArn: \"${3:String}\" # Required",
-            "    Subdirectory: \"${4:String}\"",
+            "      SubnetArn: \"${4:String}\"",
+            "    EfsFilesystemArn: \"${4:String}\" # Required",
+            "    FileSystemAccessRoleArn: \"${5:String}\"",
+            "    InTransitEncryption: \"${6:String}\"",
+            "    Subdirectory: \"${7:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -17978,7 +18008,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html",
+            "Attributes: ",
+            "  DBClusterParameterGroupName"
         ],
         "prefix": "rds-dbclusterparametergroup",
         "scope": "yaml"
@@ -18063,12 +18095,14 @@
             "  Properties:",
             "    Description: \"${2:String}\" # Required",
             "    Family: \"${3:String}\" # Required",
-            "    Parameters:",
+            "    Parameters: ${4:JSON}",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html",
+            "Attributes: ",
+            "  DBParameterGroupName"
         ],
         "prefix": "rds-dbparametergroup",
         "scope": "yaml"
@@ -19738,7 +19772,19 @@
             "${1:LogicalID}:",
             "  Type: AWS::SES::ConfigurationSet",
             "  Properties:",
-            "    Name: \"${2:String}\""
+            "    DeliveryOptions:",
+            "      SendingPoolName: \"${2:String}\"",
+            "      TlsPolicy: \"${3:String}\"",
+            "    Name: \"${3:String}\"",
+            "    ReputationOptions:",
+            "      ReputationMetricsEnabled: ${4|false,true|}",
+            "    SendingOptions:",
+            "      SendingEnabled: ${5|false,true|}",
+            "    SuppressionOptions:",
+            "      SuppressedReasons:",
+            "        -",
+            "    TrackingOptions:",
+            "      CustomRedirectDomain: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html"
