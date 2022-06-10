@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.64.0 (2022-06-10)
+-------------------
+- The following resources were added: AWS::Connect::TaskTemplate.
+  [Github Actions]
+
+
 3.63.0 (2022-06-03)
 -------------------
 - The following property was updated:
