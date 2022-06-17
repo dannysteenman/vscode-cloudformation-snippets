@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.65.0 (2022-06-17)
+-------------------
+- The following resource and properties were added:
+  AWS::Route53::CidrCollection,
+  AWS::Route53::RecordSet.CidrRoutingConfig, and
+  AWS::Route53::RecordSetGroup CidrRoutingConfig. [Github Actions]
+
+
 3.64.0 (2022-06-10)
 -------------------
 - The following resources were added: AWS::Connect::TaskTemplate.
