@@ -1183,10 +1183,12 @@
             "      SecurityGroupIds",
             "    SubnetIds: # Required",
             "      SubnetIds",
-            "    Tags: ${5:JSON}"
+            "    Tags:"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-vpclink.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-vpclink.html",
+            "Attributes: ",
+            "  VpcLinkId"
         ],
         "prefix": "apigatewayv2-vpclink",
         "scope": "yaml"
@@ -1313,10 +1315,11 @@
             "  Type: AWS::AppFlow::ConnectorProfile",
             "  Properties:",
             "    ConnectionMode: \"${2:String}\" # Required",
+            "    ConnectorLabel: \"${3:String}\"",
             "    ConnectorProfileConfig:",
-            "    ConnectorProfileName: \"${4:String}\" # Required",
-            "    ConnectorType: \"${5:String}\" # Required",
-            "    KMSArn: \"${6:String}\""
+            "    ConnectorProfileName: \"${5:String}\" # Required",
+            "    ConnectorType: \"${6:String}\" # Required",
+            "    KMSArn: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html",
@@ -1338,8 +1341,9 @@
             "    FlowName: \"${4:String}\" # Required",
             "    KMSArn: \"${5:String}\"",
             "    SourceFlowConfig:",
-            "      ConnectorProfileName: \"${6:String}\"",
-            "      ConnectorType: \"${7:String}\"",
+            "      ApiVersion: \"${6:String}\"",
+            "      ConnectorProfileName: \"${7:String}\"",
+            "      ConnectorType: \"${8:String}\"",
             "    Tags:",
             "      Tags",
             "    Tasks: # Required",
@@ -2105,6 +2109,7 @@
             "  Type: AWS::AppSync::GraphQLApi",
             "  Properties:",
             "    AdditionalAuthenticationProviders:",
+            "      AdditionalAuthenticationProviders",
             "    AuthenticationType: \"${3:String}\" # Required",
             "    LambdaAuthorizerConfig:",
             "      AuthorizerResultTtlInSeconds: ${4:Number}",
@@ -2121,6 +2126,7 @@
             "      IatTTL: ${9:Number}",
             "      Issuer: \"${10:String}\"",
             "    Tags:",
+            "      Tags",
             "    UserPoolConfig:",
             "      AppIdClientRegex: \"${9:String}\"",
             "      AwsRegion: \"${10:String}\"",
@@ -2254,11 +2260,12 @@
             "      ComponentMonitoringSettings",
             "    CustomComponents:",
             "      CustomComponents",
+            "    GroupingType: \"${6:String}\"",
             "    LogPatternSets:",
             "      LogPatternSets",
-            "    OpsCenterEnabled: ${7|false,true|}",
-            "    OpsItemSNSTopicArn: \"${8:String}\"",
-            "    ResourceGroupName: \"${9:String}\" # Required",
+            "    OpsCenterEnabled: ${8|false,true|}",
+            "    OpsItemSNSTopicArn: \"${9:String}\"",
+            "    ResourceGroupName: \"${10:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -3766,6 +3773,32 @@
         "prefix": "cloudfront-streamingdistribution",
         "scope": "yaml"
     },
+    "AWS::CloudTrail::EventDataStore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudTrail::EventDataStore",
+            "  Properties:",
+            "    AdvancedEventSelectors:",
+            "      AdvancedEventSelectors",
+            "    MultiRegionEnabled: ${3|false,true|}",
+            "    Name: \"${4:String}\"",
+            "    OrganizationEnabled: ${5|false,true|}",
+            "    RetentionPeriod: ${6:Number}",
+            "    Tags:",
+            "      Tags",
+            "    TerminationProtectionEnabled: ${8|false,true|}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-eventdatastore.html",
+            "Attributes: ",
+            "  CreatedTimestamp",
+            "  EventDataStoreArn",
+            "  Status",
+            "  UpdatedTimestamp"
+        ],
+        "prefix": "cloudtrail-eventdatastore",
+        "scope": "yaml"
+    },
     "AWS::CloudTrail::Trail": {
         "body": [
             "${1:LogicalID}:",
@@ -5190,6 +5223,28 @@
             "  UserHierarchyGroupArn"
         ],
         "prefix": "connect-userhierarchygroup",
+        "scope": "yaml"
+    },
+    "AWS::ConnectCampaigns::Campaign": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ConnectCampaigns::Campaign",
+            "  Properties:",
+            "    ConnectInstanceArn: \"${2:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    OutboundCallConfig:",
+            "      ConnectContactFlowArn: \"${5:String}\"",
+            "      ConnectQueueArn: \"${6:String}\"",
+            "      ConnectSourcePhoneNumber: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connectcampaigns-campaign.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "connectcampaigns-campaign",
         "scope": "yaml"
     },
     "AWS::CustomerProfiles::Domain": {
@@ -6674,7 +6729,9 @@
             "    Type: \"${5:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customer-gateway.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html",
+            "Attributes: ",
+            "  CustomerGatewayId"
         ],
         "prefix": "ec2-customergateway",
         "scope": "yaml"
@@ -12451,6 +12508,28 @@
             "  Arn"
         ],
         "prefix": "iot-authorizer",
+        "scope": "yaml"
+    },
+    "AWS::IoT::CACertificate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::CACertificate",
+            "  Properties:",
+            "    AutoRegistrationStatus: \"${2:String}\"",
+            "    CACertificatePem: \"${3:String}\"",
+            "    RegistrationConfig: ${4:JSON}",
+            "    Status: \"${5:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    VerificationCertificatePem: \"${7:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "iot-cacertificate",
         "scope": "yaml"
     },
     "AWS::IoT::Certificate": {
@@ -18585,6 +18664,32 @@
         "prefix": "redshift-scheduledaction",
         "scope": "yaml"
     },
+    "AWS::RedshiftServerless::Namespace": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RedshiftServerless::Namespace",
+            "  Properties:",
+            "    AdminUserPassword: \"${2:String}\"",
+            "    AdminUsername: \"${3:String}\"",
+            "    DbName: \"${4:String}\"",
+            "    DefaultIamRoleArn: \"${5:String}\"",
+            "    FinalSnapshotName: \"${6:String}\"",
+            "    FinalSnapshotRetentionPeriod: ${7:Number}",
+            "    IamRoles:",
+            "      IamRoles",
+            "    KmsKeyId: \"${9:String}\"",
+            "    LogExports:",
+            "      LogExports",
+            "    NamespaceName: \"${11:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-namespace.html"
+        ],
+        "prefix": "redshiftserverless-namespace",
+        "scope": "yaml"
+    },
     "AWS::RefactorSpaces::Application": {
         "body": [
             "${1:LogicalID}:",
@@ -20491,14 +20596,15 @@
             "      KmsKeyId: \"${5:String}\"",
             "      MonitoringOutputs:",
             "        -",
-            "    JobDefinitionName: \"${6:String}\"",
+            "    EndpointName: \"${6:String}\"",
+            "    JobDefinitionName: \"${7:String}\"",
             "    JobResources:",
             "    NetworkConfig:",
-            "      EnableInterContainerTrafficEncryption: ${8|false,true|}",
-            "      EnableNetworkIsolation: ${9|false,true|}",
-            "    RoleArn: \"${9:String}\" # Required",
+            "      EnableInterContainerTrafficEncryption: ${9|false,true|}",
+            "      EnableNetworkIsolation: ${10|false,true|}",
+            "    RoleArn: \"${10:String}\" # Required",
             "    StoppingCondition:",
-            "      MaxRuntimeInSeconds: ${10:Number}",
+            "      MaxRuntimeInSeconds: ${11:Number}",
             "    Tags:",
             "      Tags"
         ],
@@ -20740,24 +20846,25 @@
             "${1:LogicalID}:",
             "  Type: AWS::SageMaker::ModelBiasJobDefinition",
             "  Properties:",
-            "    JobDefinitionName: \"${2:String}\"",
+            "    EndpointName: \"${2:String}\"",
+            "    JobDefinitionName: \"${3:String}\"",
             "    JobResources:",
             "    ModelBiasAppSpecification:",
-            "      ConfigUri: \"${4:String}\"",
-            "      ImageUri: \"${6:String}\"",
+            "      ConfigUri: \"${5:String}\"",
+            "      ImageUri: \"${7:String}\"",
             "    ModelBiasBaselineConfig:",
-            "      BaseliningJobName: \"${5:String}\"",
+            "      BaseliningJobName: \"${6:String}\"",
             "    ModelBiasJobInput:",
             "    ModelBiasJobOutputConfig:",
-            "      KmsKeyId: \"${7:String}\"",
+            "      KmsKeyId: \"${8:String}\"",
             "      MonitoringOutputs:",
             "        -",
             "    NetworkConfig:",
-            "      EnableInterContainerTrafficEncryption: ${8|false,true|}",
-            "      EnableNetworkIsolation: ${9|false,true|}",
-            "    RoleArn: \"${9:String}\" # Required",
+            "      EnableInterContainerTrafficEncryption: ${9|false,true|}",
+            "      EnableNetworkIsolation: ${10|false,true|}",
+            "    RoleArn: \"${10:String}\" # Required",
             "    StoppingCondition:",
-            "      MaxRuntimeInSeconds: ${10:Number}",
+            "      MaxRuntimeInSeconds: ${11:Number}",
             "    Tags:",
             "      Tags"
         ],
@@ -20775,24 +20882,25 @@
             "${1:LogicalID}:",
             "  Type: AWS::SageMaker::ModelExplainabilityJobDefinition",
             "  Properties:",
-            "    JobDefinitionName: \"${2:String}\"",
+            "    EndpointName: \"${2:String}\"",
+            "    JobDefinitionName: \"${3:String}\"",
             "    JobResources:",
             "    ModelExplainabilityAppSpecification:",
-            "      ConfigUri: \"${4:String}\"",
-            "      ImageUri: \"${6:String}\"",
+            "      ConfigUri: \"${5:String}\"",
+            "      ImageUri: \"${7:String}\"",
             "    ModelExplainabilityBaselineConfig:",
-            "      BaseliningJobName: \"${5:String}\"",
+            "      BaseliningJobName: \"${6:String}\"",
             "    ModelExplainabilityJobInput:",
             "    ModelExplainabilityJobOutputConfig:",
-            "      KmsKeyId: \"${7:String}\"",
+            "      KmsKeyId: \"${8:String}\"",
             "      MonitoringOutputs:",
             "        -",
             "    NetworkConfig:",
-            "      EnableInterContainerTrafficEncryption: ${8|false,true|}",
-            "      EnableNetworkIsolation: ${9|false,true|}",
-            "    RoleArn: \"${9:String}\" # Required",
+            "      EnableInterContainerTrafficEncryption: ${9|false,true|}",
+            "      EnableNetworkIsolation: ${10|false,true|}",
+            "    RoleArn: \"${10:String}\" # Required",
             "    StoppingCondition:",
-            "      MaxRuntimeInSeconds: ${10:Number}",
+            "      MaxRuntimeInSeconds: ${11:Number}",
             "    Tags:",
             "      Tags"
         ],
@@ -20915,30 +21023,31 @@
             "${1:LogicalID}:",
             "  Type: AWS::SageMaker::ModelQualityJobDefinition",
             "  Properties:",
-            "    JobDefinitionName: \"${2:String}\"",
+            "    EndpointName: \"${2:String}\"",
+            "    JobDefinitionName: \"${3:String}\"",
             "    JobResources:",
             "    ModelQualityAppSpecification:",
             "      ContainerArguments:",
             "        -",
             "      ContainerEntrypoint:",
             "        -",
-            "      ImageUri: \"${7:String}\"",
-            "      PostAnalyticsProcessorSourceUri: \"${8:String}\"",
-            "      ProblemType: \"${9:String}\"",
-            "      RecordPreprocessorSourceUri: \"${10:String}\"",
+            "      ImageUri: \"${8:String}\"",
+            "      PostAnalyticsProcessorSourceUri: \"${9:String}\"",
+            "      ProblemType: \"${10:String}\"",
+            "      RecordPreprocessorSourceUri: \"${11:String}\"",
             "    ModelQualityBaselineConfig:",
-            "      BaseliningJobName: \"${5:String}\"",
+            "      BaseliningJobName: \"${6:String}\"",
             "    ModelQualityJobInput:",
             "    ModelQualityJobOutputConfig:",
-            "      KmsKeyId: \"${7:String}\"",
+            "      KmsKeyId: \"${8:String}\"",
             "      MonitoringOutputs:",
             "        -",
             "    NetworkConfig:",
-            "      EnableInterContainerTrafficEncryption: ${8|false,true|}",
-            "      EnableNetworkIsolation: ${9|false,true|}",
-            "    RoleArn: \"${9:String}\" # Required",
+            "      EnableInterContainerTrafficEncryption: ${9|false,true|}",
+            "      EnableNetworkIsolation: ${10|false,true|}",
+            "    RoleArn: \"${10:String}\" # Required",
             "    StoppingCondition:",
-            "      MaxRuntimeInSeconds: ${10:Number}",
+            "      MaxRuntimeInSeconds: ${11:Number}",
             "    Tags:",
             "      Tags"
         ],
