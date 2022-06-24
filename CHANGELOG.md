@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.66.0 (2022-06-24)
+-------------------
+- The following resource was updated: AWS::CloudTrail::Trail. [Github
+  Actions]
+
+
 3.65.0 (2022-06-17)
 -------------------
 - The following resource and properties were added:
