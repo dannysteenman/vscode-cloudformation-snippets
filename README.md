@@ -38,7 +38,7 @@ This extension adds snippets for all the AWS CloudFormation resources into Visua
 ---
 ## AWS CloudFormation Attributes (GetAtt) Cheat Sheet
 
-It can be difficult to find out which attributes are available for each AWS CloudFormation resource type. Therefore I made an [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/library/aws-cloudformation-resource-attributes?ref=vscode) that lists the attributes in a single table overview to easily find the attributes.
+It can be difficult to find out which attributes are available for each AWS CloudFormation resource type. Therefore I made an [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/aws-cloudformation-resource-attributes) that lists the attributes in a single table overview to easily find the attributes.
 
 ---
 ## Support
