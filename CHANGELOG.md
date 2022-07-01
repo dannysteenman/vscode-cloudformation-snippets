@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.67.0 (2022-07-01)
+-------------------
+- The following resource was added: AWS::IoT::CACertificate. [Github
+  Actions]
+- Feat: update readme. [Danny Steenman]
+
+
 3.66.0 (2022-06-24)
 -------------------
 - The following resource was updated: AWS::CloudTrail::Trail. [Github
