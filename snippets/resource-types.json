@@ -6032,6 +6032,29 @@
         "prefix": "datasync-locationfsxlustre",
         "scope": "yaml"
     },
+    "AWS::DataSync::LocationFSxONTAP": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataSync::LocationFSxONTAP",
+            "  Properties:",
+            "    Protocol:",
+            "    SecurityGroupArns: # Required",
+            "      SecurityGroupArns",
+            "    StorageVirtualMachineArn: \"${4:String}\" # Required",
+            "    Subdirectory: \"${5:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxontap.html",
+            "Attributes: ",
+            "  FsxFilesystemArn",
+            "  LocationArn",
+            "  LocationUri"
+        ],
+        "prefix": "datasync-locationfsxontap",
+        "scope": "yaml"
+    },
     "AWS::DataSync::LocationFSxOpenZFS": {
         "body": [
             "${1:LogicalID}:",
@@ -6579,9 +6602,10 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html",
             "Attributes: ",
             "  Tenancy",
-            "  AvailableInstanceCount",
             "  AvailabilityZone",
             "  TotalInstanceCount",
+            "  AvailableInstanceCount",
+            "  Id",
             "  InstanceType"
         ],
         "prefix": "ec2-capacityreservation",
@@ -13965,11 +13989,16 @@
             "  Type: AWS::KinesisAnalyticsV2::Application",
             "  Properties:",
             "    ApplicationConfiguration:",
+            "      VpcConfigurations:",
+            "        -",
             "    ApplicationDescription: \"${3:String}\"",
-            "    ApplicationMode: \"${4:String}\"",
-            "    ApplicationName: \"${5:String}\"",
-            "    RuntimeEnvironment: \"${6:String}\" # Required",
-            "    ServiceExecutionRole: \"${7:String}\" # Required",
+            "    ApplicationMaintenanceConfiguration:",
+            "      ApplicationMaintenanceWindowStartTime: \"${4:String}\"",
+            "    ApplicationMode: \"${5:String}\"",
+            "    ApplicationName: \"${6:String}\"",
+            "    RunConfiguration:",
+            "    RuntimeEnvironment: \"${8:String}\" # Required",
+            "    ServiceExecutionRole: \"${9:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -14132,6 +14161,30 @@
         "prefix": "kinesisvideo-stream",
         "scope": "yaml"
     },
+    "AWS::LakeFormation::DataCellsFilter": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LakeFormation::DataCellsFilter",
+            "  Properties:",
+            "    ColumnNames:",
+            "      ColumnNames",
+            "    ColumnWildcard:",
+            "      ExcludedColumnNames:",
+            "        -",
+            "    DatabaseName: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    RowFilter:",
+            "      AllRowsWildcard: ${6:JSON}",
+            "      FilterExpression: \"${7:String}\"",
+            "    TableCatalogId: \"${7:String}\" # Required",
+            "    TableName: \"${8:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-datacellsfilter.html"
+        ],
+        "prefix": "lakeformation-datacellsfilter",
+        "scope": "yaml"
+    },
     "AWS::LakeFormation::DataLakeSettings": {
         "body": [
             "${1:LogicalID}:",
@@ -14166,6 +14219,29 @@
         "prefix": "lakeformation-permissions",
         "scope": "yaml"
     },
+    "AWS::LakeFormation::PrincipalPermissions": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LakeFormation::PrincipalPermissions",
+            "  Properties:",
+            "    Catalog: \"${2:String}\"",
+            "    Permissions: # Required",
+            "      Permissions",
+            "    PermissionsWithGrantOption: # Required",
+            "      PermissionsWithGrantOption",
+            "    Principal:",
+            "      DataLakePrincipalIdentifier: \"${5:String}\"",
+            "    Resource:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-principalpermissions.html",
+            "Attributes: ",
+            "  PrincipalIdentifier",
+            "  ResourceIdentifier"
+        ],
+        "prefix": "lakeformation-principalpermissions",
+        "scope": "yaml"
+    },
     "AWS::LakeFormation::Resource": {
         "body": [
             "${1:LogicalID}:",
@@ -14179,6 +14255,40 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-resource.html"
         ],
         "prefix": "lakeformation-resource",
+        "scope": "yaml"
+    },
+    "AWS::LakeFormation::Tag": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LakeFormation::Tag",
+            "  Properties:",
+            "    CatalogId: \"${2:String}\"",
+            "    TagKey: \"${3:String}\" # Required",
+            "    TagValues: # Required",
+            "      TagValues"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-tag.html"
+        ],
+        "prefix": "lakeformation-tag",
+        "scope": "yaml"
+    },
+    "AWS::LakeFormation::TagAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::LakeFormation::TagAssociation",
+            "  Properties:",
+            "    LFTags: # Required",
+            "      LFTags",
+            "    Resource:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-tagassociation.html",
+            "Attributes: ",
+            "  ResourceIdentifier",
+            "  TagsIdentifier"
+        ],
+        "prefix": "lakeformation-tagassociation",
         "scope": "yaml"
     },
     "AWS::Lambda::Alias": {
@@ -17888,21 +17998,24 @@
             "    ColumnLevelPermissionRules:",
             "      ColumnLevelPermissionRules",
             "    DataSetId: \"${5:String}\"",
+            "    DataSetUsageConfiguration:",
+            "      DisableUseAsDirectQuerySource: ${6|false,true|}",
+            "      DisableUseAsImportedSource: ${7|false,true|}",
             "    FieldFolders:",
-            "    ImportMode: \"${7:String}\"",
+            "    ImportMode: \"${8:String}\"",
             "    IngestionWaitPolicy:",
-            "      IngestionWaitTimeInHours: ${8:Number}",
-            "      WaitForSpiceIngestion: ${9|false,true|}",
+            "      IngestionWaitTimeInHours: ${9:Number}",
+            "      WaitForSpiceIngestion: ${10|false,true|}",
             "    LogicalTableMap:",
-            "    Name: \"${10:String}\"",
+            "    Name: \"${11:String}\"",
             "    Permissions:",
             "      Permissions",
             "    PhysicalTableMap:",
             "    RowLevelPermissionDataSet:",
-            "      Arn: \"${13:String}\"",
-            "      FormatVersion: \"${14:String}\"",
-            "      Namespace: \"${15:String}\"",
-            "      PermissionPolicy: \"${16:String}\"",
+            "      Arn: \"${14:String}\"",
+            "      FormatVersion: \"${15:String}\"",
+            "      Namespace: \"${16:String}\"",
+            "      PermissionPolicy: \"${17:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -18101,9 +18214,7 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html",
-            "Attributes: ",
-            "  DBClusterParameterGroupName"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html"
         ],
         "prefix": "rds-dbclusterparametergroup",
         "scope": "yaml"
@@ -18747,17 +18858,19 @@
             "  Type: AWS::RefactorSpaces::Route",
             "  Properties:",
             "    ApplicationIdentifier: \"${2:String}\" # Required",
-            "    EnvironmentIdentifier: \"${3:String}\" # Required",
-            "    RouteType: \"${4:String}\"",
-            "    ServiceIdentifier: \"${5:String}\" # Required",
+            "    DefaultRoute:",
+            "      ActivationState: \"${3:String}\"",
+            "    EnvironmentIdentifier: \"${4:String}\" # Required",
+            "    RouteType: \"${5:String}\"",
+            "    ServiceIdentifier: \"${6:String}\" # Required",
             "    Tags:",
             "      Tags",
             "    UriPathRoute:",
-            "      ActivationState: \"${7:String}\"",
-            "      IncludeChildPaths: ${8|false,true|}",
+            "      ActivationState: \"${8:String}\"",
+            "      IncludeChildPaths: ${9|false,true|}",
             "      Methods:",
             "        -",
-            "      SourcePath: \"${10:String}\""
+            "      SourcePath: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-route.html",
@@ -19968,6 +20081,52 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html"
         ],
         "prefix": "ses-contactlist",
+        "scope": "yaml"
+    },
+    "AWS::SES::DedicatedIpPool": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SES::DedicatedIpPool",
+            "  Properties:",
+            "    PoolName: \"${2:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-dedicatedippool.html"
+        ],
+        "prefix": "ses-dedicatedippool",
+        "scope": "yaml"
+    },
+    "AWS::SES::EmailIdentity": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SES::EmailIdentity",
+            "  Properties:",
+            "    ConfigurationSetAttributes:",
+            "      ConfigurationSetName: \"${2:String}\"",
+            "    DkimAttributes:",
+            "      SigningEnabled: ${3|false,true|}",
+            "    DkimSigningAttributes:",
+            "      DomainSigningPrivateKey: \"${4:String}\"",
+            "      DomainSigningSelector: \"${5:String}\"",
+            "      NextSigningKeyLength: \"${6:String}\"",
+            "    EmailIdentity: \"${5:String}\" # Required",
+            "    FeedbackAttributes:",
+            "      EmailForwardingEnabled: ${6|false,true|}",
+            "    MailFromAttributes:",
+            "      BehaviorOnMxFailure: \"${7:String}\"",
+            "      MailFromDomain: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html",
+            "Attributes: ",
+            "  DkimDNSTokenName1",
+            "  DkimDNSTokenName2",
+            "  DkimDNSTokenName3",
+            "  DkimDNSTokenValue1",
+            "  DkimDNSTokenValue2",
+            "  DkimDNSTokenValue3"
+        ],
+        "prefix": "ses-emailidentity",
         "scope": "yaml"
     },
     "AWS::SES::ReceiptFilter": {
