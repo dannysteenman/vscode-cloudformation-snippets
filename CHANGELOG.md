@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.68.0 (2022-07-08)
+-------------------
+- The following resource was updated: AWS::CloudFormation::StackSet.
+  [Github Actions]
+
+
 3.67.0 (2022-07-01)
 -------------------
 - The following resource was added: AWS::IoT::CACertificate. [Github
