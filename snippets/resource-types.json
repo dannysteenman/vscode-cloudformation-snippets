@@ -12540,12 +12540,13 @@
             "  Type: AWS::IoT::CACertificate",
             "  Properties:",
             "    AutoRegistrationStatus: \"${2:String}\"",
-            "    CACertificatePem: \"${3:String}\"",
-            "    RegistrationConfig: ${4:JSON}",
-            "    Status: \"${5:String}\" # Required",
+            "    CACertificatePem: \"${3:String}\" # Required",
+            "    CertificateMode: \"${4:String}\"",
+            "    RegistrationConfig: ${5:JSON}",
+            "    Status: \"${6:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    VerificationCertificatePem: \"${7:String}\""
+            "    VerificationCertificatePem: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html",
@@ -15204,8 +15205,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::Logs::MetricFilter",
             "  Properties:",
-            "    FilterPattern: \"${2:String}\" # Required",
-            "    LogGroupName: \"${3:String}\" # Required",
+            "    FilterName: \"${2:String}\"",
+            "    FilterPattern: \"${3:String}\" # Required",
+            "    LogGroupName: \"${4:String}\" # Required",
             "    MetricTransformations: # Required",
             "      MetricTransformations"
         ],
@@ -18801,6 +18803,31 @@
         "prefix": "redshiftserverless-namespace",
         "scope": "yaml"
     },
+    "AWS::RedshiftServerless::Workgroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RedshiftServerless::Workgroup",
+            "  Properties:",
+            "    BaseCapacity: ${2:Number}",
+            "    ConfigParameters:",
+            "      ConfigParameters",
+            "    EnhancedVpcRouting: ${4|false,true|}",
+            "    NamespaceName: \"${5:String}\"",
+            "    PubliclyAccessible: ${6|false,true|}",
+            "    SecurityGroupIds:",
+            "      SecurityGroupIds",
+            "    SubnetIds:",
+            "      SubnetIds",
+            "    Tags:",
+            "      Tags",
+            "    WorkgroupName: \"${10:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-workgroup.html"
+        ],
+        "prefix": "redshiftserverless-workgroup",
+        "scope": "yaml"
+    },
     "AWS::RefactorSpaces::Application": {
         "body": [
             "${1:LogicalID}:",
@@ -19172,6 +19199,53 @@
             "  Arn"
         ],
         "prefix": "robomaker-simulationapplicationversion",
+        "scope": "yaml"
+    },
+    "AWS::RolesAnywhere::Profile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RolesAnywhere::Profile",
+            "  Properties:",
+            "    DurationSeconds: ${2:Number}",
+            "    Enabled: ${3|false,true|}",
+            "    ManagedPolicyArns:",
+            "      ManagedPolicyArns",
+            "    Name: \"${5:String}\"",
+            "    RequireInstanceProperties: ${6|false,true|}",
+            "    RoleArns:",
+            "      RoleArns",
+            "    SessionPolicy: \"${8:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-profile.html",
+            "Attributes: ",
+            "  ProfileArn",
+            "  ProfileId"
+        ],
+        "prefix": "rolesanywhere-profile",
+        "scope": "yaml"
+    },
+    "AWS::RolesAnywhere::TrustAnchor": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RolesAnywhere::TrustAnchor",
+            "  Properties:",
+            "    Enabled: ${2|false,true|}",
+            "    Name: \"${3:String}\"",
+            "    Source:",
+            "      SourceType: \"${5:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-trustanchor.html",
+            "Attributes: ",
+            "  TrustAnchorId",
+            "  TrustAnchorArn"
+        ],
+        "prefix": "rolesanywhere-trustanchor",
         "scope": "yaml"
     },
     "AWS::Route53::CidrCollection": {
@@ -20597,10 +20671,12 @@
             "    IncidentTemplate:",
             "      DedupeString: \"${6:String}\"",
             "      Impact: ${7:Number}",
+            "      IncidentTags:",
+            "        -",
             "      NotificationTargets:",
             "        -",
-            "      Summary: \"${9:String}\"",
-            "      Title: \"${10:String}\"",
+            "      Summary: \"${10:String}\"",
+            "      Title: \"${11:String}\"",
             "    Name: \"${7:String}\" # Required",
             "    Tags:",
             "      Tags"
