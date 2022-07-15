@@ -2535,7 +2535,10 @@
             "      TargetValue: ${15:Number}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scalingpolicy.html",
+            "Attributes: ",
+            "  PolicyName",
+            "  Arn"
         ],
         "prefix": "autoscaling-scalingpolicy",
         "scope": "yaml"
@@ -4828,10 +4831,10 @@
             "      TagKey: \"${8:String}\"",
             "      TagValue: \"${9:String}\"",
             "    Source:",
-            "      Owner: \"${7:String}\"",
+            "      Owner: \"${8:String}\"",
             "      SourceDetails:",
             "        -",
-            "      SourceIdentifier: \"${9:String}\""
+            "      SourceIdentifier: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html",
@@ -7488,7 +7491,8 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::PlacementGroup",
             "  Properties:",
-            "    Strategy: \"${2:String}\""
+            "    SpreadLevel: \"${2:String}\"",
+            "    Strategy: \"${3:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html",
@@ -19201,6 +19205,26 @@
         "prefix": "robomaker-simulationapplicationversion",
         "scope": "yaml"
     },
+    "AWS::RolesAnywhere::CRL": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RolesAnywhere::CRL",
+            "  Properties:",
+            "    CrlData: \"${2:String}\"",
+            "    Enabled: ${3|false,true|}",
+            "    Name: \"${4:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    TrustAnchorArn: \"${6:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-crl.html",
+            "Attributes: ",
+            "  CrlId"
+        ],
+        "prefix": "rolesanywhere-crl",
+        "scope": "yaml"
+    },
     "AWS::RolesAnywhere::Profile": {
         "body": [
             "${1:LogicalID}:",
@@ -21340,19 +21364,21 @@
             "      AdditionalCodeRepositories",
             "    DefaultCodeRepository: \"${4:String}\"",
             "    DirectInternetAccess: \"${5:String}\"",
-            "    InstanceType: \"${6:String}\" # Required",
-            "    KmsKeyId: \"${7:String}\"",
-            "    LifecycleConfigName: \"${8:String}\"",
-            "    NotebookInstanceName: \"${9:String}\"",
-            "    PlatformIdentifier: \"${10:String}\"",
-            "    RoleArn: \"${11:String}\" # Required",
-            "    RootAccess: \"${12:String}\"",
+            "    InstanceMetadataServiceConfiguration:",
+            "      MinimumInstanceMetadataServiceVersion: \"${6:String}\"",
+            "    InstanceType: \"${7:String}\" # Required",
+            "    KmsKeyId: \"${8:String}\"",
+            "    LifecycleConfigName: \"${9:String}\"",
+            "    NotebookInstanceName: \"${10:String}\"",
+            "    PlatformIdentifier: \"${11:String}\"",
+            "    RoleArn: \"${12:String}\" # Required",
+            "    RootAccess: \"${13:String}\"",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    SubnetId: \"${14:String}\"",
+            "    SubnetId: \"${15:String}\"",
             "    Tags:",
             "      Tags",
-            "    VolumeSizeInGB: ${16:Number}"
+            "    VolumeSizeInGB: ${17:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-notebookinstance.html",
@@ -21459,7 +21485,8 @@
             "      NotificationTopicArn: \"${4:String}\"",
             "    Tags:",
             "      Tags",
-            "    WorkteamName: \"${6:String}\""
+            "    WorkforceName: \"${6:String}\"",
+            "    WorkteamName: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-workteam.html",
