@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.70.0 (2022-07-22)
+-------------------
+- Receive notifications when specific AWS CloudFormation events such as
+  object creation or                deletion occur in an AWS
+  CloudFormation with EventBridge. [Github Actions]
+
+
 3.69.0 (2022-07-15)
 -------------------
 - The following resource was updated: AWS::SageMaker::NotebookInstance.
