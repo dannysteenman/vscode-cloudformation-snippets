@@ -581,7 +581,9 @@
             "    RestApiId: \"${4:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html",
+            "Attributes: ",
+            "  DocumentationPartId"
         ],
         "prefix": "apigateway-documentationpart",
         "scope": "yaml"
@@ -3911,11 +3913,14 @@
             "  Type: AWS::CloudWatch::CompositeAlarm",
             "  Properties:",
             "    ActionsEnabled: ${2|false,true|}",
+            "    ActionsSuppressor: \"${3:String}\"",
+            "    ActionsSuppressorExtensionPeriod: ${4:Number}",
+            "    ActionsSuppressorWaitPeriod: ${5:Number}",
             "    AlarmActions:",
             "      AlarmActions",
-            "    AlarmDescription: \"${4:String}\"",
-            "    AlarmName: \"${5:String}\" # Required",
-            "    AlarmRule: \"${6:String}\" # Required",
+            "    AlarmDescription: \"${7:String}\"",
+            "    AlarmName: \"${8:String}\" # Required",
+            "    AlarmRule: \"${9:String}\" # Required",
             "    InsufficientDataActions:",
             "      InsufficientDataActions",
             "    OKActions:",
@@ -6952,7 +6957,9 @@
             "    AutoPlacement: \"${2:String}\"",
             "    AvailabilityZone: \"${3:String}\" # Required",
             "    HostRecovery: \"${4:String}\"",
-            "    InstanceType: \"${5:String}\" # Required"
+            "    InstanceFamily: \"${5:String}\"",
+            "    InstanceType: \"${6:String}\"",
+            "    OutpostArn: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html",
@@ -8213,11 +8220,12 @@
             "  Type: AWS::EC2::VPCEndpointService",
             "  Properties:",
             "    AcceptanceRequired: ${2|false,true|}",
+            "    ContributorInsightsEnabled: ${3|false,true|}",
             "    GatewayLoadBalancerArns:",
             "      GatewayLoadBalancerArns",
             "    NetworkLoadBalancerArns:",
             "      NetworkLoadBalancerArns",
-            "    PayerResponsibility: \"${5:String}\""
+            "    PayerResponsibility: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html"
@@ -8796,12 +8804,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html",
             "Attributes: ",
-            "  KubernetesNetworkConfig.ServiceIpv6Cidr",
-            "  Arn",
-            "  Endpoint",
-            "  CertificateAuthorityData",
-            "  ClusterSecurityGroupId",
             "  EncryptionConfigKeyArn",
+            "  CertificateAuthorityData",
+            "  KubernetesNetworkConfig.ServiceIpv6Cidr",
+            "  Endpoint",
+            "  ClusterSecurityGroupId",
+            "  Arn",
             "  OpenIdConnectIssuerUrl"
         ],
         "prefix": "eks-cluster",
@@ -10081,6 +10089,25 @@
             "  Arn"
         ],
         "prefix": "evidently-project",
+        "scope": "yaml"
+    },
+    "AWS::Evidently::Segment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Evidently::Segment",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Pattern: \"${4:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-evidently-segment.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "evidently-segment",
         "scope": "yaml"
     },
     "AWS::FIS::ExperimentTemplate": {
@@ -11650,7 +11677,9 @@
             "  Properties:",
             "    DataSources:",
             "    Enable: ${3|false,true|} # Required",
-            "    FindingPublishingFrequency: \"${4:String}\""
+            "    FindingPublishingFrequency: \"${4:String}\"",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html"
@@ -11669,7 +11698,9 @@
             "    FindingCriteria:",
             "      Criterion: ${5:JSON}",
             "    Name: \"${6:String}\" # Required",
-            "    Rank: ${7:Number} # Required"
+            "    Rank: ${7:Number} # Required",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-filter.html"
@@ -11686,7 +11717,9 @@
             "    DetectorId: \"${3:String}\" # Required",
             "    Format: \"${4:String}\" # Required",
             "    Location: \"${5:String}\" # Required",
-            "    Name: \"${6:String}\""
+            "    Name: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html"
@@ -11736,7 +11769,9 @@
             "    DetectorId: \"${3:String}\" # Required",
             "    Format: \"${4:String}\" # Required",
             "    Location: \"${5:String}\" # Required",
-            "    Name: \"${6:String}\""
+            "    Name: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html"
@@ -12753,6 +12788,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html",
             "Attributes: ",
+            "  Id",
             "  Arn"
         ],
         "prefix": "iot-policy",
@@ -20753,14 +20789,18 @@
             "${1:LogicalID}:",
             "  Type: AWS::SSO::PermissionSet",
             "  Properties:",
-            "    Description: \"${2:String}\"",
-            "    InlinePolicy: ${3:JSON}",
-            "    InstanceArn: \"${4:String}\" # Required",
+            "    CustomerManagedPolicyReferences:",
+            "      CustomerManagedPolicyReferences",
+            "    Description: \"${3:String}\"",
+            "    InlinePolicy: ${4:JSON}",
+            "    InstanceArn: \"${5:String}\" # Required",
             "    ManagedPolicies:",
             "      ManagedPolicies",
-            "    Name: \"${6:String}\" # Required",
-            "    RelayStateType: \"${7:String}\"",
-            "    SessionDuration: \"${8:String}\"",
+            "    Name: \"${7:String}\" # Required",
+            "    PermissionsBoundary:",
+            "      ManagedPolicyArn: \"${9:String}\"",
+            "    RelayStateType: \"${9:String}\"",
+            "    SessionDuration: \"${10:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -22335,9 +22375,11 @@
             "    PostAuthenticationLoginBanner: \"${9:String}\"",
             "    PreAuthenticationLoginBanner: \"${10:String}\"",
             "    ProtocolDetails:",
-            "      PassiveIp: \"${11:String}\"",
-            "      SetStatOption: \"${12:String}\"",
-            "      TlsSessionResumptionMode: \"${13:String}\"",
+            "      As2Transports:",
+            "        -",
+            "      PassiveIp: \"${12:String}\"",
+            "      SetStatOption: \"${13:String}\"",
+            "      TlsSessionResumptionMode: \"${14:String}\"",
             "    Protocols:",
             "      Protocols",
             "    SecurityPolicyName: \"${13:String}\"",
