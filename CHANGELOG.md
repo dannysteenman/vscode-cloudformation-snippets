@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+3.71.0 (2022-07-29)
+-------------------
+- The following resource was updated: [Github Actions]
+
+
 3.70.0 (2022-07-22)
 -------------------
 - Receive notifications when specific AWS CloudFormation events such as
