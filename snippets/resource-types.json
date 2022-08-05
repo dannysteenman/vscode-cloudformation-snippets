@@ -6425,10 +6425,14 @@
             "    Port: ${14:Number}",
             "    PreferredBackupWindow: \"${15:String}\"",
             "    PreferredMaintenanceWindow: \"${16:String}\"",
-            "    SnapshotIdentifier: \"${17:String}\"",
-            "    StorageEncrypted: ${18|false,true|}",
+            "    RestoreToTime: \"${17:String}\"",
+            "    RestoreType: \"${18:String}\"",
+            "    SnapshotIdentifier: \"${19:String}\"",
+            "    SourceDBClusterIdentifier: \"${20:String}\"",
+            "    StorageEncrypted: ${21|false,true|}",
             "    Tags:",
             "      Tags",
+            "    UseLatestRestorableTime: ${23|false,true|}",
             "    VpcSecurityGroupIds:",
             "      VpcSecurityGroupIds"
         ],
@@ -6552,8 +6556,7 @@
             "      Enabled: ${4|false,true|}",
             "    GlobalSecondaryIndexes:",
             "      GlobalSecondaryIndexes",
-            "    KeySchema: # Required",
-            "      KeySchema",
+            "    KeySchema:",
             "    KinesisStreamSpecification:",
             "      StreamArn: \"${7:String}\"",
             "    LocalSecondaryIndexes:",
@@ -9424,7 +9427,7 @@
             "      ServiceRole: \"${4:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-application.html"
         ],
         "prefix": "elasticbeanstalk-application",
         "scope": "yaml"
@@ -12583,7 +12586,10 @@
             "    AutoRegistrationStatus: \"${2:String}\"",
             "    CACertificatePem: \"${3:String}\" # Required",
             "    CertificateMode: \"${4:String}\"",
-            "    RegistrationConfig: ${5:JSON}",
+            "    RegistrationConfig:",
+            "      RoleArn: \"${5:String}\"",
+            "      TemplateBody: \"${6:String}\"",
+            "      TemplateName: \"${7:String}\"",
             "    Status: \"${6:String}\" # Required",
             "    Tags:",
             "      Tags",
@@ -12822,7 +12828,8 @@
             "    Tags:",
             "      Tags",
             "    TemplateBody: \"${7:String}\" # Required",
-            "    TemplateName: \"${8:String}\""
+            "    TemplateName: \"${8:String}\"",
+            "    TemplateType: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-provisioningtemplate.html",
@@ -15994,18 +16001,19 @@
             "      AdTriggers:",
             "        -",
             "      AdsOnDeliveryRestrictions: \"${6:String}\"",
-            "      ManifestLayout: \"${8:String}\"",
-            "      ManifestWindowSeconds: ${9:Number}",
-            "      MinBufferTimeSeconds: ${10:Number}",
-            "      MinUpdatePeriodSeconds: ${11:Number}",
+            "      IncludeIframeOnlyStream: ${8|false,true|}",
+            "      ManifestLayout: \"${9:String}\"",
+            "      ManifestWindowSeconds: ${10:Number}",
+            "      MinBufferTimeSeconds: ${11:Number}",
+            "      MinUpdatePeriodSeconds: ${12:Number}",
             "      PeriodTriggers:",
             "        -",
-            "      Profile: \"${13:String}\"",
-            "      SegmentDurationSeconds: ${14:Number}",
-            "      SegmentTemplateFormat: \"${15:String}\"",
-            "      SuggestedPresentationDelaySeconds: ${17:Number}",
-            "      UtcTiming: \"${18:String}\"",
-            "      UtcTimingUri: \"${19:String}\"",
+            "      Profile: \"${14:String}\"",
+            "      SegmentDurationSeconds: ${15:Number}",
+            "      SegmentTemplateFormat: \"${16:String}\"",
+            "      SuggestedPresentationDelaySeconds: ${18:Number}",
+            "      UtcTiming: \"${19:String}\"",
+            "      UtcTimingUri: \"${20:String}\"",
             "    Description: \"${6:String}\"",
             "    HlsPackage:",
             "      AdMarkers: \"${7:String}\"",
@@ -18537,14 +18545,16 @@
             "  Properties:",
             "    EngineName: \"${2:String}\" # Required",
             "    MajorEngineVersion: \"${3:String}\" # Required",
-            "    OptionConfigurations: # Required",
+            "    OptionConfigurations:",
             "      OptionConfigurations",
             "    OptionGroupDescription: \"${5:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html",
+            "Attributes: ",
+            "  OptionGroupName"
         ],
         "prefix": "rds-optiongroup",
         "scope": "yaml"
