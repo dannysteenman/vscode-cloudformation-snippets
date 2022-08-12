@@ -6556,7 +6556,8 @@
             "      Enabled: ${4|false,true|}",
             "    GlobalSecondaryIndexes:",
             "      GlobalSecondaryIndexes",
-            "    KeySchema:",
+            "    KeySchema: # Required",
+            "      KeySchema",
             "    KinesisStreamSpecification:",
             "      StreamArn: \"${7:String}\"",
             "    LocalSecondaryIndexes:",
@@ -7025,13 +7026,14 @@
             "    AllocationResourceTags:",
             "      AllocationResourceTags",
             "    AutoImport: ${7|false,true|}",
-            "    Description: \"${8:String}\"",
-            "    IpamScopeId: \"${9:String}\" # Required",
-            "    Locale: \"${10:String}\"",
+            "    AwsService: \"${8:String}\"",
+            "    Description: \"${9:String}\"",
+            "    IpamScopeId: \"${10:String}\" # Required",
+            "    Locale: \"${11:String}\"",
             "    ProvisionedCidrs:",
             "      ProvisionedCidrs",
-            "    PubliclyAdvertisable: ${12|false,true|}",
-            "    SourceIpamPoolId: \"${13:String}\"",
+            "    PubliclyAdvertisable: ${13|false,true|}",
+            "    SourceIpamPoolId: \"${14:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -10177,7 +10179,9 @@
             "    ResourceTypeList:",
             "      ResourceTypeList",
             "    ResourcesCleanUp: ${11|false,true|}",
-            "    SecurityServicePolicyData: ${12:JSON} # Required",
+            "    SecurityServicePolicyData:",
+            "      ManagedServiceData: \"${12:String}\"",
+            "      Type: \"${14:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -15461,6 +15465,25 @@
         "prefix": "msk-configuration",
         "scope": "yaml"
     },
+    "AWS::MSK::ServerlessCluster": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MSK::ServerlessCluster",
+            "  Properties:",
+            "    ClientAuthentication:",
+            "    ClusterName: \"${3:String}\" # Required",
+            "    Tags:",
+            "    VpcConfigs: # Required",
+            "      VpcConfigs"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-serverlesscluster.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "msk-serverlesscluster",
+        "scope": "yaml"
+    },
     "AWS::MWAA::Environment": {
         "body": [
             "${1:LogicalID}:",
@@ -18287,7 +18310,7 @@
             "    CharacterSetName: \"${9:String}\"",
             "    CopyTagsToSnapshot: ${10|false,true|}",
             "    DBClusterIdentifier: \"${11:String}\"",
-            "    DBInstanceClass: \"${12:String}\" # Required",
+            "    DBInstanceClass: \"${12:String}\"",
             "    DBInstanceIdentifier: \"${13:String}\"",
             "    DBName: \"${14:String}\"",
             "    DBParameterGroupName: \"${15:String}\"",
@@ -18336,10 +18359,11 @@
             "      VPCSecurityGroups"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html",
             "Attributes: ",
             "  Endpoint.Address",
-            "  Endpoint.Port"
+            "  Endpoint.Port",
+            "  Endpoint.HostedZoneId"
         ],
         "prefix": "rds-dbinstance",
         "scope": "yaml"
@@ -22283,6 +22307,25 @@
             "  State"
         ],
         "prefix": "synthetics-canary",
+        "scope": "yaml"
+    },
+    "AWS::Synthetics::Group": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Synthetics::Group",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    ResourceArns:",
+            "      ResourceArns",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-group.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "synthetics-group",
         "scope": "yaml"
     },
     "AWS::Timestream::Database": {
