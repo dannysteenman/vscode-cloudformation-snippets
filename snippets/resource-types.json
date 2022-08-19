@@ -5059,7 +5059,7 @@
             "    State: \"${6:String}\"",
             "    Tags:",
             "      Tags",
-            "    Type: \"${8:String}\""
+            "    Type: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflow.html",
@@ -7225,7 +7225,8 @@
             "      UserData: \"${32:String}\"",
             "    LaunchTemplateName: \"${3:String}\"",
             "    TagSpecifications:",
-            "      TagSpecifications"
+            "      TagSpecifications",
+            "    VersionDescription: \"${5:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html",
@@ -14409,31 +14410,35 @@
             "${1:LogicalID}:",
             "  Type: AWS::Lambda::EventSourceMapping",
             "  Properties:",
-            "    BatchSize: ${2:Number}",
-            "    BisectBatchOnFunctionError: ${3|false,true|}",
+            "    AmazonManagedKafkaEventSourceConfig:",
+            "      ConsumerGroupId: \"${2:String}\"",
+            "    BatchSize: ${3:Number}",
+            "    BisectBatchOnFunctionError: ${4|false,true|}",
             "    DestinationConfig:",
-            "    Enabled: ${5|false,true|}",
-            "    EventSourceArn: \"${6:String}\"",
+            "    Enabled: ${6|false,true|}",
+            "    EventSourceArn: \"${7:String}\"",
             "    FilterCriteria:",
             "      Filters:",
             "        -",
-            "    FunctionName: \"${8:String}\" # Required",
+            "    FunctionName: \"${9:String}\" # Required",
             "    FunctionResponseTypes:",
             "      FunctionResponseTypes",
-            "    MaximumBatchingWindowInSeconds: ${10:Number}",
-            "    MaximumRecordAgeInSeconds: ${11:Number}",
-            "    MaximumRetryAttempts: ${12:Number}",
-            "    ParallelizationFactor: ${13:Number}",
+            "    MaximumBatchingWindowInSeconds: ${11:Number}",
+            "    MaximumRecordAgeInSeconds: ${12:Number}",
+            "    MaximumRetryAttempts: ${13:Number}",
+            "    ParallelizationFactor: ${14:Number}",
             "    Queues:",
             "      Queues",
             "    SelfManagedEventSource:",
+            "    SelfManagedKafkaEventSourceConfig:",
+            "      ConsumerGroupId: \"${17:String}\"",
             "    SourceAccessConfigurations:",
             "      SourceAccessConfigurations",
-            "    StartingPosition: \"${17:String}\"",
-            "    StartingPositionTimestamp: ${18:Number}",
+            "    StartingPosition: \"${19:String}\"",
+            "    StartingPositionTimestamp: ${20:Number}",
             "    Topics:",
             "      Topics",
-            "    TumblingWindowInSeconds: ${20:Number}"
+            "    TumblingWindowInSeconds: ${22:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html",
@@ -16973,8 +16978,9 @@
             "    EBSOptions:",
             "      EBSEnabled: ${9|false,true|}",
             "      Iops: ${10:Number}",
-            "      VolumeSize: ${11:Number}",
-            "      VolumeType: \"${12:String}\"",
+            "      Throughput: ${11:Number}",
+            "      VolumeSize: ${12:Number}",
+            "      VolumeType: \"${13:String}\"",
             "    EncryptionAtRestOptions:",
             "      Enabled: ${10|false,true|}",
             "      KmsKeyId: \"${11:String}\"",
@@ -18375,14 +18381,12 @@
             "  Properties:",
             "    Description: \"${2:String}\" # Required",
             "    Family: \"${3:String}\" # Required",
-            "    Parameters: ${4:JSON}",
+            "    Parameters:",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html",
-            "Attributes: ",
-            "  DBParameterGroupName"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html"
         ],
         "prefix": "rds-dbparametergroup",
         "scope": "yaml"
@@ -18755,10 +18759,10 @@
             "${1:LogicalID}:",
             "  Type: AWS::Redshift::EndpointAccess",
             "  Properties:",
-            "    ClusterIdentifier: \"${2:String}\"",
+            "    ClusterIdentifier: \"${2:String}\" # Required",
             "    EndpointName: \"${3:String}\" # Required",
             "    ResourceOwner: \"${4:String}\"",
-            "    SubnetGroupName: \"${5:String}\"",
+            "    SubnetGroupName: \"${5:String}\" # Required",
             "    VpcSecurityGroupIds: # Required",
             "      VpcSecurityGroupIds"
         ],
