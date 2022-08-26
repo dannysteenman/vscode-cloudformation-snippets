@@ -4905,7 +4905,8 @@
             "    DeliveryS3Bucket: \"${4:String}\"",
             "    DeliveryS3KeyPrefix: \"${5:String}\"",
             "    TemplateBody: \"${6:String}\"",
-            "    TemplateS3Uri: \"${7:String}\""
+            "    TemplateS3Uri: \"${7:String}\"",
+            "    TemplateSSMDocumentDetails: ${8:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-conformancepack.html"
@@ -5111,6 +5112,35 @@
             "  HoursOfOperationArn"
         ],
         "prefix": "connect-hoursofoperation",
+        "scope": "yaml"
+    },
+    "AWS::Connect::Instance": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::Instance",
+            "  Properties:",
+            "    Attributes:",
+            "      AutoResolveBestVoices: ${2|false,true|}",
+            "      ContactLens: ${3|false,true|}",
+            "      ContactflowLogs: ${4|false,true|}",
+            "      EarlyMedia: ${5|false,true|}",
+            "      InboundCalls: ${6|false,true|}",
+            "      OutboundCalls: ${7|false,true|}",
+            "      UseCustomTTSVoices: ${8|false,true|}",
+            "    DirectoryId: \"${3:String}\"",
+            "    IdentityManagementType: \"${4:String}\" # Required",
+            "    InstanceAlias: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-instance.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn",
+            "  CreatedTime",
+            "  ServiceRole",
+            "  InstanceStatus"
+        ],
+        "prefix": "connect-instance",
         "scope": "yaml"
     },
     "AWS::Connect::PhoneNumber": {
@@ -6556,30 +6586,33 @@
             "      Enabled: ${4|false,true|}",
             "    GlobalSecondaryIndexes:",
             "      GlobalSecondaryIndexes",
+            "    ImportSourceSpecification:",
+            "      InputCompressionType: \"${6:String}\"",
+            "      InputFormat: \"${7:String}\"",
             "    KeySchema: # Required",
             "      KeySchema",
             "    KinesisStreamSpecification:",
-            "      StreamArn: \"${7:String}\"",
+            "      StreamArn: \"${8:String}\"",
             "    LocalSecondaryIndexes:",
             "      LocalSecondaryIndexes",
             "    PointInTimeRecoverySpecification:",
-            "      PointInTimeRecoveryEnabled: ${9|false,true|}",
+            "      PointInTimeRecoveryEnabled: ${10|false,true|}",
             "    ProvisionedThroughput:",
-            "      ReadCapacityUnits: ${10:Number}",
-            "      WriteCapacityUnits: ${11:Number}",
+            "      ReadCapacityUnits: ${11:Number}",
+            "      WriteCapacityUnits: ${12:Number}",
             "    SSESpecification:",
-            "      KMSMasterKeyId: \"${11:String}\"",
-            "      SSEEnabled: ${12|false,true|}",
-            "      SSEType: \"${13:String}\"",
+            "      KMSMasterKeyId: \"${12:String}\"",
+            "      SSEEnabled: ${13|false,true|}",
+            "      SSEType: \"${14:String}\"",
             "    StreamSpecification:",
-            "      StreamViewType: \"${12:String}\"",
-            "    TableClass: \"${13:String}\"",
-            "    TableName: \"${14:String}\"",
+            "      StreamViewType: \"${13:String}\"",
+            "    TableClass: \"${14:String}\"",
+            "    TableName: \"${15:String}\"",
             "    Tags:",
             "      Tags",
             "    TimeToLiveSpecification:",
-            "      AttributeName: \"${16:String}\"",
-            "      Enabled: ${17|false,true|}"
+            "      AttributeName: \"${17:String}\"",
+            "      Enabled: ${18|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html",
@@ -6765,9 +6798,7 @@
             "    Type: \"${5:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html",
-            "Attributes: ",
-            "  CustomerGatewayId"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customer-gateway.html"
         ],
         "prefix": "ec2-customergateway",
         "scope": "yaml"
@@ -13759,14 +13790,14 @@
             "    Name: \"${5:String}\"",
             "    Tags:",
             "      Tags",
-            "    ThingArn: \"${7:String}\""
+            "    ThingArn: \"${7:String}\"",
+            "    ThingName: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html",
             "Attributes: ",
             "  Arn",
-            "  Id",
-            "  ThingName"
+            "  Id"
         ],
         "prefix": "iotwireless-wirelessgateway",
         "scope": "yaml"
@@ -15318,7 +15349,9 @@
             "    RoleArn: \"${5:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html",
+            "Attributes: ",
+            "  FilterName"
         ],
         "prefix": "logs-subscriptionfilter",
         "scope": "yaml"
@@ -18230,54 +18263,63 @@
             "${1:LogicalID}:",
             "  Type: AWS::RDS::DBCluster",
             "  Properties:",
+            "    AllocatedStorage: ${2:Number}",
             "    AssociatedRoles:",
             "      AssociatedRoles",
+            "    AutoMinorVersionUpgrade: ${4|false,true|}",
             "    AvailabilityZones:",
             "      AvailabilityZones",
-            "    BacktrackWindow: ${4:Number}",
-            "    BackupRetentionPeriod: ${5:Number}",
-            "    CopyTagsToSnapshot: ${6|false,true|}",
-            "    DBClusterIdentifier: \"${7:String}\"",
-            "    DBClusterParameterGroupName: \"${8:String}\"",
-            "    DBSubnetGroupName: \"${9:String}\"",
-            "    DatabaseName: \"${10:String}\"",
-            "    DeletionProtection: ${11|false,true|}",
+            "    BacktrackWindow: ${6:Number}",
+            "    BackupRetentionPeriod: ${7:Number}",
+            "    CopyTagsToSnapshot: ${8|false,true|}",
+            "    DBClusterIdentifier: \"${9:String}\"",
+            "    DBClusterInstanceClass: \"${10:String}\"",
+            "    DBClusterParameterGroupName: \"${11:String}\"",
+            "    DBSubnetGroupName: \"${12:String}\"",
+            "    DatabaseName: \"${13:String}\"",
+            "    DeletionProtection: ${14|false,true|}",
             "    EnableCloudwatchLogsExports:",
             "      EnableCloudwatchLogsExports",
-            "    EnableHttpEndpoint: ${13|false,true|}",
-            "    EnableIAMDatabaseAuthentication: ${14|false,true|}",
-            "    Engine: \"${15:String}\" # Required",
-            "    EngineMode: \"${16:String}\"",
-            "    EngineVersion: \"${17:String}\"",
-            "    GlobalClusterIdentifier: \"${18:String}\"",
-            "    KmsKeyId: \"${19:String}\"",
-            "    MasterUserPassword: \"${20:String}\"",
-            "    MasterUsername: \"${21:String}\"",
-            "    Port: ${22:Number}",
-            "    PreferredBackupWindow: \"${23:String}\"",
-            "    PreferredMaintenanceWindow: \"${24:String}\"",
-            "    ReplicationSourceIdentifier: \"${25:String}\"",
-            "    RestoreType: \"${26:String}\"",
+            "    EnableHttpEndpoint: ${16|false,true|}",
+            "    EnableIAMDatabaseAuthentication: ${17|false,true|}",
+            "    Engine: \"${18:String}\"",
+            "    EngineMode: \"${19:String}\"",
+            "    EngineVersion: \"${20:String}\"",
+            "    GlobalClusterIdentifier: \"${21:String}\"",
+            "    Iops: ${22:Number}",
+            "    KmsKeyId: \"${23:String}\"",
+            "    MasterUserPassword: \"${24:String}\"",
+            "    MasterUsername: \"${25:String}\"",
+            "    MonitoringInterval: ${26:Number}",
+            "    MonitoringRoleArn: \"${27:String}\"",
+            "    PerformanceInsightsEnabled: ${28|false,true|}",
+            "    PerformanceInsightsKmsKeyId: \"${29:String}\"",
+            "    PerformanceInsightsRetentionPeriod: ${30:Number}",
+            "    Port: ${31:Number}",
+            "    PreferredBackupWindow: \"${32:String}\"",
+            "    PreferredMaintenanceWindow: \"${33:String}\"",
+            "    PubliclyAccessible: ${34|false,true|}",
+            "    ReplicationSourceIdentifier: \"${35:String}\"",
+            "    RestoreType: \"${36:String}\"",
             "    ScalingConfiguration:",
-            "      AutoPause: ${27|false,true|}",
-            "      MaxCapacity: ${28:Number}",
-            "      MinCapacity: ${29:Number}",
-            "      SecondsUntilAutoPause: ${30:Number}",
-            "    SnapshotIdentifier: \"${28:String}\"",
-            "    SourceDBClusterIdentifier: \"${29:String}\"",
-            "    SourceRegion: \"${30:String}\"",
-            "    StorageEncrypted: ${31|false,true|}",
+            "      AutoPause: ${37|false,true|}",
+            "      MaxCapacity: ${38:Number}",
+            "      MinCapacity: ${39:Number}",
+            "      SecondsUntilAutoPause: ${40:Number}",
+            "    SnapshotIdentifier: \"${38:String}\"",
+            "    SourceDBClusterIdentifier: \"${39:String}\"",
+            "    SourceRegion: \"${40:String}\"",
+            "    StorageEncrypted: ${41|false,true|}",
+            "    StorageType: \"${42:String}\"",
             "    Tags:",
             "      Tags",
-            "    UseLatestRestorableTime: ${33|false,true|}",
+            "    UseLatestRestorableTime: ${44|false,true|}",
             "    VpcSecurityGroupIds:",
             "      VpcSecurityGroupIds"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
             "Attributes: ",
-            "  Endpoint.Address",
-            "  Endpoint.Port",
             "  ReadEndpoint.Address"
         ],
         "prefix": "rds-dbcluster",
@@ -18381,12 +18423,14 @@
             "  Properties:",
             "    Description: \"${2:String}\" # Required",
             "    Family: \"${3:String}\" # Required",
-            "    Parameters:",
+            "    Parameters: ${4:JSON}",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html",
+            "Attributes: ",
+            "  DBParameterGroupName"
         ],
         "prefix": "rds-dbparametergroup",
         "scope": "yaml"
@@ -20409,9 +20453,10 @@
             "    TopicName: \"${8:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topic.html",
             "Attributes: ",
-            "  TopicName"
+            "  TopicName",
+            "  TopicArn"
         ],
         "prefix": "sns-topic",
         "scope": "yaml"
@@ -22262,6 +22307,41 @@
             "  Name"
         ],
         "prefix": "stepfunctions-statemachine",
+        "scope": "yaml"
+    },
+    "AWS::SupportApp::AccountAlias": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SupportApp::AccountAlias",
+            "  Properties:",
+            "    AccountAlias: \"${2:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-accountalias.html",
+            "Attributes: ",
+            "  AccountAliasResourceId"
+        ],
+        "prefix": "supportapp-accountalias",
+        "scope": "yaml"
+    },
+    "AWS::SupportApp::SlackChannelConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SupportApp::SlackChannelConfiguration",
+            "  Properties:",
+            "    ChannelId: \"${2:String}\" # Required",
+            "    ChannelName: \"${3:String}\"",
+            "    ChannelRoleArn: \"${4:String}\" # Required",
+            "    NotifyOnAddCorrespondenceToCase: ${5|false,true|}",
+            "    NotifyOnCaseSeverity: \"${6:String}\" # Required",
+            "    NotifyOnCreateOrReopenCase: ${7|false,true|}",
+            "    NotifyOnResolveCase: ${8|false,true|}",
+            "    TeamId: \"${9:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-slackchannelconfiguration.html"
+        ],
+        "prefix": "supportapp-slackchannelconfiguration",
         "scope": "yaml"
     },
     "AWS::Synthetics::Canary": {
