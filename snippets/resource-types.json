@@ -3682,6 +3682,20 @@
         "prefix": "cloudfront-keygroup",
         "scope": "yaml"
     },
+    "AWS::CloudFront::MonitoringSubscription": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFront::MonitoringSubscription",
+            "  Properties:",
+            "    DistributionId: \"${2:String}\" # Required",
+            "    MonitoringSubscription:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-monitoringsubscription.html"
+        ],
+        "prefix": "cloudfront-monitoringsubscription",
+        "scope": "yaml"
+    },
     "AWS::CloudFront::OriginAccessControl": {
         "body": [
             "${1:LogicalID}:",
@@ -3892,7 +3906,7 @@
             "    Unit: \"${22:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-alarm.html",
             "Attributes: ",
             "  Arn"
         ],
@@ -5319,6 +5333,7 @@
             "  Type: AWS::ConnectCampaigns::Campaign",
             "  Properties:",
             "    ConnectInstanceArn: \"${2:String}\" # Required",
+            "    DialerConfig:",
             "    Name: \"${4:String}\" # Required",
             "    OutboundCallConfig:",
             "      ConnectContactFlowArn: \"${5:String}\"",
@@ -6650,30 +6665,33 @@
             "      Enabled: ${4|false,true|}",
             "    GlobalSecondaryIndexes:",
             "      GlobalSecondaryIndexes",
+            "    ImportSourceSpecification:",
+            "      InputCompressionType: \"${6:String}\"",
+            "      InputFormat: \"${7:String}\"",
             "    KeySchema: # Required",
             "      KeySchema",
             "    KinesisStreamSpecification:",
-            "      StreamArn: \"${7:String}\"",
+            "      StreamArn: \"${8:String}\"",
             "    LocalSecondaryIndexes:",
             "      LocalSecondaryIndexes",
             "    PointInTimeRecoverySpecification:",
-            "      PointInTimeRecoveryEnabled: ${9|false,true|}",
+            "      PointInTimeRecoveryEnabled: ${10|false,true|}",
             "    ProvisionedThroughput:",
-            "      ReadCapacityUnits: ${10:Number}",
-            "      WriteCapacityUnits: ${11:Number}",
+            "      ReadCapacityUnits: ${11:Number}",
+            "      WriteCapacityUnits: ${12:Number}",
             "    SSESpecification:",
-            "      KMSMasterKeyId: \"${11:String}\"",
-            "      SSEEnabled: ${12|false,true|}",
-            "      SSEType: \"${13:String}\"",
+            "      KMSMasterKeyId: \"${12:String}\"",
+            "      SSEEnabled: ${13|false,true|}",
+            "      SSEType: \"${14:String}\"",
             "    StreamSpecification:",
-            "      StreamViewType: \"${12:String}\"",
-            "    TableClass: \"${13:String}\"",
-            "    TableName: \"${14:String}\"",
+            "      StreamViewType: \"${13:String}\"",
+            "    TableClass: \"${14:String}\"",
+            "    TableName: \"${15:String}\"",
             "    Tags:",
             "      Tags",
             "    TimeToLiveSpecification:",
-            "      AttributeName: \"${16:String}\"",
-            "      Enabled: ${17|false,true|}"
+            "      AttributeName: \"${17:String}\"",
+            "      Enabled: ${18|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html",
@@ -9308,6 +9326,7 @@
             "    SnapshotWindow: \"${21:String}\"",
             "    Tags:",
             "      Tags",
+            "    TransitEncryptionEnabled: ${23|false,true|}",
             "    VpcSecurityGroupIds:",
             "      VpcSecurityGroupIds"
         ],
@@ -9474,7 +9493,7 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html"
         ],
         "prefix": "elasticache-subnetgroup",
         "scope": "yaml"
@@ -9548,7 +9567,9 @@
             "      S3Key: \"${5:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-applicationversion.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "elasticbeanstalk-applicationversion",
         "scope": "yaml"
@@ -11156,21 +11177,23 @@
             "        -",
             "    DefaultArguments: ${5:JSON}",
             "    Description: \"${6:String}\"",
+            "    ExecutionClass: \"${7:String}\"",
             "    ExecutionProperty:",
-            "      MaxConcurrentRuns: ${7:Number}",
-            "    GlueVersion: \"${8:String}\"",
-            "    LogUri: \"${9:String}\"",
-            "    MaxCapacity: ${10:Number}",
-            "    MaxRetries: ${11:Number}",
-            "    Name: \"${12:String}\"",
+            "      MaxConcurrentRuns: ${8:Number}",
+            "    GlueVersion: \"${9:String}\"",
+            "    LogUri: \"${10:String}\"",
+            "    MaxCapacity: ${11:Number}",
+            "    MaxRetries: ${12:Number}",
+            "    Name: \"${13:String}\"",
+            "    NonOverridableArguments: ${14:JSON}",
             "    NotificationProperty:",
-            "      NotifyDelayAfter: ${13:Number}",
-            "    NumberOfWorkers: ${14:Number}",
-            "    Role: \"${15:String}\" # Required",
-            "    SecurityConfiguration: \"${16:String}\"",
-            "    Tags: ${17:JSON}",
-            "    Timeout: ${18:Number}",
-            "    WorkerType: \"${19:String}\""
+            "      NotifyDelayAfter: ${15:Number}",
+            "    NumberOfWorkers: ${16:Number}",
+            "    Role: \"${17:String}\" # Required",
+            "    SecurityConfiguration: \"${18:String}\"",
+            "    Tags: ${19:JSON}",
+            "    Timeout: ${20:Number}",
+            "    WorkerType: \"${21:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html"
@@ -11353,16 +11376,19 @@
             "    Actions: # Required",
             "      Actions",
             "    Description: \"${3:String}\"",
-            "    Name: \"${4:String}\"",
+            "    EventBatchingCondition:",
+            "      BatchSize: ${4:Number}",
+            "      BatchWindow: ${5:Number}",
+            "    Name: \"${5:String}\"",
             "    Predicate:",
             "      Conditions:",
             "        -",
-            "      Logical: \"${6:String}\"",
-            "    Schedule: \"${6:String}\"",
-            "    StartOnCreation: ${7|false,true|}",
-            "    Tags: ${8:JSON}",
-            "    Type: \"${9:String}\" # Required",
-            "    WorkflowName: \"${10:String}\""
+            "      Logical: \"${7:String}\"",
+            "    Schedule: \"${7:String}\"",
+            "    StartOnCreation: ${8|false,true|}",
+            "    Tags: ${9:JSON}",
+            "    Type: \"${10:String}\" # Required",
+            "    WorkflowName: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html"
@@ -11377,8 +11403,9 @@
             "  Properties:",
             "    DefaultRunProperties: ${2:JSON}",
             "    Description: \"${3:String}\"",
-            "    Name: \"${4:String}\"",
-            "    Tags: ${5:JSON}"
+            "    MaxConcurrentRuns: ${4:Number}",
+            "    Name: \"${5:String}\"",
+            "    Tags: ${6:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html"
@@ -12259,6 +12286,39 @@
             "  Value"
         ],
         "prefix": "ivs-streamkey",
+        "scope": "yaml"
+    },
+    "AWS::IdentityStore::Group": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IdentityStore::Group",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DisplayName: \"${3:String}\"",
+            "    IdentityStoreId: \"${4:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-group.html",
+            "Attributes: ",
+            "  GroupId"
+        ],
+        "prefix": "identitystore-group",
+        "scope": "yaml"
+    },
+    "AWS::IdentityStore::GroupMembership": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IdentityStore::GroupMembership",
+            "  Properties:",
+            "    GroupId: \"${2:String}\"",
+            "    IdentityStoreId: \"${3:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-groupmembership.html",
+            "Attributes: ",
+            "  MembershipId"
+        ],
+        "prefix": "identitystore-groupmembership",
         "scope": "yaml"
     },
     "AWS::ImageBuilder::Component": {
@@ -13318,6 +13378,163 @@
         "prefix": "iotfleethub-application",
         "scope": "yaml"
     },
+    "AWS::IoTFleetWise::Campaign": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTFleetWise::Campaign",
+            "  Properties:",
+            "    Action: \"${2:String}\" # Required",
+            "    CollectionScheme:",
+            "    Compression: \"${4:String}\"",
+            "    DataExtraDimensions:",
+            "      DataExtraDimensions",
+            "    Description: \"${6:String}\"",
+            "    DiagnosticsMode: \"${7:String}\"",
+            "    ExpiryTime: \"${8:String}\"",
+            "    Name: \"${9:String}\" # Required",
+            "    PostTriggerCollectionDuration: ${10:Number}",
+            "    Priority: ${11:Number}",
+            "    SignalCatalogArn: \"${12:String}\" # Required",
+            "    SignalsToCollect:",
+            "      SignalsToCollect",
+            "    SpoolingMode: \"${14:String}\"",
+            "    StartTime: \"${15:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    TargetArn: \"${17:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-campaign.html",
+            "Attributes: ",
+            "  Status",
+            "  CreationTime",
+            "  LastModificationTime",
+            "  Arn"
+        ],
+        "prefix": "iotfleetwise-campaign",
+        "scope": "yaml"
+    },
+    "AWS::IoTFleetWise::DecoderManifest": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTFleetWise::DecoderManifest",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    ModelManifestArn: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    NetworkInterfaces:",
+            "      NetworkInterfaces",
+            "    SignalDecoders:",
+            "      SignalDecoders",
+            "    Status: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-decodermanifest.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationTime",
+            "  LastModificationTime"
+        ],
+        "prefix": "iotfleetwise-decodermanifest",
+        "scope": "yaml"
+    },
+    "AWS::IoTFleetWise::Fleet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTFleetWise::Fleet",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Id: \"${3:String}\" # Required",
+            "    SignalCatalogArn: \"${4:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-fleet.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationTime",
+            "  LastModificationTime"
+        ],
+        "prefix": "iotfleetwise-fleet",
+        "scope": "yaml"
+    },
+    "AWS::IoTFleetWise::ModelManifest": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTFleetWise::ModelManifest",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Nodes:",
+            "      Nodes",
+            "    SignalCatalogArn: \"${5:String}\" # Required",
+            "    Status: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-modelmanifest.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationTime",
+            "  LastModificationTime"
+        ],
+        "prefix": "iotfleetwise-modelmanifest",
+        "scope": "yaml"
+    },
+    "AWS::IoTFleetWise::SignalCatalog": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTFleetWise::SignalCatalog",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\"",
+            "    Nodes:",
+            "      Nodes",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-signalcatalog.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationTime",
+            "  LastModificationTime",
+            "  NodeCounts.TotalNodes",
+            "  NodeCounts.TotalBranches",
+            "  NodeCounts.TotalSensors",
+            "  NodeCounts.TotalAttributes",
+            "  NodeCounts.TotalActuators"
+        ],
+        "prefix": "iotfleetwise-signalcatalog",
+        "scope": "yaml"
+    },
+    "AWS::IoTFleetWise::Vehicle": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTFleetWise::Vehicle",
+            "  Properties:",
+            "    AssociationBehavior: \"${2:String}\"",
+            "    Attributes:",
+            "    DecoderManifestArn: \"${4:String}\" # Required",
+            "    ModelManifestArn: \"${5:String}\" # Required",
+            "    Name: \"${6:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-vehicle.html",
+            "Attributes: ",
+            "  Arn",
+            "  CreationTime",
+            "  LastModificationTime"
+        ],
+        "prefix": "iotfleetwise-vehicle",
+        "scope": "yaml"
+    },
     "AWS::IoTSiteWise::AccessPolicy": {
         "body": [
             "${1:LogicalID}:",
@@ -13614,18 +13831,24 @@
             "    LoRaWAN:",
             "      ClassBTimeout: ${2:Number}",
             "      ClassCTimeout: ${3:Number}",
-            "      MacVersion: \"${4:String}\"",
-            "      MaxDutyCycle: ${5:Number}",
-            "      MaxEirp: ${6:Number}",
-            "      PingSlotDr: ${7:Number}",
-            "      PingSlotFreq: ${8:Number}",
-            "      PingSlotPeriod: ${9:Number}",
-            "      RegParamsRevision: \"${10:String}\"",
-            "      RfRegion: \"${11:String}\"",
-            "      Supports32BitFCnt: ${12|false,true|}",
-            "      SupportsClassB: ${13|false,true|}",
-            "      SupportsClassC: ${14|false,true|}",
-            "      SupportsJoin: ${15|false,true|}",
+            "      FactoryPresetFreqsList:",
+            "        -",
+            "      MacVersion: \"${5:String}\"",
+            "      MaxDutyCycle: ${6:Number}",
+            "      MaxEirp: ${7:Number}",
+            "      PingSlotDr: ${8:Number}",
+            "      PingSlotFreq: ${9:Number}",
+            "      PingSlotPeriod: ${10:Number}",
+            "      RegParamsRevision: \"${11:String}\"",
+            "      RfRegion: \"${12:String}\"",
+            "      RxDataRate2: ${13:Number}",
+            "      RxDelay1: ${14:Number}",
+            "      RxDrOffset1: ${15:Number}",
+            "      RxFreq2: ${16:Number}",
+            "      Supports32BitFCnt: ${17|false,true|}",
+            "      SupportsClassB: ${18|false,true|}",
+            "      SupportsClassC: ${19|false,true|}",
+            "      SupportsJoin: ${20|false,true|}",
             "    Name: \"${3:String}\"",
             "    Tags:",
             "      Tags"
@@ -15511,6 +15734,25 @@
         "prefix": "lookoutvision-project",
         "scope": "yaml"
     },
+    "AWS::M2::Application": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::M2::Application",
+            "  Properties:",
+            "    Description: \"${3:String}\"",
+            "    EngineType: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-application.html",
+            "Attributes: ",
+            "  ApplicationArn",
+            "  ApplicationId"
+        ],
+        "prefix": "m2-application",
+        "scope": "yaml"
+    },
     "AWS::M2::Environment": {
         "body": [
             "${1:LogicalID}:",
@@ -15679,6 +15921,7 @@
             "  Type: AWS::Macie::AllowList",
             "  Properties:",
             "    Criteria:",
+            "      Regex: \"${2:String}\"",
             "    Description: \"${3:String}\"",
             "    Name: \"${4:String}\" # Required",
             "    Tags:",
@@ -18391,55 +18634,70 @@
             "${1:LogicalID}:",
             "  Type: AWS::RDS::DBCluster",
             "  Properties:",
+            "    AllocatedStorage: ${2:Number}",
             "    AssociatedRoles:",
             "      AssociatedRoles",
+            "    AutoMinorVersionUpgrade: ${4|false,true|}",
             "    AvailabilityZones:",
             "      AvailabilityZones",
-            "    BacktrackWindow: ${4:Number}",
-            "    BackupRetentionPeriod: ${5:Number}",
-            "    CopyTagsToSnapshot: ${6|false,true|}",
-            "    DBClusterIdentifier: \"${7:String}\"",
-            "    DBClusterParameterGroupName: \"${8:String}\"",
-            "    DBSubnetGroupName: \"${9:String}\"",
-            "    DatabaseName: \"${10:String}\"",
-            "    DeletionProtection: ${11|false,true|}",
+            "    BacktrackWindow: ${6:Number}",
+            "    BackupRetentionPeriod: ${7:Number}",
+            "    CopyTagsToSnapshot: ${8|false,true|}",
+            "    DBClusterIdentifier: \"${9:String}\"",
+            "    DBClusterInstanceClass: \"${10:String}\"",
+            "    DBClusterParameterGroupName: \"${11:String}\"",
+            "    DBInstanceParameterGroupName: \"${12:String}\"",
+            "    DBSubnetGroupName: \"${13:String}\"",
+            "    DatabaseName: \"${14:String}\"",
+            "    DeletionProtection: ${15|false,true|}",
             "    EnableCloudwatchLogsExports:",
             "      EnableCloudwatchLogsExports",
-            "    EnableHttpEndpoint: ${13|false,true|}",
-            "    EnableIAMDatabaseAuthentication: ${14|false,true|}",
-            "    Engine: \"${15:String}\" # Required",
-            "    EngineMode: \"${16:String}\"",
-            "    EngineVersion: \"${17:String}\"",
-            "    GlobalClusterIdentifier: \"${18:String}\"",
-            "    KmsKeyId: \"${19:String}\"",
-            "    MasterUserPassword: \"${20:String}\"",
-            "    MasterUsername: \"${21:String}\"",
-            "    Port: ${22:Number}",
-            "    PreferredBackupWindow: \"${23:String}\"",
-            "    PreferredMaintenanceWindow: \"${24:String}\"",
-            "    ReplicationSourceIdentifier: \"${25:String}\"",
-            "    RestoreType: \"${26:String}\"",
+            "    EnableHttpEndpoint: ${17|false,true|}",
+            "    EnableIAMDatabaseAuthentication: ${18|false,true|}",
+            "    Engine: \"${19:String}\" # Required",
+            "    EngineMode: \"${20:String}\"",
+            "    EngineVersion: \"${21:String}\"",
+            "    GlobalClusterIdentifier: \"${22:String}\"",
+            "    Iops: ${23:Number}",
+            "    KmsKeyId: \"${24:String}\"",
+            "    MasterUserPassword: \"${25:String}\"",
+            "    MasterUsername: \"${26:String}\"",
+            "    MonitoringInterval: ${27:Number}",
+            "    MonitoringRoleArn: \"${28:String}\"",
+            "    PerformanceInsightsEnabled: ${29|false,true|}",
+            "    PerformanceInsightsKmsKeyId: \"${30:String}\"",
+            "    PerformanceInsightsRetentionPeriod: ${31:Number}",
+            "    Port: ${32:Number}",
+            "    PreferredBackupWindow: \"${33:String}\"",
+            "    PreferredMaintenanceWindow: \"${34:String}\"",
+            "    PubliclyAccessible: ${35|false,true|}",
+            "    ReplicationSourceIdentifier: \"${36:String}\"",
+            "    RestoreType: \"${37:String}\"",
             "    ScalingConfiguration:",
-            "      AutoPause: ${27|false,true|}",
-            "      MaxCapacity: ${28:Number}",
-            "      MinCapacity: ${29:Number}",
-            "      SecondsUntilAutoPause: ${30:Number}",
-            "    SnapshotIdentifier: \"${28:String}\"",
-            "    SourceDBClusterIdentifier: \"${29:String}\"",
-            "    SourceRegion: \"${30:String}\"",
-            "    StorageEncrypted: ${31|false,true|}",
+            "      AutoPause: ${38|false,true|}",
+            "      MaxCapacity: ${39:Number}",
+            "      MinCapacity: ${40:Number}",
+            "      SecondsUntilAutoPause: ${41:Number}",
+            "    ServerlessV2ScalingConfiguration:",
+            "      MaxCapacity: ${39:Number}",
+            "      MinCapacity: ${40:Number}",
+            "    SnapshotIdentifier: \"${40:String}\"",
+            "    SourceDBClusterIdentifier: \"${41:String}\"",
+            "    SourceRegion: \"${42:String}\"",
+            "    StorageEncrypted: ${43|false,true|}",
+            "    StorageType: \"${44:String}\"",
             "    Tags:",
             "      Tags",
-            "    UseLatestRestorableTime: ${33|false,true|}",
+            "    UseLatestRestorableTime: ${46|false,true|}",
             "    VpcSecurityGroupIds:",
             "      VpcSecurityGroupIds"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
             "Attributes: ",
+            "  ReadEndpoint.Address",
             "  Endpoint.Address",
-            "  Endpoint.Port",
-            "  ReadEndpoint.Address"
+            "  Endpoint.Port"
         ],
         "prefix": "rds-dbcluster",
         "scope": "yaml"
@@ -18456,7 +18714,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html",
+            "Attributes: ",
+            "  DBClusterParameterGroupName"
         ],
         "prefix": "rds-dbclusterparametergroup",
         "scope": "yaml"
@@ -18916,7 +19176,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html",
+            "Attributes: ",
+            "  ClusterSubnetGroupName"
         ],
         "prefix": "redshift-clustersubnetgroup",
         "scope": "yaml"
@@ -21446,6 +21708,10 @@
             "    ApprovalDescription: \"${5:String}\"",
             "    CertifyForMarketplace: ${6|false,true|}",
             "    ClientToken: \"${7:String}\"",
+            "    CreatedBy:",
+            "      DomainId: \"${8:String}\"",
+            "      UserProfileArn: \"${9:String}\"",
+            "      UserProfileName: \"${10:String}\"",
             "    CustomerMetadataProperties:",
             "    Domain: \"${10:String}\"",
             "    DriftCheckBaselines:",
@@ -21461,6 +21727,10 @@
             "        -",
             "      SupportedTransformInstanceTypes:",
             "        -",
+            "    LastModifiedBy:",
+            "      DomainId: \"${14:String}\"",
+            "      UserProfileArn: \"${15:String}\"",
+            "      UserProfileName: \"${16:String}\"",
             "    LastModifiedTime: \"${15:String}\"",
             "    MetadataProperties:",
             "      CommitId: \"${16:String}\"",
