@@ -1098,7 +1098,9 @@
             "    Schema: ${6:JSON} # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-model.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-model.html",
+            "Attributes: ",
+            "  ModelId"
         ],
         "prefix": "apigatewayv2-model",
         "scope": "yaml"
@@ -2980,11 +2982,11 @@
             "  Type: AWS::Budgets::Budget",
             "  Properties:",
             "    Budget:",
-            "      BudgetName: \"${3:String}\"",
-            "      BudgetType: \"${4:String}\"",
-            "      CostFilters: ${5:JSON}",
-            "      PlannedBudgetLimits: ${7:JSON}",
-            "      TimeUnit: \"${9:String}\"",
+            "      BudgetName: \"${4:String}\"",
+            "      BudgetType: \"${5:String}\"",
+            "      CostFilters: ${6:JSON}",
+            "      PlannedBudgetLimits: ${8:JSON}",
+            "      TimeUnit: \"${10:String}\"",
             "    NotificationsWithSubscribers:",
             "      NotificationsWithSubscribers"
         ],
@@ -4705,7 +4707,9 @@
             "    UserPoolId: \"${4:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooldomain.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooldomain.html",
+            "Attributes: ",
+            "  CloudFrontDistribution"
         ],
         "prefix": "cognito-userpooldomain",
         "scope": "yaml"
@@ -6966,8 +6970,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eip.html",
             "Attributes: ",
+            "  PublicIp",
             "  AllocationId"
         ],
         "prefix": "ec2-eip",
@@ -11747,6 +11752,27 @@
         "prefix": "greengrassv2-componentversion",
         "scope": "yaml"
     },
+    "AWS::GreengrassV2::Deployment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::GreengrassV2::Deployment",
+            "  Properties:",
+            "    Components:",
+            "    DeploymentName: \"${3:String}\"",
+            "    DeploymentPolicies:",
+            "      FailureHandlingPolicy: \"${6:String}\"",
+            "    IotJobConfiguration:",
+            "    Tags:",
+            "    TargetArn: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-deployment.html",
+            "Attributes: ",
+            "  DeploymentId"
+        ],
+        "prefix": "greengrassv2-deployment",
+        "scope": "yaml"
+    },
     "AWS::GroundStation::Config": {
         "body": [
             "${1:LogicalID}:",
@@ -12294,8 +12320,8 @@
             "  Type: AWS::IdentityStore::Group",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    DisplayName: \"${3:String}\"",
-            "    IdentityStoreId: \"${4:String}\""
+            "    DisplayName: \"${3:String}\" # Required",
+            "    IdentityStoreId: \"${4:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-group.html",
@@ -12310,8 +12336,8 @@
             "${1:LogicalID}:",
             "  Type: AWS::IdentityStore::GroupMembership",
             "  Properties:",
-            "    GroupId: \"${2:String}\"",
-            "    IdentityStoreId: \"${3:String}\""
+            "    GroupId: \"${2:String}\" # Required",
+            "    IdentityStoreId: \"${3:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-groupmembership.html",
@@ -15739,6 +15765,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::M2::Application",
             "  Properties:",
+            "    Definition:",
             "    Description: \"${3:String}\"",
             "    EngineType: \"${4:String}\" # Required",
             "    Name: \"${5:String}\" # Required",
@@ -18650,45 +18677,48 @@
             "    DBSubnetGroupName: \"${13:String}\"",
             "    DatabaseName: \"${14:String}\"",
             "    DeletionProtection: ${15|false,true|}",
+            "    Domain: \"${16:String}\"",
+            "    DomainIAMRoleName: \"${17:String}\"",
             "    EnableCloudwatchLogsExports:",
             "      EnableCloudwatchLogsExports",
-            "    EnableHttpEndpoint: ${17|false,true|}",
-            "    EnableIAMDatabaseAuthentication: ${18|false,true|}",
-            "    Engine: \"${19:String}\" # Required",
-            "    EngineMode: \"${20:String}\"",
-            "    EngineVersion: \"${21:String}\"",
-            "    GlobalClusterIdentifier: \"${22:String}\"",
-            "    Iops: ${23:Number}",
-            "    KmsKeyId: \"${24:String}\"",
-            "    MasterUserPassword: \"${25:String}\"",
-            "    MasterUsername: \"${26:String}\"",
-            "    MonitoringInterval: ${27:Number}",
-            "    MonitoringRoleArn: \"${28:String}\"",
-            "    PerformanceInsightsEnabled: ${29|false,true|}",
-            "    PerformanceInsightsKmsKeyId: \"${30:String}\"",
-            "    PerformanceInsightsRetentionPeriod: ${31:Number}",
-            "    Port: ${32:Number}",
-            "    PreferredBackupWindow: \"${33:String}\"",
-            "    PreferredMaintenanceWindow: \"${34:String}\"",
-            "    PubliclyAccessible: ${35|false,true|}",
-            "    ReplicationSourceIdentifier: \"${36:String}\"",
-            "    RestoreType: \"${37:String}\"",
+            "    EnableHttpEndpoint: ${19|false,true|}",
+            "    EnableIAMDatabaseAuthentication: ${20|false,true|}",
+            "    Engine: \"${21:String}\" # Required",
+            "    EngineMode: \"${22:String}\"",
+            "    EngineVersion: \"${23:String}\"",
+            "    GlobalClusterIdentifier: \"${24:String}\"",
+            "    Iops: ${25:Number}",
+            "    KmsKeyId: \"${26:String}\"",
+            "    MasterUserPassword: \"${27:String}\"",
+            "    MasterUsername: \"${28:String}\"",
+            "    MonitoringInterval: ${29:Number}",
+            "    MonitoringRoleArn: \"${30:String}\"",
+            "    NetworkType: \"${31:String}\"",
+            "    PerformanceInsightsEnabled: ${32|false,true|}",
+            "    PerformanceInsightsKmsKeyId: \"${33:String}\"",
+            "    PerformanceInsightsRetentionPeriod: ${34:Number}",
+            "    Port: ${35:Number}",
+            "    PreferredBackupWindow: \"${36:String}\"",
+            "    PreferredMaintenanceWindow: \"${37:String}\"",
+            "    PubliclyAccessible: ${38|false,true|}",
+            "    ReplicationSourceIdentifier: \"${39:String}\"",
+            "    RestoreType: \"${40:String}\"",
             "    ScalingConfiguration:",
-            "      AutoPause: ${38|false,true|}",
-            "      MaxCapacity: ${39:Number}",
-            "      MinCapacity: ${40:Number}",
-            "      SecondsUntilAutoPause: ${41:Number}",
+            "      AutoPause: ${41|false,true|}",
+            "      MaxCapacity: ${42:Number}",
+            "      MinCapacity: ${43:Number}",
+            "      SecondsUntilAutoPause: ${44:Number}",
             "    ServerlessV2ScalingConfiguration:",
-            "      MaxCapacity: ${39:Number}",
-            "      MinCapacity: ${40:Number}",
-            "    SnapshotIdentifier: \"${40:String}\"",
-            "    SourceDBClusterIdentifier: \"${41:String}\"",
-            "    SourceRegion: \"${42:String}\"",
-            "    StorageEncrypted: ${43|false,true|}",
-            "    StorageType: \"${44:String}\"",
+            "      MaxCapacity: ${42:Number}",
+            "      MinCapacity: ${43:Number}",
+            "    SnapshotIdentifier: \"${43:String}\"",
+            "    SourceDBClusterIdentifier: \"${44:String}\"",
+            "    SourceRegion: \"${45:String}\"",
+            "    StorageEncrypted: ${46|false,true|}",
+            "    StorageType: \"${47:String}\"",
             "    Tags:",
             "      Tags",
-            "    UseLatestRestorableTime: ${46|false,true|}",
+            "    UseLatestRestorableTime: ${49|false,true|}",
             "    VpcSecurityGroupIds:",
             "      VpcSecurityGroupIds"
         ],
@@ -18766,24 +18796,25 @@
             "    MonitoringRoleArn: \"${36:String}\"",
             "    MultiAZ: ${37|false,true|}",
             "    NcharCharacterSetName: \"${38:String}\"",
-            "    OptionGroupName: \"${39:String}\"",
-            "    PerformanceInsightsKMSKeyId: \"${40:String}\"",
-            "    PerformanceInsightsRetentionPeriod: ${41:Number}",
-            "    Port: \"${42:String}\"",
-            "    PreferredBackupWindow: \"${43:String}\"",
-            "    PreferredMaintenanceWindow: \"${44:String}\"",
+            "    NetworkType: \"${39:String}\"",
+            "    OptionGroupName: \"${40:String}\"",
+            "    PerformanceInsightsKMSKeyId: \"${41:String}\"",
+            "    PerformanceInsightsRetentionPeriod: ${42:Number}",
+            "    Port: \"${43:String}\"",
+            "    PreferredBackupWindow: \"${44:String}\"",
+            "    PreferredMaintenanceWindow: \"${45:String}\"",
             "    ProcessorFeatures:",
             "      ProcessorFeatures",
-            "    PromotionTier: ${46:Number}",
-            "    PubliclyAccessible: ${47|false,true|}",
-            "    SourceDBInstanceIdentifier: \"${48:String}\"",
-            "    SourceRegion: \"${49:String}\"",
-            "    StorageEncrypted: ${50|false,true|}",
-            "    StorageType: \"${51:String}\"",
+            "    PromotionTier: ${47:Number}",
+            "    PubliclyAccessible: ${48|false,true|}",
+            "    SourceDBInstanceIdentifier: \"${49:String}\"",
+            "    SourceRegion: \"${50:String}\"",
+            "    StorageEncrypted: ${51|false,true|}",
+            "    StorageType: \"${52:String}\"",
             "    Tags:",
             "      Tags",
-            "    Timezone: \"${53:String}\"",
-            "    UseDefaultProcessorFeatures: ${54|false,true|}",
+            "    Timezone: \"${54:String}\"",
+            "    UseDefaultProcessorFeatures: ${55|false,true|}",
             "    VPCSecurityGroups:",
             "      VPCSecurityGroups"
         ],
@@ -18840,7 +18871,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxy.html",
             "Attributes: ",
             "  DBProxyArn",
-            "  Endpoint"
+            "  Endpoint",
+            "  VpcId"
         ],
         "prefix": "rds-dbproxy",
         "scope": "yaml"
@@ -19192,14 +19224,16 @@
             "    EndpointName: \"${3:String}\" # Required",
             "    ResourceOwner: \"${4:String}\"",
             "    SubnetGroupName: \"${5:String}\" # Required",
+            "    VpcEndpoint: ${6:JSON}",
             "    VpcSecurityGroupIds: # Required",
-            "      VpcSecurityGroupIds"
+            "      VpcSecurityGroupIds",
+            "    VpcSecurityGroups:",
+            "      VpcSecurityGroups"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointaccess.html",
             "Attributes: ",
             "  Address",
-            "  VpcSecurityGroups",
             "  EndpointStatus",
             "  EndpointCreateTime",
             "  Port"
@@ -20015,7 +20049,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::Route53RecoveryReadiness::Cell",
             "  Properties:",
-            "    CellName: \"${2:String}\" # Required",
+            "    CellName: \"${2:String}\"",
             "    Cells:",
             "      Cells",
             "    Tags:",
@@ -20035,7 +20069,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::Route53RecoveryReadiness::ReadinessCheck",
             "  Properties:",
-            "    ReadinessCheckName: \"${2:String}\" # Required",
+            "    ReadinessCheckName: \"${2:String}\"",
             "    ResourceSetName: \"${3:String}\"",
             "    Tags:",
             "      Tags"
@@ -20055,7 +20089,7 @@
             "  Properties:",
             "    Cells:",
             "      Cells",
-            "    RecoveryGroupName: \"${3:String}\" # Required",
+            "    RecoveryGroupName: \"${3:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -20072,7 +20106,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::Route53RecoveryReadiness::ResourceSet",
             "  Properties:",
-            "    ResourceSetName: \"${2:String}\" # Required",
+            "    ResourceSetName: \"${2:String}\"",
             "    ResourceSetType: \"${3:String}\" # Required",
             "    Resources: # Required",
             "      Resources",
@@ -21499,7 +21533,8 @@
             "      InitialSamplingPercentage: ${7:Number}",
             "      KmsKeyId: \"${8:String}\"",
             "    EndpointConfigName: \"${4:String}\"",
-            "    KmsKeyId: \"${5:String}\"",
+            "    ExplainerConfig:",
+            "    KmsKeyId: \"${6:String}\"",
             "    ProductionVariants: # Required",
             "      ProductionVariants",
             "    Tags:",
@@ -22877,6 +22912,101 @@
             "  Name"
         ],
         "prefix": "timestream-table",
+        "scope": "yaml"
+    },
+    "AWS::Transfer::Agreement": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Transfer::Agreement",
+            "  Properties:",
+            "    AccessRole: \"${2:String}\" # Required",
+            "    BaseDirectory: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    LocalProfileId: \"${5:String}\" # Required",
+            "    PartnerProfileId: \"${6:String}\" # Required",
+            "    ServerId: \"${7:String}\" # Required",
+            "    Status: \"${8:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-agreement.html",
+            "Attributes: ",
+            "  AgreementId",
+            "  Arn"
+        ],
+        "prefix": "transfer-agreement",
+        "scope": "yaml"
+    },
+    "AWS::Transfer::Certificate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Transfer::Certificate",
+            "  Properties:",
+            "    ActiveDate: \"${2:String}\"",
+            "    Certificate: \"${3:String}\" # Required",
+            "    CertificateChain: \"${4:String}\"",
+            "    Description: \"${5:String}\"",
+            "    InactiveDate: \"${6:String}\"",
+            "    PrivateKey: \"${7:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Usage: \"${9:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-certificate.html",
+            "Attributes: ",
+            "  Arn",
+            "  CertificateId",
+            "  Status",
+            "  Type",
+            "  Serial",
+            "  NotBeforeDate",
+            "  NotAfterDate"
+        ],
+        "prefix": "transfer-certificate",
+        "scope": "yaml"
+    },
+    "AWS::Transfer::Connector": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Transfer::Connector",
+            "  Properties:",
+            "    AccessRole: \"${2:String}\" # Required",
+            "    As2Config: ${3:JSON} # Required",
+            "    LoggingRole: \"${4:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Url: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-connector.html",
+            "Attributes: ",
+            "  Arn",
+            "  ConnectorId"
+        ],
+        "prefix": "transfer-connector",
+        "scope": "yaml"
+    },
+    "AWS::Transfer::Profile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Transfer::Profile",
+            "  Properties:",
+            "    As2Id: \"${2:String}\" # Required",
+            "    CertificateIds:",
+            "      CertificateIds",
+            "    ProfileType: \"${4:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-profile.html",
+            "Attributes: ",
+            "  Arn",
+            "  ProfileId"
+        ],
+        "prefix": "transfer-profile",
         "scope": "yaml"
     },
     "AWS::Transfer::Server": {
