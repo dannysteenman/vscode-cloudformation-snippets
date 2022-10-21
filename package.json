@@ -3,7 +3,7 @@
   "displayName": "CloudFormation Snippets",
   "description": "This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.",
   "author": "Danny Steenman",
-  "version": "3.80.0",
+  "version": "3.81.0",
   "publisher": "dannysteenman",
   "icon": "images/cfn-snippets-extension-icon.png",
   "homepage": "https://towardsthecloud.com",

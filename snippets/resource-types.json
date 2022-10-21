@@ -5292,6 +5292,8 @@
             "      Email: \"${4:String}\"",
             "      FirstName: \"${5:String}\"",
             "      LastName: \"${6:String}\"",
+            "      Mobile: \"${7:String}\"",
+            "      SecondaryEmail: \"${8:String}\"",
             "    InstanceArn: \"${5:String}\" # Required",
             "    Password: \"${6:String}\"",
             "    PhoneConfig:",
@@ -6067,7 +6069,7 @@
             "    Activate: ${2|false,true|}",
             "    Description: \"${3:String}\"",
             "    Name: \"${4:String}\" # Required",
-            "    ParameterObjects: # Required",
+            "    ParameterObjects:",
             "      ParameterObjects",
             "    ParameterValues:",
             "      ParameterValues",
@@ -6077,7 +6079,9 @@
             "      PipelineTags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html",
+            "Attributes: ",
+            "  PipelineId"
         ],
         "prefix": "datapipeline-pipeline",
         "scope": "yaml"
@@ -12337,7 +12341,9 @@
             "  Type: AWS::IdentityStore::GroupMembership",
             "  Properties:",
             "    GroupId: \"${2:String}\" # Required",
-            "    IdentityStoreId: \"${3:String}\" # Required"
+            "    IdentityStoreId: \"${3:String}\" # Required",
+            "    MemberId:",
+            "      UserId: \"${4:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-identitystore-groupmembership.html",
@@ -15850,6 +15856,7 @@
             "    LoggingInfo:",
             "    NumberOfBrokerNodes: ${11:Number} # Required",
             "    OpenMonitoring:",
+            "    StorageMode: \"${13:String}\"",
             "    Tags:"
         ],
         "description": [
@@ -20725,7 +20732,8 @@
             "${1:LogicalID}:",
             "  Type: AWS::SES::DedicatedIpPool",
             "  Properties:",
-            "    PoolName: \"${2:String}\""
+            "    PoolName: \"${2:String}\"",
+            "    ScalingMode: \"${3:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-dedicatedippool.html"
@@ -20866,11 +20874,12 @@
             "    DisplayName: \"${4:String}\"",
             "    FifoTopic: ${5|false,true|}",
             "    KmsMasterKeyId: \"${6:String}\"",
+            "    SignatureVersion: \"${7:String}\"",
             "    Subscription:",
             "      Subscription",
             "    Tags:",
             "      Tags",
-            "    TopicName: \"${9:String}\""
+            "    TopicName: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topic.html",
@@ -23047,6 +23056,8 @@
             "    Tags:",
             "      Tags",
             "    WorkflowDetails:",
+            "      OnPartialUpload:",
+            "        -",
             "      OnUpload:",
             "        -"
         ],
