@@ -56,7 +56,8 @@
             "      Title: \"${21:String}\"",
             "    Tags:",
             "      Tags",
-            "    Type: \"${9:String}\" # Required"
+            "    Type: \"${9:String}\" # Required",
+            "    UsageMode: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificateauthority.html",
@@ -914,14 +915,15 @@
             "    ProtocolType: \"${13:String}\"",
             "    RouteKey: \"${14:String}\"",
             "    RouteSelectionExpression: \"${15:String}\"",
-            "    Tags: ${16:JSON}",
+            "    Tags:",
             "    Target: \"${17:String}\"",
             "    Version: \"${18:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-api.html",
             "Attributes: ",
-            "  ApiEndpoint"
+            "  ApiEndpoint",
+            "  ApiId"
         ],
         "prefix": "apigatewayv2-api",
         "scope": "yaml"
@@ -1651,10 +1653,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-service.html",
             "Attributes: ",
-            "  ServiceId",
+            "  Status",
             "  ServiceArn",
-            "  ServiceUrl",
-            "  Status"
+            "  ServiceId",
+            "  ServiceUrl"
         ],
         "prefix": "apprunner-service",
         "scope": "yaml"
@@ -2564,7 +2566,9 @@
             "    TimeZone: \"${9:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scheduledaction.html",
+            "Attributes: ",
+            "  ScheduledActionName"
         ],
         "prefix": "autoscaling-scheduledaction",
         "scope": "yaml"
@@ -4579,59 +4583,60 @@
             "      AliasAttributes",
             "    AutoVerifiedAttributes:",
             "      AutoVerifiedAttributes",
+            "    DeletionProtection: \"${6:String}\"",
             "    DeviceConfiguration:",
-            "      ChallengeRequiredOnNewDevice: ${6|false,true|}",
-            "      DeviceOnlyRememberedOnUserPrompt: ${7|false,true|}",
+            "      ChallengeRequiredOnNewDevice: ${7|false,true|}",
+            "      DeviceOnlyRememberedOnUserPrompt: ${8|false,true|}",
             "    EmailConfiguration:",
-            "      ConfigurationSet: \"${7:String}\"",
-            "      EmailSendingAccount: \"${8:String}\"",
-            "      From: \"${9:String}\"",
-            "      ReplyToEmailAddress: \"${10:String}\"",
-            "      SourceArn: \"${11:String}\"",
-            "    EmailVerificationMessage: \"${8:String}\"",
-            "    EmailVerificationSubject: \"${9:String}\"",
+            "      ConfigurationSet: \"${8:String}\"",
+            "      EmailSendingAccount: \"${9:String}\"",
+            "      From: \"${10:String}\"",
+            "      ReplyToEmailAddress: \"${11:String}\"",
+            "      SourceArn: \"${12:String}\"",
+            "    EmailVerificationMessage: \"${9:String}\"",
+            "    EmailVerificationSubject: \"${10:String}\"",
             "    EnabledMfas:",
             "      EnabledMfas",
             "    LambdaConfig:",
-            "      CreateAuthChallenge: \"${11:String}\"",
-            "      CustomMessage: \"${13:String}\"",
-            "      DefineAuthChallenge: \"${15:String}\"",
-            "      KMSKeyID: \"${16:String}\"",
-            "      PostAuthentication: \"${17:String}\"",
-            "      PostConfirmation: \"${18:String}\"",
-            "      PreAuthentication: \"${19:String}\"",
-            "      PreSignUp: \"${20:String}\"",
-            "      PreTokenGeneration: \"${21:String}\"",
-            "      UserMigration: \"${22:String}\"",
-            "      VerifyAuthChallengeResponse: \"${23:String}\"",
-            "    MfaConfiguration: \"${12:String}\"",
+            "      CreateAuthChallenge: \"${12:String}\"",
+            "      CustomMessage: \"${14:String}\"",
+            "      DefineAuthChallenge: \"${16:String}\"",
+            "      KMSKeyID: \"${17:String}\"",
+            "      PostAuthentication: \"${18:String}\"",
+            "      PostConfirmation: \"${19:String}\"",
+            "      PreAuthentication: \"${20:String}\"",
+            "      PreSignUp: \"${21:String}\"",
+            "      PreTokenGeneration: \"${22:String}\"",
+            "      UserMigration: \"${23:String}\"",
+            "      VerifyAuthChallengeResponse: \"${24:String}\"",
+            "    MfaConfiguration: \"${13:String}\"",
             "    Policies:",
             "    Schema:",
             "      Schema",
-            "    SmsAuthenticationMessage: \"${15:String}\"",
+            "    SmsAuthenticationMessage: \"${16:String}\"",
             "    SmsConfiguration:",
-            "      ExternalId: \"${16:String}\"",
-            "      SnsCallerArn: \"${17:String}\"",
-            "      SnsRegion: \"${18:String}\"",
-            "    SmsVerificationMessage: \"${17:String}\"",
+            "      ExternalId: \"${17:String}\"",
+            "      SnsCallerArn: \"${18:String}\"",
+            "      SnsRegion: \"${19:String}\"",
+            "    SmsVerificationMessage: \"${18:String}\"",
             "    UserAttributeUpdateSettings:",
             "      AttributesRequireVerificationBeforeUpdate:",
             "        -",
             "    UserPoolAddOns:",
-            "      AdvancedSecurityMode: \"${19:String}\"",
-            "    UserPoolName: \"${20:String}\"",
-            "    UserPoolTags: ${21:JSON}",
+            "      AdvancedSecurityMode: \"${20:String}\"",
+            "    UserPoolName: \"${21:String}\"",
+            "    UserPoolTags: ${22:JSON}",
             "    UsernameAttributes:",
             "      UsernameAttributes",
             "    UsernameConfiguration:",
-            "      CaseSensitive: ${23|false,true|}",
+            "      CaseSensitive: ${24|false,true|}",
             "    VerificationMessageTemplate:",
-            "      DefaultEmailOption: \"${24:String}\"",
-            "      EmailMessage: \"${25:String}\"",
-            "      EmailMessageByLink: \"${26:String}\"",
-            "      EmailSubject: \"${27:String}\"",
-            "      EmailSubjectByLink: \"${28:String}\"",
-            "      SmsMessage: \"${29:String}\""
+            "      DefaultEmailOption: \"${25:String}\"",
+            "      EmailMessage: \"${26:String}\"",
+            "      EmailMessageByLink: \"${27:String}\"",
+            "      EmailSubject: \"${28:String}\"",
+            "      EmailSubjectByLink: \"${29:String}\"",
+            "      SmsMessage: \"${30:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html",
@@ -6069,7 +6074,7 @@
             "    Activate: ${2|false,true|}",
             "    Description: \"${3:String}\"",
             "    Name: \"${4:String}\" # Required",
-            "    ParameterObjects:",
+            "    ParameterObjects: # Required",
             "      ParameterObjects",
             "    ParameterValues:",
             "      ParameterValues",
@@ -6079,9 +6084,7 @@
             "      PipelineTags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html",
-            "Attributes: ",
-            "  PipelineId"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html"
         ],
         "prefix": "datapipeline-pipeline",
         "scope": "yaml"
@@ -7048,7 +7051,7 @@
             "    ResourceType: \"${10:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TrafficType: \"${12:String}\" # Required"
+            "    TrafficType: \"${12:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html",
@@ -8503,7 +8506,9 @@
             "    VolumeType: \"${13:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volume.html",
+            "Attributes: ",
+            "  VolumeId"
         ],
         "prefix": "ec2-volume",
         "scope": "yaml"
@@ -10327,6 +10332,29 @@
             "  Arn"
         ],
         "prefix": "fms-policy",
+        "scope": "yaml"
+    },
+    "AWS::FSx::DataRepositoryAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::FSx::DataRepositoryAssociation",
+            "  Properties:",
+            "    BatchImportMetaDataOnCreate: ${2|false,true|}",
+            "    DataRepositoryPath: \"${3:String}\" # Required",
+            "    FileSystemId: \"${4:String}\" # Required",
+            "    FileSystemPath: \"${5:String}\" # Required",
+            "    ImportedFileChunkSize: ${6:Number}",
+            "    S3:",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-datarepositoryassociation.html",
+            "Attributes: ",
+            "  AssociationId",
+            "  ResourceARN"
+        ],
+        "prefix": "fsx-datarepositoryassociation",
         "scope": "yaml"
     },
     "AWS::FSx::FileSystem": {
@@ -19067,7 +19095,9 @@
             "      IdentityPoolId: \"${7:String}\"",
             "      IncludedPages:",
             "        -",
-            "      SessionSampleRate: ${9:Number}",
+            "      MetricDestinations:",
+            "        -",
+            "      SessionSampleRate: ${10:Number}",
             "      Telemetries:",
             "        -",
             "    CwLogEnabled: ${3|false,true|}",
