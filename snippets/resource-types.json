@@ -1011,7 +1011,9 @@
             "    StageName: \"${4:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-deployment.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-deployment.html",
+            "Attributes: ",
+            "  DeploymentId"
         ],
         "prefix": "apigatewayv2-deployment",
         "scope": "yaml"
@@ -1653,10 +1655,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-service.html",
             "Attributes: ",
-            "  Status",
-            "  ServiceArn",
             "  ServiceId",
-            "  ServiceUrl"
+            "  ServiceArn",
+            "  ServiceUrl",
+            "  Status"
         ],
         "prefix": "apprunner-service",
         "scope": "yaml"
@@ -1681,6 +1683,29 @@
             "  VpcConnectorRevision"
         ],
         "prefix": "apprunner-vpcconnector",
+        "scope": "yaml"
+    },
+    "AWS::AppRunner::VpcIngressConnection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppRunner::VpcIngressConnection",
+            "  Properties:",
+            "    IngressVpcConfiguration:",
+            "      VpcEndpointId: \"${2:String}\"",
+            "      VpcId: \"${3:String}\"",
+            "    ServiceArn: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    VpcIngressConnectionName: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-vpcingressconnection.html",
+            "Attributes: ",
+            "  VpcIngressConnectionArn",
+            "  Status",
+            "  DomainName"
+        ],
+        "prefix": "apprunner-vpcingressconnection",
         "scope": "yaml"
     },
     "AWS::AppStream::AppBlock": {
@@ -2806,25 +2831,26 @@
             "      Vcpus: ${20:Number}",
             "      Volumes:",
             "        -",
-            "    JobDefinitionName: \"${3:String}\"",
+            "    EksProperties:",
+            "    JobDefinitionName: \"${4:String}\"",
             "    NodeProperties:",
-            "      MainNode: ${4:Number}",
+            "      MainNode: ${5:Number}",
             "      NodeRangeProperties:",
             "        -",
-            "      NumNodes: ${6:Number}",
-            "    Parameters: ${5:JSON}",
+            "      NumNodes: ${7:Number}",
+            "    Parameters: ${6:JSON}",
             "    PlatformCapabilities:",
             "      PlatformCapabilities",
-            "    PropagateTags: ${7|false,true|}",
+            "    PropagateTags: ${8|false,true|}",
             "    RetryStrategy:",
-            "      Attempts: ${8:Number}",
+            "      Attempts: ${9:Number}",
             "      EvaluateOnExit:",
             "        -",
-            "    SchedulingPriority: ${9:Number}",
-            "    Tags: ${10:JSON}",
+            "    SchedulingPriority: ${10:Number}",
+            "    Tags: ${11:JSON}",
             "    Timeout:",
-            "      AttemptDurationSeconds: ${11:Number}",
-            "    Type: \"${12:String}\" # Required"
+            "      AttemptDurationSeconds: ${12:Number}",
+            "    Type: \"${13:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html"
@@ -6074,7 +6100,7 @@
             "    Activate: ${2|false,true|}",
             "    Description: \"${3:String}\"",
             "    Name: \"${4:String}\" # Required",
-            "    ParameterObjects: # Required",
+            "    ParameterObjects:",
             "      ParameterObjects",
             "    ParameterValues:",
             "      ParameterValues",
@@ -6084,7 +6110,9 @@
             "      PipelineTags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html",
+            "Attributes: ",
+            "  PipelineId"
         ],
         "prefix": "datapipeline-pipeline",
         "scope": "yaml"
@@ -6974,7 +7002,8 @@
             "    NetworkBorderGroup: \"${4:String}\"",
             "    PublicIpv4Pool: \"${5:String}\"",
             "    Tags:",
-            "      Tags"
+            "      Tags",
+            "    TransferAddress: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eip.html",
@@ -7796,12 +7825,14 @@
             "      ReplaceUnhealthyInstances: ${14|false,true|}",
             "      SpotMaxTotalPrice: \"${16:String}\"",
             "      SpotPrice: \"${17:String}\"",
-            "      TargetCapacity: ${18:Number}",
-            "      TargetCapacityUnitType: \"${19:String}\"",
-            "      TerminateInstancesWithExpiration: ${20|false,true|}",
-            "      Type: \"${21:String}\"",
-            "      ValidFrom: \"${22:String}\"",
-            "      ValidUntil: \"${23:String}\""
+            "      TagSpecifications:",
+            "        -",
+            "      TargetCapacity: ${19:Number}",
+            "      TargetCapacityUnitType: \"${20:String}\"",
+            "      TerminateInstancesWithExpiration: ${21|false,true|}",
+            "      Type: \"${22:String}\"",
+            "      ValidFrom: \"${23:String}\"",
+            "      ValidUntil: \"${24:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html",
@@ -18588,6 +18619,7 @@
             "    AwsAccountId: \"${3:String}\"",
             "    Credentials:",
             "      CopySourceArn: \"${4:String}\"",
+            "      SecretArn: \"${6:String}\"",
             "    DataSourceId: \"${5:String}\"",
             "    DataSourceParameters:",
             "    ErrorInfo:",
@@ -18743,6 +18775,7 @@
             "      MaxCapacity: ${42:Number}",
             "      MinCapacity: ${43:Number}",
             "      SecondsUntilAutoPause: ${44:Number}",
+            "      TimeoutAction: \"${45:String}\"",
             "    ServerlessV2ScalingConfiguration:",
             "      MaxCapacity: ${42:Number}",
             "      MinCapacity: ${43:Number}",
@@ -18761,6 +18794,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
             "Attributes: ",
             "  ReadEndpoint.Address",
+            "  DBClusterArn",
             "  Endpoint.Address",
             "  Endpoint.Port"
         ],
@@ -18772,16 +18806,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::RDS::DBClusterParameterGroup",
             "  Properties:",
-            "    Description: \"${2:String}\" # Required",
-            "    Family: \"${3:String}\" # Required",
-            "    Parameters: ${4:JSON} # Required",
+            "    DBClusterParameterGroupName: \"${2:String}\"",
+            "    Description: \"${3:String}\" # Required",
+            "    Family: \"${4:String}\" # Required",
+            "    Parameters: ${5:JSON} # Required",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html",
-            "Attributes: ",
-            "  DBClusterParameterGroupName"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html"
         ],
         "prefix": "rds-dbclusterparametergroup",
         "scope": "yaml"
@@ -18842,20 +18875,23 @@
             "      ProcessorFeatures",
             "    PromotionTier: ${47:Number}",
             "    PubliclyAccessible: ${48|false,true|}",
-            "    SourceDBInstanceIdentifier: \"${49:String}\"",
-            "    SourceRegion: \"${50:String}\"",
-            "    StorageEncrypted: ${51|false,true|}",
-            "    StorageType: \"${52:String}\"",
+            "    ReplicaMode: \"${49:String}\"",
+            "    SourceDBInstanceIdentifier: \"${50:String}\"",
+            "    SourceRegion: \"${51:String}\"",
+            "    StorageEncrypted: ${52|false,true|}",
+            "    StorageType: \"${53:String}\"",
             "    Tags:",
             "      Tags",
-            "    Timezone: \"${54:String}\"",
-            "    UseDefaultProcessorFeatures: ${55|false,true|}",
+            "    Timezone: \"${55:String}\"",
+            "    UseDefaultProcessorFeatures: ${56|false,true|}",
             "    VPCSecurityGroups:",
             "      VPCSecurityGroups"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html",
             "Attributes: ",
+            "  DBInstanceArn",
+            "  DbiResourceId",
             "  Endpoint.Address",
             "  Endpoint.Port",
             "  Endpoint.HostedZoneId"
@@ -18868,16 +18904,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::RDS::DBParameterGroup",
             "  Properties:",
-            "    Description: \"${2:String}\" # Required",
-            "    Family: \"${3:String}\" # Required",
-            "    Parameters: ${4:JSON}",
+            "    DBParameterGroupName: \"${2:String}\"",
+            "    Description: \"${3:String}\" # Required",
+            "    Family: \"${4:String}\" # Required",
+            "    Parameters: ${5:JSON}",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html",
-            "Attributes: ",
-            "  DBParameterGroupName"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html"
         ],
         "prefix": "rds-dbparametergroup",
         "scope": "yaml"
@@ -19068,13 +19103,12 @@
             "    OptionConfigurations:",
             "      OptionConfigurations",
             "    OptionGroupDescription: \"${5:String}\" # Required",
+            "    OptionGroupName: \"${6:String}\"",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html",
-            "Attributes: ",
-            "  OptionGroupName"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html"
         ],
         "prefix": "rds-optiongroup",
         "scope": "yaml"
@@ -22810,6 +22844,20 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-slackchannelconfiguration.html"
         ],
         "prefix": "supportapp-slackchannelconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::SupportApp::SlackWorkspaceConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SupportApp::SlackWorkspaceConfiguration",
+            "  Properties:",
+            "    TeamId: \"${2:String}\" # Required",
+            "    VersionId: \"${3:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-supportapp-slackworkspaceconfiguration.html"
+        ],
+        "prefix": "supportapp-slackworkspaceconfiguration",
         "scope": "yaml"
     },
     "AWS::Synthetics::Canary": {
