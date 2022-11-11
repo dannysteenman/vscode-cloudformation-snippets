@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.84.0 (2022-11-11)
+-------------------
+- The following resources were updated: <code
+  class="code">AWS::AppStream::DirectoryConfig</code> [Github Actions]
+
+
 3.83.0 (2022-11-04)
 -------------------
 - The following resource was updated: AWS::RDS::DBCluster. [Github
