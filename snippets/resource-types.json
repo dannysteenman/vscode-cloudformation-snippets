@@ -285,8 +285,9 @@
             "      EnablePullRequestPreview: ${9|false,true|}",
             "      EnvironmentVariables:",
             "        -",
-            "      PullRequestEnvironmentName: \"${11:String}\"",
-            "      Stage: \"${12:String}\"",
+            "      Framework: \"${11:String}\"",
+            "      PullRequestEnvironmentName: \"${12:String}\"",
+            "      Stage: \"${13:String}\"",
             "    BasicAuthConfig:",
             "      EnableBasicAuth: ${4|false,true|}",
             "      Password: \"${5:String}\"",
@@ -302,7 +303,8 @@
             "    IAMServiceRole: \"${11:String}\"",
             "    Name: \"${12:String}\" # Required",
             "    OauthToken: \"${13:String}\"",
-            "    Repository: \"${14:String}\"",
+            "    Platform: \"${14:String}\"",
+            "    Repository: \"${15:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -335,8 +337,9 @@
             "    EnablePullRequestPreview: ${9|false,true|}",
             "    EnvironmentVariables:",
             "      EnvironmentVariables",
-            "    PullRequestEnvironmentName: \"${11:String}\"",
-            "    Stage: \"${12:String}\"",
+            "    Framework: \"${11:String}\"",
+            "    PullRequestEnvironmentName: \"${12:String}\"",
+            "    Stage: \"${13:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -406,6 +409,34 @@
             "  Id"
         ],
         "prefix": "amplifyuibuilder-component",
+        "scope": "yaml"
+    },
+    "AWS::AmplifyUIBuilder::Form": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AmplifyUIBuilder::Form",
+            "  Properties:",
+            "    AppId: \"${2:String}\"",
+            "    Cta:",
+            "      Position: \"${5:String}\"",
+            "    DataType:",
+            "      DataSourceType: \"${4:String}\"",
+            "      DataTypeName: \"${5:String}\"",
+            "    EnvironmentName: \"${5:String}\"",
+            "    Fields:",
+            "    FormActionType: \"${7:String}\" # Required",
+            "    Name: \"${8:String}\" # Required",
+            "    SchemaVersion: \"${9:String}\" # Required",
+            "    SectionalElements:",
+            "    Style:",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-form.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "amplifyuibuilder-form",
         "scope": "yaml"
     },
     "AWS::AmplifyUIBuilder::Theme": {
@@ -503,9 +534,8 @@
             "  Properties:",
             "    BasePath: \"${2:String}\"",
             "    DomainName: \"${3:String}\" # Required",
-            "    Id: \"${4:String}\"",
-            "    RestApiId: \"${5:String}\"",
-            "    Stage: \"${6:String}\""
+            "    RestApiId: \"${4:String}\"",
+            "    Stage: \"${5:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html"
@@ -2117,18 +2147,23 @@
             "  Type: AWS::AppSync::FunctionConfiguration",
             "  Properties:",
             "    ApiId: \"${2:String}\" # Required",
-            "    DataSourceName: \"${3:String}\" # Required",
-            "    Description: \"${4:String}\"",
-            "    FunctionVersion: \"${5:String}\" # Required",
-            "    MaxBatchSize: ${6:Number}",
-            "    Name: \"${7:String}\" # Required",
-            "    RequestMappingTemplate: \"${8:String}\"",
-            "    RequestMappingTemplateS3Location: \"${9:String}\"",
-            "    ResponseMappingTemplate: \"${10:String}\"",
-            "    ResponseMappingTemplateS3Location: \"${11:String}\"",
+            "    Code: \"${3:String}\"",
+            "    CodeS3Location: \"${4:String}\"",
+            "    DataSourceName: \"${5:String}\" # Required",
+            "    Description: \"${6:String}\"",
+            "    FunctionVersion: \"${7:String}\"",
+            "    MaxBatchSize: ${8:Number}",
+            "    Name: \"${9:String}\" # Required",
+            "    RequestMappingTemplate: \"${10:String}\"",
+            "    RequestMappingTemplateS3Location: \"${11:String}\"",
+            "    ResponseMappingTemplate: \"${12:String}\"",
+            "    ResponseMappingTemplateS3Location: \"${13:String}\"",
+            "    Runtime:",
+            "      Name: \"${14:String}\"",
+            "      RuntimeVersion: \"${15:String}\"",
             "    SyncConfig:",
-            "      ConflictDetection: \"${12:String}\"",
-            "      ConflictHandler: \"${13:String}\""
+            "      ConflictDetection: \"${15:String}\"",
+            "      ConflictHandler: \"${16:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html",
@@ -2207,21 +2242,26 @@
             "      CachingKeys:",
             "        -",
             "      Ttl: ${4:Number}",
-            "    DataSourceName: \"${4:String}\"",
-            "    FieldName: \"${5:String}\" # Required",
-            "    Kind: \"${6:String}\"",
-            "    MaxBatchSize: ${7:Number}",
+            "    Code: \"${4:String}\"",
+            "    CodeS3Location: \"${5:String}\"",
+            "    DataSourceName: \"${6:String}\"",
+            "    FieldName: \"${7:String}\" # Required",
+            "    Kind: \"${8:String}\"",
+            "    MaxBatchSize: ${9:Number}",
             "    PipelineConfig:",
             "      Functions:",
             "        -",
-            "    RequestMappingTemplate: \"${9:String}\"",
-            "    RequestMappingTemplateS3Location: \"${10:String}\"",
-            "    ResponseMappingTemplate: \"${11:String}\"",
-            "    ResponseMappingTemplateS3Location: \"${12:String}\"",
+            "    RequestMappingTemplate: \"${11:String}\"",
+            "    RequestMappingTemplateS3Location: \"${12:String}\"",
+            "    ResponseMappingTemplate: \"${13:String}\"",
+            "    ResponseMappingTemplateS3Location: \"${14:String}\"",
+            "    Runtime:",
+            "      Name: \"${15:String}\"",
+            "      RuntimeVersion: \"${16:String}\"",
             "    SyncConfig:",
-            "      ConflictDetection: \"${13:String}\"",
-            "      ConflictHandler: \"${14:String}\"",
-            "    TypeName: \"${14:String}\" # Required"
+            "      ConflictDetection: \"${16:String}\"",
+            "      ConflictHandler: \"${17:String}\"",
+            "    TypeName: \"${17:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html",
@@ -2994,14 +3034,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::BillingConductor::PricingRule",
             "  Properties:",
-            "    Description: \"${2:String}\"",
-            "    ModifierPercentage: ${3:Number} # Required",
-            "    Name: \"${4:String}\" # Required",
-            "    Scope: \"${5:String}\" # Required",
-            "    Service: \"${6:String}\"",
+            "    BillingEntity: \"${2:String}\"",
+            "    Description: \"${3:String}\"",
+            "    ModifierPercentage: ${4:Number} # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    Scope: \"${6:String}\" # Required",
+            "    Service: \"${7:String}\"",
             "    Tags:",
             "      Tags",
-            "    Type: \"${8:String}\" # Required"
+            "    Type: \"${9:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingrule.html",
@@ -3996,7 +4037,7 @@
             "    AlarmActions:",
             "      AlarmActions",
             "    AlarmDescription: \"${7:String}\"",
-            "    AlarmName: \"${8:String}\" # Required",
+            "    AlarmName: \"${8:String}\"",
             "    AlarmRule: \"${9:String}\" # Required",
             "    InsufficientDataActions:",
             "      InsufficientDataActions",
@@ -7445,7 +7486,8 @@
             "  Properties:",
             "    AllocationId: \"${2:String}\"",
             "    ConnectivityType: \"${3:String}\"",
-            "    SubnetId: \"${4:String}\" # Required",
+            "    PrivateIpAddress: \"${4:String}\"",
+            "    SubnetId: \"${5:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -8693,6 +8735,8 @@
             "    Configuration:",
             "    DefaultCapacityProviderStrategy:",
             "      DefaultCapacityProviderStrategy",
+            "    ServiceConnectDefaults:",
+            "      Namespace: \"${7:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -8765,12 +8809,17 @@
             "    PropagateTags: \"${16:String}\"",
             "    Role: \"${17:String}\"",
             "    SchedulingStrategy: \"${18:String}\"",
-            "    ServiceName: \"${19:String}\"",
+            "    ServiceConnectConfiguration:",
+            "      Enabled: ${19|false,true|}",
+            "      Namespace: \"${21:String}\"",
+            "      Services:",
+            "        -",
+            "    ServiceName: \"${20:String}\"",
             "    ServiceRegistries:",
             "      ServiceRegistries",
             "    Tags:",
             "      Tags",
-            "    TaskDefinition: \"${22:String}\""
+            "    TaskDefinition: \"${23:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
@@ -9142,16 +9191,17 @@
             "    LogUri: \"${14:String}\"",
             "    ManagedScalingPolicy:",
             "    Name: \"${16:String}\" # Required",
-            "    ReleaseLabel: \"${17:String}\"",
-            "    ScaleDownBehavior: \"${18:String}\"",
-            "    SecurityConfiguration: \"${19:String}\"",
-            "    ServiceRole: \"${20:String}\" # Required",
-            "    StepConcurrencyLevel: ${21:Number}",
+            "    OSReleaseLabel: \"${17:String}\"",
+            "    ReleaseLabel: \"${18:String}\"",
+            "    ScaleDownBehavior: \"${19:String}\"",
+            "    SecurityConfiguration: \"${20:String}\"",
+            "    ServiceRole: \"${21:String}\" # Required",
+            "    StepConcurrencyLevel: ${22:Number}",
             "    Steps:",
             "      Steps",
             "    Tags:",
             "      Tags",
-            "    VisibleToAllUsers: ${24|false,true|}"
+            "    VisibleToAllUsers: ${25|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html",
@@ -9559,12 +9609,13 @@
             "  Type: AWS::ElastiCache::User",
             "  Properties:",
             "    AccessString: \"${2:String}\"",
-            "    Engine: \"${3:String}\" # Required",
-            "    NoPasswordRequired: ${4|false,true|}",
+            "    AuthenticationMode: ${3:JSON}",
+            "    Engine: \"${4:String}\" # Required",
+            "    NoPasswordRequired: ${5|false,true|}",
             "    Passwords:",
             "      Passwords",
-            "    UserId: \"${6:String}\" # Required",
-            "    UserName: \"${7:String}\" # Required"
+            "    UserId: \"${7:String}\" # Required",
+            "    UserName: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html",
@@ -12354,11 +12405,12 @@
             "  Properties:",
             "    DestinationConfiguration:",
             "    Name: \"${3:String}\"",
+            "    RecordingReconnectWindowSeconds: ${4:Number}",
             "    Tags:",
             "      Tags",
             "    ThumbnailConfiguration:",
-            "      RecordingMode: \"${5:String}\"",
-            "      TargetIntervalSeconds: ${6:Number}"
+            "      RecordingMode: \"${6:String}\"",
+            "      TargetIntervalSeconds: ${7:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html",
@@ -13820,8 +13872,9 @@
             "    Functions:",
             "    IsSingleton: ${6|false,true|}",
             "    PropertyDefinitions:",
+            "    PropertyGroups:",
             "    Tags:",
-            "    WorkspaceId: \"${9:String}\" # Required"
+            "    WorkspaceId: \"${10:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-componenttype.html",
@@ -17809,6 +17862,25 @@
         "prefix": "organizations-account",
         "scope": "yaml"
     },
+    "AWS::Organizations::OrganizationalUnit": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Organizations::OrganizationalUnit",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    ParentId: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organizationalunit.html",
+            "Attributes: ",
+            "  Arn",
+            "  Id"
+        ],
+        "prefix": "organizations-organizationalunit",
+        "scope": "yaml"
+    },
     "AWS::Organizations::Policy": {
         "body": [
             "${1:LogicalID}:",
@@ -17881,6 +17953,11 @@
             "Attributes: ",
             "  PackageId",
             "  Arn",
+            "  StorageLocation.Bucket",
+            "  StorageLocation.RepoPrefixLocation",
+            "  StorageLocation.GeneratedPrefixLocation",
+            "  StorageLocation.BinaryPrefixLocation",
+            "  StorageLocation.ManifestPrefixLocation",
             "  CreatedTime"
         ],
         "prefix": "panorama-package",
@@ -18975,7 +19052,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbparametergroup.html",
+            "Attributes: ",
+            "  DBParameterGroupName"
         ],
         "prefix": "rds-dbparametergroup",
         "scope": "yaml"
@@ -21372,6 +21451,23 @@
         "prefix": "ssm-resourcedatasync",
         "scope": "yaml"
     },
+    "AWS::SSM::ResourcePolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSM::ResourcePolicy",
+            "  Properties:",
+            "    Policy: ${2:JSON} # Required",
+            "    ResourceArn: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcepolicy.html",
+            "Attributes: ",
+            "  PolicyId",
+            "  PolicyHash"
+        ],
+        "prefix": "ssm-resourcepolicy",
+        "scope": "yaml"
+    },
     "AWS::SSMContacts::Contact": {
         "body": [
             "${1:LogicalID}:",
@@ -21998,14 +22094,13 @@
             "    SourceAlgorithmSpecification:",
             "      SourceAlgorithms:",
             "        -",
-            "    Tag:",
             "    Tags:",
             "      Tags",
-            "    Task: \"${29:String}\"",
+            "    Task: \"${28:String}\"",
             "    ValidationSpecification:",
             "      ValidationProfiles:",
             "        -",
-            "      ValidationRole: \"${31:String}\""
+            "      ValidationRole: \"${30:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelpackage.html",
