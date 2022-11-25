@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.86.0 (2022-11-25)
+-------------------
+- The following properties were added:
+  AWS::IoTTwinMaker::ComponentType.PropertyGroups, and
+  Entity.PropertyGroup. [Github Actions]
+
+
 3.85.0 (2022-11-18)
 -------------------
 - The following resources were updated: <code
