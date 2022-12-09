@@ -19,8 +19,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificate.html",
             "Attributes: ",
-            "  Certificate",
-            "  Arn"
+            "  Arn",
+            "  Certificate"
         ],
         "prefix": "acmpca-certificate",
         "scope": "yaml"
@@ -62,8 +62,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-certificateauthority.html",
             "Attributes: ",
-            "  Arn",
-            "  CertificateSigningRequest"
+            "  CertificateSigningRequest",
+            "  Arn"
         ],
         "prefix": "acmpca-certificateauthority",
         "scope": "yaml"
@@ -137,9 +137,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-workspace.html",
             "Attributes: ",
+            "  PrometheusEndpoint",
             "  WorkspaceId",
-            "  Arn",
-            "  PrometheusEndpoint"
+            "  Arn"
         ],
         "prefix": "aps-workspace",
         "scope": "yaml"
@@ -312,9 +312,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html",
             "Attributes: ",
             "  AppId",
-            "  AppName",
             "  Arn",
-            "  DefaultDomain"
+            "  DefaultDomain",
+            "  AppName"
         ],
         "prefix": "amplify-app",
         "scope": "yaml"
@@ -346,8 +346,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html",
             "Attributes: ",
-            "  Arn",
-            "  BranchName"
+            "  BranchName",
+            "  Arn"
         ],
         "prefix": "amplify-branch",
         "scope": "yaml"
@@ -369,14 +369,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-domain.html",
             "Attributes: ",
+            "  AutoSubDomainIAMRole",
+            "  DomainName",
+            "  EnableAutoSubDomain",
+            "  StatusReason",
             "  Arn",
             "  AutoSubDomainCreationPatterns",
-            "  AutoSubDomainIAMRole",
-            "  CertificateRecord",
-            "  DomainName",
             "  DomainStatus",
-            "  EnableAutoSubDomain",
-            "  StatusReason"
+            "  CertificateRecord"
         ],
         "prefix": "amplify-domain",
         "scope": "yaml"
@@ -393,7 +393,7 @@
             "    ComponentType: \"${5:String}\" # Required",
             "    Events:",
             "    Name: \"${7:String}\" # Required",
-            "    Overrides:",
+            "    Overrides: ${8:JSON} # Required",
             "    Properties:",
             "    SchemaVersion: \"${10:String}\"",
             "    SourceId: \"${11:String}\"",
@@ -454,11 +454,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-theme.html",
             "Attributes: ",
+            "  ModifiedAt",
             "  AppId",
-            "  CreatedAt",
             "  EnvironmentName",
-            "  Id",
-            "  ModifiedAt"
+            "  CreatedAt",
+            "  Id"
         ],
         "prefix": "amplifyuibuilder-theme",
         "scope": "yaml"
@@ -534,8 +534,9 @@
             "  Properties:",
             "    BasePath: \"${2:String}\"",
             "    DomainName: \"${3:String}\" # Required",
-            "    RestApiId: \"${4:String}\"",
-            "    Stage: \"${5:String}\""
+            "    Id: \"${4:String}\"",
+            "    RestApiId: \"${5:String}\"",
+            "    Stage: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html"
@@ -658,10 +659,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html",
             "Attributes: ",
-            "  DistributionDomainName",
-            "  DistributionHostedZoneId",
+            "  RegionalHostedZoneId",
             "  RegionalDomainName",
-            "  RegionalHostedZoneId"
+            "  DistributionHostedZoneId",
+            "  DistributionDomainName"
         ],
         "prefix": "apigateway-domainname",
         "scope": "yaml"
@@ -812,7 +813,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html",
             "Attributes: ",
-            "  RootResourceId"
+            "  RootResourceId",
+            "  RestApiId"
         ],
         "prefix": "apigateway-restapi",
         "scope": "yaml"
@@ -1351,6 +1353,24 @@
         "prefix": "appconfig-hostedconfigurationversion",
         "scope": "yaml"
     },
+    "AWS::AppFlow::Connector": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppFlow::Connector",
+            "  Properties:",
+            "    ConnectorLabel: \"${2:String}\"",
+            "    ConnectorProvisioningConfig:",
+            "    ConnectorProvisioningType: \"${4:String}\" # Required",
+            "    Description: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html",
+            "Attributes: ",
+            "  ConnectorArn"
+        ],
+        "prefix": "appflow-connector",
+        "scope": "yaml"
+    },
     "AWS::AppFlow::ConnectorProfile": {
         "body": [
             "${1:LogicalID}:",
@@ -1366,8 +1386,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html",
             "Attributes: ",
-            "  ConnectorProfileArn",
-            "  CredentialsArn"
+            "  CredentialsArn",
+            "  ConnectorProfileArn"
         ],
         "prefix": "appflow-connectorprofile",
         "scope": "yaml"
@@ -1382,16 +1402,17 @@
             "      DestinationFlowConfigList",
             "    FlowName: \"${4:String}\" # Required",
             "    KMSArn: \"${5:String}\"",
+            "    MetadataCatalogConfig:",
             "    SourceFlowConfig:",
-            "      ApiVersion: \"${6:String}\"",
-            "      ConnectorProfileName: \"${7:String}\"",
-            "      ConnectorType: \"${8:String}\"",
+            "      ApiVersion: \"${7:String}\"",
+            "      ConnectorProfileName: \"${8:String}\"",
+            "      ConnectorType: \"${9:String}\"",
             "    Tags:",
             "      Tags",
             "    Tasks: # Required",
             "      Tasks",
             "    TriggerConfig:",
-            "      TriggerType: \"${10:String}\""
+            "      TriggerType: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html",
@@ -1420,8 +1441,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html",
             "Attributes: ",
-            "  Id",
-            "  DataIntegrationArn"
+            "  DataIntegrationArn",
+            "  Id"
         ],
         "prefix": "appintegrations-dataintegration",
         "scope": "yaml"
@@ -1648,8 +1669,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-observabilityconfiguration.html",
             "Attributes: ",
-            "  ObservabilityConfigurationArn",
             "  ObservabilityConfigurationRevision",
+            "  ObservabilityConfigurationArn",
             "  Latest"
         ],
         "prefix": "apprunner-observabilityconfiguration",
@@ -1687,10 +1708,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-service.html",
             "Attributes: ",
-            "  ServiceId",
-            "  ServiceArn",
+            "  Status",
             "  ServiceUrl",
-            "  Status"
+            "  ServiceArn",
+            "  ServiceId"
         ],
         "prefix": "apprunner-service",
         "scope": "yaml"
@@ -1733,9 +1754,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-vpcingressconnection.html",
             "Attributes: ",
-            "  VpcIngressConnectionArn",
             "  Status",
-            "  DomainName"
+            "  DomainName",
+            "  VpcIngressConnectionArn"
         ],
         "prefix": "apprunner-vpcingressconnection",
         "scope": "yaml"
@@ -1761,8 +1782,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html",
             "Attributes: ",
-            "  Arn",
-            "  CreatedTime"
+            "  CreatedTime",
+            "  Arn"
         ],
         "prefix": "appstream-appblock",
         "scope": "yaml"
@@ -1794,8 +1815,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html",
             "Attributes: ",
-            "  Arn",
-            "  CreatedTime"
+            "  CreatedTime",
+            "  Arn"
         ],
         "prefix": "appstream-application",
         "scope": "yaml"
@@ -2118,8 +2139,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainname.html",
             "Attributes: ",
-            "  DomainName",
             "  AppSyncDomainName",
+            "  DomainName",
             "  HostedZoneId"
         ],
         "prefix": "appsync-domainname",
@@ -2428,8 +2449,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html",
             "Attributes: ",
-            "  WorkGroupConfiguration.EngineVersion.EffectiveEngineVersion",
-            "  CreationTime"
+            "  CreationTime",
+            "  WorkGroupConfiguration.EngineVersion.EffectiveEngineVersion"
         ],
         "prefix": "athena-workgroup",
         "scope": "yaml"
@@ -2463,10 +2484,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-auditmanager-assessment.html",
             "Attributes: ",
-            "  AssessmentId",
-            "  Arn",
             "  Delegations",
-            "  CreationTime"
+            "  AssessmentId",
+            "  CreationTime",
+            "  Arn"
         ],
         "prefix": "auditmanager-assessment",
         "scope": "yaml"
@@ -2698,9 +2719,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupplan.html",
             "Attributes: ",
-            "  BackupPlanArn",
+            "  VersionId",
             "  BackupPlanId",
-            "  VersionId"
+            "  BackupPlanArn"
         ],
         "prefix": "backup-backupplan",
         "scope": "yaml"
@@ -2712,7 +2733,6 @@
             "  Properties:",
             "    BackupPlanId: \"${2:String}\" # Required",
             "    BackupSelection:",
-            "      Conditions: ${3:JSON}",
             "      IamRoleArn: \"${4:String}\"",
             "      ListOfTags:",
             "        -",
@@ -2725,8 +2745,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupselection.html",
             "Attributes: ",
-            "  Id",
             "  BackupPlanId",
+            "  Id",
             "  SelectionId"
         ],
         "prefix": "backup-backupselection",
@@ -2774,10 +2794,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html",
             "Attributes: ",
-            "  FrameworkArn",
-            "  DeploymentStatus",
             "  CreationTime",
-            "  FrameworkStatus"
+            "  FrameworkStatus",
+            "  DeploymentStatus",
+            "  FrameworkArn"
         ],
         "prefix": "backup-framework",
         "scope": "yaml"
@@ -2787,12 +2807,25 @@
             "${1:LogicalID}:",
             "  Type: AWS::Backup::ReportPlan",
             "  Properties:",
-            "    ReportDeliveryChannel: ${2:JSON} # Required",
+            "    ReportDeliveryChannel:",
+            "      Formats:",
+            "        -",
+            "      S3BucketName: \"${3:String}\"",
+            "      S3KeyPrefix: \"${4:String}\"",
             "    ReportPlanDescription: \"${3:String}\"",
             "    ReportPlanName: \"${4:String}\"",
             "    ReportPlanTags:",
             "      ReportPlanTags",
-            "    ReportSetting: ${6:JSON} # Required"
+            "    ReportSetting:",
+            "      Accounts:",
+            "        -",
+            "      FrameworkArns:",
+            "        -",
+            "      OrganizationUnits:",
+            "        -",
+            "      Regions:",
+            "        -",
+            "      ReportTemplate: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html",
@@ -2967,12 +3000,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-billinggroup.html",
             "Attributes: ",
-            "  Arn",
-            "  Size",
             "  Status",
+            "  Size",
             "  StatusReason",
             "  CreationTime",
-            "  LastModifiedTime"
+            "  LastModifiedTime",
+            "  Arn"
         ],
         "prefix": "billingconductor-billinggroup",
         "scope": "yaml"
@@ -2996,12 +3029,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-customlineitem.html",
             "Attributes: ",
-            "  Arn",
+            "  CurrencyCode",
+            "  ProductCode",
             "  CreationTime",
             "  LastModifiedTime",
-            "  AssociationSize",
-            "  ProductCode",
-            "  CurrencyCode"
+            "  Arn",
+            "  AssociationSize"
         ],
         "prefix": "billingconductor-customlineitem",
         "scope": "yaml"
@@ -3021,10 +3054,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingplan.html",
             "Attributes: ",
-            "  Arn",
             "  Size",
             "  CreationTime",
-            "  LastModifiedTime"
+            "  LastModifiedTime",
+            "  Arn"
         ],
         "prefix": "billingconductor-pricingplan",
         "scope": "yaml"
@@ -3036,21 +3069,22 @@
             "  Properties:",
             "    BillingEntity: \"${2:String}\"",
             "    Description: \"${3:String}\"",
-            "    ModifierPercentage: ${4:Number} # Required",
+            "    ModifierPercentage: ${4:Number}",
             "    Name: \"${5:String}\" # Required",
             "    Scope: \"${6:String}\" # Required",
             "    Service: \"${7:String}\"",
             "    Tags:",
             "      Tags",
-            "    Type: \"${9:String}\" # Required"
+            "    Tiering:",
+            "    Type: \"${10:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-billingconductor-pricingrule.html",
             "Attributes: ",
-            "  Arn",
-            "  AssociatedPricingPlanCount",
             "  CreationTime",
-            "  LastModifiedTime"
+            "  LastModifiedTime",
+            "  AssociatedPricingPlanCount",
+            "  Arn"
         ],
         "prefix": "billingconductor-pricingrule",
         "scope": "yaml"
@@ -3115,10 +3149,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalymonitor.html",
             "Attributes: ",
-            "  MonitorArn",
+            "  LastUpdatedDate",
             "  CreationDate",
             "  LastEvaluatedDate",
-            "  LastUpdatedDate",
+            "  MonitorArn",
             "  DimensionalValueCount"
         ],
         "prefix": "ce-anomalymonitor",
@@ -3142,8 +3176,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-anomalysubscription.html",
             "Attributes: ",
-            "  SubscriptionArn",
-            "  AccountId"
+            "  AccountId",
+            "  SubscriptionArn"
         ],
         "prefix": "ce-anomalysubscription",
         "scope": "yaml"
@@ -3162,8 +3196,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-costcategory.html",
             "Attributes: ",
-            "  Arn",
-            "  EffectiveStart"
+            "  EffectiveStart",
+            "  Arn"
         ],
         "prefix": "ce-costcategory",
         "scope": "yaml"
@@ -3390,11 +3424,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html",
             "Attributes: ",
-            "  Arn",
-            "  TypeArn",
-            "  IsDefaultVersion",
             "  VersionId",
-            "  Visibility"
+            "  IsDefaultVersion",
+            "  Visibility",
+            "  Arn",
+            "  TypeArn"
         ],
         "prefix": "cloudformation-hookversion",
         "scope": "yaml"
@@ -3442,14 +3476,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-moduleversion.html",
             "Attributes: ",
-            "  Arn",
-            "  Description",
-            "  DocumentationUrl",
-            "  IsDefaultVersion",
-            "  Schema",
             "  TimeCreated",
             "  VersionId",
-            "  Visibility"
+            "  Description",
+            "  Schema",
+            "  IsDefaultVersion",
+            "  Visibility",
+            "  Arn",
+            "  DocumentationUrl"
         ],
         "prefix": "cloudformation-moduleversion",
         "scope": "yaml"
@@ -3468,9 +3502,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publictypeversion.html",
             "Attributes: ",
-            "  TypeVersionArn",
+            "  PublicTypeArn",
             "  PublisherId",
-            "  PublicTypeArn"
+            "  TypeVersionArn"
         ],
         "prefix": "cloudformation-publictypeversion",
         "scope": "yaml"
@@ -3487,9 +3521,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-publisher.html",
             "Attributes: ",
             "  PublisherId",
-            "  PublisherStatus",
+            "  IdentityProvider",
             "  PublisherProfile",
-            "  IdentityProvider"
+            "  PublisherStatus"
         ],
         "prefix": "cloudformation-publisher",
         "scope": "yaml"
@@ -3526,12 +3560,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-resourceversion.html",
             "Attributes: ",
-            "  Arn",
-            "  TypeArn",
-            "  IsDefaultVersion",
-            "  ProvisioningType",
             "  VersionId",
-            "  Visibility"
+            "  ProvisioningType",
+            "  IsDefaultVersion",
+            "  Visibility",
+            "  Arn",
+            "  TypeArn"
         ],
         "prefix": "cloudformation-resourceversion",
         "scope": "yaml"
@@ -3569,7 +3603,8 @@
             "      Capabilities",
             "    Description: \"${6:String}\"",
             "    ExecutionRoleName: \"${7:String}\"",
-            "    ManagedExecution: ${8:JSON}",
+            "    ManagedExecution:",
+            "      Active: ${8|false,true|}",
             "    OperationPreferences:",
             "      FailureToleranceCount: ${9:Number}",
             "      FailureTolerancePercentage: ${10:Number}",
@@ -3663,8 +3698,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cachepolicy.html",
             "Attributes: ",
-            "  Id",
-            "  LastModifiedTime"
+            "  LastModifiedTime",
+            "  Id"
         ],
         "prefix": "cloudfront-cachepolicy",
         "scope": "yaml"
@@ -3680,10 +3715,29 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html",
             "Attributes: ",
-            "  Id",
-            "  S3CanonicalUserId"
+            "  S3CanonicalUserId",
+            "  Id"
         ],
         "prefix": "cloudfront-cloudfrontoriginaccessidentity",
+        "scope": "yaml"
+    },
+    "AWS::CloudFront::ContinuousDeploymentPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFront::ContinuousDeploymentPolicy",
+            "  Properties:",
+            "    ContinuousDeploymentPolicyConfig:",
+            "      Enabled: ${2|false,true|}",
+            "      StagingDistributionDnsNames:",
+            "        -"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-continuousdeploymentpolicy.html",
+            "Attributes: ",
+            "  LastModifiedTime",
+            "  Id"
+        ],
+        "prefix": "cloudfront-continuousdeploymentpolicy",
         "scope": "yaml"
     },
     "AWS::CloudFront::Distribution": {
@@ -3699,16 +3753,18 @@
             "      CacheBehaviors:",
             "        -",
             "      Comment: \"${5:String}\"",
+            "      ContinuousDeploymentPolicyId: \"${6:String}\"",
             "      CustomErrorResponses:",
             "        -",
-            "      DefaultRootObject: \"${9:String}\"",
-            "      Enabled: ${10|false,true|}",
-            "      HttpVersion: \"${11:String}\"",
-            "      IPV6Enabled: ${12|false,true|}",
+            "      DefaultRootObject: \"${10:String}\"",
+            "      Enabled: ${11|false,true|}",
+            "      HttpVersion: \"${12:String}\"",
+            "      IPV6Enabled: ${13|false,true|}",
             "      Origins:",
             "        -",
-            "      PriceClass: \"${16:String}\"",
-            "      WebACLId: \"${20:String}\"",
+            "      PriceClass: \"${17:String}\"",
+            "      Staging: ${20|false,true|}",
+            "      WebACLId: \"${22:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -3731,7 +3787,9 @@
             "    FunctionConfig:",
             "      Comment: \"${4:String}\"",
             "      Runtime: \"${5:String}\"",
-            "    Name: \"${5:String}\" # Required"
+            "    FunctionMetadata:",
+            "      FunctionARN: \"${5:String}\"",
+            "    Name: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html",
@@ -3757,8 +3815,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keygroup.html",
             "Attributes: ",
-            "  Id",
-            "  LastModifiedTime"
+            "  LastModifiedTime",
+            "  Id"
         ],
         "prefix": "cloudfront-keygroup",
         "scope": "yaml"
@@ -3809,8 +3867,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originrequestpolicy.html",
             "Attributes: ",
-            "  Id",
-            "  LastModifiedTime"
+            "  LastModifiedTime",
+            "  Id"
         ],
         "prefix": "cloudfront-originrequestpolicy",
         "scope": "yaml"
@@ -3867,8 +3925,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-responseheaderspolicy.html",
             "Attributes: ",
-            "  Id",
-            "  LastModifiedTime"
+            "  LastModifiedTime",
+            "  Id"
         ],
         "prefix": "cloudfront-responseheaderspolicy",
         "scope": "yaml"
@@ -3914,10 +3972,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-eventdatastore.html",
             "Attributes: ",
-            "  CreatedTimestamp",
-            "  EventDataStoreArn",
             "  Status",
-            "  UpdatedTimestamp"
+            "  UpdatedTimestamp",
+            "  EventDataStoreArn",
+            "  CreatedTimestamp"
         ],
         "prefix": "cloudtrail-eventdatastore",
         "scope": "yaml"
@@ -3949,8 +4007,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html",
             "Attributes: ",
-            "  Arn",
-            "  SnsTopicArn"
+            "  SnsTopicArn",
+            "  Arn"
         ],
         "prefix": "cloudtrail-trail",
         "scope": "yaml"
@@ -4128,10 +4186,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-domain.html",
             "Attributes: ",
-            "  Name",
             "  Owner",
             "  EncryptionKey",
-            "  Arn"
+            "  Arn",
+            "  Name"
         ],
         "prefix": "codeartifact-domain",
         "scope": "yaml"
@@ -4156,10 +4214,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeartifact-repository.html",
             "Attributes: ",
-            "  Name",
             "  DomainName",
+            "  Arn",
             "  DomainOwner",
-            "  Arn"
+            "  Name"
         ],
         "prefix": "codeartifact-repository",
         "scope": "yaml"
@@ -4408,7 +4466,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::CodeGuruProfiler::ProfilingGroup",
             "  Properties:",
-            "    AgentPermissions: ${2:JSON}",
+            "    AgentPermissions:",
+            "      Principals:",
+            "        -",
             "    AnomalyDetectionNotificationConfiguration:",
             "      AnomalyDetectionNotificationConfiguration",
             "    ComputePlatform: \"${4:String}\"",
@@ -5028,7 +5088,9 @@
             "    DeliveryS3KeyPrefix: \"${5:String}\"",
             "    TemplateBody: \"${6:String}\"",
             "    TemplateS3Uri: \"${7:String}\"",
-            "    TemplateSSMDocumentDetails: ${8:JSON}"
+            "    TemplateSSMDocumentDetails:",
+            "      DocumentName: \"${8:String}\"",
+            "      DocumentVersion: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-conformancepack.html"
@@ -5256,11 +5318,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-instance.html",
             "Attributes: ",
-            "  Id",
-            "  Arn",
             "  CreatedTime",
             "  ServiceRole",
-            "  InstanceStatus"
+            "  InstanceStatus",
+            "  Id",
+            "  Arn"
         ],
         "prefix": "connect-instance",
         "scope": "yaml"
@@ -5308,8 +5370,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-phonenumber.html",
             "Attributes: ",
-            "  PhoneNumberArn",
-            "  Address"
+            "  Address",
+            "  PhoneNumberArn"
         ],
         "prefix": "connect-phonenumber",
         "scope": "yaml"
@@ -5335,13 +5397,51 @@
         "prefix": "connect-quickconnect",
         "scope": "yaml"
     },
+    "AWS::Connect::Rule": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::Rule",
+            "  Properties:",
+            "    Actions:",
+            "      AssignContactCategoryActions:",
+            "        -",
+            "      EventBridgeActions:",
+            "        -",
+            "      SendNotificationActions:",
+            "        -",
+            "      TaskActions:",
+            "        -",
+            "    Function: \"${3:String}\" # Required",
+            "    InstanceArn: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    PublishStatus: \"${6:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    TriggerEventSource:",
+            "      EventSourceName: \"${8:String}\"",
+            "      IntegrationAssociationArn: \"${9:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-rule.html",
+            "Attributes: ",
+            "  RuleArn"
+        ],
+        "prefix": "connect-rule",
+        "scope": "yaml"
+    },
     "AWS::Connect::TaskTemplate": {
         "body": [
             "${1:LogicalID}:",
             "  Type: AWS::Connect::TaskTemplate",
             "  Properties:",
             "    ClientToken: \"${2:String}\"",
-            "    Constraints: ${3:JSON}",
+            "    Constraints:",
+            "      InvisibleFields:",
+            "        -",
+            "      ReadOnlyFields:",
+            "        -",
+            "      RequiredFields:",
+            "        -",
             "    ContactFlowArn: \"${4:String}\"",
             "    Defaults:",
             "      Defaults",
@@ -5466,8 +5566,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html",
             "Attributes: ",
-            "  CreatedAt",
-            "  LastUpdatedAt"
+            "  LastUpdatedAt",
+            "  CreatedAt"
         ],
         "prefix": "customerprofiles-domain",
         "scope": "yaml"
@@ -5494,8 +5594,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html",
             "Attributes: ",
-            "  CreatedAt",
-            "  LastUpdatedAt"
+            "  LastUpdatedAt",
+            "  CreatedAt"
         ],
         "prefix": "customerprofiles-integration",
         "scope": "yaml"
@@ -5522,8 +5622,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-objecttype.html",
             "Attributes: ",
-            "  CreatedAt",
-            "  LastUpdatedAt"
+            "  LastUpdatedAt",
+            "  CreatedAt"
         ],
         "prefix": "customerprofiles-objecttype",
         "scope": "yaml"
@@ -6185,8 +6285,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-agent.html",
             "Attributes: ",
-            "  EndpointType",
-            "  AgentArn"
+            "  AgentArn",
+            "  EndpointType"
         ],
         "prefix": "datasync-agent",
         "scope": "yaml"
@@ -6211,8 +6311,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationefs.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationefs",
         "scope": "yaml"
@@ -6232,8 +6332,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxlustre.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationfsxlustre",
         "scope": "yaml"
@@ -6254,9 +6354,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxontap.html",
             "Attributes: ",
+            "  LocationUri",
             "  FsxFilesystemArn",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationArn"
         ],
         "prefix": "datasync-locationfsxontap",
         "scope": "yaml"
@@ -6277,8 +6377,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxopenzfs.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationfsxopenzfs",
         "scope": "yaml"
@@ -6301,8 +6401,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationfsxwindows.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationfsxwindows",
         "scope": "yaml"
@@ -6334,8 +6434,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationhdfs.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationhdfs",
         "scope": "yaml"
@@ -6358,8 +6458,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationnfs.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationnfs",
         "scope": "yaml"
@@ -6384,8 +6484,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationobjectstorage.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationobjectstorage",
         "scope": "yaml"
@@ -6406,8 +6506,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locations3.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locations3",
         "scope": "yaml"
@@ -6432,8 +6532,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationsmb.html",
             "Attributes: ",
-            "  LocationArn",
-            "  LocationUri"
+            "  LocationUri",
+            "  LocationArn"
         ],
         "prefix": "datasync-locationsmb",
         "scope": "yaml"
@@ -6475,12 +6575,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-task.html",
             "Attributes: ",
-            "  TaskArn",
-            "  ErrorCode",
-            "  ErrorDetail",
             "  Status",
             "  SourceNetworkInterfaceArns",
-            "  DestinationNetworkInterfaceArns"
+            "  ErrorDetail",
+            "  DestinationNetworkInterfaceArns",
+            "  ErrorCode",
+            "  TaskArn"
         ],
         "prefix": "datasync-task",
         "scope": "yaml"
@@ -6735,9 +6835,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-globaltable.html",
             "Attributes: ",
+            "  TableId",
             "  Arn",
-            "  StreamArn",
-            "  TableId"
+            "  StreamArn"
         ],
         "prefix": "dynamodb-globaltable",
         "scope": "yaml"
@@ -6815,9 +6915,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html",
             "Attributes: ",
             "  Tenancy",
+            "  AvailableInstanceCount",
             "  AvailabilityZone",
             "  TotalInstanceCount",
-            "  AvailableInstanceCount",
             "  Id",
             "  InstanceType"
         ],
@@ -6861,9 +6961,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-carriergateway.html",
             "Attributes: ",
-            "  CarrierGatewayId",
+            "  OwnerId",
             "  State",
-            "  OwnerId"
+            "  CarrierGatewayId"
         ],
         "prefix": "ec2-carriergateway",
         "scope": "yaml"
@@ -7107,9 +7207,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-enclavecertificateiamroleassociation.html",
             "Attributes: ",
+            "  EncryptionKmsKeyId",
             "  CertificateS3BucketName",
-            "  CertificateS3ObjectKey",
-            "  EncryptionKmsKeyId"
+            "  CertificateS3ObjectKey"
         ],
         "prefix": "ec2-enclavecertificateiamroleassociation",
         "scope": "yaml"
@@ -7120,7 +7220,10 @@
             "  Type: AWS::EC2::FlowLog",
             "  Properties:",
             "    DeliverLogsPermissionArn: \"${2:String}\"",
-            "    DestinationOptions: ${3:JSON}",
+            "    DestinationOptions:",
+            "      FileFormat: \"${3:String}\"",
+            "      HiveCompatiblePartitions: ${4|false,true|}",
+            "      PerHourPartition: ${5|false,true|}",
             "    LogDestination: \"${4:String}\"",
             "    LogDestinationType: \"${5:String}\"",
             "    LogFormat: \"${6:String}\"",
@@ -7191,10 +7294,10 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipam.html",
             "Attributes: ",
             "  IpamId",
+            "  ScopeCount",
             "  Arn",
-            "  PublicDefaultScopeId",
             "  PrivateDefaultScopeId",
-            "  ScopeCount"
+            "  PublicDefaultScopeId"
         ],
         "prefix": "ec2-ipam",
         "scope": "yaml"
@@ -7244,12 +7347,12 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipampool.html",
             "Attributes: ",
             "  IpamPoolId",
-            "  Arn",
-            "  IpamScopeArn",
-            "  IpamScopeType",
             "  IpamArn",
             "  PoolDepth",
             "  State",
+            "  IpamScopeArn",
+            "  IpamScopeType",
+            "  Arn",
             "  StateMessage"
         ],
         "prefix": "ec2-ipampool",
@@ -7269,11 +7372,11 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamscope.html",
             "Attributes: ",
             "  IpamScopeId",
-            "  Arn",
+            "  IsDefault",
             "  IpamArn",
             "  IpamScopeType",
-            "  IsDefault",
-            "  PoolCount"
+            "  PoolCount",
+            "  Arn"
         ],
         "prefix": "ec2-ipamscope",
         "scope": "yaml"
@@ -7388,8 +7491,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-keypair.html",
             "Attributes: ",
-            "  KeyFingerprint",
-            "  KeyPairId"
+            "  KeyPairId",
+            "  KeyFingerprint"
         ],
         "prefix": "ec2-keypair",
         "scope": "yaml"
@@ -7453,8 +7556,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroute.html",
             "Attributes: ",
-            "  State",
-            "  Type"
+            "  Type",
+            "  State"
         ],
         "prefix": "ec2-localgatewayroute",
         "scope": "yaml"
@@ -7473,8 +7576,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevpcassociation.html",
             "Attributes: ",
             "  LocalGatewayId",
-            "  LocalGatewayRouteTableVpcAssociationId",
-            "  State"
+            "  State",
+            "  LocalGatewayRouteTableVpcAssociationId"
         ],
         "prefix": "ec2-localgatewayroutetablevpcassociation",
         "scope": "yaml"
@@ -7558,10 +7661,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscope.html",
             "Attributes: ",
-            "  NetworkInsightsAccessScopeId",
-            "  NetworkInsightsAccessScopeArn",
+            "  UpdatedDate",
             "  CreatedDate",
-            "  UpdatedDate"
+            "  NetworkInsightsAccessScopeArn",
+            "  NetworkInsightsAccessScopeId"
         ],
         "prefix": "ec2-networkinsightsaccessscope",
         "scope": "yaml"
@@ -7578,14 +7681,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsaccessscopeanalysis.html",
             "Attributes: ",
+            "  Status",
+            "  StartDate",
             "  NetworkInsightsAccessScopeAnalysisId",
             "  NetworkInsightsAccessScopeAnalysisArn",
-            "  Status",
-            "  StatusMessage",
-            "  StartDate",
             "  EndDate",
+            "  AnalyzedEniCount",
             "  FindingsFound",
-            "  AnalyzedEniCount"
+            "  StatusMessage"
         ],
         "prefix": "ec2-networkinsightsaccessscopeanalysis",
         "scope": "yaml"
@@ -7595,25 +7698,28 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::NetworkInsightsAnalysis",
             "  Properties:",
+            "    AdditionalAccounts:",
+            "      AdditionalAccounts",
             "    FilterInArns:",
             "      FilterInArns",
-            "    NetworkInsightsPathId: \"${3:String}\" # Required",
+            "    NetworkInsightsPathId: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html",
             "Attributes: ",
-            "  NetworkInsightsAnalysisId",
-            "  NetworkInsightsAnalysisArn",
-            "  StartDate",
             "  Status",
-            "  StatusMessage",
-            "  NetworkPathFound",
-            "  ForwardPathComponents",
             "  ReturnPathComponents",
+            "  StartDate",
+            "  NetworkInsightsAnalysisId",
+            "  AlternatePathHints",
             "  Explanations",
-            "  AlternatePathHints"
+            "  NetworkPathFound",
+            "  SuggestedAccounts",
+            "  ForwardPathComponents",
+            "  NetworkInsightsAnalysisArn",
+            "  StatusMessage"
         ],
         "prefix": "ec2-networkinsightsanalysis",
         "scope": "yaml"
@@ -7635,9 +7741,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html",
             "Attributes: ",
+            "  SourceArn",
             "  NetworkInsightsPathId",
+            "  CreatedDate",
             "  NetworkInsightsPathArn",
-            "  CreatedDate"
+            "  DestinationArn"
         ],
         "prefix": "ec2-networkinsightspath",
         "scope": "yaml"
@@ -7666,8 +7774,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterface.html",
             "Attributes: ",
-            "  PrimaryPrivateIpAddress",
             "  SecondaryPrivateIpAddresses",
+            "  PrimaryPrivateIpAddress",
             "  Id"
         ],
         "prefix": "ec2-networkinterface",
@@ -7704,6 +7812,22 @@
         "prefix": "ec2-networkinterfacepermission",
         "scope": "yaml"
     },
+    "AWS::EC2::NetworkPerformanceMetricSubscription": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::NetworkPerformanceMetricSubscription",
+            "  Properties:",
+            "    Destination: \"${2:String}\" # Required",
+            "    Metric: \"${3:String}\" # Required",
+            "    Source: \"${4:String}\" # Required",
+            "    Statistic: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkperformancemetricsubscription.html"
+        ],
+        "prefix": "ec2-networkperformancemetricsubscription",
+        "scope": "yaml"
+    },
     "AWS::EC2::PlacementGroup": {
         "body": [
             "${1:LogicalID}:",
@@ -7736,8 +7860,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html",
             "Attributes: ",
-            "  PrefixListId",
             "  OwnerId",
+            "  PrefixListId",
             "  Version",
             "  Arn"
         ],
@@ -7908,7 +8032,10 @@
             "    Ipv6Native: ${8|false,true|}",
             "    MapPublicIpOnLaunch: ${9|false,true|}",
             "    OutpostArn: \"${10:String}\"",
-            "    PrivateDnsNameOptionsOnLaunch: ${11:JSON}",
+            "    PrivateDnsNameOptionsOnLaunch:",
+            "      EnableResourceNameDnsAAAARecord: ${11|false,true|}",
+            "      EnableResourceNameDnsARecord: ${12|false,true|}",
+            "      HostnameType: \"${13:String}\"",
             "    Tags:",
             "      Tags",
             "    VpcId: \"${13:String}\" # Required"
@@ -7918,10 +8045,10 @@
             "Attributes: ",
             "  VpcId",
             "  NetworkAclAssociationId",
+            "  OutpostArn",
             "  AvailabilityZone",
             "  SubnetId",
-            "  Ipv6CidrBlocks",
-            "  OutpostArn"
+            "  Ipv6CidrBlocks"
         ],
         "prefix": "ec2-subnet",
         "scope": "yaml"
@@ -8087,7 +8214,10 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::TransitGatewayAttachment",
             "  Properties:",
-            "    Options: ${2:JSON}",
+            "    Options:",
+            "      ApplianceModeSupport: \"${2:String}\"",
+            "      DnsSupport: \"${3:String}\"",
+            "      Ipv6Support: \"${4:String}\"",
             "    SubnetIds: # Required",
             "      SubnetIds",
             "    Tags:",
@@ -8117,10 +8247,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html",
             "Attributes: ",
-            "  TransitGatewayAttachmentId",
             "  TransitGatewayId",
             "  State",
-            "  CreationTime"
+            "  CreationTime",
+            "  TransitGatewayAttachmentId"
         ],
         "prefix": "ec2-transitgatewayconnect",
         "scope": "yaml"
@@ -8130,7 +8260,10 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::TransitGatewayMulticastDomain",
             "  Properties:",
-            "    Options: ${2:JSON}",
+            "    Options:",
+            "      AutoAcceptSharedAssociations: \"${2:String}\"",
+            "      Igmpv2Support: \"${3:String}\"",
+            "      StaticSourcesSupport: \"${4:String}\"",
             "    Tags:",
             "      Tags",
             "    TransitGatewayId: \"${4:String}\" # Required"
@@ -8138,10 +8271,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html",
             "Attributes: ",
-            "  TransitGatewayMulticastDomainId",
             "  TransitGatewayMulticastDomainArn",
             "  State",
-            "  CreationTime"
+            "  CreationTime",
+            "  TransitGatewayMulticastDomainId"
         ],
         "prefix": "ec2-transitgatewaymulticastdomain",
         "scope": "yaml"
@@ -8159,8 +8292,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html",
             "Attributes: ",
             "  ResourceId",
-            "  ResourceType",
-            "  State"
+            "  State",
+            "  ResourceType"
         ],
         "prefix": "ec2-transitgatewaymulticastdomainassociation",
         "scope": "yaml"
@@ -8177,14 +8310,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html",
             "Attributes: ",
-            "  TransitGatewayAttachmentId",
-            "  SubnetId",
-            "  ResourceId",
-            "  ResourceType",
             "  GroupMember",
-            "  GroupSource",
+            "  ResourceId",
             "  MemberType",
-            "  SourceType"
+            "  SourceType",
+            "  ResourceType",
+            "  SubnetId",
+            "  GroupSource",
+            "  TransitGatewayAttachmentId"
         ],
         "prefix": "ec2-transitgatewaymulticastgroupmember",
         "scope": "yaml"
@@ -8201,14 +8334,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html",
             "Attributes: ",
-            "  TransitGatewayAttachmentId",
-            "  SubnetId",
-            "  ResourceId",
-            "  ResourceType",
             "  GroupMember",
-            "  GroupSource",
+            "  ResourceId",
             "  MemberType",
-            "  SourceType"
+            "  SourceType",
+            "  ResourceType",
+            "  SubnetId",
+            "  GroupSource",
+            "  TransitGatewayAttachmentId"
         ],
         "prefix": "ec2-transitgatewaymulticastgroupsource",
         "scope": "yaml"
@@ -8228,8 +8361,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html",
             "Attributes: ",
+            "  Status",
             "  State",
             "  CreationTime",
+            "  Status.Message",
+            "  Status.Code",
             "  TransitGatewayAttachmentId"
         ],
         "prefix": "ec2-transitgatewaypeeringattachment",
@@ -8301,7 +8437,10 @@
             "  Properties:",
             "    AddSubnetIds:",
             "      AddSubnetIds",
-            "    Options: ${3:JSON}",
+            "    Options:",
+            "      ApplianceModeSupport: \"${3:String}\"",
+            "      DnsSupport: \"${4:String}\"",
+            "      Ipv6Support: \"${5:String}\"",
             "    RemoveSubnetIds:",
             "      RemoveSubnetIds",
             "    SubnetIds: # Required",
@@ -8337,11 +8476,11 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html",
             "Attributes: ",
             "  VpcId",
-            "  CidrBlock",
             "  CidrBlockAssociations",
+            "  CidrBlock",
             "  DefaultNetworkAcl",
-            "  DefaultSecurityGroup",
-            "  Ipv6CidrBlocks"
+            "  Ipv6CidrBlocks",
+            "  DefaultSecurityGroup"
         ],
         "prefix": "ec2-vpc",
         "scope": "yaml"
@@ -8589,9 +8728,7 @@
             "    VolumeType: \"${13:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volume.html",
-            "Attributes: ",
-            "  VolumeId"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html"
         ],
         "prefix": "ec2-volume",
         "scope": "yaml"
@@ -8616,7 +8753,14 @@
             "${1:LogicalID}:",
             "  Type: AWS::ECR::PublicRepository",
             "  Properties:",
-            "    RepositoryCatalogData: ${2:JSON}",
+            "    RepositoryCatalogData:",
+            "      AboutText: \"${2:String}\"",
+            "      Architectures:",
+            "        -",
+            "      OperatingSystems:",
+            "        -",
+            "      RepositoryDescription: \"${5:String}\"",
+            "      UsageText: \"${6:String}\"",
             "    RepositoryName: \"${3:String}\"",
             "    RepositoryPolicyText: ${4:JSON}",
             "    Tags:",
@@ -8698,8 +8842,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html",
             "Attributes: ",
-            "  Arn",
-            "  RepositoryUri"
+            "  RepositoryUri",
+            "  Arn"
         ],
         "prefix": "ecr-repository",
         "scope": "yaml"
@@ -8971,8 +9115,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html",
             "Attributes: ",
-            "  Id",
-            "  IpAddress"
+            "  IpAddress",
+            "  Id"
         ],
         "prefix": "efs-mounttarget",
         "scope": "yaml"
@@ -9032,13 +9176,13 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html",
             "Attributes: ",
-            "  KubernetesNetworkConfig.ServiceIpv6Cidr",
-            "  Id",
-            "  Arn",
             "  Endpoint",
-            "  CertificateAuthorityData",
             "  ClusterSecurityGroupId",
             "  EncryptionConfigKeyArn",
+            "  Id",
+            "  CertificateAuthorityData",
+            "  Arn",
+            "  KubernetesNetworkConfig.ServiceIpv6Cidr",
             "  OpenIdConnectIssuerUrl"
         ],
         "prefix": "eks-cluster",
@@ -9136,8 +9280,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html",
             "Attributes: ",
-            "  ClusterName",
             "  NodegroupName",
+            "  ClusterName",
             "  Id",
             "  Arn"
         ],
@@ -9358,8 +9502,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrcontainers-virtualcluster.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "emrcontainers-virtualcluster",
         "scope": "yaml"
@@ -9468,8 +9612,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-globalreplicationgroup.html",
             "Attributes: ",
-            "  GlobalReplicationGroupId",
-            "  Status"
+            "  Status",
+            "  GlobalReplicationGroupId"
         ],
         "prefix": "elasticache-globalreplicationgroup",
         "scope": "yaml"
@@ -9613,7 +9757,10 @@
             "  Type: AWS::ElastiCache::User",
             "  Properties:",
             "    AccessString: \"${2:String}\"",
-            "    AuthenticationMode: ${3:JSON}",
+            "    AuthenticationMode:",
+            "      Passwords:",
+            "        -",
+            "      Type: \"${4:String}\"",
             "    Engine: \"${4:String}\" # Required",
             "    NoPasswordRequired: ${5|false,true|}",
             "    Passwords:",
@@ -9846,8 +9993,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html",
             "Attributes: ",
-            "  RuleArn",
-            "  IsDefault"
+            "  IsDefault",
+            "  RuleArn"
         ],
         "prefix": "elasticloadbalancingv2-listenerrule",
         "scope": "yaml"
@@ -10122,8 +10269,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-connection.html",
             "Attributes: ",
-            "  Arn",
-            "  SecretArn"
+            "  SecretArn",
+            "  Arn"
         ],
         "prefix": "events-connection",
         "scope": "yaml"
@@ -10145,11 +10292,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-endpoint.html",
             "Attributes: ",
-            "  Arn",
-            "  EndpointId",
-            "  EndpointUrl",
             "  State",
-            "  StateReason"
+            "  StateReason",
+            "  EndpointId",
+            "  Arn",
+            "  EndpointUrl"
         ],
         "prefix": "events-endpoint",
         "scope": "yaml"
@@ -10359,9 +10506,7 @@
             "    Actions:",
             "    Description: \"${3:String}\" # Required",
             "    LogConfiguration:",
-            "      CloudWatchLogsConfiguration: ${4:JSON}",
             "      LogSchemaVersion: ${5:Number}",
-            "      S3Configuration: ${6:JSON}",
             "    RoleArn: \"${5:String}\" # Required",
             "    StopConditions: # Required",
             "      StopConditions",
@@ -10447,8 +10592,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-datarepositoryassociation.html",
             "Attributes: ",
-            "  AssociationId",
-            "  ResourceARN"
+            "  ResourceARN",
+            "  AssociationId"
         ],
         "prefix": "fsx-datarepositoryassociation",
         "scope": "yaml"
@@ -10635,12 +10780,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html",
             "Attributes: ",
-            "  EnvironmentId",
-            "  AwsAccountId",
             "  Status",
-            "  EnvironmentUrl",
+            "  EnvironmentId",
             "  EnvironmentArn",
             "  SageMakerStudioDomainUrl",
+            "  EnvironmentUrl",
+            "  AwsAccountId",
             "  DedicatedServiceAccountId"
         ],
         "prefix": "finspace-environment",
@@ -10655,8 +10800,12 @@
             "    DatasetName: \"${3:String}\" # Required",
             "    DatasetType: \"${4:String}\" # Required",
             "    Domain: \"${5:String}\" # Required",
-            "    EncryptionConfig: ${6:JSON}",
-            "    Schema: ${7:JSON} # Required",
+            "    EncryptionConfig:",
+            "      KmsKeyArn: \"${6:String}\"",
+            "      RoleArn: \"${7:String}\"",
+            "    Schema:",
+            "      Attributes:",
+            "        -",
             "    Tags:",
             "      Tags"
         ],
@@ -10722,13 +10871,13 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-detector.html",
             "Attributes: ",
-            "  DetectorVersionId",
-            "  EventType.Arn",
-            "  EventType.CreatedTime",
-            "  EventType.LastUpdatedTime",
-            "  Arn",
             "  CreatedTime",
-            "  LastUpdatedTime"
+            "  EventType.Arn",
+            "  EventType.LastUpdatedTime",
+            "  LastUpdatedTime",
+            "  EventType.CreatedTime",
+            "  Arn",
+            "  DetectorVersionId"
         ],
         "prefix": "frauddetector-detector",
         "scope": "yaml"
@@ -10746,9 +10895,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-entitytype.html",
             "Attributes: ",
-            "  Arn",
             "  CreatedTime",
-            "  LastUpdatedTime"
+            "  LastUpdatedTime",
+            "  Arn"
         ],
         "prefix": "frauddetector-entitytype",
         "scope": "yaml"
@@ -10772,9 +10921,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-eventtype.html",
             "Attributes: ",
-            "  Arn",
             "  CreatedTime",
-            "  LastUpdatedTime"
+            "  LastUpdatedTime",
+            "  Arn"
         ],
         "prefix": "frauddetector-eventtype",
         "scope": "yaml"
@@ -10792,9 +10941,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-label.html",
             "Attributes: ",
-            "  Arn",
             "  CreatedTime",
-            "  LastUpdatedTime"
+            "  LastUpdatedTime",
+            "  Arn"
         ],
         "prefix": "frauddetector-label",
         "scope": "yaml"
@@ -10812,9 +10961,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-outcome.html",
             "Attributes: ",
-            "  Arn",
             "  CreatedTime",
-            "  LastUpdatedTime"
+            "  LastUpdatedTime",
+            "  Arn"
         ],
         "prefix": "frauddetector-outcome",
         "scope": "yaml"
@@ -10836,9 +10985,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-variable.html",
             "Attributes: ",
-            "  Arn",
             "  CreatedTime",
-            "  LastUpdatedTime"
+            "  LastUpdatedTime",
+            "  Arn"
         ],
         "prefix": "frauddetector-variable",
         "scope": "yaml"
@@ -10888,35 +11037,38 @@
             "${1:LogicalID}:",
             "  Type: AWS::GameLift::Fleet",
             "  Properties:",
-            "    BuildId: \"${2:String}\"",
+            "    AnywhereConfiguration:",
+            "      Cost: \"${2:String}\"",
+            "    BuildId: \"${3:String}\"",
             "    CertificateConfiguration:",
-            "      CertificateType: \"${3:String}\"",
-            "    Description: \"${4:String}\"",
-            "    DesiredEC2Instances: ${5:Number}",
+            "      CertificateType: \"${4:String}\"",
+            "    ComputeType: \"${5:String}\"",
+            "    Description: \"${6:String}\"",
+            "    DesiredEC2Instances: ${7:Number}",
             "    EC2InboundPermissions:",
             "      EC2InboundPermissions",
-            "    EC2InstanceType: \"${7:String}\"",
-            "    FleetType: \"${8:String}\"",
-            "    InstanceRoleARN: \"${9:String}\"",
+            "    EC2InstanceType: \"${9:String}\"",
+            "    FleetType: \"${10:String}\"",
+            "    InstanceRoleARN: \"${11:String}\"",
             "    Locations:",
             "      Locations",
-            "    MaxSize: ${11:Number}",
+            "    MaxSize: ${13:Number}",
             "    MetricGroups:",
             "      MetricGroups",
-            "    MinSize: ${13:Number}",
-            "    Name: \"${14:String}\"",
-            "    NewGameSessionProtectionPolicy: \"${15:String}\"",
-            "    PeerVpcAwsAccountId: \"${16:String}\"",
-            "    PeerVpcId: \"${17:String}\"",
+            "    MinSize: ${15:Number}",
+            "    Name: \"${16:String}\" # Required",
+            "    NewGameSessionProtectionPolicy: \"${17:String}\"",
+            "    PeerVpcAwsAccountId: \"${18:String}\"",
+            "    PeerVpcId: \"${19:String}\"",
             "    ResourceCreationLimitPolicy:",
-            "      NewGameSessionsPerCreator: ${18:Number}",
-            "      PolicyPeriodInMinutes: ${19:Number}",
+            "      NewGameSessionsPerCreator: ${20:Number}",
+            "      PolicyPeriodInMinutes: ${21:Number}",
             "    RuntimeConfiguration:",
-            "      GameSessionActivationTimeoutSeconds: ${19:Number}",
-            "      MaxConcurrentGameSessionActivations: ${20:Number}",
+            "      GameSessionActivationTimeoutSeconds: ${21:Number}",
+            "      MaxConcurrentGameSessionActivations: ${22:Number}",
             "      ServerProcesses:",
             "        -",
-            "    ScriptId: \"${20:String}\""
+            "    ScriptId: \"${22:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html",
@@ -10991,6 +11143,23 @@
             "  Name"
         ],
         "prefix": "gamelift-gamesessionqueue",
+        "scope": "yaml"
+    },
+    "AWS::GameLift::Location": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::GameLift::Location",
+            "  Properties:",
+            "    LocationName: \"${2:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-location.html",
+            "Attributes: ",
+            "  LocationArn"
+        ],
+        "prefix": "gamelift-location",
         "scope": "yaml"
     },
     "AWS::GameLift::MatchmakingConfiguration": {
@@ -11085,11 +11254,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-accelerator.html",
             "Attributes: ",
-            "  DnsName",
             "  Ipv4Addresses",
-            "  Ipv6Addresses",
+            "  DnsName",
             "  DualStackDnsName",
-            "  AcceleratorArn"
+            "  AcceleratorArn",
+            "  Ipv6Addresses"
         ],
         "prefix": "globalaccelerator-accelerator",
         "scope": "yaml"
@@ -11422,8 +11591,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html",
             "Attributes: ",
-            "  Arn",
-            "  InitialSchemaVersionId"
+            "  InitialSchemaVersionId",
+            "  Arn"
         ],
         "prefix": "glue-schema",
         "scope": "yaml"
@@ -11544,6 +11713,47 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html"
         ],
         "prefix": "glue-workflow",
+        "scope": "yaml"
+    },
+    "AWS::Grafana::Workspace": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Grafana::Workspace",
+            "  Properties:",
+            "    AccountAccessType: \"${2:String}\"",
+            "    AuthenticationProviders:",
+            "      AuthenticationProviders",
+            "    ClientToken: \"${4:String}\"",
+            "    DataSources:",
+            "      DataSources",
+            "    Description: \"${6:String}\"",
+            "    Name: \"${7:String}\"",
+            "    NotificationDestinations:",
+            "      NotificationDestinations",
+            "    OrganizationRoleName: \"${9:String}\"",
+            "    OrganizationalUnits:",
+            "      OrganizationalUnits",
+            "    PermissionType: \"${11:String}\"",
+            "    RoleArn: \"${12:String}\"",
+            "    SamlConfiguration:",
+            "      AllowedOrganizations:",
+            "        -",
+            "      LoginValidityDuration: ${16:Number}",
+            "    StackSetName: \"${14:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-grafana-workspace.html",
+            "Attributes: ",
+            "  Status",
+            "  GrafanaVersion",
+            "  CreationTimestamp",
+            "  Endpoint",
+            "  SsoClientId",
+            "  Id",
+            "  SamlConfigurationStatus",
+            "  ModificationTimestamp"
+        ],
+        "prefix": "grafana-workspace",
         "scope": "yaml"
     },
     "AWS::Greengrass::ConnectorDefinition": {
@@ -11873,8 +12083,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-componentversion.html",
             "Attributes: ",
-            "  Arn",
             "  ComponentName",
+            "  Arn",
             "  ComponentVersion"
         ],
         "prefix": "greengrassv2-componentversion",
@@ -11915,8 +12125,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-config.html",
             "Attributes: ",
             "  Type",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "groundstation-config",
         "scope": "yaml"
@@ -11958,9 +12168,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html",
             "Attributes: ",
+            "  Region",
             "  Id",
-            "  Arn",
-            "  Region"
+            "  Arn"
         ],
         "prefix": "groundstation-missionprofile",
         "scope": "yaml"
@@ -12091,9 +12301,12 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-healthlake-fhirdatastore.html",
             "Attributes: ",
             "  DatastoreArn",
-            "  DatastoreEndpoint",
+            "  CreatedAt.Nanos",
             "  DatastoreId",
-            "  DatastoreStatus"
+            "  CreatedAt",
+            "  DatastoreStatus",
+            "  DatastoreEndpoint",
+            "  CreatedAt.Seconds"
         ],
         "prefix": "healthlake-fhirdatastore",
         "scope": "yaml"
@@ -12376,9 +12589,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html",
             "Attributes: ",
-            "  Arn",
             "  PlaybackUrl",
-            "  IngestEndpoint"
+            "  IngestEndpoint",
+            "  Arn"
         ],
         "prefix": "ivs-channel",
         "scope": "yaml"
@@ -12389,7 +12602,7 @@
             "  Type: AWS::IVS::PlaybackKeyPair",
             "  Properties:",
             "    Name: \"${2:String}\"",
-            "    PublicKeyMaterial: \"${3:String}\" # Required",
+            "    PublicKeyMaterial: \"${3:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -12419,8 +12632,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html",
             "Attributes: ",
-            "  Arn",
-            "  State"
+            "  State",
+            "  Arn"
         ],
         "prefix": "ivs-recordingconfiguration",
         "scope": "yaml"
@@ -12437,8 +12650,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-streamkey.html",
             "Attributes: ",
-            "  Arn",
-            "  Value"
+            "  Value",
+            "  Arn"
         ],
         "prefix": "ivs-streamkey",
         "scope": "yaml"
@@ -12498,10 +12711,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-component.html",
             "Attributes: ",
-            "  Arn",
-            "  Name",
             "  Type",
-            "  Encrypted"
+            "  Encrypted",
+            "  Arn",
+            "  Name"
         ],
         "prefix": "imagebuilder-component",
         "scope": "yaml"
@@ -12580,10 +12793,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html",
             "Attributes: ",
-            "  Arn",
-            "  Name",
             "  ImageId",
-            "  ImageUri"
+            "  Arn",
+            "  ImageUri",
+            "  Name"
         ],
         "prefix": "imagebuilder-image",
         "scope": "yaml"
@@ -13013,9 +13226,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-domainconfiguration.html",
             "Attributes: ",
-            "  Arn",
             "  DomainType",
-            "  ServerCertificates"
+            "  ServerCertificates",
+            "  Arn"
         ],
         "prefix": "iot-domainconfiguration",
         "scope": "yaml"
@@ -13056,17 +13269,23 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoT::JobTemplate",
             "  Properties:",
-            "    AbortConfig: ${2:JSON}",
+            "    AbortConfig:",
+            "      CriteriaList:",
+            "        -",
             "    Description: \"${3:String}\" # Required",
             "    Document: \"${4:String}\"",
             "    DocumentSource: \"${5:String}\"",
             "    JobArn: \"${6:String}\"",
-            "    JobExecutionsRolloutConfig: ${7:JSON}",
+            "    JobExecutionsRolloutConfig:",
+            "      MaximumPerMinute: ${8:Number}",
             "    JobTemplateId: \"${8:String}\" # Required",
-            "    PresignedUrlConfig: ${9:JSON}",
+            "    PresignedUrlConfig:",
+            "      ExpiresInSec: ${9:Number}",
+            "      RoleArn: \"${10:String}\"",
             "    Tags:",
             "      Tags",
-            "    TimeoutConfig: ${11:JSON}"
+            "    TimeoutConfig:",
+            "      InProgressTimeoutInMinutes: ${11:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html",
@@ -13321,8 +13540,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicruledestination.html",
             "Attributes: ",
-            "  Arn",
-            "  StatusReason"
+            "  StatusReason",
+            "  Arn"
         ],
         "prefix": "iot-topicruledestination",
         "scope": "yaml"
@@ -13334,6 +13553,7 @@
             "  Properties:",
             "    ChannelName: \"${2:String}\"",
             "    ChannelStorage:",
+            "      ServiceManagedS3: ${4:JSON}",
             "    RetentionPeriod:",
             "      NumberOfDays: ${4:Number}",
             "      Unlimited: ${5|false,true|}",
@@ -13389,7 +13609,9 @@
             "      Partitions:",
             "        -",
             "    DatastoreStorage:",
+            "      ServiceManagedS3: ${6:JSON}",
             "    FileFormatConfiguration:",
+            "      JsonConfiguration: ${5:JSON}",
             "    RetentionPeriod:",
             "      NumberOfDays: ${6:Number}",
             "      Unlimited: ${7|false,true|}",
@@ -13428,16 +13650,22 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTCoreDeviceAdvisor::SuiteDefinition",
             "  Properties:",
-            "    SuiteDefinitionConfiguration: ${2:JSON} # Required",
+            "    SuiteDefinitionConfiguration:",
+            "      DevicePermissionRoleArn: \"${2:String}\"",
+            "      Devices:",
+            "        -",
+            "      IntendedForQualification: ${4|false,true|}",
+            "      RootGroup: \"${5:String}\"",
+            "      SuiteDefinitionName: \"${6:String}\"",
             "    Tags:",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotcoredeviceadvisor-suitedefinition.html",
             "Attributes: ",
-            "  SuiteDefinitionId",
             "  SuiteDefinitionArn",
-            "  SuiteDefinitionVersion"
+            "  SuiteDefinitionVersion",
+            "  SuiteDefinitionId"
         ],
         "prefix": "iotcoredeviceadvisor-suitedefinition",
         "scope": "yaml"
@@ -13522,14 +13750,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleethub-application.html",
             "Attributes: ",
-            "  ApplicationId",
-            "  ApplicationArn",
             "  ApplicationUrl",
+            "  ApplicationArn",
             "  ApplicationState",
-            "  ApplicationCreationDate",
-            "  ApplicationLastUpdateDate",
             "  SsoClientId",
-            "  ErrorMessage"
+            "  ApplicationId",
+            "  ApplicationLastUpdateDate",
+            "  ErrorMessage",
+            "  ApplicationCreationDate"
         ],
         "prefix": "iotfleethub-application",
         "scope": "yaml"
@@ -13563,8 +13791,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-campaign.html",
             "Attributes: ",
             "  Status",
-            "  CreationTime",
             "  LastModificationTime",
+            "  CreationTime",
             "  Arn"
         ],
         "prefix": "iotfleetwise-campaign",
@@ -13589,9 +13817,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-decodermanifest.html",
             "Attributes: ",
-            "  Arn",
+            "  LastModificationTime",
             "  CreationTime",
-            "  LastModificationTime"
+            "  Arn"
         ],
         "prefix": "iotfleetwise-decodermanifest",
         "scope": "yaml"
@@ -13610,9 +13838,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-fleet.html",
             "Attributes: ",
-            "  Arn",
+            "  LastModificationTime",
             "  CreationTime",
-            "  LastModificationTime"
+            "  Arn"
         ],
         "prefix": "iotfleetwise-fleet",
         "scope": "yaml"
@@ -13634,9 +13862,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-modelmanifest.html",
             "Attributes: ",
-            "  Arn",
+            "  LastModificationTime",
             "  CreationTime",
-            "  LastModificationTime"
+            "  Arn"
         ],
         "prefix": "iotfleetwise-modelmanifest",
         "scope": "yaml"
@@ -13648,6 +13876,12 @@
             "  Properties:",
             "    Description: \"${2:String}\"",
             "    Name: \"${3:String}\"",
+            "    NodeCounts:",
+            "      TotalActuators: ${4:Number}",
+            "      TotalAttributes: ${5:Number}",
+            "      TotalBranches: ${6:Number}",
+            "      TotalNodes: ${7:Number}",
+            "      TotalSensors: ${8:Number}",
             "    Nodes:",
             "      Nodes",
             "    Tags:",
@@ -13656,14 +13890,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-signalcatalog.html",
             "Attributes: ",
-            "  Arn",
-            "  CreationTime",
             "  LastModificationTime",
             "  NodeCounts.TotalNodes",
-            "  NodeCounts.TotalBranches",
             "  NodeCounts.TotalSensors",
             "  NodeCounts.TotalAttributes",
-            "  NodeCounts.TotalActuators"
+            "  NodeCounts.TotalBranches",
+            "  NodeCounts.TotalActuators",
+            "  CreationTime",
+            "  Arn"
         ],
         "prefix": "iotfleetwise-signalcatalog",
         "scope": "yaml"
@@ -13684,9 +13918,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-vehicle.html",
             "Attributes: ",
-            "  Arn",
+            "  LastModificationTime",
             "  CreationTime",
-            "  LastModificationTime"
+            "  Arn"
         ],
         "prefix": "iotfleetwise-vehicle",
         "scope": "yaml"
@@ -13703,8 +13937,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-accesspolicy.html",
             "Attributes: ",
-            "  AccessPolicyId",
-            "  AccessPolicyArn"
+            "  AccessPolicyArn",
+            "  AccessPolicyId"
         ],
         "prefix": "iotsitewise-accesspolicy",
         "scope": "yaml"
@@ -13727,8 +13961,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-asset.html",
             "Attributes: ",
-            "  AssetId",
-            "  AssetArn"
+            "  AssetArn",
+            "  AssetId"
         ],
         "prefix": "iotsitewise-asset",
         "scope": "yaml"
@@ -13804,7 +14038,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::IoTSiteWise::Portal",
             "  Properties:",
-            "    Alarms: ${2:JSON}",
+            "    Alarms:",
+            "      AlarmRoleArn: \"${2:String}\"",
+            "      NotificationLambdaArn: \"${3:String}\"",
             "    NotificationSenderEmail: \"${3:String}\"",
             "    PortalAuthMode: \"${4:String}\"",
             "    PortalContactEmail: \"${5:String}\" # Required",
@@ -13818,9 +14054,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-portal.html",
             "Attributes: ",
             "  PortalArn",
-            "  PortalClientId",
+            "  PortalStartUrl",
             "  PortalId",
-            "  PortalStartUrl"
+            "  PortalClientId"
         ],
         "prefix": "iotsitewise-portal",
         "scope": "yaml"
@@ -13841,8 +14077,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-project.html",
             "Attributes: ",
-            "  ProjectId",
-            "  ProjectArn"
+            "  ProjectArn",
+            "  ProjectId"
         ],
         "prefix": "iotsitewise-project",
         "scope": "yaml"
@@ -13882,11 +14118,16 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-componenttype.html",
             "Attributes: ",
-            "  Arn",
+            "  Status",
             "  CreationDateTime",
+            "  Status.Error.Message",
+            "  IsSchemaInitialized",
+            "  Status.State",
+            "  Status.Error",
             "  UpdateDateTime",
-            "  IsAbstract",
-            "  IsSchemaInitialized"
+            "  Status.Error.Code",
+            "  Arn",
+            "  IsAbstract"
         ],
         "prefix": "iottwinmaker-componenttype",
         "scope": "yaml"
@@ -13907,10 +14148,15 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-entity.html",
             "Attributes: ",
-            "  HasChildEntities",
-            "  Arn",
+            "  Status",
             "  CreationDateTime",
-            "  UpdateDateTime"
+            "  Status.Error.Message",
+            "  HasChildEntities",
+            "  Status.State",
+            "  Status.Error",
+            "  UpdateDateTime",
+            "  Status.Error.Code",
+            "  Arn"
         ],
         "prefix": "iottwinmaker-entity",
         "scope": "yaml"
@@ -13931,9 +14177,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-scene.html",
             "Attributes: ",
-            "  Arn",
             "  CreationDateTime",
-            "  UpdateDateTime"
+            "  UpdateDateTime",
+            "  Arn"
         ],
         "prefix": "iottwinmaker-scene",
         "scope": "yaml"
@@ -13952,9 +14198,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-workspace.html",
             "Attributes: ",
-            "  Arn",
             "  CreationDateTime",
-            "  UpdateDateTime"
+            "  UpdateDateTime",
+            "  Arn"
         ],
         "prefix": "iottwinmaker-workspace",
         "scope": "yaml"
@@ -14013,8 +14259,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-deviceprofile.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "iotwireless-deviceprofile",
         "scope": "yaml"
@@ -14041,10 +14287,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html",
             "Attributes: ",
+            "  FuotaTaskStatus",
             "  LoRaWAN.StartTime",
-            "  Arn",
             "  Id",
-            "  FuotaTaskStatus"
+            "  Arn"
         ],
         "prefix": "iotwireless-fuotatask",
         "scope": "yaml"
@@ -14069,11 +14315,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html",
             "Attributes: ",
+            "  Status",
             "  LoRaWAN.NumberOfDevicesRequested",
-            "  LoRaWAN.NumberOfDevicesInGroup",
-            "  Arn",
             "  Id",
-            "  Status"
+            "  LoRaWAN.NumberOfDevicesInGroup",
+            "  Arn"
         ],
         "prefix": "iotwireless-multicastgroup",
         "scope": "yaml"
@@ -14087,7 +14333,9 @@
             "    Name: \"${3:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TraceContent: ${5:JSON}",
+            "    TraceContent:",
+            "      LogLevel: \"${5:String}\"",
+            "      WirelessDeviceFrameInfo: \"${6:String}\"",
             "    WirelessDevices:",
             "      WirelessDevices",
             "    WirelessGateways:",
@@ -14120,7 +14368,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html",
             "Attributes: ",
-            "  Arn"
+            "  SidewalkResponse",
+            "  SidewalkResponse.Arn",
+            "  Arn",
+            "  SidewalkResponse.Fingerprint",
+            "  SidewalkResponse.AmazonId"
         ],
         "prefix": "iotwireless-partneraccount",
         "scope": "yaml"
@@ -14157,26 +14409,26 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html",
             "Attributes: ",
-            "  LoRaWAN.UlRate",
-            "  LoRaWAN.UlBucketSize",
-            "  LoRaWAN.UlRatePolicy",
-            "  LoRaWAN.DlRate",
-            "  LoRaWAN.DlBucketSize",
-            "  LoRaWAN.DlRatePolicy",
-            "  LoRaWAN.DevStatusReqFreq",
-            "  LoRaWAN.ReportDevStatusBattery",
-            "  LoRaWAN.ReportDevStatusMargin",
             "  LoRaWAN.DrMin",
-            "  LoRaWAN.DrMax",
-            "  LoRaWAN.ChannelMask",
-            "  LoRaWAN.PrAllowed",
-            "  LoRaWAN.HrAllowed",
-            "  LoRaWAN.RaAllowed",
-            "  LoRaWAN.NwkGeoLoc",
-            "  LoRaWAN.TargetPer",
+            "  LoRaWAN.ReportDevStatusMargin",
+            "  LoRaWAN.UlRatePolicy",
             "  LoRaWAN.MinGwDiversity",
-            "  Arn",
-            "  Id"
+            "  LoRaWAN.TargetPer",
+            "  LoRaWAN.ChannelMask",
+            "  LoRaWAN.ReportDevStatusBattery",
+            "  LoRaWAN.DlRate",
+            "  LoRaWAN.DlRatePolicy",
+            "  LoRaWAN.HrAllowed",
+            "  LoRaWAN.DlBucketSize",
+            "  LoRaWAN.DrMax",
+            "  LoRaWAN.UlBucketSize",
+            "  LoRaWAN.RaAllowed",
+            "  LoRaWAN.UlRate",
+            "  LoRaWAN.NwkGeoLoc",
+            "  LoRaWAN.DevStatusReqFreq",
+            "  LoRaWAN.PrAllowed",
+            "  Id",
+            "  Arn"
         ],
         "prefix": "iotwireless-serviceprofile",
         "scope": "yaml"
@@ -14226,9 +14478,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdevice.html",
             "Attributes: ",
-            "  Arn",
             "  Id",
-            "  ThingName"
+            "  ThingName",
+            "  Arn"
         ],
         "prefix": "iotwireless-wirelessdevice",
         "scope": "yaml"
@@ -14252,8 +14504,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "iotwireless-wirelessgateway",
         "scope": "yaml"
@@ -14291,8 +14543,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html",
             "Attributes: ",
-            "  Arn",
-            "  KeyId"
+            "  KeyId",
+            "  Arn"
         ],
         "prefix": "kms-key",
         "scope": "yaml"
@@ -14313,8 +14565,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-replicakey.html",
             "Attributes: ",
-            "  Arn",
-            "  KeyId"
+            "  KeyId",
+            "  Arn"
         ],
         "prefix": "kms-replicakey",
         "scope": "yaml"
@@ -14600,58 +14852,63 @@
             "${1:LogicalID}:",
             "  Type: AWS::KinesisFirehose::DeliveryStream",
             "  Properties:",
+            "    AmazonOpenSearchServerlessDestinationConfiguration:",
+            "      CollectionEndpoint: \"${4:String}\"",
+            "      IndexName: \"${5:String}\"",
+            "      RoleARN: \"${8:String}\"",
+            "      S3BackupMode: \"${9:String}\"",
             "    AmazonopensearchserviceDestinationConfiguration:",
-            "      ClusterEndpoint: \"${4:String}\"",
-            "      DomainARN: \"${5:String}\"",
-            "      IndexName: \"${6:String}\"",
-            "      IndexRotationPeriod: \"${7:String}\"",
-            "      RoleARN: \"${10:String}\"",
-            "      S3BackupMode: \"${11:String}\"",
-            "      TypeName: \"${13:String}\"",
+            "      ClusterEndpoint: \"${5:String}\"",
+            "      DomainARN: \"${6:String}\"",
+            "      IndexName: \"${7:String}\"",
+            "      IndexRotationPeriod: \"${8:String}\"",
+            "      RoleARN: \"${11:String}\"",
+            "      S3BackupMode: \"${12:String}\"",
+            "      TypeName: \"${14:String}\"",
             "    DeliveryStreamEncryptionConfigurationInput:",
-            "      KeyARN: \"${3:String}\"",
-            "      KeyType: \"${4:String}\"",
-            "    DeliveryStreamName: \"${4:String}\"",
-            "    DeliveryStreamType: \"${5:String}\"",
+            "      KeyARN: \"${4:String}\"",
+            "      KeyType: \"${5:String}\"",
+            "    DeliveryStreamName: \"${5:String}\"",
+            "    DeliveryStreamType: \"${6:String}\"",
             "    ElasticsearchDestinationConfiguration:",
-            "      ClusterEndpoint: \"${8:String}\"",
-            "      DomainARN: \"${9:String}\"",
-            "      IndexName: \"${10:String}\"",
-            "      IndexRotationPeriod: \"${11:String}\"",
-            "      RoleARN: \"${14:String}\"",
-            "      S3BackupMode: \"${15:String}\"",
-            "      TypeName: \"${17:String}\"",
+            "      ClusterEndpoint: \"${9:String}\"",
+            "      DomainARN: \"${10:String}\"",
+            "      IndexName: \"${11:String}\"",
+            "      IndexRotationPeriod: \"${12:String}\"",
+            "      RoleARN: \"${15:String}\"",
+            "      S3BackupMode: \"${16:String}\"",
+            "      TypeName: \"${18:String}\"",
             "    ExtendedS3DestinationConfiguration:",
-            "      BucketARN: \"${7:String}\"",
-            "      CompressionFormat: \"${10:String}\"",
-            "      ErrorOutputPrefix: \"${14:String}\"",
-            "      Prefix: \"${15:String}\"",
+            "      BucketARN: \"${8:String}\"",
+            "      CompressionFormat: \"${11:String}\"",
+            "      ErrorOutputPrefix: \"${15:String}\"",
+            "      Prefix: \"${16:String}\"",
+            "      RoleARN: \"${18:String}\"",
+            "      S3BackupMode: \"${20:String}\"",
+            "    HttpEndpointDestinationConfiguration:",
+            "      RoleARN: \"${15:String}\"",
+            "      S3BackupMode: \"${16:String}\"",
+            "    KinesisStreamSourceConfiguration:",
+            "      KinesisStreamARN: \"${10:String}\"",
+            "      RoleARN: \"${11:String}\"",
+            "    RedshiftDestinationConfiguration:",
+            "      ClusterJDBCURL: \"${12:String}\"",
+            "      Password: \"${14:String}\"",
             "      RoleARN: \"${17:String}\"",
             "      S3BackupMode: \"${19:String}\"",
-            "    HttpEndpointDestinationConfiguration:",
-            "      RoleARN: \"${14:String}\"",
-            "      S3BackupMode: \"${15:String}\"",
-            "    KinesisStreamSourceConfiguration:",
-            "      KinesisStreamARN: \"${9:String}\"",
-            "      RoleARN: \"${10:String}\"",
-            "    RedshiftDestinationConfiguration:",
-            "      ClusterJDBCURL: \"${11:String}\"",
-            "      Password: \"${13:String}\"",
-            "      RoleARN: \"${16:String}\"",
-            "      S3BackupMode: \"${18:String}\"",
-            "      Username: \"${20:String}\"",
+            "      Username: \"${21:String}\"",
             "    S3DestinationConfiguration:",
-            "      BucketARN: \"${11:String}\"",
-            "      CompressionFormat: \"${14:String}\"",
-            "      ErrorOutputPrefix: \"${16:String}\"",
-            "      Prefix: \"${17:String}\"",
-            "      RoleARN: \"${18:String}\"",
+            "      BucketARN: \"${12:String}\"",
+            "      CompressionFormat: \"${15:String}\"",
+            "      ErrorOutputPrefix: \"${17:String}\"",
+            "      Prefix: \"${18:String}\"",
+            "      RoleARN: \"${19:String}\"",
             "    SplunkDestinationConfiguration:",
-            "      HECAcknowledgmentTimeoutInSeconds: ${13:Number}",
-            "      HECEndpoint: \"${14:String}\"",
-            "      HECEndpointType: \"${15:String}\"",
-            "      HECToken: \"${16:String}\"",
-            "      S3BackupMode: \"${19:String}\"",
+            "      HECAcknowledgmentTimeoutInSeconds: ${14:Number}",
+            "      HECEndpoint: \"${15:String}\"",
+            "      HECEndpointType: \"${16:String}\"",
+            "      HECToken: \"${17:String}\"",
+            "      S3BackupMode: \"${20:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -14773,13 +15030,14 @@
             "      PermissionsWithGrantOption",
             "    Principal:",
             "      DataLakePrincipalIdentifier: \"${5:String}\"",
-            "    Resource:"
+            "    Resource:",
+            "      Catalog: ${6:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-principalpermissions.html",
             "Attributes: ",
-            "  PrincipalIdentifier",
-            "  ResourceIdentifier"
+            "  ResourceIdentifier",
+            "  PrincipalIdentifier"
         ],
         "prefix": "lakeformation-principalpermissions",
         "scope": "yaml"
@@ -14822,7 +15080,8 @@
             "  Properties:",
             "    LFTags: # Required",
             "      LFTags",
-            "    Resource:"
+            "    Resource:",
+            "      Catalog: ${3:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-tagassociation.html",
@@ -14916,16 +15175,18 @@
             "    ParallelizationFactor: ${14:Number}",
             "    Queues:",
             "      Queues",
+            "    ScalingConfig:",
+            "      MaximumConcurrency: ${16:Number}",
             "    SelfManagedEventSource:",
             "    SelfManagedKafkaEventSourceConfig:",
-            "      ConsumerGroupId: \"${17:String}\"",
+            "      ConsumerGroupId: \"${18:String}\"",
             "    SourceAccessConfigurations:",
             "      SourceAccessConfigurations",
-            "    StartingPosition: \"${19:String}\"",
-            "    StartingPositionTimestamp: ${20:Number}",
+            "    StartingPosition: \"${20:String}\"",
+            "    StartingPositionTimestamp: ${21:Number}",
             "    Topics:",
             "      Topics",
-            "    TumblingWindowInSeconds: ${22:Number}"
+            "    TumblingWindowInSeconds: ${23:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html",
@@ -14973,11 +15234,13 @@
             "    ReservedConcurrentExecutions: ${17:Number}",
             "    Role: \"${18:String}\" # Required",
             "    Runtime: \"${19:String}\"",
+            "    SnapStart:",
+            "      ApplyOn: \"${20:String}\"",
             "    Tags:",
             "      Tags",
-            "    Timeout: ${21:Number}",
+            "    Timeout: ${22:Number}",
             "    TracingConfig:",
-            "      Mode: \"${22:String}\"",
+            "      Mode: \"${23:String}\"",
             "    VpcConfig:",
             "      SecurityGroupIds:",
             "        -",
@@ -14987,6 +15250,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html",
             "Attributes: ",
+            "  SnapStartResponse.OptimizationStatus",
+            "  SnapStartResponse.ApplyOn",
+            "  SnapStartResponse",
             "  Arn"
         ],
         "prefix": "lambda-function",
@@ -15114,7 +15380,8 @@
             "      BotLocales",
             "    BotTags:",
             "      BotTags",
-            "    DataPrivacy: ${6:JSON} # Required",
+            "    DataPrivacy:",
+            "      ChildDirected: ${6|false,true|}",
             "    Description: \"${7:String}\"",
             "    IdleSessionTTLInSeconds: ${8:Number} # Required",
             "    Name: \"${9:String}\" # Required",
@@ -15123,7 +15390,6 @@
             "      BotAliasLocaleSettings:",
             "        -",
             "      Description: \"${13:String}\"",
-            "      SentimentAnalysisSettings: ${14:JSON}",
             "    TestBotAliasTags:",
             "      TestBotAliasTags"
         ],
@@ -15154,14 +15420,15 @@
             "      TextLogSettings:",
             "        -",
             "    Description: \"${8:String}\"",
-            "    SentimentAnalysisSettings: ${9:JSON}"
+            "    SentimentAnalysisSettings:",
+            "      DetectSentiment: ${9|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-botalias.html",
             "Attributes: ",
-            "  BotAliasId",
+            "  BotAliasStatus",
             "  Arn",
-            "  BotAliasStatus"
+            "  BotAliasId"
         ],
         "prefix": "lex-botalias",
         "scope": "yaml"
@@ -15189,14 +15456,14 @@
             "${1:LogicalID}:",
             "  Type: AWS::Lex::ResourcePolicy",
             "  Properties:",
-            "    Policy:",
+            "    Policy: ${2:JSON} # Required",
             "    ResourceArn: \"${3:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-resourcepolicy.html",
             "Attributes: ",
-            "  RevisionId",
-            "  Id"
+            "  Id",
+            "  RevisionId"
         ],
         "prefix": "lex-resourcepolicy",
         "scope": "yaml"
@@ -15251,8 +15518,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-license.html",
             "Attributes: ",
-            "  LicenseArn",
-            "  Version"
+            "  Version",
+            "  LicenseArn"
         ],
         "prefix": "licensemanager-license",
         "scope": "yaml"
@@ -15307,8 +15574,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-bucket.html",
             "Attributes: ",
             "  BucketArn",
-            "  Url",
-            "  AbleToUpdateBundle"
+            "  AbleToUpdateBundle",
+            "  Url"
         ],
         "prefix": "lightsail-bucket",
         "scope": "yaml"
@@ -15328,8 +15595,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-certificate.html",
             "Attributes: ",
-            "  CertificateArn",
-            "  Status"
+            "  Status",
+            "  CertificateArn"
         ],
         "prefix": "lightsail-certificate",
         "scope": "yaml"
@@ -15407,15 +15674,18 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disk.html",
             "Attributes: ",
-            "  DiskArn",
-            "  SupportCode",
-            "  ResourceType",
-            "  State",
-            "  AttachmentState",
-            "  Iops",
-            "  IsAttached",
             "  Path",
-            "  AttachedTo"
+            "  AttachmentState",
+            "  Location.AvailabilityZone",
+            "  SupportCode",
+            "  State",
+            "  IsAttached",
+            "  ResourceType",
+            "  DiskArn",
+            "  AttachedTo",
+            "  Iops",
+            "  Location",
+            "  Location.RegionName"
         ],
         "prefix": "lightsail-disk",
         "scope": "yaml"
@@ -15450,8 +15720,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-distribution.html",
             "Attributes: ",
-            "  DistributionArn",
             "  Status",
+            "  DistributionArn",
             "  AbleToUpdateBundle"
         ],
         "prefix": "lightsail-distribution",
@@ -15474,31 +15744,37 @@
             "      RamSizeInGb: ${8:Number}",
             "    InstanceName: \"${7:String}\" # Required",
             "    KeyPairName: \"${8:String}\"",
+            "    Location:",
+            "      AvailabilityZone: \"${9:String}\"",
+            "      RegionName: \"${10:String}\"",
             "    Networking:",
             "      Ports:",
             "        -",
+            "    State:",
+            "      Code: ${11:Number}",
+            "      Name: \"${12:String}\"",
             "    Tags:",
             "      Tags",
-            "    UserData: \"${11:String}\""
+            "    UserData: \"${13:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instance.html",
             "Attributes: ",
-            "  SupportCode",
-            "  ResourceType",
+            "  SshKeyName",
+            "  Networking.MonthlyTransfer.GbPerMonthAllocated",
+            "  Hardware.CpuCount",
             "  IsStaticIp",
             "  PrivateIpAddress",
+            "  UserName",
+            "  ResourceType",
+            "  Location.RegionName",
             "  PublicIpAddress",
             "  Location.AvailabilityZone",
-            "  Location.RegionName",
-            "  Hardware.CpuCount",
-            "  Hardware.RamSizeInGb",
             "  State.Code",
+            "  SupportCode",
             "  State.Name",
-            "  Networking.MonthlyTransfer.GbPerMonthAllocated",
-            "  UserName",
-            "  SshKeyName",
-            "  InstanceArn"
+            "  InstanceArn",
+            "  Hardware.RamSizeInGb"
         ],
         "prefix": "lightsail-instance",
         "scope": "yaml"
@@ -15544,8 +15820,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-loadbalancertlscertificate.html",
             "Attributes: ",
-            "  LoadBalancerTlsCertificateArn",
-            "  Status"
+            "  Status",
+            "  LoadBalancerTlsCertificateArn"
         ],
         "prefix": "lightsail-loadbalancertlscertificate",
         "scope": "yaml"
@@ -15561,9 +15837,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-staticip.html",
             "Attributes: ",
+            "  StaticIpArn",
             "  IsAttached",
-            "  IpAddress",
-            "  StaticIpArn"
+            "  IpAddress"
         ],
         "prefix": "lightsail-staticip",
         "scope": "yaml"
@@ -15583,9 +15859,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-geofencecollection.html",
             "Attributes: ",
             "  CollectionArn",
-            "  Arn",
             "  CreateTime",
-            "  UpdateTime"
+            "  UpdateTime",
+            "  Arn"
         ],
         "prefix": "location-geofencecollection",
         "scope": "yaml"
@@ -15605,10 +15881,10 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-map.html",
             "Attributes: ",
             "  CreateTime",
-            "  DataSource",
-            "  MapArn",
+            "  UpdateTime",
             "  Arn",
-            "  UpdateTime"
+            "  MapArn",
+            "  DataSource"
         ],
         "prefix": "location-map",
         "scope": "yaml"
@@ -15628,10 +15904,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-placeindex.html",
             "Attributes: ",
-            "  CreateTime",
             "  IndexArn",
-            "  Arn",
-            "  UpdateTime"
+            "  CreateTime",
+            "  UpdateTime",
+            "  Arn"
         ],
         "prefix": "location-placeindex",
         "scope": "yaml"
@@ -15649,10 +15925,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-routecalculator.html",
             "Attributes: ",
-            "  CalculatorArn",
-            "  Arn",
             "  CreateTime",
-            "  UpdateTime"
+            "  UpdateTime",
+            "  CalculatorArn",
+            "  Arn"
         ],
         "prefix": "location-routecalculator",
         "scope": "yaml"
@@ -15673,9 +15949,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html",
             "Attributes: ",
             "  CreateTime",
-            "  TrackerArn",
+            "  UpdateTime",
             "  Arn",
-            "  UpdateTime"
+            "  TrackerArn"
         ],
         "prefix": "location-tracker",
         "scope": "yaml"
@@ -15717,9 +15993,10 @@
             "${1:LogicalID}:",
             "  Type: AWS::Logs::LogGroup",
             "  Properties:",
-            "    KmsKeyId: \"${2:String}\"",
-            "    LogGroupName: \"${3:String}\"",
-            "    RetentionInDays: ${4:Number}",
+            "    DataProtectionPolicy: ${2:JSON}",
+            "    KmsKeyId: \"${3:String}\"",
+            "    LogGroupName: \"${4:String}\"",
+            "    RetentionInDays: ${5:Number}",
             "    Tags:",
             "      Tags"
         ],
@@ -15818,8 +16095,10 @@
             "  Type: AWS::LookoutEquipment::InferenceScheduler",
             "  Properties:",
             "    DataDelayOffsetInMinutes: ${2:Number}",
-            "    DataInputConfiguration: ${3:JSON} # Required",
-            "    DataOutputConfiguration: ${4:JSON} # Required",
+            "    DataInputConfiguration:",
+            "      InputTimeZoneOffset: \"${4:String}\"",
+            "    DataOutputConfiguration:",
+            "      KmsKeyId: \"${4:String}\"",
             "    DataUploadFrequency: \"${5:String}\" # Required",
             "    InferenceSchedulerName: \"${6:String}\"",
             "    ModelName: \"${7:String}\" # Required",
@@ -15897,6 +16176,8 @@
             "  Type: AWS::M2::Application",
             "  Properties:",
             "    Definition:",
+            "      Content: \"${2:String}\"",
+            "      S3Location: \"${3:String}\"",
             "    Description: \"${3:String}\"",
             "    EngineType: \"${4:String}\" # Required",
             "    Name: \"${5:String}\" # Required",
@@ -15936,8 +16217,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-environment.html",
             "Attributes: ",
-            "  EnvironmentArn",
-            "  EnvironmentId"
+            "  EnvironmentId",
+            "  EnvironmentArn"
         ],
         "prefix": "m2-environment",
         "scope": "yaml"
@@ -16063,13 +16344,13 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html",
             "Attributes: ",
-            "  Arn",
-            "  WebserverUrl",
-            "  LoggingConfiguration.DagProcessingLogs.CloudWatchLogGroupArn",
-            "  LoggingConfiguration.SchedulerLogs.CloudWatchLogGroupArn",
+            "  LoggingConfiguration.TaskLogs.CloudWatchLogGroupArn",
             "  LoggingConfiguration.WebserverLogs.CloudWatchLogGroupArn",
-            "  LoggingConfiguration.WorkerLogs.CloudWatchLogGroupArn",
-            "  LoggingConfiguration.TaskLogs.CloudWatchLogGroupArn"
+            "  LoggingConfiguration.DagProcessingLogs.CloudWatchLogGroupArn",
+            "  WebserverUrl",
+            "  LoggingConfiguration.SchedulerLogs.CloudWatchLogGroupArn",
+            "  Arn",
+            "  LoggingConfiguration.WorkerLogs.CloudWatchLogGroupArn"
         ],
         "prefix": "mwaa-environment",
         "scope": "yaml"
@@ -16089,9 +16370,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-allowlist.html",
             "Attributes: ",
+            "  Status",
             "  Id",
-            "  Arn",
-            "  Status"
+            "  Arn"
         ],
         "prefix": "macie-allowlist",
         "scope": "yaml"
@@ -16151,8 +16432,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-session.html",
             "Attributes: ",
-            "  AwsAccountId",
-            "  ServiceRole"
+            "  ServiceRole",
+            "  AwsAccountId"
         ],
         "prefix": "macie-session",
         "scope": "yaml"
@@ -16221,23 +16502,28 @@
             "      MinLatency: ${11:Number}",
             "      Name: \"${12:String}\"",
             "      Protocol: \"${13:String}\"",
-            "      SourceArn: \"${14:String}\"",
-            "      SourceIngestPort: \"${15:String}\"",
-            "      StreamId: \"${16:String}\"",
-            "      VpcInterfaceName: \"${17:String}\"",
-            "      WhitelistCidr: \"${18:String}\"",
+            "      SenderControlPort: ${14:Number}",
+            "      SenderIpAddress: \"${15:String}\"",
+            "      SourceArn: \"${16:String}\"",
+            "      SourceIngestPort: \"${17:String}\"",
+            "      SourceListenerAddress: \"${18:String}\"",
+            "      SourceListenerPort: ${19:Number}",
+            "      StreamId: \"${20:String}\"",
+            "      VpcInterfaceName: \"${21:String}\"",
+            "      WhitelistCidr: \"${22:String}\"",
             "    SourceFailoverConfig:",
-            "      RecoveryWindow: ${5:Number}",
-            "      State: \"${6:String}\""
+            "      FailoverMode: \"${5:String}\"",
+            "      RecoveryWindow: ${6:Number}",
+            "      State: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flow.html",
             "Attributes: ",
-            "  FlowArn",
             "  FlowAvailabilityZone",
-            "  Source.SourceArn",
+            "  Source.SourceIngestPort",
             "  Source.IngestIp",
-            "  Source.SourceIngestPort"
+            "  Source.SourceArn",
+            "  FlowArn"
         ],
         "prefix": "mediaconnect-flow",
         "scope": "yaml"
@@ -16337,8 +16623,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html",
             "Attributes: ",
-            "  SourceArn",
             "  IngestIp",
+            "  SourceArn",
             "  SourceIngestPort"
         ],
         "prefix": "mediaconnect-flowsource",
@@ -16545,8 +16831,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-asset.html",
             "Attributes: ",
-            "  Arn",
             "  CreatedAt",
+            "  Arn",
             "  EgressEndpoints"
         ],
         "prefix": "mediapackage-asset",
@@ -16569,6 +16855,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-channel.html",
             "Attributes: ",
+            "  HlsIngest.ingestEndpoints",
+            "  HlsIngest",
             "  Arn"
         ],
         "prefix": "mediapackage-channel",
@@ -16698,8 +16986,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-packaginggroup.html",
             "Attributes: ",
-            "  Arn",
-            "  DomainName"
+            "  DomainName",
+            "  Arn"
         ],
         "prefix": "mediapackage-packaginggroup",
         "scope": "yaml"
@@ -16750,24 +17038,26 @@
             "      ManifestEndpointPrefix: \"${7:String}\"",
             "      MpdLocation: \"${8:String}\"",
             "      OriginManifestType: \"${9:String}\"",
+            "    HlsConfiguration:",
+            "      ManifestEndpointPrefix: \"${8:String}\"",
             "    LivePreRollConfiguration:",
-            "      AdDecisionServerUrl: \"${8:String}\"",
-            "      MaxDurationSeconds: ${9:Number}",
+            "      AdDecisionServerUrl: \"${9:String}\"",
+            "      MaxDurationSeconds: ${10:Number}",
             "    ManifestProcessingRules:",
-            "    Name: \"${10:String}\" # Required",
-            "    PersonalizationThresholdSeconds: ${11:Number}",
-            "    SlateAdUrl: \"${12:String}\"",
+            "    Name: \"${11:String}\" # Required",
+            "    PersonalizationThresholdSeconds: ${12:Number}",
+            "    SlateAdUrl: \"${13:String}\"",
             "    Tags:",
             "      Tags",
-            "    TranscodeProfileName: \"${14:String}\"",
-            "    VideoContentSourceUrl: \"${15:String}\" # Required"
+            "    TranscodeProfileName: \"${15:String}\"",
+            "    VideoContentSourceUrl: \"${16:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-playbackconfiguration.html",
             "Attributes: ",
-            "  DashConfiguration.ManifestEndpointPrefix",
-            "  SessionInitializationEndpointPrefix",
             "  HlsConfiguration.ManifestEndpointPrefix",
+            "  SessionInitializationEndpointPrefix",
+            "  DashConfiguration.ManifestEndpointPrefix",
             "  PlaybackConfigurationArn",
             "  PlaybackEndpointPrefix"
         ],
@@ -16801,29 +17091,32 @@
             "  Properties:",
             "    ACLName: \"${2:String}\" # Required",
             "    AutoMinorVersionUpgrade: ${3|false,true|}",
-            "    ClusterName: \"${4:String}\" # Required",
-            "    DataTiering: \"${5:String}\"",
-            "    Description: \"${6:String}\"",
-            "    EngineVersion: \"${7:String}\"",
-            "    FinalSnapshotName: \"${8:String}\"",
-            "    KmsKeyId: \"${9:String}\"",
-            "    MaintenanceWindow: \"${10:String}\"",
-            "    NodeType: \"${11:String}\" # Required",
-            "    NumReplicasPerShard: ${12:Number}",
-            "    NumShards: ${13:Number}",
-            "    ParameterGroupName: \"${14:String}\"",
-            "    Port: ${15:Number}",
+            "    ClusterEndpoint:",
+            "      Address: \"${4:String}\"",
+            "      Port: ${5:Number}",
+            "    ClusterName: \"${5:String}\" # Required",
+            "    DataTiering: \"${6:String}\"",
+            "    Description: \"${7:String}\"",
+            "    EngineVersion: \"${8:String}\"",
+            "    FinalSnapshotName: \"${9:String}\"",
+            "    KmsKeyId: \"${10:String}\"",
+            "    MaintenanceWindow: \"${11:String}\"",
+            "    NodeType: \"${12:String}\" # Required",
+            "    NumReplicasPerShard: ${13:Number}",
+            "    NumShards: ${14:Number}",
+            "    ParameterGroupName: \"${15:String}\"",
+            "    Port: ${16:Number}",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
             "    SnapshotArns:",
             "      SnapshotArns",
-            "    SnapshotName: \"${18:String}\"",
-            "    SnapshotRetentionLimit: ${19:Number}",
-            "    SnapshotWindow: \"${20:String}\"",
-            "    SnsTopicArn: \"${21:String}\"",
-            "    SnsTopicStatus: \"${22:String}\"",
-            "    SubnetGroupName: \"${23:String}\"",
-            "    TLSEnabled: ${24|false,true|}",
+            "    SnapshotName: \"${19:String}\"",
+            "    SnapshotRetentionLimit: ${20:Number}",
+            "    SnapshotWindow: \"${21:String}\"",
+            "    SnsTopicArn: \"${22:String}\"",
+            "    SnsTopicStatus: \"${23:String}\"",
+            "    SubnetGroupName: \"${24:String}\"",
+            "    TLSEnabled: ${25|false,true|}",
             "    Tags:",
             "      Tags"
         ],
@@ -16831,10 +17124,10 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-memorydb-cluster.html",
             "Attributes: ",
             "  Status",
-            "  ParameterGroupStatus",
-            "  ARN",
             "  ClusterEndpoint.Address",
-            "  ClusterEndpoint.Port"
+            "  ClusterEndpoint.Port",
+            "  ParameterGroupStatus",
+            "  ARN"
         ],
         "prefix": "memorydb-cluster",
         "scope": "yaml"
@@ -16885,7 +17178,10 @@
             "  Type: AWS::MemoryDB::User",
             "  Properties:",
             "    AccessString: \"${2:String}\" # Required",
-            "    AuthenticationMode: ${3:JSON} # Required",
+            "    AuthenticationMode:",
+            "      Passwords:",
+            "        -",
+            "      Type: \"${4:String}\"",
             "    Tags:",
             "      Tags",
             "    UserName: \"${5:String}\" # Required"
@@ -17045,8 +17341,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewall.html",
             "Attributes: ",
             "  FirewallArn",
-            "  FirewallId",
-            "  EndpointIds"
+            "  EndpointIds",
+            "  FirewallId"
         ],
         "prefix": "networkfirewall-firewall",
         "scope": "yaml"
@@ -17116,8 +17412,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-rulegroup.html",
             "Attributes: ",
-            "  RuleGroupArn",
-            "  RuleGroupId"
+            "  RuleGroupId",
+            "  RuleGroupArn"
         ],
         "prefix": "networkfirewall-rulegroup",
         "scope": "yaml"
@@ -17127,27 +17423,31 @@
             "${1:LogicalID}:",
             "  Type: AWS::NetworkManager::ConnectAttachment",
             "  Properties:",
-            "    CoreNetworkId: \"${2:String}\"",
-            "    EdgeLocation: \"${3:String}\"",
+            "    CoreNetworkId: \"${2:String}\" # Required",
+            "    EdgeLocation: \"${3:String}\" # Required",
             "    Options:",
             "      Protocol: \"${4:String}\"",
             "    Tags:",
             "      Tags",
-            "    TransportAttachmentId: \"${6:String}\""
+            "    TransportAttachmentId: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-connectattachment.html",
             "Attributes: ",
-            "  CoreNetworkArn",
-            "  AttachmentId",
-            "  OwnerAccountId",
+            "  ProposedSegmentChange",
+            "  ProposedSegmentChange.Tags",
             "  AttachmentType",
-            "  State",
-            "  ResourceArn",
-            "  AttachmentPolicyRuleNumber",
             "  SegmentName",
             "  CreatedAt",
-            "  UpdatedAt"
+            "  UpdatedAt",
+            "  AttachmentId",
+            "  CoreNetworkArn",
+            "  ResourceArn",
+            "  ProposedSegmentChange.SegmentName",
+            "  State",
+            "  ProposedSegmentChange.AttachmentPolicyRuleNumber",
+            "  OwnerAccountId",
+            "  AttachmentPolicyRuleNumber"
         ],
         "prefix": "networkmanager-connectattachment",
         "scope": "yaml"
@@ -17170,11 +17470,17 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-connectpeer.html",
             "Attributes: ",
+            "  Configuration.BgpConfigurations",
             "  CoreNetworkId",
-            "  ConnectPeerId",
-            "  EdgeLocation",
+            "  Configuration.InsideCidrBlocks",
+            "  Configuration",
             "  State",
-            "  CreatedAt"
+            "  CreatedAt",
+            "  ConnectPeerId",
+            "  Configuration.CoreNetworkAddress",
+            "  Configuration.Protocol",
+            "  Configuration.PeerAddress",
+            "  EdgeLocation"
         ],
         "prefix": "networkmanager-connectpeer",
         "scope": "yaml"
@@ -17194,12 +17500,12 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-corenetwork.html",
             "Attributes: ",
             "  CoreNetworkId",
-            "  CoreNetworkArn",
-            "  CreatedAt",
             "  State",
+            "  CreatedAt",
             "  Segments",
+            "  OwnerAccount",
             "  Edges",
-            "  OwnerAccount"
+            "  CoreNetworkArn"
         ],
         "prefix": "networkmanager-corenetwork",
         "scope": "yaml"
@@ -17260,8 +17566,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-globalnetwork.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "networkmanager-globalnetwork",
         "scope": "yaml"
@@ -17323,8 +17629,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-site.html",
             "Attributes: ",
-            "  SiteArn",
-            "  SiteId"
+            "  SiteId",
+            "  SiteArn"
         ],
         "prefix": "networkmanager-site",
         "scope": "yaml"
@@ -17342,17 +17648,21 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-sitetositevpnattachment.html",
             "Attributes: ",
-            "  CoreNetworkArn",
-            "  AttachmentId",
-            "  OwnerAccountId",
+            "  ProposedSegmentChange",
+            "  ProposedSegmentChange.Tags",
             "  AttachmentType",
-            "  State",
-            "  EdgeLocation",
-            "  ResourceArn",
-            "  AttachmentPolicyRuleNumber",
             "  SegmentName",
             "  CreatedAt",
-            "  UpdatedAt"
+            "  UpdatedAt",
+            "  AttachmentId",
+            "  CoreNetworkArn",
+            "  ResourceArn",
+            "  ProposedSegmentChange.SegmentName",
+            "  State",
+            "  ProposedSegmentChange.AttachmentPolicyRuleNumber",
+            "  OwnerAccountId",
+            "  EdgeLocation",
+            "  AttachmentPolicyRuleNumber"
         ],
         "prefix": "networkmanager-sitetositevpnattachment",
         "scope": "yaml"
@@ -17376,29 +17686,33 @@
             "${1:LogicalID}:",
             "  Type: AWS::NetworkManager::VpcAttachment",
             "  Properties:",
-            "    CoreNetworkId: \"${2:String}\"",
+            "    CoreNetworkId: \"${2:String}\" # Required",
             "    Options:",
             "      Ipv6Support: ${3|false,true|}",
-            "    SubnetArns:",
+            "    SubnetArns: # Required",
             "      SubnetArns",
             "    Tags:",
             "      Tags",
-            "    VpcArn: \"${6:String}\""
+            "    VpcArn: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-vpcattachment.html",
             "Attributes: ",
-            "  CoreNetworkArn",
-            "  AttachmentId",
-            "  OwnerAccountId",
+            "  ProposedSegmentChange",
+            "  ProposedSegmentChange.Tags",
             "  AttachmentType",
-            "  State",
-            "  EdgeLocation",
-            "  ResourceArn",
-            "  AttachmentPolicyRuleNumber",
             "  SegmentName",
             "  CreatedAt",
-            "  UpdatedAt"
+            "  UpdatedAt",
+            "  AttachmentId",
+            "  CoreNetworkArn",
+            "  ResourceArn",
+            "  ProposedSegmentChange.SegmentName",
+            "  State",
+            "  ProposedSegmentChange.AttachmentPolicyRuleNumber",
+            "  OwnerAccountId",
+            "  EdgeLocation",
+            "  AttachmentPolicyRuleNumber"
         ],
         "prefix": "networkmanager-vpcattachment",
         "scope": "yaml"
@@ -17449,9 +17763,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-streamingimage.html",
             "Attributes: ",
-            "  EulaIds",
             "  Owner",
             "  Platform",
+            "  EncryptionConfiguration",
+            "  EulaIds",
+            "  EncryptionConfiguration.KeyArn",
+            "  EncryptionConfiguration.KeyType",
             "  StreamingImageId"
         ],
         "prefix": "nimblestudio-streamingimage",
@@ -17475,9 +17792,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-studio.html",
             "Attributes: ",
             "  HomeRegion",
+            "  StudioUrl",
             "  SsoClientId",
-            "  StudioId",
-            "  StudioUrl"
+            "  StudioId"
         ],
         "prefix": "nimblestudio-studio",
         "scope": "yaml"
@@ -17507,6 +17824,139 @@
             "  StudioComponentId"
         ],
         "prefix": "nimblestudio-studiocomponent",
+        "scope": "yaml"
+    },
+    "AWS::Oam::Link": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Oam::Link",
+            "  Properties:",
+            "    LabelTemplate: \"${2:String}\" # Required",
+            "    ResourceTypes: # Required",
+            "      ResourceTypes",
+            "    SinkIdentifier: \"${4:String}\" # Required",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-oam-link.html",
+            "Attributes: ",
+            "  Label",
+            "  Arn"
+        ],
+        "prefix": "oam-link",
+        "scope": "yaml"
+    },
+    "AWS::Oam::Sink": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Oam::Sink",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    Policy: ${3:JSON}",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-oam-sink.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "oam-sink",
+        "scope": "yaml"
+    },
+    "AWS::OpenSearchServerless::AccessPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::OpenSearchServerless::AccessPolicy",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\"",
+            "    Policy: \"${4:String}\"",
+            "    Type: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-accesspolicy.html"
+        ],
+        "prefix": "opensearchserverless-accesspolicy",
+        "scope": "yaml"
+    },
+    "AWS::OpenSearchServerless::Collection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::OpenSearchServerless::Collection",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags",
+            "    Type: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-collection.html",
+            "Attributes: ",
+            "  CollectionEndpoint",
+            "  Id",
+            "  Arn",
+            "  DashboardEndpoint"
+        ],
+        "prefix": "opensearchserverless-collection",
+        "scope": "yaml"
+    },
+    "AWS::OpenSearchServerless::SecurityConfig": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::OpenSearchServerless::SecurityConfig",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\"",
+            "    SamlOptions:",
+            "      GroupAttribute: \"${4:String}\"",
+            "      Metadata: \"${5:String}\"",
+            "      SessionTimeout: ${6:Number}",
+            "      UserAttribute: \"${7:String}\"",
+            "    Type: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-securityconfig.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "opensearchserverless-securityconfig",
+        "scope": "yaml"
+    },
+    "AWS::OpenSearchServerless::SecurityPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::OpenSearchServerless::SecurityPolicy",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\"",
+            "    Policy: \"${4:String}\" # Required",
+            "    Type: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-securitypolicy.html"
+        ],
+        "prefix": "opensearchserverless-securitypolicy",
+        "scope": "yaml"
+    },
+    "AWS::OpenSearchServerless::VpcEndpoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::OpenSearchServerless::VpcEndpoint",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    SecurityGroupIds:",
+            "      SecurityGroupIds",
+            "    SubnetIds:",
+            "      SubnetIds",
+            "    VpcId: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-vpcendpoint.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "opensearchserverless-vpcendpoint",
         "scope": "yaml"
     },
     "AWS::OpenSearchService::Domain": {
@@ -17567,10 +18017,20 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-domain.html",
             "Attributes: ",
+            "  ServiceSoftwareOptions.OptionalDeployment",
+            "  ServiceSoftwareOptions.Description",
+            "  ServiceSoftwareOptions.UpdateStatus",
+            "  ServiceSoftwareOptions.AutomatedUpdateDate",
+            "  ServiceSoftwareOptions.CurrentVersion",
+            "  DomainEndpoints",
+            "  DomainArn",
+            "  ServiceSoftwareOptions.UpdateAvailable",
             "  DomainEndpoint",
+            "  ServiceSoftwareOptions",
+            "  ServiceSoftwareOptions.NewVersion",
             "  Id",
             "  Arn",
-            "  DomainArn"
+            "  ServiceSoftwareOptions.Cancellable"
         ],
         "prefix": "opensearchservice-domain",
         "scope": "yaml"
@@ -17856,11 +18316,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-account.html",
             "Attributes: ",
-            "  AccountId",
-            "  Arn",
             "  JoinedMethod",
+            "  Status",
             "  JoinedTimestamp",
-            "  Status"
+            "  AccountId",
+            "  Arn"
         ],
         "prefix": "organizations-account",
         "scope": "yaml"
@@ -17878,8 +18338,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organizationalunit.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "organizations-organizationalunit",
         "scope": "yaml"
@@ -17931,11 +18391,11 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-applicationinstance.html",
             "Attributes: ",
             "  DefaultRuntimeContextDeviceName",
-            "  ApplicationInstanceId",
             "  Status",
-            "  HealthStatus",
-            "  StatusDescription",
+            "  ApplicationInstanceId",
             "  CreatedTime",
+            "  StatusDescription",
+            "  HealthStatus",
             "  LastUpdatedTime",
             "  Arn"
         ],
@@ -17948,20 +18408,26 @@
             "  Type: AWS::Panorama::Package",
             "  Properties:",
             "    PackageName: \"${2:String}\" # Required",
+            "    StorageLocation:",
+            "      BinaryPrefixLocation: \"${3:String}\"",
+            "      Bucket: \"${4:String}\"",
+            "      GeneratedPrefixLocation: \"${5:String}\"",
+            "      ManifestPrefixLocation: \"${6:String}\"",
+            "      RepoPrefixLocation: \"${7:String}\"",
             "    Tags:",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-package.html",
             "Attributes: ",
+            "  CreatedTime",
+            "  StorageLocation.ManifestPrefixLocation",
+            "  StorageLocation.GeneratedPrefixLocation",
+            "  StorageLocation.BinaryPrefixLocation",
             "  PackageId",
             "  Arn",
             "  StorageLocation.Bucket",
-            "  StorageLocation.RepoPrefixLocation",
-            "  StorageLocation.GeneratedPrefixLocation",
-            "  StorageLocation.BinaryPrefixLocation",
-            "  StorageLocation.ManifestPrefixLocation",
-            "  CreatedTime"
+            "  StorageLocation.RepoPrefixLocation"
         ],
         "prefix": "panorama-package",
         "scope": "yaml"
@@ -17981,11 +18447,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-panorama-packageversion.html",
             "Attributes: ",
+            "  Status",
+            "  PackageName",
+            "  StatusDescription",
             "  PackageArn",
             "  IsLatestPatch",
-            "  PackageName",
-            "  Status",
-            "  StatusDescription",
             "  RegisteredTime"
         ],
         "prefix": "panorama-packageversion",
@@ -17998,7 +18464,6 @@
             "  Properties:",
             "    DatasetGroupArn: \"${2:String}\" # Required",
             "    DatasetImportJob:",
-            "      DataSource: ${3:JSON}",
             "      DatasetArn: \"${4:String}\"",
             "      DatasetImportJobArn: \"${5:String}\"",
             "      JobName: \"${6:String}\"",
@@ -18062,9 +18527,7 @@
             "    PerformHPO: ${6|false,true|}",
             "    RecipeArn: \"${7:String}\"",
             "    SolutionConfig:",
-            "      AutoMLConfig: ${9:JSON}",
-            "      EventValueThreshold: \"${10:String}\"",
-            "      HpoConfig: ${12:JSON}"
+            "      EventValueThreshold: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-personalize-solution.html",
@@ -18588,6 +19051,37 @@
         "prefix": "pinpointemail-identity",
         "scope": "yaml"
     },
+    "AWS::Pipes::Pipe": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Pipes::Pipe",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DesiredState: \"${3:String}\"",
+            "    Enrichment: \"${4:String}\"",
+            "    EnrichmentParameters:",
+            "      InputTemplate: \"${6:String}\"",
+            "    Name: \"${6:String}\"",
+            "    RoleArn: \"${7:String}\" # Required",
+            "    Source: \"${8:String}\" # Required",
+            "    SourceParameters:",
+            "    Tags:",
+            "    Target: \"${11:String}\" # Required",
+            "    TargetParameters:",
+            "      InputTemplate: \"${17:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pipes-pipe.html",
+            "Attributes: ",
+            "  StateReason",
+            "  CurrentState",
+            "  CreationTime",
+            "  LastModifiedTime",
+            "  Arn"
+        ],
+        "prefix": "pipes-pipe",
+        "scope": "yaml"
+    },
     "AWS::QLDB::Ledger": {
         "body": [
             "${1:LogicalID}:",
@@ -18625,8 +19119,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qldb-stream.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "qldb-stream",
         "scope": "yaml"
@@ -18660,12 +19154,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html",
             "Attributes: ",
-            "  Arn",
+            "  Status",
             "  CreatedTime",
             "  DataSetArns",
             "  LastUpdatedTime",
-            "  Sheets",
-            "  Status"
+            "  Arn",
+            "  Sheets"
         ],
         "prefix": "quicksight-analysis",
         "scope": "yaml"
@@ -18699,10 +19193,21 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html",
             "Attributes: ",
-            "  Arn",
+            "  Version.Status",
             "  CreatedTime",
+            "  LastUpdatedTime",
+            "  Version.VersionNumber",
+            "  Version.Sheets",
+            "  Version.Arn",
+            "  Version.ThemeArn",
+            "  Version.Errors",
+            "  Version.CreatedTime",
+            "  Version.Description",
             "  LastPublishedTime",
-            "  LastUpdatedTime"
+            "  Version",
+            "  Version.DataSetArns",
+            "  Arn",
+            "  Version.SourceEntityArn"
         ],
         "prefix": "quicksight-dashboard",
         "scope": "yaml"
@@ -18742,11 +19247,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dataset.html",
             "Attributes: ",
-            "  Arn",
-            "  ConsumedSpiceCapacityInBytes",
             "  CreatedTime",
             "  LastUpdatedTime",
-            "  OutputColumns"
+            "  OutputColumns",
+            "  ConsumedSpiceCapacityInBytes",
+            "  Arn"
         ],
         "prefix": "quicksight-dataset",
         "scope": "yaml"
@@ -18781,10 +19286,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-datasource.html",
             "Attributes: ",
-            "  Arn",
+            "  Status",
             "  CreatedTime",
             "  LastUpdatedTime",
-            "  Status"
+            "  Arn"
         ],
         "prefix": "quicksight-datasource",
         "scope": "yaml"
@@ -18807,9 +19312,19 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-template.html",
             "Attributes: ",
-            "  Arn",
+            "  Version.Status",
             "  CreatedTime",
-            "  LastUpdatedTime"
+            "  Version.DataSetConfigurations",
+            "  LastUpdatedTime",
+            "  Version.VersionNumber",
+            "  Version.Sheets",
+            "  Version.ThemeArn",
+            "  Version.Errors",
+            "  Version.CreatedTime",
+            "  Version.Description",
+            "  Version",
+            "  Arn",
+            "  Version.SourceEntityArn"
         ],
         "prefix": "quicksight-template",
         "scope": "yaml"
@@ -18833,10 +19348,23 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-theme.html",
             "Attributes: ",
-            "  Arn",
+            "  Version.Configuration.Typography",
+            "  Version.Status",
+            "  Version.BaseThemeId",
             "  CreatedTime",
+            "  Version.Configuration",
+            "  Version.Configuration.DataColorPalette",
             "  LastUpdatedTime",
-            "  Type"
+            "  Version.Configuration.UIColorPalette",
+            "  Version.VersionNumber",
+            "  Version.Arn",
+            "  Version.Errors",
+            "  Version.Description",
+            "  Version.CreatedTime",
+            "  Type",
+            "  Version",
+            "  Arn",
+            "  Version.Configuration.Sheet"
         ],
         "prefix": "quicksight-theme",
         "scope": "yaml"
@@ -18892,7 +19420,7 @@
             "      EnableCloudwatchLogsExports",
             "    EnableHttpEndpoint: ${19|false,true|}",
             "    EnableIAMDatabaseAuthentication: ${20|false,true|}",
-            "    Engine: \"${21:String}\" # Required",
+            "    Engine: \"${21:String}\"",
             "    EngineMode: \"${22:String}\"",
             "    EngineVersion: \"${23:String}\"",
             "    GlobalClusterIdentifier: \"${24:String}\"",
@@ -18935,10 +19463,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
             "Attributes: ",
-            "  ReadEndpoint.Address",
-            "  DBClusterArn",
             "  Endpoint.Address",
-            "  Endpoint.Port"
+            "  Endpoint",
+            "  DBClusterArn",
+            "  Endpoint.Port",
+            "  ReadEndpoint.Address",
+            "  DBClusterResourceId"
         ],
         "prefix": "rds-dbcluster",
         "scope": "yaml"
@@ -18994,50 +19524,54 @@
             "      EnableCloudwatchLogsExports",
             "    EnableIAMDatabaseAuthentication: ${25|false,true|}",
             "    EnablePerformanceInsights: ${26|false,true|}",
-            "    Engine: \"${27:String}\"",
-            "    EngineVersion: \"${28:String}\"",
-            "    Iops: ${29:Number}",
-            "    KmsKeyId: \"${30:String}\"",
-            "    LicenseModel: \"${31:String}\"",
-            "    MasterUserPassword: \"${32:String}\"",
-            "    MasterUsername: \"${33:String}\"",
-            "    MaxAllocatedStorage: ${34:Number}",
-            "    MonitoringInterval: ${35:Number}",
-            "    MonitoringRoleArn: \"${36:String}\"",
-            "    MultiAZ: ${37|false,true|}",
-            "    NcharCharacterSetName: \"${38:String}\"",
-            "    NetworkType: \"${39:String}\"",
-            "    OptionGroupName: \"${40:String}\"",
-            "    PerformanceInsightsKMSKeyId: \"${41:String}\"",
-            "    PerformanceInsightsRetentionPeriod: ${42:Number}",
-            "    Port: \"${43:String}\"",
-            "    PreferredBackupWindow: \"${44:String}\"",
-            "    PreferredMaintenanceWindow: \"${45:String}\"",
+            "    Endpoint:",
+            "      Address: \"${27:String}\"",
+            "      HostedZoneId: \"${28:String}\"",
+            "      Port: \"${29:String}\"",
+            "    Engine: \"${28:String}\"",
+            "    EngineVersion: \"${29:String}\"",
+            "    Iops: ${30:Number}",
+            "    KmsKeyId: \"${31:String}\"",
+            "    LicenseModel: \"${32:String}\"",
+            "    MasterUserPassword: \"${33:String}\"",
+            "    MasterUsername: \"${34:String}\"",
+            "    MaxAllocatedStorage: ${35:Number}",
+            "    MonitoringInterval: ${36:Number}",
+            "    MonitoringRoleArn: \"${37:String}\"",
+            "    MultiAZ: ${38|false,true|}",
+            "    NcharCharacterSetName: \"${39:String}\"",
+            "    NetworkType: \"${40:String}\"",
+            "    OptionGroupName: \"${41:String}\"",
+            "    PerformanceInsightsKMSKeyId: \"${42:String}\"",
+            "    PerformanceInsightsRetentionPeriod: ${43:Number}",
+            "    Port: \"${44:String}\"",
+            "    PreferredBackupWindow: \"${45:String}\"",
+            "    PreferredMaintenanceWindow: \"${46:String}\"",
             "    ProcessorFeatures:",
             "      ProcessorFeatures",
-            "    PromotionTier: ${47:Number}",
-            "    PubliclyAccessible: ${48|false,true|}",
-            "    ReplicaMode: \"${49:String}\"",
-            "    SourceDBInstanceIdentifier: \"${50:String}\"",
-            "    SourceRegion: \"${51:String}\"",
-            "    StorageEncrypted: ${52|false,true|}",
-            "    StorageThroughput: ${53:Number}",
-            "    StorageType: \"${54:String}\"",
+            "    PromotionTier: ${48:Number}",
+            "    PubliclyAccessible: ${49|false,true|}",
+            "    ReplicaMode: \"${50:String}\"",
+            "    SourceDBInstanceIdentifier: \"${51:String}\"",
+            "    SourceRegion: \"${52:String}\"",
+            "    StorageEncrypted: ${53|false,true|}",
+            "    StorageThroughput: ${54:Number}",
+            "    StorageType: \"${55:String}\"",
             "    Tags:",
             "      Tags",
-            "    Timezone: \"${56:String}\"",
-            "    UseDefaultProcessorFeatures: ${57|false,true|}",
+            "    Timezone: \"${57:String}\"",
+            "    UseDefaultProcessorFeatures: ${58|false,true|}",
             "    VPCSecurityGroups:",
             "      VPCSecurityGroups"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html",
             "Attributes: ",
-            "  DBInstanceArn",
-            "  DbiResourceId",
             "  Endpoint.Address",
+            "  DBInstanceArn",
             "  Endpoint.Port",
-            "  Endpoint.HostedZoneId"
+            "  Endpoint.HostedZoneId",
+            "  DbiResourceId"
         ],
         "prefix": "rds-dbinstance",
         "scope": "yaml"
@@ -19085,9 +19619,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxy.html",
             "Attributes: ",
-            "  DBProxyArn",
             "  Endpoint",
-            "  VpcId"
+            "  VpcId",
+            "  DBProxyArn"
         ],
         "prefix": "rds-dbproxy",
         "scope": "yaml"
@@ -19111,9 +19645,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxyendpoint.html",
             "Attributes: ",
             "  DBProxyEndpointArn",
+            "  IsDefault",
             "  VpcId",
-            "  Endpoint",
-            "  IsDefault"
+            "  Endpoint"
         ],
         "prefix": "rds-dbproxyendpoint",
         "scope": "yaml"
@@ -19318,33 +19852,36 @@
             "    DestinationRegion: \"${20:String}\"",
             "    ElasticIp: \"${21:String}\"",
             "    Encrypted: ${22|false,true|}",
-            "    EnhancedVpcRouting: ${23|false,true|}",
-            "    HsmClientCertificateIdentifier: \"${24:String}\"",
-            "    HsmConfigurationIdentifier: \"${25:String}\"",
+            "    Endpoint:",
+            "      Address: \"${23:String}\"",
+            "      Port: \"${24:String}\"",
+            "    EnhancedVpcRouting: ${24|false,true|}",
+            "    HsmClientCertificateIdentifier: \"${25:String}\"",
+            "    HsmConfigurationIdentifier: \"${26:String}\"",
             "    IamRoles:",
             "      IamRoles",
-            "    KmsKeyId: \"${27:String}\"",
+            "    KmsKeyId: \"${28:String}\"",
             "    LoggingProperties:",
-            "      BucketName: \"${28:String}\"",
-            "      S3KeyPrefix: \"${29:String}\"",
-            "    MaintenanceTrackName: \"${29:String}\"",
-            "    ManualSnapshotRetentionPeriod: ${30:Number}",
-            "    MasterUserPassword: \"${31:String}\" # Required",
-            "    MasterUsername: \"${32:String}\" # Required",
-            "    NodeType: \"${33:String}\" # Required",
-            "    NumberOfNodes: ${34:Number}",
-            "    OwnerAccount: \"${35:String}\"",
-            "    Port: ${36:Number}",
-            "    PreferredMaintenanceWindow: \"${37:String}\"",
-            "    PubliclyAccessible: ${38|false,true|}",
-            "    ResourceAction: \"${39:String}\"",
-            "    RevisionTarget: \"${40:String}\"",
-            "    RotateEncryptionKey: ${41|false,true|}",
-            "    SnapshotClusterIdentifier: \"${42:String}\"",
-            "    SnapshotCopyGrantName: \"${43:String}\"",
-            "    SnapshotCopyManual: ${44|false,true|}",
-            "    SnapshotCopyRetentionPeriod: ${45:Number}",
-            "    SnapshotIdentifier: \"${46:String}\"",
+            "      BucketName: \"${29:String}\"",
+            "      S3KeyPrefix: \"${30:String}\"",
+            "    MaintenanceTrackName: \"${30:String}\"",
+            "    ManualSnapshotRetentionPeriod: ${31:Number}",
+            "    MasterUserPassword: \"${32:String}\" # Required",
+            "    MasterUsername: \"${33:String}\" # Required",
+            "    NodeType: \"${34:String}\" # Required",
+            "    NumberOfNodes: ${35:Number}",
+            "    OwnerAccount: \"${36:String}\"",
+            "    Port: ${37:Number}",
+            "    PreferredMaintenanceWindow: \"${38:String}\"",
+            "    PubliclyAccessible: ${39|false,true|}",
+            "    ResourceAction: \"${40:String}\"",
+            "    RevisionTarget: \"${41:String}\"",
+            "    RotateEncryptionKey: ${42|false,true|}",
+            "    SnapshotClusterIdentifier: \"${43:String}\"",
+            "    SnapshotCopyGrantName: \"${44:String}\"",
+            "    SnapshotCopyManual: ${45|false,true|}",
+            "    SnapshotCopyRetentionPeriod: ${46:Number}",
+            "    SnapshotIdentifier: \"${47:String}\"",
             "    Tags:",
             "      Tags",
             "    VpcSecurityGroupIds:",
@@ -19353,9 +19890,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html",
             "Attributes: ",
-            "  Id",
-            "  Endpoint.Port",
             "  Endpoint.Address",
+            "  Endpoint.Port",
+            "  Id",
             "  DeferMaintenanceIdentifier"
         ],
         "prefix": "redshift-cluster",
@@ -19440,7 +19977,11 @@
             "    EndpointName: \"${3:String}\" # Required",
             "    ResourceOwner: \"${4:String}\"",
             "    SubnetGroupName: \"${5:String}\" # Required",
-            "    VpcEndpoint: ${6:JSON}",
+            "    VpcEndpoint:",
+            "      NetworkInterfaces:",
+            "        -",
+            "      VpcEndpointId: \"${7:String}\"",
+            "      VpcId: \"${8:String}\"",
             "    VpcSecurityGroupIds: # Required",
             "      VpcSecurityGroupIds",
             "    VpcSecurityGroups:",
@@ -19449,10 +19990,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointaccess.html",
             "Attributes: ",
-            "  Address",
             "  EndpointStatus",
+            "  Address",
+            "  Port",
             "  EndpointCreateTime",
-            "  Port"
+            "  VpcEndpoint.VpcId",
+            "  VpcEndpoint.VpcEndpointId"
         ],
         "prefix": "redshift-endpointaccess",
         "scope": "yaml"
@@ -19471,14 +20014,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-endpointauthorization.html",
             "Attributes: ",
-            "  Grantor",
-            "  Grantee",
-            "  AuthorizeTime",
-            "  ClusterStatus",
             "  Status",
-            "  AllowedAllVPCs",
+            "  Grantee",
+            "  Grantor",
+            "  EndpointCount",
+            "  AuthorizeTime",
             "  AllowedVPCs",
-            "  EndpointCount"
+            "  AllowedAllVPCs",
+            "  ClusterStatus"
         ],
         "prefix": "redshift-endpointauthorization",
         "scope": "yaml"
@@ -19503,12 +20046,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-eventsubscription.html",
             "Attributes: ",
-            "  CustomerAwsId",
-            "  CustSubscriptionId",
             "  Status",
-            "  SubscriptionCreationTime",
+            "  CustSubscriptionId",
+            "  EventCategoriesList",
             "  SourceIdsList",
-            "  EventCategoriesList"
+            "  SubscriptionCreationTime",
+            "  CustomerAwsId"
         ],
         "prefix": "redshift-eventsubscription",
         "scope": "yaml"
@@ -19557,7 +20100,20 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-namespace.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-namespace.html",
+            "Attributes: ",
+            "  Namespace.LogExports",
+            "  Namespace.NamespaceName",
+            "  Namespace.CreationDate",
+            "  Namespace.Status",
+            "  Namespace.AdminUsername",
+            "  Namespace.KmsKeyId",
+            "  Namespace.DbName",
+            "  Namespace.IamRoles",
+            "  Namespace.NamespaceArn",
+            "  Namespace.NamespaceId",
+            "  Namespace.DefaultIamRoleArn",
+            "  Namespace"
         ],
         "prefix": "redshiftserverless-namespace",
         "scope": "yaml"
@@ -19582,7 +20138,25 @@
             "    WorkgroupName: \"${10:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-workgroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-workgroup.html",
+            "Attributes: ",
+            "  Workgroup.Endpoint",
+            "  Workgroup.Endpoint.Port",
+            "  Workgroup.SecurityGroupIds",
+            "  Workgroup.CreationDate",
+            "  Workgroup.PubliclyAccessible",
+            "  Workgroup",
+            "  Workgroup.WorkgroupArn",
+            "  Workgroup.WorkgroupName",
+            "  Workgroup.ConfigParameters",
+            "  Workgroup.Status",
+            "  Workgroup.BaseCapacity",
+            "  Workgroup.EnhancedVpcRouting",
+            "  Workgroup.WorkgroupId",
+            "  Workgroup.NamespaceName",
+            "  Workgroup.Endpoint.VpcEndpoints",
+            "  Workgroup.Endpoint.Address",
+            "  Workgroup.SubnetIds"
         ],
         "prefix": "redshiftserverless-workgroup",
         "scope": "yaml"
@@ -19605,14 +20179,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-application.html",
             "Attributes: ",
-            "  Arn",
+            "  NlbArn",
+            "  ProxyUrl",
+            "  NlbName",
+            "  StageName",
             "  ApiGatewayId",
             "  VpcLinkId",
-            "  NlbArn",
-            "  NlbName",
             "  ApplicationIdentifier",
-            "  StageName",
-            "  ProxyUrl"
+            "  Arn"
         ],
         "prefix": "refactorspaces-application",
         "scope": "yaml"
@@ -19631,9 +20205,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-environment.html",
             "Attributes: ",
+            "  TransitGatewayId",
             "  EnvironmentIdentifier",
-            "  Arn",
-            "  TransitGatewayId"
+            "  Arn"
         ],
         "prefix": "refactorspaces-environment",
         "scope": "yaml"
@@ -19661,9 +20235,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-route.html",
             "Attributes: ",
-            "  PathResourceToId",
+            "  RouteIdentifier",
             "  Arn",
-            "  RouteIdentifier"
+            "  PathResourceToId"
         ],
         "prefix": "refactorspaces-route",
         "scope": "yaml"
@@ -19690,8 +20264,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-service.html",
             "Attributes: ",
-            "  Arn",
-            "  ServiceIdentifier"
+            "  ServiceIdentifier",
+            "  Arn"
         ],
         "prefix": "refactorspaces-service",
         "scope": "yaml"
@@ -19752,8 +20326,7 @@
             "    Name: \"${9:String}\"",
             "    NotificationChannel:",
             "      Arn: \"${10:String}\"",
-            "    PolygonRegionsOfInterest:",
-            "      PolygonRegionsOfInterest",
+            "    PolygonRegionsOfInterest: ${11:JSON}",
             "    RoleArn: \"${12:String}\" # Required",
             "    S3Destination:",
             "      BucketName: \"${13:String}\"",
@@ -19764,8 +20337,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-streamprocessor.html",
             "Attributes: ",
-            "  Arn",
             "  Status",
+            "  Arn",
             "  StatusMessage"
         ],
         "prefix": "rekognition-streamprocessor",
@@ -19989,8 +20562,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html",
             "Attributes: ",
-            "  Arn",
-            "  CurrentRevisionId"
+            "  CurrentRevisionId",
+            "  Arn"
         ],
         "prefix": "robomaker-simulationapplication",
         "scope": "yaml"
@@ -20052,8 +20625,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-profile.html",
             "Attributes: ",
-            "  ProfileArn",
-            "  ProfileId"
+            "  ProfileId",
+            "  ProfileArn"
         ],
         "prefix": "rolesanywhere-profile",
         "scope": "yaml"
@@ -20073,8 +20646,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-trustanchor.html",
             "Attributes: ",
-            "  TrustAnchorId",
-            "  TrustAnchorArn"
+            "  TrustAnchorArn",
+            "  TrustAnchorId"
         ],
         "prefix": "rolesanywhere-trustanchor",
         "scope": "yaml"
@@ -20115,7 +20688,25 @@
             "${1:LogicalID}:",
             "  Type: AWS::Route53::HealthCheck",
             "  Properties:",
-            "    HealthCheckConfig: ${2:JSON} # Required",
+            "    HealthCheckConfig:",
+            "      ChildHealthChecks:",
+            "        -",
+            "      EnableSNI: ${4|false,true|}",
+            "      FailureThreshold: ${5:Number}",
+            "      FullyQualifiedDomainName: \"${6:String}\"",
+            "      HealthThreshold: ${7:Number}",
+            "      IPAddress: \"${8:String}\"",
+            "      InsufficientDataHealthStatus: \"${9:String}\"",
+            "      Inverted: ${10|false,true|}",
+            "      MeasureLatency: ${11|false,true|}",
+            "      Port: ${12:Number}",
+            "      Regions:",
+            "        -",
+            "      RequestInterval: ${14:Number}",
+            "      ResourcePath: \"${15:String}\"",
+            "      RoutingControlArn: \"${16:String}\"",
+            "      SearchString: \"${17:String}\"",
+            "      Type: \"${18:String}\"",
             "    HealthCheckTags:",
             "      HealthCheckTags"
         ],
@@ -20253,8 +20844,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-controlpanel.html",
             "Attributes: ",
-            "  ControlPanelArn",
             "  Status",
+            "  ControlPanelArn",
             "  DefaultControlPanel",
             "  RoutingControlCount"
         ],
@@ -20273,8 +20864,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-routingcontrol.html",
             "Attributes: ",
-            "  RoutingControlArn",
-            "  Status"
+            "  Status",
+            "  RoutingControlArn"
         ],
         "prefix": "route53recoverycontrol-routingcontrol",
         "scope": "yaml"
@@ -20306,8 +20897,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-safetyrule.html",
             "Attributes: ",
-            "  SafetyRuleArn",
-            "  Status"
+            "  Status",
+            "  SafetyRuleArn"
         ],
         "prefix": "route53recoverycontrol-safetyrule",
         "scope": "yaml"
@@ -20326,8 +20917,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoveryreadiness-cell.html",
             "Attributes: ",
-            "  CellArn",
-            "  ParentReadinessScopes"
+            "  ParentReadinessScopes",
+            "  CellArn"
         ],
         "prefix": "route53recoveryreadiness-cell",
         "scope": "yaml"
@@ -20404,15 +20995,15 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewalldomainlist.html",
             "Attributes: ",
+            "  Status",
+            "  CreationTime",
+            "  ManagedOwnerName",
+            "  ModificationTime",
             "  Id",
             "  Arn",
-            "  DomainCount",
-            "  Status",
-            "  StatusMessage",
-            "  ManagedOwnerName",
             "  CreatorRequestId",
-            "  CreationTime",
-            "  ModificationTime"
+            "  StatusMessage",
+            "  DomainCount"
         ],
         "prefix": "route53resolver-firewalldomainlist",
         "scope": "yaml"
@@ -20431,16 +21022,16 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewallrulegroup.html",
             "Attributes: ",
-            "  Id",
-            "  Arn",
             "  RuleCount",
             "  Status",
-            "  StatusMessage",
             "  OwnerId",
-            "  ShareStatus",
-            "  CreatorRequestId",
             "  CreationTime",
-            "  ModificationTime"
+            "  ShareStatus",
+            "  ModificationTime",
+            "  Id",
+            "  Arn",
+            "  CreatorRequestId",
+            "  StatusMessage"
         ],
         "prefix": "route53resolver-firewallrulegroup",
         "scope": "yaml"
@@ -20461,14 +21052,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-firewallrulegroupassociation.html",
             "Attributes: ",
+            "  Status",
+            "  CreationTime",
+            "  ManagedOwnerName",
+            "  ModificationTime",
             "  Id",
             "  Arn",
-            "  ManagedOwnerName",
-            "  Status",
-            "  StatusMessage",
             "  CreatorRequestId",
-            "  CreationTime",
-            "  ModificationTime"
+            "  StatusMessage"
         ],
         "prefix": "route53resolver-firewallrulegroupassociation",
         "scope": "yaml"
@@ -20484,9 +21075,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html",
             "Attributes: ",
-            "  Id",
             "  OwnerId",
-            "  AutodefinedReverse"
+            "  AutodefinedReverse",
+            "  Id"
         ],
         "prefix": "route53resolver-resolverconfig",
         "scope": "yaml"
@@ -20501,9 +21092,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverdnssecconfig.html",
             "Attributes: ",
-            "  Id",
+            "  ValidationStatus",
             "  OwnerId",
-            "  ValidationStatus"
+            "  Id"
         ],
         "prefix": "route53resolver-resolverdnssecconfig",
         "scope": "yaml"
@@ -20546,14 +21137,14 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverqueryloggingconfig.html",
             "Attributes: ",
-            "  Id",
-            "  OwnerId",
             "  Status",
-            "  ShareStatus",
+            "  OwnerId",
             "  AssociationCount",
+            "  CreationTime",
+            "  ShareStatus",
+            "  Id",
             "  Arn",
-            "  CreatorRequestId",
-            "  CreationTime"
+            "  CreatorRequestId"
         ],
         "prefix": "route53resolver-resolverqueryloggingconfig",
         "scope": "yaml"
@@ -20569,11 +21160,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverqueryloggingconfigassociation.html",
             "Attributes: ",
-            "  Id",
             "  Status",
+            "  CreationTime",
             "  Error",
-            "  ErrorMessage",
-            "  CreationTime"
+            "  Id",
+            "  ErrorMessage"
         ],
         "prefix": "route53resolver-resolverqueryloggingconfigassociation",
         "scope": "yaml"
@@ -20597,10 +21188,10 @@
             "Attributes: ",
             "  ResolverEndpointId",
             "  DomainName",
-            "  Name",
-            "  TargetIps",
+            "  ResolverRuleId",
             "  Arn",
-            "  ResolverRuleId"
+            "  TargetIps",
+            "  Name"
         ],
         "prefix": "route53resolver-resolverrule",
         "scope": "yaml"
@@ -20631,24 +21222,26 @@
             "  Type: AWS::S3::AccessPoint",
             "  Properties:",
             "    Bucket: \"${2:String}\" # Required",
-            "    Name: \"${3:String}\"",
-            "    Policy: ${4:JSON}",
-            "    PolicyStatus: ${5:JSON}",
+            "    BucketAccountId: \"${3:String}\"",
+            "    Name: \"${4:String}\"",
+            "    Policy: ${5:JSON}",
+            "    PolicyStatus:",
+            "      IsPublic: \"${6:String}\"",
             "    PublicAccessBlockConfiguration:",
-            "      BlockPublicAcls: ${6|false,true|}",
-            "      BlockPublicPolicy: ${7|false,true|}",
-            "      IgnorePublicAcls: ${8|false,true|}",
-            "      RestrictPublicBuckets: ${9|false,true|}",
+            "      BlockPublicAcls: ${7|false,true|}",
+            "      BlockPublicPolicy: ${8|false,true|}",
+            "      IgnorePublicAcls: ${9|false,true|}",
+            "      RestrictPublicBuckets: ${10|false,true|}",
             "    VpcConfiguration:",
-            "      VpcId: \"${7:String}\""
+            "      VpcId: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html",
             "Attributes: ",
-            "  Name",
             "  Alias",
+            "  Arn",
             "  NetworkOrigin",
-            "  Arn"
+            "  Name"
         ],
         "prefix": "s3-accesspoint",
         "scope": "yaml"
@@ -20772,7 +21365,10 @@
             "    Policy: ${3:JSON} # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html",
+            "Attributes: ",
+            "  PolicyStatus.IsPublic",
+            "  PolicyStatus"
         ],
         "prefix": "s3-multiregionaccesspointpolicy",
         "scope": "yaml"
@@ -20814,8 +21410,15 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html",
             "Attributes: ",
-            "  Arn",
-            "  CreationDate"
+            "  CreationDate",
+            "  PublicAccessBlockConfiguration",
+            "  PublicAccessBlockConfiguration.BlockPublicAcls",
+            "  PolicyStatus.IsPublic",
+            "  PolicyStatus",
+            "  PublicAccessBlockConfiguration.IgnorePublicAcls",
+            "  PublicAccessBlockConfiguration.RestrictPublicBuckets",
+            "  PublicAccessBlockConfiguration.BlockPublicPolicy",
+            "  Arn"
         ],
         "prefix": "s3objectlambda-accesspoint",
         "scope": "yaml"
@@ -20902,12 +21505,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html",
             "Attributes: ",
-            "  Arn",
-            "  CidrBlock",
-            "  CreationTime",
-            "  Id",
+            "  Status",
             "  NetworkInterfaces",
-            "  Status"
+            "  CreationTime",
+            "  CidrBlock",
+            "  Id",
+            "  Arn"
         ],
         "prefix": "s3outposts-endpoint",
         "scope": "yaml"
@@ -21026,10 +21629,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html",
             "Attributes: ",
-            "  DkimDNSTokenName1",
+            "  DkimDNSTokenValue1",
             "  DkimDNSTokenName2",
             "  DkimDNSTokenName3",
-            "  DkimDNSTokenValue1",
+            "  DkimDNSTokenName1",
             "  DkimDNSTokenValue2",
             "  DkimDNSTokenValue3"
         ],
@@ -21164,8 +21767,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topic.html",
             "Attributes: ",
-            "  TopicName",
-            "  TopicArn"
+            "  TopicArn",
+            "  TopicName"
         ],
         "prefix": "sns-topic",
         "scope": "yaml"
@@ -21211,9 +21814,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queue.html",
             "Attributes: ",
-            "  QueueUrl",
             "  Arn",
-            "  QueueName"
+            "  QueueName",
+            "  QueueUrl"
         ],
         "prefix": "sqs-queue",
         "scope": "yaml"
@@ -21250,7 +21853,7 @@
             "    MaxErrors: \"${10:String}\"",
             "    Name: \"${11:String}\" # Required",
             "    OutputLocation:",
-            "    Parameters:",
+            "    Parameters: ${13:JSON}",
             "    ScheduleExpression: \"${14:String}\"",
             "    ScheduleOffset: ${15:Number}",
             "    SyncCompliance: \"${16:String}\"",
@@ -21465,8 +22068,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-resourcepolicy.html",
             "Attributes: ",
-            "  PolicyId",
-            "  PolicyHash"
+            "  PolicyHash",
+            "  PolicyId"
         ],
         "prefix": "ssm-resourcepolicy",
         "scope": "yaml"
@@ -21548,7 +22151,9 @@
             "        -",
             "      Summary: \"${10:String}\"",
             "      Title: \"${11:String}\"",
-            "    Name: \"${7:String}\" # Required",
+            "    Integrations:",
+            "      Integrations",
+            "    Name: \"${8:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -21792,12 +22397,12 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-domain.html",
             "Attributes: ",
-            "  DomainArn",
-            "  Url",
-            "  DomainId",
             "  HomeEfsFileSystemId",
+            "  DomainId",
+            "  SecurityGroupIdForDomainBoundary",
             "  SingleSignOnManagedApplicationInstanceId",
-            "  SecurityGroupIdForDomainBoundary"
+            "  DomainArn",
+            "  Url"
         ],
         "prefix": "sagemaker-domain",
         "scope": "yaml"
@@ -21843,6 +22448,8 @@
             "    KmsKeyId: \"${6:String}\"",
             "    ProductionVariants: # Required",
             "      ProductionVariants",
+            "    ShadowProductionVariants:",
+            "      ShadowProductionVariants",
             "    Tags:",
             "      Tags"
         ],
@@ -21864,8 +22471,11 @@
             "    FeatureDefinitions: # Required",
             "      FeatureDefinitions",
             "    FeatureGroupName: \"${5:String}\" # Required",
-            "    OfflineStoreConfig: ${6:JSON}",
-            "    OnlineStoreConfig: ${7:JSON}",
+            "    OfflineStoreConfig:",
+            "      DisableGlueTableCreation: ${7|false,true|}",
+            "      TableFormat: \"${9:String}\"",
+            "    OnlineStoreConfig:",
+            "      EnableOnlineStore: ${7|false,true|}",
             "    RecordIdentifierFeatureName: \"${8:String}\" # Required",
             "    RoleArn: \"${9:String}\"",
             "    Tags:",
@@ -21908,10 +22518,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-imageversion.html",
             "Attributes: ",
-            "  ImageArn",
             "  ImageVersionArn",
+            "  Version",
             "  ContainerImage",
-            "  Version"
+            "  ImageArn"
         ],
         "prefix": "sagemaker-imageversion",
         "scope": "yaml"
@@ -22108,9 +22718,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelpackage.html",
             "Attributes: ",
-            "  ModelPackageArn",
+            "  ModelPackageStatus",
             "  CreationTime",
-            "  ModelPackageStatus"
+            "  ModelPackageArn"
         ],
         "prefix": "sagemaker-modelpackage",
         "scope": "yaml"
@@ -22271,8 +22881,10 @@
             "${1:LogicalID}:",
             "  Type: AWS::SageMaker::Pipeline",
             "  Properties:",
-            "    ParallelismConfiguration: ${2:JSON}",
-            "    PipelineDefinition: ${3:JSON} # Required",
+            "    ParallelismConfiguration:",
+            "      MaxParallelExecutionSteps: ${2:Number}",
+            "    PipelineDefinition:",
+            "      PipelineDefinitionBody: \"${3:String}\"",
             "    PipelineDescription: \"${4:String}\"",
             "    PipelineDisplayName: \"${5:String}\"",
             "    PipelineName: \"${6:String}\" # Required",
@@ -22293,7 +22905,12 @@
             "  Properties:",
             "    ProjectDescription: \"${2:String}\"",
             "    ProjectName: \"${3:String}\" # Required",
-            "    ServiceCatalogProvisioningDetails: ${4:JSON} # Required",
+            "    ServiceCatalogProvisioningDetails:",
+            "      PathId: \"${4:String}\"",
+            "      ProductId: \"${5:String}\"",
+            "      ProvisioningArtifactId: \"${6:String}\"",
+            "      ProvisioningParameters:",
+            "        -",
             "    Tags:",
             "      Tags"
         ],
@@ -22301,9 +22918,12 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-project.html",
             "Attributes: ",
             "  ProjectArn",
+            "  ProjectStatus",
+            "  ServiceCatalogProvisionedProductDetails.ProvisionedProductStatusMessage",
+            "  ServiceCatalogProvisionedProductDetails.ProvisionedProductId",
             "  ProjectId",
             "  CreationTime",
-            "  ProjectStatus"
+            "  ServiceCatalogProvisionedProductDetails"
         ],
         "prefix": "sagemaker-project",
         "scope": "yaml"
@@ -22397,10 +23017,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-scheduler-schedulegroup.html",
             "Attributes: ",
-            "  Arn",
             "  CreationDate",
+            "  State",
             "  LastModificationDate",
-            "  State"
+            "  Arn"
         ],
         "prefix": "scheduler-schedulegroup",
         "scope": "yaml"
@@ -22585,9 +23205,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationprovisionedproduct.html",
             "Attributes: ",
+            "  CloudformationStackArn",
+            "  Outputs",
             "  ProvisionedProductId",
-            "  RecordId",
-            "  CloudformationStackArn"
+            "  RecordId"
         ],
         "prefix": "servicecatalog-cloudformationprovisionedproduct",
         "scope": "yaml"
@@ -22884,8 +23505,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-resourceassociation.html",
             "Attributes: ",
-            "  ApplicationArn",
             "  ResourceArn",
+            "  ApplicationArn",
             "  Id"
         ],
         "prefix": "servicecatalogappregistry-resourceassociation",
@@ -23033,10 +23654,10 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-signer-signingprofile.html",
             "Attributes: ",
+            "  ProfileVersionArn",
             "  ProfileName",
-            "  ProfileVersion",
             "  Arn",
-            "  ProfileVersionArn"
+            "  ProfileVersion"
         ],
         "prefix": "signer-signingprofile",
         "scope": "yaml"
@@ -23064,7 +23685,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::StepFunctions::StateMachine",
             "  Properties:",
-            "    Definition:",
+            "    Definition: ${2:JSON}",
             "    DefinitionS3Location:",
             "      Bucket: \"${3:String}\"",
             "      Key: \"${4:String}\"",
@@ -23185,8 +23806,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-canary.html",
             "Attributes: ",
-            "  Id",
-            "  State"
+            "  State",
+            "  Id"
         ],
         "prefix": "synthetics-canary",
         "scope": "yaml"
@@ -23249,15 +23870,15 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-scheduledquery.html",
             "Attributes: ",
-            "  Arn",
-            "  SQName",
-            "  SQQueryString",
             "  SQScheduleConfiguration",
             "  SQNotificationConfiguration",
-            "  SQScheduledQueryExecutionRoleArn",
-            "  SQTargetConfiguration",
             "  SQErrorReportConfiguration",
-            "  SQKmsKeyId"
+            "  SQKmsKeyId",
+            "  SQQueryString",
+            "  SQTargetConfiguration",
+            "  SQName",
+            "  Arn",
+            "  SQScheduledQueryExecutionRoleArn"
         ],
         "prefix": "timestream-scheduledquery",
         "scope": "yaml"
@@ -23268,8 +23889,11 @@
             "  Type: AWS::Timestream::Table",
             "  Properties:",
             "    DatabaseName: \"${2:String}\" # Required",
-            "    MagneticStoreWriteProperties: ${3:JSON}",
-            "    RetentionProperties: ${4:JSON}",
+            "    MagneticStoreWriteProperties:",
+            "      EnableMagneticStoreWrites: ${3|false,true|}",
+            "    RetentionProperties:",
+            "      MagneticStoreRetentionPeriodInDays: \"${4:String}\"",
+            "      MemoryStoreRetentionPeriodInHours: \"${5:String}\"",
             "    TableName: \"${5:String}\"",
             "    Tags:",
             "      Tags"
@@ -23325,13 +23949,13 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-certificate.html",
             "Attributes: ",
-            "  Arn",
-            "  CertificateId",
             "  Status",
             "  Type",
             "  Serial",
+            "  CertificateId",
             "  NotBeforeDate",
-            "  NotAfterDate"
+            "  NotAfterDate",
+            "  Arn"
         ],
         "prefix": "transfer-certificate",
         "scope": "yaml"
@@ -23342,7 +23966,15 @@
             "  Type: AWS::Transfer::Connector",
             "  Properties:",
             "    AccessRole: \"${2:String}\" # Required",
-            "    As2Config: ${3:JSON} # Required",
+            "    As2Config:",
+            "      Compression: \"${3:String}\"",
+            "      EncryptionAlgorithm: \"${4:String}\"",
+            "      LocalProfileId: \"${5:String}\"",
+            "      MdnResponse: \"${6:String}\"",
+            "      MdnSigningAlgorithm: \"${7:String}\"",
+            "      MessageSubject: \"${8:String}\"",
+            "      PartnerProfileId: \"${9:String}\"",
+            "      SigningAlgorithm: \"${10:String}\"",
             "    LoggingRole: \"${4:String}\"",
             "    Tags:",
             "      Tags",
@@ -23372,8 +24004,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-profile.html",
             "Attributes: ",
-            "  Arn",
-            "  ProfileId"
+            "  ProfileId",
+            "  Arn"
         ],
         "prefix": "transfer-profile",
         "scope": "yaml"
@@ -23802,8 +24434,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-ipset.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "wafv2-ipset",
         "scope": "yaml"
@@ -23815,7 +24447,10 @@
             "  Properties:",
             "    LogDestinationConfigs: # Required",
             "      LogDestinationConfigs",
-            "    LoggingFilter: ${3:JSON}",
+            "    LoggingFilter:",
+            "      DefaultBehavior: \"${3:String}\"",
+            "      Filters:",
+            "        -",
             "    RedactedFields:",
             "      RedactedFields",
             "    ResourceArn: \"${5:String}\" # Required"
@@ -23844,8 +24479,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-regexpatternset.html",
             "Attributes: ",
-            "  Arn",
-            "  Id"
+            "  Id",
+            "  Arn"
         ],
         "prefix": "wafv2-regexpatternset",
         "scope": "yaml"
@@ -23872,11 +24507,11 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-rulegroup.html",
             "Attributes: ",
-            "  Arn",
-            "  Id",
-            "  LabelNamespace",
             "  AvailableLabels",
-            "  ConsumedLabels"
+            "  Id",
+            "  ConsumedLabels",
+            "  Arn",
+            "  LabelNamespace"
         ],
         "prefix": "wafv2-rulegroup",
         "scope": "yaml"
@@ -23904,9 +24539,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html",
             "Attributes: ",
-            "  Arn",
             "  Capacity",
             "  Id",
+            "  Arn",
             "  LabelNamespace"
         ],
         "prefix": "wafv2-webacl",
@@ -24007,9 +24642,9 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-connectionalias.html",
             "Attributes: ",
+            "  ConnectionAliasState",
             "  Associations",
-            "  AliasId",
-            "  ConnectionAliasState"
+            "  AliasId"
         ],
         "prefix": "workspaces-connectionalias",
         "scope": "yaml"
