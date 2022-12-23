@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+3.88.0 (2022-12-23)
+-------------------
+- The following resources were updated:
+  AWS::NetworkFirewall::FirewallPolicy and
+  AWS::NetworkFirewall::RuleGroup. [Github Actions]
+
+
 3.87.0 (2022-12-09)
 -------------------
 - The following resources were updated: AWS::WAFv2::WebACL and
