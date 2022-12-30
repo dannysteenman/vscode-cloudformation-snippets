@@ -2,6 +2,20 @@ Changelog
 =========
 
 
+3.90.0 (2022-12-30)
+-------------------
+
+Fix
+~~~
+- Update badge url for vscode marketplace. [Danny Steenman]
+
+Other
+~~~~~
+- The following resources were updated:
+  AWS::NetworkFirewall::FirewallPolicy and
+  AWS::NetworkFirewall::RuleGroup. [Github Actions]
+
+
 3.88.0 (2022-12-23)
 -------------------
 - The following resources were updated:
