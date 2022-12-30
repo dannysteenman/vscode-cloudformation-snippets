@@ -1,8 +1,8 @@
 # CloudFormation Snippets for VS Code
 
-[![Version](https://vsmarketplacebadge.apphb.com/version/dannysteenman.cloudformation-yaml-snippets.svg 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/dannysteenman.cloudformation-yaml-snippets.svg 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
-[![Rating](https://vsmarketplacebadge.apphb.com/rating-star/dannysteenman.cloudformation-yaml-snippets.svg)](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/dannysteenman.cloudformation-yaml-snippets 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/dannysteenman.cloudformation-yaml-snippets 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
+[![Rating](https://img.shields.io/visual-studio-marketplace/stars/dannysteenman.cloudformation-yaml-snippets)](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
 
 This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.
 
