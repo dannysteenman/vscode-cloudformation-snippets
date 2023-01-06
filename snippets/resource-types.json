@@ -14427,11 +14427,14 @@
             "  Type: AWS::IoTWireless::PartnerAccount",
             "  Properties:",
             "    AccountLinked: ${2|false,true|}",
-            "    Fingerprint: \"${3:String}\"",
-            "    PartnerAccountId: \"${4:String}\"",
-            "    PartnerType: \"${5:String}\"",
+            "    PartnerAccountId: \"${3:String}\"",
+            "    PartnerType: \"${4:String}\"",
             "    Sidewalk:",
-            "      AppServerPrivateKey: \"${6:String}\"",
+            "      AppServerPrivateKey: \"${5:String}\"",
+            "    SidewalkResponse:",
+            "      AmazonId: \"${6:String}\"",
+            "      Arn: \"${7:String}\"",
+            "      Fingerprint: \"${8:String}\"",
             "    SidewalkUpdate:",
             "      AppServerPrivateKey: \"${7:String}\"",
             "    Tags:",
@@ -14440,11 +14443,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html",
             "Attributes: ",
-            "  SidewalkResponse",
-            "  SidewalkResponse.Arn",
-            "  Arn",
-            "  SidewalkResponse.Fingerprint",
-            "  SidewalkResponse.AmazonId"
+            "  Fingerprint",
+            "  Arn"
         ],
         "prefix": "iotwireless-partneraccount",
         "scope": "yaml"
