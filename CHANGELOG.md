@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.91.0 (2023-01-06)
+-------------------
+- The following resource was updated: AWS::FSx::Filesystem. [Github
+  Actions]
+
+
 3.90.0 (2022-12-30)
 -------------------
 
