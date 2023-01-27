@@ -5241,6 +5241,20 @@
         "prefix": "config-storedquery",
         "scope": "yaml"
     },
+    "AWS::Connect::ApprovedOrigin": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::ApprovedOrigin",
+            "  Properties:",
+            "    InstanceId: \"${2:String}\" # Required",
+            "    Origin: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-approvedorigin.html"
+        ],
+        "prefix": "connect-approvedorigin",
+        "scope": "yaml"
+    },
     "AWS::Connect::ContactFlow": {
         "body": [
             "${1:LogicalID}:",
@@ -5363,6 +5377,23 @@
         "prefix": "connect-instancestorageconfig",
         "scope": "yaml"
     },
+    "AWS::Connect::IntegrationAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::IntegrationAssociation",
+            "  Properties:",
+            "    InstanceId: \"${2:String}\" # Required",
+            "    IntegrationArn: \"${3:String}\" # Required",
+            "    IntegrationType: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-integrationassociation.html",
+            "Attributes: ",
+            "  IntegrationAssociationId"
+        ],
+        "prefix": "connect-integrationassociation",
+        "scope": "yaml"
+    },
     "AWS::Connect::PhoneNumber": {
         "body": [
             "${1:LogicalID}:",
@@ -5436,6 +5467,22 @@
             "  RuleArn"
         ],
         "prefix": "connect-rule",
+        "scope": "yaml"
+    },
+    "AWS::Connect::SecurityKey": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::SecurityKey",
+            "  Properties:",
+            "    InstanceId: \"${2:String}\" # Required",
+            "    Key: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-securitykey.html",
+            "Attributes: ",
+            "  AssociationId"
+        ],
+        "prefix": "connect-securitykey",
         "scope": "yaml"
     },
     "AWS::Connect::TaskTemplate": {
@@ -7096,10 +7143,11 @@
             "  Type: AWS::EC2::CustomerGateway",
             "  Properties:",
             "    BgpAsn: ${2:Number} # Required",
-            "    IpAddress: \"${3:String}\" # Required",
+            "    DeviceName: \"${3:String}\"",
+            "    IpAddress: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    Type: \"${5:String}\" # Required"
+            "    Type: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html",
@@ -7625,8 +7673,14 @@
             "  Properties:",
             "    AllocationId: \"${2:String}\"",
             "    ConnectivityType: \"${3:String}\"",
-            "    PrivateIpAddress: \"${4:String}\"",
-            "    SubnetId: \"${5:String}\" # Required",
+            "    MaxDrainDurationSeconds: ${4:Number}",
+            "    PrivateIpAddress: \"${5:String}\"",
+            "    SecondaryAllocationIds:",
+            "      SecondaryAllocationIds",
+            "    SecondaryPrivateIpAddressCount: ${7:Number}",
+            "    SecondaryPrivateIpAddresses:",
+            "      SecondaryPrivateIpAddresses",
+            "    SubnetId: \"${9:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -9562,22 +9616,25 @@
             "    AutoStopConfiguration:",
             "      Enabled: ${4|false,true|}",
             "      IdleTimeoutMinutes: ${5:Number}",
+            "    ImageConfiguration:",
+            "      ImageUri: \"${5:String}\"",
             "    InitialCapacity:",
             "      InitialCapacity",
             "    MaximumCapacity:",
-            "      Cpu: \"${6:String}\"",
-            "      Disk: \"${7:String}\"",
-            "      Memory: \"${8:String}\"",
-            "    Name: \"${7:String}\"",
+            "      Cpu: \"${7:String}\"",
+            "      Disk: \"${8:String}\"",
+            "      Memory: \"${9:String}\"",
+            "    Name: \"${8:String}\"",
             "    NetworkConfiguration:",
             "      SecurityGroupIds:",
             "        -",
             "      SubnetIds:",
             "        -",
-            "    ReleaseLabel: \"${9:String}\" # Required",
+            "    ReleaseLabel: \"${10:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    Type: \"${11:String}\" # Required"
+            "    Type: \"${12:String}\" # Required",
+            "    WorkerTypeSpecifications:"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emrserverless-application.html",
@@ -12197,6 +12254,8 @@
             "${1:LogicalID}:",
             "  Type: AWS::GroundStation::DataflowEndpointGroup",
             "  Properties:",
+            "    ContactPostPassDurationSeconds: ${2:Number}",
+            "    ContactPrePassDurationSeconds: ${3:Number}",
             "    EndpointDetails: # Required",
             "      EndpointDetails",
             "    Tags:",
@@ -12845,18 +12904,20 @@
             "    DistributionConfigurationArn: \"${3:String}\"",
             "    EnhancedImageMetadataEnabled: ${4|false,true|}",
             "    ImageRecipeArn: \"${5:String}\"",
+            "    ImageScanningConfiguration:",
+            "      ImageScanningEnabled: ${7|false,true|}",
             "    ImageTestsConfiguration:",
-            "      ImageTestsEnabled: ${6|false,true|}",
-            "      TimeoutMinutes: ${7:Number}",
-            "    InfrastructureConfigurationArn: \"${7:String}\" # Required",
+            "      ImageTestsEnabled: ${7|false,true|}",
+            "      TimeoutMinutes: ${8:Number}",
+            "    InfrastructureConfigurationArn: \"${8:String}\" # Required",
             "    Tags:"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html",
             "Attributes: ",
             "  ImageId",
-            "  Arn",
             "  ImageUri",
+            "  Arn",
             "  Name"
         ],
         "prefix": "imagebuilder-image",
@@ -12872,15 +12933,17 @@
             "    DistributionConfigurationArn: \"${4:String}\"",
             "    EnhancedImageMetadataEnabled: ${5|false,true|}",
             "    ImageRecipeArn: \"${6:String}\"",
+            "    ImageScanningConfiguration:",
+            "      ImageScanningEnabled: ${8|false,true|}",
             "    ImageTestsConfiguration:",
-            "      ImageTestsEnabled: ${7|false,true|}",
-            "      TimeoutMinutes: ${8:Number}",
-            "    InfrastructureConfigurationArn: \"${8:String}\" # Required",
-            "    Name: \"${9:String}\" # Required",
+            "      ImageTestsEnabled: ${8|false,true|}",
+            "      TimeoutMinutes: ${9:Number}",
+            "    InfrastructureConfigurationArn: \"${9:String}\" # Required",
+            "    Name: \"${10:String}\" # Required",
             "    Schedule:",
-            "      PipelineExecutionStartCondition: \"${10:String}\"",
-            "      ScheduleExpression: \"${11:String}\"",
-            "    Status: \"${11:String}\"",
+            "      PipelineExecutionStartCondition: \"${11:String}\"",
+            "      ScheduleExpression: \"${12:String}\"",
+            "    Status: \"${12:String}\"",
             "    Tags:"
         ],
         "description": [
@@ -15343,13 +15406,16 @@
             "    ReservedConcurrentExecutions: ${17:Number}",
             "    Role: \"${18:String}\" # Required",
             "    Runtime: \"${19:String}\"",
+            "    RuntimeManagementConfig:",
+            "      RuntimeVersionArn: \"${20:String}\"",
+            "      UpdateRuntimeOn: \"${21:String}\"",
             "    SnapStart:",
-            "      ApplyOn: \"${20:String}\"",
+            "      ApplyOn: \"${21:String}\"",
             "    Tags:",
             "      Tags",
-            "    Timeout: ${22:Number}",
+            "    Timeout: ${23:Number}",
             "    TracingConfig:",
-            "      Mode: \"${23:String}\"",
+            "      Mode: \"${24:String}\"",
             "    VpcConfig:",
             "      SecurityGroupIds:",
             "        -",
@@ -15960,9 +16026,7 @@
             "  Properties:",
             "    CollectionName: \"${2:String}\" # Required",
             "    Description: \"${3:String}\"",
-            "    KmsKeyId: \"${4:String}\"",
-            "    PricingPlan: \"${5:String}\"",
-            "    PricingPlanDataSource: \"${6:String}\""
+            "    KmsKeyId: \"${4:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-geofencecollection.html",
@@ -16126,7 +16190,9 @@
             "    LogStreamName: \"${3:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "logs-logstream",
         "scope": "yaml"
@@ -18083,8 +18149,10 @@
             "    AccessPolicies: ${2:JSON}",
             "    AdvancedOptions:",
             "    AdvancedSecurityOptions:",
-            "      Enabled: ${4|false,true|}",
-            "      InternalUserDatabaseEnabled: ${5|false,true|}",
+            "      AnonymousAuthDisableDate: \"${4:String}\"",
+            "      AnonymousAuthEnabled: ${5|false,true|}",
+            "      Enabled: ${6|false,true|}",
+            "      InternalUserDatabaseEnabled: ${7|false,true|}",
             "    ClusterConfig:",
             "      DedicatedMasterCount: ${5:Number}",
             "      DedicatedMasterEnabled: ${6|false,true|}",
@@ -18143,6 +18211,7 @@
             "  ServiceSoftwareOptions.UpdateAvailable",
             "  DomainEndpoint",
             "  ServiceSoftwareOptions",
+            "  AdvancedSecurityOptions.AnonymousAuthDisableDate",
             "  ServiceSoftwareOptions.NewVersion",
             "  Id",
             "  Arn",
@@ -19953,9 +20022,11 @@
             "      SessionSampleRate: ${10:Number}",
             "      Telemetries:",
             "        -",
-            "    CwLogEnabled: ${3|false,true|}",
-            "    Domain: \"${4:String}\" # Required",
-            "    Name: \"${5:String}\" # Required",
+            "    CustomEvents:",
+            "      Status: \"${3:String}\"",
+            "    CwLogEnabled: ${4|false,true|}",
+            "    Domain: \"${5:String}\" # Required",
+            "    Name: \"${6:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -21276,6 +21347,7 @@
             "    Name: \"${4:String}\"",
             "    OutpostArn: \"${5:String}\"",
             "    PreferredInstanceType: \"${6:String}\"",
+            "    ResolverEndpointType: \"${7:String}\"",
             "    SecurityGroupIds: # Required",
             "      SecurityGroupIds",
             "    Tags:",
@@ -21288,6 +21360,7 @@
             "  IpAddressCount",
             "  OutpostArn",
             "  PreferredInstanceType",
+            "  ResolverEndpointType",
             "  Arn",
             "  Direction",
             "  HostVPCId",
@@ -22552,20 +22625,24 @@
             "    AppNetworkAccessType: \"${2:String}\"",
             "    AppSecurityGroupManagement: \"${3:String}\"",
             "    AuthMode: \"${4:String}\" # Required",
-            "    DefaultUserSettings:",
+            "    DefaultSpaceSettings:",
             "      ExecutionRole: \"${5:String}\"",
             "      SecurityGroups:",
             "        -",
-            "    DomainName: \"${6:String}\" # Required",
+            "    DefaultUserSettings:",
+            "      ExecutionRole: \"${6:String}\"",
+            "      SecurityGroups:",
+            "        -",
+            "    DomainName: \"${7:String}\" # Required",
             "    DomainSettings:",
             "      SecurityGroupIds:",
             "        -",
-            "    KmsKeyId: \"${8:String}\"",
+            "    KmsKeyId: \"${9:String}\"",
             "    SubnetIds: # Required",
             "      SubnetIds",
             "    Tags:",
             "      Tags",
-            "    VpcId: \"${11:String}\" # Required"
+            "    VpcId: \"${12:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-domain.html",
@@ -23269,9 +23346,7 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html",
-            "Attributes: ",
-            "  Id"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html"
         ],
         "prefix": "secretsmanager-secret",
         "scope": "yaml"
