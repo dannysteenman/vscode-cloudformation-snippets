@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.93.0 (2023-01-27)
+-------------------
+- The following resource was updated: AWS::Lambda::Function. [Github
+  Actions]
+
+
 3.92.0 (2023-01-20)
 -------------------
 - The following resource was updated: AWS::CloudWatch::MetricStream.
