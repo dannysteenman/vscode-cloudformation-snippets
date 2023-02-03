@@ -386,17 +386,19 @@
             "${1:LogicalID}:",
             "  Type: AWS::AmplifyUIBuilder::Component",
             "  Properties:",
+            "    AppId: \"${2:String}\"",
             "    BindingProperties:",
             "    Children:",
             "      Children",
             "    CollectionProperties:",
-            "    ComponentType: \"${5:String}\" # Required",
+            "    ComponentType: \"${6:String}\" # Required",
+            "    EnvironmentName: \"${7:String}\"",
             "    Events:",
-            "    Name: \"${7:String}\" # Required",
-            "    Overrides: ${8:JSON} # Required",
+            "    Name: \"${9:String}\" # Required",
+            "    Overrides: ${10:JSON} # Required",
             "    Properties:",
-            "    SchemaVersion: \"${10:String}\"",
-            "    SourceId: \"${11:String}\"",
+            "    SchemaVersion: \"${12:String}\"",
+            "    SourceId: \"${13:String}\"",
             "    Tags:",
             "    Variants: # Required",
             "      Variants"
@@ -404,8 +406,6 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-component.html",
             "Attributes: ",
-            "  AppId",
-            "  EnvironmentName",
             "  Id"
         ],
         "prefix": "amplifyuibuilder-component",
@@ -444,7 +444,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::AmplifyUIBuilder::Theme",
             "  Properties:",
-            "    Name: \"${2:String}\" # Required",
+            "    AppId: \"${2:String}\"",
+            "    EnvironmentName: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
             "    Overrides:",
             "      Overrides",
             "    Tags:",
@@ -454,10 +456,6 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-theme.html",
             "Attributes: ",
-            "  ModifiedAt",
-            "  AppId",
-            "  EnvironmentName",
-            "  CreatedAt",
             "  Id"
         ],
         "prefix": "amplifyuibuilder-theme",
@@ -1286,6 +1284,7 @@
             "    DeploymentStrategyId: \"${5:String}\" # Required",
             "    Description: \"${6:String}\"",
             "    EnvironmentId: \"${7:String}\" # Required",
+            "    KmsKeyIdentifier: \"${8:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -3959,6 +3958,26 @@
         "prefix": "cloudfront-streamingdistribution",
         "scope": "yaml"
     },
+    "AWS::CloudTrail::Channel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudTrail::Channel",
+            "  Properties:",
+            "    Destinations:",
+            "      Destinations",
+            "    Name: \"${3:String}\"",
+            "    Source: \"${4:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-channel.html",
+            "Attributes: ",
+            "  ChannelArn"
+        ],
+        "prefix": "cloudtrail-channel",
+        "scope": "yaml"
+    },
     "AWS::CloudTrail::EventDataStore": {
         "body": [
             "${1:LogicalID}:",
@@ -3984,6 +4003,20 @@
             "  CreatedTimestamp"
         ],
         "prefix": "cloudtrail-eventdatastore",
+        "scope": "yaml"
+    },
+    "AWS::CloudTrail::ResourcePolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudTrail::ResourcePolicy",
+            "  Properties:",
+            "    ResourceArn: \"${2:String}\" # Required",
+            "    ResourcePolicy: ${3:JSON} # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-resourcepolicy.html"
+        ],
+        "prefix": "cloudtrail-resourcepolicy",
         "scope": "yaml"
     },
     "AWS::CloudTrail::Trail": {
@@ -5579,9 +5612,9 @@
             "    DialerConfig:",
             "    Name: \"${4:String}\" # Required",
             "    OutboundCallConfig:",
-            "      ConnectContactFlowArn: \"${5:String}\"",
-            "      ConnectQueueArn: \"${6:String}\"",
-            "      ConnectSourcePhoneNumber: \"${7:String}\"",
+            "      ConnectContactFlowArn: \"${6:String}\"",
+            "      ConnectQueueArn: \"${7:String}\"",
+            "      ConnectSourcePhoneNumber: \"${8:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -7368,9 +7401,12 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::IPAM",
             "  Properties:",
-            "    Description: \"${2:String}\"",
+            "    DefaultResourceDiscoveryAssociationId: \"${2:String}\"",
+            "    DefaultResourceDiscoveryId: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
             "    OperatingRegions:",
             "      OperatingRegions",
+            "    ResourceDiscoveryAssociationCount: ${6:Number}",
             "    Tags:",
             "      Tags"
         ],
@@ -7422,8 +7458,9 @@
             "    Locale: \"${11:String}\"",
             "    ProvisionedCidrs:",
             "      ProvisionedCidrs",
-            "    PubliclyAdvertisable: ${13|false,true|}",
-            "    SourceIpamPoolId: \"${14:String}\"",
+            "    PublicIpSource: \"${13:String}\"",
+            "    PubliclyAdvertisable: ${14|false,true|}",
+            "    SourceIpamPoolId: \"${15:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -7440,6 +7477,73 @@
             "  StateMessage"
         ],
         "prefix": "ec2-ipampool",
+        "scope": "yaml"
+    },
+    "AWS::EC2::IPAMPoolCidr": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::IPAMPoolCidr",
+            "  Properties:",
+            "    Cidr: \"${2:String}\"",
+            "    IpamPoolId: \"${3:String}\" # Required",
+            "    NetmaskLength: ${4:Number}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipampoolcidr.html",
+            "Attributes: ",
+            "  IpamPoolCidrId",
+            "  State"
+        ],
+        "prefix": "ec2-ipampoolcidr",
+        "scope": "yaml"
+    },
+    "AWS::EC2::IPAMResourceDiscovery": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::IPAMResourceDiscovery",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    OperatingRegions:",
+            "      OperatingRegions",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamresourcediscovery.html",
+            "Attributes: ",
+            "  IsDefault",
+            "  OwnerId",
+            "  State",
+            "  IpamResourceDiscoveryRegion",
+            "  IpamResourceDiscoveryArn",
+            "  IpamResourceDiscoveryId"
+        ],
+        "prefix": "ec2-ipamresourcediscovery",
+        "scope": "yaml"
+    },
+    "AWS::EC2::IPAMResourceDiscoveryAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::IPAMResourceDiscoveryAssociation",
+            "  Properties:",
+            "    IpamId: \"${2:String}\" # Required",
+            "    IpamResourceDiscoveryId: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamresourcediscoveryassociation.html",
+            "Attributes: ",
+            "  IsDefault",
+            "  ResourceDiscoveryStatus",
+            "  OwnerId",
+            "  IpamArn",
+            "  IpamResourceDiscoveryAssociationId",
+            "  IpamResourceDiscoveryAssociationArn",
+            "  State",
+            "  IpamRegion"
+        ],
+        "prefix": "ec2-ipamresourcediscoveryassociation",
         "scope": "yaml"
     },
     "AWS::EC2::IPAMScope": {
@@ -17638,11 +17742,11 @@
             "  Properties:",
             "    BgpOptions:",
             "      PeerAsn: ${2:Number}",
-            "    ConnectAttachmentId: \"${3:String}\"",
+            "    ConnectAttachmentId: \"${3:String}\" # Required",
             "    CoreNetworkAddress: \"${4:String}\"",
-            "    InsideCidrBlocks:",
+            "    InsideCidrBlocks: # Required",
             "      InsideCidrBlocks",
-            "    PeerAddress: \"${6:String}\"",
+            "    PeerAddress: \"${6:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -17819,10 +17923,10 @@
             "${1:LogicalID}:",
             "  Type: AWS::NetworkManager::SiteToSiteVpnAttachment",
             "  Properties:",
-            "    CoreNetworkId: \"${2:String}\"",
+            "    CoreNetworkId: \"${2:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    VpnConnectionArn: \"${4:String}\""
+            "    VpnConnectionArn: \"${4:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-sitetositevpnattachment.html",
@@ -17915,7 +18019,7 @@
             "        -",
             "      MaxSessionLengthInMinutes: ${9:Number}",
             "      MaxStoppedSessionLengthInMinutes: ${10:Number}",
-            "      SessionPersistenceMode: \"${11:String}\"",
+            "      SessionPersistenceMode: \"${12:String}\"",
             "      StreamingImageIds:",
             "        -",
             "    StudioComponentIds: # Required",
@@ -18043,6 +18147,155 @@
             "  Arn"
         ],
         "prefix": "oam-sink",
+        "scope": "yaml"
+    },
+    "AWS::Omics::AnnotationStore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Omics::AnnotationStore",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Reference:",
+            "      ReferenceArn: \"${4:String}\"",
+            "    SseConfig:",
+            "      KeyArn: \"${5:String}\"",
+            "      Type: \"${6:String}\"",
+            "    StoreFormat: \"${6:String}\" # Required",
+            "    StoreOptions:",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-annotationstore.html",
+            "Attributes: ",
+            "  Status",
+            "  CreationTime",
+            "  UpdateTime",
+            "  Id",
+            "  StoreSizeBytes",
+            "  StatusMessage",
+            "  StoreArn"
+        ],
+        "prefix": "omics-annotationstore",
+        "scope": "yaml"
+    },
+    "AWS::Omics::ReferenceStore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Omics::ReferenceStore",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    SseConfig:",
+            "      KeyArn: \"${4:String}\"",
+            "      Type: \"${5:String}\"",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-referencestore.html",
+            "Attributes: ",
+            "  ReferenceStoreId",
+            "  CreationTime",
+            "  Arn"
+        ],
+        "prefix": "omics-referencestore",
+        "scope": "yaml"
+    },
+    "AWS::Omics::RunGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Omics::RunGroup",
+            "  Properties:",
+            "    MaxCpus: ${2:Number}",
+            "    MaxDuration: ${3:Number}",
+            "    MaxRuns: ${4:Number}",
+            "    Name: \"${5:String}\"",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-rungroup.html",
+            "Attributes: ",
+            "  CreationTime",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "omics-rungroup",
+        "scope": "yaml"
+    },
+    "AWS::Omics::SequenceStore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Omics::SequenceStore",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    SseConfig:",
+            "      KeyArn: \"${4:String}\"",
+            "      Type: \"${5:String}\"",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-sequencestore.html",
+            "Attributes: ",
+            "  SequenceStoreId",
+            "  CreationTime",
+            "  Arn"
+        ],
+        "prefix": "omics-sequencestore",
+        "scope": "yaml"
+    },
+    "AWS::Omics::VariantStore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Omics::VariantStore",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Reference:",
+            "      ReferenceArn: \"${4:String}\"",
+            "    SseConfig:",
+            "      KeyArn: \"${5:String}\"",
+            "      Type: \"${6:String}\"",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-variantstore.html",
+            "Attributes: ",
+            "  Status",
+            "  CreationTime",
+            "  UpdateTime",
+            "  Id",
+            "  StoreSizeBytes",
+            "  StatusMessage",
+            "  StoreArn"
+        ],
+        "prefix": "omics-variantstore",
+        "scope": "yaml"
+    },
+    "AWS::Omics::Workflow": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Omics::Workflow",
+            "  Properties:",
+            "    DefinitionUri: \"${2:String}\"",
+            "    Description: \"${3:String}\"",
+            "    Engine: \"${4:String}\"",
+            "    Main: \"${5:String}\"",
+            "    Name: \"${6:String}\"",
+            "    ParameterTemplate:",
+            "    StorageCapacity: ${8:Number}",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-workflow.html",
+            "Attributes: ",
+            "  Status",
+            "  Type",
+            "  CreationTime",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "omics-workflow",
         "scope": "yaml"
     },
     "AWS::OpenSearchServerless::AccessPolicy": {
@@ -18468,8 +18721,7 @@
             "    PreferredMaintenanceWindow: \"${17:String}\"",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    ServerName: \"${19:String}\"",
-            "    ServiceRoleArn: \"${20:String}\" # Required",
+            "    ServiceRoleArn: \"${19:String}\" # Required",
             "    SubnetIds:",
             "      SubnetIds",
             "    Tags:",
@@ -18479,7 +18731,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworkscm-server.html",
             "Attributes: ",
             "  Endpoint",
-            "  Id",
+            "  ServerName",
             "  Arn"
         ],
         "prefix": "opsworkscm-server",
@@ -19844,7 +20096,6 @@
             "    DBProxyName: \"${3:String}\" # Required",
             "    Tags:",
             "      Tags",
-            "    TargetRole: \"${5:String}\"",
             "    VpcSecurityGroupIds:",
             "      VpcSecurityGroupIds",
             "    VpcSubnetIds: # Required",
@@ -19856,7 +20107,8 @@
             "  DBProxyEndpointArn",
             "  IsDefault",
             "  VpcId",
-            "  Endpoint"
+            "  Endpoint",
+            "  TargetRole"
         ],
         "prefix": "rds-dbproxyendpoint",
         "scope": "yaml"
@@ -20826,9 +21078,9 @@
             "${1:LogicalID}:",
             "  Type: AWS::RolesAnywhere::CRL",
             "  Properties:",
-            "    CrlData: \"${2:String}\"",
+            "    CrlData: \"${2:String}\" # Required",
             "    Enabled: ${3|false,true|}",
-            "    Name: \"${4:String}\"",
+            "    Name: \"${4:String}\" # Required",
             "    Tags:",
             "      Tags",
             "    TrustAnchorArn: \"${6:String}\""
@@ -20850,9 +21102,9 @@
             "    Enabled: ${3|false,true|}",
             "    ManagedPolicyArns:",
             "      ManagedPolicyArns",
-            "    Name: \"${5:String}\"",
+            "    Name: \"${5:String}\" # Required",
             "    RequireInstanceProperties: ${6|false,true|}",
-            "    RoleArns:",
+            "    RoleArns: # Required",
             "      RoleArns",
             "    SessionPolicy: \"${8:String}\"",
             "    Tags:",
@@ -20873,7 +21125,7 @@
             "  Type: AWS::RolesAnywhere::TrustAnchor",
             "  Properties:",
             "    Enabled: ${2|false,true|}",
-            "    Name: \"${3:String}\"",
+            "    Name: \"${3:String}\" # Required",
             "    Source:",
             "      SourceType: \"${5:String}\"",
             "    Tags:",
@@ -22006,7 +22258,8 @@
             "      Subscription",
             "    Tags:",
             "      Tags",
-            "    TopicName: \"${10:String}\""
+            "    TopicName: \"${10:String}\"",
+            "    TracingConfig: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topic.html",
@@ -22846,6 +23099,47 @@
             "  CreationTime"
         ],
         "prefix": "sagemaker-modelbiasjobdefinition",
+        "scope": "yaml"
+    },
+    "AWS::SageMaker::ModelCard": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::ModelCard",
+            "  Properties:",
+            "    Content:",
+            "      EvaluationDetails:",
+            "        -",
+            "    CreatedBy:",
+            "      DomainId: \"${3:String}\"",
+            "      UserProfileArn: \"${4:String}\"",
+            "      UserProfileName: \"${5:String}\"",
+            "    LastModifiedBy:",
+            "      DomainId: \"${4:String}\"",
+            "      UserProfileArn: \"${5:String}\"",
+            "      UserProfileName: \"${6:String}\"",
+            "    ModelCardName: \"${5:String}\" # Required",
+            "    ModelCardStatus: \"${6:String}\" # Required",
+            "    SecurityConfig:",
+            "      KmsKeyId: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-modelcard.html",
+            "Attributes: ",
+            "  LastModifiedBy.UserProfileArn",
+            "  CreatedBy.DomainId",
+            "  ModelCardArn",
+            "  CreatedBy.UserProfileName",
+            "  CreationTime",
+            "  LastModifiedTime",
+            "  LastModifiedBy.DomainId",
+            "  ModelCardVersion",
+            "  ModelCardProcessingStatus",
+            "  LastModifiedBy.UserProfileName",
+            "  CreatedBy.UserProfileArn"
+        ],
+        "prefix": "sagemaker-modelcard",
         "scope": "yaml"
     },
     "AWS::SageMaker::ModelExplainabilityJobDefinition": {
@@ -23910,6 +24204,25 @@
             "  ProfileVersion"
         ],
         "prefix": "signer-signingprofile",
+        "scope": "yaml"
+    },
+    "AWS::SimSpaceWeaver::Simulation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SimSpaceWeaver::Simulation",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    RoleArn: \"${3:String}\"",
+            "    SchemaS3Location:",
+            "      BucketName: \"${4:String}\"",
+            "      ObjectKey: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-simspaceweaver-simulation.html",
+            "Attributes: ",
+            "  DescribePayload"
+        ],
+        "prefix": "simspaceweaver-simulation",
         "scope": "yaml"
     },
     "AWS::StepFunctions::Activity": {
