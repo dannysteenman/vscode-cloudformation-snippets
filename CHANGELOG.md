@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+3.95.0 (2023-02-10)
+-------------------
+- The following resources were added: AWS::Omics::Workflow,
+  AWS::Omics::RunGroup,         AWS::Omics::AnnotationStore,
+  AWS::Omics::ReferenceStore, AWS::Omics::VariantStore, and
+  AWS::Omics::SequenceStore. [Github Actions]
+
+
 3.94.0 (2023-02-03)
 -------------------
 - The following resources were added: AWS::Omics::Workflow,
