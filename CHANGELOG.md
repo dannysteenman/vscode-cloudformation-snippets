@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.96.0 (2023-02-17)
+-------------------
+- The following resource was updated:
+  AWS::DataSync::LocationObjectStorage. [Github Actions]
+
+
 3.95.0 (2023-02-10)
 -------------------
 - The following resources were added: AWS::Omics::Workflow,
