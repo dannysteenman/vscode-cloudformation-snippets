@@ -1179,7 +1179,9 @@
             "    RouteResponseKey: \"${7:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html",
+            "Attributes: ",
+            "  RouteResponseId"
         ],
         "prefix": "apigatewayv2-routeresponse",
         "scope": "yaml"
@@ -7751,6 +7753,28 @@
         "prefix": "ec2-localgatewayroute",
         "scope": "yaml"
     },
+    "AWS::EC2::LocalGatewayRouteTable": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::LocalGatewayRouteTable",
+            "  Properties:",
+            "    LocalGatewayId: \"${2:String}\" # Required",
+            "    Mode: \"${3:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetable.html",
+            "Attributes: ",
+            "  OwnerId",
+            "  State",
+            "  OutpostArn",
+            "  LocalGatewayRouteTableId",
+            "  LocalGatewayRouteTableArn"
+        ],
+        "prefix": "ec2-localgatewayroutetable",
+        "scope": "yaml"
+    },
     "AWS::EC2::LocalGatewayRouteTableVPCAssociation": {
         "body": [
             "${1:LogicalID}:",
@@ -7769,6 +7793,28 @@
             "  LocalGatewayRouteTableVpcAssociationId"
         ],
         "prefix": "ec2-localgatewayroutetablevpcassociation",
+        "scope": "yaml"
+    },
+    "AWS::EC2::LocalGatewayRouteTableVirtualInterfaceGroupAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::LocalGatewayRouteTableVirtualInterfaceGroupAssociation",
+            "  Properties:",
+            "    LocalGatewayRouteTableId: \"${2:String}\" # Required",
+            "    LocalGatewayVirtualInterfaceGroupId: \"${3:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevirtualinterfacegroupassociation.html",
+            "Attributes: ",
+            "  OwnerId",
+            "  LocalGatewayId",
+            "  State",
+            "  LocalGatewayRouteTableVirtualInterfaceGroupAssociationId",
+            "  LocalGatewayRouteTableArn"
+        ],
+        "prefix": "ec2-localgatewayroutetablevirtualinterfacegroupassociation",
         "scope": "yaml"
     },
     "AWS::EC2::NatGateway": {
@@ -8866,7 +8912,7 @@
             "    VpnConnectionId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection-route.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnectionroute.html"
         ],
         "prefix": "ec2-vpnconnectionroute",
         "scope": "yaml"
@@ -10460,7 +10506,6 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-archive.html",
             "Attributes: ",
-            "  ArchiveName",
             "  Arn"
         ],
         "prefix": "events-archive",
@@ -10786,6 +10831,28 @@
             "  Arn"
         ],
         "prefix": "fms-policy",
+        "scope": "yaml"
+    },
+    "AWS::FMS::ResourceSet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::FMS::ResourceSet",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    ResourceTypeList: # Required",
+            "      ResourceTypeList",
+            "    Resources:",
+            "      Resources",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-resourceset.html",
+            "Attributes: ",
+            "  Id"
+        ],
+        "prefix": "fms-resourceset",
         "scope": "yaml"
     },
     "AWS::FSx::DataRepositoryAssociation": {
@@ -18833,6 +18900,24 @@
         "prefix": "organizations-policy",
         "scope": "yaml"
     },
+    "AWS::Organizations::ResourcePolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Organizations::ResourcePolicy",
+            "  Properties:",
+            "    Content: ${2:JSON} # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-resourcepolicy.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "organizations-resourcepolicy",
+        "scope": "yaml"
+    },
     "AWS::Panorama::ApplicationInstance": {
         "body": [
             "${1:LogicalID}:",
@@ -24411,6 +24496,30 @@
             "  Id"
         ],
         "prefix": "synthetics-group",
+        "scope": "yaml"
+    },
+    "AWS::SystemsManagerSAP::Application": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SystemsManagerSAP::Application",
+            "  Properties:",
+            "    ApplicationId: \"${2:String}\" # Required",
+            "    ApplicationType: \"${3:String}\" # Required",
+            "    Credentials:",
+            "      Credentials",
+            "    Instances:",
+            "      Instances",
+            "    SapInstanceNumber: \"${6:String}\"",
+            "    Sid: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-systemsmanagersap-application.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "systemsmanagersap-application",
         "scope": "yaml"
     },
     "AWS::Timestream::Database": {
