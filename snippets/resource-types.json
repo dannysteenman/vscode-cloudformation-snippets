@@ -907,7 +907,9 @@
             "      TargetArns"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html",
+            "Attributes: ",
+            "  VpcLinkId"
         ],
         "prefix": "apigateway-vpclink",
         "scope": "yaml"
@@ -1179,9 +1181,7 @@
             "    RouteResponseKey: \"${7:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html",
-            "Attributes: ",
-            "  RouteResponseId"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html"
         ],
         "prefix": "apigatewayv2-routeresponse",
         "scope": "yaml"
@@ -1346,7 +1346,8 @@
             "    Content: \"${4:String}\" # Required",
             "    ContentType: \"${5:String}\" # Required",
             "    Description: \"${6:String}\"",
-            "    LatestVersionNumber: ${7:Number}"
+            "    LatestVersionNumber: ${7:Number}",
+            "    VersionLabel: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-hostedconfigurationversion.html"
@@ -8824,7 +8825,9 @@
             "    PayerResponsibility: \"${6:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html",
+            "Attributes: ",
+            "  ServiceId"
         ],
         "prefix": "ec2-vpcendpointservice",
         "scope": "yaml"
@@ -10538,7 +10541,7 @@
             "    Description: \"${2:String}\"",
             "    EventBuses: # Required",
             "      EventBuses",
-            "    Name: \"${4:String}\" # Required",
+            "    Name: \"${4:String}\"",
             "    ReplicationConfig:",
             "      State: \"${5:String}\"",
             "    RoleArn: \"${6:String}\"",
@@ -13318,6 +13321,34 @@
             "  Arn"
         ],
         "prefix": "inspectorv2-filter",
+        "scope": "yaml"
+    },
+    "AWS::InternetMonitor::Monitor": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::InternetMonitor::Monitor",
+            "  Properties:",
+            "    MonitorName: \"${2:String}\"",
+            "    Resources:",
+            "      Resources",
+            "    ResourcesToAdd:",
+            "      ResourcesToAdd",
+            "    ResourcesToRemove:",
+            "      ResourcesToRemove",
+            "    Status: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-internetmonitor-monitor.html",
+            "Attributes: ",
+            "  ModifiedAt",
+            "  MonitorArn",
+            "  CreatedAt",
+            "  ProcessingStatusInfo",
+            "  ProcessingStatus"
+        ],
+        "prefix": "internetmonitor-monitor",
         "scope": "yaml"
     },
     "AWS::IoT1Click::Device": {
@@ -18059,6 +18090,40 @@
         "prefix": "networkmanager-transitgatewayregistration",
         "scope": "yaml"
     },
+    "AWS::NetworkManager::TransitGatewayRouteTableAttachment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::NetworkManager::TransitGatewayRouteTableAttachment",
+            "  Properties:",
+            "    PeeringId: \"${2:String}\" # Required",
+            "    ProposedSegmentChange:",
+            "      AttachmentPolicyRuleNumber: ${3:Number}",
+            "      SegmentName: \"${4:String}\"",
+            "      Tags:",
+            "        -",
+            "    Tags:",
+            "      Tags",
+            "    TransitGatewayRouteTableArn: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewayroutetableattachment.html",
+            "Attributes: ",
+            "  ResourceArn",
+            "  CoreNetworkId",
+            "  AttachmentType",
+            "  SegmentName",
+            "  State",
+            "  CreatedAt",
+            "  OwnerAccountId",
+            "  UpdatedAt",
+            "  AttachmentId",
+            "  CoreNetworkArn",
+            "  EdgeLocation",
+            "  AttachmentPolicyRuleNumber"
+        ],
+        "prefix": "networkmanager-transitgatewayroutetableattachment",
+        "scope": "yaml"
+    },
     "AWS::NetworkManager::VpcAttachment": {
         "body": [
             "${1:LogicalID}:",
@@ -18477,7 +18542,7 @@
             "    Name: \"${2:String}\" # Required",
             "    SecurityGroupIds:",
             "      SecurityGroupIds",
-            "    SubnetIds:",
+            "    SubnetIds: # Required",
             "      SubnetIds",
             "    VpcId: \"${5:String}\" # Required"
         ],
@@ -20481,15 +20546,14 @@
             "  Properties:",
             "    Description: \"${2:String}\" # Required",
             "    ParameterGroupFamily: \"${3:String}\" # Required",
+            "    ParameterGroupName: \"${4:String}\"",
             "    Parameters:",
             "      Parameters",
             "    Tags:",
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html",
-            "Attributes: ",
-            "  ParameterGroupName"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html"
         ],
         "prefix": "redshift-clusterparametergroup",
         "scope": "yaml"
@@ -21390,9 +21454,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::Route53RecoveryControl::Cluster",
             "  Properties:",
-            "    ClusterEndpoints:",
-            "      ClusterEndpoints",
-            "    Name: \"${3:String}\"",
+            "    Name: \"${2:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -21400,7 +21462,8 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-cluster.html",
             "Attributes: ",
             "  ClusterArn",
-            "  Status"
+            "  Status",
+            "  ClusterEndpoints"
         ],
         "prefix": "route53recoverycontrol-cluster",
         "scope": "yaml"
@@ -23700,10 +23763,11 @@
             "      MasterSecretKmsKeyArn: \"${5:String}\"",
             "      RotationLambdaName: \"${6:String}\"",
             "      RotationType: \"${7:String}\"",
-            "      SuperuserSecretArn: \"${8:String}\"",
-            "      SuperuserSecretKmsKeyArn: \"${9:String}\"",
-            "      VpcSecurityGroupIds: \"${10:String}\"",
-            "      VpcSubnetIds: \"${11:String}\"",
+            "      Runtime: \"${8:String}\"",
+            "      SuperuserSecretArn: \"${9:String}\"",
+            "      SuperuserSecretKmsKeyArn: \"${10:String}\"",
+            "      VpcSecurityGroupIds: \"${11:String}\"",
+            "      VpcSubnetIds: \"${12:String}\"",
             "    RotateImmediatelyOnUpdate: ${3|false,true|}",
             "    RotationLambdaARN: \"${4:String}\"",
             "    RotationRules:",
