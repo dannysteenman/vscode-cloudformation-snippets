@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+3.98.0 (2023-03-03)
+-------------------
+- The following resources were added: AWS::IVSChat::Room and
+  AWS::IVSChat::LoggingConfiguration. [Github Actions]
+
+
 3.97.0 (2023-02-24)
 -------------------
 - The following resource was updated: AWS::FMS::Policy. [Github Actions]
