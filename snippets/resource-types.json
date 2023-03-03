@@ -4687,7 +4687,7 @@
             "    Name: \"${6:String}\" # Required",
             "    Resource: \"${7:String}\" # Required",
             "    Status: \"${8:String}\"",
-            "    Tags: ${9:JSON}",
+            "    Tags:",
             "    TargetAddress: \"${10:String}\"",
             "    Targets: # Required",
             "      Targets"
@@ -6920,7 +6920,8 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdbelastic-cluster.html",
             "Attributes: ",
-            "  ClusterArn"
+            "  ClusterArn",
+            "  ClusterEndpoint"
         ],
         "prefix": "docdbelastic-cluster",
         "scope": "yaml"
@@ -6972,35 +6973,36 @@
             "    BillingMode: \"${3:String}\"",
             "    ContributorInsightsSpecification:",
             "      Enabled: ${4|false,true|}",
+            "    DeletionProtectionEnabled: ${5|false,true|}",
             "    GlobalSecondaryIndexes:",
             "      GlobalSecondaryIndexes",
             "    ImportSourceSpecification:",
-            "      InputCompressionType: \"${6:String}\"",
-            "      InputFormat: \"${7:String}\"",
+            "      InputCompressionType: \"${7:String}\"",
+            "      InputFormat: \"${8:String}\"",
             "    KeySchema: # Required",
             "      KeySchema",
             "    KinesisStreamSpecification:",
-            "      StreamArn: \"${8:String}\"",
+            "      StreamArn: \"${9:String}\"",
             "    LocalSecondaryIndexes:",
             "      LocalSecondaryIndexes",
             "    PointInTimeRecoverySpecification:",
-            "      PointInTimeRecoveryEnabled: ${10|false,true|}",
+            "      PointInTimeRecoveryEnabled: ${11|false,true|}",
             "    ProvisionedThroughput:",
-            "      ReadCapacityUnits: ${11:Number}",
-            "      WriteCapacityUnits: ${12:Number}",
+            "      ReadCapacityUnits: ${12:Number}",
+            "      WriteCapacityUnits: ${13:Number}",
             "    SSESpecification:",
-            "      KMSMasterKeyId: \"${12:String}\"",
-            "      SSEEnabled: ${13|false,true|}",
-            "      SSEType: \"${14:String}\"",
+            "      KMSMasterKeyId: \"${13:String}\"",
+            "      SSEEnabled: ${14|false,true|}",
+            "      SSEType: \"${15:String}\"",
             "    StreamSpecification:",
-            "      StreamViewType: \"${13:String}\"",
-            "    TableClass: \"${14:String}\"",
-            "    TableName: \"${15:String}\"",
+            "      StreamViewType: \"${14:String}\"",
+            "    TableClass: \"${15:String}\"",
+            "    TableName: \"${16:String}\"",
             "    Tags:",
             "      Tags",
             "    TimeToLiveSpecification:",
-            "      AttributeName: \"${17:String}\"",
-            "      Enabled: ${18|false,true|}"
+            "      AttributeName: \"${18:String}\"",
+            "      Enabled: ${19|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html",
@@ -10021,8 +10023,10 @@
             "    NoPasswordRequired: ${5|false,true|}",
             "    Passwords:",
             "      Passwords",
-            "    UserId: \"${7:String}\" # Required",
-            "    UserName: \"${8:String}\" # Required"
+            "    Tags:",
+            "      Tags",
+            "    UserId: \"${8:String}\" # Required",
+            "    UserName: \"${9:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html",
@@ -10039,8 +10043,10 @@
             "  Type: AWS::ElastiCache::UserGroup",
             "  Properties:",
             "    Engine: \"${2:String}\" # Required",
-            "    UserGroupId: \"${3:String}\" # Required",
-            "    UserIds:",
+            "    Tags:",
+            "      Tags",
+            "    UserGroupId: \"${4:String}\" # Required",
+            "    UserIds: # Required",
             "      UserIds"
         ],
         "description": [
@@ -12394,8 +12400,9 @@
             "    DeploymentPolicies:",
             "      FailureHandlingPolicy: \"${6:String}\"",
             "    IotJobConfiguration:",
+            "    ParentTargetArn: \"${6:String}\"",
             "    Tags:",
-            "    TargetArn: \"${7:String}\" # Required"
+            "    TargetArn: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-greengrassv2-deployment.html",
@@ -12952,6 +12959,51 @@
         "prefix": "ivs-streamkey",
         "scope": "yaml"
     },
+    "AWS::IVSChat::LoggingConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IVSChat::LoggingConfiguration",
+            "  Properties:",
+            "    DestinationConfiguration:",
+            "    Name: \"${3:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivschat-loggingconfiguration.html",
+            "Attributes: ",
+            "  State",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "ivschat-loggingconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::IVSChat::Room": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IVSChat::Room",
+            "  Properties:",
+            "    LoggingConfigurationIdentifiers:",
+            "      LoggingConfigurationIdentifiers",
+            "    MaximumMessageLength: ${3:Number}",
+            "    MaximumMessageRatePerSecond: ${4:Number}",
+            "    MessageReviewHandler:",
+            "      FallbackResult: \"${5:String}\"",
+            "      Uri: \"${6:String}\"",
+            "    Name: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivschat-room.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "ivschat-room",
+        "scope": "yaml"
+    },
     "AWS::IdentityStore::Group": {
         "body": [
             "${1:LogicalID}:",
@@ -13328,14 +13380,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::InternetMonitor::Monitor",
             "  Properties:",
-            "    MonitorName: \"${2:String}\"",
+            "    MaxCityNetworksToMonitor: ${2:Number}",
+            "    MonitorName: \"${3:String}\"",
             "    Resources:",
             "      Resources",
             "    ResourcesToAdd:",
             "      ResourcesToAdd",
             "    ResourcesToRemove:",
             "      ResourcesToRemove",
-            "    Status: \"${6:String}\"",
+            "    Status: \"${7:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -15537,32 +15590,36 @@
             "    BatchSize: ${3:Number}",
             "    BisectBatchOnFunctionError: ${4|false,true|}",
             "    DestinationConfig:",
-            "    Enabled: ${6|false,true|}",
-            "    EventSourceArn: \"${7:String}\"",
+            "    DocumentDBEventSourceConfig:",
+            "      CollectionName: \"${6:String}\"",
+            "      DatabaseName: \"${7:String}\"",
+            "      FullDocument: \"${8:String}\"",
+            "    Enabled: ${7|false,true|}",
+            "    EventSourceArn: \"${8:String}\"",
             "    FilterCriteria:",
             "      Filters:",
             "        -",
-            "    FunctionName: \"${9:String}\" # Required",
+            "    FunctionName: \"${10:String}\" # Required",
             "    FunctionResponseTypes:",
             "      FunctionResponseTypes",
-            "    MaximumBatchingWindowInSeconds: ${11:Number}",
-            "    MaximumRecordAgeInSeconds: ${12:Number}",
-            "    MaximumRetryAttempts: ${13:Number}",
-            "    ParallelizationFactor: ${14:Number}",
+            "    MaximumBatchingWindowInSeconds: ${12:Number}",
+            "    MaximumRecordAgeInSeconds: ${13:Number}",
+            "    MaximumRetryAttempts: ${14:Number}",
+            "    ParallelizationFactor: ${15:Number}",
             "    Queues:",
             "      Queues",
             "    ScalingConfig:",
-            "      MaximumConcurrency: ${16:Number}",
+            "      MaximumConcurrency: ${17:Number}",
             "    SelfManagedEventSource:",
             "    SelfManagedKafkaEventSourceConfig:",
-            "      ConsumerGroupId: \"${18:String}\"",
+            "      ConsumerGroupId: \"${19:String}\"",
             "    SourceAccessConfigurations:",
             "      SourceAccessConfigurations",
-            "    StartingPosition: \"${20:String}\"",
-            "    StartingPositionTimestamp: ${21:Number}",
+            "    StartingPosition: \"${21:String}\"",
+            "    StartingPositionTimestamp: ${22:Number}",
             "    Topics:",
             "      Topics",
-            "    TumblingWindowInSeconds: ${23:Number}"
+            "    TumblingWindowInSeconds: ${24:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html",
@@ -16819,6 +16876,27 @@
         "prefix": "macie-session",
         "scope": "yaml"
     },
+    "AWS::ManagedBlockchain::Accessor": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ManagedBlockchain::Accessor",
+            "  Properties:",
+            "    AccessorType: \"${2:String}\" # Required",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-accessor.html",
+            "Attributes: ",
+            "  Status",
+            "  CreationDate",
+            "  BillingToken",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "managedblockchain-accessor",
+        "scope": "yaml"
+    },
     "AWS::ManagedBlockchain::Member": {
         "body": [
             "${1:LogicalID}:",
@@ -17201,11 +17279,13 @@
             "${1:LogicalID}:",
             "  Type: AWS::MediaPackage::Asset",
             "  Properties:",
-            "    Id: \"${2:String}\" # Required",
-            "    PackagingGroupId: \"${3:String}\" # Required",
-            "    ResourceId: \"${4:String}\"",
-            "    SourceArn: \"${5:String}\" # Required",
-            "    SourceRoleArn: \"${6:String}\" # Required",
+            "    EgressEndpoints:",
+            "      EgressEndpoints",
+            "    Id: \"${3:String}\" # Required",
+            "    PackagingGroupId: \"${4:String}\" # Required",
+            "    ResourceId: \"${5:String}\"",
+            "    SourceArn: \"${6:String}\" # Required",
+            "    SourceRoleArn: \"${7:String}\" # Required",
             "    Tags:",
             "      Tags"
         ],
@@ -17213,8 +17293,7 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediapackage-asset.html",
             "Attributes: ",
             "  CreatedAt",
-            "  Arn",
-            "  EgressEndpoints"
+            "  Arn"
         ],
         "prefix": "mediapackage-asset",
         "scope": "yaml"
@@ -20274,6 +20353,7 @@
             "    DBProxyName: \"${3:String}\" # Required",
             "    Tags:",
             "      Tags",
+            "    TargetRole: \"${5:String}\"",
             "    VpcSecurityGroupIds:",
             "      VpcSecurityGroupIds",
             "    VpcSubnetIds: # Required",
@@ -20285,8 +20365,7 @@
             "  DBProxyEndpointArn",
             "  IsDefault",
             "  VpcId",
-            "  Endpoint",
-            "  TargetRole"
+            "  Endpoint"
         ],
         "prefix": "rds-dbproxyendpoint",
         "scope": "yaml"
@@ -20461,7 +20540,9 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rum-appmonitor.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rum-appmonitor.html",
+            "Attributes: ",
+            "  Id"
         ],
         "prefix": "rum-appmonitor",
         "scope": "yaml"
