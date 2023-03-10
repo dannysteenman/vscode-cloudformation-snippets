@@ -1414,7 +1414,8 @@
             "    Tasks: # Required",
             "      Tasks",
             "    TriggerConfig:",
-            "      TriggerType: \"${11:String}\""
+            "      ActivateFlowOnCreate: ${10|false,true|}",
+            "      TriggerType: \"${12:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html",
@@ -1465,8 +1466,7 @@
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-eventintegration.html",
             "Attributes: ",
-            "  EventIntegrationArn",
-            "  Associations"
+            "  EventIntegrationArn"
         ],
         "prefix": "appintegrations-eventintegration",
         "scope": "yaml"
@@ -13663,13 +13663,15 @@
             "    JobExecutionsRolloutConfig:",
             "      MaximumPerMinute: ${9:Number}",
             "    JobTemplateId: \"${9:String}\" # Required",
+            "    MaintenanceWindows:",
+            "      MaintenanceWindows",
             "    PresignedUrlConfig:",
-            "      ExpiresInSec: ${10:Number}",
-            "      RoleArn: \"${11:String}\"",
+            "      ExpiresInSec: ${11:Number}",
+            "      RoleArn: \"${12:String}\"",
             "    Tags:",
             "      Tags",
             "    TimeoutConfig:",
-            "      InProgressTimeoutInMinutes: ${12:Number}"
+            "      InProgressTimeoutInMinutes: ${13:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html",
@@ -19025,7 +19027,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::Organizations::Policy",
             "  Properties:",
-            "    Content: \"${2:String}\" # Required",
+            "    Content: ${2:JSON} # Required",
             "    Description: \"${3:String}\"",
             "    Name: \"${4:String}\" # Required",
             "    Tags:",
@@ -23946,12 +23948,14 @@
             "    Distributor: \"${4:String}\"",
             "    Name: \"${5:String}\" # Required",
             "    Owner: \"${6:String}\" # Required",
-            "    ProvisioningArtifactParameters: # Required",
+            "    ProvisioningArtifactParameters:",
             "      ProvisioningArtifactParameters",
             "    ReplaceProvisioningArtifacts: ${8|false,true|}",
-            "    SupportDescription: \"${9:String}\"",
-            "    SupportEmail: \"${10:String}\"",
-            "    SupportUrl: \"${11:String}\"",
+            "    SourceConnection:",
+            "      Type: \"${10:String}\"",
+            "    SupportDescription: \"${10:String}\"",
+            "    SupportEmail: \"${11:String}\"",
+            "    SupportUrl: \"${12:String}\"",
             "    Tags:",
             "      Tags"
         ],
