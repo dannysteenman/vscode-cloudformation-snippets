@@ -2445,10 +2445,12 @@
             "    Tags:",
             "      Tags",
             "    WorkGroupConfiguration:",
-            "      BytesScannedCutoffPerQuery: ${7:Number}",
-            "      EnforceWorkGroupConfiguration: ${8|false,true|}",
-            "      PublishCloudWatchMetricsEnabled: ${10|false,true|}",
-            "      RequesterPaysEnabled: ${11|false,true|}"
+            "      AdditionalConfiguration: \"${7:String}\"",
+            "      BytesScannedCutoffPerQuery: ${8:Number}",
+            "      EnforceWorkGroupConfiguration: ${10|false,true|}",
+            "      ExecutionRole: \"${12:String}\"",
+            "      PublishCloudWatchMetricsEnabled: ${13|false,true|}",
+            "      RequesterPaysEnabled: ${14|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-workgroup.html",
@@ -3258,19 +3260,20 @@
             "  Properties:",
             "    BillingMode:",
             "      Mode: \"${2:String}\"",
+            "    ClientSideTimestampsEnabled: ${3|false,true|}",
             "    ClusteringKeyColumns:",
             "      ClusteringKeyColumns",
-            "    DefaultTimeToLive: ${4:Number}",
+            "    DefaultTimeToLive: ${5:Number}",
             "    EncryptionSpecification:",
-            "      EncryptionType: \"${5:String}\"",
-            "      KmsKeyIdentifier: \"${6:String}\"",
-            "    KeyspaceName: \"${6:String}\" # Required",
+            "      EncryptionType: \"${6:String}\"",
+            "      KmsKeyIdentifier: \"${7:String}\"",
+            "    KeyspaceName: \"${7:String}\" # Required",
             "    PartitionKeyColumns: # Required",
             "      PartitionKeyColumns",
-            "    PointInTimeRecoveryEnabled: ${8|false,true|}",
+            "    PointInTimeRecoveryEnabled: ${9|false,true|}",
             "    RegularColumns:",
             "      RegularColumns",
-            "    TableName: \"${10:String}\"",
+            "    TableName: \"${11:String}\"",
             "    Tags:",
             "      Tags"
         ],
@@ -3316,6 +3319,31 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html"
         ],
         "prefix": "certificatemanager-certificate",
+        "scope": "yaml"
+    },
+    "AWS::Chatbot::MicrosoftTeamsChannelConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Chatbot::MicrosoftTeamsChannelConfiguration",
+            "  Properties:",
+            "    ConfigurationName: \"${2:String}\" # Required",
+            "    GuardrailPolicies:",
+            "      GuardrailPolicies",
+            "    IamRoleArn: \"${4:String}\" # Required",
+            "    LoggingLevel: \"${5:String}\"",
+            "    SnsTopicArns:",
+            "      SnsTopicArns",
+            "    TeamId: \"${7:String}\" # Required",
+            "    TeamsChannelId: \"${8:String}\" # Required",
+            "    TeamsTenantId: \"${9:String}\" # Required",
+            "    UserRoleRequired: ${10|false,true|}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-chatbot-microsoftteamschannelconfiguration.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "chatbot-microsoftteamschannelconfiguration",
         "scope": "yaml"
     },
     "AWS::Chatbot::SlackChannelConfiguration": {
@@ -5027,6 +5055,33 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html"
         ],
         "prefix": "cognito-userpoolusertogroupattachment",
+        "scope": "yaml"
+    },
+    "AWS::Comprehend::Flywheel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Comprehend::Flywheel",
+            "  Properties:",
+            "    ActiveModelArn: \"${2:String}\"",
+            "    DataAccessRoleArn: \"${3:String}\" # Required",
+            "    DataLakeS3Uri: \"${4:String}\" # Required",
+            "    DataSecurityConfig:",
+            "      DataLakeKmsKeyId: \"${5:String}\"",
+            "      ModelKmsKeyId: \"${6:String}\"",
+            "      VolumeKmsKeyId: \"${7:String}\"",
+            "    FlywheelName: \"${6:String}\" # Required",
+            "    ModelType: \"${7:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    TaskConfig:",
+            "      LanguageCode: \"${11:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-comprehend-flywheel.html",
+            "Attributes: ",
+            "  Arn"
+        ],
+        "prefix": "comprehend-flywheel",
         "scope": "yaml"
     },
     "AWS::Config::AggregationAuthorization": {
@@ -8762,9 +8817,7 @@
             "    VpcId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcdhcpoptionsassociation.html",
-            "Attributes: ",
-            "  Id"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcdhcpoptionsassociation.html"
         ],
         "prefix": "ec2-vpcdhcpoptionsassociation",
         "scope": "yaml"
@@ -8790,8 +8843,9 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html",
             "Attributes: ",
             "  CreationTimestamp",
-            "  DnsEntries",
-            "  NetworkInterfaceIds"
+            "  NetworkInterfaceIds",
+            "  Id",
+            "  DnsEntries"
         ],
         "prefix": "ec2-vpcendpoint",
         "scope": "yaml"
@@ -10251,7 +10305,7 @@
             "      Actions",
             "    Conditions: # Required",
             "      Conditions",
-            "    ListenerArn: \"${4:String}\" # Required",
+            "    ListenerArn: \"${4:String}\"",
             "    Priority: ${5:Number} # Required"
         ],
         "description": [
@@ -22809,7 +22863,7 @@
             "  Properties:",
             "    Alias: \"${2:String}\" # Required",
             "    DisplayName: \"${3:String}\" # Required",
-            "    Plan: # Required",
+            "    Plan:",
             "      Plan",
             "    Type: \"${5:String}\" # Required"
         ],
@@ -23258,6 +23312,49 @@
             "  ImageArn"
         ],
         "prefix": "sagemaker-imageversion",
+        "scope": "yaml"
+    },
+    "AWS::SageMaker::InferenceExperiment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SageMaker::InferenceExperiment",
+            "  Properties:",
+            "    DataStorageConfig:",
+            "      Destination: \"${3:String}\"",
+            "      KmsKey: \"${4:String}\"",
+            "    Description: \"${3:String}\"",
+            "    DesiredState: \"${4:String}\"",
+            "    EndpointName: \"${5:String}\" # Required",
+            "    KmsKey: \"${6:String}\"",
+            "    ModelVariants: # Required",
+            "      ModelVariants",
+            "    Name: \"${8:String}\" # Required",
+            "    RoleArn: \"${9:String}\" # Required",
+            "    Schedule:",
+            "      EndTime: \"${10:String}\"",
+            "      StartTime: \"${11:String}\"",
+            "    ShadowModeConfig:",
+            "      ShadowModelVariants:",
+            "        -",
+            "      SourceModelVariantName: \"${12:String}\"",
+            "    StatusReason: \"${12:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Type: \"${14:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-inferenceexperiment.html",
+            "Attributes: ",
+            "  Status",
+            "  EndpointMetadata.EndpointConfigName",
+            "  CreationTime",
+            "  LastModifiedTime",
+            "  EndpointMetadata.EndpointName",
+            "  Arn",
+            "  EndpointMetadata.EndpointStatus",
+            "  EndpointMetadata"
+        ],
+        "prefix": "sagemaker-inferenceexperiment",
         "scope": "yaml"
     },
     "AWS::SageMaker::Model": {
@@ -24975,6 +25072,242 @@
             "  DomainId"
         ],
         "prefix": "voiceid-domain",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::AccessLogSubscription": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::AccessLogSubscription",
+            "  Properties:",
+            "    DestinationArn: \"${2:String}\" # Required",
+            "    ResourceIdentifier: \"${3:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-accesslogsubscription.html",
+            "Attributes: ",
+            "  ResourceArn",
+            "  ResourceId",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "vpclattice-accesslogsubscription",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::AuthPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::AuthPolicy",
+            "  Properties:",
+            "    Policy: ${2:JSON} # Required",
+            "    ResourceIdentifier: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-authpolicy.html",
+            "Attributes: ",
+            "  State"
+        ],
+        "prefix": "vpclattice-authpolicy",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::Listener": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::Listener",
+            "  Properties:",
+            "    DefaultAction:",
+            "    Name: \"${3:String}\"",
+            "    Port: ${4:Number}",
+            "    Protocol: \"${5:String}\" # Required",
+            "    ServiceIdentifier: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-listener.html",
+            "Attributes: ",
+            "  Id",
+            "  ServiceArn",
+            "  Arn",
+            "  ServiceId"
+        ],
+        "prefix": "vpclattice-listener",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::ResourcePolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::ResourcePolicy",
+            "  Properties:",
+            "    Policy: ${2:JSON} # Required",
+            "    ResourceArn: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourcepolicy.html"
+        ],
+        "prefix": "vpclattice-resourcepolicy",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::Rule": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::Rule",
+            "  Properties:",
+            "    Action:",
+            "    ListenerIdentifier: \"${3:String}\"",
+            "    Match:",
+            "    Name: \"${5:String}\"",
+            "    Priority: ${6:Number} # Required",
+            "    ServiceIdentifier: \"${7:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-rule.html",
+            "Attributes: ",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "vpclattice-rule",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::Service": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::Service",
+            "  Properties:",
+            "    AuthType: \"${2:String}\"",
+            "    CertificateArn: \"${3:String}\"",
+            "    CustomDomainName: \"${4:String}\"",
+            "    DnsEntry:",
+            "      DomainName: \"${5:String}\"",
+            "      HostedZoneId: \"${6:String}\"",
+            "    Name: \"${6:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-service.html",
+            "Attributes: ",
+            "  Status",
+            "  LastUpdatedAt",
+            "  CreatedAt",
+            "  DnsEntry.HostedZoneId",
+            "  Id",
+            "  Arn",
+            "  DnsEntry.DomainName"
+        ],
+        "prefix": "vpclattice-service",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::ServiceNetwork": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::ServiceNetwork",
+            "  Properties:",
+            "    AuthType: \"${2:String}\"",
+            "    Name: \"${3:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetwork.html",
+            "Attributes: ",
+            "  LastUpdatedAt",
+            "  CreatedAt",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "vpclattice-servicenetwork",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::ServiceNetworkServiceAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::ServiceNetworkServiceAssociation",
+            "  Properties:",
+            "    DnsEntry:",
+            "      DomainName: \"${2:String}\"",
+            "      HostedZoneId: \"${3:String}\"",
+            "    ServiceIdentifier: \"${3:String}\"",
+            "    ServiceNetworkIdentifier: \"${4:String}\"",
+            "    Tags:",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkserviceassociation.html",
+            "Attributes: ",
+            "  Status",
+            "  ServiceNetworkId",
+            "  ServiceName",
+            "  CreatedAt",
+            "  DnsEntry.HostedZoneId",
+            "  ServiceNetworkName",
+            "  ServiceArn",
+            "  Id",
+            "  Arn",
+            "  DnsEntry.DomainName",
+            "  ServiceNetworkArn",
+            "  ServiceId"
+        ],
+        "prefix": "vpclattice-servicenetworkserviceassociation",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::ServiceNetworkVpcAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::ServiceNetworkVpcAssociation",
+            "  Properties:",
+            "    SecurityGroupIds:",
+            "      SecurityGroupIds",
+            "    ServiceNetworkIdentifier: \"${3:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    VpcIdentifier: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkvpcassociation.html",
+            "Attributes: ",
+            "  Status",
+            "  VpcId",
+            "  ServiceNetworkId",
+            "  CreatedAt",
+            "  ServiceNetworkName",
+            "  Id",
+            "  Arn",
+            "  ServiceNetworkArn"
+        ],
+        "prefix": "vpclattice-servicenetworkvpcassociation",
+        "scope": "yaml"
+    },
+    "AWS::VpcLattice::TargetGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::VpcLattice::TargetGroup",
+            "  Properties:",
+            "    Config:",
+            "      Port: ${3:Number}",
+            "      Protocol: \"${4:String}\"",
+            "      ProtocolVersion: \"${5:String}\"",
+            "      VpcIdentifier: \"${6:String}\"",
+            "    Name: \"${3:String}\"",
+            "    Tags:",
+            "      Tags",
+            "    Targets:",
+            "      Targets",
+            "    Type: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-targetgroup.html",
+            "Attributes: ",
+            "  Status",
+            "  LastUpdatedAt",
+            "  CreatedAt",
+            "  Id",
+            "  Arn"
+        ],
+        "prefix": "vpclattice-targetgroup",
         "scope": "yaml"
     },
     "AWS::WAF::ByteMatchSet": {
