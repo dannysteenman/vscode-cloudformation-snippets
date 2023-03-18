@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 import argparse
 import concurrent.futures
+import hashlib
 import json
 import os
 import requests
@@ -313,7 +314,28 @@ def create_cfn_snippet(
 
 
 if __name__ == "__main__":
-    cloudformation_resource_spec = get_resource_spec(args.local_path)
-    create_cfn_snippet(
-        cloudformation_resource_spec, args.local_path, args.output_format
-    )
+    # Load the current hash
+    with open("src/current-json-spec-hash", "r+") as file:
+        current_hash = file.read()
+        # Load the source data and hash it
+        new_hash = hashlib.md5(
+            json.dumps(get_resource_spec()).encode("utf-8")
+        ).hexdigest()
+
+        if new_hash == current_hash:
+            print(
+                f"The new hash: {new_hash} matches with our current hash: {current_hash}."
+            )
+            print("The snippets are up-to-date, stopping the pipeline.")
+            exit(1)
+        else:
+            print(
+                "Found an update in the cfn-resource-specification, let's update the resource snippets!"
+            )
+            file.seek(0)
+            file.write(new_hash)
+
+            cloudformation_resource_spec = get_resource_spec(args.local_path)
+            create_cfn_snippet(
+                cloudformation_resource_spec, args.local_path, args.output_format
+            )
