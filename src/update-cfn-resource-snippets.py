@@ -1,7 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 import argparse
 import concurrent.futures
-import hashlib
 import json
 import os
 import requests
@@ -24,6 +23,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 
+# Get the resource specification from a local file or the AWS URL
 def get_resource_spec(local_path=None):
     if local_path:
         abs_path = os.path.abspath(local_path)
@@ -39,6 +39,15 @@ def get_resource_spec(local_path=None):
     return response
 
 
+# Get the item type for a resource property
+def get_item_type(resource_property):
+    return resource_property.get(
+        "PrimitiveItemType",
+        resource_property.get("PrimitiveType", resource_property.get("ItemType")),
+    )
+
+
+# Parse the body of the YAML output
 def parse_body_yaml(
     body, counter, resource_properties, resource_property, resource_type
 ):
@@ -57,21 +66,15 @@ def parse_body_yaml(
         else:
             item = property_info["Type"]
             body.append(f"    {resource_property}:")
-            get_item_type_prop(body, item, resource_type, counter)
+            get_item_type_prop_yaml(body, item, resource_type, counter)
     else:
-        set_value_type(body, resource_property, item, counter, required, indent=4)
+        set_value_type_yaml(body, resource_property, item, counter, required, indent=4)
 
     return body
 
 
-def get_item_type(resource_property):
-    return resource_property.get(
-        "PrimitiveItemType",
-        resource_property.get("PrimitiveType", resource_property.get("ItemType")),
-    )
-
-
-def get_item_type_prop(body, item, resource_type, counter, indent=6):
+# Parse the properties for a YAML item
+def get_item_type_prop_yaml(body, item, resource_type, counter, indent=6):
     response_data = get_resource_spec()
     resource_property_name = f"{resource_type}.{item}"
 
@@ -92,7 +95,7 @@ def get_item_type_prop(body, item, resource_type, counter, indent=6):
                     elif property == (property_info["Type"] or None):
                         continue
                 else:
-                    set_value_type(
+                    set_value_type_yaml(
                         body,
                         property,
                         item,
@@ -103,7 +106,8 @@ def get_item_type_prop(body, item, resource_type, counter, indent=6):
     return body
 
 
-def set_value_type(body, property, item, counter, required, indent):
+# Set the value type for a YAML property
+def set_value_type_yaml(body, property, item, counter, required, indent):
     value_type = {
         "Boolean": "|false,true|",
         "Double": ":Number",
@@ -127,6 +131,7 @@ def set_value_type(body, property, item, counter, required, indent):
     return body
 
 
+# Parse the body of the JSON output
 def parse_body_json(
     body, counter, resource_properties, resource_property, resource_type
 ):
@@ -161,6 +166,7 @@ def parse_body_json(
     return body
 
 
+# Parse the properties for a JSON item
 def get_item_type_prop_json(body, item, resource_type, counter, indent=6):
     response_data = get_resource_spec()
     resource_property_name = f"{resource_type}.{item}"
@@ -184,7 +190,6 @@ def get_item_type_prop_json(body, item, resource_type, counter, indent=6):
                             [
                                 f'{" " * indent}"{property}": []'
                                 + ("," if not is_last else ""),
-                                # f'{" " * (indent + 2)}{{',
                             ]
                         )
                     elif property == (property_info["Type"] or None):
@@ -199,16 +204,13 @@ def get_item_type_prop_json(body, item, resource_type, counter, indent=6):
                         is_last=is_last,
                     )
 
-                # if property == last_property:
-                #     body.append(
-                #         f'{" " * (indent + 2)}}}{"," if property != last_property else ""}'
-                #     )
             body.append(f'{" " * 4 }}}{"," if resource_type != last_property else ""}')
             break
 
     return body
 
 
+# Set the value type for a JSON property
 def set_value_type_json(body, property, item, counter, indent, is_last=False):
     value_type = {
         "Boolean": "|false,true|",
@@ -232,6 +234,7 @@ def set_value_type_json(body, property, item, counter, indent, is_last=False):
     return body
 
 
+# Fetch the description of a resource type
 def fetch_description(resource_type):
     description = [resource_type["Documentation"].replace("http://", "https://")]
 
@@ -244,6 +247,7 @@ def fetch_description(resource_type):
     return description
 
 
+# Process a resource type and generate its snippet
 def process_resource_type(resource_type, resource_data, output_format):
     prefix = resource_type.replace("AWS::", "").replace("::", "-")
     description = fetch_description(resource_data)
@@ -281,6 +285,7 @@ def process_resource_type(resource_type, resource_data, output_format):
     }
 
 
+# Function to create the CloudFormation snippet based on the resource specification
 def create_cfn_snippet(
     cloudformation_resource_spec, local_path=None, output_format="yaml"
 ):
@@ -316,29 +321,6 @@ def create_cfn_snippet(
 
 
 if __name__ == "__main__":
-    if args.local_path is None:
-        # Load the current hash
-        with open("src/current-json-spec-hash", "r+") as file:
-            current_hash = file.read()
-            # Load the source data and hash it
-            new_hash = hashlib.md5(
-                json.dumps(get_resource_spec(args.local_path)).encode("utf-8")
-            ).hexdigest()
-
-            if new_hash == current_hash:
-                print(
-                    f"The new hash: {new_hash} matches with our current hash: {current_hash}."
-                )
-                print("The snippets are up-to-date, stopping the pipeline.")
-                exit(1)
-            else:
-                print(
-                    "Found an update in the cfn-resource-specification, let's update the resource snippets!"
-                )
-                file.seek(0)
-                file.write(new_hash)
-
-    # Continue with the rest of the script even if the hashing mechanism is skipped
     cloudformation_resource_spec = get_resource_spec(args.local_path)
     create_cfn_snippet(
         cloudformation_resource_spec, args.local_path, args.output_format
