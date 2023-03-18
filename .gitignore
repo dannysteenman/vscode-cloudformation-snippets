@@ -1,2 +1,9 @@
 *.vsix
 .mypy_cache
+
+# Ignore everything in the test folder
+/test/*
+
+# But don't ignore these files
+!test/complete-resource-specification.json
+!test/short-resource-specification.json

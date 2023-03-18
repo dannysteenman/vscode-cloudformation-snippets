@@ -1,0 +1,32 @@
+{
+	"Fn::And": {
+		"prefix": "and",
+		"body": "!And [condition]",
+		"description": "Returns true if all the specified conditions evaluate to true, or returns false if any one of the conditions evaluates to false.",
+		"scope": "yaml"
+	},
+	"Fn::Equals": {
+		"prefix": "equals",
+		"body": "!Equals [value_1, value_2]",
+		"description": "Compares if two values are equal. Returns true if the two values are equal or false if they aren't.",
+		"scope": "yaml"
+	},
+	"Fn::If": {
+		"prefix": "if",
+		"body": "!If [condition_name, value_if_true, value_if_false]",
+		"description": "Returns one value if the specified condition evaluates to true and another value if the specified condition evaluates to false.",
+		"scope": "yaml"
+	},
+	"Fn::Not": {
+		"prefix": "not",
+		"body": "!Not [condition]",
+		"description": "Returns true for a condition that evaluates to false or returns false for a condition that evaluates to true. Fn::Not acts as a NOT operator.",
+		"scope": "yaml"
+	},
+	"Fn::Or": {
+		"prefix": "or",
+		"body": "!Or [condition, ...]",
+		"description": "Returns true if any one of the specified conditions evaluate to true, or returns false if all of the conditions evaluates to false.",
+		"scope": "yaml"
+	}
+}

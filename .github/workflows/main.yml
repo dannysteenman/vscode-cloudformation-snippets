@@ -15,16 +15,24 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
       - name: Install Python
         run: |
           set -x -e
           sudo apt install python3-setuptools
           python3 -m pip install --upgrade pip && pip3 install -r src/requirements.txt
-      - name: Check for update and create snippets if needed
+      - name: Check if AWS updated the CloudFormation resource specification
         run: |
-          echo "checking for update"
-          python3 src/update-cfn-resource-snippets.py
+          echo "Check if the cfn resource spec has been updated"
+          python3 check-cfn-resource-spec-hash.py
+      - name: Update the yaml cfn resource type snippets
+        run: |
+          echo "Update the yaml cfn resource type snippets"
+          python3 src/update-cfn-resource-snippets.py --format yaml
+      - name: Update the json cfn resource type snippets
+        run: |
+          echo "Update the json cfn resource type snippets"
+          python3 src/update-cfn-resource-snippets.py --format json
       - name: Commit changes to Github
         run: |
           set -x -e
@@ -32,7 +40,7 @@ jobs:
           git config --global user.email 'danny@towardsthecloud.com'
           npm version minor --force --no-git-tag-version
           package_version=$(cat package.json|grep 'version":'|sed 's/[",]//g'|awk '{print $2}')
-          cfn_release_rss_summary=$(python3 src/feed.py)
+          cfn_release_rss_summary=$(python3 src/update-and-parse-feed.py)
           git commit -am "$cfn_release_rss_summary"
           git tag $package_version
           gitchangelog|tee "CHANGELOG.md"

@@ -8,20 +8,22 @@ This extension adds snippets for all the AWS CloudFormation resources into Visua
 
 ---
 
-## New
+## New in version 4!
 
-- Added support for [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14) by publishing this extension to the [Open VSX Registry](https://open-vsx.org/extension/dsteenman/cloudformation-yaml-snippets)
+- Support for CloudFormation resource type snippets in JSON format! This means you can now generate CloudFormation resource type snippets in both YAML and JSON formats!
+  - To get started: Open up a JSON file, type an AWS Resource `prefix` in the same manner as you do for the YAML snippets and it will show the autocomplete!
 
 
 ## Features
 
 1. Supports all resources that are defined by CloudFormation
-2. CloudFormation autocompletion for every resource (includes properties).
+2. CloudFormation autocompletion for every resource (includes properties) in both YAML and JSON formats.
 3. The CloudFormation snippets are automatically updated every week after AWS updates their [CloudFormation Resource Specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
 4. Intrinsic functions + conditions are supported.
 5. Contains a whole bunch of parameter types.
 6. Has builtin support for placeholders. This means you can quickly jump from property to property in each resource by using `Tab`
 7. Every resource type contains the matching documentation URL in its description.
+8. Support for [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14) by publishing this extension to the [Open VSX Registry](https://open-vsx.org/extension/dsteenman/cloudformation-yaml-snippets)
 
 ## Usage
 
