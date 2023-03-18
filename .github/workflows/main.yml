@@ -24,7 +24,7 @@ jobs:
       - name: Check if AWS updated the CloudFormation resource specification
         run: |
           echo "Check if the cfn resource spec has been updated"
-          python3 check-cfn-resource-spec-hash.py
+          python3 src/check-cfn-resource-spec-hash.py
       - name: Update the yaml cfn resource type snippets
         run: |
           echo "Update the yaml cfn resource type snippets"
