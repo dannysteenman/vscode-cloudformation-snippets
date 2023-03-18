@@ -2,6 +2,40 @@ Changelog
 =========
 
 
+4.1.0 (2023-03-18)
+------------------
+
+Fix
+~~~
+- Script location in workflow. [Danny Steenman]
+
+Other
+~~~~~
+- The following resource was updated: <code
+  class="code">AWS::Cassandra::Table</code>. [Github Actions]
+- Merge pull request #15 from dannysteenman/feat/support-json-cfn.
+  [Danny Steenman]
+
+  Feat/support-json-cfn
+- Feat: update the snippet paths for the plugin, updated package version
+  and updated the README. [Danny Steenman]
+- Feat: rm hash function and add comments to functions + generate
+  resource types. [Danny Steenman]
+- Feat: rename parse feed script and update github workflow. [Danny
+  Steenman]
+- Feat: seperate hash checker from update cfn script. [Danny Steenman]
+- Feat: update snippets to test folder if testing locally. [Danny
+  Steenman]
+- Chore: rename snippet files to distinguish between yaml and json
+  snippets. [Danny Steenman]
+- Feat: add test folder with sample resource specs for local testing.
+  [Danny Steenman]
+- Feat: check resource spec hash before running the update. [Danny
+  Steenman]
+- Feat: add parallel processing and add support for generating json cfn
+  snippets. [Danny Steenman]
+
+
 3.100.0 (2023-03-17)
 --------------------
 - The following resource was updated: <code
