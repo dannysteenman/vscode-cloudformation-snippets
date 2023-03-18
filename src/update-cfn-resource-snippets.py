@@ -300,12 +300,14 @@ def create_cfn_snippet(
             output[resource_type] = result
 
     output_file_name = (
-        f"resource-types-{output_format}-test.json"
+        f"{output_format}-resource-types-test-output.json"
         if local_path
-        else f"resource-types-{output_format}.json"
+        else f"{output_format}-resource-types.json"
     )
 
-    snippet_directory = f"{os.getcwd()}/snippets"
+    snippet_directory = (
+        f"{os.getcwd()}/test" if local_path else f"{os.getcwd()}/snippets"
+    )
     output_file_path = os.path.join(snippet_directory, output_file_name)
 
     print(f"Saving snippets in: {output_file_path}")
@@ -314,28 +316,30 @@ def create_cfn_snippet(
 
 
 if __name__ == "__main__":
-    # Load the current hash
-    with open("src/current-json-spec-hash", "r+") as file:
-        current_hash = file.read()
-        # Load the source data and hash it
-        new_hash = hashlib.md5(
-            json.dumps(get_resource_spec()).encode("utf-8")
-        ).hexdigest()
+    if args.local_path is None:
+        # Load the current hash
+        with open("src/current-json-spec-hash", "r+") as file:
+            current_hash = file.read()
+            # Load the source data and hash it
+            new_hash = hashlib.md5(
+                json.dumps(get_resource_spec(args.local_path)).encode("utf-8")
+            ).hexdigest()
 
-        if new_hash == current_hash:
-            print(
-                f"The new hash: {new_hash} matches with our current hash: {current_hash}."
-            )
-            print("The snippets are up-to-date, stopping the pipeline.")
-            exit(1)
-        else:
-            print(
-                "Found an update in the cfn-resource-specification, let's update the resource snippets!"
-            )
-            file.seek(0)
-            file.write(new_hash)
+            if new_hash == current_hash:
+                print(
+                    f"The new hash: {new_hash} matches with our current hash: {current_hash}."
+                )
+                print("The snippets are up-to-date, stopping the pipeline.")
+                exit(1)
+            else:
+                print(
+                    "Found an update in the cfn-resource-specification, let's update the resource snippets!"
+                )
+                file.seek(0)
+                file.write(new_hash)
 
-            cloudformation_resource_spec = get_resource_spec(args.local_path)
-            create_cfn_snippet(
-                cloudformation_resource_spec, args.local_path, args.output_format
-            )
+    # Continue with the rest of the script even if the hashing mechanism is skipped
+    cloudformation_resource_spec = get_resource_spec(args.local_path)
+    create_cfn_snippet(
+        cloudformation_resource_spec, args.local_path, args.output_format
+    )
