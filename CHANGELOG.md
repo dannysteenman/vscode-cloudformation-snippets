@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.2.0 (2023-03-24)
+------------------
+- The following resource was updated: <code
+  class="code">AWS::Cassandra::Table</code>. [Github Actions]
+
+
 4.1.0 (2023-03-18)
 ------------------
 
