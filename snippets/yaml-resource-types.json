@@ -1099,7 +1099,8 @@
             "    Target: \"${13:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-route.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-route.html",
+            "Attributes:\n  RouteId"
         ],
         "prefix": "apigatewayv2-route",
         "scope": "yaml"
@@ -2717,23 +2718,23 @@
             "        -",
             "      Environment:",
             "        -",
-            "      ExecutionRoleArn: \"${4:String}\"",
-            "      Image: \"${6:String}\"",
-            "      InstanceType: \"${7:String}\"",
-            "      JobRoleArn: \"${8:String}\"",
-            "      Memory: ${11:Number}",
+            "      ExecutionRoleArn: \"${5:String}\"",
+            "      Image: \"${7:String}\"",
+            "      InstanceType: \"${8:String}\"",
+            "      JobRoleArn: \"${9:String}\"",
+            "      Memory: ${12:Number}",
             "      MountPoints:",
             "        -",
-            "      Privileged: ${14|false,true|}",
-            "      ReadonlyRootFilesystem: ${15|false,true|}",
+            "      Privileged: ${15|false,true|}",
+            "      ReadonlyRootFilesystem: ${16|false,true|}",
             "      ResourceRequirements:",
             "        -",
             "      Secrets:",
             "        -",
             "      Ulimits:",
             "        -",
-            "      User: \"${19:String}\"",
-            "      Vcpus: ${20:Number}",
+            "      User: \"${20:String}\"",
+            "      Vcpus: ${21:Number}",
             "      Volumes:",
             "        -",
             "    EksProperties:",
@@ -6373,6 +6374,15 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-memberinvitation.html"
         ],
         "prefix": "detective-memberinvitation",
+        "scope": "yaml"
+    },
+    "AWS::DevOpsGuru::LogAnomalyDetectionIntegration": {
+        "body": [],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devopsguru-loganomalydetectionintegration.html",
+            "Attributes:\n  AccountId"
+        ],
+        "prefix": "devopsguru-loganomalydetectionintegration",
         "scope": "yaml"
     },
     "AWS::DevOpsGuru::NotificationChannel": {
@@ -15270,9 +15280,7 @@
             "    Description: \"${2:String}\"",
             "    KmsKeyId: \"${3:String}\"",
             "    PositionFiltering: \"${4:String}\"",
-            "    PricingPlan: \"${5:String}\"",
-            "    PricingPlanDataSource: \"${6:String}\"",
-            "    TrackerName: \"${7:String}\" # Required"
+            "    TrackerName: \"${5:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html",
@@ -17195,9 +17203,9 @@
             "  Type: AWS::OpenSearchServerless::AccessPolicy",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    Name: \"${3:String}\"",
-            "    Policy: \"${4:String}\"",
-            "    Type: \"${5:String}\""
+            "    Name: \"${3:String}\" # Required",
+            "    Policy: \"${4:String}\" # Required",
+            "    Type: \"${5:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-accesspolicy.html"
@@ -17250,9 +17258,9 @@
             "  Type: AWS::OpenSearchServerless::SecurityPolicy",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    Name: \"${3:String}\"",
+            "    Name: \"${3:String}\" # Required",
             "    Policy: \"${4:String}\" # Required",
-            "    Type: \"${5:String}\""
+            "    Type: \"${5:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-securitypolicy.html"
@@ -23316,10 +23324,11 @@
             "  Type: AWS::VpcLattice::TargetGroup",
             "  Properties:",
             "    Config:",
-            "      Port: ${3:Number}",
-            "      Protocol: \"${4:String}\"",
-            "      ProtocolVersion: \"${5:String}\"",
-            "      VpcIdentifier: \"${6:String}\"",
+            "      IpAddressType: \"${3:String}\"",
+            "      Port: ${4:Number}",
+            "      Protocol: \"${5:String}\"",
+            "      ProtocolVersion: \"${6:String}\"",
+            "      VpcIdentifier: \"${7:String}\"",
             "    Name: \"${3:String}\"",
             "    Tags: ",
             "      Tags",
