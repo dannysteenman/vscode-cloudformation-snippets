@@ -7024,10 +7024,11 @@
             "  Properties:",
             "    AutoPlacement: \"${2:String}\"",
             "    AvailabilityZone: \"${3:String}\" # Required",
-            "    HostRecovery: \"${4:String}\"",
-            "    InstanceFamily: \"${5:String}\"",
-            "    InstanceType: \"${6:String}\"",
-            "    OutpostArn: \"${7:String}\""
+            "    HostMaintenance: \"${4:String}\"",
+            "    HostRecovery: \"${5:String}\"",
+            "    InstanceFamily: \"${6:String}\"",
+            "    InstanceType: \"${7:String}\"",
+            "    OutpostArn: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html",
@@ -11302,8 +11303,8 @@
             "${1:LogicalID}:",
             "  Type: AWS::Grafana::Workspace",
             "  Properties:",
-            "    AccountAccessType: \"${2:String}\"",
-            "    AuthenticationProviders: ",
+            "    AccountAccessType: \"${2:String}\" # Required",
+            "    AuthenticationProviders: # Required",
             "      AuthenticationProviders",
             "    ClientToken: \"${4:String}\"",
             "    DataSources: ",
@@ -11315,7 +11316,7 @@
             "    OrganizationRoleName: \"${9:String}\"",
             "    OrganizationalUnits: ",
             "      OrganizationalUnits",
-            "    PermissionType: \"${11:String}\"",
+            "    PermissionType: \"${11:String}\" # Required",
             "    RoleArn: \"${12:String}\"",
             "    SamlConfiguration:",
             "      AllowedOrganizations:",
@@ -11700,9 +11701,13 @@
             "      DataflowEdges",
             "    MinimumViableContactDurationSeconds: ${5:Number} # Required",
             "    Name: \"${6:String}\" # Required",
+            "    StreamsKmsKey:",
+            "      KmsAliasArn: \"${7:String}\"",
+            "      KmsKeyArn: \"${8:String}\"",
+            "    StreamsKmsRole: \"${8:String}\"",
             "    Tags: ",
             "      Tags",
-            "    TrackingConfigArn: \"${8:String}\" # Required"
+            "    TrackingConfigArn: \"${10:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html",
@@ -13911,6 +13916,28 @@
         "prefix": "iotwireless-wirelessdevice",
         "scope": "yaml"
     },
+    "AWS::IoTWireless::WirelessDeviceImportTask": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoTWireless::WirelessDeviceImportTask",
+            "  Properties:",
+            "    DestinationName: \"${2:String}\" # Required",
+            "    Sidewalk:",
+            "      DeviceCreationFile: \"${3:String}\"",
+            "      DeviceCreationFileList:",
+            "        -",
+            "      Role: \"${5:String}\"",
+            "      SidewalkManufacturingSn: \"${6:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdeviceimporttask.html",
+            "Attributes:\n  Status\n  CreationDate\n  Sidewalk.DeviceCreationFileList\n  InitializedImportedDevicesCount\n  StatusReason\n  OnboardedImportedDevicesCount\n  FailedImportedDevicesCount\n  Id\n  PendingImportedDevicesCount\n  Arn"
+        ],
+        "prefix": "iotwireless-wirelessdeviceimporttask",
+        "scope": "yaml"
+    },
     "AWS::IoTWireless::WirelessGateway": {
         "body": [
             "${1:LogicalID}:",
@@ -15723,7 +15750,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-findingsfilter.html",
-            "Attributes:\n  Id\n  Arn\n  FindingsFilterListItems"
+            "Attributes:\n  Id\n  Arn"
         ],
         "prefix": "macie-findingsfilter",
         "scope": "yaml"
@@ -16484,17 +16511,16 @@
             "    EngineVersion: \"${10:String}\"",
             "    IamAuthEnabled: ${11|false,true|}",
             "    KmsKeyId: \"${12:String}\"",
-            "    Port: ${13:Number}",
-            "    PreferredBackupWindow: \"${14:String}\"",
-            "    PreferredMaintenanceWindow: \"${15:String}\"",
-            "    RestoreToTime: \"${16:String}\"",
-            "    RestoreType: \"${17:String}\"",
-            "    SnapshotIdentifier: \"${18:String}\"",
-            "    SourceDBClusterIdentifier: \"${19:String}\"",
-            "    StorageEncrypted: ${20|false,true|}",
+            "    PreferredBackupWindow: \"${13:String}\"",
+            "    PreferredMaintenanceWindow: \"${14:String}\"",
+            "    RestoreToTime: \"${15:String}\"",
+            "    RestoreType: \"${16:String}\"",
+            "    SnapshotIdentifier: \"${17:String}\"",
+            "    SourceDBClusterIdentifier: \"${18:String}\"",
+            "    StorageEncrypted: ${19|false,true|}",
             "    Tags: ",
             "      Tags",
-            "    UseLatestRestorableTime: ${22|false,true|}",
+            "    UseLatestRestorableTime: ${21|false,true|}",
             "    VpcSecurityGroupIds: ",
             "      VpcSecurityGroupIds"
         ],
@@ -18689,25 +18715,26 @@
             "    PreferredMaintenanceWindow: \"${40:String}\"",
             "    PubliclyAccessible: ${41|false,true|}",
             "    ReplicationSourceIdentifier: \"${42:String}\"",
-            "    RestoreType: \"${43:String}\"",
+            "    RestoreToTime: \"${43:String}\"",
+            "    RestoreType: \"${44:String}\"",
             "    ScalingConfiguration:",
-            "      AutoPause: ${44|false,true|}",
-            "      MaxCapacity: ${45:Number}",
-            "      MinCapacity: ${46:Number}",
-            "      SecondsBeforeTimeout: ${47:Number}",
-            "      SecondsUntilAutoPause: ${48:Number}",
-            "      TimeoutAction: \"${49:String}\"",
+            "      AutoPause: ${45|false,true|}",
+            "      MaxCapacity: ${46:Number}",
+            "      MinCapacity: ${47:Number}",
+            "      SecondsBeforeTimeout: ${48:Number}",
+            "      SecondsUntilAutoPause: ${49:Number}",
+            "      TimeoutAction: \"${50:String}\"",
             "    ServerlessV2ScalingConfiguration:",
-            "      MaxCapacity: ${45:Number}",
-            "      MinCapacity: ${46:Number}",
-            "    SnapshotIdentifier: \"${46:String}\"",
-            "    SourceDBClusterIdentifier: \"${47:String}\"",
-            "    SourceRegion: \"${48:String}\"",
-            "    StorageEncrypted: ${49|false,true|}",
-            "    StorageType: \"${50:String}\"",
+            "      MaxCapacity: ${46:Number}",
+            "      MinCapacity: ${47:Number}",
+            "    SnapshotIdentifier: \"${47:String}\"",
+            "    SourceDBClusterIdentifier: \"${48:String}\"",
+            "    SourceRegion: \"${49:String}\"",
+            "    StorageEncrypted: ${50|false,true|}",
+            "    StorageType: \"${51:String}\"",
             "    Tags: ",
             "      Tags",
-            "    UseLatestRestorableTime: ${52|false,true|}",
+            "    UseLatestRestorableTime: ${53|false,true|}",
             "    VpcSecurityGroupIds: ",
             "      VpcSecurityGroupIds"
         ],
@@ -21120,6 +21147,55 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "ssmcontacts-contactchannel",
+        "scope": "yaml"
+    },
+    "AWS::SSMContacts::Plan": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSMContacts::Plan",
+            "  Properties:",
+            "    ContactId: \"${2:String}\" # Required",
+            "    RotationIds: ",
+            "      RotationIds",
+            "    Stages: ",
+            "      Stages"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-plan.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "ssmcontacts-plan",
+        "scope": "yaml"
+    },
+    "AWS::SSMContacts::Rotation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSMContacts::Rotation",
+            "  Properties:",
+            "    ContactIds: # Required",
+            "      ContactIds",
+            "    Name: \"${3:String}\" # Required",
+            "    Recurrence:",
+            "      DailySettings:",
+            "        -",
+            "      MonthlySettings:",
+            "        -",
+            "      NumberOfOnCalls: ${6:Number}",
+            "      RecurrenceMultiplier: ${7:Number}",
+            "      ShiftCoverages:",
+            "        -",
+            "      WeeklySettings:",
+            "        -",
+            "    StartTime: \"${5:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    TimeZoneId: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmcontacts-rotation.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "ssmcontacts-rotation",
         "scope": "yaml"
     },
     "AWS::SSMIncidents::ReplicationSet": {
