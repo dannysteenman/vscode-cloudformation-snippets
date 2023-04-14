@@ -1272,6 +1272,45 @@
         "prefix": "appconfig-environment",
         "scope": "yaml"
     },
+    "AWS::AppConfig::Extension": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppConfig::Extension",
+            "  Properties:",
+            "    Actions: ${2:JSON} # Required",
+            "    Description: \"${3:String}\"",
+            "    LatestVersionNumber: ${4:Number}",
+            "    Name: \"${5:String}\" # Required",
+            "    Parameters:",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html",
+            "Attributes:\n  Id\n  Arn\n  VersionNumber"
+        ],
+        "prefix": "appconfig-extension",
+        "scope": "yaml"
+    },
+    "AWS::AppConfig::ExtensionAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppConfig::ExtensionAssociation",
+            "  Properties:",
+            "    ExtensionIdentifier: \"${2:String}\"",
+            "    ExtensionVersionNumber: ${3:Number}",
+            "    Parameters:",
+            "    ResourceIdentifier: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html",
+            "Attributes:\n  ResourceArn\n  ExtensionArn\n  Id\n  Arn"
+        ],
+        "prefix": "appconfig-extensionassociation",
+        "scope": "yaml"
+    },
     "AWS::AppConfig::HostedConfigurationVersion": {
         "body": [
             "${1:LogicalID}:",
@@ -10973,6 +11012,8 @@
             "    Targets:",
             "      CatalogTargets:",
             "        -",
+            "      DeltaTargets:",
+            "        -",
             "      DynamoDBTargets:",
             "        -",
             "      JdbcTargets:",
@@ -11012,9 +11053,9 @@
             "      CreateTableDefaultPermissions:",
             "        -",
             "      Description: \"${4:String}\"",
-            "      LocationUri: \"${5:String}\"",
-            "      Name: \"${6:String}\"",
-            "      Parameters: ${7:JSON}"
+            "      LocationUri: \"${6:String}\"",
+            "      Name: \"${7:String}\"",
+            "      Parameters: ${8:JSON}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html"
@@ -12565,15 +12606,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::InternetMonitor::Monitor",
             "  Properties:",
-            "    MaxCityNetworksToMonitor: ${2:Number}",
-            "    MonitorName: \"${3:String}\" # Required",
+            "    InternetMeasurementsLogDelivery:",
+            "    MaxCityNetworksToMonitor: ${3:Number}",
+            "    MonitorName: \"${4:String}\" # Required",
             "    Resources: ",
             "      Resources",
             "    ResourcesToAdd: ",
             "      ResourcesToAdd",
             "    ResourcesToRemove: ",
             "      ResourcesToRemove",
-            "    Status: \"${7:String}\"",
+            "    Status: \"${8:String}\"",
             "    Tags: ",
             "      Tags"
         ],
@@ -14440,6 +14482,13 @@
             "  Type: AWS::LakeFormation::DataLakeSettings",
             "  Properties:",
             "    Admins:",
+            "    AllowExternalDataFiltering: ${3|false,true|}",
+            "    AuthorizedSessionTagValueList: ",
+            "      AuthorizedSessionTagValueList",
+            "    CreateDatabaseDefaultPermissions:",
+            "    CreateTableDefaultPermissions:",
+            "    ExternalDataFilteringAllowList:",
+            "    Parameters: ${8:JSON}",
             "    TrustedResourceOwners: ",
             "      TrustedResourceOwners"
         ],
@@ -15686,9 +15735,11 @@
             "    RequirementsS3Path: \"${16:String}\"",
             "    Schedulers: ${17:Number}",
             "    SourceBucketArn: \"${18:String}\"",
-            "    Tags: ${19:JSON}",
-            "    WebserverAccessMode: \"${20:String}\"",
-            "    WeeklyMaintenanceWindowStart: \"${21:String}\""
+            "    StartupScriptS3ObjectVersion: \"${19:String}\"",
+            "    StartupScriptS3Path: \"${20:String}\"",
+            "    Tags: ${21:JSON}",
+            "    WebserverAccessMode: \"${22:String}\"",
+            "    WeeklyMaintenanceWindowStart: \"${23:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html",
@@ -18583,6 +18634,25 @@
         "prefix": "quicksight-datasource",
         "scope": "yaml"
     },
+    "AWS::QuickSight::RefreshSchedule": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QuickSight::RefreshSchedule",
+            "  Properties:",
+            "    AwsAccountId: \"${2:String}\"",
+            "    DataSetId: \"${3:String}\"",
+            "    Schedule:",
+            "      RefreshType: \"${4:String}\"",
+            "      ScheduleId: \"${6:String}\"",
+            "      StartAfterDateTime: \"${7:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-refreshschedule.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "quicksight-refreshschedule",
+        "scope": "yaml"
+    },
     "AWS::QuickSight::Template": {
         "body": [
             "${1:LogicalID}:",
@@ -18834,18 +18904,19 @@
             "    PubliclyAccessible: ${54|false,true|}",
             "    ReplicaMode: \"${55:String}\"",
             "    RestoreTime: \"${56:String}\"",
-            "    SourceDBInstanceAutomatedBackupsArn: \"${57:String}\"",
-            "    SourceDBInstanceIdentifier: \"${58:String}\"",
-            "    SourceDbiResourceId: \"${59:String}\"",
-            "    SourceRegion: \"${60:String}\"",
-            "    StorageEncrypted: ${61|false,true|}",
-            "    StorageThroughput: ${62:Number}",
-            "    StorageType: \"${63:String}\"",
+            "    SourceDBClusterIdentifier: \"${57:String}\"",
+            "    SourceDBInstanceAutomatedBackupsArn: \"${58:String}\"",
+            "    SourceDBInstanceIdentifier: \"${59:String}\"",
+            "    SourceDbiResourceId: \"${60:String}\"",
+            "    SourceRegion: \"${61:String}\"",
+            "    StorageEncrypted: ${62|false,true|}",
+            "    StorageThroughput: ${63:Number}",
+            "    StorageType: \"${64:String}\"",
             "    Tags: ",
             "      Tags",
-            "    Timezone: \"${65:String}\"",
-            "    UseDefaultProcessorFeatures: ${66|false,true|}",
-            "    UseLatestRestorableTime: ${67|false,true|}",
+            "    Timezone: \"${66:String}\"",
+            "    UseDefaultProcessorFeatures: ${67|false,true|}",
+            "    UseLatestRestorableTime: ${68|false,true|}",
             "    VPCSecurityGroups: ",
             "      VPCSecurityGroups"
         ],
