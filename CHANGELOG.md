@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.5.0 (2023-04-14)
+------------------
+- The following resources were added:
+  AWS::IoTWireless::WirelessDeviceImportTask. [Github Actions]
+
+
 4.4.0 (2023-04-07)
 ------------------
 - The following resources were added:
