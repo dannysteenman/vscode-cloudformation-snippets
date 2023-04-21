@@ -5733,11 +5733,12 @@
             "      HeartbeatEnable: ${28|false,true|}",
             "      HeartbeatFrequency: ${29:Number}",
             "      HeartbeatSchema: \"${30:String}\"",
-            "      MaxFileSize: ${31:Number}",
-            "      PluginName: \"${32:String}\"",
-            "      SecretsManagerAccessRoleArn: \"${33:String}\"",
-            "      SecretsManagerSecretId: \"${34:String}\"",
-            "      SlotName: \"${35:String}\"",
+            "      MapBooleanAsBoolean: ${31|false,true|}",
+            "      MaxFileSize: ${32:Number}",
+            "      PluginName: \"${33:String}\"",
+            "      SecretsManagerAccessRoleArn: \"${34:String}\"",
+            "      SecretsManagerSecretId: \"${35:String}\"",
+            "      SlotName: \"${36:String}\"",
             "    RedisSettings:",
             "      AuthPassword: \"${24:String}\"",
             "      AuthType: \"${25:String}\"",
@@ -5760,18 +5761,19 @@
             "      ExplicitIds: ${35|false,true|}",
             "      FileTransferUploadStreams: ${36:Number}",
             "      LoadTimeout: ${37:Number}",
-            "      MaxFileSize: ${38:Number}",
-            "      RemoveQuotes: ${39|false,true|}",
-            "      ReplaceChars: \"${40:String}\"",
-            "      ReplaceInvalidChars: \"${41:String}\"",
-            "      SecretsManagerAccessRoleArn: \"${42:String}\"",
-            "      SecretsManagerSecretId: \"${43:String}\"",
-            "      ServerSideEncryptionKmsKeyId: \"${44:String}\"",
-            "      ServiceAccessRoleArn: \"${45:String}\"",
-            "      TimeFormat: \"${46:String}\"",
-            "      TrimBlanks: ${47|false,true|}",
-            "      TruncateColumns: ${48|false,true|}",
-            "      WriteBufferSize: ${49:Number}",
+            "      MapBooleanAsBoolean: ${38|false,true|}",
+            "      MaxFileSize: ${39:Number}",
+            "      RemoveQuotes: ${40|false,true|}",
+            "      ReplaceChars: \"${41:String}\"",
+            "      ReplaceInvalidChars: \"${42:String}\"",
+            "      SecretsManagerAccessRoleArn: \"${43:String}\"",
+            "      SecretsManagerSecretId: \"${44:String}\"",
+            "      ServerSideEncryptionKmsKeyId: \"${45:String}\"",
+            "      ServiceAccessRoleArn: \"${46:String}\"",
+            "      TimeFormat: \"${47:String}\"",
+            "      TrimBlanks: ${48|false,true|}",
+            "      TruncateColumns: ${49|false,true|}",
+            "      WriteBufferSize: ${50:Number}",
             "    ResourceIdentifier: \"${26:String}\"",
             "    S3Settings:",
             "      AddColumnName: ${27|false,true|}",
@@ -10599,6 +10601,26 @@
         "prefix": "frauddetector-label",
         "scope": "yaml"
     },
+    "AWS::FraudDetector::List": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::FraudDetector::List",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Elements: ",
+            "      Elements",
+            "    Name: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    VariableType: \"${6:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-frauddetector-list.html",
+            "Attributes:\n  CreatedTime\n  LastUpdatedTime\n  Arn"
+        ],
+        "prefix": "frauddetector-list",
+        "scope": "yaml"
+    },
     "AWS::FraudDetector::Outcome": {
         "body": [
             "${1:LogicalID}:",
@@ -11352,18 +11374,23 @@
             "      DataSources",
             "    Description: \"${6:String}\"",
             "    Name: \"${7:String}\"",
+            "    NetworkAccessControl:",
+            "      PrefixListIds:",
+            "        -",
+            "      VpceIds:",
+            "        -",
             "    NotificationDestinations: ",
             "      NotificationDestinations",
-            "    OrganizationRoleName: \"${9:String}\"",
+            "    OrganizationRoleName: \"${10:String}\"",
             "    OrganizationalUnits: ",
             "      OrganizationalUnits",
-            "    PermissionType: \"${11:String}\" # Required",
-            "    RoleArn: \"${12:String}\"",
+            "    PermissionType: \"${12:String}\" # Required",
+            "    RoleArn: \"${13:String}\"",
             "    SamlConfiguration:",
             "      AllowedOrganizations:",
             "        -",
-            "      LoginValidityDuration: ${16:Number}",
-            "    StackSetName: \"${14:String}\"",
+            "      LoginValidityDuration: ${17:Number}",
+            "    StackSetName: \"${15:String}\"",
             "    VpcConfiguration:",
             "      SecurityGroupIds:",
             "        -",
@@ -12146,12 +12173,13 @@
             "  Type: AWS::IVS::Channel",
             "  Properties:",
             "    Authorized: ${2|false,true|}",
-            "    LatencyMode: \"${3:String}\"",
-            "    Name: \"${4:String}\"",
-            "    RecordingConfigurationArn: \"${5:String}\"",
+            "    InsecureIngest: ${3|false,true|}",
+            "    LatencyMode: \"${4:String}\"",
+            "    Name: \"${5:String}\"",
+            "    RecordingConfigurationArn: \"${6:String}\"",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${7:String}\""
+            "    Type: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html",
@@ -12617,7 +12645,8 @@
             "      ResourcesToRemove",
             "    Status: \"${8:String}\"",
             "    Tags: ",
-            "      Tags"
+            "      Tags",
+            "    TrafficPercentageToMonitor: ${10:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-internetmonitor-monitor.html",
@@ -13673,12 +13702,13 @@
             "    ContentLocation: \"${3:String}\" # Required",
             "    Description: \"${4:String}\"",
             "    SceneId: \"${5:String}\" # Required",
+            "    SceneMetadata:",
             "    Tags:",
-            "    WorkspaceId: \"${7:String}\" # Required"
+            "    WorkspaceId: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iottwinmaker-scene.html",
-            "Attributes:\n  CreationDateTime\n  UpdateDateTime\n  Arn"
+            "Attributes:\n  CreationDateTime\n  UpdateDateTime\n  Arn\n  GeneratedSceneMetadata"
         ],
         "prefix": "iottwinmaker-scene",
         "scope": "yaml"
@@ -16527,7 +16557,7 @@
             "${1:LogicalID}:",
             "  Type: AWS::MemoryDB::User",
             "  Properties:",
-            "    AccessString: \"${2:String}\" # Required",
+            "    AccessString: \"${2:String}\"",
             "    AuthenticationMode:",
             "      Passwords:",
             "        -",
@@ -18709,6 +18739,24 @@
             "Attributes:\n  Version.Configuration.Typography\n  Version.Status\n  Version.BaseThemeId\n  CreatedTime\n  Version.Configuration\n  Version.Configuration.DataColorPalette\n  LastUpdatedTime\n  Version.Configuration.UIColorPalette\n  Version.VersionNumber\n  Version.Arn\n  Version.Errors\n  Version.Description\n  Version.CreatedTime\n  Type\n  Version\n  Arn\n  Version.Configuration.Sheet"
         ],
         "prefix": "quicksight-theme",
+        "scope": "yaml"
+    },
+    "AWS::RAM::Permission": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RAM::Permission",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    PolicyTemplate: ${3:JSON} # Required",
+            "    ResourceType: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ram-permission.html",
+            "Attributes:\n  Version\n  PermissionType\n  Arn\n  IsResourceTypeDefault"
+        ],
+        "prefix": "ram-permission",
         "scope": "yaml"
     },
     "AWS::RAM::ResourceShare": {
@@ -24065,21 +24113,6 @@
             "      ServiceType: \"${13:String}\"",
             "      URLPath: \"${14:String}\"",
             "      Version: ${15:Number}",
-            "    SamplingRuleRecord:",
-            "      CreatedAt: \"${4:String}\"",
-            "      ModifiedAt: \"${5:String}\"",
-            "    SamplingRuleUpdate:",
-            "      FixedRate: ${6:Number}",
-            "      HTTPMethod: \"${7:String}\"",
-            "      Host: \"${8:String}\"",
-            "      Priority: ${9:Number}",
-            "      ReservoirSize: ${10:Number}",
-            "      ResourceARN: \"${11:String}\"",
-            "      RuleARN: \"${12:String}\"",
-            "      RuleName: \"${13:String}\"",
-            "      ServiceName: \"${14:String}\"",
-            "      ServiceType: \"${15:String}\"",
-            "      URLPath: \"${16:String}\"",
             "    Tags: ",
             "      Tags"
         ],
