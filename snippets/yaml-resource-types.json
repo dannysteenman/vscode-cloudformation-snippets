@@ -1056,7 +1056,8 @@
             "    TemplateSelectionExpression: \"${8:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html",
+            "Attributes:\n  IntegrationResponseId"
         ],
         "prefix": "apigatewayv2-integrationresponse",
         "scope": "yaml"
@@ -6342,6 +6343,32 @@
             "Attributes:\n  LocationUri\n  LocationArn"
         ],
         "prefix": "datasync-locationsmb",
+        "scope": "yaml"
+    },
+    "AWS::DataSync::StorageSystem": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataSync::StorageSystem",
+            "  Properties:",
+            "    AgentArns: # Required",
+            "      AgentArns",
+            "    CloudWatchLogGroupArn: \"${3:String}\"",
+            "    Name: \"${4:String}\"",
+            "    ServerConfiguration:",
+            "      ServerHostname: \"${5:String}\"",
+            "      ServerPort: ${6:Number}",
+            "    ServerCredentials:",
+            "      Password: \"${6:String}\"",
+            "      Username: \"${7:String}\"",
+            "    SystemType: \"${7:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-storagesystem.html",
+            "Attributes:\n  ConnectivityStatus\n  StorageSystemArn\n  SecretsManagerArn"
+        ],
+        "prefix": "datasync-storagesystem",
         "scope": "yaml"
     },
     "AWS::DataSync::Task": {
@@ -12839,7 +12866,9 @@
             "    ServiceType: \"${7:String}\"",
             "    Tags: ",
             "      Tags",
-            "    ValidationCertificateArn: \"${9:String}\""
+            "    TlsConfig:",
+            "      SecurityPolicy: \"${9:String}\"",
+            "    ValidationCertificateArn: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-domainconfiguration.html",
@@ -15703,6 +15732,21 @@
         "prefix": "msk-cluster",
         "scope": "yaml"
     },
+    "AWS::MSK::ClusterPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MSK::ClusterPolicy",
+            "  Properties:",
+            "    ClusterArn: \"${2:String}\" # Required",
+            "    Policy: ${3:JSON} # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-clusterpolicy.html",
+            "Attributes:\n  CurrentVersion"
+        ],
+        "prefix": "msk-clusterpolicy",
+        "scope": "yaml"
+    },
     "AWS::MSK::Configuration": {
         "body": [
             "${1:LogicalID}:",
@@ -15737,6 +15781,27 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "msk-serverlesscluster",
+        "scope": "yaml"
+    },
+    "AWS::MSK::VpcConnection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MSK::VpcConnection",
+            "  Properties:",
+            "    Authentication: \"${2:String}\" # Required",
+            "    ClientSubnets: # Required",
+            "      ClientSubnets",
+            "    SecurityGroups: # Required",
+            "      SecurityGroups",
+            "    Tags:",
+            "    TargetClusterArn: \"${6:String}\" # Required",
+            "    VpcId: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-vpcconnection.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "msk-vpcconnection",
         "scope": "yaml"
     },
     "AWS::MWAA::Environment": {
@@ -16149,9 +16214,12 @@
             "      MaximumBitrate: \"${8:String}\"",
             "      Resolution: \"${9:String}\"",
             "    LogLevel: \"${8:String}\"",
-            "    Name: \"${9:String}\"",
-            "    RoleArn: \"${10:String}\"",
-            "    Tags: ${11:JSON}",
+            "    Maintenance:",
+            "      MaintenanceDay: \"${9:String}\"",
+            "      MaintenanceStartTime: \"${10:String}\"",
+            "    Name: \"${10:String}\"",
+            "    RoleArn: \"${11:String}\"",
+            "    Tags: ${12:JSON}",
             "    Vpc:",
             "      PublicAddressAllocationIds:",
             "        -",
@@ -22934,7 +23002,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html",
-            "Attributes:\n  Arn\n  Name"
+            "Attributes:\n  StateMachineRevisionId\n  Arn\n  Name"
         ],
         "prefix": "stepfunctions-statemachine",
         "scope": "yaml"

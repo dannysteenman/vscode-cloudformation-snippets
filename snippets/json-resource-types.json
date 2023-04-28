@@ -1202,7 +1202,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html",
+            "Attributes:\n  IntegrationResponseId"
         ],
         "prefix": "apigatewayv2-integrationresponse",
         "scope": "json"
@@ -7312,6 +7313,38 @@
             "Attributes:\n  LocationUri\n  LocationArn"
         ],
         "prefix": "datasync-locationsmb",
+        "scope": "json"
+    },
+    "AWS::DataSync::StorageSystem": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataSync::StorageSystem\",",
+            "  \"Properties\": {",
+            "    \"AgentArns\": [",
+            "      \"AgentArns\"",
+            "    ],",
+            "    \"CloudWatchLogGroupArn\": \"${3:String}\",",
+            "    \"Name\": \"${4:String}\",",
+            "    \"ServerConfiguration\": {",
+            "      \"ServerHostname\": \"${5:String}\",",
+            "      \"ServerPort\": \"${6:Number}\"",
+            "    },",
+            "    \"ServerCredentials\": {",
+            "      \"Password\": \"${6:String}\",",
+            "      \"Username\": \"${7:String}\"",
+            "    },",
+            "    \"SystemType\": \"${7:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-storagesystem.html",
+            "Attributes:\n  ConnectivityStatus\n  StorageSystemArn\n  SecretsManagerArn"
+        ],
+        "prefix": "datasync-storagesystem",
         "scope": "json"
     },
     "AWS::DataSync::Task": {
@@ -14846,7 +14879,10 @@
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"ValidationCertificateArn\": \"${9:String}\"",
+            "    \"TlsConfig\": {",
+            "      \"SecurityPolicy\": \"${9:String}\"",
+            "    },",
+            "    \"ValidationCertificateArn\": \"${10:String}\"",
             "  }",
             "}"
         ],
@@ -18215,6 +18251,23 @@
         "prefix": "msk-cluster",
         "scope": "json"
     },
+    "AWS::MSK::ClusterPolicy": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::MSK::ClusterPolicy\",",
+            "  \"Properties\": {",
+            "    \"ClusterArn\": \"${2:String}\",",
+            "    \"Policy\": \"${3:JSON}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-clusterpolicy.html",
+            "Attributes:\n  CurrentVersion"
+        ],
+        "prefix": "msk-clusterpolicy",
+        "scope": "json"
+    },
     "AWS::MSK::Configuration": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -18256,6 +18309,31 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "msk-serverlesscluster",
+        "scope": "json"
+    },
+    "AWS::MSK::VpcConnection": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::MSK::VpcConnection\",",
+            "  \"Properties\": {",
+            "    \"Authentication\": \"${2:String}\",",
+            "    \"ClientSubnets\": [",
+            "      \"ClientSubnets\"",
+            "    ],",
+            "    \"SecurityGroups\": [",
+            "      \"SecurityGroups\"",
+            "    ],",
+            "    \"Tags\": {",
+            "    \"TargetClusterArn\": \"${6:String}\",",
+            "    \"VpcId\": \"${7:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-vpcconnection.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "msk-vpcconnection",
         "scope": "json"
     },
     "AWS::MWAA::Environment": {
@@ -18721,9 +18799,13 @@
             "      \"Resolution\": \"${9:String}\"",
             "    },",
             "    \"LogLevel\": \"${8:String}\",",
-            "    \"Name\": \"${9:String}\",",
-            "    \"RoleArn\": \"${10:String}\",",
-            "    \"Tags\": \"${11:JSON}\",",
+            "    \"Maintenance\": {",
+            "      \"MaintenanceDay\": \"${9:String}\",",
+            "      \"MaintenanceStartTime\": \"${10:String}\"",
+            "    },",
+            "    \"Name\": \"${10:String}\",",
+            "    \"RoleArn\": \"${11:String}\",",
+            "    \"Tags\": \"${12:JSON}\",",
             "    \"Vpc\": {",
             "      \"PublicAddressAllocationIds\": [],",
             "      \"SecurityGroupIds\": [],",
@@ -26566,7 +26648,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html",
-            "Attributes:\n  Arn\n  Name"
+            "Attributes:\n  StateMachineRevisionId\n  Arn\n  Name"
         ],
         "prefix": "stepfunctions-statemachine",
         "scope": "json"
