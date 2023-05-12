@@ -8555,6 +8555,61 @@
         "prefix": "ec2-vpngatewayroutepropagation",
         "scope": "yaml"
     },
+    "AWS::EC2::VerifiedAccessEndpoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::VerifiedAccessEndpoint",
+            "  Properties:",
+            "    ApplicationDomain: \"${2:String}\" # Required",
+            "    AttachmentType: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    DomainCertificateArn: \"${5:String}\" # Required",
+            "    EndpointDomainPrefix: \"${6:String}\" # Required",
+            "    EndpointType: \"${7:String}\" # Required",
+            "    LoadBalancerOptions:",
+            "      LoadBalancerArn: \"${8:String}\"",
+            "      Port: ${9:Number}",
+            "      Protocol: \"${10:String}\"",
+            "      SubnetIds:",
+            "        -",
+            "    NetworkInterfaceOptions:",
+            "      NetworkInterfaceId: \"${9:String}\"",
+            "      Port: ${10:Number}",
+            "      Protocol: \"${11:String}\"",
+            "    PolicyDocument: \"${10:String}\"",
+            "    PolicyEnabled: ${11|false,true|}",
+            "    SecurityGroupIds: ",
+            "      SecurityGroupIds",
+            "    Tags: ",
+            "      Tags",
+            "    VerifiedAccessGroupId: \"${14:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessendpoint.html",
+            "Attributes:\n  Status\n  EndpointDomain\n  CreationTime\n  LastUpdatedTime\n  DeviceValidationDomain\n  VerifiedAccessInstanceId\n  VerifiedAccessEndpointId"
+        ],
+        "prefix": "ec2-verifiedaccessendpoint",
+        "scope": "yaml"
+    },
+    "AWS::EC2::VerifiedAccessGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::VerifiedAccessGroup",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    PolicyDocument: \"${3:String}\"",
+            "    PolicyEnabled: ${4|false,true|}",
+            "    Tags: ",
+            "      Tags",
+            "    VerifiedAccessInstanceId: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessgroup.html",
+            "Attributes:\n  Owner\n  CreationTime\n  LastUpdatedTime\n  VerifiedAccessGroupId\n  VerifiedAccessGroupArn"
+        ],
+        "prefix": "ec2-verifiedaccessgroup",
+        "scope": "yaml"
+    },
     "AWS::EC2::VerifiedAccessInstance": {
         "body": [
             "${1:LogicalID}:",
@@ -8574,6 +8629,36 @@
             "Attributes:\n  CreationTime\n  LastUpdatedTime\n  VerifiedAccessInstanceId"
         ],
         "prefix": "ec2-verifiedaccessinstance",
+        "scope": "yaml"
+    },
+    "AWS::EC2::VerifiedAccessTrustProvider": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::VerifiedAccessTrustProvider",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DeviceOptions:",
+            "      TenantId: \"${3:String}\"",
+            "    DeviceTrustProviderType: \"${4:String}\"",
+            "    OidcOptions:",
+            "      AuthorizationEndpoint: \"${5:String}\"",
+            "      ClientId: \"${6:String}\"",
+            "      ClientSecret: \"${7:String}\"",
+            "      Issuer: \"${8:String}\"",
+            "      Scope: \"${9:String}\"",
+            "      TokenEndpoint: \"${10:String}\"",
+            "      UserInfoEndpoint: \"${11:String}\"",
+            "    PolicyReferenceName: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    TrustProviderType: \"${8:String}\" # Required",
+            "    UserTrustProviderType: \"${9:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccesstrustprovider.html",
+            "Attributes:\n  VerifiedAccessTrustProviderId\n  CreationTime\n  LastUpdatedTime"
+        ],
+        "prefix": "ec2-verifiedaccesstrustprovider",
         "scope": "yaml"
     },
     "AWS::EC2::Volume": {
@@ -9479,41 +9564,42 @@
             "    CacheSecurityGroupNames: ",
             "      CacheSecurityGroupNames",
             "    CacheSubnetGroupName: \"${9:String}\"",
-            "    DataTieringEnabled: ${10|false,true|}",
-            "    Engine: \"${11:String}\"",
-            "    EngineVersion: \"${12:String}\"",
-            "    GlobalReplicationGroupId: \"${13:String}\"",
-            "    IpDiscovery: \"${14:String}\"",
-            "    KmsKeyId: \"${15:String}\"",
+            "    ClusterMode: \"${10:String}\"",
+            "    DataTieringEnabled: ${11|false,true|}",
+            "    Engine: \"${12:String}\"",
+            "    EngineVersion: \"${13:String}\"",
+            "    GlobalReplicationGroupId: \"${14:String}\"",
+            "    IpDiscovery: \"${15:String}\"",
+            "    KmsKeyId: \"${16:String}\"",
             "    LogDeliveryConfigurations: ",
             "      LogDeliveryConfigurations",
-            "    MultiAZEnabled: ${17|false,true|}",
-            "    NetworkType: \"${18:String}\"",
+            "    MultiAZEnabled: ${18|false,true|}",
+            "    NetworkType: \"${19:String}\"",
             "    NodeGroupConfiguration: ",
             "      NodeGroupConfiguration",
-            "    NotificationTopicArn: \"${20:String}\"",
-            "    NumCacheClusters: ${21:Number}",
-            "    NumNodeGroups: ${22:Number}",
-            "    Port: ${23:Number}",
+            "    NotificationTopicArn: \"${21:String}\"",
+            "    NumCacheClusters: ${22:Number}",
+            "    NumNodeGroups: ${23:Number}",
+            "    Port: ${24:Number}",
             "    PreferredCacheClusterAZs: ",
             "      PreferredCacheClusterAZs",
-            "    PreferredMaintenanceWindow: \"${25:String}\"",
-            "    PrimaryClusterId: \"${26:String}\"",
-            "    ReplicasPerNodeGroup: ${27:Number}",
-            "    ReplicationGroupDescription: \"${28:String}\" # Required",
-            "    ReplicationGroupId: \"${29:String}\"",
+            "    PreferredMaintenanceWindow: \"${26:String}\"",
+            "    PrimaryClusterId: \"${27:String}\"",
+            "    ReplicasPerNodeGroup: ${28:Number}",
+            "    ReplicationGroupDescription: \"${29:String}\" # Required",
+            "    ReplicationGroupId: \"${30:String}\"",
             "    SecurityGroupIds: ",
             "      SecurityGroupIds",
             "    SnapshotArns: ",
             "      SnapshotArns",
-            "    SnapshotName: \"${32:String}\"",
-            "    SnapshotRetentionLimit: ${33:Number}",
-            "    SnapshotWindow: \"${34:String}\"",
-            "    SnapshottingClusterId: \"${35:String}\"",
+            "    SnapshotName: \"${33:String}\"",
+            "    SnapshotRetentionLimit: ${34:Number}",
+            "    SnapshotWindow: \"${35:String}\"",
+            "    SnapshottingClusterId: \"${36:String}\"",
             "    Tags: ",
             "      Tags",
-            "    TransitEncryptionEnabled: ${37|false,true|}",
-            "    TransitEncryptionMode: \"${38:String}\"",
+            "    TransitEncryptionEnabled: ${38|false,true|}",
+            "    TransitEncryptionMode: \"${39:String}\"",
             "    UserGroupIds: ",
             "      UserGroupIds"
         ],
@@ -12852,6 +12938,24 @@
         "prefix": "iot-authorizer",
         "scope": "yaml"
     },
+    "AWS::IoT::BillingGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::BillingGroup",
+            "  Properties:",
+            "    BillingGroupName: \"${2:String}\"",
+            "    BillingGroupProperties:",
+            "      BillingGroupDescription: \"${3:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-billinggroup.html",
+            "Attributes:\n  Id\n  Arn"
+        ],
+        "prefix": "iot-billinggroup",
+        "scope": "yaml"
+    },
     "AWS::IoT::CACertificate": {
         "body": [
             "${1:LogicalID}:",
@@ -13201,6 +13305,26 @@
         "prefix": "iot-thing",
         "scope": "yaml"
     },
+    "AWS::IoT::ThingGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::ThingGroup",
+            "  Properties:",
+            "    ParentGroupName: \"${2:String}\"",
+            "    QueryString: \"${3:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    ThingGroupName: \"${5:String}\"",
+            "    ThingGroupProperties:",
+            "      ThingGroupDescription: \"${7:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html",
+            "Attributes:\n  Id\n  Arn"
+        ],
+        "prefix": "iot-thinggroup",
+        "scope": "yaml"
+    },
     "AWS::IoT::ThingPrincipalAttachment": {
         "body": [
             "${1:LogicalID}:",
@@ -13213,6 +13337,27 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html"
         ],
         "prefix": "iot-thingprincipalattachment",
+        "scope": "yaml"
+    },
+    "AWS::IoT::ThingType": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::ThingType",
+            "  Properties:",
+            "    DeprecateThingType: ${2|false,true|}",
+            "    Tags: ",
+            "      Tags",
+            "    ThingTypeName: \"${4:String}\"",
+            "    ThingTypeProperties:",
+            "      SearchableAttributes:",
+            "        -",
+            "      ThingTypeDescription: \"${6:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html",
+            "Attributes:\n  Id\n  Arn"
+        ],
+        "prefix": "iot-thingtype",
         "scope": "yaml"
     },
     "AWS::IoT::TopicRule": {
@@ -15569,8 +15714,7 @@
             "    LogStreamName: \"${3:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html",
-            "Attributes:\n  Id"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html"
         ],
         "prefix": "logs-logstream",
         "scope": "yaml"
@@ -16181,11 +16325,16 @@
             "    IngestPort: ${6:Number}",
             "    MaxBitrate: ${7:Number}",
             "    MaxLatency: ${8:Number}",
-            "    Name: \"${9:String}\" # Required",
-            "    Protocol: \"${10:String}\"",
-            "    StreamId: \"${11:String}\"",
-            "    VpcInterfaceName: \"${12:String}\"",
-            "    WhitelistCidr: \"${13:String}\""
+            "    MinLatency: ${9:Number}",
+            "    Name: \"${10:String}\" # Required",
+            "    Protocol: \"${11:String}\"",
+            "    SenderControlPort: ${12:Number}",
+            "    SenderIpAddress: \"${13:String}\"",
+            "    SourceListenerAddress: \"${14:String}\"",
+            "    SourceListenerPort: ${15:Number}",
+            "    StreamId: \"${16:String}\"",
+            "    VpcInterfaceName: \"${17:String}\"",
+            "    WhitelistCidr: \"${18:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html",
@@ -17301,6 +17450,32 @@
             "Attributes:\n  StudioComponentId"
         ],
         "prefix": "nimblestudio-studiocomponent",
+        "scope": "yaml"
+    },
+    "AWS::OSIS::Pipeline": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::OSIS::Pipeline",
+            "  Properties:",
+            "    LogPublishingOptions:",
+            "      IsLoggingEnabled: ${3|false,true|}",
+            "    MaxUnits: ${3:Number} # Required",
+            "    MinUnits: ${4:Number} # Required",
+            "    PipelineConfigurationBody: \"${5:String}\" # Required",
+            "    PipelineName: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    VpcOptions:",
+            "      SecurityGroupIds:",
+            "        -",
+            "      SubnetIds:",
+            "        -"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-osis-pipeline.html",
+            "Attributes:\n  PipelineArn\n  VpcEndpoints\n  IngestEndpointUrls"
+        ],
+        "prefix": "osis-pipeline",
         "scope": "yaml"
     },
     "AWS::Oam::Link": {
@@ -22577,7 +22752,8 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "secretsmanager-secret",
         "scope": "yaml"
@@ -23117,11 +23293,15 @@
             "${1:LogicalID}:",
             "  Type: AWS::SimSpaceWeaver::Simulation",
             "  Properties:",
-            "    Name: \"${2:String}\"",
-            "    RoleArn: \"${3:String}\"",
+            "    MaximumDuration: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    RoleArn: \"${4:String}\" # Required",
             "    SchemaS3Location:",
-            "      BucketName: \"${4:String}\"",
-            "      ObjectKey: \"${5:String}\""
+            "      BucketName: \"${5:String}\"",
+            "      ObjectKey: \"${6:String}\"",
+            "    SnapshotS3Location:",
+            "      BucketName: \"${6:String}\"",
+            "      ObjectKey: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-simspaceweaver-simulation.html",
@@ -23239,20 +23419,20 @@
             "      S3Key: \"${6:String}\"",
             "      S3ObjectVersion: \"${7:String}\"",
             "      Script: \"${8:String}\"",
-            "    DeleteLambdaResourcesOnCanaryDeletion: ${5|false,true|}",
-            "    ExecutionRoleArn: \"${6:String}\" # Required",
-            "    FailureRetentionPeriod: ${7:Number}",
-            "    Name: \"${8:String}\" # Required",
+            "      SourceLocationArn: \"${9:String}\"",
+            "    ExecutionRoleArn: \"${5:String}\" # Required",
+            "    FailureRetentionPeriod: ${6:Number}",
+            "    Name: \"${7:String}\" # Required",
             "    RunConfig:",
-            "      ActiveTracing: ${9|false,true|}",
-            "      MemoryInMB: ${11:Number}",
-            "      TimeoutInSeconds: ${12:Number}",
-            "    RuntimeVersion: \"${10:String}\" # Required",
+            "      ActiveTracing: ${8|false,true|}",
+            "      MemoryInMB: ${10:Number}",
+            "      TimeoutInSeconds: ${11:Number}",
+            "    RuntimeVersion: \"${9:String}\" # Required",
             "    Schedule:",
-            "      DurationInSeconds: \"${11:String}\"",
-            "      Expression: \"${12:String}\"",
-            "    StartCanaryAfterCreation: ${12|false,true|} # Required",
-            "    SuccessRetentionPeriod: ${13:Number}",
+            "      DurationInSeconds: \"${10:String}\"",
+            "      Expression: \"${11:String}\"",
+            "    StartCanaryAfterCreation: ${11|false,true|}",
+            "    SuccessRetentionPeriod: ${12:Number}",
             "    Tags: ",
             "      Tags",
             "    VPCConfig:",
@@ -23260,15 +23440,15 @@
             "        -",
             "      SubnetIds:",
             "        -",
-            "      VpcId: \"${17:String}\"",
+            "      VpcId: \"${16:String}\"",
             "    VisualReference:",
-            "      BaseCanaryRunId: \"${16:String}\"",
+            "      BaseCanaryRunId: \"${15:String}\"",
             "      BaseScreenshots:",
             "        -"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-synthetics-canary.html",
-            "Attributes:\n  State\n  Id"
+            "Attributes:\n  Code.SourceLocationArn\n  State\n  Id"
         ],
         "prefix": "synthetics-canary",
         "scope": "yaml"
@@ -24304,7 +24484,7 @@
             "  Type: AWS::XRay::Group",
             "  Properties:",
             "    FilterExpression: \"${2:String}\"",
-            "    GroupName: \"${3:String}\"",
+            "    GroupName: \"${3:String}\" # Required",
             "    InsightsConfiguration:",
             "      InsightsEnabled: ${4|false,true|}",
             "      NotificationsEnabled: ${5|false,true|}",
@@ -24338,20 +24518,19 @@
             "${1:LogicalID}:",
             "  Type: AWS::XRay::SamplingRule",
             "  Properties:",
-            "    RuleName: \"${2:String}\"",
             "    SamplingRule:",
-            "      FixedRate: ${4:Number}",
-            "      HTTPMethod: \"${5:String}\"",
-            "      Host: \"${6:String}\"",
-            "      Priority: ${7:Number}",
-            "      ReservoirSize: ${8:Number}",
-            "      ResourceARN: \"${9:String}\"",
-            "      RuleARN: \"${10:String}\"",
-            "      RuleName: \"${11:String}\"",
-            "      ServiceName: \"${12:String}\"",
-            "      ServiceType: \"${13:String}\"",
-            "      URLPath: \"${14:String}\"",
-            "      Version: ${15:Number}",
+            "      FixedRate: ${3:Number}",
+            "      HTTPMethod: \"${4:String}\"",
+            "      Host: \"${5:String}\"",
+            "      Priority: ${6:Number}",
+            "      ReservoirSize: ${7:Number}",
+            "      ResourceARN: \"${8:String}\"",
+            "      RuleARN: \"${9:String}\"",
+            "      RuleName: \"${10:String}\"",
+            "      ServiceName: \"${11:String}\"",
+            "      ServiceType: \"${12:String}\"",
+            "      URLPath: \"${13:String}\"",
+            "      Version: ${14:Number}",
             "    Tags: ",
             "      Tags"
         ],
