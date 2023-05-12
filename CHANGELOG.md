@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+4.9.0 (2023-05-12)
+------------------
+- AWS::ElastiCache::ReplicationGroup. [Github Actions]
+
+
 4.8.0 (2023-05-05)
 ------------------
 - The following resources were updated: AWS::DeviceFarm::Project.
