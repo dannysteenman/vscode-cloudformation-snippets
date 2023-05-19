@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.10.0 (2023-05-19)
+-------------------
+- The following resource was updated: AWS::Transfer::Server. [Github
+  Actions]
+
+
 4.9.0 (2023-05-12)
 ------------------
 - AWS::ElastiCache::ReplicationGroup. [Github Actions]
