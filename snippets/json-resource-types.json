@@ -1570,13 +1570,14 @@
             "      \"DestinationFlowConfigList\"",
             "    ],",
             "    \"FlowName\": \"${4:String}\",",
-            "    \"KMSArn\": \"${5:String}\",",
+            "    \"FlowStatus\": \"${5:String}\",",
+            "    \"KMSArn\": \"${6:String}\",",
             "    \"MetadataCatalogConfig\": {",
             "    },",
             "    \"SourceFlowConfig\": {",
-            "      \"ApiVersion\": \"${7:String}\",",
-            "      \"ConnectorProfileName\": \"${8:String}\",",
-            "      \"ConnectorType\": \"${9:String}\",",
+            "      \"ApiVersion\": \"${8:String}\",",
+            "      \"ConnectorProfileName\": \"${9:String}\",",
+            "      \"ConnectorType\": \"${10:String}\",",
             "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
@@ -1585,7 +1586,6 @@
             "      \"Tasks\"",
             "    ],",
             "    \"TriggerConfig\": {",
-            "      \"ActivateFlowOnCreate\": \"${10|false,true|}\",",
             "      \"TriggerType\": \"${12:String}\"",
             "    },",
             "  }",
@@ -6070,6 +6070,28 @@
         "prefix": "connect-phonenumber",
         "scope": "json"
     },
+    "AWS::Connect::Prompt": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Connect::Prompt\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"InstanceArn\": \"${3:String}\",",
+            "    \"Name\": \"${4:String}\",",
+            "    \"S3Uri\": \"${5:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-prompt.html",
+            "Attributes:\n  PromptArn"
+        ],
+        "prefix": "connect-prompt",
+        "scope": "json"
+    },
     "AWS::Connect::QuickConnect": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -8282,7 +8304,6 @@
             "    \"OperatingRegions\": [",
             "      \"OperatingRegions\"",
             "    ],",
-            "    \"ResourceDiscoveryAssociationCount\": \"${6:Number}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -8291,7 +8312,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipam.html",
-            "Attributes:\n  IpamId\n  ScopeCount\n  Arn\n  PrivateDefaultScopeId\n  PublicDefaultScopeId"
+            "Attributes:\n  IpamId\n  ResourceDiscoveryAssociationCount\n  ScopeCount\n  Arn\n  PrivateDefaultScopeId\n  PublicDefaultScopeId"
         ],
         "prefix": "ec2-ipam",
         "scope": "json"
@@ -9198,7 +9219,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "ec2-subnetcidrblock",
         "scope": "json"
@@ -19578,27 +19600,33 @@
             "      \"AvailabilityZones\"",
             "    ],",
             "    \"BackupRetentionPeriod\": \"${4:Number}\",",
-            "    \"DBClusterIdentifier\": \"${5:String}\",",
-            "    \"DBClusterParameterGroupName\": \"${6:String}\",",
-            "    \"DBSubnetGroupName\": \"${7:String}\",",
-            "    \"DeletionProtection\": \"${8|false,true|}\",",
+            "    \"CopyTagsToSnapshot\": \"${5|false,true|}\",",
+            "    \"DBClusterIdentifier\": \"${6:String}\",",
+            "    \"DBClusterParameterGroupName\": \"${7:String}\",",
+            "    \"DBInstanceParameterGroupName\": \"${8:String}\",",
+            "    \"DBSubnetGroupName\": \"${9:String}\",",
+            "    \"DeletionProtection\": \"${10|false,true|}\",",
             "    \"EnableCloudwatchLogsExports\": [",
             "      \"EnableCloudwatchLogsExports\"",
             "    ],",
-            "    \"EngineVersion\": \"${10:String}\",",
-            "    \"IamAuthEnabled\": \"${11|false,true|}\",",
-            "    \"KmsKeyId\": \"${12:String}\",",
-            "    \"PreferredBackupWindow\": \"${13:String}\",",
-            "    \"PreferredMaintenanceWindow\": \"${14:String}\",",
-            "    \"RestoreToTime\": \"${15:String}\",",
-            "    \"RestoreType\": \"${16:String}\",",
-            "    \"SnapshotIdentifier\": \"${17:String}\",",
-            "    \"SourceDBClusterIdentifier\": \"${18:String}\",",
-            "    \"StorageEncrypted\": \"${19|false,true|}\",",
+            "    \"EngineVersion\": \"${12:String}\",",
+            "    \"IamAuthEnabled\": \"${13|false,true|}\",",
+            "    \"KmsKeyId\": \"${14:String}\",",
+            "    \"PreferredBackupWindow\": \"${15:String}\",",
+            "    \"PreferredMaintenanceWindow\": \"${16:String}\",",
+            "    \"RestoreToTime\": \"${17:String}\",",
+            "    \"RestoreType\": \"${18:String}\",",
+            "    \"ServerlessScalingConfiguration\": {",
+            "      \"MaxCapacity\": \"${19:Number}\",",
+            "      \"MinCapacity\": \"${20:Number}\"",
+            "    },",
+            "    \"SnapshotIdentifier\": \"${20:String}\",",
+            "    \"SourceDBClusterIdentifier\": \"${21:String}\",",
+            "    \"StorageEncrypted\": \"${22|false,true|}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"UseLatestRestorableTime\": \"${21|false,true|}\",",
+            "    \"UseLatestRestorableTime\": \"${24|false,true|}\",",
             "    \"VpcSecurityGroupIds\": [",
             "      \"VpcSecurityGroupIds\"",
             "    ]",
@@ -22149,6 +22177,28 @@
             "Attributes:\n  Version.Configuration.Typography\n  Version.Status\n  Version.BaseThemeId\n  CreatedTime\n  Version.Configuration\n  Version.Configuration.DataColorPalette\n  LastUpdatedTime\n  Version.Configuration.UIColorPalette\n  Version.VersionNumber\n  Version.Arn\n  Version.Errors\n  Version.Description\n  Version.CreatedTime\n  Type\n  Version\n  Arn\n  Version.Configuration.Sheet"
         ],
         "prefix": "quicksight-theme",
+        "scope": "json"
+    },
+    "AWS::QuickSight::Topic": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::QuickSight::Topic\",",
+            "  \"Properties\": {",
+            "    \"AwsAccountId\": \"${2:String}\",",
+            "    \"DataSets\": [",
+            "      \"DataSets\"",
+            "    ],",
+            "    \"Description\": \"${4:String}\",",
+            "    \"Name\": \"${5:String}\",",
+            "    \"TopicId\": \"${6:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-topic.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "quicksight-topic",
         "scope": "json"
     },
     "AWS::QuickSight::VPCConnection": {
@@ -26938,6 +26988,95 @@
         "prefix": "servicediscovery-service",
         "scope": "json"
     },
+    "AWS::Shield::DRTAccess": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Shield::DRTAccess\",",
+            "  \"Properties\": {",
+            "    \"LogBucketList\": [",
+            "      \"LogBucketList\"",
+            "    ],",
+            "    \"RoleArn\": \"${3:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-drtaccess.html",
+            "Attributes:\n  AccountId"
+        ],
+        "prefix": "shield-drtaccess",
+        "scope": "json"
+    },
+    "AWS::Shield::ProactiveEngagement": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Shield::ProactiveEngagement\",",
+            "  \"Properties\": {",
+            "    \"EmergencyContactList\": [",
+            "      \"EmergencyContactList\"",
+            "    ],",
+            "    \"ProactiveEngagementStatus\": \"${3:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-proactiveengagement.html",
+            "Attributes:\n  AccountId"
+        ],
+        "prefix": "shield-proactiveengagement",
+        "scope": "json"
+    },
+    "AWS::Shield::Protection": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Shield::Protection\",",
+            "  \"Properties\": {",
+            "    \"ApplicationLayerAutomaticResponseConfiguration\": {",
+            "      \"Status\": \"${3:String}\"",
+            "    },",
+            "    \"HealthCheckArns\": [",
+            "      \"HealthCheckArns\"",
+            "    ],",
+            "    \"Name\": \"${4:String}\",",
+            "    \"ResourceArn\": \"${5:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-protection.html",
+            "Attributes:\n  ProtectionArn\n  ProtectionId"
+        ],
+        "prefix": "shield-protection",
+        "scope": "json"
+    },
+    "AWS::Shield::ProtectionGroup": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Shield::ProtectionGroup\",",
+            "  \"Properties\": {",
+            "    \"Aggregation\": \"${2:String}\",",
+            "    \"Members\": [",
+            "      \"Members\"",
+            "    ],",
+            "    \"Pattern\": \"${4:String}\",",
+            "    \"ProtectionGroupId\": \"${5:String}\",",
+            "    \"ResourceType\": \"${6:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-shield-protectiongroup.html",
+            "Attributes:\n  ProtectionGroupArn"
+        ],
+        "prefix": "shield-protectiongroup",
+        "scope": "json"
+    },
     "AWS::Signer::ProfilePermission": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -27421,7 +27560,8 @@
             "      \"DirectoryId\": \"${6:String}\",",
             "      \"Function\": \"${7:String}\",",
             "      \"InvocationRole\": \"${8:String}\",",
-            "      \"Url\": \"${9:String}\"",
+            "      \"SftpAuthenticationMethods\": \"${9:String}\",",
+            "      \"Url\": \"${10:String}\"",
             "    },",
             "    \"IdentityProviderType\": \"${7:String}\",",
             "    \"LoggingRole\": \"${8:String}\",",
