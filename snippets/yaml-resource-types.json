@@ -2109,30 +2109,33 @@
             "  Properties:",
             "    AdditionalAuthenticationProviders: ",
             "      AdditionalAuthenticationProviders",
-            "    AuthenticationType: \"${3:String}\" # Required",
+            "    ApiType: \"${3:String}\"",
+            "    AuthenticationType: \"${4:String}\" # Required",
             "    LambdaAuthorizerConfig:",
-            "      AuthorizerResultTtlInSeconds: ${4:Number}",
-            "      AuthorizerUri: \"${5:String}\"",
-            "      IdentityValidationExpression: \"${6:String}\"",
+            "      AuthorizerResultTtlInSeconds: ${5:Number}",
+            "      AuthorizerUri: \"${6:String}\"",
+            "      IdentityValidationExpression: \"${7:String}\"",
             "    LogConfig:",
-            "      CloudWatchLogsRoleArn: \"${5:String}\"",
-            "      ExcludeVerboseContent: ${6|false,true|}",
-            "      FieldLogLevel: \"${7:String}\"",
-            "    Name: \"${6:String}\" # Required",
+            "      CloudWatchLogsRoleArn: \"${6:String}\"",
+            "      ExcludeVerboseContent: ${7|false,true|}",
+            "      FieldLogLevel: \"${8:String}\"",
+            "    MergedApiExecutionRoleArn: \"${7:String}\"",
+            "    Name: \"${8:String}\" # Required",
             "    OpenIDConnectConfig:",
-            "      AuthTTL: ${7:Number}",
-            "      ClientId: \"${8:String}\"",
-            "      IatTTL: ${9:Number}",
-            "      Issuer: \"${10:String}\"",
+            "      AuthTTL: ${9:Number}",
+            "      ClientId: \"${10:String}\"",
+            "      IatTTL: ${11:Number}",
+            "      Issuer: \"${12:String}\"",
+            "    OwnerContact: \"${10:String}\"",
             "    Tags: ",
             "      Tags",
             "    UserPoolConfig:",
-            "      AppIdClientRegex: \"${9:String}\"",
-            "      AwsRegion: \"${10:String}\"",
-            "      DefaultAction: \"${11:String}\"",
-            "      UserPoolId: \"${12:String}\"",
-            "    Visibility: \"${10:String}\"",
-            "    XrayEnabled: ${11|false,true|}"
+            "      AppIdClientRegex: \"${12:String}\"",
+            "      AwsRegion: \"${13:String}\"",
+            "      DefaultAction: \"${14:String}\"",
+            "      UserPoolId: \"${15:String}\"",
+            "    Visibility: \"${13:String}\"",
+            "    XrayEnabled: ${14|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
@@ -2192,6 +2195,24 @@
             "Attributes:\n  TypeName\n  ResolverArn\n  FieldName"
         ],
         "prefix": "appsync-resolver",
+        "scope": "yaml"
+    },
+    "AWS::AppSync::SourceApiAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppSync::SourceApiAssociation",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    MergedApiIdentifier: \"${3:String}\"",
+            "    SourceApiAssociationConfig:",
+            "      MergeType: \"${4:String}\"",
+            "    SourceApiIdentifier: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html",
+            "Attributes:\n  AssociationArn\n  MergedApiId\n  SourceApiArn\n  LastSuccessfulMergeDate\n  SourceApiAssociationStatusDetail\n  MergedApiArn\n  AssociationId\n  SourceApiAssociationStatus\n  SourceApiId"
+        ],
+        "prefix": "appsync-sourceapiassociation",
         "scope": "yaml"
     },
     "AWS::ApplicationAutoScaling::ScalableTarget": {
@@ -4516,6 +4537,22 @@
             "Attributes:\n  Name"
         ],
         "prefix": "cognito-identitypool",
+        "scope": "yaml"
+    },
+    "AWS::Cognito::IdentityPoolPrincipalTag": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Cognito::IdentityPoolPrincipalTag",
+            "  Properties:",
+            "    IdentityPoolId: \"${2:String}\" # Required",
+            "    IdentityProviderName: \"${3:String}\" # Required",
+            "    PrincipalTags: ${4:JSON}",
+            "    UseDefaults: ${5|false,true|}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html"
+        ],
+        "prefix": "cognito-identitypoolprincipaltag",
         "scope": "yaml"
     },
     "AWS::Cognito::IdentityPoolRoleAttachment": {
@@ -7688,18 +7725,19 @@
             "  Type: AWS::EC2::NetworkInterface",
             "  Properties:",
             "    Description: \"${2:String}\"",
+            "    EnablePrimaryIpv6: ${3|false,true|}",
             "    GroupSet: ",
             "      GroupSet",
-            "    InterfaceType: \"${4:String}\"",
-            "    Ipv6AddressCount: ${5:Number}",
+            "    InterfaceType: \"${5:String}\"",
+            "    Ipv6AddressCount: ${6:Number}",
             "    Ipv6Addresses: ",
             "      Ipv6Addresses",
-            "    PrivateIpAddress: \"${7:String}\"",
+            "    PrivateIpAddress: \"${8:String}\"",
             "    PrivateIpAddresses: ",
             "      PrivateIpAddresses",
-            "    SecondaryPrivateIpAddressCount: ${9:Number}",
-            "    SourceDestCheck: ${10|false,true|}",
-            "    SubnetId: \"${11:String}\" # Required",
+            "    SecondaryPrivateIpAddressCount: ${10:Number}",
+            "    SourceDestCheck: ${11|false,true|}",
+            "    SubnetId: \"${12:String}\" # Required",
             "    Tags: ",
             "      Tags"
         ],
@@ -11587,7 +11625,8 @@
             "    DataSources: ",
             "      DataSources",
             "    Description: \"${6:String}\"",
-            "    Name: \"${7:String}\"",
+            "    GrafanaVersion: \"${7:String}\"",
+            "    Name: \"${8:String}\"",
             "    NetworkAccessControl:",
             "      PrefixListIds:",
             "        -",
@@ -11595,16 +11634,16 @@
             "        -",
             "    NotificationDestinations: ",
             "      NotificationDestinations",
-            "    OrganizationRoleName: \"${10:String}\"",
+            "    OrganizationRoleName: \"${11:String}\"",
             "    OrganizationalUnits: ",
             "      OrganizationalUnits",
-            "    PermissionType: \"${12:String}\" # Required",
-            "    RoleArn: \"${13:String}\"",
+            "    PermissionType: \"${13:String}\" # Required",
+            "    RoleArn: \"${14:String}\"",
             "    SamlConfiguration:",
             "      AllowedOrganizations:",
             "        -",
-            "      LoginValidityDuration: ${17:Number}",
-            "    StackSetName: \"${15:String}\"",
+            "      LoginValidityDuration: ${18:Number}",
+            "    StackSetName: \"${16:String}\"",
             "    VpcConfiguration:",
             "      SecurityGroupIds:",
             "        -",
@@ -13634,22 +13673,24 @@
             "    Action: \"${2:String}\" # Required",
             "    CollectionScheme:",
             "    Compression: \"${4:String}\"",
+            "    DataDestinationConfigs: ",
+            "      DataDestinationConfigs",
             "    DataExtraDimensions: ",
             "      DataExtraDimensions",
-            "    Description: \"${6:String}\"",
-            "    DiagnosticsMode: \"${7:String}\"",
-            "    ExpiryTime: \"${8:String}\"",
-            "    Name: \"${9:String}\" # Required",
-            "    PostTriggerCollectionDuration: ${10:Number}",
-            "    Priority: ${11:Number}",
-            "    SignalCatalogArn: \"${12:String}\" # Required",
+            "    Description: \"${7:String}\"",
+            "    DiagnosticsMode: \"${8:String}\"",
+            "    ExpiryTime: \"${9:String}\"",
+            "    Name: \"${10:String}\" # Required",
+            "    PostTriggerCollectionDuration: ${11:Number}",
+            "    Priority: ${12:Number}",
+            "    SignalCatalogArn: \"${13:String}\" # Required",
             "    SignalsToCollect: ",
             "      SignalsToCollect",
-            "    SpoolingMode: \"${14:String}\"",
-            "    StartTime: \"${15:String}\"",
+            "    SpoolingMode: \"${15:String}\"",
+            "    StartTime: \"${16:String}\"",
             "    Tags: ",
             "      Tags",
-            "    TargetArn: \"${17:String}\" # Required"
+            "    TargetArn: \"${18:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-campaign.html",
@@ -15893,6 +15934,7 @@
             "    EngineType: \"${4:String}\" # Required",
             "    KmsKeyId: \"${5:String}\"",
             "    Name: \"${6:String}\" # Required",
+            "    RoleArn: \"${7:String}\"",
             "    Tags:"
         ],
         "description": [
@@ -17118,13 +17160,18 @@
             "    EdgeLocation: \"${3:String}\" # Required",
             "    Options:",
             "      Protocol: \"${4:String}\"",
+            "    ProposedSegmentChange:",
+            "      AttachmentPolicyRuleNumber: ${5:Number}",
+            "      SegmentName: \"${6:String}\"",
+            "      Tags:",
+            "        -",
             "    Tags: ",
             "      Tags",
-            "    TransportAttachmentId: \"${6:String}\" # Required"
+            "    TransportAttachmentId: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-connectattachment.html",
-            "Attributes:\n  ProposedSegmentChange\n  ProposedSegmentChange.Tags\n  AttachmentType\n  SegmentName\n  CreatedAt\n  UpdatedAt\n  AttachmentId\n  CoreNetworkArn\n  ResourceArn\n  ProposedSegmentChange.SegmentName\n  State\n  ProposedSegmentChange.AttachmentPolicyRuleNumber\n  OwnerAccountId\n  AttachmentPolicyRuleNumber"
+            "Attributes:\n  ResourceArn\n  AttachmentType\n  SegmentName\n  State\n  CreatedAt\n  OwnerAccountId\n  UpdatedAt\n  AttachmentId\n  CoreNetworkArn\n  AttachmentPolicyRuleNumber"
         ],
         "prefix": "networkmanager-connectattachment",
         "scope": "yaml"
@@ -17292,13 +17339,18 @@
             "  Type: AWS::NetworkManager::SiteToSiteVpnAttachment",
             "  Properties:",
             "    CoreNetworkId: \"${2:String}\" # Required",
+            "    ProposedSegmentChange:",
+            "      AttachmentPolicyRuleNumber: ${3:Number}",
+            "      SegmentName: \"${4:String}\"",
+            "      Tags:",
+            "        -",
             "    Tags: ",
             "      Tags",
-            "    VpnConnectionArn: \"${4:String}\" # Required"
+            "    VpnConnectionArn: \"${5:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-sitetositevpnattachment.html",
-            "Attributes:\n  ProposedSegmentChange\n  ProposedSegmentChange.Tags\n  AttachmentType\n  SegmentName\n  CreatedAt\n  UpdatedAt\n  AttachmentId\n  CoreNetworkArn\n  ResourceArn\n  ProposedSegmentChange.SegmentName\n  State\n  ProposedSegmentChange.AttachmentPolicyRuleNumber\n  OwnerAccountId\n  EdgeLocation\n  AttachmentPolicyRuleNumber"
+            "Attributes:\n  ResourceArn\n  AttachmentType\n  SegmentName\n  State\n  CreatedAt\n  OwnerAccountId\n  UpdatedAt\n  AttachmentId\n  CoreNetworkArn\n  EdgeLocation\n  AttachmentPolicyRuleNumber"
         ],
         "prefix": "networkmanager-sitetositevpnattachment",
         "scope": "yaml"
@@ -17365,15 +17417,20 @@
             "    Options:",
             "      ApplianceModeSupport: ${3|false,true|}",
             "      Ipv6Support: ${4|false,true|}",
+            "    ProposedSegmentChange:",
+            "      AttachmentPolicyRuleNumber: ${4:Number}",
+            "      SegmentName: \"${5:String}\"",
+            "      Tags:",
+            "        -",
             "    SubnetArns: # Required",
             "      SubnetArns",
             "    Tags: ",
             "      Tags",
-            "    VpcArn: \"${6:String}\" # Required"
+            "    VpcArn: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-vpcattachment.html",
-            "Attributes:\n  ProposedSegmentChange\n  ProposedSegmentChange.Tags\n  AttachmentType\n  SegmentName\n  CreatedAt\n  UpdatedAt\n  AttachmentId\n  CoreNetworkArn\n  ResourceArn\n  ProposedSegmentChange.SegmentName\n  State\n  ProposedSegmentChange.AttachmentPolicyRuleNumber\n  OwnerAccountId\n  EdgeLocation\n  AttachmentPolicyRuleNumber"
+            "Attributes:\n  ResourceArn\n  AttachmentType\n  SegmentName\n  State\n  CreatedAt\n  OwnerAccountId\n  UpdatedAt\n  AttachmentId\n  CoreNetworkArn\n  EdgeLocation\n  AttachmentPolicyRuleNumber"
         ],
         "prefix": "networkmanager-vpcattachment",
         "scope": "yaml"
@@ -17765,10 +17822,11 @@
             "      DedicatedMasterType: \"${7:String}\"",
             "      InstanceCount: ${8:Number}",
             "      InstanceType: \"${9:String}\"",
-            "      WarmCount: ${10:Number}",
-            "      WarmEnabled: ${11|false,true|}",
-            "      WarmType: \"${12:String}\"",
-            "      ZoneAwarenessEnabled: ${14|false,true|}",
+            "      MultiAZWithStandbyEnabled: ${10|false,true|}",
+            "      WarmCount: ${11:Number}",
+            "      WarmEnabled: ${12|false,true|}",
+            "      WarmType: \"${13:String}\"",
+            "      ZoneAwarenessEnabled: ${15|false,true|}",
             "    CognitoOptions:",
             "      Enabled: ${6|false,true|}",
             "      IdentityPoolId: \"${7:String}\"",
@@ -20005,10 +20063,11 @@
             "      Tags",
             "    UriPathRoute:",
             "      ActivationState: \"${8:String}\"",
-            "      IncludeChildPaths: ${9|false,true|}",
+            "      AppendSourcePath: ${9|false,true|}",
+            "      IncludeChildPaths: ${10|false,true|}",
             "      Methods:",
             "        -",
-            "      SourcePath: \"${11:String}\""
+            "      SourcePath: \"${12:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-refactorspaces-route.html",
@@ -22599,10 +22658,13 @@
             "  Properties:",
             "    ProjectDescription: \"${2:String}\"",
             "    ProjectName: \"${3:String}\" # Required",
+            "    ServiceCatalogProvisionedProductDetails:",
+            "      ProvisionedProductId: \"${4:String}\"",
+            "      ProvisionedProductStatusMessage: \"${5:String}\"",
             "    ServiceCatalogProvisioningDetails:",
-            "      PathId: \"${4:String}\"",
-            "      ProductId: \"${5:String}\"",
-            "      ProvisioningArtifactId: \"${6:String}\"",
+            "      PathId: \"${5:String}\"",
+            "      ProductId: \"${6:String}\"",
+            "      ProvisioningArtifactId: \"${7:String}\"",
             "      ProvisioningParameters:",
             "        -",
             "    Tags: ",
@@ -22610,7 +22672,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-project.html",
-            "Attributes:\n  ProjectArn\n  ProjectStatus\n  ServiceCatalogProvisionedProductDetails.ProvisionedProductStatusMessage\n  ServiceCatalogProvisionedProductDetails.ProvisionedProductId\n  ProjectId\n  CreationTime\n  ServiceCatalogProvisionedProductDetails"
+            "Attributes:\n  ProjectArn\n  ProjectStatus\n  ProjectId\n  CreationTime"
         ],
         "prefix": "sagemaker-project",
         "scope": "yaml"
