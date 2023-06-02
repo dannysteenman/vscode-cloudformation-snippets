@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.12.0 (2023-06-02)
+-------------------
+- The following resource was updated:
+  AWS::CustomerProfiles::CalculatedAttributeDefinition. [Github Actions]
+
+
 4.11.0 (2023-05-26)
 -------------------
 - The following resource was updated:
