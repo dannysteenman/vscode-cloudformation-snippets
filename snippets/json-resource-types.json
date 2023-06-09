@@ -2581,7 +2581,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "applicationautoscaling-scalabletarget",
         "scope": "json"
@@ -2650,6 +2651,29 @@
             "Attributes:\n  ApplicationARN"
         ],
         "prefix": "applicationinsights-application",
+        "scope": "json"
+    },
+    "AWS::Athena::CapacityReservation": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Athena::CapacityReservation\",",
+            "  \"Properties\": {",
+            "    \"CapacityAssignmentConfiguration\": {",
+            "      \"CapacityAssignments\": []",
+            "    },",
+            "    \"Name\": \"${3:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"TargetDpus\": \"${5:Number}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-capacityreservation.html",
+            "Attributes:\n  Status\n  AllocatedDpus\n  CreationTime\n  LastSuccessfulAllocationTime\n  Arn"
+        ],
+        "prefix": "athena-capacityreservation",
         "scope": "json"
     },
     "AWS::Athena::DataCatalog": {
@@ -6346,6 +6370,36 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-enabledcontrol.html"
         ],
         "prefix": "controltower-enabledcontrol",
+        "scope": "json"
+    },
+    "AWS::CustomerProfiles::CalculatedAttributeDefinition": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::CustomerProfiles::CalculatedAttributeDefinition\",",
+            "  \"Properties\": {",
+            "    \"AttributeDetails\": {",
+            "      \"Attributes\": [],",
+            "      \"Expression\": \"${3:String}\"",
+            "    },",
+            "    \"CalculatedAttributeName\": \"${3:String}\",",
+            "    \"Conditions\": {",
+            "      \"ObjectCount\": \"${4:Number}\",",
+            "    },",
+            "    \"Description\": \"${5:String}\",",
+            "    \"DisplayName\": \"${6:String}\",",
+            "    \"DomainName\": \"${7:String}\",",
+            "    \"Statistic\": \"${8:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html",
+            "Attributes:\n  LastUpdatedAt\n  CreatedAt"
+        ],
+        "prefix": "customerprofiles-calculatedattributedefinition",
         "scope": "json"
     },
     "AWS::CustomerProfiles::Domain": {
@@ -17562,7 +17616,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html",
+            "Attributes:\n  LayerVersionArn"
         ],
         "prefix": "lambda-layerversion",
         "scope": "json"
@@ -20488,10 +20543,11 @@
             "  \"Type\": \"AWS::Omics::SequenceStore\",",
             "  \"Properties\": {",
             "    \"Description\": \"${2:String}\",",
-            "    \"Name\": \"${3:String}\",",
+            "    \"FallbackLocation\": \"${3:String}\",",
+            "    \"Name\": \"${4:String}\",",
             "    \"SseConfig\": {",
-            "      \"KeyArn\": \"${4:String}\",",
-            "      \"Type\": \"${5:String}\"",
+            "      \"KeyArn\": \"${5:String}\",",
+            "      \"Type\": \"${6:String}\"",
             "    },",
             "    \"Tags\": {",
             "  }",
