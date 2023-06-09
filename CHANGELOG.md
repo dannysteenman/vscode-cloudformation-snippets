@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.13.0 (2023-06-09)
+-------------------
+- The following resource was updated: AWS::CloudTrail::EventDataStore.
+  [Github Actions]
+
+
 4.12.0 (2023-06-02)
 -------------------
 - The following resource was updated:
