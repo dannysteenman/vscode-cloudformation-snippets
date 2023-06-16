@@ -3264,6 +3264,94 @@
         "prefix": "chatbot-slackchannelconfiguration",
         "scope": "yaml"
     },
+    "AWS::CleanRooms::Collaboration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CleanRooms::Collaboration",
+            "  Properties:",
+            "    CreatorDisplayName: \"${2:String}\" # Required",
+            "    CreatorMemberAbilities: # Required",
+            "      CreatorMemberAbilities",
+            "    DataEncryptionMetadata:",
+            "      AllowCleartext: ${4|false,true|}",
+            "      AllowDuplicates: ${5|false,true|}",
+            "      AllowJoinsOnColumnsWithDifferentNames: ${6|false,true|}",
+            "      PreserveNulls: ${7|false,true|}",
+            "    Description: \"${5:String}\" # Required",
+            "    Members: # Required",
+            "      Members",
+            "    Name: \"${7:String}\" # Required",
+            "    QueryLogStatus: \"${8:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-collaboration.html",
+            "Attributes:\n  CollaborationIdentifier\n  Arn"
+        ],
+        "prefix": "cleanrooms-collaboration",
+        "scope": "yaml"
+    },
+    "AWS::CleanRooms::ConfiguredTable": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CleanRooms::ConfiguredTable",
+            "  Properties:",
+            "    AllowedColumns: # Required",
+            "      AllowedColumns",
+            "    AnalysisMethod: \"${3:String}\" # Required",
+            "    AnalysisRules: ",
+            "      AnalysisRules",
+            "    Description: \"${5:String}\"",
+            "    Name: \"${6:String}\" # Required",
+            "    TableReference:",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-configuredtable.html",
+            "Attributes:\n  ConfiguredTableIdentifier\n  Arn"
+        ],
+        "prefix": "cleanrooms-configuredtable",
+        "scope": "yaml"
+    },
+    "AWS::CleanRooms::ConfiguredTableAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CleanRooms::ConfiguredTableAssociation",
+            "  Properties:",
+            "    ConfiguredTableIdentifier: \"${2:String}\" # Required",
+            "    Description: \"${3:String}\"",
+            "    MembershipIdentifier: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    RoleArn: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-configuredtableassociation.html",
+            "Attributes:\n  ConfiguredTableAssociationIdentifier\n  Arn"
+        ],
+        "prefix": "cleanrooms-configuredtableassociation",
+        "scope": "yaml"
+    },
+    "AWS::CleanRooms::Membership": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CleanRooms::Membership",
+            "  Properties:",
+            "    CollaborationIdentifier: \"${2:String}\" # Required",
+            "    QueryLogStatus: \"${3:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-membership.html",
+            "Attributes:\n  MembershipIdentifier\n  Arn\n  CollaborationCreatorAccountId\n  CollaborationArn"
+        ],
+        "prefix": "cleanrooms-membership",
+        "scope": "yaml"
+    },
     "AWS::Cloud9::EnvironmentEC2": {
         "body": [
             "${1:LogicalID}:",
@@ -5568,6 +5656,24 @@
             "Attributes:\n  LastUpdatedAt\n  CreatedAt"
         ],
         "prefix": "customerprofiles-domain",
+        "scope": "yaml"
+    },
+    "AWS::CustomerProfiles::EventStream": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CustomerProfiles::EventStream",
+            "  Properties:",
+            "    DomainName: \"${2:String}\" # Required",
+            "    EventStreamName: \"${3:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    Uri: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html",
+            "Attributes:\n  DestinationDetails.Status\n  EventStreamArn\n  State\n  CreatedAt\n  DestinationDetails.Uri\n  DestinationDetails"
+        ],
+        "prefix": "customerprofiles-eventstream",
         "scope": "yaml"
     },
     "AWS::CustomerProfiles::Integration": {
@@ -12494,10 +12600,11 @@
             "    InsecureIngest: ${3|false,true|}",
             "    LatencyMode: \"${4:String}\"",
             "    Name: \"${5:String}\"",
-            "    RecordingConfigurationArn: \"${6:String}\"",
+            "    Preset: \"${6:String}\"",
+            "    RecordingConfigurationArn: \"${7:String}\"",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${8:String}\""
+            "    Type: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html",
@@ -16330,6 +16437,74 @@
         "prefix": "managedblockchain-node",
         "scope": "yaml"
     },
+    "AWS::MediaConnect::Bridge": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaConnect::Bridge",
+            "  Properties:",
+            "    EgressGatewayBridge:",
+            "      MaxBitrate: ${2:Number}",
+            "    IngressGatewayBridge:",
+            "      MaxBitrate: ${3:Number}",
+            "      MaxOutputs: ${4:Number}",
+            "    Name: \"${4:String}\" # Required",
+            "    Outputs: ",
+            "      Outputs",
+            "    PlacementArn: \"${6:String}\" # Required",
+            "    SourceFailoverConfig:",
+            "      FailoverMode: \"${7:String}\"",
+            "      State: \"${9:String}\"",
+            "    Sources: # Required",
+            "      Sources"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html",
+            "Attributes:\n  BridgeArn\n  BridgeState"
+        ],
+        "prefix": "mediaconnect-bridge",
+        "scope": "yaml"
+    },
+    "AWS::MediaConnect::BridgeOutput": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaConnect::BridgeOutput",
+            "  Properties:",
+            "    BridgeArn: \"${2:String}\" # Required",
+            "    Name: \"${3:String}\" # Required",
+            "    NetworkOutput:",
+            "      IpAddress: \"${4:String}\"",
+            "      NetworkName: \"${5:String}\"",
+            "      Port: ${6:Number}",
+            "      Protocol: \"${7:String}\"",
+            "      Ttl: ${8:Number}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgeoutput.html"
+        ],
+        "prefix": "mediaconnect-bridgeoutput",
+        "scope": "yaml"
+    },
+    "AWS::MediaConnect::BridgeSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaConnect::BridgeSource",
+            "  Properties:",
+            "    BridgeArn: \"${2:String}\" # Required",
+            "    FlowSource:",
+            "      FlowArn: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
+            "    NetworkSource:",
+            "      MulticastIp: \"${5:String}\"",
+            "      NetworkName: \"${6:String}\"",
+            "      Port: ${7:Number}",
+            "      Protocol: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html"
+        ],
+        "prefix": "mediaconnect-bridgesource",
+        "scope": "yaml"
+    },
     "AWS::MediaConnect::Flow": {
         "body": [
             "${1:LogicalID}:",
@@ -16487,6 +16662,24 @@
             "Attributes:\n  NetworkInterfaceIds"
         ],
         "prefix": "mediaconnect-flowvpcinterface",
+        "scope": "yaml"
+    },
+    "AWS::MediaConnect::Gateway": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaConnect::Gateway",
+            "  Properties:",
+            "    EgressCidrBlocks: # Required",
+            "      EgressCidrBlocks",
+            "    Name: \"${3:String}\" # Required",
+            "    Networks: # Required",
+            "      Networks"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-gateway.html",
+            "Attributes:\n  GatewayArn\n  GatewayState"
+        ],
+        "prefix": "mediaconnect-gateway",
         "scope": "yaml"
     },
     "AWS::MediaConvert::JobTemplate": {
@@ -19373,6 +19566,29 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "ram-resourceshare",
+        "scope": "yaml"
+    },
+    "AWS::RDS::CustomDBEngineVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RDS::CustomDBEngineVersion",
+            "  Properties:",
+            "    DatabaseInstallationFilesS3BucketName: \"${2:String}\" # Required",
+            "    DatabaseInstallationFilesS3Prefix: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
+            "    Engine: \"${5:String}\" # Required",
+            "    EngineVersion: \"${6:String}\" # Required",
+            "    KMSKeyId: \"${7:String}\"",
+            "    Manifest: \"${8:String}\"",
+            "    Status: \"${9:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-customdbengineversion.html",
+            "Attributes:\n  DBEngineVersionArn"
+        ],
+        "prefix": "rds-customdbengineversion",
         "scope": "yaml"
     },
     "AWS::RDS::DBCluster": {
@@ -22954,6 +23170,98 @@
         "prefix": "secretsmanager-secrettargetattachment",
         "scope": "yaml"
     },
+    "AWS::SecurityHub::AutomationRule": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::AutomationRule",
+            "  Properties:",
+            "    Actions: ",
+            "      Actions",
+            "    Criteria:",
+            "      AwsAccountId:",
+            "        -",
+            "      CompanyName:",
+            "        -",
+            "      ComplianceAssociatedStandardsId:",
+            "        -",
+            "      ComplianceSecurityControlId:",
+            "        -",
+            "      ComplianceStatus:",
+            "        -",
+            "      Confidence:",
+            "        -",
+            "      CreatedAt:",
+            "        -",
+            "      Criticality:",
+            "        -",
+            "      Description:",
+            "        -",
+            "      FirstObservedAt:",
+            "        -",
+            "      GeneratorId:",
+            "        -",
+            "      Id:",
+            "        -",
+            "      LastObservedAt:",
+            "        -",
+            "      NoteText:",
+            "        -",
+            "      NoteUpdatedAt:",
+            "        -",
+            "      NoteUpdatedBy:",
+            "        -",
+            "      ProductArn:",
+            "        -",
+            "      ProductName:",
+            "        -",
+            "      RecordState:",
+            "        -",
+            "      RelatedFindingsId:",
+            "        -",
+            "      RelatedFindingsProductArn:",
+            "        -",
+            "      ResourceDetailsOther:",
+            "        -",
+            "      ResourceId:",
+            "        -",
+            "      ResourcePartition:",
+            "        -",
+            "      ResourceRegion:",
+            "        -",
+            "      ResourceTags:",
+            "        -",
+            "      ResourceType:",
+            "        -",
+            "      SeverityLabel:",
+            "        -",
+            "      SourceUrl:",
+            "        -",
+            "      Title:",
+            "        -",
+            "      Type:",
+            "        -",
+            "      UpdatedAt:",
+            "        -",
+            "      UserDefinedFields:",
+            "        -",
+            "      VerificationState:",
+            "        -",
+            "      WorkflowStatus:",
+            "        -",
+            "    Description: \"${4:String}\"",
+            "    IsTerminal: ${5|false,true|}",
+            "    RuleName: \"${6:String}\"",
+            "    RuleOrder: ${7:Number}",
+            "    RuleStatus: \"${8:String}\"",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-automationrule.html",
+            "Attributes:\n  CreatedBy\n  RuleArn\n  CreatedAt\n  UpdatedAt"
+        ],
+        "prefix": "securityhub-automationrule",
+        "scope": "yaml"
+    },
     "AWS::SecurityHub::Hub": {
         "body": [
             "${1:LogicalID}:",
@@ -22965,6 +23273,22 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hub.html"
         ],
         "prefix": "securityhub-hub",
+        "scope": "yaml"
+    },
+    "AWS::SecurityHub::Standard": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::Standard",
+            "  Properties:",
+            "    DisabledStandardsControls: ",
+            "      DisabledStandardsControls",
+            "    StandardsArn: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-standard.html",
+            "Attributes:\n  StandardsSubscriptionArn"
+        ],
+        "prefix": "securityhub-standard",
         "scope": "yaml"
     },
     "AWS::ServiceCatalog::AcceptedPortfolioShare": {
