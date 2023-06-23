@@ -724,8 +724,7 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html",
-            "Attributes:\n  Id"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html"
         ],
         "prefix": "apigateway-gatewayresponse",
         "scope": "json"
@@ -3605,6 +3604,10 @@
             "  \"Type\": \"AWS::Cassandra::Keyspace\",",
             "  \"Properties\": {",
             "    \"KeyspaceName\": \"${2:String}\",",
+            "    \"ReplicationSpecification\": {",
+            "      \"RegionList\": [],",
+            "      \"ReplicationStrategy\": \"${4:String}\"",
+            "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -9021,8 +9024,7 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkaclentry.html",
-            "Attributes:\n  Id"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html"
         ],
         "prefix": "ec2-networkaclentry",
         "scope": "json"
@@ -10151,8 +10153,7 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngatewayroutepropagation.html",
-            "Attributes:\n  Id"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html"
         ],
         "prefix": "ec2-vpngatewayroutepropagation",
         "scope": "json"
@@ -10323,7 +10324,7 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volumeattachment.html"
         ],
         "prefix": "ec2-volumeattachment",
         "scope": "json"
@@ -13309,6 +13310,29 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-datacatalogencryptionsettings.html"
         ],
         "prefix": "glue-datacatalogencryptionsettings",
+        "scope": "json"
+    },
+    "AWS::Glue::DataQualityRuleset": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Glue::DataQualityRuleset\",",
+            "  \"Properties\": {",
+            "    \"ClientToken\": \"${2:String}\",",
+            "    \"Description\": \"${3:String}\",",
+            "    \"Name\": \"${4:String}\",",
+            "    \"Ruleset\": \"${5:String}\",",
+            "    \"Tags\": \"${6:JSON}\",",
+            "    \"TargetTable\": {",
+            "      \"DatabaseName\": \"${7:String}\",",
+            "      \"TableName\": \"${8:String}\"",
+            "    },",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-dataqualityruleset.html"
+        ],
+        "prefix": "glue-dataqualityruleset",
         "scope": "json"
     },
     "AWS::Glue::Database": {
@@ -19166,22 +19190,22 @@
             "    \"Source\": {",
             "      \"Description\": \"${5:String}\",",
             "      \"EntitlementArn\": \"${6:String}\",",
-            "      \"IngestIp\": \"${7:String}\",",
-            "      \"IngestPort\": \"${8:Number}\",",
-            "      \"MaxBitrate\": \"${9:Number}\",",
-            "      \"MaxLatency\": \"${10:Number}\",",
-            "      \"MinLatency\": \"${11:Number}\",",
-            "      \"Name\": \"${12:String}\",",
-            "      \"Protocol\": \"${13:String}\",",
-            "      \"SenderControlPort\": \"${14:Number}\",",
-            "      \"SenderIpAddress\": \"${15:String}\",",
-            "      \"SourceArn\": \"${16:String}\",",
-            "      \"SourceIngestPort\": \"${17:String}\",",
-            "      \"SourceListenerAddress\": \"${18:String}\",",
-            "      \"SourceListenerPort\": \"${19:Number}\",",
-            "      \"StreamId\": \"${20:String}\",",
-            "      \"VpcInterfaceName\": \"${21:String}\",",
-            "      \"WhitelistCidr\": \"${22:String}\"",
+            "      \"IngestIp\": \"${8:String}\",",
+            "      \"IngestPort\": \"${9:Number}\",",
+            "      \"MaxBitrate\": \"${10:Number}\",",
+            "      \"MaxLatency\": \"${11:Number}\",",
+            "      \"MinLatency\": \"${12:Number}\",",
+            "      \"Name\": \"${13:String}\",",
+            "      \"Protocol\": \"${14:String}\",",
+            "      \"SenderControlPort\": \"${15:Number}\",",
+            "      \"SenderIpAddress\": \"${16:String}\",",
+            "      \"SourceArn\": \"${17:String}\",",
+            "      \"SourceIngestPort\": \"${18:String}\",",
+            "      \"SourceListenerAddress\": \"${19:String}\",",
+            "      \"SourceListenerPort\": \"${20:Number}\",",
+            "      \"StreamId\": \"${21:String}\",",
+            "      \"VpcInterfaceName\": \"${22:String}\",",
+            "      \"WhitelistCidr\": \"${23:String}\"",
             "    },",
             "    \"SourceFailoverConfig\": {",
             "      \"FailoverMode\": \"${5:String}\",",
@@ -19289,19 +19313,22 @@
             "    \"Description\": \"${3:String}\",",
             "    \"EntitlementArn\": \"${4:String}\",",
             "    \"FlowArn\": \"${5:String}\",",
-            "    \"IngestPort\": \"${6:Number}\",",
-            "    \"MaxBitrate\": \"${7:Number}\",",
-            "    \"MaxLatency\": \"${8:Number}\",",
-            "    \"MinLatency\": \"${9:Number}\",",
-            "    \"Name\": \"${10:String}\",",
-            "    \"Protocol\": \"${11:String}\",",
-            "    \"SenderControlPort\": \"${12:Number}\",",
-            "    \"SenderIpAddress\": \"${13:String}\",",
-            "    \"SourceListenerAddress\": \"${14:String}\",",
-            "    \"SourceListenerPort\": \"${15:Number}\",",
-            "    \"StreamId\": \"${16:String}\",",
-            "    \"VpcInterfaceName\": \"${17:String}\",",
-            "    \"WhitelistCidr\": \"${18:String}\"",
+            "    \"GatewayBridgeSource\": {",
+            "      \"BridgeArn\": \"${6:String}\",",
+            "    },",
+            "    \"IngestPort\": \"${7:Number}\",",
+            "    \"MaxBitrate\": \"${8:Number}\",",
+            "    \"MaxLatency\": \"${9:Number}\",",
+            "    \"MinLatency\": \"${10:Number}\",",
+            "    \"Name\": \"${11:String}\",",
+            "    \"Protocol\": \"${12:String}\",",
+            "    \"SenderControlPort\": \"${13:Number}\",",
+            "    \"SenderIpAddress\": \"${14:String}\",",
+            "    \"SourceListenerAddress\": \"${15:String}\",",
+            "    \"SourceListenerPort\": \"${16:Number}\",",
+            "    \"StreamId\": \"${17:String}\",",
+            "    \"VpcInterfaceName\": \"${18:String}\",",
+            "    \"WhitelistCidr\": \"${19:String}\"",
             "  }",
             "}"
         ],
@@ -21341,6 +21368,22 @@
             "Attributes:\n  JoinedMethod\n  Status\n  JoinedTimestamp\n  AccountId\n  Arn"
         ],
         "prefix": "organizations-account",
+        "scope": "json"
+    },
+    "AWS::Organizations::Organization": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Organizations::Organization\",",
+            "  \"Properties\": {",
+            "    \"FeatureSet\": \"${2:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-organizations-organization.html",
+            "Attributes:\n  RootId\n  Id\n  Arn\n  ManagementAccountArn\n  ManagementAccountId\n  ManagementAccountEmail"
+        ],
+        "prefix": "organizations-organization",
         "scope": "json"
     },
     "AWS::Organizations::OrganizationalUnit": {
@@ -26920,7 +26963,10 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::SecurityHub::Hub\",",
             "  \"Properties\": {",
-            "    \"Tags\": \"${2:JSON}\"",
+            "    \"AutoEnableControls\": \"${2|false,true|}\",",
+            "    \"ControlFindingGenerator\": \"${3:String}\",",
+            "    \"EnableDefaultStandards\": \"${4|false,true|}\",",
+            "    \"Tags\": \"${5:JSON}\"",
             "  }",
             "}"
         ],
@@ -27696,6 +27742,51 @@
         "prefix": "stepfunctions-statemachine",
         "scope": "json"
     },
+    "AWS::StepFunctions::StateMachineAlias": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::StepFunctions::StateMachineAlias\",",
+            "  \"Properties\": {",
+            "    \"DeploymentPreference\": {",
+            "      \"Alarms\": [],",
+            "      \"Interval\": \"${3:Number}\",",
+            "      \"Percentage\": \"${4:Number}\",",
+            "      \"StateMachineVersionArn\": \"${5:String}\",",
+            "      \"Type\": \"${6:String}\"",
+            "    },",
+            "    \"Description\": \"${3:String}\",",
+            "    \"Name\": \"${4:String}\",",
+            "    \"RoutingConfiguration\": [",
+            "      \"RoutingConfiguration\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "stepfunctions-statemachinealias",
+        "scope": "json"
+    },
+    "AWS::StepFunctions::StateMachineVersion": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::StepFunctions::StateMachineVersion\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"StateMachineArn\": \"${3:String}\",",
+            "    \"StateMachineRevisionId\": \"${4:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachineversion.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "stepfunctions-statemachineversion",
+        "scope": "json"
+    },
     "AWS::SupportApp::AccountAlias": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -28072,6 +28163,9 @@
             "      \"Protocols\"",
             "    ],",
             "    \"SecurityPolicyName\": \"${13:String}\",",
+            "    \"StructuredLogDestinations\": [",
+            "      \"StructuredLogDestinations\"",
+            "    ],",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
