@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+4.15.0 (2023-06-23)
+-------------------
+- The following resources were added: <code
+  class="code">AWS::StepFunctions::StateMachineAlias</code> and <code
+  class="code">AWS::StepFunctions::StateMachineVersion</code>. [Github
+  Actions]
+
+
 4.14.0 (2023-06-16)
 -------------------
 - The following resource was updated: AWS::IVS::Channel. [Github
