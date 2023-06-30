@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.16.0 (2023-06-30)
+-------------------
+- The following resource was updated: <code
+  class="code">AWS::AppStream::AppBlock</code> [Github Actions]
+
+
 4.15.0 (2023-06-23)
 -------------------
 - The following resources were added: <code
