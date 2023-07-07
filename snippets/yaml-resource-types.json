@@ -942,7 +942,8 @@
             "    Stage: \"${5:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apimapping.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apimapping.html",
+            "Attributes:\n  ApiMappingId"
         ],
         "prefix": "apigatewayv2-apimapping",
         "scope": "yaml"
@@ -13178,19 +13179,22 @@
             "${1:LogicalID}:",
             "  Type: AWS::InternetMonitor::Monitor",
             "  Properties:",
+            "    HealthEventsConfig:",
+            "      AvailabilityScoreThreshold: ${2:Number}",
+            "      PerformanceScoreThreshold: ${3:Number}",
             "    InternetMeasurementsLogDelivery:",
-            "    MaxCityNetworksToMonitor: ${3:Number}",
-            "    MonitorName: \"${4:String}\" # Required",
+            "    MaxCityNetworksToMonitor: ${4:Number}",
+            "    MonitorName: \"${5:String}\" # Required",
             "    Resources: ",
             "      Resources",
             "    ResourcesToAdd: ",
             "      ResourcesToAdd",
             "    ResourcesToRemove: ",
             "      ResourcesToRemove",
-            "    Status: \"${8:String}\"",
+            "    Status: \"${9:String}\"",
             "    Tags: ",
             "      Tags",
-            "    TrafficPercentageToMonitor: ${10:Number}"
+            "    TrafficPercentageToMonitor: ${11:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-internetmonitor-monitor.html",
@@ -21894,7 +21898,8 @@
             "      Topics"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topicpolicy.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "sns-topicpolicy",
         "scope": "yaml"
