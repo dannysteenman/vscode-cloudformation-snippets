@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.17.0 (2023-07-07)
+-------------------
+- The following resource was added: AWS::Transfer::Server
+  StructuredLogDestination. [Github Actions]
+
+
 4.16.0 (2023-06-30)
 -------------------
 - The following resource was updated: <code
