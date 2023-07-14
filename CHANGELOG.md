@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.18.0 (2023-07-14)
+-------------------
+- The following resource was updated: AWS::IoT::JobTemplate. [Github
+  Actions]
+
+
 4.17.0 (2023-07-07)
 -------------------
 - The following resource was added: AWS::Transfer::Server
