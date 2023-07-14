@@ -12445,8 +12445,13 @@
             "  Properties:",
             "    DatastoreName: \"${2:String}\"",
             "    DatastoreTypeVersion: \"${3:String}\" # Required",
+            "    IdentityProviderConfiguration:",
+            "      AuthorizationStrategy: \"${4:String}\"",
+            "      FineGrainedAuthorizationEnabled: ${5|false,true|}",
+            "      IdpLambdaArn: \"${6:String}\"",
+            "      Metadata: \"${7:String}\"",
             "    PreloadDataConfig:",
-            "      PreloadDataType: \"${4:String}\"",
+            "      PreloadDataType: \"${5:String}\"",
             "    SseConfiguration:",
             "    Tags: ",
             "      Tags"
@@ -21628,9 +21633,12 @@
             "  Properties:",
             "    AccessType: \"${2:String}\"",
             "    CustomerOwnedIpv4Pool: \"${3:String}\"",
-            "    OutpostId: \"${4:String}\" # Required",
-            "    SecurityGroupId: \"${5:String}\" # Required",
-            "    SubnetId: \"${6:String}\" # Required"
+            "    FailedReason:",
+            "      ErrorCode: \"${4:String}\"",
+            "      Message: \"${5:String}\"",
+            "    OutpostId: \"${5:String}\" # Required",
+            "    SecurityGroupId: \"${6:String}\" # Required",
+            "    SubnetId: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html",
