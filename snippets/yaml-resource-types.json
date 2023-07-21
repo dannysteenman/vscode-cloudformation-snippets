@@ -165,37 +165,39 @@
             "    Configuration:",
             "      Id: \"${5:String}\"",
             "      Revision: ${6:Number}",
-            "    DeploymentMode: \"${6:String}\" # Required",
+            "    DataReplicationMode: \"${6:String}\"",
+            "    DataReplicationPrimaryBrokerArn: \"${7:String}\"",
+            "    DeploymentMode: \"${8:String}\" # Required",
             "    EncryptionOptions:",
-            "      KmsKeyId: \"${7:String}\"",
-            "      UseAwsOwnedKey: ${8|false,true|}",
-            "    EngineType: \"${8:String}\" # Required",
-            "    EngineVersion: \"${9:String}\" # Required",
-            "    HostInstanceType: \"${10:String}\" # Required",
+            "      KmsKeyId: \"${9:String}\"",
+            "      UseAwsOwnedKey: ${10|false,true|}",
+            "    EngineType: \"${10:String}\" # Required",
+            "    EngineVersion: \"${11:String}\" # Required",
+            "    HostInstanceType: \"${12:String}\" # Required",
             "    LdapServerMetadata:",
             "      Hosts:",
             "        -",
-            "      RoleBase: \"${12:String}\"",
-            "      RoleName: \"${13:String}\"",
-            "      RoleSearchMatching: \"${14:String}\"",
-            "      RoleSearchSubtree: ${15|false,true|}",
-            "      ServiceAccountPassword: \"${16:String}\"",
-            "      ServiceAccountUsername: \"${17:String}\"",
-            "      UserBase: \"${18:String}\"",
-            "      UserRoleName: \"${19:String}\"",
-            "      UserSearchMatching: \"${20:String}\"",
-            "      UserSearchSubtree: ${21|false,true|}",
+            "      RoleBase: \"${14:String}\"",
+            "      RoleName: \"${15:String}\"",
+            "      RoleSearchMatching: \"${16:String}\"",
+            "      RoleSearchSubtree: ${17|false,true|}",
+            "      ServiceAccountPassword: \"${18:String}\"",
+            "      ServiceAccountUsername: \"${19:String}\"",
+            "      UserBase: \"${20:String}\"",
+            "      UserRoleName: \"${21:String}\"",
+            "      UserSearchMatching: \"${22:String}\"",
+            "      UserSearchSubtree: ${23|false,true|}",
             "    Logs:",
-            "      Audit: ${12|false,true|}",
-            "      General: ${13|false,true|}",
+            "      Audit: ${14|false,true|}",
+            "      General: ${15|false,true|}",
             "    MaintenanceWindowStartTime:",
-            "      DayOfWeek: \"${13:String}\"",
-            "      TimeOfDay: \"${14:String}\"",
-            "      TimeZone: \"${15:String}\"",
-            "    PubliclyAccessible: ${14|false,true|} # Required",
+            "      DayOfWeek: \"${15:String}\"",
+            "      TimeOfDay: \"${16:String}\"",
+            "      TimeZone: \"${17:String}\"",
+            "    PubliclyAccessible: ${16|false,true|} # Required",
             "    SecurityGroups: ",
             "      SecurityGroups",
-            "    StorageType: \"${16:String}\"",
+            "    StorageType: \"${18:String}\"",
             "    SubnetIds: ",
             "      SubnetIds",
             "    Tags: ",
@@ -2899,8 +2901,8 @@
             "        -",
             "      Ulimits:",
             "        -",
-            "      User: \"${20:String}\"",
-            "      Vcpus: ${21:Number}",
+            "      User: \"${21:String}\"",
+            "      Vcpus: ${22:Number}",
             "      Volumes:",
             "        -",
             "    EksProperties:",
@@ -5527,6 +5529,33 @@
         "prefix": "connect-prompt",
         "scope": "yaml"
     },
+    "AWS::Connect::Queue": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::Queue",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    HoursOfOperationArn: \"${3:String}\" # Required",
+            "    InstanceArn: \"${4:String}\" # Required",
+            "    MaxContacts: ${5:Number}",
+            "    Name: \"${6:String}\" # Required",
+            "    OutboundCallerConfig:",
+            "      OutboundCallerIdName: \"${7:String}\"",
+            "      OutboundCallerIdNumberArn: \"${8:String}\"",
+            "      OutboundFlowArn: \"${9:String}\"",
+            "    QuickConnectArns: ",
+            "      QuickConnectArns",
+            "    Status: \"${9:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-queue.html",
+            "Attributes:\n  Type\n  QueueArn"
+        ],
+        "prefix": "connect-queue",
+        "scope": "yaml"
+    },
     "AWS::Connect::QuickConnect": {
         "body": [
             "${1:LogicalID}:",
@@ -5545,6 +5574,29 @@
             "Attributes:\n  QuickConnectArn"
         ],
         "prefix": "connect-quickconnect",
+        "scope": "yaml"
+    },
+    "AWS::Connect::RoutingProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::RoutingProfile",
+            "  Properties:",
+            "    DefaultOutboundQueueArn: \"${2:String}\" # Required",
+            "    Description: \"${3:String}\" # Required",
+            "    InstanceArn: \"${4:String}\" # Required",
+            "    MediaConcurrencies: # Required",
+            "      MediaConcurrencies",
+            "    Name: \"${6:String}\" # Required",
+            "    QueueConfigs: ",
+            "      QueueConfigs",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-routingprofile.html",
+            "Attributes:\n  RoutingProfileArn"
+        ],
+        "prefix": "connect-routingprofile",
         "scope": "yaml"
     },
     "AWS::Connect::Rule": {
@@ -10923,9 +10975,9 @@
             "      OntapVolumeType: \"${6:String}\"",
             "      SecurityStyle: \"${7:String}\"",
             "      SizeInMegabytes: \"${8:String}\"",
-            "      SnapshotPolicy: \"${9:String}\"",
-            "      StorageEfficiencyEnabled: \"${10:String}\"",
-            "      StorageVirtualMachineId: \"${11:String}\"",
+            "      SnapshotPolicy: \"${10:String}\"",
+            "      StorageEfficiencyEnabled: \"${11:String}\"",
+            "      StorageVirtualMachineId: \"${12:String}\"",
             "    OpenZFSConfiguration:",
             "      CopyTagsToSnapshots: ${5|false,true|}",
             "      DataCompressionType: \"${6:String}\"",
@@ -12498,6 +12550,21 @@
         "prefix": "iam-group",
         "scope": "yaml"
     },
+    "AWS::IAM::GroupPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IAM::GroupPolicy",
+            "  Properties:",
+            "    GroupName: \"${2:String}\" # Required",
+            "    PolicyDocument: ${3:JSON}",
+            "    PolicyName: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-grouppolicy.html"
+        ],
+        "prefix": "iam-grouppolicy",
+        "scope": "yaml"
+    },
     "AWS::IAM::InstanceProfile": {
         "body": [
             "${1:LogicalID}:",
@@ -12602,6 +12669,21 @@
         "prefix": "iam-role",
         "scope": "yaml"
     },
+    "AWS::IAM::RolePolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IAM::RolePolicy",
+            "  Properties:",
+            "    PolicyDocument: ${2:JSON}",
+            "    PolicyName: \"${3:String}\" # Required",
+            "    RoleName: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-rolepolicy.html"
+        ],
+        "prefix": "iam-rolepolicy",
+        "scope": "yaml"
+    },
     "AWS::IAM::SAMLProvider": {
         "body": [
             "${1:LogicalID}:",
@@ -12680,6 +12762,21 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "iam-user",
+        "scope": "yaml"
+    },
+    "AWS::IAM::UserPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IAM::UserPolicy",
+            "  Properties:",
+            "    PolicyDocument: ${2:JSON}",
+            "    PolicyName: \"${3:String}\" # Required",
+            "    UserName: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-userpolicy.html"
+        ],
+        "prefix": "iam-userpolicy",
         "scope": "yaml"
     },
     "AWS::IAM::UserToGroupAddition": {
@@ -16028,6 +16125,23 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-trackerconsumer.html"
         ],
         "prefix": "location-trackerconsumer",
+        "scope": "yaml"
+    },
+    "AWS::Logs::AccountPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Logs::AccountPolicy",
+            "  Properties:",
+            "    PolicyDocument: \"${2:String}\" # Required",
+            "    PolicyName: \"${3:String}\" # Required",
+            "    PolicyType: \"${4:String}\" # Required",
+            "    Scope: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-accountpolicy.html",
+            "Attributes:\n  AccountId"
+        ],
+        "prefix": "logs-accountpolicy",
         "scope": "yaml"
     },
     "AWS::Logs::Destination": {
@@ -21894,6 +22008,20 @@
             "Attributes:\n  TopicArn\n  TopicName"
         ],
         "prefix": "sns-topic",
+        "scope": "yaml"
+    },
+    "AWS::SNS::TopicInlinePolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SNS::TopicInlinePolicy",
+            "  Properties:",
+            "    PolicyDocument: ${2:JSON} # Required",
+            "    TopicArn: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-topicinlinepolicy.html"
+        ],
+        "prefix": "sns-topicinlinepolicy",
         "scope": "yaml"
     },
     "AWS::SNS::TopicPolicy": {
