@@ -4680,6 +4680,43 @@
         "prefix": "codestarnotifications-notificationrule",
         "scope": "yaml"
     },
+    "AWS::CodeTest::PersistentConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CodeTest::PersistentConfiguration",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    ResultsRoleArn: \"${3:String}\" # Required",
+            "    Version: \"${4:String}\"",
+            "    VpcConfig:",
+            "      SecurityGroupIds:",
+            "        -",
+            "      Subnets:",
+            "        -"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codetest-persistentconfiguration.html",
+            "Attributes:\n  Name"
+        ],
+        "prefix": "codetest-persistentconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::CodeTest::Series": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CodeTest::Series",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    PersistentConfigurationId: \"${3:String}\" # Required",
+            "    RunDefinition: ${4:JSON} # Required",
+            "    State: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codetest-series.html"
+        ],
+        "prefix": "codetest-series",
+        "scope": "yaml"
+    },
     "AWS::Cognito::IdentityPool": {
         "body": [
             "${1:LogicalID}:",
@@ -7520,13 +7557,14 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::Host",
             "  Properties:",
-            "    AutoPlacement: \"${2:String}\"",
-            "    AvailabilityZone: \"${3:String}\" # Required",
-            "    HostMaintenance: \"${4:String}\"",
-            "    HostRecovery: \"${5:String}\"",
-            "    InstanceFamily: \"${6:String}\"",
-            "    InstanceType: \"${7:String}\"",
-            "    OutpostArn: \"${8:String}\""
+            "    AssetId: \"${2:String}\"",
+            "    AutoPlacement: \"${3:String}\"",
+            "    AvailabilityZone: \"${4:String}\" # Required",
+            "    HostMaintenance: \"${5:String}\"",
+            "    HostRecovery: \"${6:String}\"",
+            "    InstanceFamily: \"${7:String}\"",
+            "    InstanceType: \"${8:String}\"",
+            "    OutpostArn: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html",
@@ -12599,7 +12637,8 @@
             "      Users"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html",
+            "Attributes:\n  IsAttachable\n  UpdateDate\n  PermissionsBoundaryUsageCount\n  AttachmentCount\n  PolicyArn\n  DefaultVersionId\n  CreateDate\n  PolicyId"
         ],
         "prefix": "iam-managedpolicy",
         "scope": "yaml"
@@ -14772,7 +14811,8 @@
             "    KeySpec: \"${6:String}\"",
             "    KeyUsage: \"${7:String}\"",
             "    MultiRegion: ${8|false,true|}",
-            "    PendingWindowInDays: ${9:Number}",
+            "    Origin: \"${9:String}\"",
+            "    PendingWindowInDays: ${10:Number}",
             "    Tags: ",
             "      Tags"
         ],
@@ -15552,7 +15592,8 @@
             "    SourceArn: \"${9:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "lambda-permission",
         "scope": "yaml"
@@ -22080,7 +22121,8 @@
             "      Queues"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queuepolicy.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "sqs-queuepolicy",
         "scope": "yaml"
@@ -22791,8 +22833,18 @@
             "${1:LogicalID}:",
             "  Type: AWS::SageMaker::ImageVersion",
             "  Properties:",
-            "    BaseImage: \"${2:String}\" # Required",
-            "    ImageName: \"${3:String}\" # Required"
+            "    Alias: \"${2:String}\"",
+            "    Aliases: ",
+            "      Aliases",
+            "    BaseImage: \"${4:String}\" # Required",
+            "    Horovod: ${5|false,true|}",
+            "    ImageName: \"${6:String}\" # Required",
+            "    JobType: \"${7:String}\"",
+            "    MLFramework: \"${8:String}\"",
+            "    Processor: \"${9:String}\"",
+            "    ProgrammingLang: \"${10:String}\"",
+            "    ReleaseNotes: \"${11:String}\"",
+            "    VendorGuidance: \"${12:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-imageversion.html",
@@ -24418,7 +24470,10 @@
             "    RetentionProperties:",
             "      MagneticStoreRetentionPeriodInDays: \"${4:String}\"",
             "      MemoryStoreRetentionPeriodInHours: \"${5:String}\"",
-            "    TableName: \"${5:String}\"",
+            "    Schema:",
+            "      CompositePartitionKey:",
+            "        -",
+            "    TableName: \"${6:String}\"",
             "    Tags: ",
             "      Tags"
         ],
