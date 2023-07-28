@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.20.0 (2023-07-28)
+-------------------
+- The following resources were updated: AWS::WAFv2::WebACL and
+  AWS::WAFv2::RuleGroup. [Github Actions]
+
+
 4.19.0 (2023-07-21)
 -------------------
 - The following resource was updated: AWS::FSx::Volume. [Github Actions]
