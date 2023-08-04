@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.21.0 (2023-08-04)
+-------------------
+- The following resource was updated: AWS::SQS::QueueInlinePolicy.
+  [Github Actions]
+
+
 4.20.0 (2023-07-28)
 -------------------
 - The following resources were updated: AWS::WAFv2::WebACL and
