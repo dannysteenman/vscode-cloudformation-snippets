@@ -3410,6 +3410,7 @@
             "  \"Type\": \"AWS::BillingConductor::BillingGroup\",",
             "  \"Properties\": {",
             "    \"AccountGrouping\": {",
+            "      \"AutoAssociate\": \"${2|false,true|}\",",
             "      \"LinkedAccountIds\": []",
             "    },",
             "    \"ComputationPreference\": {",
@@ -5401,46 +5402,6 @@
         "prefix": "codestarnotifications-notificationrule",
         "scope": "json"
     },
-    "AWS::CodeTest::PersistentConfiguration": {
-        "body": [
-            "\"${1:LogicalID}\": {",
-            "  \"Type\": \"AWS::CodeTest::PersistentConfiguration\",",
-            "  \"Properties\": {",
-            "    \"Name\": \"${2:String}\",",
-            "    \"ResultsRoleArn\": \"${3:String}\",",
-            "    \"Version\": \"${4:String}\",",
-            "    \"VpcConfig\": {",
-            "      \"SecurityGroupIds\": [],",
-            "      \"Subnets\": []",
-            "    },",
-            "  }",
-            "}"
-        ],
-        "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codetest-persistentconfiguration.html",
-            "Attributes:\n  Name"
-        ],
-        "prefix": "codetest-persistentconfiguration",
-        "scope": "json"
-    },
-    "AWS::CodeTest::Series": {
-        "body": [
-            "\"${1:LogicalID}\": {",
-            "  \"Type\": \"AWS::CodeTest::Series\",",
-            "  \"Properties\": {",
-            "    \"Name\": \"${2:String}\",",
-            "    \"PersistentConfigurationId\": \"${3:String}\",",
-            "    \"RunDefinition\": \"${4:JSON}\",",
-            "    \"State\": \"${5:String}\"",
-            "  }",
-            "}"
-        ],
-        "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codetest-series.html"
-        ],
-        "prefix": "codetest-series",
-        "scope": "json"
-    },
     "AWS::Cognito::IdentityPool": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -5937,27 +5898,33 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::Config::ConfigRule\",",
             "  \"Properties\": {",
-            "    \"ConfigRuleName\": \"${2:String}\",",
-            "    \"Description\": \"${3:String}\",",
-            "    \"InputParameters\": \"${4:JSON}\",",
-            "    \"MaximumExecutionFrequency\": \"${5:String}\",",
+            "    \"Compliance\": {",
+            "      \"Type\": \"${2:String}\"",
+            "    },",
+            "    \"ConfigRuleName\": \"${3:String}\",",
+            "    \"Description\": \"${4:String}\",",
+            "    \"EvaluationModes\": [",
+            "      \"EvaluationModes\"",
+            "    ],",
+            "    \"InputParameters\": \"${6:JSON}\",",
+            "    \"MaximumExecutionFrequency\": \"${7:String}\",",
             "    \"Scope\": {",
-            "      \"ComplianceResourceId\": \"${6:String}\",",
+            "      \"ComplianceResourceId\": \"${8:String}\",",
             "      \"ComplianceResourceTypes\": [],",
-            "      \"TagKey\": \"${8:String}\",",
-            "      \"TagValue\": \"${9:String}\"",
+            "      \"TagKey\": \"${10:String}\",",
+            "      \"TagValue\": \"${11:String}\"",
             "    },",
             "    \"Source\": {",
-            "      \"Owner\": \"${8:String}\",",
+            "      \"Owner\": \"${10:String}\",",
             "      \"SourceDetails\": [],",
-            "      \"SourceIdentifier\": \"${10:String}\"",
+            "      \"SourceIdentifier\": \"${12:String}\"",
             "    },",
             "  }",
             "}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html",
-            "Attributes:\n  Arn\n  Compliance.Type\n  ConfigRuleId"
+            "Attributes:\n  ConfigRuleId\n  Compliance.Type\n  Arn"
         ],
         "prefix": "config-configrule",
         "scope": "json"
@@ -7246,6 +7213,43 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html"
         ],
         "prefix": "dms-eventsubscription",
+        "scope": "json"
+    },
+    "AWS::DMS::ReplicationConfig": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DMS::ReplicationConfig\",",
+            "  \"Properties\": {",
+            "    \"ComputeConfig\": {",
+            "      \"AvailabilityZone\": \"${2:String}\",",
+            "      \"DnsNameServers\": \"${3:String}\",",
+            "      \"KmsKeyId\": \"${4:String}\",",
+            "      \"MaxCapacityUnits\": \"${5:Number}\",",
+            "      \"MinCapacityUnits\": \"${6:Number}\",",
+            "      \"MultiAZ\": \"${7|false,true|}\",",
+            "      \"PreferredMaintenanceWindow\": \"${8:String}\",",
+            "      \"ReplicationSubnetGroupId\": \"${9:String}\",",
+            "      \"VpcSecurityGroupIds\": []",
+            "    },",
+            "    \"ReplicationConfigArn\": \"${3:String}\",",
+            "    \"ReplicationConfigIdentifier\": \"${4:String}\",",
+            "    \"ReplicationSettings\": \"${5:JSON}\",",
+            "    \"ReplicationType\": \"${6:String}\",",
+            "    \"ResourceIdentifier\": \"${7:String}\",",
+            "    \"SourceEndpointArn\": \"${8:String}\",",
+            "    \"SupplementalSettings\": \"${9:JSON}\",",
+            "    \"TableMappings\": \"${10:JSON}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"TargetEndpointArn\": \"${12:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationconfig.html"
+        ],
+        "prefix": "dms-replicationconfig",
         "scope": "json"
     },
     "AWS::DMS::ReplicationInstance": {
@@ -9493,7 +9497,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html",
+            "Attributes:\n  CidrBlock"
         ],
         "prefix": "ec2-route",
         "scope": "json"
@@ -13411,12 +13416,14 @@
             "  \"Properties\": {",
             "    \"CsvClassifier\": {",
             "      \"AllowSingleColumn\": \"${2|false,true|}\",",
-            "      \"ContainsHeader\": \"${3:String}\",",
-            "      \"Delimiter\": \"${4:String}\",",
-            "      \"DisableValueTrimming\": \"${5|false,true|}\",",
+            "      \"ContainsCustomDatatype\": [],",
+            "      \"ContainsHeader\": \"${4:String}\",",
+            "      \"CustomDatatypeConfigured\": \"${5|false,true|}\",",
+            "      \"Delimiter\": \"${6:String}\",",
+            "      \"DisableValueTrimming\": \"${7|false,true|}\",",
             "      \"Header\": [],",
-            "      \"Name\": \"${7:String}\",",
-            "      \"QuoteSymbol\": \"${8:String}\"",
+            "      \"Name\": \"${9:String}\",",
+            "      \"QuoteSymbol\": \"${10:String}\"",
             "    },",
             "    \"GrokClassifier\": {",
             "      \"Classification\": \"${3:String}\",",
@@ -13494,6 +13501,7 @@
             "      \"CatalogTargets\": [],",
             "      \"DeltaTargets\": [],",
             "      \"DynamoDBTargets\": [],",
+            "      \"IcebergTargets\": [],",
             "      \"JdbcTargets\": [],",
             "      \"MongoDBTargets\": [],",
             "      \"S3Targets\": []",
@@ -13814,16 +13822,18 @@
             "  \"Properties\": {",
             "    \"CatalogId\": \"${2:String}\",",
             "    \"DatabaseName\": \"${3:String}\",",
+            "    \"OpenTableFormatInput\": {",
+            "    },",
             "    \"TableInput\": {",
-            "      \"Description\": \"${4:String}\",",
-            "      \"Name\": \"${5:String}\",",
-            "      \"Owner\": \"${6:String}\",",
-            "      \"Parameters\": \"${7:JSON}\",",
+            "      \"Description\": \"${5:String}\",",
+            "      \"Name\": \"${6:String}\",",
+            "      \"Owner\": \"${7:String}\",",
+            "      \"Parameters\": \"${8:JSON}\",",
             "      \"PartitionKeys\": [],",
-            "      \"Retention\": \"${9:Number}\",",
-            "      \"TableType\": \"${11:String}\",",
-            "      \"ViewExpandedText\": \"${13:String}\",",
-            "      \"ViewOriginalText\": \"${14:String}\"",
+            "      \"Retention\": \"${10:Number}\",",
+            "      \"TableType\": \"${12:String}\",",
+            "      \"ViewExpandedText\": \"${14:String}\",",
+            "      \"ViewOriginalText\": \"${15:String}\"",
             "    },",
             "  }",
             "}"
@@ -14634,8 +14644,7 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html",
-            "Attributes:\n  IsAttachable\n  UpdateDate\n  PermissionsBoundaryUsageCount\n  AttachmentCount\n  PolicyArn\n  DefaultVersionId\n  CreateDate\n  PolicyId"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html"
         ],
         "prefix": "iam-managedpolicy",
         "scope": "json"
@@ -14685,7 +14694,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "iam-policy",
         "scope": "json"
@@ -18063,7 +18073,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversionpermission.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversionpermission.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "lambda-layerversionpermission",
         "scope": "json"
@@ -20283,29 +20294,30 @@
             "    \"DBClusterIdentifier\": \"${6:String}\",",
             "    \"DBClusterParameterGroupName\": \"${7:String}\",",
             "    \"DBInstanceParameterGroupName\": \"${8:String}\",",
-            "    \"DBSubnetGroupName\": \"${9:String}\",",
-            "    \"DeletionProtection\": \"${10|false,true|}\",",
+            "    \"DBPort\": \"${9:Number}\",",
+            "    \"DBSubnetGroupName\": \"${10:String}\",",
+            "    \"DeletionProtection\": \"${11|false,true|}\",",
             "    \"EnableCloudwatchLogsExports\": [",
             "      \"EnableCloudwatchLogsExports\"",
             "    ],",
-            "    \"EngineVersion\": \"${12:String}\",",
-            "    \"IamAuthEnabled\": \"${13|false,true|}\",",
-            "    \"KmsKeyId\": \"${14:String}\",",
-            "    \"PreferredBackupWindow\": \"${15:String}\",",
-            "    \"PreferredMaintenanceWindow\": \"${16:String}\",",
-            "    \"RestoreToTime\": \"${17:String}\",",
-            "    \"RestoreType\": \"${18:String}\",",
+            "    \"EngineVersion\": \"${13:String}\",",
+            "    \"IamAuthEnabled\": \"${14|false,true|}\",",
+            "    \"KmsKeyId\": \"${15:String}\",",
+            "    \"PreferredBackupWindow\": \"${16:String}\",",
+            "    \"PreferredMaintenanceWindow\": \"${17:String}\",",
+            "    \"RestoreToTime\": \"${18:String}\",",
+            "    \"RestoreType\": \"${19:String}\",",
             "    \"ServerlessScalingConfiguration\": {",
-            "      \"MaxCapacity\": \"${19:Number}\",",
-            "      \"MinCapacity\": \"${20:Number}\"",
+            "      \"MaxCapacity\": \"${20:Number}\",",
+            "      \"MinCapacity\": \"${21:Number}\"",
             "    },",
-            "    \"SnapshotIdentifier\": \"${20:String}\",",
-            "    \"SourceDBClusterIdentifier\": \"${21:String}\",",
-            "    \"StorageEncrypted\": \"${22|false,true|}\",",
+            "    \"SnapshotIdentifier\": \"${21:String}\",",
+            "    \"SourceDBClusterIdentifier\": \"${22:String}\",",
+            "    \"StorageEncrypted\": \"${23|false,true|}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"UseLatestRestorableTime\": \"${24|false,true|}\",",
+            "    \"UseLatestRestorableTime\": \"${25|false,true|}\",",
             "    \"VpcSecurityGroupIds\": [",
             "      \"VpcSecurityGroupIds\"",
             "    ]",
@@ -21083,8 +21095,9 @@
             "  \"Properties\": {",
             "    \"MaxCpus\": \"${2:Number}\",",
             "    \"MaxDuration\": \"${3:Number}\",",
-            "    \"MaxRuns\": \"${4:Number}\",",
-            "    \"Name\": \"${5:String}\",",
+            "    \"MaxGpus\": \"${4:Number}\",",
+            "    \"MaxRuns\": \"${5:Number}\",",
+            "    \"Name\": \"${6:String}\",",
             "    \"Tags\": {",
             "  }",
             "}"
@@ -21149,13 +21162,14 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::Omics::Workflow\",",
             "  \"Properties\": {",
-            "    \"DefinitionUri\": \"${2:String}\",",
-            "    \"Description\": \"${3:String}\",",
-            "    \"Engine\": \"${4:String}\",",
-            "    \"Main\": \"${5:String}\",",
-            "    \"Name\": \"${6:String}\",",
+            "    \"Accelerators\": \"${2:String}\",",
+            "    \"DefinitionUri\": \"${3:String}\",",
+            "    \"Description\": \"${4:String}\",",
+            "    \"Engine\": \"${5:String}\",",
+            "    \"Main\": \"${6:String}\",",
+            "    \"Name\": \"${7:String}\",",
             "    \"ParameterTemplate\": {",
-            "    \"StorageCapacity\": \"${8:Number}\",",
+            "    \"StorageCapacity\": \"${9:Number}\",",
             "    \"Tags\": {",
             "  }",
             "}"
@@ -25614,6 +25628,22 @@
         "prefix": "sqs-queue",
         "scope": "json"
     },
+    "AWS::SQS::QueueInlinePolicy": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::SQS::QueueInlinePolicy\",",
+            "  \"Properties\": {",
+            "    \"PolicyDocument\": \"${2:JSON}\",",
+            "    \"Queue\": \"${3:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sqs-queueinlinepolicy.html"
+        ],
+        "prefix": "sqs-queueinlinepolicy",
+        "scope": "json"
+    },
     "AWS::SQS::QueuePolicy": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -28388,20 +28418,25 @@
             "  \"Properties\": {",
             "    \"AccessRole\": \"${2:String}\",",
             "    \"As2Config\": {",
-            "      \"Compression\": \"${3:String}\",",
-            "      \"EncryptionAlgorithm\": \"${4:String}\",",
-            "      \"LocalProfileId\": \"${5:String}\",",
-            "      \"MdnResponse\": \"${6:String}\",",
-            "      \"MdnSigningAlgorithm\": \"${7:String}\",",
-            "      \"MessageSubject\": \"${8:String}\",",
-            "      \"PartnerProfileId\": \"${9:String}\",",
-            "      \"SigningAlgorithm\": \"${10:String}\"",
+            "      \"BasicAuthSecretId\": \"${3:String}\",",
+            "      \"Compression\": \"${4:String}\",",
+            "      \"EncryptionAlgorithm\": \"${5:String}\",",
+            "      \"LocalProfileId\": \"${6:String}\",",
+            "      \"MdnResponse\": \"${7:String}\",",
+            "      \"MdnSigningAlgorithm\": \"${8:String}\",",
+            "      \"MessageSubject\": \"${9:String}\",",
+            "      \"PartnerProfileId\": \"${10:String}\",",
+            "      \"SigningAlgorithm\": \"${11:String}\"",
             "    },",
             "    \"LoggingRole\": \"${4:String}\",",
+            "    \"SftpConfig\": {",
+            "      \"TrustedHostKeys\": [],",
+            "      \"UserSecretId\": \"${6:String}\"",
+            "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"Url\": \"${6:String}\"",
+            "    \"Url\": \"${7:String}\"",
             "  }",
             "}"
         ],
