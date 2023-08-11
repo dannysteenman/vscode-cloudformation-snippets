@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.22.0 (2023-08-11)
+-------------------
+- The following resource was updated: AWS::EC2::LaunchTemplate
+  NetworkInterface. [Github Actions]
+
+
 4.21.0 (2023-08-04)
 -------------------
 - The following resource was updated: AWS::SQS::QueueInlinePolicy.
