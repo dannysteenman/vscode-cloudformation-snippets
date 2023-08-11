@@ -3267,11 +3267,12 @@
             "    DomainName: \"${4:String}\" # Required",
             "    DomainValidationOptions: ",
             "      DomainValidationOptions",
+            "    KeyAlgorithm: \"${6:String}\"",
             "    SubjectAlternativeNames: ",
             "      SubjectAlternativeNames",
             "    Tags: ",
             "      Tags",
-            "    ValidationMethod: \"${8:String}\""
+            "    ValidationMethod: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html"
@@ -5164,7 +5165,7 @@
             "    Name: \"${2:String}\"",
             "    RecordingGroup:",
             "      AllSupported: ${3|false,true|}",
-            "      IncludeGlobalResourceTypes: ${4|false,true|}",
+            "      IncludeGlobalResourceTypes: ${5|false,true|}",
             "      ResourceTypes:",
             "        -",
             "    RoleARN: \"${4:String}\" # Required"
@@ -5680,6 +5681,24 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "connect-tasktemplate",
+        "scope": "yaml"
+    },
+    "AWS::Connect::TrafficDistributionGroup": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::TrafficDistributionGroup",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    InstanceArn: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-trafficdistributiongroup.html",
+            "Attributes:\n  Status\n  IsDefault\n  TrafficDistributionGroupArn"
+        ],
+        "prefix": "connect-trafficdistributiongroup",
         "scope": "yaml"
     },
     "AWS::Connect::User": {
@@ -6570,6 +6589,30 @@
             "Attributes:\n  AgentArn\n  EndpointType"
         ],
         "prefix": "datasync-agent",
+        "scope": "yaml"
+    },
+    "AWS::DataSync::LocationAzureBlob": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataSync::LocationAzureBlob",
+            "  Properties:",
+            "    AgentArns: # Required",
+            "      AgentArns",
+            "    AzureAccessTier: \"${3:String}\"",
+            "    AzureBlobAuthenticationType: \"${4:String}\" # Required",
+            "    AzureBlobContainerUrl: \"${5:String}\"",
+            "    AzureBlobSasConfiguration:",
+            "      AzureBlobSasToken: \"${6:String}\"",
+            "    AzureBlobType: \"${7:String}\"",
+            "    Subdirectory: \"${8:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationazureblob.html",
+            "Attributes:\n  LocationUri\n  LocationArn"
+        ],
+        "prefix": "datasync-locationazureblob",
         "scope": "yaml"
     },
     "AWS::DataSync::LocationEFS": {
@@ -8089,15 +8132,21 @@
             "    GroupSet: ",
             "      GroupSet",
             "    InterfaceType: \"${4:String}\"",
-            "    Ipv6AddressCount: ${5:Number}",
+            "    Ipv4PrefixCount: ${5:Number}",
+            "    Ipv4Prefixes: ",
+            "      Ipv4Prefixes",
+            "    Ipv6AddressCount: ${7:Number}",
             "    Ipv6Addresses: ",
             "      Ipv6Addresses",
-            "    PrivateIpAddress: \"${7:String}\"",
+            "    Ipv6PrefixCount: ${9:Number}",
+            "    Ipv6Prefixes: ",
+            "      Ipv6Prefixes",
+            "    PrivateIpAddress: \"${11:String}\"",
             "    PrivateIpAddresses: ",
             "      PrivateIpAddresses",
-            "    SecondaryPrivateIpAddressCount: ${9:Number}",
-            "    SourceDestCheck: ${10|false,true|}",
-            "    SubnetId: \"${11:String}\" # Required",
+            "    SecondaryPrivateIpAddressCount: ${13:Number}",
+            "    SourceDestCheck: ${14|false,true|}",
+            "    SubnetId: \"${15:String}\" # Required",
             "    Tags: ",
             "      Tags"
         ],
@@ -8119,7 +8168,8 @@
             "    NetworkInterfaceId: \"${5:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface-attachment.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfaceattachment.html",
+            "Attributes:\n  AttachmentId"
         ],
         "prefix": "ec2-networkinterfaceattachment",
         "scope": "yaml"
@@ -12908,11 +12958,18 @@
             "    DestinationConfiguration:",
             "    Name: \"${3:String}\"",
             "    RecordingReconnectWindowSeconds: ${4:Number}",
+            "    RenditionConfiguration:",
+            "      RenditionSelection: \"${5:String}\"",
+            "      Renditions:",
+            "        -",
             "    Tags: ",
             "      Tags",
             "    ThumbnailConfiguration:",
-            "      RecordingMode: \"${6:String}\"",
-            "      TargetIntervalSeconds: ${7:Number}"
+            "      RecordingMode: \"${7:String}\"",
+            "      Resolution: \"${8:String}\"",
+            "      Storage:",
+            "        -",
+            "      TargetIntervalSeconds: ${10:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html",
@@ -13330,8 +13387,8 @@
             "  Type: AWS::InternetMonitor::Monitor",
             "  Properties:",
             "    HealthEventsConfig:",
-            "      AvailabilityScoreThreshold: ${2:Number}",
-            "      PerformanceScoreThreshold: ${3:Number}",
+            "      AvailabilityScoreThreshold: ${3:Number}",
+            "      PerformanceScoreThreshold: ${5:Number}",
             "    InternetMeasurementsLogDelivery:",
             "    MaxCityNetworksToMonitor: ${4:Number}",
             "    MonitorName: \"${5:String}\" # Required",
@@ -14813,15 +14870,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::KMS::Key",
             "  Properties:",
-            "    Description: \"${2:String}\"",
-            "    EnableKeyRotation: ${3|false,true|}",
-            "    Enabled: ${4|false,true|}",
-            "    KeyPolicy: ${5:JSON} # Required",
-            "    KeySpec: \"${6:String}\"",
-            "    KeyUsage: \"${7:String}\"",
-            "    MultiRegion: ${8|false,true|}",
-            "    Origin: \"${9:String}\"",
-            "    PendingWindowInDays: ${10:Number}",
+            "    BypassPolicyLockoutSafetyCheck: ${2|false,true|}",
+            "    Description: \"${3:String}\"",
+            "    EnableKeyRotation: ${4|false,true|}",
+            "    Enabled: ${5|false,true|}",
+            "    KeyPolicy: ${6:JSON}",
+            "    KeySpec: \"${7:String}\"",
+            "    KeyUsage: \"${8:String}\"",
+            "    MultiRegion: ${9|false,true|}",
+            "    Origin: \"${10:String}\"",
+            "    PendingWindowInDays: ${11:Number}",
             "    Tags: ",
             "      Tags"
         ],
@@ -17330,6 +17388,65 @@
         "prefix": "mediastore-container",
         "scope": "yaml"
     },
+    "AWS::MediaTailor::Channel": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaTailor::Channel",
+            "  Properties:",
+            "    ChannelName: \"${2:String}\" # Required",
+            "    FillerSlate:",
+            "      SourceLocationName: \"${3:String}\"",
+            "      VodSourceName: \"${4:String}\"",
+            "    LogConfiguration:",
+            "      LogTypes:",
+            "        -",
+            "    Outputs: # Required",
+            "      Outputs",
+            "    PlaybackMode: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    Tier: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-channel.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "mediatailor-channel",
+        "scope": "yaml"
+    },
+    "AWS::MediaTailor::ChannelPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaTailor::ChannelPolicy",
+            "  Properties:",
+            "    ChannelName: \"${2:String}\" # Required",
+            "    Policy: ${3:JSON} # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-channelpolicy.html"
+        ],
+        "prefix": "mediatailor-channelpolicy",
+        "scope": "yaml"
+    },
+    "AWS::MediaTailor::LiveSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaTailor::LiveSource",
+            "  Properties:",
+            "    HttpPackageConfigurations: # Required",
+            "      HttpPackageConfigurations",
+            "    LiveSourceName: \"${3:String}\" # Required",
+            "    SourceLocationName: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-livesource.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "mediatailor-livesource",
+        "scope": "yaml"
+    },
     "AWS::MediaTailor::PlaybackConfiguration": {
         "body": [
             "${1:LogicalID}:",
@@ -17369,6 +17486,25 @@
             "Attributes:\n  HlsConfiguration.ManifestEndpointPrefix\n  SessionInitializationEndpointPrefix\n  DashConfiguration.ManifestEndpointPrefix\n  PlaybackConfigurationArn\n  PlaybackEndpointPrefix"
         ],
         "prefix": "mediatailor-playbackconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::MediaTailor::VodSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaTailor::VodSource",
+            "  Properties:",
+            "    HttpPackageConfigurations: # Required",
+            "      HttpPackageConfigurations",
+            "    SourceLocationName: \"${3:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    VodSourceName: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-vodsource.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "mediatailor-vodsource",
         "scope": "yaml"
     },
     "AWS::MemoryDB::ACL": {
@@ -22831,7 +22967,8 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-featuregroup.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-featuregroup.html",
+            "Attributes:\n  FeatureGroupStatus\n  CreationTime"
         ],
         "prefix": "sagemaker-featuregroup",
         "scope": "yaml"
