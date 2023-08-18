@@ -7829,6 +7829,26 @@
         "prefix": "ec2-instance",
         "scope": "yaml"
     },
+    "AWS::EC2::InstanceConnectEndpoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::InstanceConnectEndpoint",
+            "  Properties:",
+            "    ClientToken: \"${2:String}\"",
+            "    PreserveClientIp: ${3|false,true|}",
+            "    SecurityGroupIds: ",
+            "      SecurityGroupIds",
+            "    SubnetId: \"${5:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instanceconnectendpoint.html",
+            "Attributes:\n  Id"
+        ],
+        "prefix": "ec2-instanceconnectendpoint",
+        "scope": "yaml"
+    },
     "AWS::EC2::InternetGateway": {
         "body": [
             "${1:LogicalID}:",
@@ -9245,17 +9265,18 @@
             "${1:LogicalID}:",
             "  Type: AWS::ECR::Repository",
             "  Properties:",
+            "    EmptyOnDelete: ${2|false,true|}",
             "    EncryptionConfiguration:",
-            "      EncryptionType: \"${2:String}\"",
-            "      KmsKey: \"${3:String}\"",
+            "      EncryptionType: \"${3:String}\"",
+            "      KmsKey: \"${4:String}\"",
             "    ImageScanningConfiguration:",
-            "      ScanOnPush: ${3|false,true|}",
-            "    ImageTagMutability: \"${4:String}\"",
+            "      ScanOnPush: ${4|false,true|}",
+            "    ImageTagMutability: \"${5:String}\"",
             "    LifecyclePolicy:",
-            "      LifecyclePolicyText: \"${5:String}\"",
-            "      RegistryId: \"${6:String}\"",
-            "    RepositoryName: \"${6:String}\"",
-            "    RepositoryPolicyText: ${7:JSON}",
+            "      LifecyclePolicyText: \"${6:String}\"",
+            "      RegistryId: \"${7:String}\"",
+            "    RepositoryName: \"${7:String}\"",
+            "    RepositoryPolicyText: ${8:JSON}",
             "    Tags: ",
             "      Tags"
         ],
@@ -10606,7 +10627,7 @@
             "  Type: AWS::Events::Connection",
             "  Properties:",
             "    AuthParameters:",
-            "    AuthorizationType: \"${3:String}\" # Required",
+            "    AuthorizationType: \"${3:String}\"",
             "    Description: \"${4:String}\"",
             "    Name: \"${5:String}\""
         ],
@@ -10984,10 +11005,14 @@
             "      CopyTagsToVolumes: ${10|false,true|}",
             "      DailyAutomaticBackupStartTime: \"${11:String}\"",
             "      DeploymentType: \"${12:String}\"",
+            "      EndpointIpAddressRange: \"${14:String}\"",
             "      Options:",
             "        -",
-            "      ThroughputCapacity: ${16:Number}",
-            "      WeeklyMaintenanceStartTime: \"${17:String}\"",
+            "      PreferredSubnetId: \"${16:String}\"",
+            "      RouteTableIds:",
+            "        -",
+            "      ThroughputCapacity: ${19:Number}",
+            "      WeeklyMaintenanceStartTime: \"${20:String}\"",
             "    SecurityGroupIds: ",
             "      SecurityGroupIds",
             "    StorageCapacity: ${10:Number}",
@@ -11004,9 +11029,9 @@
             "      CopyTagsToBackups: ${18|false,true|}",
             "      DailyAutomaticBackupStartTime: \"${19:String}\"",
             "      DeploymentType: \"${20:String}\"",
-            "      PreferredSubnetId: \"${21:String}\"",
-            "      ThroughputCapacity: ${23:Number}",
-            "      WeeklyMaintenanceStartTime: \"${24:String}\""
+            "      PreferredSubnetId: \"${22:String}\"",
+            "      ThroughputCapacity: ${24:Number}",
+            "      WeeklyMaintenanceStartTime: \"${25:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-filesystem.html",
@@ -17488,6 +17513,30 @@
         "prefix": "mediatailor-playbackconfiguration",
         "scope": "yaml"
     },
+    "AWS::MediaTailor::SourceLocation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::MediaTailor::SourceLocation",
+            "  Properties:",
+            "    AccessConfiguration:",
+            "      AccessType: \"${2:String}\"",
+            "    DefaultSegmentDeliveryConfiguration:",
+            "      BaseUrl: \"${3:String}\"",
+            "    HttpConfiguration:",
+            "      BaseUrl: \"${4:String}\"",
+            "    SegmentDeliveryConfigurations: ",
+            "      SegmentDeliveryConfigurations",
+            "    SourceLocationName: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-sourcelocation.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "mediatailor-sourcelocation",
+        "scope": "yaml"
+    },
     "AWS::MediaTailor::VodSource": {
         "body": [
             "${1:LogicalID}:",
@@ -21560,6 +21609,25 @@
             "Attributes:\n  Status\n  CreationTime\n  ManagedOwnerName\n  ModificationTime\n  Id\n  Arn\n  CreatorRequestId\n  StatusMessage"
         ],
         "prefix": "route53resolver-firewallrulegroupassociation",
+        "scope": "yaml"
+    },
+    "AWS::Route53Resolver::OutpostResolver": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53Resolver::OutpostResolver",
+            "  Properties:",
+            "    InstanceCount: ${2:Number}",
+            "    Name: \"${3:String}\" # Required",
+            "    OutpostArn: \"${4:String}\" # Required",
+            "    PreferredInstanceType: \"${5:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html",
+            "Attributes:\n  Status\n  CreationTime\n  ModificationTime\n  Id\n  Arn\n  CreatorRequestId\n  StatusMessage"
+        ],
+        "prefix": "route53resolver-outpostresolver",
         "scope": "yaml"
     },
     "AWS::Route53Resolver::ResolverConfig": {
