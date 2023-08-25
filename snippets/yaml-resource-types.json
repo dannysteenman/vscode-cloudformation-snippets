@@ -9898,6 +9898,21 @@
         "prefix": "emr-studiosessionmapping",
         "scope": "yaml"
     },
+    "AWS::EMR::WALWorkspace": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EMR::WALWorkspace",
+            "  Properties:",
+            "    Tags: ",
+            "      Tags",
+            "    WALWorkspaceName: \"${3:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-walworkspace.html"
+        ],
+        "prefix": "emr-walworkspace",
+        "scope": "yaml"
+    },
     "AWS::EMRContainers::VirtualCluster": {
         "body": [
             "${1:LogicalID}:",
@@ -10511,6 +10526,49 @@
             "Attributes:\n  Arn\n  DomainArn\n  DomainEndpoint"
         ],
         "prefix": "elasticsearch-domain",
+        "scope": "yaml"
+    },
+    "AWS::EntityResolution::MatchingWorkflow": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EntityResolution::MatchingWorkflow",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    InputSourceConfig: # Required",
+            "      InputSourceConfig",
+            "    OutputSourceConfig: # Required",
+            "      OutputSourceConfig",
+            "    ResolutionTechniques:",
+            "      ResolutionType: \"${5:String}\"",
+            "    RoleArn: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    WorkflowName: \"${8:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-matchingworkflow.html",
+            "Attributes:\n  CreatedAt\n  WorkflowArn\n  UpdatedAt"
+        ],
+        "prefix": "entityresolution-matchingworkflow",
+        "scope": "yaml"
+    },
+    "AWS::EntityResolution::SchemaMapping": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EntityResolution::SchemaMapping",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    MappedInputFields: # Required",
+            "      MappedInputFields",
+            "    SchemaName: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-schemamapping.html",
+            "Attributes:\n  CreatedAt\n  UpdatedAt\n  SchemaArn"
+        ],
+        "prefix": "entityresolution-schemamapping",
         "scope": "yaml"
     },
     "AWS::EventSchemas::Discoverer": {
@@ -12721,7 +12779,8 @@
             "      Users"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html",
+            "Attributes:\n  IsAttachable\n  UpdateDate\n  PermissionsBoundaryUsageCount\n  AttachmentCount\n  PolicyArn\n  DefaultVersionId\n  CreateDate\n  PolicyId"
         ],
         "prefix": "iam-managedpolicy",
         "scope": "yaml"
@@ -16732,7 +16791,9 @@
             "    Description: \"${3:String}\"",
             "    FindingCriteria:",
             "    Name: \"${5:String}\" # Required",
-            "    Position: ${6:Number}"
+            "    Position: ${6:Number}",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-findingsfilter.html",
@@ -20969,15 +21030,22 @@
             "    AppAssessmentSchedule: \"${2:String}\"",
             "    AppTemplateBody: \"${3:String}\" # Required",
             "    Description: \"${4:String}\"",
-            "    Name: \"${5:String}\" # Required",
-            "    ResiliencyPolicyArn: \"${6:String}\"",
+            "    EventSubscriptions: ",
+            "      EventSubscriptions",
+            "    Name: \"${6:String}\" # Required",
+            "    PermissionModel:",
+            "      CrossAccountRoleArns:",
+            "        -",
+            "      InvokerRoleName: \"${8:String}\"",
+            "      Type: \"${9:String}\"",
+            "    ResiliencyPolicyArn: \"${8:String}\"",
             "    ResourceMappings: # Required",
             "      ResourceMappings",
             "    Tags:"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resiliencehub-app.html",
-            "Attributes:\n  AppArn"
+            "Attributes:\n  AppArn\n  DriftStatus"
         ],
         "prefix": "resiliencehub-app",
         "scope": "yaml"
@@ -25707,6 +25775,162 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html"
         ],
         "prefix": "workspaces-workspace",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::BrowserSettings": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::BrowserSettings",
+            "  Properties:",
+            "    AdditionalEncryptionContext:",
+            "    BrowserPolicy: \"${3:String}\"",
+            "    CustomerManagedKey: \"${4:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-browsersettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  BrowserSettingsArn"
+        ],
+        "prefix": "workspacesweb-browsersettings",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::IdentityProvider": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::IdentityProvider",
+            "  Properties:",
+            "    IdentityProviderDetails:",
+            "    IdentityProviderName: \"${3:String}\" # Required",
+            "    IdentityProviderType: \"${4:String}\" # Required",
+            "    PortalArn: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-identityprovider.html",
+            "Attributes:\n  IdentityProviderArn"
+        ],
+        "prefix": "workspacesweb-identityprovider",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::IpAccessSettings": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::IpAccessSettings",
+            "  Properties:",
+            "    AdditionalEncryptionContext:",
+            "    CustomerManagedKey: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
+            "    DisplayName: \"${5:String}\"",
+            "    IpRules: # Required",
+            "      IpRules",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-ipaccesssettings.html",
+            "Attributes:\n  CreationDate\n  AssociatedPortalArns\n  IpAccessSettingsArn"
+        ],
+        "prefix": "workspacesweb-ipaccesssettings",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::NetworkSettings": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::NetworkSettings",
+            "  Properties:",
+            "    SecurityGroupIds: # Required",
+            "      SecurityGroupIds",
+            "    SubnetIds: # Required",
+            "      SubnetIds",
+            "    Tags: ",
+            "      Tags",
+            "    VpcId: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-networksettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  NetworkSettingsArn"
+        ],
+        "prefix": "workspacesweb-networksettings",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::Portal": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::Portal",
+            "  Properties:",
+            "    AdditionalEncryptionContext:",
+            "    AuthenticationType: \"${3:String}\"",
+            "    BrowserSettingsArn: \"${4:String}\"",
+            "    CustomerManagedKey: \"${5:String}\"",
+            "    DisplayName: \"${6:String}\"",
+            "    IpAccessSettingsArn: \"${7:String}\"",
+            "    NetworkSettingsArn: \"${8:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    TrustStoreArn: \"${10:String}\"",
+            "    UserAccessLoggingSettingsArn: \"${11:String}\"",
+            "    UserSettingsArn: \"${12:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-portal.html",
+            "Attributes:\n  CreationDate\n  BrowserType\n  ServiceProviderSamlMetadata\n  StatusReason\n  PortalArn\n  PortalStatus\n  RendererType\n  PortalEndpoint"
+        ],
+        "prefix": "workspacesweb-portal",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::TrustStore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::TrustStore",
+            "  Properties:",
+            "    CertificateList: # Required",
+            "      CertificateList",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-truststore.html",
+            "Attributes:\n  AssociatedPortalArns\n  TrustStoreArn"
+        ],
+        "prefix": "workspacesweb-truststore",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::UserAccessLoggingSettings": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::UserAccessLoggingSettings",
+            "  Properties:",
+            "    KinesisStreamArn: \"${2:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-useraccessloggingsettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  UserAccessLoggingSettingsArn"
+        ],
+        "prefix": "workspacesweb-useraccessloggingsettings",
+        "scope": "yaml"
+    },
+    "AWS::WorkSpacesWeb::UserSettings": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::WorkSpacesWeb::UserSettings",
+            "  Properties:",
+            "    CopyAllowed: \"${2:String}\" # Required",
+            "    DisconnectTimeoutInMinutes: ${3:Number}",
+            "    DownloadAllowed: \"${4:String}\" # Required",
+            "    IdleDisconnectTimeoutInMinutes: ${5:Number}",
+            "    PasteAllowed: \"${6:String}\" # Required",
+            "    PrintAllowed: \"${7:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    UploadAllowed: \"${9:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-usersettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  UserSettingsArn"
+        ],
+        "prefix": "workspacesweb-usersettings",
         "scope": "yaml"
     },
     "AWS::XRay::Group": {

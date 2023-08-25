@@ -11453,6 +11453,24 @@
         "prefix": "emr-studiosessionmapping",
         "scope": "json"
     },
+    "AWS::EMR::WALWorkspace": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::EMR::WALWorkspace\",",
+            "  \"Properties\": {",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"WALWorkspaceName\": \"${3:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-walworkspace.html"
+        ],
+        "prefix": "emr-walworkspace",
+        "scope": "json"
+    },
     "AWS::EMRContainers::VirtualCluster": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -12184,6 +12202,59 @@
             "Attributes:\n  Arn\n  DomainArn\n  DomainEndpoint"
         ],
         "prefix": "elasticsearch-domain",
+        "scope": "json"
+    },
+    "AWS::EntityResolution::MatchingWorkflow": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::EntityResolution::MatchingWorkflow\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"InputSourceConfig\": [",
+            "      \"InputSourceConfig\"",
+            "    ],",
+            "    \"OutputSourceConfig\": [",
+            "      \"OutputSourceConfig\"",
+            "    ],",
+            "    \"ResolutionTechniques\": {",
+            "      \"ResolutionType\": \"${5:String}\",",
+            "    },",
+            "    \"RoleArn\": \"${6:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"WorkflowName\": \"${8:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-matchingworkflow.html",
+            "Attributes:\n  CreatedAt\n  WorkflowArn\n  UpdatedAt"
+        ],
+        "prefix": "entityresolution-matchingworkflow",
+        "scope": "json"
+    },
+    "AWS::EntityResolution::SchemaMapping": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::EntityResolution::SchemaMapping\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"MappedInputFields\": [",
+            "      \"MappedInputFields\"",
+            "    ],",
+            "    \"SchemaName\": \"${4:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-schemamapping.html",
+            "Attributes:\n  CreatedAt\n  UpdatedAt\n  SchemaArn"
+        ],
+        "prefix": "entityresolution-schemamapping",
         "scope": "json"
     },
     "AWS::EventSchemas::Discoverer": {
@@ -14732,7 +14803,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html",
+            "Attributes:\n  IsAttachable\n  UpdateDate\n  PermissionsBoundaryUsageCount\n  AttachmentCount\n  PolicyArn\n  DefaultVersionId\n  CreateDate\n  PolicyId"
         ],
         "prefix": "iam-managedpolicy",
         "scope": "json"
@@ -19405,7 +19477,10 @@
             "    \"FindingCriteria\": {",
             "    },",
             "    \"Name\": \"${5:String}\",",
-            "    \"Position\": \"${6:Number}\"",
+            "    \"Position\": \"${6:Number}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
             "  }",
             "}"
         ],
@@ -24287,8 +24362,16 @@
             "    \"AppAssessmentSchedule\": \"${2:String}\",",
             "    \"AppTemplateBody\": \"${3:String}\",",
             "    \"Description\": \"${4:String}\",",
-            "    \"Name\": \"${5:String}\",",
-            "    \"ResiliencyPolicyArn\": \"${6:String}\",",
+            "    \"EventSubscriptions\": [",
+            "      \"EventSubscriptions\"",
+            "    ],",
+            "    \"Name\": \"${6:String}\",",
+            "    \"PermissionModel\": {",
+            "      \"CrossAccountRoleArns\": [],",
+            "      \"InvokerRoleName\": \"${8:String}\",",
+            "      \"Type\": \"${9:String}\"",
+            "    },",
+            "    \"ResiliencyPolicyArn\": \"${8:String}\",",
             "    \"ResourceMappings\": [",
             "      \"ResourceMappings\"",
             "    ],",
@@ -24298,7 +24381,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-resiliencehub-app.html",
-            "Attributes:\n  AppArn"
+            "Attributes:\n  AppArn\n  DriftStatus"
         ],
         "prefix": "resiliencehub-app",
         "scope": "json"
@@ -29780,6 +29863,189 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html"
         ],
         "prefix": "workspaces-workspace",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::BrowserSettings": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::BrowserSettings\",",
+            "  \"Properties\": {",
+            "    \"AdditionalEncryptionContext\": {",
+            "    \"BrowserPolicy\": \"${3:String}\",",
+            "    \"CustomerManagedKey\": \"${4:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-browsersettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  BrowserSettingsArn"
+        ],
+        "prefix": "workspacesweb-browsersettings",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::IdentityProvider": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::IdentityProvider\",",
+            "  \"Properties\": {",
+            "    \"IdentityProviderDetails\": {",
+            "    \"IdentityProviderName\": \"${3:String}\",",
+            "    \"IdentityProviderType\": \"${4:String}\",",
+            "    \"PortalArn\": \"${5:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-identityprovider.html",
+            "Attributes:\n  IdentityProviderArn"
+        ],
+        "prefix": "workspacesweb-identityprovider",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::IpAccessSettings": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::IpAccessSettings\",",
+            "  \"Properties\": {",
+            "    \"AdditionalEncryptionContext\": {",
+            "    \"CustomerManagedKey\": \"${3:String}\",",
+            "    \"Description\": \"${4:String}\",",
+            "    \"DisplayName\": \"${5:String}\",",
+            "    \"IpRules\": [",
+            "      \"IpRules\"",
+            "    ],",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-ipaccesssettings.html",
+            "Attributes:\n  CreationDate\n  AssociatedPortalArns\n  IpAccessSettingsArn"
+        ],
+        "prefix": "workspacesweb-ipaccesssettings",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::NetworkSettings": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::NetworkSettings\",",
+            "  \"Properties\": {",
+            "    \"SecurityGroupIds\": [",
+            "      \"SecurityGroupIds\"",
+            "    ],",
+            "    \"SubnetIds\": [",
+            "      \"SubnetIds\"",
+            "    ],",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"VpcId\": \"${5:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-networksettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  NetworkSettingsArn"
+        ],
+        "prefix": "workspacesweb-networksettings",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::Portal": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::Portal\",",
+            "  \"Properties\": {",
+            "    \"AdditionalEncryptionContext\": {",
+            "    \"AuthenticationType\": \"${3:String}\",",
+            "    \"BrowserSettingsArn\": \"${4:String}\",",
+            "    \"CustomerManagedKey\": \"${5:String}\",",
+            "    \"DisplayName\": \"${6:String}\",",
+            "    \"IpAccessSettingsArn\": \"${7:String}\",",
+            "    \"NetworkSettingsArn\": \"${8:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"TrustStoreArn\": \"${10:String}\",",
+            "    \"UserAccessLoggingSettingsArn\": \"${11:String}\",",
+            "    \"UserSettingsArn\": \"${12:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-portal.html",
+            "Attributes:\n  CreationDate\n  BrowserType\n  ServiceProviderSamlMetadata\n  StatusReason\n  PortalArn\n  PortalStatus\n  RendererType\n  PortalEndpoint"
+        ],
+        "prefix": "workspacesweb-portal",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::TrustStore": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::TrustStore\",",
+            "  \"Properties\": {",
+            "    \"CertificateList\": [",
+            "      \"CertificateList\"",
+            "    ],",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-truststore.html",
+            "Attributes:\n  AssociatedPortalArns\n  TrustStoreArn"
+        ],
+        "prefix": "workspacesweb-truststore",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::UserAccessLoggingSettings": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::UserAccessLoggingSettings\",",
+            "  \"Properties\": {",
+            "    \"KinesisStreamArn\": \"${2:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-useraccessloggingsettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  UserAccessLoggingSettingsArn"
+        ],
+        "prefix": "workspacesweb-useraccessloggingsettings",
+        "scope": "json"
+    },
+    "AWS::WorkSpacesWeb::UserSettings": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::WorkSpacesWeb::UserSettings\",",
+            "  \"Properties\": {",
+            "    \"CopyAllowed\": \"${2:String}\",",
+            "    \"DisconnectTimeoutInMinutes\": \"${3:Number}\",",
+            "    \"DownloadAllowed\": \"${4:String}\",",
+            "    \"IdleDisconnectTimeoutInMinutes\": \"${5:Number}\",",
+            "    \"PasteAllowed\": \"${6:String}\",",
+            "    \"PrintAllowed\": \"${7:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"UploadAllowed\": \"${9:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-usersettings.html",
+            "Attributes:\n  AssociatedPortalArns\n  UserSettingsArn"
+        ],
+        "prefix": "workspacesweb-usersettings",
         "scope": "json"
     },
     "AWS::XRay::Group": {
