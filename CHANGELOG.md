@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.24.0 (2023-08-25)
+-------------------
+- The following resource was updated:         <code
+  class="code">AWS::CleanRooms::ConfiguredTable</code>. [Github Actions]
+
+
 4.23.0 (2023-08-18)
 -------------------
 - The following resources were added: AWS::MediaTailor::Channel,
