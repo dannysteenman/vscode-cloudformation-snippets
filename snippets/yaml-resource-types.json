@@ -1873,6 +1873,7 @@
             "  Properties:",
             "    ComputeCapacity:",
             "      DesiredInstances: ${2:Number}",
+            "      DesiredSessions: ${3:Number}",
             "    Description: \"${3:String}\"",
             "    DisconnectTimeoutInSeconds: ${4:Number}",
             "    DisplayName: \"${5:String}\"",
@@ -1887,13 +1888,14 @@
             "    ImageName: \"${12:String}\"",
             "    InstanceType: \"${13:String}\" # Required",
             "    MaxConcurrentSessions: ${14:Number}",
-            "    MaxUserDurationInSeconds: ${15:Number}",
-            "    Name: \"${16:String}\" # Required",
-            "    Platform: \"${17:String}\"",
+            "    MaxSessionsPerInstance: ${15:Number}",
+            "    MaxUserDurationInSeconds: ${16:Number}",
+            "    Name: \"${17:String}\" # Required",
+            "    Platform: \"${18:String}\"",
             "    SessionScriptS3Location:",
-            "      S3Bucket: \"${18:String}\"",
-            "      S3Key: \"${19:String}\"",
-            "    StreamView: \"${19:String}\"",
+            "      S3Bucket: \"${19:String}\"",
+            "      S3Key: \"${20:String}\"",
+            "    StreamView: \"${20:String}\"",
             "    Tags: ",
             "      Tags",
             "    UsbDeviceFilterStrings: ",
@@ -3325,6 +3327,29 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "chatbot-slackchannelconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::CleanRooms::AnalysisTemplate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CleanRooms::AnalysisTemplate",
+            "  Properties:",
+            "    AnalysisParameters: ",
+            "      AnalysisParameters",
+            "    Description: \"${3:String}\"",
+            "    Format: \"${4:String}\" # Required",
+            "    MembershipIdentifier: \"${5:String}\" # Required",
+            "    Name: \"${6:String}\" # Required",
+            "    Source:",
+            "      Text: \"${7:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-analysistemplate.html",
+            "Attributes:\n  CollaborationIdentifier\n  Schema.ReferencedTables\n  MembershipArn\n  Schema\n  Arn\n  CollaborationArn\n  AnalysisTemplateIdentifier"
+        ],
+        "prefix": "cleanrooms-analysistemplate",
         "scope": "yaml"
     },
     "AWS::CleanRooms::Collaboration": {
@@ -6900,7 +6925,11 @@
             "      ScheduleExpression: \"${8:String}\"",
             "    SourceLocationArn: \"${9:String}\" # Required",
             "    Tags: ",
-            "      Tags"
+            "      Tags",
+            "    TaskReportConfig:",
+            "      ObjectVersionIds: \"${12:String}\"",
+            "      OutputType: \"${13:String}\"",
+            "      ReportLevel: \"${15:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-task.html",
@@ -6954,6 +6983,62 @@
             "Attributes:\n  GraphArn"
         ],
         "prefix": "detective-organizationadmin",
+        "scope": "yaml"
+    },
+    "AWS::DevBatch::JobDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DevBatch::JobDefinition",
+            "  Properties:",
+            "    ContainerProperties:",
+            "      Command:",
+            "        -",
+            "      Environment:",
+            "        -",
+            "      ExecutionRoleArn: \"${5:String}\"",
+            "      Image: \"${7:String}\"",
+            "      InstanceType: \"${8:String}\"",
+            "      JobRoleArn: \"${9:String}\"",
+            "      Memory: ${12:Number}",
+            "      MountPoints:",
+            "        -",
+            "      Privileged: ${15|false,true|}",
+            "      ReadonlyRootFilesystem: ${16|false,true|}",
+            "      ResourceRequirements:",
+            "        -",
+            "      Secrets:",
+            "        -",
+            "      Ulimits:",
+            "        -",
+            "      User: \"${21:String}\"",
+            "      Vcpus: ${22:Number}",
+            "      Volumes:",
+            "        -",
+            "    EksProperties:",
+            "    JobDefinitionName: \"${4:String}\"",
+            "    NodeProperties:",
+            "      MainNode: ${5:Number}",
+            "      NodeRangeProperties:",
+            "        -",
+            "      NumNodes: ${7:Number}",
+            "    Parameters: ${6:JSON}",
+            "    PlatformCapabilities: ",
+            "      PlatformCapabilities",
+            "    PropagateTags: ${8|false,true|}",
+            "    RetryStrategy:",
+            "      Attempts: ${9:Number}",
+            "      EvaluateOnExit:",
+            "        -",
+            "    SchedulingPriority: ${10:Number}",
+            "    Tags: ${11:JSON}",
+            "    Timeout:",
+            "      AttemptDurationSeconds: ${12:Number}",
+            "    Type: \"${13:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-devbatch-jobdefinition.html"
+        ],
+        "prefix": "devbatch-jobdefinition",
         "scope": "yaml"
     },
     "AWS::DevOpsGuru::LogAnomalyDetectionIntegration": {
@@ -7514,13 +7599,13 @@
             "  Type: AWS::EC2::EIPAssociation",
             "  Properties:",
             "    AllocationId: \"${2:String}\"",
-            "    EIP: \"${3:String}\"",
-            "    InstanceId: \"${4:String}\"",
-            "    NetworkInterfaceId: \"${5:String}\"",
-            "    PrivateIpAddress: \"${6:String}\""
+            "    InstanceId: \"${3:String}\"",
+            "    NetworkInterfaceId: \"${4:String}\"",
+            "    PrivateIpAddress: \"${5:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip-association.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-eipassociation.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "ec2-eipassociation",
         "scope": "yaml"
@@ -14838,7 +14923,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-serviceprofile.html",
-            "Attributes:\n  LoRaWAN.DrMin\n  LoRaWAN.ReportDevStatusMargin\n  LoRaWAN.UlRatePolicy\n  LoRaWAN.MinGwDiversity\n  LoRaWAN.TargetPer\n  LoRaWAN.ChannelMask\n  LoRaWAN.ReportDevStatusBattery\n  LoRaWAN.DlRate\n  LoRaWAN.DlRatePolicy\n  LoRaWAN.HrAllowed\n  LoRaWAN.DlBucketSize\n  LoRaWAN.DrMax\n  LoRaWAN.UlBucketSize\n  LoRaWAN.RaAllowed\n  LoRaWAN.UlRate\n  LoRaWAN.NwkGeoLoc\n  LoRaWAN.DevStatusReqFreq\n  LoRaWAN.PrAllowed\n  Id\n  Arn"
+            "Attributes:\n  LoRaWAN.DrMin\n  LoRaWAN.ReportDevStatusMargin\n  LoRaWAN.UlRatePolicy\n  LoRaWAN.MinGwDiversity\n  LoRaWAN.TargetPer\n  LoRaWAN.ChannelMask\n  LoRaWAN.ReportDevStatusBattery\n  LoRaWAN.DlRate\n  LoRaWAN.DlRatePolicy\n  LoRaWAN.HrAllowed\n  LoRaWAN.DlBucketSize\n  LoRaWAN.DrMax\n  LoRaWAN.UlBucketSize\n  LoRaWAN.UlRate\n  LoRaWAN.NwkGeoLoc\n  LoRaWAN.DevStatusReqFreq\n  Id\n  Arn"
         ],
         "prefix": "iotwireless-serviceprofile",
         "scope": "yaml"
@@ -15417,12 +15502,14 @@
             "  Properties:",
             "    Admins:",
             "    AllowExternalDataFiltering: ${3|false,true|}",
+            "    AllowFullTableExternalDataAccess: ${4|false,true|}",
             "    AuthorizedSessionTagValueList: ",
             "      AuthorizedSessionTagValueList",
             "    CreateDatabaseDefaultPermissions:",
             "    CreateTableDefaultPermissions:",
             "    ExternalDataFilteringAllowList:",
-            "    Parameters: ${8:JSON}",
+            "    MutationType: \"${9:String}\"",
+            "    Parameters: ${10:JSON}",
             "    TrustedResourceOwners: ",
             "      TrustedResourceOwners"
         ],
@@ -19023,6 +19110,90 @@
         "prefix": "organizations-resourcepolicy",
         "scope": "yaml"
     },
+    "AWS::PCAConnectorAD::Connector": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::PCAConnectorAD::Connector",
+            "  Properties:",
+            "    CertificateAuthorityArn: \"${2:String}\" # Required",
+            "    DirectoryId: \"${3:String}\" # Required",
+            "    Tags:",
+            "    VpcInformation:",
+            "      SecurityGroupIds:",
+            "        -"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-connector.html",
+            "Attributes:\n  ConnectorArn"
+        ],
+        "prefix": "pcaconnectorad-connector",
+        "scope": "yaml"
+    },
+    "AWS::PCAConnectorAD::DirectoryRegistration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::PCAConnectorAD::DirectoryRegistration",
+            "  Properties:",
+            "    DirectoryId: \"${2:String}\" # Required",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-directoryregistration.html",
+            "Attributes:\n  DirectoryRegistrationArn"
+        ],
+        "prefix": "pcaconnectorad-directoryregistration",
+        "scope": "yaml"
+    },
+    "AWS::PCAConnectorAD::ServicePrincipalName": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::PCAConnectorAD::ServicePrincipalName",
+            "  Properties:",
+            "    ConnectorArn: \"${2:String}\"",
+            "    DirectoryRegistrationArn: \"${3:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-serviceprincipalname.html"
+        ],
+        "prefix": "pcaconnectorad-serviceprincipalname",
+        "scope": "yaml"
+    },
+    "AWS::PCAConnectorAD::Template": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::PCAConnectorAD::Template",
+            "  Properties:",
+            "    ConnectorArn: \"${2:String}\" # Required",
+            "    Definition:",
+            "    Name: \"${4:String}\" # Required",
+            "    ReenrollAllCertificateHolders: ${5|false,true|}",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-template.html",
+            "Attributes:\n  TemplateArn"
+        ],
+        "prefix": "pcaconnectorad-template",
+        "scope": "yaml"
+    },
+    "AWS::PCAConnectorAD::TemplateGroupAccessControlEntry": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::PCAConnectorAD::TemplateGroupAccessControlEntry",
+            "  Properties:",
+            "    AccessRights:",
+            "      AutoEnroll: \"${2:String}\"",
+            "      Enroll: \"${3:String}\"",
+            "    GroupDisplayName: \"${3:String}\" # Required",
+            "    GroupSecurityIdentifier: \"${4:String}\"",
+            "    TemplateArn: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcaconnectorad-templategroupaccesscontrolentry.html"
+        ],
+        "prefix": "pcaconnectorad-templategroupaccesscontrolentry",
+        "scope": "yaml"
+    },
     "AWS::Panorama::ApplicationInstance": {
         "body": [
             "${1:LogicalID}:",
@@ -20117,6 +20288,8 @@
             "      Principals",
             "    ResourceArns: ",
             "      ResourceArns",
+            "    Sources: ",
+            "      Sources",
             "    Tags: ",
             "      Tags"
         ],
@@ -21303,8 +21476,10 @@
             "  Properties:",
             "    Enabled: ${2|false,true|}",
             "    Name: \"${3:String}\" # Required",
+            "    NotificationSettings: ",
+            "      NotificationSettings",
             "    Source:",
-            "      SourceType: \"${5:String}\"",
+            "      SourceType: \"${6:String}\"",
             "    Tags: ",
             "      Tags"
         ],
