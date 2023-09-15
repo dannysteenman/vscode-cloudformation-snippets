@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+4.26.0 (2023-09-15)
+-------------------
+- The following resources were added: AWS::MediaPackageV2::Channel,
+  AWS::MediaPackageV2::ChannelGroup, AWS::MediaPackageV2::ChannelPolicy,
+  AWS::MediaPackageV2::OriginEndpoint, and
+  AWS::MediaPackageV2::OriginEndpointPolicy. [Github Actions]
+
+
 4.25.0 (2023-09-01)
 -------------------
 - The following resource was updated: AWS::WAFv2::WebACL. [Github
