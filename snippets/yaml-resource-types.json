@@ -5680,6 +5680,30 @@
         "prefix": "connect-securitykey",
         "scope": "yaml"
     },
+    "AWS::Connect::SecurityProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Connect::SecurityProfile",
+            "  Properties:",
+            "    AllowedAccessControlTags: ",
+            "      AllowedAccessControlTags",
+            "    Description: \"${3:String}\"",
+            "    InstanceArn: \"${4:String}\" # Required",
+            "    Permissions: ",
+            "      Permissions",
+            "    SecurityProfileName: \"${6:String}\" # Required",
+            "    TagRestrictedResources: ",
+            "      TagRestrictedResources",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-securityprofile.html",
+            "Attributes:\n  SecurityProfileArn"
+        ],
+        "prefix": "connect-securityprofile",
+        "scope": "yaml"
+    },
     "AWS::Connect::TaskTemplate": {
         "body": [
             "${1:LogicalID}:",
@@ -8353,16 +8377,17 @@
             "    CarrierGatewayId: \"${2:String}\"",
             "    DestinationCidrBlock: \"${3:String}\"",
             "    DestinationIpv6CidrBlock: \"${4:String}\"",
-            "    EgressOnlyInternetGatewayId: \"${5:String}\"",
-            "    GatewayId: \"${6:String}\"",
-            "    InstanceId: \"${7:String}\"",
-            "    LocalGatewayId: \"${8:String}\"",
-            "    NatGatewayId: \"${9:String}\"",
-            "    NetworkInterfaceId: \"${10:String}\"",
-            "    RouteTableId: \"${11:String}\" # Required",
-            "    TransitGatewayId: \"${12:String}\"",
-            "    VpcEndpointId: \"${13:String}\"",
-            "    VpcPeeringConnectionId: \"${14:String}\""
+            "    DestinationPrefixListId: \"${5:String}\"",
+            "    EgressOnlyInternetGatewayId: \"${6:String}\"",
+            "    GatewayId: \"${7:String}\"",
+            "    InstanceId: \"${8:String}\"",
+            "    LocalGatewayId: \"${9:String}\"",
+            "    NatGatewayId: \"${10:String}\"",
+            "    NetworkInterfaceId: \"${11:String}\"",
+            "    RouteTableId: \"${12:String}\" # Required",
+            "    TransitGatewayId: \"${13:String}\"",
+            "    VpcEndpointId: \"${14:String}\"",
+            "    VpcPeeringConnectionId: \"${15:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html",
@@ -8982,7 +9007,8 @@
             "    VPCEndpointId: \"${5:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html",
+            "Attributes:\n  VPCEndpointConnectionNotificationId"
         ],
         "prefix": "ec2-vpcendpointconnectionnotification",
         "scope": "yaml"
@@ -9605,7 +9631,10 @@
             "      LifecyclePolicies",
             "    PerformanceMode: \"${10:String}\"",
             "    ProvisionedThroughputInMibps: ${11:Number}",
-            "    ThroughputMode: \"${12:String}\""
+            "    ReplicationConfiguration:",
+            "      Destinations:",
+            "        -",
+            "    ThroughputMode: \"${13:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",
@@ -16108,16 +16137,17 @@
             "        -",
             "    IsDisabled: ${3|false,true|}",
             "    Power: \"${4:String}\" # Required",
+            "    PrivateRegistryAccess:",
             "    PublicDomainNames: ",
             "      PublicDomainNames",
-            "    Scale: ${6:Number} # Required",
-            "    ServiceName: \"${7:String}\" # Required",
+            "    Scale: ${7:Number} # Required",
+            "    ServiceName: \"${8:String}\" # Required",
             "    Tags: ",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-container.html",
-            "Attributes:\n  ContainerArn\n  Url"
+            "Attributes:\n  PrincipalArn\n  PrivateRegistryAccess.EcrImagePullerRole.PrincipalArn\n  ContainerArn\n  Url"
         ],
         "prefix": "lightsail-container",
         "scope": "yaml"
@@ -16859,7 +16889,9 @@
             "      Keywords",
             "    MaximumMatchDistance: ${5:Number}",
             "    Name: \"${6:String}\" # Required",
-            "    Regex: \"${7:String}\" # Required"
+            "    Regex: \"${7:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-macie-customdataidentifier.html",
