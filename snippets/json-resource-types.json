@@ -1339,25 +1339,6 @@
         "prefix": "apigatewayv2-vpclink",
         "scope": "json"
     },
-    "AWS::AppConfig::Application": {
-        "body": [
-            "\"${1:LogicalID}\": {",
-            "  \"Type\": \"AWS::AppConfig::Application\",",
-            "  \"Properties\": {",
-            "    \"Description\": \"${2:String}\",",
-            "    \"Name\": \"${3:String}\",",
-            "    \"Tags\": [",
-            "      \"Tags\"",
-            "    ]",
-            "  }",
-            "}"
-        ],
-        "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-application.html"
-        ],
-        "prefix": "appconfig-application",
-        "scope": "json"
-    },
     "AWS::AppConfig::ConfigurationProfile": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -5795,7 +5776,7 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::Cognito::UserPoolUser\",",
             "  \"Properties\": {",
-            "    \"ClientMetadata\": \"${2:JSON}\",",
+            "    \"ClientMetadata\": {",
             "    \"DesiredDeliveryMediums\": [",
             "      \"DesiredDeliveryMediums\"",
             "    ],",
@@ -8933,9 +8914,7 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::EC2::IPAM\",",
             "  \"Properties\": {",
-            "    \"DefaultResourceDiscoveryAssociationId\": \"${2:String}\",",
-            "    \"DefaultResourceDiscoveryId\": \"${3:String}\",",
-            "    \"Description\": \"${4:String}\",",
+            "    \"Description\": \"${2:String}\",",
             "    \"OperatingRegions\": [",
             "      \"OperatingRegions\"",
             "    ],",
@@ -8947,7 +8926,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipam.html",
-            "Attributes:\n  IpamId\n  ResourceDiscoveryAssociationCount\n  ScopeCount\n  Arn\n  PrivateDefaultScopeId\n  PublicDefaultScopeId"
+            "Attributes:\n  DefaultResourceDiscoveryAssociationId\n  DefaultResourceDiscoveryId\n  IpamId\n  ResourceDiscoveryAssociationCount\n  ScopeCount\n  Arn\n  PrivateDefaultScopeId\n  PublicDefaultScopeId"
         ],
         "prefix": "ec2-ipam",
         "scope": "json"
@@ -12214,7 +12193,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html",
-            "Attributes:\n  CanonicalHostedZoneID\n  DNSName\n  LoadBalancerFullName\n  LoadBalancerName\n  SecurityGroups"
+            "Attributes:\n  SecurityGroups\n  LoadBalancerName\n  CanonicalHostedZoneID\n  LoadBalancerArn\n  DNSName\n  LoadBalancerFullName"
         ],
         "prefix": "elasticloadbalancingv2-loadbalancer",
         "scope": "json"
@@ -14801,6 +14780,24 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html"
         ],
         "prefix": "guardduty-threatintelset",
+        "scope": "json"
+    },
+    "AWS::HealthImaging::Datastore": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::HealthImaging::Datastore\",",
+            "  \"Properties\": {",
+            "    \"DatastoreName\": \"${2:String}\",",
+            "    \"KmsKeyArn\": \"${3:String}\",",
+            "    \"Tags\": {",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-healthimaging-datastore.html",
+            "Attributes:\n  DatastoreArn\n  DatastoreId\n  DatastoreStatus\n  CreatedAt\n  UpdatedAt"
+        ],
+        "prefix": "healthimaging-datastore",
         "scope": "json"
     },
     "AWS::HealthLake::FHIRDatastore": {
@@ -17549,13 +17546,14 @@
             "    },",
             "    \"Description\": \"${4:String}\",",
             "    \"IndexId\": \"${5:String}\",",
-            "    \"Name\": \"${6:String}\",",
-            "    \"RoleArn\": \"${7:String}\",",
-            "    \"Schedule\": \"${8:String}\",",
+            "    \"LanguageCode\": \"${6:String}\",",
+            "    \"Name\": \"${7:String}\",",
+            "    \"RoleArn\": \"${8:String}\",",
+            "    \"Schedule\": \"${9:String}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"Type\": \"${10:String}\"",
+            "    \"Type\": \"${11:String}\"",
             "  }",
             "}"
         ],
@@ -17888,26 +17886,30 @@
             "      \"KinesisStreamARN\": \"${10:String}\",",
             "      \"RoleARN\": \"${11:String}\"",
             "    },",
+            "    \"MSKSourceConfiguration\": {",
+            "      \"MSKClusterARN\": \"${12:String}\",",
+            "      \"TopicName\": \"${13:String}\"",
+            "    },",
             "    \"RedshiftDestinationConfiguration\": {",
-            "      \"ClusterJDBCURL\": \"${12:String}\",",
-            "      \"Password\": \"${14:String}\",",
-            "      \"RoleARN\": \"${17:String}\",",
-            "      \"S3BackupMode\": \"${19:String}\",",
-            "      \"Username\": \"${21:String}\"",
+            "      \"ClusterJDBCURL\": \"${13:String}\",",
+            "      \"Password\": \"${15:String}\",",
+            "      \"RoleARN\": \"${18:String}\",",
+            "      \"S3BackupMode\": \"${20:String}\",",
+            "      \"Username\": \"${22:String}\"",
             "    },",
             "    \"S3DestinationConfiguration\": {",
-            "      \"BucketARN\": \"${12:String}\",",
-            "      \"CompressionFormat\": \"${15:String}\",",
-            "      \"ErrorOutputPrefix\": \"${17:String}\",",
-            "      \"Prefix\": \"${18:String}\",",
-            "      \"RoleARN\": \"${19:String}\"",
+            "      \"BucketARN\": \"${13:String}\",",
+            "      \"CompressionFormat\": \"${16:String}\",",
+            "      \"ErrorOutputPrefix\": \"${18:String}\",",
+            "      \"Prefix\": \"${19:String}\",",
+            "      \"RoleARN\": \"${20:String}\"",
             "    },",
             "    \"SplunkDestinationConfiguration\": {",
-            "      \"HECAcknowledgmentTimeoutInSeconds\": \"${14:Number}\",",
-            "      \"HECEndpoint\": \"${15:String}\",",
-            "      \"HECEndpointType\": \"${16:String}\",",
-            "      \"HECToken\": \"${17:String}\",",
-            "      \"S3BackupMode\": \"${20:String}\",",
+            "      \"HECAcknowledgmentTimeoutInSeconds\": \"${15:Number}\",",
+            "      \"HECEndpoint\": \"${16:String}\",",
+            "      \"HECEndpointType\": \"${17:String}\",",
+            "      \"HECToken\": \"${18:String}\",",
+            "      \"S3BackupMode\": \"${21:String}\",",
             "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
@@ -19454,14 +19456,19 @@
             "    \"KafkaVersionsList\": [",
             "      \"KafkaVersionsList\"",
             "    ],",
-            "    \"Name\": \"${4:String}\",",
-            "    \"ServerProperties\": \"${5:String}\"",
+            "    \"LatestRevision\": {",
+            "      \"CreationTime\": \"${4:String}\",",
+            "      \"Description\": \"${5:String}\",",
+            "      \"Revision\": \"${6:Number}\"",
+            "    },",
+            "    \"Name\": \"${5:String}\",",
+            "    \"ServerProperties\": \"${6:String}\"",
             "  }",
             "}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-configuration.html",
-            "Attributes:\n  Arn"
+            "Attributes:\n  LatestRevision.Revision\n  LatestRevision.CreationTime\n  LatestRevision.Description\n  Arn"
         ],
         "prefix": "msk-configuration",
         "scope": "json"
@@ -25759,7 +25766,7 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucketpolicy.html"
         ],
         "prefix": "s3-bucketpolicy",
         "scope": "json"
@@ -26507,7 +26514,7 @@
             "    \"Description\": \"${4:String}\",",
             "    \"Name\": \"${5:String}\",",
             "    \"Policies\": \"${6:String}\",",
-            "    \"Tags\": \"${7:JSON}\",",
+            "    \"Tags\": {",
             "    \"Tier\": \"${8:String}\",",
             "    \"Type\": \"${9:String}\",",
             "    \"Value\": \"${10:String}\"",
@@ -27438,16 +27445,17 @@
             "    },",
             "    \"ModelPackageVersion\": \"${19:Number}\",",
             "    \"SamplePayloadUrl\": \"${20:String}\",",
+            "    \"SkipModelValidation\": \"${21:String}\",",
             "    \"SourceAlgorithmSpecification\": {",
             "      \"SourceAlgorithms\": []",
             "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"Task\": \"${23:String}\",",
+            "    \"Task\": \"${24:String}\",",
             "    \"ValidationSpecification\": {",
             "      \"ValidationProfiles\": [],",
-            "      \"ValidationRole\": \"${25:String}\"",
+            "      \"ValidationRole\": \"${26:String}\"",
             "    },",
             "  }",
             "}"
@@ -30511,6 +30519,25 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html"
         ],
         "prefix": "alexa-ask-skill",
+        "scope": "json"
+    },
+    "Dev::AppConfig::Application": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"Dev::AppConfig::Application\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"Name\": \"${3:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-application.html"
+        ],
+        "prefix": "dev-appconfig-application",
         "scope": "json"
     }
 }
