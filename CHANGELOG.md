@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.28.0 (2023-09-29)
+-------------------
+- The following resource was updated: AWS::EFS::FileSystem. [Github
+  Actions]
+
+
 4.27.0 (2023-09-22)
 -------------------
 - The following resources were added: AWS::MediaPackageV2::Channel,
