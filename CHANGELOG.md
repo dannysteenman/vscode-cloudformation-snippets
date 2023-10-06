@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.29.0 (2023-10-06)
+-------------------
+- The following resources were updated: AWS::Lightsail::Disk and
+  AWS::Lightsail::Container. [Github Actions]
+
+
 4.28.0 (2023-09-29)
 -------------------
 - The following resource was updated: AWS::EFS::FileSystem. [Github
