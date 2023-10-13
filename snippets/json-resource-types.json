@@ -12213,7 +12213,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html",
-            "Attributes:\n  CanonicalHostedZoneID\n  DNSName\n  LoadBalancerFullName\n  LoadBalancerName\n  SecurityGroups"
+            "Attributes:\n  SecurityGroups\n  LoadBalancerName\n  CanonicalHostedZoneID\n  LoadBalancerArn\n  DNSName\n  LoadBalancerFullName"
         ],
         "prefix": "elasticloadbalancingv2-loadbalancer",
         "scope": "json"
@@ -12562,7 +12562,6 @@
             "  \"Properties\": {",
             "    \"EventSourceName\": \"${2:String}\",",
             "    \"Name\": \"${3:String}\",",
-            "    \"Policy\": \"${4:JSON}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -12571,7 +12570,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbus.html",
-            "Attributes:\n  Arn\n  Name"
+            "Attributes:\n  Policy\n  Arn\n  Name"
         ],
         "prefix": "events-eventbus",
         "scope": "json"
@@ -16273,6 +16272,48 @@
         "prefix": "iot-securityprofile",
         "scope": "json"
     },
+    "AWS::IoT::SoftwarePackage": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::IoT::SoftwarePackage\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"PackageName\": \"${3:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackage.html",
+            "Attributes:\n  PackageArn"
+        ],
+        "prefix": "iot-softwarepackage",
+        "scope": "json"
+    },
+    "AWS::IoT::SoftwarePackageVersion": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::IoT::SoftwarePackageVersion\",",
+            "  \"Properties\": {",
+            "    \"Attributes\": {",
+            "    \"Description\": \"${3:String}\",",
+            "    \"PackageName\": \"${4:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"VersionName\": \"${6:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html",
+            "Attributes:\n  PackageVersionArn\n  Status\n  ErrorReason"
+        ],
+        "prefix": "iot-softwarepackageversion",
+        "scope": "json"
+    },
     "AWS::IoT::Thing": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -18344,6 +18385,7 @@
             "      \"Mode\": \"${24:String}\"",
             "    },",
             "    \"VpcConfig\": {",
+            "      \"Ipv6AllowedForDualStack\": \"${25|false,true|}\",",
             "      \"SecurityGroupIds\": [],",
             "      \"SubnetIds\": []",
             "    },",
@@ -21222,7 +21264,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-device.html",
-            "Attributes:\n  DeviceArn\n  DeviceId\n  CreatedAt"
+            "Attributes:\n  DeviceArn\n  DeviceId\n  State\n  CreatedAt"
         ],
         "prefix": "networkmanager-device",
         "scope": "json"
@@ -21232,7 +21274,9 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::NetworkManager::GlobalNetwork\",",
             "  \"Properties\": {",
-            "    \"Description\": \"${2:String}\",",
+            "    \"CreatedAt\": \"${2:String}\",",
+            "    \"Description\": \"${3:String}\",",
+            "    \"State\": \"${4:String}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -21310,7 +21354,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-site.html",
-            "Attributes:\n  SiteId\n  SiteArn"
+            "Attributes:\n  SiteId\n  SiteArn\n  State\n  CreatedAt"
         ],
         "prefix": "networkmanager-site",
         "scope": "json"
@@ -25878,7 +25922,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html",
-            "Attributes:\n  CreationDate\n  PublicAccessBlockConfiguration\n  PublicAccessBlockConfiguration.BlockPublicAcls\n  PolicyStatus.IsPublic\n  Alias\n  Alias.Value\n  PolicyStatus\n  PublicAccessBlockConfiguration.IgnorePublicAcls\n  PublicAccessBlockConfiguration.RestrictPublicBuckets\n  PublicAccessBlockConfiguration.BlockPublicPolicy\n  Arn\n  Alias.Status"
+            "Attributes:\n  CreationDate\n  PublicAccessBlockConfiguration\n  PublicAccessBlockConfiguration.BlockPublicAcls\n  Alias\n  Alias.Value\n  PublicAccessBlockConfiguration.IgnorePublicAcls\n  PublicAccessBlockConfiguration.RestrictPublicBuckets\n  PublicAccessBlockConfiguration.BlockPublicPolicy\n  Arn\n  Alias.Status"
         ],
         "prefix": "s3objectlambda-accesspoint",
         "scope": "json"
