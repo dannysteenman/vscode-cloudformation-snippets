@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.30.0 (2023-10-13)
+-------------------
+- The following resource was updated: AWS::IoT::TopicRule KafkaAction.
+  [Github Actions]
+
+
 4.29.0 (2023-10-06)
 -------------------
 - The following resources were updated: AWS::Lightsail::Disk and
