@@ -1201,12 +1201,13 @@
             "  Properties:",
             "    ApplicationId: \"${2:String}\" # Required",
             "    Description: \"${3:String}\"",
-            "    LocationUri: \"${4:String}\" # Required",
-            "    Name: \"${5:String}\" # Required",
-            "    RetrievalRoleArn: \"${6:String}\"",
+            "    KmsKeyIdentifier: \"${4:String}\"",
+            "    LocationUri: \"${5:String}\" # Required",
+            "    Name: \"${6:String}\" # Required",
+            "    RetrievalRoleArn: \"${7:String}\"",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${8:String}\"",
+            "    Type: \"${9:String}\"",
             "    Validators: ",
             "      Validators"
         ],
@@ -2537,8 +2538,7 @@
             "      VPCZoneIdentifier"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html",
-            "Attributes:\n  LaunchConfigurationName\n  LaunchTemplateSpecification\n  MixedInstancesPolicy\n  PlacementGroup\n  VPCZoneIdentifier"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-autoscalinggroup.html"
         ],
         "prefix": "autoscaling-autoscalinggroup",
         "scope": "yaml"
@@ -4776,6 +4776,22 @@
         "prefix": "cognito-identitypoolroleattachment",
         "scope": "yaml"
     },
+    "AWS::Cognito::LogDeliveryConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Cognito::LogDeliveryConfiguration",
+            "  Properties:",
+            "    LogConfigurations: ",
+            "      LogConfigurations",
+            "    UserPoolId: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-logdeliveryconfiguration.html",
+            "Attributes:\n  Id"
+        ],
+        "prefix": "cognito-logdeliveryconfiguration",
+        "scope": "yaml"
+    },
     "AWS::Cognito::UserPool": {
         "body": [
             "${1:LogicalID}:",
@@ -5617,12 +5633,13 @@
             "${1:LogicalID}:",
             "  Type: AWS::Connect::RoutingProfile",
             "  Properties:",
-            "    DefaultOutboundQueueArn: \"${2:String}\" # Required",
-            "    Description: \"${3:String}\" # Required",
-            "    InstanceArn: \"${4:String}\" # Required",
+            "    AgentAvailabilityTimer: \"${2:String}\"",
+            "    DefaultOutboundQueueArn: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\" # Required",
+            "    InstanceArn: \"${5:String}\" # Required",
             "    MediaConcurrencies: # Required",
             "      MediaConcurrencies",
-            "    Name: \"${6:String}\" # Required",
+            "    Name: \"${7:String}\" # Required",
             "    QueueConfigs: ",
             "      QueueConfigs",
             "    Tags: ",
@@ -5796,7 +5813,9 @@
             "  Properties:",
             "    InstanceArn: \"${2:String}\" # Required",
             "    Name: \"${3:String}\" # Required",
-            "    ParentGroupArn: \"${4:String}\""
+            "    ParentGroupArn: \"${4:String}\"",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-userhierarchygroup.html",
@@ -9175,9 +9194,12 @@
             "    PolicyEnabled: ${11|false,true|}",
             "    SecurityGroupIds: ",
             "      SecurityGroupIds",
+            "    SseSpecification:",
+            "      CustomerManagedKeyEnabled: ${13|false,true|}",
+            "      KmsKeyArn: \"${14:String}\"",
             "    Tags: ",
             "      Tags",
-            "    VerifiedAccessGroupId: \"${14:String}\" # Required"
+            "    VerifiedAccessGroupId: \"${15:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessendpoint.html",
@@ -9194,9 +9216,12 @@
             "    Description: \"${2:String}\"",
             "    PolicyDocument: \"${3:String}\"",
             "    PolicyEnabled: ${4|false,true|}",
+            "    SseSpecification:",
+            "      CustomerManagedKeyEnabled: ${5|false,true|}",
+            "      KmsKeyArn: \"${6:String}\"",
             "    Tags: ",
             "      Tags",
-            "    VerifiedAccessInstanceId: \"${6:String}\" # Required"
+            "    VerifiedAccessInstanceId: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessgroup.html",
@@ -9211,9 +9236,10 @@
             "  Type: AWS::EC2::VerifiedAccessInstance",
             "  Properties:",
             "    Description: \"${2:String}\"",
+            "    FipsEnabled: ${3|false,true|}",
             "    LoggingConfigurations:",
-            "      IncludeTrustContext: ${4|false,true|}",
-            "      LogVersion: \"${6:String}\"",
+            "      IncludeTrustContext: ${5|false,true|}",
+            "      LogVersion: \"${7:String}\"",
             "    Tags: ",
             "      Tags",
             "    VerifiedAccessTrustProviderIds: ",
@@ -9246,10 +9272,13 @@
             "      TokenEndpoint: \"${10:String}\"",
             "      UserInfoEndpoint: \"${11:String}\"",
             "    PolicyReferenceName: \"${6:String}\" # Required",
+            "    SseSpecification:",
+            "      CustomerManagedKeyEnabled: ${7|false,true|}",
+            "      KmsKeyArn: \"${8:String}\"",
             "    Tags: ",
             "      Tags",
-            "    TrustProviderType: \"${8:String}\" # Required",
-            "    UserTrustProviderType: \"${9:String}\""
+            "    TrustProviderType: \"${9:String}\" # Required",
+            "    UserTrustProviderType: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccesstrustprovider.html",
@@ -9960,7 +9989,8 @@
             "    Name: \"${5:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "emr-step",
         "scope": "yaml"
@@ -10639,6 +10669,30 @@
         "prefix": "elasticsearch-domain",
         "scope": "yaml"
     },
+    "AWS::EntityResolution::IdMappingWorkflow": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EntityResolution::IdMappingWorkflow",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    IdMappingTechniques:",
+            "      IdMappingType: \"${3:String}\"",
+            "    InputSourceConfig: # Required",
+            "      InputSourceConfig",
+            "    OutputSourceConfig: # Required",
+            "      OutputSourceConfig",
+            "    RoleArn: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    WorkflowName: \"${8:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-idmappingworkflow.html",
+            "Attributes:\n  CreatedAt\n  WorkflowArn\n  UpdatedAt"
+        ],
+        "prefix": "entityresolution-idmappingworkflow",
+        "scope": "yaml"
+    },
     "AWS::EntityResolution::MatchingWorkflow": {
         "body": [
             "${1:LogicalID}:",
@@ -10650,7 +10704,7 @@
             "    OutputSourceConfig: # Required",
             "      OutputSourceConfig",
             "    ResolutionTechniques:",
-            "      ResolutionType: \"${5:String}\"",
+            "      ResolutionType: \"${6:String}\"",
             "    RoleArn: \"${6:String}\" # Required",
             "    Tags: ",
             "      Tags",
@@ -10835,12 +10889,13 @@
             "  Properties:",
             "    EventSourceName: \"${2:String}\"",
             "    Name: \"${3:String}\" # Required",
+            "    Policy: ${4:JSON}",
             "    Tags: ",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbus.html",
-            "Attributes:\n  Policy\n  Arn\n  Name"
+            "Attributes:\n  Arn\n  Name"
         ],
         "prefix": "events-eventbus",
         "scope": "yaml"
@@ -11575,25 +11630,26 @@
             "    EC2InstanceType: \"${9:String}\"",
             "    FleetType: \"${10:String}\"",
             "    InstanceRoleARN: \"${11:String}\"",
+            "    InstanceRoleCredentialsProvider: \"${12:String}\"",
             "    Locations: ",
             "      Locations",
-            "    MaxSize: ${13:Number}",
+            "    MaxSize: ${14:Number}",
             "    MetricGroups: ",
             "      MetricGroups",
-            "    MinSize: ${15:Number}",
-            "    Name: \"${16:String}\" # Required",
-            "    NewGameSessionProtectionPolicy: \"${17:String}\"",
-            "    PeerVpcAwsAccountId: \"${18:String}\"",
-            "    PeerVpcId: \"${19:String}\"",
+            "    MinSize: ${16:Number}",
+            "    Name: \"${17:String}\" # Required",
+            "    NewGameSessionProtectionPolicy: \"${18:String}\"",
+            "    PeerVpcAwsAccountId: \"${19:String}\"",
+            "    PeerVpcId: \"${20:String}\"",
             "    ResourceCreationLimitPolicy:",
-            "      NewGameSessionsPerCreator: ${20:Number}",
-            "      PolicyPeriodInMinutes: ${21:Number}",
+            "      NewGameSessionsPerCreator: ${21:Number}",
+            "      PolicyPeriodInMinutes: ${22:Number}",
             "    RuntimeConfiguration:",
-            "      GameSessionActivationTimeoutSeconds: ${21:Number}",
-            "      MaxConcurrentGameSessionActivations: ${22:Number}",
+            "      GameSessionActivationTimeoutSeconds: ${22:Number}",
+            "      MaxConcurrentGameSessionActivations: ${23:Number}",
             "      ServerProcesses:",
             "        -",
-            "    ScriptId: \"${22:String}\""
+            "    ScriptId: \"${23:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html",
@@ -12852,7 +12908,7 @@
             "      Policies"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html",
             "Attributes:\n  Arn"
         ],
         "prefix": "iam-group",
@@ -13938,7 +13994,9 @@
             "  Type: AWS::IoT::Policy",
             "  Properties:",
             "    PolicyDocument: ${2:JSON} # Required",
-            "    PolicyName: \"${3:String}\""
+            "    PolicyName: \"${3:String}\"",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html",
@@ -15834,21 +15892,22 @@
             "      Layers",
             "    MemorySize: ${15:Number}",
             "    PackageType: \"${16:String}\"",
-            "    ReservedConcurrentExecutions: ${17:Number}",
-            "    Role: \"${18:String}\" # Required",
-            "    Runtime: \"${19:String}\"",
+            "    Policy: ${17:JSON}",
+            "    ReservedConcurrentExecutions: ${18:Number}",
+            "    Role: \"${19:String}\" # Required",
+            "    Runtime: \"${20:String}\"",
             "    RuntimeManagementConfig:",
-            "      RuntimeVersionArn: \"${20:String}\"",
-            "      UpdateRuntimeOn: \"${21:String}\"",
+            "      RuntimeVersionArn: \"${21:String}\"",
+            "      UpdateRuntimeOn: \"${22:String}\"",
             "    SnapStart:",
-            "      ApplyOn: \"${21:String}\"",
+            "      ApplyOn: \"${22:String}\"",
             "    Tags: ",
             "      Tags",
-            "    Timeout: ${23:Number}",
+            "    Timeout: ${24:Number}",
             "    TracingConfig:",
-            "      Mode: \"${24:String}\"",
+            "      Mode: \"${25:String}\"",
             "    VpcConfig:",
-            "      Ipv6AllowedForDualStack: ${25|false,true|}",
+            "      Ipv6AllowedForDualStack: ${26|false,true|}",
             "      SecurityGroupIds:",
             "        -",
             "      SubnetIds:",
@@ -15960,11 +16019,14 @@
             "    Description: \"${3:String}\"",
             "    FunctionName: \"${4:String}\" # Required",
             "    ProvisionedConcurrencyConfig:",
-            "      ProvisionedConcurrentExecutions: ${5:Number}"
+            "      ProvisionedConcurrentExecutions: ${5:Number}",
+            "    RuntimePolicy:",
+            "      RuntimeVersionArn: \"${6:String}\"",
+            "      UpdateRuntimeOn: \"${7:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html",
-            "Attributes:\n  Version"
+            "Attributes:\n  FunctionArn\n  Version"
         ],
         "prefix": "lambda-version",
         "scope": "yaml"
@@ -18375,7 +18437,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-link.html",
-            "Attributes:\n  LinkArn\n  LinkId"
+            "Attributes:\n  LinkArn\n  State\n  CreatedAt\n  LinkId"
         ],
         "prefix": "networkmanager-link",
         "scope": "yaml"
@@ -20190,7 +20252,9 @@
             "    Status: \"${9:String}\"",
             "    Tags: ",
             "      Tags",
-            "    ThemeArn: \"${11:String}\""
+            "    ThemeArn: \"${11:String}\"",
+            "    ValidationStrategy:",
+            "      Mode: \"${12:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html",
@@ -20236,7 +20300,9 @@
             "    Tags: ",
             "      Tags",
             "    ThemeArn: \"${11:String}\"",
-            "    VersionDescription: \"${12:String}\""
+            "    ValidationStrategy:",
+            "      Mode: \"${12:String}\"",
+            "    VersionDescription: \"${13:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html",
@@ -20372,7 +20438,9 @@
             "    Tags: ",
             "      Tags",
             "    TemplateId: \"${8:String}\" # Required",
-            "    VersionDescription: \"${9:String}\""
+            "    ValidationStrategy:",
+            "      Mode: \"${9:String}\"",
+            "    VersionDescription: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-template.html",
