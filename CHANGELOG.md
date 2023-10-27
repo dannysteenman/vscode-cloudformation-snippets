@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+4.32.0 (2023-10-27)
+-------------------
+- The following resources were updated:                     <code
+  class="code">AWS::EntityResolution::MatchingWorkflow</code> and
+  <code class="code">AWS::EntityResolution::SchemaMapping</code>.
+  [Github Actions]
+
+
 4.31.0 (2023-10-20)
 -------------------
 - The following resources were updated:                     <code
