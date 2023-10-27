@@ -347,23 +347,26 @@
             "  \"Type\": \"AWS::Amplify::Branch\",",
             "  \"Properties\": {",
             "    \"AppId\": \"${2:String}\",",
-            "    \"BasicAuthConfig\": {",
-            "      \"EnableBasicAuth\": \"${3|false,true|}\",",
-            "      \"Password\": \"${4:String}\",",
-            "      \"Username\": \"${5:String}\"",
+            "    \"Backend\": {",
+            "      \"StackArn\": \"${3:String}\"",
             "    },",
-            "    \"BranchName\": \"${4:String}\",",
-            "    \"BuildSpec\": \"${5:String}\",",
-            "    \"Description\": \"${6:String}\",",
-            "    \"EnableAutoBuild\": \"${7|false,true|}\",",
-            "    \"EnablePerformanceMode\": \"${8|false,true|}\",",
-            "    \"EnablePullRequestPreview\": \"${9|false,true|}\",",
+            "    \"BasicAuthConfig\": {",
+            "      \"EnableBasicAuth\": \"${4|false,true|}\",",
+            "      \"Password\": \"${5:String}\",",
+            "      \"Username\": \"${6:String}\"",
+            "    },",
+            "    \"BranchName\": \"${5:String}\",",
+            "    \"BuildSpec\": \"${6:String}\",",
+            "    \"Description\": \"${7:String}\",",
+            "    \"EnableAutoBuild\": \"${8|false,true|}\",",
+            "    \"EnablePerformanceMode\": \"${9|false,true|}\",",
+            "    \"EnablePullRequestPreview\": \"${10|false,true|}\",",
             "    \"EnvironmentVariables\": [",
             "      \"EnvironmentVariables\"",
             "    ],",
-            "    \"Framework\": \"${11:String}\",",
-            "    \"PullRequestEnvironmentName\": \"${12:String}\",",
-            "    \"Stage\": \"${13:String}\",",
+            "    \"Framework\": \"${12:String}\",",
+            "    \"PullRequestEnvironmentName\": \"${13:String}\",",
+            "    \"Stage\": \"${14:String}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -726,7 +729,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "apigateway-gatewayresponse",
         "scope": "json"
@@ -1353,7 +1357,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-application.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-application.html",
+            "Attributes:\n  ApplicationId"
         ],
         "prefix": "appconfig-application",
         "scope": "json"
@@ -5599,7 +5604,7 @@
             "      \"AdvancedSecurityMode\": \"${20:String}\"",
             "    },",
             "    \"UserPoolName\": \"${21:String}\",",
-            "    \"UserPoolTags\": \"${22:JSON}\",",
+            "    \"UserPoolTags\": {",
             "    \"UsernameAttributes\": [",
             "      \"UsernameAttributes\"",
             "    ],",
@@ -5619,7 +5624,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html",
-            "Attributes:\n  ProviderName\n  ProviderURL\n  Arn"
+            "Attributes:\n  ProviderName\n  UserPoolId\n  ProviderURL\n  Arn"
         ],
         "prefix": "cognito-userpool",
         "scope": "json"
@@ -5682,7 +5687,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html",
-            "Attributes:\n  ClientSecret\n  Name"
+            "Attributes:\n  ClientSecret\n  ClientId\n  Name"
         ],
         "prefix": "cognito-userpoolclient",
         "scope": "json"
@@ -6848,6 +6853,16 @@
             "    \"DefaultEncryptionKey\": \"${3:String}\",",
             "    \"DefaultExpirationDays\": \"${4:Number}\",",
             "    \"DomainName\": \"${5:String}\",",
+            "    \"Matching\": {",
+            "      \"Enabled\": \"${7|false,true|}\",",
+            "    },",
+            "    \"RuleBasedMatching\": {",
+            "      \"Enabled\": \"${9|false,true|}\",",
+            "      \"MatchingRules\": [],",
+            "      \"MaxAllowedRuleLevelForMatching\": \"${12:Number}\",",
+            "      \"MaxAllowedRuleLevelForMerging\": \"${13:Number}\",",
+            "      \"Status\": \"${14:String}\"",
+            "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -6856,7 +6871,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html",
-            "Attributes:\n  LastUpdatedAt\n  CreatedAt"
+            "Attributes:\n  Stats.ProfileCount\n  Stats.ObjectCount\n  LastUpdatedAt\n  CreatedAt\n  Stats\n  Stats.MeteringProfileCount\n  Stats.TotalSize\n  RuleBasedMatching.Status"
         ],
         "prefix": "customerprofiles-domain",
         "scope": "json"
@@ -9459,7 +9474,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkaclentry.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "ec2-networkaclentry",
         "scope": "json"
@@ -19616,6 +19632,34 @@
         "prefix": "msk-configuration",
         "scope": "json"
     },
+    "AWS::MSK::Replicator": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::MSK::Replicator\",",
+            "  \"Properties\": {",
+            "    \"CurrentVersion\": \"${2:String}\",",
+            "    \"Description\": \"${3:String}\",",
+            "    \"KafkaClusters\": [",
+            "      \"KafkaClusters\"",
+            "    ],",
+            "    \"ReplicationInfoList\": [",
+            "      \"ReplicationInfoList\"",
+            "    ],",
+            "    \"ReplicatorName\": \"${6:String}\",",
+            "    \"ServiceExecutionRoleArn\": \"${7:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-replicator.html",
+            "Attributes:\n  ReplicatorArn"
+        ],
+        "prefix": "msk-replicator",
+        "scope": "json"
+    },
     "AWS::MSK::ServerlessCluster": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -21260,6 +21304,7 @@
             "      \"InsideCidrBlocks\"",
             "    ],",
             "    \"PeerAddress\": \"${6:String}\",",
+            "    \"SubnetArn\": \"${7:String}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -26381,20 +26426,21 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::SNS::Topic\",",
             "  \"Properties\": {",
-            "    \"ContentBasedDeduplication\": \"${2|false,true|}\",",
-            "    \"DataProtectionPolicy\": \"${3:JSON}\",",
-            "    \"DisplayName\": \"${4:String}\",",
-            "    \"FifoTopic\": \"${5|false,true|}\",",
-            "    \"KmsMasterKeyId\": \"${6:String}\",",
-            "    \"SignatureVersion\": \"${7:String}\",",
+            "    \"ArchivePolicy\": \"${2:JSON}\",",
+            "    \"ContentBasedDeduplication\": \"${3|false,true|}\",",
+            "    \"DataProtectionPolicy\": \"${4:JSON}\",",
+            "    \"DisplayName\": \"${5:String}\",",
+            "    \"FifoTopic\": \"${6|false,true|}\",",
+            "    \"KmsMasterKeyId\": \"${7:String}\",",
+            "    \"SignatureVersion\": \"${8:String}\",",
             "    \"Subscription\": [",
             "      \"Subscription\"",
             "    ],",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"TopicName\": \"${10:String}\",",
-            "    \"TracingConfig\": \"${11:String}\"",
+            "    \"TopicName\": \"${11:String}\",",
+            "    \"TracingConfig\": \"${12:String}\"",
             "  }",
             "}"
         ],
@@ -29317,62 +29363,6 @@
         "prefix": "transfer-profile",
         "scope": "json"
     },
-    "AWS::Transfer::Server": {
-        "body": [
-            "\"${1:LogicalID}\": {",
-            "  \"Type\": \"AWS::Transfer::Server\",",
-            "  \"Properties\": {",
-            "    \"Certificate\": \"${2:String}\",",
-            "    \"Domain\": \"${3:String}\",",
-            "    \"EndpointDetails\": {",
-            "      \"AddressAllocationIds\": [],",
-            "      \"SecurityGroupIds\": [],",
-            "      \"SubnetIds\": [],",
-            "      \"VpcEndpointId\": \"${7:String}\",",
-            "      \"VpcId\": \"${8:String}\"",
-            "    },",
-            "    \"EndpointType\": \"${5:String}\",",
-            "    \"IdentityProviderDetails\": {",
-            "      \"DirectoryId\": \"${6:String}\",",
-            "      \"Function\": \"${7:String}\",",
-            "      \"InvocationRole\": \"${8:String}\",",
-            "      \"SftpAuthenticationMethods\": \"${9:String}\",",
-            "      \"Url\": \"${10:String}\"",
-            "    },",
-            "    \"IdentityProviderType\": \"${7:String}\",",
-            "    \"LoggingRole\": \"${8:String}\",",
-            "    \"PostAuthenticationLoginBanner\": \"${9:String}\",",
-            "    \"PreAuthenticationLoginBanner\": \"${10:String}\",",
-            "    \"ProtocolDetails\": {",
-            "      \"As2Transports\": [],",
-            "      \"PassiveIp\": \"${12:String}\",",
-            "      \"SetStatOption\": \"${13:String}\",",
-            "      \"TlsSessionResumptionMode\": \"${14:String}\"",
-            "    },",
-            "    \"Protocols\": [",
-            "      \"Protocols\"",
-            "    ],",
-            "    \"SecurityPolicyName\": \"${13:String}\",",
-            "    \"StructuredLogDestinations\": [",
-            "      \"StructuredLogDestinations\"",
-            "    ],",
-            "    \"Tags\": [",
-            "      \"Tags\"",
-            "    ],",
-            "    \"WorkflowDetails\": {",
-            "      \"OnPartialUpload\": [],",
-            "      \"OnUpload\": []",
-            "    },",
-            "  }",
-            "}"
-        ],
-        "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html",
-            "Attributes:\n  ServerId\n  Arn"
-        ],
-        "prefix": "transfer-server",
-        "scope": "json"
-    },
     "AWS::Transfer::User": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -30674,6 +30664,62 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ask-skill.html"
         ],
         "prefix": "alexa-ask-skill",
+        "scope": "json"
+    },
+    "Dev::Transfer::Server": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"Dev::Transfer::Server\",",
+            "  \"Properties\": {",
+            "    \"Certificate\": \"${2:String}\",",
+            "    \"Domain\": \"${3:String}\",",
+            "    \"EndpointDetails\": {",
+            "      \"AddressAllocationIds\": [],",
+            "      \"SecurityGroupIds\": [],",
+            "      \"SubnetIds\": [],",
+            "      \"VpcEndpointId\": \"${7:String}\",",
+            "      \"VpcId\": \"${8:String}\"",
+            "    },",
+            "    \"EndpointType\": \"${5:String}\",",
+            "    \"IdentityProviderDetails\": {",
+            "      \"DirectoryId\": \"${6:String}\",",
+            "      \"Function\": \"${7:String}\",",
+            "      \"InvocationRole\": \"${8:String}\",",
+            "      \"SftpAuthenticationMethods\": \"${9:String}\",",
+            "      \"Url\": \"${10:String}\"",
+            "    },",
+            "    \"IdentityProviderType\": \"${7:String}\",",
+            "    \"LoggingRole\": \"${8:String}\",",
+            "    \"PostAuthenticationLoginBanner\": \"${9:String}\",",
+            "    \"PreAuthenticationLoginBanner\": \"${10:String}\",",
+            "    \"ProtocolDetails\": {",
+            "      \"As2Transports\": [],",
+            "      \"PassiveIp\": \"${12:String}\",",
+            "      \"SetStatOption\": \"${13:String}\",",
+            "      \"TlsSessionResumptionMode\": \"${14:String}\"",
+            "    },",
+            "    \"Protocols\": [",
+            "      \"Protocols\"",
+            "    ],",
+            "    \"SecurityPolicyName\": \"${13:String}\",",
+            "    \"StructuredLogDestinations\": [",
+            "      \"StructuredLogDestinations\"",
+            "    ],",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"WorkflowDetails\": {",
+            "      \"OnPartialUpload\": [],",
+            "      \"OnUpload\": []",
+            "    },",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-server.html",
+            "Attributes:\n  ServerId\n  Arn"
+        ],
+        "prefix": "dev-transfer-server",
         "scope": "json"
     }
 }
