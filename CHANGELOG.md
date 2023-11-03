@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+4.33.0 (2023-11-03)
+-------------------
+- The following parameter was added: DestinationPackageVersions to the
+  AWS::IoT::JobTemplate resource in the Ningxia (cn-northest-1) Region.
+  It is still available in the Beijing (cn-north-1) Region and other
+  Regions where Service Package Catalog has been deployed. [Github
+  Actions]
+
+
 4.32.0 (2023-10-27)
 -------------------
 - The following resources were updated:                     <code
