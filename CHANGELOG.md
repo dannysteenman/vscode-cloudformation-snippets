@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.34.0 (2023-11-10)
+-------------------
+- The following resource was updated: AWS::MWAA::Environment. [Github
+  Actions]
+
+
 4.33.0 (2023-11-03)
 -------------------
 - The following parameter was added: DestinationPackageVersions to the
