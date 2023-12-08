@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.35.0 (2023-12-08)
+-------------------
+- The following resource was updated:
+  AWS::ApplicationAutoScaling::ScalingPolicy. [Github Actions]
+
+
 4.34.0 (2023-11-10)
 -------------------
 - The following resource was updated: AWS::MWAA::Environment. [Github
