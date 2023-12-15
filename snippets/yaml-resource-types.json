@@ -2230,7 +2230,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
-            "Attributes:\n  RealtimeUrl\n  GraphQLUrl\n  GraphQLDns\n  RealtimeDns\n  Arn\n  ApiId"
+            "Attributes:\n  RealtimeUrl\n  GraphQLUrl\n  GraphQLDns\n  RealtimeDns\n  Arn\n  ApiId\n  GraphQLEndpointArn"
         ],
         "prefix": "appsync-graphqlapi",
         "scope": "yaml"
@@ -2723,6 +2723,48 @@
             "Attributes:\n  ScalingPlanName\n  ScalingPlanVersion"
         ],
         "prefix": "autoscalingplans-scalingplan",
+        "scope": "yaml"
+    },
+    "AWS::B2BI::Profile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::B2BI::Profile",
+            "  Properties:",
+            "    BusinessName: \"${2:String}\" # Required",
+            "    Email: \"${3:String}\"",
+            "    Logging: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    Phone: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-profile.html",
+            "Attributes:\n  ModifiedAt\n  ProfileId\n  CreatedAt\n  LogGroupName\n  ProfileArn"
+        ],
+        "prefix": "b2bi-profile",
+        "scope": "yaml"
+    },
+    "AWS::B2BI::Transformer": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::B2BI::Transformer",
+            "  Properties:",
+            "    EdiType:",
+            "    FileFormat: \"${3:String}\" # Required",
+            "    MappingTemplate: \"${4:String}\" # Required",
+            "    ModifiedAt: \"${5:String}\"",
+            "    Name: \"${6:String}\" # Required",
+            "    SampleDocument: \"${7:String}\"",
+            "    Status: \"${8:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-transformer.html",
+            "Attributes:\n  TransformerId\n  TransformerArn\n  CreatedAt"
+        ],
+        "prefix": "b2bi-transformer",
         "scope": "yaml"
     },
     "AWS::Backup::BackupPlan": {
@@ -3973,6 +4015,24 @@
             "Attributes:\n  LastModifiedTime\n  Id"
         ],
         "prefix": "cloudfront-keygroup",
+        "scope": "yaml"
+    },
+    "AWS::CloudFront::KeyValueStore": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CloudFront::KeyValueStore",
+            "  Properties:",
+            "    Comment: \"${2:String}\"",
+            "    ImportSource:",
+            "      SourceArn: \"${3:String}\"",
+            "      SourceType: \"${4:String}\"",
+            "    Name: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keyvaluestore.html",
+            "Attributes:\n  Status\n  Id\n  Arn"
+        ],
+        "prefix": "cloudfront-keyvaluestore",
         "scope": "yaml"
     },
     "AWS::CloudFront::MonitoringSubscription": {
@@ -5638,7 +5698,9 @@
             "      UseCustomTTSVoices: ${8|false,true|}",
             "    DirectoryId: \"${3:String}\"",
             "    IdentityManagementType: \"${4:String}\" # Required",
-            "    InstanceAlias: \"${5:String}\""
+            "    InstanceAlias: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-instance.html",
@@ -8241,8 +8303,8 @@
             "      Volumes"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html",
-            "Attributes:\n  AvailabilityZone\n  PrivateDnsName\n  PrivateIp\n  PublicDnsName\n  PublicIp"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instance.html",
+            "Attributes:\n  PrivateDnsName\n  PrivateIp\n  PublicIp\n  AvailabilityZone\n  Id\n  PublicDnsName"
         ],
         "prefix": "ec2-instance",
         "scope": "yaml"
@@ -8688,19 +8750,20 @@
             "  Type: AWS::EC2::Route",
             "  Properties:",
             "    CarrierGatewayId: \"${2:String}\"",
-            "    DestinationCidrBlock: \"${3:String}\"",
-            "    DestinationIpv6CidrBlock: \"${4:String}\"",
-            "    DestinationPrefixListId: \"${5:String}\"",
-            "    EgressOnlyInternetGatewayId: \"${6:String}\"",
-            "    GatewayId: \"${7:String}\"",
-            "    InstanceId: \"${8:String}\"",
-            "    LocalGatewayId: \"${9:String}\"",
-            "    NatGatewayId: \"${10:String}\"",
-            "    NetworkInterfaceId: \"${11:String}\"",
-            "    RouteTableId: \"${12:String}\" # Required",
-            "    TransitGatewayId: \"${13:String}\"",
-            "    VpcEndpointId: \"${14:String}\"",
-            "    VpcPeeringConnectionId: \"${15:String}\""
+            "    CoreNetworkArn: \"${3:String}\"",
+            "    DestinationCidrBlock: \"${4:String}\"",
+            "    DestinationIpv6CidrBlock: \"${5:String}\"",
+            "    DestinationPrefixListId: \"${6:String}\"",
+            "    EgressOnlyInternetGatewayId: \"${7:String}\"",
+            "    GatewayId: \"${8:String}\"",
+            "    InstanceId: \"${9:String}\"",
+            "    LocalGatewayId: \"${10:String}\"",
+            "    NatGatewayId: \"${11:String}\"",
+            "    NetworkInterfaceId: \"${12:String}\"",
+            "    RouteTableId: \"${13:String}\" # Required",
+            "    TransitGatewayId: \"${14:String}\"",
+            "    VpcEndpointId: \"${15:String}\"",
+            "    VpcPeeringConnectionId: \"${16:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html",
@@ -8763,7 +8826,8 @@
             "    ToPort: ${10:Number}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroupegress.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "ec2-securitygroupegress",
         "scope": "yaml"
@@ -8790,6 +8854,20 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html"
         ],
         "prefix": "ec2-securitygroupingress",
+        "scope": "yaml"
+    },
+    "AWS::EC2::SnapshotBlockPublicAccess": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EC2::SnapshotBlockPublicAccess",
+            "  Properties:",
+            "    State: \"${2:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-snapshotblockpublicaccess.html",
+            "Attributes:\n  AccountId"
+        ],
+        "prefix": "ec2-snapshotblockpublicaccess",
         "scope": "yaml"
     },
     "AWS::EC2::SpotFleet": {
@@ -8885,7 +8963,7 @@
             "    SubnetId: \"${3:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-network-acl-assoc.html",
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetnetworkaclassociation.html",
             "Attributes:\n  AssociationId"
         ],
         "prefix": "ec2-subnetnetworkaclassociation",
@@ -10183,48 +10261,52 @@
             "    Configurations: ",
             "      Configurations",
             "    CustomAmiId: \"${8:String}\"",
-            "    EbsRootVolumeSize: ${9:Number}",
+            "    EbsRootVolumeIops: ${9:Number}",
+            "    EbsRootVolumeSize: ${10:Number}",
+            "    EbsRootVolumeThroughput: ${11:Number}",
             "    Instances:",
             "      AdditionalMasterSecurityGroups:",
             "        -",
             "      AdditionalSlaveSecurityGroups:",
             "        -",
-            "      Ec2KeyName: \"${14:String}\"",
-            "      Ec2SubnetId: \"${15:String}\"",
+            "      Ec2KeyName: \"${16:String}\"",
+            "      Ec2SubnetId: \"${17:String}\"",
             "      Ec2SubnetIds:",
             "        -",
-            "      EmrManagedMasterSecurityGroup: \"${17:String}\"",
-            "      EmrManagedSlaveSecurityGroup: \"${18:String}\"",
-            "      HadoopVersion: \"${19:String}\"",
-            "      KeepJobFlowAliveWhenNoSteps: ${20|false,true|}",
-            "      ServiceAccessSecurityGroup: \"${24:String}\"",
+            "      EmrManagedMasterSecurityGroup: \"${19:String}\"",
+            "      EmrManagedSlaveSecurityGroup: \"${20:String}\"",
+            "      HadoopVersion: \"${21:String}\"",
+            "      KeepJobFlowAliveWhenNoSteps: ${22|false,true|}",
+            "      ServiceAccessSecurityGroup: \"${26:String}\"",
             "      TaskInstanceFleets:",
             "        -",
             "      TaskInstanceGroups:",
             "        -",
-            "      TerminationProtected: ${27|false,true|}",
-            "    JobFlowRole: \"${11:String}\" # Required",
+            "      TerminationProtected: ${29|false,true|}",
+            "    JobFlowRole: \"${13:String}\" # Required",
             "    KerberosAttributes:",
-            "      ADDomainJoinPassword: \"${12:String}\"",
-            "      ADDomainJoinUser: \"${13:String}\"",
-            "      CrossRealmTrustPrincipalPassword: \"${14:String}\"",
-            "      KdcAdminPassword: \"${15:String}\"",
-            "      Realm: \"${16:String}\"",
-            "    LogEncryptionKmsKeyId: \"${13:String}\"",
-            "    LogUri: \"${14:String}\"",
+            "      ADDomainJoinPassword: \"${14:String}\"",
+            "      ADDomainJoinUser: \"${15:String}\"",
+            "      CrossRealmTrustPrincipalPassword: \"${16:String}\"",
+            "      KdcAdminPassword: \"${17:String}\"",
+            "      Realm: \"${18:String}\"",
+            "    LogEncryptionKmsKeyId: \"${15:String}\"",
+            "    LogUri: \"${16:String}\"",
             "    ManagedScalingPolicy:",
-            "    Name: \"${16:String}\" # Required",
-            "    OSReleaseLabel: \"${17:String}\"",
-            "    ReleaseLabel: \"${18:String}\"",
-            "    ScaleDownBehavior: \"${19:String}\"",
-            "    SecurityConfiguration: \"${20:String}\"",
-            "    ServiceRole: \"${21:String}\" # Required",
-            "    StepConcurrencyLevel: ${22:Number}",
+            "    Name: \"${18:String}\" # Required",
+            "    OSReleaseLabel: \"${19:String}\"",
+            "    PlacementGroupConfigs: ",
+            "      PlacementGroupConfigs",
+            "    ReleaseLabel: \"${21:String}\"",
+            "    ScaleDownBehavior: \"${22:String}\"",
+            "    SecurityConfiguration: \"${23:String}\"",
+            "    ServiceRole: \"${24:String}\" # Required",
+            "    StepConcurrencyLevel: ${25:Number}",
             "    Steps: ",
             "      Steps",
             "    Tags: ",
             "      Tags",
-            "    VisibleToAllUsers: ${25|false,true|}"
+            "    VisibleToAllUsers: ${28|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html",
@@ -10625,25 +10707,31 @@
             "    CacheUsageLimits:",
             "    DailySnapshotTime: \"${3:String}\"",
             "    Description: \"${4:String}\"",
-            "    Engine: \"${5:String}\" # Required",
-            "    FinalSnapshotName: \"${6:String}\"",
-            "    KmsKeyId: \"${7:String}\"",
-            "    MajorEngineVersion: \"${8:String}\"",
+            "    Endpoint:",
+            "      Address: \"${5:String}\"",
+            "      Port: ${6:Number}",
+            "    Engine: \"${6:String}\" # Required",
+            "    FinalSnapshotName: \"${7:String}\"",
+            "    KmsKeyId: \"${8:String}\"",
+            "    MajorEngineVersion: \"${9:String}\"",
+            "    ReaderEndpoint:",
+            "      Address: \"${10:String}\"",
+            "      Port: ${11:Number}",
             "    SecurityGroupIds: ",
             "      SecurityGroupIds",
-            "    ServerlessCacheName: \"${10:String}\" # Required",
+            "    ServerlessCacheName: \"${12:String}\" # Required",
             "    SnapshotArnsToRestore: ",
             "      SnapshotArnsToRestore",
-            "    SnapshotRetentionLimit: ${12:Number}",
+            "    SnapshotRetentionLimit: ${14:Number}",
             "    SubnetIds: ",
             "      SubnetIds",
             "    Tags: ",
             "      Tags",
-            "    UserGroupId: \"${15:String}\""
+            "    UserGroupId: \"${17:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html",
-            "Attributes:\n  Status\n  Endpoint.Address\n  FullEngineVersion\n  Endpoint\n  ReaderEndpoint.Address\n  CreateTime\n  ReaderEndpoint.Port\n  Endpoint.Port\n  ARN\n  ReaderEndpoint"
+            "Attributes:\n  Status\n  Endpoint.Address\n  FullEngineVersion\n  ReaderEndpoint.Address\n  CreateTime\n  ReaderEndpoint.Port\n  Endpoint.Port\n  ARN"
         ],
         "prefix": "elasticache-serverlesscache",
         "scope": "yaml"
@@ -12043,39 +12131,40 @@
             "  Properties:",
             "    AnywhereConfiguration:",
             "      Cost: \"${2:String}\"",
-            "    BuildId: \"${3:String}\"",
+            "    ApplyCapacity: \"${3:String}\"",
+            "    BuildId: \"${4:String}\"",
             "    CertificateConfiguration:",
-            "      CertificateType: \"${4:String}\"",
-            "    ComputeType: \"${5:String}\"",
-            "    Description: \"${6:String}\"",
-            "    DesiredEC2Instances: ${7:Number}",
+            "      CertificateType: \"${5:String}\"",
+            "    ComputeType: \"${6:String}\"",
+            "    Description: \"${7:String}\"",
+            "    DesiredEC2Instances: ${8:Number}",
             "    EC2InboundPermissions: ",
             "      EC2InboundPermissions",
-            "    EC2InstanceType: \"${9:String}\"",
-            "    FleetType: \"${10:String}\"",
-            "    InstanceRoleARN: \"${11:String}\"",
-            "    InstanceRoleCredentialsProvider: \"${12:String}\"",
+            "    EC2InstanceType: \"${10:String}\"",
+            "    FleetType: \"${11:String}\"",
+            "    InstanceRoleARN: \"${12:String}\"",
+            "    InstanceRoleCredentialsProvider: \"${13:String}\"",
             "    Locations: ",
             "      Locations",
-            "    MaxSize: ${14:Number}",
+            "    MaxSize: ${15:Number}",
             "    MetricGroups: ",
             "      MetricGroups",
-            "    MinSize: ${16:Number}",
-            "    Name: \"${17:String}\" # Required",
-            "    NewGameSessionProtectionPolicy: \"${18:String}\"",
-            "    PeerVpcAwsAccountId: \"${19:String}\"",
-            "    PeerVpcId: \"${20:String}\"",
+            "    MinSize: ${17:Number}",
+            "    Name: \"${18:String}\" # Required",
+            "    NewGameSessionProtectionPolicy: \"${19:String}\"",
+            "    PeerVpcAwsAccountId: \"${20:String}\"",
+            "    PeerVpcId: \"${21:String}\"",
             "    ResourceCreationLimitPolicy:",
-            "      NewGameSessionsPerCreator: ${21:Number}",
-            "      PolicyPeriodInMinutes: ${22:Number}",
+            "      NewGameSessionsPerCreator: ${22:Number}",
+            "      PolicyPeriodInMinutes: ${23:Number}",
             "    RuntimeConfiguration:",
-            "      GameSessionActivationTimeoutSeconds: ${22:Number}",
-            "      MaxConcurrentGameSessionActivations: ${23:Number}",
+            "      GameSessionActivationTimeoutSeconds: ${23:Number}",
+            "      MaxConcurrentGameSessionActivations: ${24:Number}",
             "      ServerProcesses:",
             "        -",
             "    ScalingPolicies: ",
             "      ScalingPolicies",
-            "    ScriptId: \"${24:String}\""
+            "    ScriptId: \"${25:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html",
@@ -12396,6 +12485,23 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html"
         ],
         "prefix": "glue-crawler",
+        "scope": "yaml"
+    },
+    "AWS::Glue::CustomEntityType": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Glue::CustomEntityType",
+            "  Properties:",
+            "    ContextWords: ",
+            "      ContextWords",
+            "    Name: \"${3:String}\"",
+            "    RegexString: \"${4:String}\"",
+            "    Tags: ${5:JSON}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-customentitytype.html"
+        ],
+        "prefix": "glue-customentitytype",
         "scope": "yaml"
     },
     "AWS::Glue::DataCatalogEncryptionSettings": {
@@ -19312,12 +19418,16 @@
             "${1:LogicalID}:",
             "  Type: AWS::OSIS::Pipeline",
             "  Properties:",
+            "    BufferOptions:",
+            "      PersistentBufferEnabled: ${2|false,true|}",
+            "    EncryptionAtRestOptions:",
+            "      KmsKeyArn: \"${3:String}\"",
             "    LogPublishingOptions:",
-            "      IsLoggingEnabled: ${3|false,true|}",
-            "    MaxUnits: ${3:Number} # Required",
-            "    MinUnits: ${4:Number} # Required",
-            "    PipelineConfigurationBody: \"${5:String}\" # Required",
-            "    PipelineName: \"${6:String}\" # Required",
+            "      IsLoggingEnabled: ${5|false,true|}",
+            "    MaxUnits: ${5:Number} # Required",
+            "    MinUnits: ${6:Number} # Required",
+            "    PipelineConfigurationBody: \"${7:String}\" # Required",
+            "    PipelineName: \"${8:String}\" # Required",
             "    Tags: ",
             "      Tags",
             "    VpcOptions:",
@@ -19643,15 +19753,16 @@
             "      Enabled: ${10|false,true|}",
             "      KmsKeyId: \"${11:String}\"",
             "    EngineVersion: \"${11:String}\"",
+            "    IPAddressType: \"${12:String}\"",
             "    LogPublishingOptions:",
             "    NodeToNodeEncryptionOptions:",
-            "      Enabled: ${13|false,true|}",
-            "    OffPeakWindowOptions:",
             "      Enabled: ${14|false,true|}",
+            "    OffPeakWindowOptions:",
+            "      Enabled: ${15|false,true|}",
             "    SnapshotOptions:",
-            "      AutomatedSnapshotStartHour: ${15:Number}",
+            "      AutomatedSnapshotStartHour: ${16:Number}",
             "    SoftwareUpdateOptions:",
-            "      AutoSoftwareUpdateEnabled: ${16|false,true|}",
+            "      AutoSoftwareUpdateEnabled: ${17|false,true|}",
             "    Tags: ",
             "      Tags",
             "    VPCOptions:",
@@ -19662,7 +19773,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-domain.html",
-            "Attributes:\n  ServiceSoftwareOptions.OptionalDeployment\n  ServiceSoftwareOptions.Description\n  ServiceSoftwareOptions.UpdateStatus\n  ServiceSoftwareOptions.AutomatedUpdateDate\n  ServiceSoftwareOptions.CurrentVersion\n  DomainEndpoints\n  DomainArn\n  ServiceSoftwareOptions.UpdateAvailable\n  DomainEndpoint\n  ServiceSoftwareOptions\n  AdvancedSecurityOptions.AnonymousAuthDisableDate\n  ServiceSoftwareOptions.NewVersion\n  Id\n  Arn\n  ServiceSoftwareOptions.Cancellable"
+            "Attributes:\n  ServiceSoftwareOptions.OptionalDeployment\n  ServiceSoftwareOptions.Description\n  ServiceSoftwareOptions.UpdateStatus\n  ServiceSoftwareOptions.AutomatedUpdateDate\n  ServiceSoftwareOptions.CurrentVersion\n  DomainEndpointV2\n  DomainEndpoints\n  DomainArn\n  ServiceSoftwareOptions.UpdateAvailable\n  DomainEndpoint\n  ServiceSoftwareOptions\n  AdvancedSecurityOptions.AnonymousAuthDisableDate\n  ServiceSoftwareOptions.NewVersion\n  Id\n  Arn\n  ServiceSoftwareOptions.Cancellable"
         ],
         "prefix": "opensearchservice-domain",
         "scope": "yaml"
@@ -23061,8 +23172,8 @@
             "        -"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
-            "Attributes:\n  Arn\n  DomainName\n  DualStackDomainName\n  RegionalDomainName\n  WebsiteURL"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html",
+            "Attributes:\n  RegionalDomainName\n  DomainName\n  WebsiteURL\n  DualStackDomainName\n  Arn"
         ],
         "prefix": "s3-bucket",
         "scope": "yaml"
@@ -24223,9 +24334,13 @@
             "      SecurityGroups:",
             "        -",
             "    DefaultUserSettings:",
-            "      ExecutionRole: \"${6:String}\"",
+            "      CustomFileSystemConfigs:",
+            "        -",
+            "      DefaultLandingUri: \"${9:String}\"",
+            "      ExecutionRole: \"${10:String}\"",
             "      SecurityGroups:",
             "        -",
+            "      StudioWebPortal: \"${19:String}\"",
             "    DomainName: \"${7:String}\" # Required",
             "    DomainSettings:",
             "      SecurityGroupIds:",
@@ -24239,7 +24354,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-domain.html",
-            "Attributes:\n  HomeEfsFileSystemId\n  DomainId\n  SecurityGroupIdForDomainBoundary\n  SingleSignOnManagedApplicationInstanceId\n  DomainArn\n  Url"
+            "Attributes:\n  HomeEfsFileSystemId\n  DomainId\n  SecurityGroupIdForDomainBoundary\n  SingleSignOnManagedApplicationInstanceId\n  SingleSignOnApplicationArn\n  DomainArn\n  Url"
         ],
         "prefix": "sagemaker-domain",
         "scope": "yaml"
@@ -24318,6 +24433,7 @@
             "      TableFormat: \"${9:String}\"",
             "    OnlineStoreConfig:",
             "      EnableOnlineStore: ${7|false,true|}",
+            "      StorageType: \"${9:String}\"",
             "    RecordIdentifierFeatureName: \"${8:String}\" # Required",
             "    RoleArn: \"${9:String}\"",
             "    Tags: ",
@@ -24847,9 +24963,13 @@
             "      Tags",
             "    UserProfileName: \"${6:String}\" # Required",
             "    UserSettings:",
-            "      ExecutionRole: \"${7:String}\"",
+            "      CustomFileSystemConfigs:",
+            "        -",
+            "      DefaultLandingUri: \"${10:String}\"",
+            "      ExecutionRole: \"${11:String}\"",
             "      SecurityGroups:",
-            "        -"
+            "        -",
+            "      StudioWebPortal: \"${19:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-userprofile.html",
@@ -25118,10 +25238,11 @@
             "    AutoEnableControls: ${2|false,true|}",
             "    ControlFindingGenerator: \"${3:String}\"",
             "    EnableDefaultStandards: ${4|false,true|}",
-            "    Tags: ${5:JSON}"
+            "    Tags:"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hub.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-hub.html",
+            "Attributes:\n  SubscribedAt\n  ARN"
         ],
         "prefix": "securityhub-hub",
         "scope": "yaml"
@@ -25456,7 +25577,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalogappregistry-application.html",
-            "Attributes:\n  Id\n  Arn"
+            "Attributes:\n  ApplicationName\n  ApplicationTagKey\n  ApplicationTagValue\n  Id\n  Arn"
         ],
         "prefix": "servicecatalogappregistry-application",
         "scope": "yaml"
