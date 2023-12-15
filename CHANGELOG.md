@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.36.0 (2023-12-15)
+-------------------
+- The following resources were added: AWS::B2BI::Capability. [Github
+  Actions]
+
+
 4.35.0 (2023-12-08)
 -------------------
 - The following resource was updated:
