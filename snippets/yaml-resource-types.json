@@ -2202,31 +2202,34 @@
             "      AdditionalAuthenticationProviders",
             "    ApiType: \"${3:String}\"",
             "    AuthenticationType: \"${4:String}\" # Required",
+            "    IntrospectionConfig: \"${5:String}\"",
             "    LambdaAuthorizerConfig:",
-            "      AuthorizerResultTtlInSeconds: ${5:Number}",
-            "      AuthorizerUri: \"${6:String}\"",
-            "      IdentityValidationExpression: \"${7:String}\"",
+            "      AuthorizerResultTtlInSeconds: ${6:Number}",
+            "      AuthorizerUri: \"${7:String}\"",
+            "      IdentityValidationExpression: \"${8:String}\"",
             "    LogConfig:",
-            "      CloudWatchLogsRoleArn: \"${6:String}\"",
-            "      ExcludeVerboseContent: ${7|false,true|}",
-            "      FieldLogLevel: \"${8:String}\"",
-            "    MergedApiExecutionRoleArn: \"${7:String}\"",
-            "    Name: \"${8:String}\" # Required",
+            "      CloudWatchLogsRoleArn: \"${7:String}\"",
+            "      ExcludeVerboseContent: ${8|false,true|}",
+            "      FieldLogLevel: \"${9:String}\"",
+            "    MergedApiExecutionRoleArn: \"${8:String}\"",
+            "    Name: \"${9:String}\" # Required",
             "    OpenIDConnectConfig:",
-            "      AuthTTL: ${9:Number}",
-            "      ClientId: \"${10:String}\"",
-            "      IatTTL: ${11:Number}",
-            "      Issuer: \"${12:String}\"",
-            "    OwnerContact: \"${10:String}\"",
+            "      AuthTTL: ${10:Number}",
+            "      ClientId: \"${11:String}\"",
+            "      IatTTL: ${12:Number}",
+            "      Issuer: \"${13:String}\"",
+            "    OwnerContact: \"${11:String}\"",
+            "    QueryDepthLimit: ${12:Number}",
+            "    ResolverCountLimit: ${13:Number}",
             "    Tags: ",
             "      Tags",
             "    UserPoolConfig:",
-            "      AppIdClientRegex: \"${12:String}\"",
-            "      AwsRegion: \"${13:String}\"",
-            "      DefaultAction: \"${14:String}\"",
-            "      UserPoolId: \"${15:String}\"",
-            "    Visibility: \"${13:String}\"",
-            "    XrayEnabled: ${14|false,true|}"
+            "      AppIdClientRegex: \"${15:String}\"",
+            "      AwsRegion: \"${16:String}\"",
+            "      DefaultAction: \"${17:String}\"",
+            "      UserPoolId: \"${18:String}\"",
+            "    Visibility: \"${16:String}\"",
+            "    XrayEnabled: ${17|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
@@ -2725,6 +2728,47 @@
         "prefix": "autoscalingplans-scalingplan",
         "scope": "yaml"
     },
+    "AWS::B2BI::Capability": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::B2BI::Capability",
+            "  Properties:",
+            "    Configuration:",
+            "    InstructionsDocuments: ",
+            "      InstructionsDocuments",
+            "    Name: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    Type: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-capability.html",
+            "Attributes:\n  ModifiedAt\n  CapabilityId\n  CapabilityArn\n  CreatedAt"
+        ],
+        "prefix": "b2bi-capability",
+        "scope": "yaml"
+    },
+    "AWS::B2BI::Partnership": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::B2BI::Partnership",
+            "  Properties:",
+            "    Capabilities: ",
+            "      Capabilities",
+            "    Email: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required",
+            "    Phone: \"${5:String}\"",
+            "    ProfileId: \"${6:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-partnership.html",
+            "Attributes:\n  ModifiedAt\n  TradingPartnerId\n  PartnershipId\n  CreatedAt\n  PartnershipArn"
+        ],
+        "prefix": "b2bi-partnership",
+        "scope": "yaml"
+    },
     "AWS::B2BI::Profile": {
         "body": [
             "${1:LogicalID}:",
@@ -3043,7 +3087,7 @@
             "      NodeRangeProperties:",
             "        -",
             "      NumNodes: ${7:Number}",
-            "    Parameters: ${6:JSON}",
+            "    Parameters:",
             "    PlatformCapabilities: ",
             "      PlatformCapabilities",
             "    PropagateTags: ${8|false,true|}",
@@ -3052,13 +3096,14 @@
             "      EvaluateOnExit:",
             "        -",
             "    SchedulingPriority: ${10:Number}",
-            "    Tags: ${11:JSON}",
+            "    Tags:",
             "    Timeout:",
             "      AttemptDurationSeconds: ${12:Number}",
             "    Type: \"${13:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html",
+            "Attributes:\n  Status\n  Revision\n  JobDefinitionArn\n  ContainerOrchestrationType"
         ],
         "prefix": "batch-jobdefinition",
         "scope": "yaml"
@@ -4574,8 +4619,9 @@
             "  Properties:",
             "    Code:",
             "      BranchName: \"${2:String}\"",
-            "    RepositoryDescription: \"${3:String}\"",
-            "    RepositoryName: \"${4:String}\" # Required",
+            "    KmsKeyId: \"${3:String}\"",
+            "    RepositoryDescription: \"${4:String}\"",
+            "    RepositoryName: \"${5:String}\" # Required",
             "    Tags: ",
             "      Tags",
             "    Triggers: ",
@@ -4583,7 +4629,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html",
-            "Attributes:\n  CloneUrlHttp\n  CloneUrlSsh\n  Arn\n  Name"
+            "Attributes:\n  CloneUrlHttp\n  KmsKeyId\n  CloneUrlSsh\n  Arn\n  Name"
         ],
         "prefix": "codecommit-repository",
         "scope": "yaml"
@@ -8303,8 +8349,8 @@
             "      Volumes"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instance.html",
-            "Attributes:\n  PrivateDnsName\n  PrivateIp\n  PublicIp\n  AvailabilityZone\n  Id\n  PublicDnsName"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html",
+            "Attributes:\n  AvailabilityZone\n  PrivateDnsName\n  PrivateIp\n  PublicDnsName\n  PublicIp"
         ],
         "prefix": "ec2-instance",
         "scope": "yaml"
@@ -8918,23 +8964,23 @@
             "    AvailabilityZoneId: \"${4:String}\"",
             "    CidrBlock: \"${5:String}\"",
             "    EnableDns64: ${6|false,true|}",
-            "    Ipv4NetmaskLength: ${7:Number}",
-            "    Ipv6CidrBlock: \"${8:String}\"",
+            "    Ipv6CidrBlock: \"${7:String}\"",
+            "    Ipv6CidrBlocks: ",
+            "      Ipv6CidrBlocks",
             "    Ipv6Native: ${9|false,true|}",
-            "    Ipv6NetmaskLength: ${10:Number}",
-            "    MapPublicIpOnLaunch: ${11|false,true|}",
-            "    OutpostArn: \"${12:String}\"",
+            "    MapPublicIpOnLaunch: ${10|false,true|}",
+            "    OutpostArn: \"${11:String}\"",
             "    PrivateDnsNameOptionsOnLaunch:",
-            "      EnableResourceNameDnsAAAARecord: ${13|false,true|}",
-            "      EnableResourceNameDnsARecord: ${14|false,true|}",
-            "      HostnameType: \"${15:String}\"",
+            "      EnableResourceNameDnsAAAARecord: ${12|false,true|}",
+            "      EnableResourceNameDnsARecord: ${13|false,true|}",
+            "      HostnameType: \"${14:String}\"",
             "    Tags: ",
             "      Tags",
-            "    VpcId: \"${15:String}\" # Required"
+            "    VpcId: \"${14:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html",
-            "Attributes:\n  VpcId\n  NetworkAclAssociationId\n  AvailabilityZoneId\n  OutpostArn\n  AvailabilityZone\n  CidrBlock\n  SubnetId\n  Ipv6CidrBlocks"
+            "Attributes:\n  VpcId\n  NetworkAclAssociationId\n  AvailabilityZoneId\n  OutpostArn\n  AvailabilityZone\n  CidrBlock\n  SubnetId"
         ],
         "prefix": "ec2-subnet",
         "scope": "yaml"
@@ -9919,7 +9965,9 @@
             "      ServiceRegistries",
             "    Tags: ",
             "      Tags",
-            "    TaskDefinition: \"${23:String}\""
+            "    TaskDefinition: \"${23:String}\"",
+            "    VolumeConfigurations: ",
+            "      VolumeConfigurations"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
@@ -10072,6 +10120,29 @@
         "prefix": "efs-mounttarget",
         "scope": "yaml"
     },
+    "AWS::EKS::AccessEntry": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EKS::AccessEntry",
+            "  Properties:",
+            "    AccessPolicies: ",
+            "      AccessPolicies",
+            "    ClusterName: \"${3:String}\" # Required",
+            "    KubernetesGroups: ",
+            "      KubernetesGroups",
+            "    PrincipalArn: \"${5:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    Type: \"${7:String}\"",
+            "    Username: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-accessentry.html",
+            "Attributes:\n  AccessEntryArn"
+        ],
+        "prefix": "eks-accessentry",
+        "scope": "yaml"
+    },
     "AWS::EKS::Addon": {
         "body": [
             "${1:LogicalID}:",
@@ -10099,31 +10170,34 @@
             "${1:LogicalID}:",
             "  Type: AWS::EKS::Cluster",
             "  Properties:",
+            "    AccessConfig:",
+            "      AuthenticationMode: \"${2:String}\"",
+            "      BootstrapClusterCreatorAdminPermissions: ${3|false,true|}",
             "    EncryptionConfig: ",
             "      EncryptionConfig",
             "    KubernetesNetworkConfig:",
-            "      IpFamily: \"${3:String}\"",
-            "      ServiceIpv4Cidr: \"${4:String}\"",
-            "      ServiceIpv6Cidr: \"${5:String}\"",
+            "      IpFamily: \"${4:String}\"",
+            "      ServiceIpv4Cidr: \"${5:String}\"",
+            "      ServiceIpv6Cidr: \"${6:String}\"",
             "    Logging:",
-            "    Name: \"${5:String}\"",
+            "    Name: \"${6:String}\"",
             "    OutpostConfig:",
-            "      ControlPlaneInstanceType: \"${6:String}\"",
+            "      ControlPlaneInstanceType: \"${7:String}\"",
             "      OutpostArns:",
             "        -",
             "    ResourcesVpcConfig:",
-            "      EndpointPrivateAccess: ${7|false,true|}",
-            "      EndpointPublicAccess: ${8|false,true|}",
+            "      EndpointPrivateAccess: ${8|false,true|}",
+            "      EndpointPublicAccess: ${9|false,true|}",
             "      PublicAccessCidrs:",
             "        -",
             "      SecurityGroupIds:",
             "        -",
             "      SubnetIds:",
             "        -",
-            "    RoleArn: \"${8:String}\" # Required",
+            "    RoleArn: \"${9:String}\" # Required",
             "    Tags: ",
             "      Tags",
-            "    Version: \"${10:String}\""
+            "    Version: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html",
@@ -11291,7 +11365,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-schema.html",
-            "Attributes:\n  SchemaVersion\n  SchemaArn\n  SchemaName"
+            "Attributes:\n  LastModified\n  SchemaVersion\n  VersionCreatedDate\n  SchemaArn\n  SchemaName"
         ],
         "prefix": "eventschemas-schema",
         "scope": "yaml"
@@ -13956,14 +14030,17 @@
             "    ContainerRecipeArn: \"${2:String}\"",
             "    DistributionConfigurationArn: \"${3:String}\"",
             "    EnhancedImageMetadataEnabled: ${4|false,true|}",
-            "    ImageRecipeArn: \"${5:String}\"",
+            "    ExecutionRole: \"${5:String}\"",
+            "    ImageRecipeArn: \"${6:String}\"",
             "    ImageScanningConfiguration:",
-            "      ImageScanningEnabled: ${7|false,true|}",
+            "      ImageScanningEnabled: ${8|false,true|}",
             "    ImageTestsConfiguration:",
-            "      ImageTestsEnabled: ${7|false,true|}",
-            "      TimeoutMinutes: ${8:Number}",
-            "    InfrastructureConfigurationArn: \"${8:String}\" # Required",
-            "    Tags:"
+            "      ImageTestsEnabled: ${8|false,true|}",
+            "      TimeoutMinutes: ${9:Number}",
+            "    InfrastructureConfigurationArn: \"${9:String}\" # Required",
+            "    Tags:",
+            "    Workflows: ",
+            "      Workflows"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html",
@@ -13981,19 +14058,22 @@
             "    Description: \"${3:String}\"",
             "    DistributionConfigurationArn: \"${4:String}\"",
             "    EnhancedImageMetadataEnabled: ${5|false,true|}",
-            "    ImageRecipeArn: \"${6:String}\"",
+            "    ExecutionRole: \"${6:String}\"",
+            "    ImageRecipeArn: \"${7:String}\"",
             "    ImageScanningConfiguration:",
-            "      ImageScanningEnabled: ${8|false,true|}",
+            "      ImageScanningEnabled: ${9|false,true|}",
             "    ImageTestsConfiguration:",
-            "      ImageTestsEnabled: ${8|false,true|}",
-            "      TimeoutMinutes: ${9:Number}",
-            "    InfrastructureConfigurationArn: \"${9:String}\" # Required",
-            "    Name: \"${10:String}\" # Required",
+            "      ImageTestsEnabled: ${9|false,true|}",
+            "      TimeoutMinutes: ${10:Number}",
+            "    InfrastructureConfigurationArn: \"${10:String}\" # Required",
+            "    Name: \"${11:String}\" # Required",
             "    Schedule:",
-            "      PipelineExecutionStartCondition: \"${11:String}\"",
-            "      ScheduleExpression: \"${12:String}\"",
-            "    Status: \"${12:String}\"",
-            "    Tags:"
+            "      PipelineExecutionStartCondition: \"${12:String}\"",
+            "      ScheduleExpression: \"${13:String}\"",
+            "    Status: \"${13:String}\"",
+            "    Tags:",
+            "    Workflows: ",
+            "      Workflows"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagepipeline.html",
@@ -14079,6 +14159,28 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "imagebuilder-lifecyclepolicy",
+        "scope": "yaml"
+    },
+    "AWS::ImageBuilder::Workflow": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ImageBuilder::Workflow",
+            "  Properties:",
+            "    ChangeDescription: \"${2:String}\"",
+            "    Data: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
+            "    KmsKeyId: \"${5:String}\"",
+            "    Name: \"${6:String}\" # Required",
+            "    Tags:",
+            "    Type: \"${8:String}\" # Required",
+            "    Uri: \"${9:String}\"",
+            "    Version: \"${10:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-workflow.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "imagebuilder-workflow",
         "scope": "yaml"
     },
     "AWS::Inspector::AssessmentTarget": {
@@ -14386,6 +14488,25 @@
             "Attributes:\n  Id\n  Arn"
         ],
         "prefix": "iot-certificate",
+        "scope": "yaml"
+    },
+    "AWS::IoT::CertificateProvider": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IoT::CertificateProvider",
+            "  Properties:",
+            "    AccountDefaultForOperations: # Required",
+            "      AccountDefaultForOperations",
+            "    CertificateProviderName: \"${3:String}\"",
+            "    LambdaFunctionArn: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "iot-certificateprovider",
         "scope": "yaml"
     },
     "AWS::IoT::CustomMetric": {
@@ -18977,6 +19098,7 @@
             "        -",
             "      StatelessRuleGroupReferences:",
             "        -",
+            "      TLSInspectionConfigurationArn: \"${11:String}\"",
             "    FirewallPolicyName: \"${4:String}\" # Required",
             "    Tags: ",
             "      Tags"
@@ -19023,6 +19145,26 @@
             "Attributes:\n  RuleGroupId\n  RuleGroupArn"
         ],
         "prefix": "networkfirewall-rulegroup",
+        "scope": "yaml"
+    },
+    "AWS::NetworkFirewall::TLSInspectionConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::NetworkFirewall::TLSInspectionConfiguration",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    TLSInspectionConfiguration:",
+            "      ServerCertificateConfigurations:",
+            "        -",
+            "    TLSInspectionConfigurationName: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html",
+            "Attributes:\n  TLSInspectionConfigurationId\n  TLSInspectionConfigurationArn"
+        ],
+        "prefix": "networkfirewall-tlsinspectionconfiguration",
         "scope": "yaml"
     },
     "AWS::NetworkManager::ConnectAttachment": {
@@ -20609,9 +20751,11 @@
             "${1:LogicalID}:",
             "  Type: AWS::Pinpoint::GCMChannel",
             "  Properties:",
-            "    ApiKey: \"${2:String}\" # Required",
+            "    ApiKey: \"${2:String}\"",
             "    ApplicationId: \"${3:String}\" # Required",
-            "    Enabled: ${4|false,true|}"
+            "    DefaultAuthenticationMethod: \"${4:String}\"",
+            "    Enabled: ${5|false,true|}",
+            "    ServiceJson: \"${6:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-gcmchannel.html"
