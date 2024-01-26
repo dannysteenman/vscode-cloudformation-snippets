@@ -3532,7 +3532,7 @@
             "      \"NodeRangeProperties\": [],",
             "      \"NumNodes\": \"${7:Number}\"",
             "    },",
-            "    \"Parameters\": {",
+            "    \"Parameters\": \"${6:JSON}\",",
             "    \"PlatformCapabilities\": [",
             "      \"PlatformCapabilities\"",
             "    ],",
@@ -3542,7 +3542,7 @@
             "      \"EvaluateOnExit\": []",
             "    },",
             "    \"SchedulingPriority\": \"${10:Number}\",",
-            "    \"Tags\": {",
+            "    \"Tags\": \"${11:JSON}\",",
             "    \"Timeout\": {",
             "      \"AttemptDurationSeconds\": \"${12:Number}\"",
             "    },",
@@ -3551,8 +3551,7 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html",
-            "Attributes:\n  Status\n  Revision\n  JobDefinitionArn\n  ContainerOrchestrationType"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html"
         ],
         "prefix": "batch-jobdefinition",
         "scope": "json"
@@ -5176,6 +5175,28 @@
         "prefix": "codeartifact-repository",
         "scope": "json"
     },
+    "AWS::CodeBuild::Fleet": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::CodeBuild::Fleet\",",
+            "  \"Properties\": {",
+            "    \"BaseCapacity\": \"${2:Number}\",",
+            "    \"ComputeType\": \"${3:String}\",",
+            "    \"EnvironmentType\": \"${4:String}\",",
+            "    \"Name\": \"${5:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "codebuild-fleet",
+        "scope": "json"
+    },
     "AWS::CodeBuild::Project": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -5211,10 +5232,10 @@
             "      \"Certificate\": \"${9:String}\",",
             "      \"ComputeType\": \"${10:String}\",",
             "      \"EnvironmentVariables\": [],",
-            "      \"Image\": \"${12:String}\",",
-            "      \"ImagePullCredentialsType\": \"${13:String}\",",
-            "      \"PrivilegedMode\": \"${14|false,true|}\",",
-            "      \"Type\": \"${16:String}\"",
+            "      \"Image\": \"${13:String}\",",
+            "      \"ImagePullCredentialsType\": \"${14:String}\",",
+            "      \"PrivilegedMode\": \"${15|false,true|}\",",
+            "      \"Type\": \"${17:String}\"",
             "    },",
             "    \"FileSystemLocations\": [",
             "      \"FileSystemLocations\"",
@@ -5758,7 +5779,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html",
-            "Attributes:\n  Name"
+            "Attributes:\n  Id\n  Name"
         ],
         "prefix": "cognito-identitypool",
         "scope": "json"
@@ -5787,13 +5808,14 @@
             "  \"Type\": \"AWS::Cognito::IdentityPoolRoleAttachment\",",
             "  \"Properties\": {",
             "    \"IdentityPoolId\": \"${2:String}\",",
-            "    \"RoleMappings\": \"${3:JSON}\",",
-            "    \"Roles\": \"${4:JSON}\"",
+            "    \"RoleMappings\": {",
+            "    \"Roles\": {",
             "  }",
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "cognito-identitypoolroleattachment",
         "scope": "json"
@@ -6847,9 +6869,12 @@
             "  \"Properties\": {",
             "    \"Actions\": {",
             "      \"AssignContactCategoryActions\": [],",
+            "      \"CreateCaseActions\": [],",
+            "      \"EndAssociatedTasksActions\": [],",
             "      \"EventBridgeActions\": [],",
             "      \"SendNotificationActions\": [],",
-            "      \"TaskActions\": []",
+            "      \"TaskActions\": [],",
+            "      \"UpdateCaseActions\": []",
             "    },",
             "    \"Function\": \"${3:String}\",",
             "    \"InstanceArn\": \"${4:String}\",",
@@ -8576,6 +8601,194 @@
             "Attributes:\n  Status\n  SourceNetworkInterfaceArns\n  DestinationNetworkInterfaceArns\n  TaskArn"
         ],
         "prefix": "datasync-task",
+        "scope": "json"
+    },
+    "AWS::DataZone::DataSource": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::DataSource\",",
+            "  \"Properties\": {",
+            "    \"AssetFormsInput\": [",
+            "      \"AssetFormsInput\"",
+            "    ],",
+            "    \"Configuration\": {",
+            "    },",
+            "    \"Description\": \"${4:String}\",",
+            "    \"DomainIdentifier\": \"${5:String}\",",
+            "    \"EnableSetting\": \"${6:String}\",",
+            "    \"EnvironmentIdentifier\": \"${7:String}\",",
+            "    \"Name\": \"${8:String}\",",
+            "    \"ProjectIdentifier\": \"${9:String}\",",
+            "    \"PublishOnImport\": \"${10|false,true|}\",",
+            "    \"Recommendation\": {",
+            "      \"EnableBusinessNameGeneration\": \"${11|false,true|}\"",
+            "    },",
+            "    \"Schedule\": {",
+            "      \"Schedule\": \"${12:String}\",",
+            "      \"Timezone\": \"${13:String}\"",
+            "    },",
+            "    \"Type\": \"${13:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-datasource.html",
+            "Attributes:\n  Status\n  EnvironmentId\n  DomainId\n  LastRunAssetCount\n  LastRunAt\n  CreatedAt\n  ProjectId\n  LastRunStatus\n  Id\n  UpdatedAt"
+        ],
+        "prefix": "datazone-datasource",
+        "scope": "json"
+    },
+    "AWS::DataZone::Domain": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::Domain\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"DomainExecutionRole\": \"${3:String}\",",
+            "    \"KmsKeyIdentifier\": \"${4:String}\",",
+            "    \"Name\": \"${5:String}\",",
+            "    \"SingleSignOn\": {",
+            "      \"Type\": \"${6:String}\",",
+            "      \"UserAssignment\": \"${7:String}\"",
+            "    },",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-domain.html",
+            "Attributes:\n  Status\n  LastUpdatedAt\n  PortalUrl\n  CreatedAt\n  Id\n  ManagedAccountId\n  Arn"
+        ],
+        "prefix": "datazone-domain",
+        "scope": "json"
+    },
+    "AWS::DataZone::Environment": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::Environment\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"DomainIdentifier\": \"${3:String}\",",
+            "    \"EnvironmentProfileIdentifier\": \"${4:String}\",",
+            "    \"GlossaryTerms\": [",
+            "      \"GlossaryTerms\"",
+            "    ],",
+            "    \"Name\": \"${6:String}\",",
+            "    \"ProjectIdentifier\": \"${7:String}\",",
+            "    \"UserParameters\": [",
+            "      \"UserParameters\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environment.html",
+            "Attributes:\n  Status\n  CreatedBy\n  DomainId\n  EnvironmentProfileId\n  AwsAccountRegion\n  CreatedAt\n  ProjectId\n  AwsAccountId\n  EnvironmentBlueprintId\n  Id\n  UpdatedAt\n  Provider"
+        ],
+        "prefix": "datazone-environment",
+        "scope": "json"
+    },
+    "AWS::DataZone::EnvironmentBlueprintConfiguration": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::EnvironmentBlueprintConfiguration\",",
+            "  \"Properties\": {",
+            "    \"DomainIdentifier\": \"${2:String}\",",
+            "    \"EnabledRegions\": [",
+            "      \"EnabledRegions\"",
+            "    ],",
+            "    \"EnvironmentBlueprintIdentifier\": \"${4:String}\",",
+            "    \"ManageAccessRoleArn\": \"${5:String}\",",
+            "    \"ProvisioningRoleArn\": \"${6:String}\",",
+            "    \"RegionalParameters\": [",
+            "      \"RegionalParameters\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentblueprintconfiguration.html",
+            "Attributes:\n  DomainId\n  CreatedAt\n  EnvironmentBlueprintId\n  UpdatedAt"
+        ],
+        "prefix": "datazone-environmentblueprintconfiguration",
+        "scope": "json"
+    },
+    "AWS::DataZone::EnvironmentProfile": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::EnvironmentProfile\",",
+            "  \"Properties\": {",
+            "    \"AwsAccountId\": \"${2:String}\",",
+            "    \"AwsAccountRegion\": \"${3:String}\",",
+            "    \"Description\": \"${4:String}\",",
+            "    \"DomainIdentifier\": \"${5:String}\",",
+            "    \"EnvironmentBlueprintIdentifier\": \"${6:String}\",",
+            "    \"Name\": \"${7:String}\",",
+            "    \"ProjectIdentifier\": \"${8:String}\",",
+            "    \"UserParameters\": [",
+            "      \"UserParameters\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentprofile.html",
+            "Attributes:\n  CreatedBy\n  DomainId\n  CreatedAt\n  ProjectId\n  EnvironmentBlueprintId\n  Id\n  UpdatedAt"
+        ],
+        "prefix": "datazone-environmentprofile",
+        "scope": "json"
+    },
+    "AWS::DataZone::Project": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::Project\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"DomainIdentifier\": \"${3:String}\",",
+            "    \"GlossaryTerms\": [",
+            "      \"GlossaryTerms\"",
+            "    ],",
+            "    \"Name\": \"${5:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-project.html",
+            "Attributes:\n  CreatedBy\n  DomainId\n  LastUpdatedAt\n  CreatedAt\n  Id"
+        ],
+        "prefix": "datazone-project",
+        "scope": "json"
+    },
+    "AWS::DataZone::SubscriptionTarget": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::SubscriptionTarget\",",
+            "  \"Properties\": {",
+            "    \"ApplicableAssetTypes\": [",
+            "      \"ApplicableAssetTypes\"",
+            "    ],",
+            "    \"AuthorizedPrincipals\": [",
+            "      \"AuthorizedPrincipals\"",
+            "    ],",
+            "    \"DomainIdentifier\": \"${4:String}\",",
+            "    \"EnvironmentIdentifier\": \"${5:String}\",",
+            "    \"ManageAccessRole\": \"${6:String}\",",
+            "    \"Name\": \"${7:String}\",",
+            "    \"Provider\": \"${8:String}\",",
+            "    \"SubscriptionTargetConfig\": [",
+            "      \"SubscriptionTargetConfig\"",
+            "    ],",
+            "    \"Type\": \"${10:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-subscriptiontarget.html",
+            "Attributes:\n  UpdatedBy\n  EnvironmentId\n  CreatedBy\n  DomainId\n  CreatedAt\n  ProjectId\n  Id\n  UpdatedAt"
+        ],
+        "prefix": "datazone-subscriptiontarget",
         "scope": "json"
     },
     "AWS::Detective::Graph": {
@@ -12528,7 +12741,7 @@
             "    \"Description\": \"${4:String}\",",
             "    \"Endpoint\": {",
             "      \"Address\": \"${5:String}\",",
-            "      \"Port\": \"${6:Number}\"",
+            "      \"Port\": \"${6:String}\"",
             "    },",
             "    \"Engine\": \"${6:String}\",",
             "    \"FinalSnapshotName\": \"${7:String}\",",
@@ -12536,7 +12749,7 @@
             "    \"MajorEngineVersion\": \"${9:String}\",",
             "    \"ReaderEndpoint\": {",
             "      \"Address\": \"${10:String}\",",
-            "      \"Port\": \"${11:Number}\"",
+            "      \"Port\": \"${11:String}\"",
             "    },",
             "    \"SecurityGroupIds\": [",
             "      \"SecurityGroupIds\"",
@@ -12884,12 +13097,13 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::ElasticLoadBalancingV2::LoadBalancer\",",
             "  \"Properties\": {",
-            "    \"IpAddressType\": \"${2:String}\",",
+            "    \"EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic\": \"${2:String}\",",
+            "    \"IpAddressType\": \"${3:String}\",",
             "    \"LoadBalancerAttributes\": [",
             "      \"LoadBalancerAttributes\"",
             "    ],",
-            "    \"Name\": \"${4:String}\",",
-            "    \"Scheme\": \"${5:String}\",",
+            "    \"Name\": \"${5:String}\",",
+            "    \"Scheme\": \"${6:String}\",",
             "    \"SecurityGroups\": [",
             "      \"SecurityGroups\"",
             "    ],",
@@ -12902,7 +13116,7 @@
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"Type\": \"${10:String}\"",
+            "    \"Type\": \"${11:String}\"",
             "  }",
             "}"
         ],
@@ -15526,7 +15740,6 @@
             "    \"Description\": \"${3:String}\",",
             "    \"DetectorId\": \"${4:String}\",",
             "    \"FindingCriteria\": {",
-            "      \"Criterion\": \"${5:JSON}\",",
             "    },",
             "    \"Name\": \"${6:String}\",",
             "    \"Rank\": \"${7:Number}\",",
@@ -16106,6 +16319,25 @@
             "Attributes:\n  State\n  Arn"
         ],
         "prefix": "ivs-recordingconfiguration",
+        "scope": "json"
+    },
+    "AWS::IVS::Stage": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::IVS::Stage\",",
+            "  \"Properties\": {",
+            "    \"Name\": \"${2:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-stage.html",
+            "Attributes:\n  Arn\n  ActiveSessionId"
+        ],
+        "prefix": "ivs-stage",
         "scope": "json"
     },
     "AWS::IVS::StreamKey": {
@@ -18883,12 +19115,26 @@
             "      \"Prefix\": \"${19:String}\",",
             "      \"RoleARN\": \"${20:String}\"",
             "    },",
+            "    \"SnowflakeDestinationConfiguration\": {",
+            "      \"AccountUrl\": \"${14:String}\",",
+            "      \"ContentColumnName\": \"${16:String}\",",
+            "      \"DataLoadingOption\": \"${17:String}\",",
+            "      \"Database\": \"${18:String}\",",
+            "      \"KeyPassphrase\": \"${19:String}\",",
+            "      \"MetaDataColumnName\": \"${20:String}\",",
+            "      \"PrivateKey\": \"${21:String}\",",
+            "      \"RoleARN\": \"${24:String}\",",
+            "      \"S3BackupMode\": \"${25:String}\",",
+            "      \"Schema\": \"${27:String}\",",
+            "      \"Table\": \"${30:String}\",",
+            "      \"User\": \"${31:String}\"",
+            "    },",
             "    \"SplunkDestinationConfiguration\": {",
-            "      \"HECAcknowledgmentTimeoutInSeconds\": \"${16:Number}\",",
-            "      \"HECEndpoint\": \"${17:String}\",",
-            "      \"HECEndpointType\": \"${18:String}\",",
-            "      \"HECToken\": \"${19:String}\",",
-            "      \"S3BackupMode\": \"${22:String}\",",
+            "      \"HECAcknowledgmentTimeoutInSeconds\": \"${17:Number}\",",
+            "      \"HECEndpoint\": \"${18:String}\",",
+            "      \"HECEndpointType\": \"${19:String}\",",
+            "      \"HECToken\": \"${20:String}\",",
+            "      \"S3BackupMode\": \"${23:String}\",",
             "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
@@ -19061,10 +19307,11 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::LakeFormation::Resource\",",
             "  \"Properties\": {",
-            "    \"ResourceArn\": \"${2:String}\",",
-            "    \"RoleArn\": \"${3:String}\",",
-            "    \"UseServiceLinkedRole\": \"${4|false,true|}\",",
-            "    \"WithFederation\": \"${5|false,true|}\"",
+            "    \"HybridAccessEnabled\": \"${2|false,true|}\",",
+            "    \"ResourceArn\": \"${3:String}\",",
+            "    \"RoleArn\": \"${4:String}\",",
+            "    \"UseServiceLinkedRole\": \"${5|false,true|}\",",
+            "    \"WithFederation\": \"${6|false,true|}\"",
             "  }",
             "}"
         ],
@@ -28213,6 +28460,24 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "ssmcontacts-rotation",
+        "scope": "json"
+    },
+    "AWS::SSMGuiConnect::Preferences": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::SSMGuiConnect::Preferences\",",
+            "  \"Properties\": {",
+            "    \"IdleConnection\": [",
+            "      \"IdleConnection\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmguiconnect-preferences.html",
+            "Attributes:\n  AccountId"
+        ],
+        "prefix": "ssmguiconnect-preferences",
         "scope": "json"
     },
     "AWS::SSMIncidents::ReplicationSet": {

@@ -3088,7 +3088,7 @@
             "      NodeRangeProperties:",
             "        -",
             "      NumNodes: ${7:Number}",
-            "    Parameters:",
+            "    Parameters: ${6:JSON}",
             "    PlatformCapabilities: ",
             "      PlatformCapabilities",
             "    PropagateTags: ${8|false,true|}",
@@ -3097,14 +3097,13 @@
             "      EvaluateOnExit:",
             "        -",
             "    SchedulingPriority: ${10:Number}",
-            "    Tags:",
+            "    Tags: ${11:JSON}",
             "    Timeout:",
             "      AttemptDurationSeconds: ${12:Number}",
             "    Type: \"${13:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html",
-            "Attributes:\n  Status\n  Revision\n  JobDefinitionArn\n  ContainerOrchestrationType"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html"
         ],
         "prefix": "batch-jobdefinition",
         "scope": "yaml"
@@ -4496,6 +4495,25 @@
         "prefix": "codeartifact-repository",
         "scope": "yaml"
     },
+    "AWS::CodeBuild::Fleet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CodeBuild::Fleet",
+            "  Properties:",
+            "    BaseCapacity: ${2:Number}",
+            "    ComputeType: \"${3:String}\"",
+            "    EnvironmentType: \"${4:String}\"",
+            "    Name: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "codebuild-fleet",
+        "scope": "yaml"
+    },
     "AWS::CodeBuild::Project": {
         "body": [
             "${1:LogicalID}:",
@@ -4530,10 +4548,10 @@
             "      ComputeType: \"${10:String}\"",
             "      EnvironmentVariables:",
             "        -",
-            "      Image: \"${12:String}\"",
-            "      ImagePullCredentialsType: \"${13:String}\"",
-            "      PrivilegedMode: ${14|false,true|}",
-            "      Type: \"${16:String}\"",
+            "      Image: \"${13:String}\"",
+            "      ImagePullCredentialsType: \"${14:String}\"",
+            "      PrivilegedMode: ${15|false,true|}",
+            "      Type: \"${17:String}\"",
             "    FileSystemLocations: ",
             "      FileSystemLocations",
             "    LogsConfig:",
@@ -4992,7 +5010,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html",
-            "Attributes:\n  Name"
+            "Attributes:\n  Id\n  Name"
         ],
         "prefix": "cognito-identitypool",
         "scope": "yaml"
@@ -5019,11 +5037,12 @@
             "  Type: AWS::Cognito::IdentityPoolRoleAttachment",
             "  Properties:",
             "    IdentityPoolId: \"${2:String}\" # Required",
-            "    RoleMappings: ${3:JSON}",
-            "    Roles: ${4:JSON}"
+            "    RoleMappings:",
+            "    Roles:"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "cognito-identitypoolroleattachment",
         "scope": "yaml"
@@ -5936,11 +5955,17 @@
             "    Actions:",
             "      AssignContactCategoryActions:",
             "        -",
+            "      CreateCaseActions:",
+            "        -",
+            "      EndAssociatedTasksActions:",
+            "        -",
             "      EventBridgeActions:",
             "        -",
             "      SendNotificationActions:",
             "        -",
             "      TaskActions:",
+            "        -",
+            "      UpdateCaseActions:",
             "        -",
             "    Function: \"${3:String}\" # Required",
             "    InstanceArn: \"${4:String}\" # Required",
@@ -7434,6 +7459,165 @@
             "Attributes:\n  Status\n  SourceNetworkInterfaceArns\n  DestinationNetworkInterfaceArns\n  TaskArn"
         ],
         "prefix": "datasync-task",
+        "scope": "yaml"
+    },
+    "AWS::DataZone::DataSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataZone::DataSource",
+            "  Properties:",
+            "    AssetFormsInput: ",
+            "      AssetFormsInput",
+            "    Configuration:",
+            "    Description: \"${4:String}\"",
+            "    DomainIdentifier: \"${5:String}\" # Required",
+            "    EnableSetting: \"${6:String}\"",
+            "    EnvironmentIdentifier: \"${7:String}\" # Required",
+            "    Name: \"${8:String}\" # Required",
+            "    ProjectIdentifier: \"${9:String}\" # Required",
+            "    PublishOnImport: ${10|false,true|}",
+            "    Recommendation:",
+            "      EnableBusinessNameGeneration: ${11|false,true|}",
+            "    Schedule:",
+            "      Schedule: \"${12:String}\"",
+            "      Timezone: \"${13:String}\"",
+            "    Type: \"${13:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-datasource.html",
+            "Attributes:\n  Status\n  EnvironmentId\n  DomainId\n  LastRunAssetCount\n  LastRunAt\n  CreatedAt\n  ProjectId\n  LastRunStatus\n  Id\n  UpdatedAt"
+        ],
+        "prefix": "datazone-datasource",
+        "scope": "yaml"
+    },
+    "AWS::DataZone::Domain": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataZone::Domain",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DomainExecutionRole: \"${3:String}\" # Required",
+            "    KmsKeyIdentifier: \"${4:String}\"",
+            "    Name: \"${5:String}\" # Required",
+            "    SingleSignOn:",
+            "      Type: \"${6:String}\"",
+            "      UserAssignment: \"${7:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-domain.html",
+            "Attributes:\n  Status\n  LastUpdatedAt\n  PortalUrl\n  CreatedAt\n  Id\n  ManagedAccountId\n  Arn"
+        ],
+        "prefix": "datazone-domain",
+        "scope": "yaml"
+    },
+    "AWS::DataZone::Environment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataZone::Environment",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DomainIdentifier: \"${3:String}\" # Required",
+            "    EnvironmentProfileIdentifier: \"${4:String}\" # Required",
+            "    GlossaryTerms: ",
+            "      GlossaryTerms",
+            "    Name: \"${6:String}\" # Required",
+            "    ProjectIdentifier: \"${7:String}\" # Required",
+            "    UserParameters: ",
+            "      UserParameters"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environment.html",
+            "Attributes:\n  Status\n  CreatedBy\n  DomainId\n  EnvironmentProfileId\n  AwsAccountRegion\n  CreatedAt\n  ProjectId\n  AwsAccountId\n  EnvironmentBlueprintId\n  Id\n  UpdatedAt\n  Provider"
+        ],
+        "prefix": "datazone-environment",
+        "scope": "yaml"
+    },
+    "AWS::DataZone::EnvironmentBlueprintConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataZone::EnvironmentBlueprintConfiguration",
+            "  Properties:",
+            "    DomainIdentifier: \"${2:String}\" # Required",
+            "    EnabledRegions: # Required",
+            "      EnabledRegions",
+            "    EnvironmentBlueprintIdentifier: \"${4:String}\" # Required",
+            "    ManageAccessRoleArn: \"${5:String}\"",
+            "    ProvisioningRoleArn: \"${6:String}\"",
+            "    RegionalParameters: ",
+            "      RegionalParameters"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentblueprintconfiguration.html",
+            "Attributes:\n  DomainId\n  CreatedAt\n  EnvironmentBlueprintId\n  UpdatedAt"
+        ],
+        "prefix": "datazone-environmentblueprintconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::DataZone::EnvironmentProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataZone::EnvironmentProfile",
+            "  Properties:",
+            "    AwsAccountId: \"${2:String}\" # Required",
+            "    AwsAccountRegion: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    DomainIdentifier: \"${5:String}\" # Required",
+            "    EnvironmentBlueprintIdentifier: \"${6:String}\" # Required",
+            "    Name: \"${7:String}\" # Required",
+            "    ProjectIdentifier: \"${8:String}\" # Required",
+            "    UserParameters: ",
+            "      UserParameters"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environmentprofile.html",
+            "Attributes:\n  CreatedBy\n  DomainId\n  CreatedAt\n  ProjectId\n  EnvironmentBlueprintId\n  Id\n  UpdatedAt"
+        ],
+        "prefix": "datazone-environmentprofile",
+        "scope": "yaml"
+    },
+    "AWS::DataZone::Project": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataZone::Project",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DomainIdentifier: \"${3:String}\" # Required",
+            "    GlossaryTerms: ",
+            "      GlossaryTerms",
+            "    Name: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-project.html",
+            "Attributes:\n  CreatedBy\n  DomainId\n  LastUpdatedAt\n  CreatedAt\n  Id"
+        ],
+        "prefix": "datazone-project",
+        "scope": "yaml"
+    },
+    "AWS::DataZone::SubscriptionTarget": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::DataZone::SubscriptionTarget",
+            "  Properties:",
+            "    ApplicableAssetTypes: # Required",
+            "      ApplicableAssetTypes",
+            "    AuthorizedPrincipals: # Required",
+            "      AuthorizedPrincipals",
+            "    DomainIdentifier: \"${4:String}\" # Required",
+            "    EnvironmentIdentifier: \"${5:String}\" # Required",
+            "    ManageAccessRole: \"${6:String}\" # Required",
+            "    Name: \"${7:String}\" # Required",
+            "    Provider: \"${8:String}\"",
+            "    SubscriptionTargetConfig: # Required",
+            "      SubscriptionTargetConfig",
+            "    Type: \"${10:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-subscriptiontarget.html",
+            "Attributes:\n  UpdatedBy\n  EnvironmentId\n  CreatedBy\n  DomainId\n  CreatedAt\n  ProjectId\n  Id\n  UpdatedAt"
+        ],
+        "prefix": "datazone-subscriptiontarget",
         "scope": "yaml"
     },
     "AWS::Detective::Graph": {
@@ -10822,14 +11006,14 @@
             "    Description: \"${4:String}\"",
             "    Endpoint:",
             "      Address: \"${5:String}\"",
-            "      Port: ${6:Number}",
+            "      Port: \"${6:String}\"",
             "    Engine: \"${6:String}\" # Required",
             "    FinalSnapshotName: \"${7:String}\"",
             "    KmsKeyId: \"${8:String}\"",
             "    MajorEngineVersion: \"${9:String}\"",
             "    ReaderEndpoint:",
             "      Address: \"${10:String}\"",
-            "      Port: ${11:Number}",
+            "      Port: \"${11:String}\"",
             "    SecurityGroupIds: ",
             "      SecurityGroupIds",
             "    ServerlessCacheName: \"${12:String}\" # Required",
@@ -11115,11 +11299,12 @@
             "${1:LogicalID}:",
             "  Type: AWS::ElasticLoadBalancingV2::LoadBalancer",
             "  Properties:",
-            "    IpAddressType: \"${2:String}\"",
+            "    EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic: \"${2:String}\"",
+            "    IpAddressType: \"${3:String}\"",
             "    LoadBalancerAttributes: ",
             "      LoadBalancerAttributes",
-            "    Name: \"${4:String}\"",
-            "    Scheme: \"${5:String}\"",
+            "    Name: \"${5:String}\"",
+            "    Scheme: \"${6:String}\"",
             "    SecurityGroups: ",
             "      SecurityGroups",
             "    SubnetMappings: ",
@@ -11128,7 +11313,7 @@
             "      Subnets",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${10:String}\""
+            "    Type: \"${11:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html",
@@ -13399,13 +13584,12 @@
             "${1:LogicalID}:",
             "  Type: AWS::GuardDuty::Filter",
             "  Properties:",
-            "    Action: \"${2:String}\" # Required",
-            "    Description: \"${3:String}\" # Required",
-            "    DetectorId: \"${4:String}\" # Required",
+            "    Action: \"${2:String}\"",
+            "    Description: \"${3:String}\"",
+            "    DetectorId: \"${4:String}\"",
             "    FindingCriteria:",
-            "      Criterion: ${5:JSON}",
-            "    Name: \"${6:String}\" # Required",
-            "    Rank: ${7:Number} # Required",
+            "    Name: \"${6:String}\"",
+            "    Rank: ${7:Number}",
             "    Tags: ",
             "      Tags"
         ],
@@ -13894,6 +14078,22 @@
             "Attributes:\n  State\n  Arn"
         ],
         "prefix": "ivs-recordingconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::IVS::Stage": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IVS::Stage",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-stage.html",
+            "Attributes:\n  Arn\n  ActiveSessionId"
+        ],
+        "prefix": "ivs-stage",
         "scope": "yaml"
     },
     "AWS::IVS::StreamKey": {
@@ -16286,12 +16486,25 @@
             "      ErrorOutputPrefix: \"${18:String}\"",
             "      Prefix: \"${19:String}\"",
             "      RoleARN: \"${20:String}\"",
+            "    SnowflakeDestinationConfiguration:",
+            "      AccountUrl: \"${14:String}\"",
+            "      ContentColumnName: \"${16:String}\"",
+            "      DataLoadingOption: \"${17:String}\"",
+            "      Database: \"${18:String}\"",
+            "      KeyPassphrase: \"${19:String}\"",
+            "      MetaDataColumnName: \"${20:String}\"",
+            "      PrivateKey: \"${21:String}\"",
+            "      RoleARN: \"${24:String}\"",
+            "      S3BackupMode: \"${25:String}\"",
+            "      Schema: \"${27:String}\"",
+            "      Table: \"${30:String}\"",
+            "      User: \"${31:String}\"",
             "    SplunkDestinationConfiguration:",
-            "      HECAcknowledgmentTimeoutInSeconds: ${16:Number}",
-            "      HECEndpoint: \"${17:String}\"",
-            "      HECEndpointType: \"${18:String}\"",
-            "      HECToken: \"${19:String}\"",
-            "      S3BackupMode: \"${22:String}\"",
+            "      HECAcknowledgmentTimeoutInSeconds: ${17:Number}",
+            "      HECEndpoint: \"${18:String}\"",
+            "      HECEndpointType: \"${19:String}\"",
+            "      HECToken: \"${20:String}\"",
+            "      S3BackupMode: \"${23:String}\"",
             "    Tags: ",
             "      Tags"
         ],
@@ -16434,10 +16647,11 @@
             "${1:LogicalID}:",
             "  Type: AWS::LakeFormation::Resource",
             "  Properties:",
-            "    ResourceArn: \"${2:String}\" # Required",
-            "    RoleArn: \"${3:String}\"",
-            "    UseServiceLinkedRole: ${4|false,true|} # Required",
-            "    WithFederation: ${5|false,true|}"
+            "    HybridAccessEnabled: ${2|false,true|}",
+            "    ResourceArn: \"${3:String}\" # Required",
+            "    RoleArn: \"${4:String}\"",
+            "    UseServiceLinkedRole: ${5|false,true|} # Required",
+            "    WithFederation: ${6|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lakeformation-resource.html"
@@ -24344,6 +24558,21 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "ssmcontacts-rotation",
+        "scope": "yaml"
+    },
+    "AWS::SSMGuiConnect::Preferences": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSMGuiConnect::Preferences",
+            "  Properties:",
+            "    IdleConnection: ",
+            "      IdleConnection"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmguiconnect-preferences.html",
+            "Attributes:\n  AccountId"
+        ],
+        "prefix": "ssmguiconnect-preferences",
         "scope": "yaml"
     },
     "AWS::SSMIncidents::ReplicationSet": {
