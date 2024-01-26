@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.40.0 (2024-01-26)
+-------------------
+- The following resources were updated: AWS::ECS::ServiceConnectService.
+  [Github Actions]
+
+
 4.39.0 (2024-01-19)
 -------------------
 - The following resource was added: AWS::IVS::Stage. [Github Actions]
