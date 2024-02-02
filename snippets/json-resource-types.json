@@ -15166,6 +15166,28 @@
         "prefix": "glue-table",
         "scope": "json"
     },
+    "AWS::Glue::TableOptimizer": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Glue::TableOptimizer\",",
+            "  \"Properties\": {",
+            "    \"CatalogId\": \"${2:String}\",",
+            "    \"DatabaseName\": \"${3:String}\",",
+            "    \"TableName\": \"${4:String}\",",
+            "    \"TableOptimizerConfiguration\": {",
+            "      \"Enabled\": \"${5|false,true|}\",",
+            "      \"RoleArn\": \"${6:String}\"",
+            "    },",
+            "    \"Type\": \"${6:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-tableoptimizer.html"
+        ],
+        "prefix": "glue-tableoptimizer",
+        "scope": "json"
+    },
     "AWS::Glue::Trigger": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -16777,6 +16799,31 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "inspector-resourcegroup",
+        "scope": "json"
+    },
+    "AWS::InspectorV2::CisScanConfiguration": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::InspectorV2::CisScanConfiguration\",",
+            "  \"Properties\": {",
+            "    \"ScanName\": \"${2:String}\",",
+            "    \"Schedule\": {",
+            "      \"OneTime\": \"${5:JSON}\",",
+            "    },",
+            "    \"SecurityLevel\": \"${4:String}\",",
+            "    \"Tags\": {",
+            "    \"Targets\": {",
+            "      \"AccountIds\": [],",
+            "      \"TargetResourceTags\": \"${7:JSON}\"",
+            "    },",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-cisscanconfiguration.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "inspectorv2-cisscanconfiguration",
         "scope": "json"
     },
     "AWS::InspectorV2::Filter": {
@@ -20246,8 +20293,9 @@
             "  \"Type\": \"AWS::Location::Map\",",
             "  \"Properties\": {",
             "    \"Configuration\": {",
-            "      \"PoliticalView\": \"${2:String}\",",
-            "      \"Style\": \"${3:String}\"",
+            "      \"CustomLayers\": [],",
+            "      \"PoliticalView\": \"${3:String}\",",
+            "      \"Style\": \"${4:String}\"",
             "    },",
             "    \"Description\": \"${3:String}\",",
             "    \"MapName\": \"${4:String}\",",
@@ -25750,6 +25798,29 @@
         "prefix": "rds-globalcluster",
         "scope": "json"
     },
+    "AWS::RDS::Integration": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::RDS::Integration\",",
+            "  \"Properties\": {",
+            "    \"AdditionalEncryptionContext\": {",
+            "    \"IntegrationName\": \"${3:String}\",",
+            "    \"KMSKeyId\": \"${4:String}\",",
+            "    \"SourceArn\": \"${5:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"TargetArn\": \"${7:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-integration.html",
+            "Attributes:\n  IntegrationArn\n  CreateTime"
+        ],
+        "prefix": "rds-integration",
+        "scope": "json"
+    },
     "AWS::RDS::OptionGroup": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -28646,6 +28717,8 @@
             "  \"Type\": \"AWS::SageMaker::AppImageConfig\",",
             "  \"Properties\": {",
             "    \"AppImageConfigName\": \"${2:String}\",",
+            "    \"JupyterLabAppImageConfig\": {",
+            "    },",
             "    \"KernelGatewayImageConfig\": {",
             "      \"KernelSpecs\": []",
             "    },",
@@ -29507,8 +29580,17 @@
             "  \"Type\": \"AWS::SageMaker::Space\",",
             "  \"Properties\": {",
             "    \"DomainId\": \"${2:String}\",",
-            "    \"SpaceName\": \"${3:String}\",",
+            "    \"OwnershipSettings\": {",
+            "      \"OwnerUserProfileName\": \"${3:String}\"",
+            "    },",
+            "    \"SpaceDisplayName\": \"${4:String}\",",
+            "    \"SpaceName\": \"${5:String}\",",
             "    \"SpaceSettings\": {",
+            "      \"AppType\": \"${6:String}\",",
+            "      \"CustomFileSystems\": [],",
+            "    },",
+            "    \"SpaceSharingSettings\": {",
+            "      \"SharingType\": \"${7:String}\"",
             "    },",
             "    \"Tags\": [",
             "      \"Tags\"",
@@ -29518,7 +29600,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-space.html",
-            "Attributes:\n  SpaceArn"
+            "Attributes:\n  SpaceArn\n  Url"
         ],
         "prefix": "sagemaker-space",
         "scope": "json"

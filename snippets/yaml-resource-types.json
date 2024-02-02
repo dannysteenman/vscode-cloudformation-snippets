@@ -13089,6 +13089,25 @@
         "prefix": "glue-table",
         "scope": "yaml"
     },
+    "AWS::Glue::TableOptimizer": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Glue::TableOptimizer",
+            "  Properties:",
+            "    CatalogId: \"${2:String}\" # Required",
+            "    DatabaseName: \"${3:String}\" # Required",
+            "    TableName: \"${4:String}\" # Required",
+            "    TableOptimizerConfiguration:",
+            "      Enabled: ${5|false,true|}",
+            "      RoleArn: \"${6:String}\"",
+            "    Type: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-tableoptimizer.html"
+        ],
+        "prefix": "glue-tableoptimizer",
+        "scope": "yaml"
+    },
     "AWS::Glue::Trigger": {
         "body": [
             "${1:LogicalID}:",
@@ -14470,6 +14489,28 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "inspector-resourcegroup",
+        "scope": "yaml"
+    },
+    "AWS::InspectorV2::CisScanConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::InspectorV2::CisScanConfiguration",
+            "  Properties:",
+            "    ScanName: \"${2:String}\"",
+            "    Schedule:",
+            "      OneTime: ${5:JSON}",
+            "    SecurityLevel: \"${4:String}\"",
+            "    Tags:",
+            "    Targets:",
+            "      AccountIds:",
+            "        -",
+            "      TargetResourceTags: ${7:JSON}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspectorv2-cisscanconfiguration.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "inspectorv2-cisscanconfiguration",
         "scope": "yaml"
     },
     "AWS::InspectorV2::Filter": {
@@ -17451,8 +17492,10 @@
             "  Type: AWS::Location::Map",
             "  Properties:",
             "    Configuration:",
-            "      PoliticalView: \"${2:String}\"",
-            "      Style: \"${3:String}\"",
+            "      CustomLayers:",
+            "        -",
+            "      PoliticalView: \"${3:String}\"",
+            "      Style: \"${4:String}\"",
             "    Description: \"${3:String}\"",
             "    MapName: \"${4:String}\" # Required",
             "    PricingPlan: \"${5:String}\"",
@@ -22222,6 +22265,26 @@
         "prefix": "rds-globalcluster",
         "scope": "yaml"
     },
+    "AWS::RDS::Integration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::RDS::Integration",
+            "  Properties:",
+            "    AdditionalEncryptionContext:",
+            "    IntegrationName: \"${3:String}\"",
+            "    KMSKeyId: \"${4:String}\"",
+            "    SourceArn: \"${5:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    TargetArn: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-integration.html",
+            "Attributes:\n  IntegrationArn\n  CreateTime"
+        ],
+        "prefix": "rds-integration",
+        "scope": "yaml"
+    },
     "AWS::RDS::OptionGroup": {
         "body": [
             "${1:LogicalID}:",
@@ -24717,6 +24780,7 @@
             "  Type: AWS::SageMaker::AppImageConfig",
             "  Properties:",
             "    AppImageConfigName: \"${2:String}\" # Required",
+            "    JupyterLabAppImageConfig:",
             "    KernelGatewayImageConfig:",
             "      KernelSpecs:",
             "        -",
@@ -25450,14 +25514,22 @@
             "  Type: AWS::SageMaker::Space",
             "  Properties:",
             "    DomainId: \"${2:String}\" # Required",
-            "    SpaceName: \"${3:String}\" # Required",
+            "    OwnershipSettings:",
+            "      OwnerUserProfileName: \"${3:String}\"",
+            "    SpaceDisplayName: \"${4:String}\"",
+            "    SpaceName: \"${5:String}\" # Required",
             "    SpaceSettings:",
+            "      AppType: \"${6:String}\"",
+            "      CustomFileSystems:",
+            "        -",
+            "    SpaceSharingSettings:",
+            "      SharingType: \"${7:String}\"",
             "    Tags: ",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-space.html",
-            "Attributes:\n  SpaceArn"
+            "Attributes:\n  SpaceArn\n  Url"
         ],
         "prefix": "sagemaker-space",
         "scope": "yaml"
