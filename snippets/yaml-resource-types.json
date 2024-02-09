@@ -384,21 +384,21 @@
             "    Children: ",
             "      Children",
             "    CollectionProperties:",
-            "    ComponentType: \"${6:String}\" # Required",
+            "    ComponentType: \"${6:String}\"",
             "    EnvironmentName: \"${7:String}\"",
             "    Events:",
-            "    Name: \"${9:String}\" # Required",
-            "    Overrides: ${10:JSON} # Required",
+            "    Name: \"${9:String}\"",
+            "    Overrides: ${10:JSON}",
             "    Properties:",
             "    SchemaVersion: \"${12:String}\"",
             "    SourceId: \"${13:String}\"",
             "    Tags:",
-            "    Variants: # Required",
+            "    Variants: ",
             "      Variants"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-component.html",
-            "Attributes:\n  Id"
+            "Attributes:\n  ModifiedAt\n  CreatedAt\n  Id"
         ],
         "prefix": "amplifyuibuilder-component",
         "scope": "yaml"
@@ -416,10 +416,10 @@
             "      DataTypeName: \"${5:String}\"",
             "    EnvironmentName: \"${5:String}\"",
             "    Fields:",
-            "    FormActionType: \"${7:String}\" # Required",
+            "    FormActionType: \"${7:String}\"",
             "    LabelDecorator: \"${8:String}\"",
-            "    Name: \"${9:String}\" # Required",
-            "    SchemaVersion: \"${10:String}\" # Required",
+            "    Name: \"${9:String}\"",
+            "    SchemaVersion: \"${10:String}\"",
             "    SectionalElements:",
             "    Style:",
             "    Tags:"
@@ -438,16 +438,16 @@
             "  Properties:",
             "    AppId: \"${2:String}\"",
             "    EnvironmentName: \"${3:String}\"",
-            "    Name: \"${4:String}\" # Required",
+            "    Name: \"${4:String}\"",
             "    Overrides: ",
             "      Overrides",
             "    Tags:",
-            "    Values: # Required",
+            "    Values: ",
             "      Values"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplifyuibuilder-theme.html",
-            "Attributes:\n  Id"
+            "Attributes:\n  ModifiedAt\n  CreatedAt\n  Id"
         ],
         "prefix": "amplifyuibuilder-theme",
         "scope": "yaml"
@@ -1303,7 +1303,8 @@
             "      Tags"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-environment.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-environment.html",
+            "Attributes:\n  EnvironmentId"
         ],
         "prefix": "appconfig-environment",
         "scope": "yaml"
@@ -1361,7 +1362,8 @@
             "    VersionLabel: \"${8:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-hostedconfigurationversion.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-hostedconfigurationversion.html",
+            "Attributes:\n  VersionNumber"
         ],
         "prefix": "appconfig-hostedconfigurationversion",
         "scope": "yaml"
@@ -2203,34 +2205,35 @@
             "      AdditionalAuthenticationProviders",
             "    ApiType: \"${3:String}\"",
             "    AuthenticationType: \"${4:String}\" # Required",
-            "    IntrospectionConfig: \"${5:String}\"",
+            "    EnvironmentVariables: ${5:JSON}",
+            "    IntrospectionConfig: \"${6:String}\"",
             "    LambdaAuthorizerConfig:",
-            "      AuthorizerResultTtlInSeconds: ${6:Number}",
-            "      AuthorizerUri: \"${7:String}\"",
-            "      IdentityValidationExpression: \"${8:String}\"",
+            "      AuthorizerResultTtlInSeconds: ${7:Number}",
+            "      AuthorizerUri: \"${8:String}\"",
+            "      IdentityValidationExpression: \"${9:String}\"",
             "    LogConfig:",
-            "      CloudWatchLogsRoleArn: \"${7:String}\"",
-            "      ExcludeVerboseContent: ${8|false,true|}",
-            "      FieldLogLevel: \"${9:String}\"",
-            "    MergedApiExecutionRoleArn: \"${8:String}\"",
-            "    Name: \"${9:String}\" # Required",
+            "      CloudWatchLogsRoleArn: \"${8:String}\"",
+            "      ExcludeVerboseContent: ${9|false,true|}",
+            "      FieldLogLevel: \"${10:String}\"",
+            "    MergedApiExecutionRoleArn: \"${9:String}\"",
+            "    Name: \"${10:String}\" # Required",
             "    OpenIDConnectConfig:",
-            "      AuthTTL: ${10:Number}",
-            "      ClientId: \"${11:String}\"",
-            "      IatTTL: ${12:Number}",
-            "      Issuer: \"${13:String}\"",
-            "    OwnerContact: \"${11:String}\"",
-            "    QueryDepthLimit: ${12:Number}",
-            "    ResolverCountLimit: ${13:Number}",
+            "      AuthTTL: ${11:Number}",
+            "      ClientId: \"${12:String}\"",
+            "      IatTTL: ${13:Number}",
+            "      Issuer: \"${14:String}\"",
+            "    OwnerContact: \"${12:String}\"",
+            "    QueryDepthLimit: ${13:Number}",
+            "    ResolverCountLimit: ${14:Number}",
             "    Tags: ",
             "      Tags",
             "    UserPoolConfig:",
-            "      AppIdClientRegex: \"${15:String}\"",
-            "      AwsRegion: \"${16:String}\"",
-            "      DefaultAction: \"${17:String}\"",
-            "      UserPoolId: \"${18:String}\"",
-            "    Visibility: \"${16:String}\"",
-            "    XrayEnabled: ${17|false,true|}"
+            "      AppIdClientRegex: \"${16:String}\"",
+            "      AwsRegion: \"${17:String}\"",
+            "      DefaultAction: \"${18:String}\"",
+            "      UserPoolId: \"${19:String}\"",
+            "    Visibility: \"${17:String}\"",
+            "    XrayEnabled: ${18|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html",
@@ -3396,22 +3399,25 @@
             "${1:LogicalID}:",
             "  Type: AWS::Cassandra::Table",
             "  Properties:",
+            "    AutoScalingSpecifications:",
             "    BillingMode:",
-            "      Mode: \"${2:String}\"",
-            "    ClientSideTimestampsEnabled: ${3|false,true|}",
+            "      Mode: \"${3:String}\"",
+            "    ClientSideTimestampsEnabled: ${4|false,true|}",
             "    ClusteringKeyColumns: ",
             "      ClusteringKeyColumns",
-            "    DefaultTimeToLive: ${5:Number}",
+            "    DefaultTimeToLive: ${6:Number}",
             "    EncryptionSpecification:",
-            "      EncryptionType: \"${6:String}\"",
-            "      KmsKeyIdentifier: \"${7:String}\"",
-            "    KeyspaceName: \"${7:String}\" # Required",
+            "      EncryptionType: \"${7:String}\"",
+            "      KmsKeyIdentifier: \"${8:String}\"",
+            "    KeyspaceName: \"${8:String}\" # Required",
             "    PartitionKeyColumns: # Required",
             "      PartitionKeyColumns",
-            "    PointInTimeRecoveryEnabled: ${9|false,true|}",
+            "    PointInTimeRecoveryEnabled: ${10|false,true|}",
             "    RegularColumns: ",
             "      RegularColumns",
-            "    TableName: \"${11:String}\"",
+            "    ReplicaSpecifications: ",
+            "      ReplicaSpecifications",
+            "    TableName: \"${13:String}\"",
             "    Tags: ",
             "      Tags"
         ],
@@ -7954,7 +7960,8 @@
             "    KeySchema: # Required",
             "      KeySchema",
             "    KinesisStreamSpecification:",
-            "      StreamArn: \"${9:String}\"",
+            "      ApproximateCreationDateTimePrecision: \"${9:String}\"",
+            "      StreamArn: \"${10:String}\"",
             "    LocalSecondaryIndexes: ",
             "      LocalSecondaryIndexes",
             "    PointInTimeRecoverySpecification:",
@@ -8081,24 +8088,26 @@
             "    ClientLoginBannerOptions:",
             "      BannerText: \"${5:String}\"",
             "      Enabled: ${6|false,true|}",
+            "    ClientRouteMonitoringOptions:",
+            "      Enabled: ${6|false,true|}",
             "    ConnectionLogOptions:",
-            "      CloudwatchLogGroup: \"${6:String}\"",
-            "      CloudwatchLogStream: \"${7:String}\"",
-            "      Enabled: ${8|false,true|}",
-            "    Description: \"${7:String}\"",
+            "      CloudwatchLogGroup: \"${7:String}\"",
+            "      CloudwatchLogStream: \"${8:String}\"",
+            "      Enabled: ${9|false,true|}",
+            "    Description: \"${8:String}\"",
             "    DnsServers: ",
             "      DnsServers",
             "    SecurityGroupIds: ",
             "      SecurityGroupIds",
-            "    SelfServicePortal: \"${10:String}\"",
-            "    ServerCertificateArn: \"${11:String}\" # Required",
-            "    SessionTimeoutHours: ${12:Number}",
-            "    SplitTunnel: ${13|false,true|}",
+            "    SelfServicePortal: \"${11:String}\"",
+            "    ServerCertificateArn: \"${12:String}\" # Required",
+            "    SessionTimeoutHours: ${13:Number}",
+            "    SplitTunnel: ${14|false,true|}",
             "    TagSpecifications: ",
             "      TagSpecifications",
-            "    TransportProtocol: \"${15:String}\"",
-            "    VpcId: \"${16:String}\"",
-            "    VpnPort: ${17:Number}"
+            "    TransportProtocol: \"${16:String}\"",
+            "    VpcId: \"${17:String}\"",
+            "    VpnPort: ${18:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html"
@@ -24623,21 +24632,6 @@
         "prefix": "ssmcontacts-rotation",
         "scope": "yaml"
     },
-    "AWS::SSMGuiConnect::Preferences": {
-        "body": [
-            "${1:LogicalID}:",
-            "  Type: AWS::SSMGuiConnect::Preferences",
-            "  Properties:",
-            "    IdleConnection: ",
-            "      IdleConnection"
-        ],
-        "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmguiconnect-preferences.html",
-            "Attributes:\n  AccountId"
-        ],
-        "prefix": "ssmguiconnect-preferences",
-        "scope": "yaml"
-    },
     "AWS::SSMIncidents::ReplicationSet": {
         "body": [
             "${1:LogicalID}:",
@@ -26941,7 +26935,7 @@
             "  Type: AWS::VerifiedPermissions::IdentitySource",
             "  Properties:",
             "    Configuration:",
-            "    PolicyStoreId: \"${3:String}\"",
+            "    PolicyStoreId: \"${3:String}\" # Required",
             "    PrincipalEntityType: \"${4:String}\""
         ],
         "description": [
@@ -26990,7 +26984,7 @@
             "  Type: AWS::VerifiedPermissions::PolicyTemplate",
             "  Properties:",
             "    Description: \"${2:String}\"",
-            "    PolicyStoreId: \"${3:String}\"",
+            "    PolicyStoreId: \"${3:String}\" # Required",
             "    Statement: \"${4:String}\" # Required"
         ],
         "description": [
