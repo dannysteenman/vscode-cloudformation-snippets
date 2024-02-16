@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+4.43.0 (2024-02-16)
+-------------------
+- The following resources were added: <code
+  class="code">AWS::NeptuneGraph::Graph</code> and
+  <code class="code">AWS::NeptuneGraph::PrivateGraphEndpoint</code>.
+  [Github Actions]
+
+
 4.42.0 (2024-02-09)
 -------------------
 - The following resource was updated: <code
