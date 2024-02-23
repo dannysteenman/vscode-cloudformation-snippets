@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.44.0 (2024-02-23)
+-------------------
+- The following resource was updated: AWS::CodePipeline::Pipeline.
+  [Github Actions]
+
+
 4.43.0 (2024-02-16)
 -------------------
 - The following resources were added: <code
