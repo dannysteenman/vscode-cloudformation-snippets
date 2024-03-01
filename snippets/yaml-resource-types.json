@@ -362,14 +362,22 @@
             "    AutoSubDomainCreationPatterns: ",
             "      AutoSubDomainCreationPatterns",
             "    AutoSubDomainIAMRole: \"${4:String}\"",
-            "    DomainName: \"${5:String}\" # Required",
-            "    EnableAutoSubDomain: ${6|false,true|}",
+            "    Certificate:",
+            "      CertificateArn: \"${5:String}\"",
+            "      CertificateType: \"${6:String}\"",
+            "      CertificateVerificationDNSRecord: \"${7:String}\"",
+            "    CertificateSettings:",
+            "      CertificateType: \"${6:String}\"",
+            "      CustomCertificateArn: \"${7:String}\"",
+            "    DomainName: \"${7:String}\" # Required",
+            "    EnableAutoSubDomain: ${8|false,true|}",
             "    SubDomainSettings: # Required",
-            "      SubDomainSettings"
+            "      SubDomainSettings",
+            "    UpdateStatus: \"${10:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-domain.html",
-            "Attributes:\n  AutoSubDomainIAMRole\n  DomainName\n  EnableAutoSubDomain\n  StatusReason\n  Arn\n  AutoSubDomainCreationPatterns\n  DomainStatus\n  CertificateRecord"
+            "Attributes:\n  AutoSubDomainIAMRole\n  DomainName\n  StatusReason\n  EnableAutoSubDomain\n  Arn\n  AutoSubDomainCreationPatterns\n  DomainStatus\n  CertificateRecord"
         ],
         "prefix": "amplify-domain",
         "scope": "yaml"
@@ -2808,16 +2816,15 @@
             "    EdiType:",
             "    FileFormat: \"${3:String}\" # Required",
             "    MappingTemplate: \"${4:String}\" # Required",
-            "    ModifiedAt: \"${5:String}\"",
-            "    Name: \"${6:String}\" # Required",
-            "    SampleDocument: \"${7:String}\"",
-            "    Status: \"${8:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    SampleDocument: \"${6:String}\"",
+            "    Status: \"${7:String}\" # Required",
             "    Tags: ",
             "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-transformer.html",
-            "Attributes:\n  TransformerId\n  TransformerArn\n  CreatedAt"
+            "Attributes:\n  ModifiedAt\n  TransformerId\n  TransformerArn\n  CreatedAt"
         ],
         "prefix": "b2bi-transformer",
         "scope": "yaml"
@@ -6288,7 +6295,7 @@
             "  Properties:",
             "    DeadLetterQueueUrl: \"${2:String}\"",
             "    DefaultEncryptionKey: \"${3:String}\"",
-            "    DefaultExpirationDays: ${4:Number}",
+            "    DefaultExpirationDays: ${4:Number} # Required",
             "    DomainName: \"${5:String}\" # Required",
             "    Matching:",
             "      Enabled: ${7|false,true|}",
@@ -6359,7 +6366,7 @@
             "  Type: AWS::CustomerProfiles::ObjectType",
             "  Properties:",
             "    AllowProfileCreation: ${2|false,true|}",
-            "    Description: \"${3:String}\"",
+            "    Description: \"${3:String}\" # Required",
             "    DomainName: \"${4:String}\" # Required",
             "    EncryptionKey: \"${5:String}\"",
             "    ExpirationDays: ${6:Number}",
@@ -6367,7 +6374,7 @@
             "      Fields",
             "    Keys: ",
             "      Keys",
-            "    ObjectTypeName: \"${9:String}\"",
+            "    ObjectTypeName: \"${9:String}\" # Required",
             "    SourceLastUpdatedTimestampFormat: \"${10:String}\"",
             "    Tags: ",
             "      Tags",
@@ -8965,8 +8972,10 @@
             "  Properties:",
             "    DeleteOnTermination: ${2|false,true|}",
             "    DeviceIndex: \"${3:String}\" # Required",
-            "    InstanceId: \"${4:String}\" # Required",
-            "    NetworkInterfaceId: \"${5:String}\" # Required"
+            "    EnaSrdSpecification:",
+            "      EnaSrdEnabled: ${4|false,true|}",
+            "    InstanceId: \"${5:String}\" # Required",
+            "    NetworkInterfaceId: \"${6:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfaceattachment.html",
@@ -10298,7 +10307,9 @@
             "    Service: \"${9:String}\" # Required",
             "    ServiceRegistries: ",
             "      ServiceRegistries",
-            "    TaskDefinition: \"${11:String}\" # Required"
+            "    Tags: ",
+            "      Tags",
+            "    TaskDefinition: \"${12:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskset.html",
@@ -16110,10 +16121,11 @@
             "      DeviceProfileId: \"${8:String}\"",
             "      ServiceProfileId: \"${12:String}\"",
             "    Name: \"${6:String}\"",
+            "    Positioning: \"${7:String}\"",
             "    Tags: ",
             "      Tags",
-            "    ThingArn: \"${8:String}\"",
-            "    Type: \"${9:String}\" # Required"
+            "    ThingArn: \"${9:String}\"",
+            "    Type: \"${10:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdevice.html",
@@ -16543,10 +16555,12 @@
             "    ExtendedS3DestinationConfiguration:",
             "      BucketARN: \"${8:String}\"",
             "      CompressionFormat: \"${11:String}\"",
-            "      ErrorOutputPrefix: \"${15:String}\"",
-            "      Prefix: \"${16:String}\"",
-            "      RoleARN: \"${18:String}\"",
-            "      S3BackupMode: \"${20:String}\"",
+            "      CustomTimeZone: \"${12:String}\"",
+            "      ErrorOutputPrefix: \"${16:String}\"",
+            "      FileExtension: \"${17:String}\"",
+            "      Prefix: \"${18:String}\"",
+            "      RoleARN: \"${20:String}\"",
+            "      S3BackupMode: \"${22:String}\"",
             "    HttpEndpointDestinationConfiguration:",
             "      RoleARN: \"${15:String}\"",
             "      S3BackupMode: \"${16:String}\"",
@@ -21615,10 +21629,12 @@
             "        -",
             "      Sheets:",
             "        -",
+            "    LinkEntities: ",
+            "      LinkEntities",
             "    LinkSharingConfiguration:",
             "      Permissions:",
             "        -",
-            "    Name: \"${7:String}\" # Required",
+            "    Name: \"${8:String}\" # Required",
             "    Parameters:",
             "      DateTimeParameters:",
             "        -",
@@ -21633,10 +21649,10 @@
             "    SourceEntity:",
             "    Tags: ",
             "      Tags",
-            "    ThemeArn: \"${12:String}\"",
+            "    ThemeArn: \"${13:String}\"",
             "    ValidationStrategy:",
-            "      Mode: \"${13:String}\"",
-            "    VersionDescription: \"${14:String}\""
+            "      Mode: \"${14:String}\"",
+            "    VersionDescription: \"${15:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html",
@@ -22645,20 +22661,21 @@
             "    ConfigParameters: ",
             "      ConfigParameters",
             "    EnhancedVpcRouting: ${4|false,true|}",
-            "    NamespaceName: \"${5:String}\"",
-            "    Port: ${6:Number}",
-            "    PubliclyAccessible: ${7|false,true|}",
+            "    MaxCapacity: ${5:Number}",
+            "    NamespaceName: \"${6:String}\"",
+            "    Port: ${7:Number}",
+            "    PubliclyAccessible: ${8|false,true|}",
             "    SecurityGroupIds: ",
             "      SecurityGroupIds",
             "    SubnetIds: ",
             "      SubnetIds",
             "    Tags: ",
             "      Tags",
-            "    WorkgroupName: \"${11:String}\" # Required"
+            "    WorkgroupName: \"${12:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-workgroup.html",
-            "Attributes:\n  Workgroup.Endpoint\n  Workgroup.Endpoint.Port\n  Workgroup.SecurityGroupIds\n  Workgroup.CreationDate\n  Workgroup.PubliclyAccessible\n  Workgroup\n  Workgroup.WorkgroupArn\n  Workgroup.WorkgroupName\n  Workgroup.ConfigParameters\n  Workgroup.Status\n  Workgroup.BaseCapacity\n  Workgroup.EnhancedVpcRouting\n  Workgroup.WorkgroupId\n  Workgroup.NamespaceName\n  Workgroup.Endpoint.VpcEndpoints\n  Workgroup.Endpoint.Address\n  Workgroup.SubnetIds"
+            "Attributes:\n  Workgroup.Endpoint\n  Workgroup.Endpoint.Port\n  Workgroup.SecurityGroupIds\n  Workgroup.CreationDate\n  Workgroup.PubliclyAccessible\n  Workgroup\n  Workgroup.WorkgroupArn\n  Workgroup.WorkgroupName\n  Workgroup.ConfigParameters\n  Workgroup.Status\n  Workgroup.MaxCapacity\n  Workgroup.BaseCapacity\n  Workgroup.EnhancedVpcRouting\n  Workgroup.WorkgroupId\n  Workgroup.NamespaceName\n  Workgroup.Endpoint.VpcEndpoints\n  Workgroup.Endpoint.Address\n  Workgroup.SubnetIds"
         ],
         "prefix": "redshiftserverless-workgroup",
         "scope": "yaml"
