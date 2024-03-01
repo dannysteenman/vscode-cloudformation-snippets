@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.45.0 (2024-03-01)
+-------------------
+- The following resource was updated: <code
+  class="code">AWS::Batch:JobDefinition</code>. [Github Actions]
+
+
 4.44.0 (2024-02-23)
 -------------------
 - The following resource was updated: AWS::CodePipeline::Pipeline.
