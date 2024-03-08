@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.46.0 (2024-03-08)
+-------------------
+- The following resources were updated: AWS::WAFv2::WebACL and
+  AWS::WAFv2::RuleGroup. [Github Actions]
+
+
 4.45.0 (2024-03-01)
 -------------------
 - The following resource was updated: <code
