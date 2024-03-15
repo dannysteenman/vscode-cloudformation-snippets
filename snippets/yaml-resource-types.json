@@ -1265,8 +1265,10 @@
             "    ConfigurationVersion: \"${4:String}\" # Required",
             "    DeploymentStrategyId: \"${5:String}\" # Required",
             "    Description: \"${6:String}\"",
-            "    EnvironmentId: \"${7:String}\" # Required",
-            "    KmsKeyIdentifier: \"${8:String}\"",
+            "    DynamicExtensionParameters: ",
+            "      DynamicExtensionParameters",
+            "    EnvironmentId: \"${8:String}\" # Required",
+            "    KmsKeyIdentifier: \"${9:String}\"",
             "    Tags: ",
             "      Tags"
         ],
@@ -2389,18 +2391,19 @@
             "${1:LogicalID}:",
             "  Type: AWS::ApplicationInsights::Application",
             "  Properties:",
-            "    AutoConfigurationEnabled: ${2|false,true|}",
-            "    CWEMonitorEnabled: ${3|false,true|}",
+            "    AttachMissingPermission: ${2|false,true|}",
+            "    AutoConfigurationEnabled: ${3|false,true|}",
+            "    CWEMonitorEnabled: ${4|false,true|}",
             "    ComponentMonitoringSettings: ",
             "      ComponentMonitoringSettings",
             "    CustomComponents: ",
             "      CustomComponents",
-            "    GroupingType: \"${6:String}\"",
+            "    GroupingType: \"${7:String}\"",
             "    LogPatternSets: ",
             "      LogPatternSets",
-            "    OpsCenterEnabled: ${8|false,true|}",
-            "    OpsItemSNSTopicArn: \"${9:String}\"",
-            "    ResourceGroupName: \"${10:String}\" # Required",
+            "    OpsCenterEnabled: ${9|false,true|}",
+            "    OpsItemSNSTopicArn: \"${10:String}\"",
+            "    ResourceGroupName: \"${11:String}\" # Required",
             "    Tags: ",
             "      Tags"
         ],
@@ -3136,9 +3139,11 @@
             "    ComputeEnvironmentOrder: # Required",
             "      ComputeEnvironmentOrder",
             "    JobQueueName: \"${3:String}\"",
-            "    Priority: ${4:Number} # Required",
-            "    SchedulingPolicyArn: \"${5:String}\"",
-            "    State: \"${6:String}\"",
+            "    JobStateTimeLimitActions: ",
+            "      JobStateTimeLimitActions",
+            "    Priority: ${5:Number} # Required",
+            "    SchedulingPolicyArn: \"${6:String}\"",
+            "    State: \"${7:String}\"",
             "    Tags:"
         ],
         "description": [
@@ -8210,9 +8215,10 @@
             "    DomainName: \"${2:String}\"",
             "    DomainNameServers: ",
             "      DomainNameServers",
+            "    Ipv6AddressPreferredLeaseTime: ${4:Number}",
             "    NetbiosNameServers: ",
             "      NetbiosNameServers",
-            "    NetbiosNodeType: ${5:Number}",
+            "    NetbiosNodeType: ${6:Number}",
             "    NtpServers: ",
             "      NtpServers",
             "    Tags: ",
@@ -9116,8 +9122,8 @@
             "    VpcId: \"${7:String}\""
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
-            "Attributes:\n  GroupId\n  VpcId"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-securitygroup.html",
+            "Attributes:\n  VpcId\n  Id\n  GroupId"
         ],
         "prefix": "ec2-securitygroup",
         "scope": "yaml"
@@ -9665,7 +9671,8 @@
             "    VpcId: \"${10:String}\" # Required"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html",
+            "Attributes:\n  Id"
         ],
         "prefix": "ec2-vpccidrblock",
         "scope": "yaml"
@@ -14653,19 +14660,21 @@
             "    HealthEventsConfig:",
             "      AvailabilityScoreThreshold: ${3:Number}",
             "      PerformanceScoreThreshold: ${5:Number}",
+            "    IncludeLinkedAccounts: ${3|false,true|}",
             "    InternetMeasurementsLogDelivery:",
-            "    MaxCityNetworksToMonitor: ${4:Number}",
-            "    MonitorName: \"${5:String}\" # Required",
+            "    LinkedAccountId: \"${5:String}\"",
+            "    MaxCityNetworksToMonitor: ${6:Number}",
+            "    MonitorName: \"${7:String}\" # Required",
             "    Resources: ",
             "      Resources",
             "    ResourcesToAdd: ",
             "      ResourcesToAdd",
             "    ResourcesToRemove: ",
             "      ResourcesToRemove",
-            "    Status: \"${9:String}\"",
+            "    Status: \"${11:String}\"",
             "    Tags: ",
             "      Tags",
-            "    TrafficPercentageToMonitor: ${11:Number}"
+            "    TrafficPercentageToMonitor: ${13:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-internetmonitor-monitor.html",
@@ -21145,7 +21154,8 @@
             "    Enabled: ${4|false,true|}",
             "    FromAddress: \"${5:String}\" # Required",
             "    Identity: \"${6:String}\" # Required",
-            "    RoleArn: \"${7:String}\""
+            "    OrchestrationSendingRoleArn: \"${7:String}\"",
+            "    RoleArn: \"${8:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-emailchannel.html"
