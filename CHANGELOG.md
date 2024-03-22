@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.48.0 (2024-03-22)
+-------------------
+- The following resource was updated: AWS::WAFv2::WebACL. [Github
+  Actions]
+
+
 4.47.0 (2024-03-15)
 -------------------
 - AWS CloudFormation added the <code
