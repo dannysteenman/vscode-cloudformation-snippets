@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+4.49.0 (2024-03-29)
+-------------------
+- The following resource was updated: AWS::CloudWatch::AnomalyDetector
+  SingleMetricAnomalyDetector. [Github Actions]
+
+
 4.48.0 (2024-03-22)
 -------------------
 - The following resource was updated: AWS::WAFv2::WebACL. [Github
