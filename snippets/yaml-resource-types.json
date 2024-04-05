@@ -116,6 +116,26 @@
         "prefix": "aps-rulegroupsnamespace",
         "scope": "yaml"
     },
+    "AWS::APS::Scraper": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::APS::Scraper",
+            "  Properties:",
+            "    Alias: \"${2:String}\"",
+            "    Destination:",
+            "    ScrapeConfiguration:",
+            "      ConfigurationBlob: \"${4:String}\"",
+            "    Source:",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-scraper.html",
+            "Attributes:\n  ScraperId\n  Arn\n  RoleArn"
+        ],
+        "prefix": "aps-scraper",
+        "scope": "yaml"
+    },
     "AWS::APS::Workspace": {
         "body": [
             "${1:LogicalID}:",
@@ -362,22 +382,17 @@
             "    AutoSubDomainCreationPatterns: ",
             "      AutoSubDomainCreationPatterns",
             "    AutoSubDomainIAMRole: \"${4:String}\"",
-            "    Certificate:",
-            "      CertificateArn: \"${5:String}\"",
-            "      CertificateType: \"${6:String}\"",
-            "      CertificateVerificationDNSRecord: \"${7:String}\"",
             "    CertificateSettings:",
-            "      CertificateType: \"${6:String}\"",
-            "      CustomCertificateArn: \"${7:String}\"",
-            "    DomainName: \"${7:String}\" # Required",
-            "    EnableAutoSubDomain: ${8|false,true|}",
+            "      CertificateType: \"${5:String}\"",
+            "      CustomCertificateArn: \"${6:String}\"",
+            "    DomainName: \"${6:String}\" # Required",
+            "    EnableAutoSubDomain: ${7|false,true|}",
             "    SubDomainSettings: # Required",
-            "      SubDomainSettings",
-            "    UpdateStatus: \"${10:String}\""
+            "      SubDomainSettings"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-domain.html",
-            "Attributes:\n  AutoSubDomainIAMRole\n  DomainName\n  StatusReason\n  EnableAutoSubDomain\n  Arn\n  AutoSubDomainCreationPatterns\n  DomainStatus\n  CertificateRecord"
+            "Attributes:\n  Certificate.CertificateArn\n  UpdateStatus\n  DomainName\n  StatusReason\n  AutoSubDomainCreationPatterns\n  CertificateRecord\n  AutoSubDomainIAMRole\n  EnableAutoSubDomain\n  Arn\n  DomainStatus\n  Certificate.CertificateType\n  Certificate.CertificateVerificationDNSRecord\n  Certificate"
         ],
         "prefix": "amplify-domain",
         "scope": "yaml"
@@ -2851,6 +2866,25 @@
         "prefix": "b2bi-transformer",
         "scope": "yaml"
     },
+    "AWS::BCMDataExports::Export": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::BCMDataExports::Export",
+            "  Properties:",
+            "    Export:",
+            "      Description: \"${3:String}\"",
+            "      ExportArn: \"${5:String}\"",
+            "      Name: \"${6:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bcmdataexports-export.html",
+            "Attributes:\n  ExportArn"
+        ],
+        "prefix": "bcmdataexports-export",
+        "scope": "yaml"
+    },
     "AWS::Backup::BackupPlan": {
         "body": [
             "${1:LogicalID}:",
@@ -3190,6 +3224,98 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "batch-schedulingpolicy",
+        "scope": "yaml"
+    },
+    "AWS::Bedrock::Agent": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Bedrock::Agent",
+            "  Properties:",
+            "    ActionGroups: ",
+            "      ActionGroups",
+            "    AgentName: \"${3:String}\" # Required",
+            "    AgentResourceRoleArn: \"${4:String}\"",
+            "    AutoPrepare: ${5|false,true|}",
+            "    CustomerEncryptionKeyArn: \"${6:String}\"",
+            "    Description: \"${7:String}\"",
+            "    FoundationModel: \"${8:String}\"",
+            "    IdleSessionTTLInSeconds: ${9:Number}",
+            "    Instruction: \"${10:String}\"",
+            "    KnowledgeBases: ",
+            "      KnowledgeBases",
+            "    PromptOverrideConfiguration:",
+            "      OverrideLambda: \"${12:String}\"",
+            "      PromptConfigurations:",
+            "        -",
+            "    SkipResourceInUseCheckOnDelete: ${13|false,true|}",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agent.html",
+            "Attributes:\n  AgentArn\n  AgentStatus\n  AgentVersion\n  CreatedAt\n  PreparedAt\n  AgentId\n  FailureReasons\n  UpdatedAt\n  RecommendedActions"
+        ],
+        "prefix": "bedrock-agent",
+        "scope": "yaml"
+    },
+    "AWS::Bedrock::AgentAlias": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Bedrock::AgentAlias",
+            "  Properties:",
+            "    AgentAliasName: \"${2:String}\" # Required",
+            "    AgentId: \"${3:String}\" # Required",
+            "    Description: \"${4:String}\"",
+            "    RoutingConfiguration: ",
+            "      RoutingConfiguration",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agentalias.html",
+            "Attributes:\n  AgentAliasStatus\n  AgentAliasArn\n  AgentAliasHistoryEvents\n  CreatedAt\n  AgentAliasId\n  UpdatedAt"
+        ],
+        "prefix": "bedrock-agentalias",
+        "scope": "yaml"
+    },
+    "AWS::Bedrock::DataSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Bedrock::DataSource",
+            "  Properties:",
+            "    DataSourceConfiguration:",
+            "      Type: \"${3:String}\"",
+            "    Description: \"${3:String}\"",
+            "    KnowledgeBaseId: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    ServerSideEncryptionConfiguration:",
+            "      KmsKeyArn: \"${6:String}\"",
+            "    VectorIngestionConfiguration:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-datasource.html",
+            "Attributes:\n  CreatedAt\n  DataSourceStatus\n  UpdatedAt\n  DataSourceId"
+        ],
+        "prefix": "bedrock-datasource",
+        "scope": "yaml"
+    },
+    "AWS::Bedrock::KnowledgeBase": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Bedrock::KnowledgeBase",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    KnowledgeBaseConfiguration:",
+            "      Type: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
+            "    RoleArn: \"${5:String}\" # Required",
+            "    StorageConfiguration:",
+            "      Type: \"${9:String}\"",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-knowledgebase.html",
+            "Attributes:\n  Status\n  CreatedAt\n  KnowledgeBaseArn\n  KnowledgeBaseId\n  FailureReasons\n  UpdatedAt"
+        ],
+        "prefix": "bedrock-knowledgebase",
         "scope": "yaml"
     },
     "AWS::BillingConductor::BillingGroup": {
@@ -3666,6 +3792,26 @@
             "Attributes:\n  MembershipIdentifier\n  Arn\n  CollaborationCreatorAccountId\n  CollaborationArn"
         ],
         "prefix": "cleanrooms-membership",
+        "scope": "yaml"
+    },
+    "AWS::CleanRoomsML::TrainingDataset": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CleanRoomsML::TrainingDataset",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    RoleArn: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags",
+            "    TrainingData: # Required",
+            "      TrainingData"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanroomsml-trainingdataset.html",
+            "Attributes:\n  Status\n  TrainingDatasetArn"
+        ],
+        "prefix": "cleanroomsml-trainingdataset",
         "scope": "yaml"
     },
     "AWS::Cloud9::EnvironmentEC2": {
@@ -4375,10 +4521,12 @@
             "      OKActions",
             "    Period: ${17:Number}",
             "    Statistic: \"${18:String}\"",
-            "    Threshold: ${19:Number}",
-            "    ThresholdMetricId: \"${20:String}\"",
-            "    TreatMissingData: \"${21:String}\"",
-            "    Unit: \"${22:String}\""
+            "    Tags: ",
+            "      Tags",
+            "    Threshold: ${20:Number}",
+            "    ThresholdMetricId: \"${21:String}\"",
+            "    TreatMissingData: \"${22:String}\"",
+            "    Unit: \"${23:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-alarm.html",
@@ -4435,7 +4583,9 @@
             "    InsufficientDataActions: ",
             "      InsufficientDataActions",
             "    OKActions: ",
-            "      OKActions"
+            "      OKActions",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-compositealarm.html",
@@ -4722,6 +4872,24 @@
             "Attributes:\n  CloneUrlHttp\n  KmsKeyId\n  CloneUrlSsh\n  Arn\n  Name"
         ],
         "prefix": "codecommit-repository",
+        "scope": "yaml"
+    },
+    "AWS::CodeConnections::Connection": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CodeConnections::Connection",
+            "  Properties:",
+            "    ConnectionName: \"${2:String}\" # Required",
+            "    HostArn: \"${3:String}\"",
+            "    ProviderType: \"${4:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeconnections-connection.html",
+            "Attributes:\n  ConnectionArn\n  ConnectionStatus\n  OwnerAccountId"
+        ],
+        "prefix": "codeconnections-connection",
         "scope": "yaml"
     },
     "AWS::CodeDeploy::Application": {
@@ -5015,10 +5183,12 @@
             "  Properties:",
             "    Branch: \"${2:String}\" # Required",
             "    ConfigFile: \"${3:String}\" # Required",
-            "    RepositoryLinkId: \"${4:String}\" # Required",
-            "    ResourceName: \"${5:String}\" # Required",
-            "    RoleArn: \"${6:String}\" # Required",
-            "    SyncType: \"${7:String}\" # Required"
+            "    PublishDeploymentStatus: \"${4:String}\"",
+            "    RepositoryLinkId: \"${5:String}\" # Required",
+            "    ResourceName: \"${6:String}\" # Required",
+            "    RoleArn: \"${7:String}\" # Required",
+            "    SyncType: \"${8:String}\" # Required",
+            "    TriggerResourceUpdateOn: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codestarconnections-syncconfiguration.html",
@@ -5922,7 +6092,8 @@
             "        -"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-predefinedattribute.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-predefinedattribute.html",
+            "Attributes:\n  LastModifiedTime\n  LastModifiedRegion"
         ],
         "prefix": "connect-predefinedattribute",
         "scope": "yaml"
@@ -7720,6 +7891,156 @@
         "prefix": "datazone-subscriptiontarget",
         "scope": "yaml"
     },
+    "AWS::Deadline::Farm": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::Farm",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    DisplayName: \"${3:String}\" # Required",
+            "    KmsKeyArn: \"${4:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-farm.html",
+            "Attributes:\n  Arn\n  FarmId"
+        ],
+        "prefix": "deadline-farm",
+        "scope": "yaml"
+    },
+    "AWS::Deadline::Fleet": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::Fleet",
+            "  Properties:",
+            "    Configuration:",
+            "    Description: \"${3:String}\"",
+            "    DisplayName: \"${4:String}\" # Required",
+            "    FarmId: \"${5:String}\"",
+            "    MaxWorkerCount: ${6:Number} # Required",
+            "    MinWorkerCount: ${7:Number}",
+            "    RoleArn: \"${8:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-fleet.html",
+            "Attributes:\n  Status\n  Capabilities.Amounts\n  Capabilities.Attributes\n  Capabilities\n  FleetId\n  WorkerCount\n  Arn"
+        ],
+        "prefix": "deadline-fleet",
+        "scope": "yaml"
+    },
+    "AWS::Deadline::LicenseEndpoint": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::LicenseEndpoint",
+            "  Properties:",
+            "    SecurityGroupIds: # Required",
+            "      SecurityGroupIds",
+            "    SubnetIds: # Required",
+            "      SubnetIds",
+            "    VpcId: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-licenseendpoint.html",
+            "Attributes:\n  Status\n  DnsName\n  LicenseEndpointId\n  Arn\n  StatusMessage"
+        ],
+        "prefix": "deadline-licenseendpoint",
+        "scope": "yaml"
+    },
+    "AWS::Deadline::MeteredProduct": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::MeteredProduct",
+            "  Properties:",
+            "    Family: \"${2:String}\"",
+            "    LicenseEndpointId: \"${3:String}\"",
+            "    Port: ${4:Number}",
+            "    ProductId: \"${5:String}\"",
+            "    Vendor: \"${6:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-meteredproduct.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "deadline-meteredproduct",
+        "scope": "yaml"
+    },
+    "AWS::Deadline::Queue": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::Queue",
+            "  Properties:",
+            "    AllowedStorageProfileIds: ",
+            "      AllowedStorageProfileIds",
+            "    DefaultBudgetAction: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
+            "    DisplayName: \"${5:String}\" # Required",
+            "    FarmId: \"${6:String}\"",
+            "    JobAttachmentSettings:",
+            "      RootPrefix: \"${7:String}\"",
+            "      S3BucketName: \"${8:String}\"",
+            "    JobRunAsUser:",
+            "      RunAs: \"${9:String}\"",
+            "    RequiredFileSystemLocationNames: ",
+            "      RequiredFileSystemLocationNames",
+            "    RoleArn: \"${10:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queue.html",
+            "Attributes:\n  QueueId\n  Arn"
+        ],
+        "prefix": "deadline-queue",
+        "scope": "yaml"
+    },
+    "AWS::Deadline::QueueEnvironment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::QueueEnvironment",
+            "  Properties:",
+            "    FarmId: \"${2:String}\" # Required",
+            "    Priority: ${3:Number} # Required",
+            "    QueueId: \"${4:String}\" # Required",
+            "    Template: \"${5:String}\" # Required",
+            "    TemplateType: \"${6:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queueenvironment.html",
+            "Attributes:\n  QueueEnvironmentId\n  Name"
+        ],
+        "prefix": "deadline-queueenvironment",
+        "scope": "yaml"
+    },
+    "AWS::Deadline::QueueFleetAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::QueueFleetAssociation",
+            "  Properties:",
+            "    FarmId: \"${2:String}\" # Required",
+            "    FleetId: \"${3:String}\" # Required",
+            "    QueueId: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queuefleetassociation.html"
+        ],
+        "prefix": "deadline-queuefleetassociation",
+        "scope": "yaml"
+    },
+    "AWS::Deadline::StorageProfile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::StorageProfile",
+            "  Properties:",
+            "    DisplayName: \"${2:String}\" # Required",
+            "    FarmId: \"${3:String}\"",
+            "    FileSystemLocations: ",
+            "      FileSystemLocations",
+            "    OsFamily: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-storageprofile.html",
+            "Attributes:\n  StorageProfileId"
+        ],
+        "prefix": "deadline-storageprofile",
+        "scope": "yaml"
+    },
     "AWS::Detective::Graph": {
         "body": [
             "${1:LogicalID}:",
@@ -9291,23 +9612,24 @@
             "    AvailabilityZoneId: \"${4:String}\"",
             "    CidrBlock: \"${5:String}\"",
             "    EnableDns64: ${6|false,true|}",
-            "    Ipv4IpamPoolId: \"${7:String}\"",
-            "    Ipv4NetmaskLength: ${8:Number}",
-            "    Ipv6CidrBlock: \"${9:String}\"",
+            "    EnableLniAtDeviceIndex: ${7:Number}",
+            "    Ipv4IpamPoolId: \"${8:String}\"",
+            "    Ipv4NetmaskLength: ${9:Number}",
+            "    Ipv6CidrBlock: \"${10:String}\"",
             "    Ipv6CidrBlocks: ",
             "      Ipv6CidrBlocks",
-            "    Ipv6IpamPoolId: \"${11:String}\"",
-            "    Ipv6Native: ${12|false,true|}",
-            "    Ipv6NetmaskLength: ${13:Number}",
-            "    MapPublicIpOnLaunch: ${14|false,true|}",
-            "    OutpostArn: \"${15:String}\"",
+            "    Ipv6IpamPoolId: \"${12:String}\"",
+            "    Ipv6Native: ${13|false,true|}",
+            "    Ipv6NetmaskLength: ${14:Number}",
+            "    MapPublicIpOnLaunch: ${15|false,true|}",
+            "    OutpostArn: \"${16:String}\"",
             "    PrivateDnsNameOptionsOnLaunch:",
-            "      EnableResourceNameDnsAAAARecord: ${16|false,true|}",
-            "      EnableResourceNameDnsARecord: ${17|false,true|}",
-            "      HostnameType: \"${18:String}\"",
+            "      EnableResourceNameDnsAAAARecord: ${17|false,true|}",
+            "      EnableResourceNameDnsARecord: ${18|false,true|}",
+            "      HostnameType: \"${19:String}\"",
             "    Tags: ",
             "      Tags",
-            "    VpcId: \"${18:String}\" # Required"
+            "    VpcId: \"${19:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html",
@@ -11594,6 +11916,29 @@
         "prefix": "entityresolution-idmappingworkflow",
         "scope": "yaml"
     },
+    "AWS::EntityResolution::IdNamespace": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EntityResolution::IdNamespace",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    IdMappingWorkflowProperties: ",
+            "      IdMappingWorkflowProperties",
+            "    IdNamespaceName: \"${4:String}\" # Required",
+            "    InputSourceConfig: ",
+            "      InputSourceConfig",
+            "    RoleArn: \"${6:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    Type: \"${8:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-idnamespace.html",
+            "Attributes:\n  CreatedAt\n  UpdatedAt\n  IdNamespaceArn"
+        ],
+        "prefix": "entityresolution-idnamespace",
+        "scope": "yaml"
+    },
     "AWS::EntityResolution::MatchingWorkflow": {
         "body": [
             "${1:LogicalID}:",
@@ -11616,6 +11961,26 @@
             "Attributes:\n  CreatedAt\n  WorkflowArn\n  UpdatedAt"
         ],
         "prefix": "entityresolution-matchingworkflow",
+        "scope": "yaml"
+    },
+    "AWS::EntityResolution::PolicyStatement": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::EntityResolution::PolicyStatement",
+            "  Properties:",
+            "    Action: ",
+            "      Action",
+            "    Arn: \"${3:String}\" # Required",
+            "    Condition: \"${4:String}\"",
+            "    Effect: \"${5:String}\"",
+            "    Principal: ",
+            "      Principal",
+            "    StatementId: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-policystatement.html"
+        ],
+        "prefix": "entityresolution-policystatement",
         "scope": "yaml"
     },
     "AWS::EntityResolution::SchemaMapping": {
@@ -12754,6 +13119,26 @@
             "Attributes:\n  Ipv4Addresses\n  DnsName\n  DualStackDnsName\n  AcceleratorArn\n  Ipv6Addresses"
         ],
         "prefix": "globalaccelerator-accelerator",
+        "scope": "yaml"
+    },
+    "AWS::GlobalAccelerator::CrossAccountAttachment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::GlobalAccelerator::CrossAccountAttachment",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    Principals: ",
+            "      Principals",
+            "    Resources: ",
+            "      Resources",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-globalaccelerator-crossaccountattachment.html",
+            "Attributes:\n  AttachmentArn"
+        ],
+        "prefix": "globalaccelerator-crossaccountattachment",
         "scope": "yaml"
     },
     "AWS::GlobalAccelerator::EndpointGroup": {
@@ -14171,6 +14556,27 @@
         "prefix": "ivs-channel",
         "scope": "yaml"
     },
+    "AWS::IVS::EncoderConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IVS::EncoderConfiguration",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    Video:",
+            "      Bitrate: ${4:Number}",
+            "      Framerate: ${5:Number}",
+            "      Height: ${6:Number}",
+            "      Width: ${7:Number}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-encoderconfiguration.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "ivs-encoderconfiguration",
+        "scope": "yaml"
+    },
     "AWS::IVS::PlaybackKeyPair": {
         "body": [
             "${1:LogicalID}:",
@@ -14186,6 +14592,27 @@
             "Attributes:\n  Fingerprint\n  Arn"
         ],
         "prefix": "ivs-playbackkeypair",
+        "scope": "yaml"
+    },
+    "AWS::IVS::PlaybackRestrictionPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IVS::PlaybackRestrictionPolicy",
+            "  Properties:",
+            "    AllowedCountries: # Required",
+            "      AllowedCountries",
+            "    AllowedOrigins: # Required",
+            "      AllowedOrigins",
+            "    EnableStrictOriginEnforcement: ${4|false,true|}",
+            "    Name: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-playbackrestrictionpolicy.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "ivs-playbackrestrictionpolicy",
         "scope": "yaml"
     },
     "AWS::IVS::RecordingConfiguration": {
@@ -14230,6 +14657,24 @@
             "Attributes:\n  Arn\n  ActiveSessionId"
         ],
         "prefix": "ivs-stage",
+        "scope": "yaml"
+    },
+    "AWS::IVS::StorageConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::IVS::StorageConfiguration",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    S3:",
+            "      BucketName: \"${3:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-storageconfiguration.html",
+            "Attributes:\n  Arn"
+        ],
+        "prefix": "ivs-storageconfiguration",
         "scope": "yaml"
     },
     "AWS::IVS::StreamKey": {
@@ -19178,21 +19623,23 @@
             "${1:LogicalID}:",
             "  Type: AWS::MediaTailor::Channel",
             "  Properties:",
-            "    ChannelName: \"${2:String}\" # Required",
+            "    Audiences: ",
+            "      Audiences",
+            "    ChannelName: \"${3:String}\" # Required",
             "    FillerSlate:",
-            "      SourceLocationName: \"${3:String}\"",
-            "      VodSourceName: \"${4:String}\"",
+            "      SourceLocationName: \"${4:String}\"",
+            "      VodSourceName: \"${5:String}\"",
             "    LogConfiguration:",
             "      LogTypes:",
             "        -",
             "    Outputs: # Required",
             "      Outputs",
-            "    PlaybackMode: \"${6:String}\" # Required",
+            "    PlaybackMode: \"${7:String}\" # Required",
             "    Tags: ",
             "      Tags",
-            "    Tier: \"${8:String}\"",
+            "    Tier: \"${9:String}\"",
             "    TimeShiftConfiguration:",
-            "      MaxTimeDelaySeconds: ${9:Number}"
+            "      MaxTimeDelaySeconds: ${10:Number}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-channel.html",
@@ -22029,16 +22476,19 @@
             "${1:LogicalID}:",
             "  Type: AWS::RDS::CustomDBEngineVersion",
             "  Properties:",
-            "    DatabaseInstallationFilesS3BucketName: \"${2:String}\" # Required",
+            "    DatabaseInstallationFilesS3BucketName: \"${2:String}\"",
             "    DatabaseInstallationFilesS3Prefix: \"${3:String}\"",
             "    Description: \"${4:String}\"",
             "    Engine: \"${5:String}\" # Required",
             "    EngineVersion: \"${6:String}\" # Required",
-            "    KMSKeyId: \"${7:String}\"",
-            "    Manifest: \"${8:String}\"",
-            "    Status: \"${9:String}\"",
+            "    ImageId: \"${7:String}\"",
+            "    KMSKeyId: \"${8:String}\"",
+            "    Manifest: \"${9:String}\"",
+            "    SourceCustomDbEngineVersionIdentifier: \"${10:String}\"",
+            "    Status: \"${11:String}\"",
             "    Tags: ",
-            "      Tags"
+            "      Tags",
+            "    UseAwsProvidedLatestImage: ${13|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-customdbengineversion.html",
@@ -22441,12 +22891,14 @@
             "  Type: AWS::RDS::Integration",
             "  Properties:",
             "    AdditionalEncryptionContext:",
-            "    IntegrationName: \"${3:String}\"",
-            "    KMSKeyId: \"${4:String}\"",
-            "    SourceArn: \"${5:String}\" # Required",
+            "    DataFilter: \"${3:String}\"",
+            "    Description: \"${4:String}\"",
+            "    IntegrationName: \"${5:String}\"",
+            "    KMSKeyId: \"${6:String}\"",
+            "    SourceArn: \"${7:String}\" # Required",
             "    Tags: ",
             "      Tags",
-            "    TargetArn: \"${7:String}\" # Required"
+            "    TargetArn: \"${9:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-integration.html",
@@ -24944,6 +25396,7 @@
             "  Type: AWS::SageMaker::AppImageConfig",
             "  Properties:",
             "    AppImageConfigName: \"${2:String}\" # Required",
+            "    CodeEditorAppImageConfig:",
             "    JupyterLabAppImageConfig:",
             "    KernelGatewayImageConfig:",
             "      KernelSpecs:",
@@ -25977,6 +26430,20 @@
         "prefix": "securityhub-automationrule",
         "scope": "yaml"
     },
+    "AWS::SecurityHub::DelegatedAdmin": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::DelegatedAdmin",
+            "  Properties:",
+            "    AdminAccountId: \"${2:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-delegatedadmin.html",
+            "Attributes:\n  Status\n  DelegatedAdminIdentifier"
+        ],
+        "prefix": "securityhub-delegatedadmin",
+        "scope": "yaml"
+    },
     "AWS::SecurityHub::Hub": {
         "body": [
             "${1:LogicalID}:",
@@ -25994,6 +26461,236 @@
         "prefix": "securityhub-hub",
         "scope": "yaml"
     },
+    "AWS::SecurityHub::Insight": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::Insight",
+            "  Properties:",
+            "    Filters:",
+            "      AwsAccountId:",
+            "        -",
+            "      AwsAccountName:",
+            "        -",
+            "      CompanyName:",
+            "        -",
+            "      ComplianceAssociatedStandardsId:",
+            "        -",
+            "      ComplianceSecurityControlId:",
+            "        -",
+            "      ComplianceSecurityControlParametersName:",
+            "        -",
+            "      ComplianceSecurityControlParametersValue:",
+            "        -",
+            "      ComplianceStatus:",
+            "        -",
+            "      Confidence:",
+            "        -",
+            "      CreatedAt:",
+            "        -",
+            "      Criticality:",
+            "        -",
+            "      Description:",
+            "        -",
+            "      FindingProviderFieldsConfidence:",
+            "        -",
+            "      FindingProviderFieldsCriticality:",
+            "        -",
+            "      FindingProviderFieldsRelatedFindingsId:",
+            "        -",
+            "      FindingProviderFieldsRelatedFindingsProductArn:",
+            "        -",
+            "      FindingProviderFieldsSeverityLabel:",
+            "        -",
+            "      FindingProviderFieldsSeverityOriginal:",
+            "        -",
+            "      FindingProviderFieldsTypes:",
+            "        -",
+            "      FirstObservedAt:",
+            "        -",
+            "      GeneratorId:",
+            "        -",
+            "      Id:",
+            "        -",
+            "      LastObservedAt:",
+            "        -",
+            "      MalwareName:",
+            "        -",
+            "      MalwarePath:",
+            "        -",
+            "      MalwareState:",
+            "        -",
+            "      MalwareType:",
+            "        -",
+            "      NetworkDestinationDomain:",
+            "        -",
+            "      NetworkDestinationIpV4:",
+            "        -",
+            "      NetworkDestinationIpV6:",
+            "        -",
+            "      NetworkDestinationPort:",
+            "        -",
+            "      NetworkDirection:",
+            "        -",
+            "      NetworkProtocol:",
+            "        -",
+            "      NetworkSourceDomain:",
+            "        -",
+            "      NetworkSourceIpV4:",
+            "        -",
+            "      NetworkSourceIpV6:",
+            "        -",
+            "      NetworkSourceMac:",
+            "        -",
+            "      NetworkSourcePort:",
+            "        -",
+            "      NoteText:",
+            "        -",
+            "      NoteUpdatedAt:",
+            "        -",
+            "      NoteUpdatedBy:",
+            "        -",
+            "      ProcessLaunchedAt:",
+            "        -",
+            "      ProcessName:",
+            "        -",
+            "      ProcessParentPid:",
+            "        -",
+            "      ProcessPath:",
+            "        -",
+            "      ProcessPid:",
+            "        -",
+            "      ProcessTerminatedAt:",
+            "        -",
+            "      ProductArn:",
+            "        -",
+            "      ProductFields:",
+            "        -",
+            "      ProductName:",
+            "        -",
+            "      RecommendationText:",
+            "        -",
+            "      RecordState:",
+            "        -",
+            "      Region:",
+            "        -",
+            "      RelatedFindingsId:",
+            "        -",
+            "      RelatedFindingsProductArn:",
+            "        -",
+            "      ResourceApplicationArn:",
+            "        -",
+            "      ResourceApplicationName:",
+            "        -",
+            "      ResourceAwsEc2InstanceIamInstanceProfileArn:",
+            "        -",
+            "      ResourceAwsEc2InstanceImageId:",
+            "        -",
+            "      ResourceAwsEc2InstanceIpV4Addresses:",
+            "        -",
+            "      ResourceAwsEc2InstanceIpV6Addresses:",
+            "        -",
+            "      ResourceAwsEc2InstanceKeyName:",
+            "        -",
+            "      ResourceAwsEc2InstanceLaunchedAt:",
+            "        -",
+            "      ResourceAwsEc2InstanceSubnetId:",
+            "        -",
+            "      ResourceAwsEc2InstanceType:",
+            "        -",
+            "      ResourceAwsEc2InstanceVpcId:",
+            "        -",
+            "      ResourceAwsIamAccessKeyCreatedAt:",
+            "        -",
+            "      ResourceAwsIamAccessKeyPrincipalName:",
+            "        -",
+            "      ResourceAwsIamAccessKeyStatus:",
+            "        -",
+            "      ResourceAwsIamUserUserName:",
+            "        -",
+            "      ResourceAwsS3BucketOwnerId:",
+            "        -",
+            "      ResourceAwsS3BucketOwnerName:",
+            "        -",
+            "      ResourceContainerImageId:",
+            "        -",
+            "      ResourceContainerImageName:",
+            "        -",
+            "      ResourceContainerLaunchedAt:",
+            "        -",
+            "      ResourceContainerName:",
+            "        -",
+            "      ResourceDetailsOther:",
+            "        -",
+            "      ResourceId:",
+            "        -",
+            "      ResourcePartition:",
+            "        -",
+            "      ResourceRegion:",
+            "        -",
+            "      ResourceTags:",
+            "        -",
+            "      ResourceType:",
+            "        -",
+            "      Sample:",
+            "        -",
+            "      SeverityLabel:",
+            "        -",
+            "      SourceUrl:",
+            "        -",
+            "      ThreatIntelIndicatorCategory:",
+            "        -",
+            "      ThreatIntelIndicatorLastObservedAt:",
+            "        -",
+            "      ThreatIntelIndicatorSource:",
+            "        -",
+            "      ThreatIntelIndicatorSourceUrl:",
+            "        -",
+            "      ThreatIntelIndicatorType:",
+            "        -",
+            "      ThreatIntelIndicatorValue:",
+            "        -",
+            "      Title:",
+            "        -",
+            "      Type:",
+            "        -",
+            "      UpdatedAt:",
+            "        -",
+            "      UserDefinedFields:",
+            "        -",
+            "      VerificationState:",
+            "        -",
+            "      VulnerabilitiesExploitAvailable:",
+            "        -",
+            "      VulnerabilitiesFixAvailable:",
+            "        -",
+            "      WorkflowState:",
+            "        -",
+            "      WorkflowStatus:",
+            "        -",
+            "    GroupByAttribute: \"${3:String}\" # Required",
+            "    Name: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-insight.html",
+            "Attributes:\n  InsightArn"
+        ],
+        "prefix": "securityhub-insight",
+        "scope": "yaml"
+    },
+    "AWS::SecurityHub::ProductSubscription": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::ProductSubscription",
+            "  Properties:",
+            "    ProductArn: \"${2:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-productsubscription.html",
+            "Attributes:\n  ProductSubscriptionArn"
+        ],
+        "prefix": "securityhub-productsubscription",
+        "scope": "yaml"
+    },
     "AWS::SecurityHub::Standard": {
         "body": [
             "${1:LogicalID}:",
@@ -26008,6 +26705,73 @@
             "Attributes:\n  StandardsSubscriptionArn"
         ],
         "prefix": "securityhub-standard",
+        "scope": "yaml"
+    },
+    "AWS::SecurityLake::AwsLogSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityLake::AwsLogSource",
+            "  Properties:",
+            "    Accounts: ",
+            "      Accounts",
+            "    DataLakeArn: \"${3:String}\" # Required",
+            "    SourceName: \"${4:String}\" # Required",
+            "    SourceVersion: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-awslogsource.html"
+        ],
+        "prefix": "securitylake-awslogsource",
+        "scope": "yaml"
+    },
+    "AWS::SecurityLake::DataLake": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityLake::DataLake",
+            "  Properties:",
+            "    EncryptionConfiguration:",
+            "      KmsKeyId: \"${2:String}\"",
+            "    LifecycleConfiguration:",
+            "      Transitions:",
+            "        -",
+            "    MetaStoreManagerRoleArn: \"${4:String}\"",
+            "    ReplicationConfiguration:",
+            "      Regions:",
+            "        -",
+            "      RoleArn: \"${6:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-datalake.html",
+            "Attributes:\n  S3BucketArn\n  Arn"
+        ],
+        "prefix": "securitylake-datalake",
+        "scope": "yaml"
+    },
+    "AWS::SecurityLake::Subscriber": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityLake::Subscriber",
+            "  Properties:",
+            "    AccessTypes: # Required",
+            "      AccessTypes",
+            "    DataLakeArn: \"${3:String}\" # Required",
+            "    Sources: # Required",
+            "      Sources",
+            "    SubscriberDescription: \"${5:String}\"",
+            "    SubscriberIdentity:",
+            "      ExternalId: \"${6:String}\"",
+            "      Principal: \"${7:String}\"",
+            "    SubscriberName: \"${7:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-subscriber.html",
+            "Attributes:\n  ResourceShareName\n  SubscriberRoleArn\n  ResourceShareArn\n  SubscriberArn\n  S3BucketArn"
+        ],
+        "prefix": "securitylake-subscriber",
         "scope": "yaml"
     },
     "AWS::ServiceCatalog::AcceptedPortfolioShare": {
