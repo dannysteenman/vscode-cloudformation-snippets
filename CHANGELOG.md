@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+4.50.0 (2024-04-05)
+-------------------
+- The following resources were added: <code
+  class="code">AWS::Bedrock::Agent</code>, <code
+  class="code">AWS::Bedrock::AgentAlias</code>, <code
+  class="code">AWS::Bedrock::KnowledgeBase</code>, and <code
+  class="code">AWS::Bedrock::DataSource</code>. [Github Actions]
+
+
 4.49.0 (2024-03-29)
 -------------------
 - The following resource was updated: AWS::CloudWatch::AnomalyDetector
