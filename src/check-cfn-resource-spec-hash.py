@@ -1,4 +1,5 @@
 import hashlib
+
 import requests
 
 
@@ -17,9 +18,7 @@ with open("src/current-cfn-spec-hash", "r+") as file:
     new_hash = hashlib.md5(get_resource_spec().content).hexdigest()
 
     if new_hash == current_hash:
-        print(
-            f"The new hash: {new_hash} matches with our current hash: {current_hash}."
-        )
+        print(f"The new hash: {new_hash} matches with our current hash: {current_hash}.")
         print("The snippets are up-to-date, stopping the pipeline.")
         exit(1)
     else:

@@ -1,0 +1,272 @@
+{
+  "AWS::Serverless::Api": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::Api",
+      "  Properties:",
+      "    AccessLogSetting: ${2:AccessLogSetting}",
+      "    AlwaysDeploy: ${3:Boolean}",
+      "    ApiKeySourceType: \"${4:String}\"",
+      "    Auth: ${5:ApiAuth}",
+      "    BinaryMediaTypes: ${6:List}",
+      "    CacheClusterEnabled: ${7:Boolean}",
+      "    CacheClusterSize: \"${8:String}\"",
+      "    CanarySetting: ${9:CanarySetting}",
+      "    Cors: ${10:String|CorsConfiguration}",
+      "    DefinitionBody: ${11:JSON}",
+      "    DefinitionUri: ${12:String|ApiDefinition}",
+      "    Description: \"${13:String}\"",
+      "    DisableExecuteApiEndpoint: ${14:Boolean}",
+      "    Domain: ${15:DomainConfiguration}",
+      "    EndpointConfiguration: ${16:EndpointConfiguration}",
+      "    FailOnWarnings: ${17:Boolean}",
+      "    GatewayResponses: ${18:Map}",
+      "    MergeDefinitions: ${19:Boolean}",
+      "    MethodSettings: ${20:MethodSettings}",
+      "    MinimumCompressionSize: ${21:Number}",
+      "    Mode: \"${22:String}\"",
+      "    Models: ${23:Map}",
+      "    Name: \"${24:String}\"",
+      "    OpenApiVersion: \"${25:String}\"",
+      "    PropagateTags: ${26:Boolean}",
+      "    StageName: \"${27:String}\" # Required",
+      "    Tags: ${28:Map}",
+      "    TracingEnabled: ${29:Boolean}",
+      "    Variables: ${30:Map}"
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-gatewayresponses",
+      "Creates a collection of Amazon API Gateway resources and methods that can be invoked through HTTPS endpoints."
+    ],
+    "prefix": "serverless-api",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::Application": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::Application",
+      "  Properties:",
+      "    Location: \"${2:String|ApplicationLocationObject}\" # Required",
+      "    NotificationARNs: ${3:List}",
+      "    Parameters: ${4:Map}",
+      "    Tags: ${5:Map}",
+      "    TimeoutInMinutes: ${6:Number}"
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-application.html",
+      "Embeds a serverless application from the AWS Serverless Application Repository or from an Amazon S3 bucket as a nested application."
+    ],
+    "prefix": "serverless-application",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::Connector": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::Connector",
+      "  Properties:",
+      "    Destination:",
+      "      Arn: \"${2:String}\"",
+      "      Id: \"${3:String}\"",
+      "      Name: \"${4:String}\"",
+      "      Qualifier: \"${5:String}\"",
+      "      QueueUrl: \"${6:String}\"",
+      "      ResourceId: \"${7:String}\"",
+      "      RoleName: \"${8:String}\"",
+      "      Type: \"${9:String}\"",
+      "    Permissions: \"${10:List}\" # Required",
+      "    Source:",
+      "      Arn: \"${11:String}\"",
+      "      Id: \"${12:String}\"",
+      "      Name: \"${13:String}\"",
+      "      Qualifier: \"${14:String}\"",
+      "      QueueUrl: \"${15:String}\"",
+      "      ResourceId: \"${16:String}\"",
+      "      RoleName: \"${17:String}\"",
+      "      Type: \"${18:String}\""
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-connector.html",
+      "Configures permissions between two resources"
+    ],
+    "prefix": "serverless-connector",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::Function": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::Function",
+      "  Properties:",
+      "    Architectures: ${2:List}",
+      "    AssumeRolePolicyDocument: ${3:JSON}",
+      "    AutoPublishAlias: \"${4:String}\"",
+      "    AutoPublishAliasAllProperties: ${5:Boolean}",
+      "    AutoPublishCodeSha256: \"${6:String}\"",
+      "    CodeSigningConfigArn: \"${7:String}\"",
+      "    CodeUri: ${8:String|FunctionCode}",
+      "    DeadLetterQueue: ${9:Map|DeadLetterQueue}",
+      "    DeploymentPreference: ${10:DeploymentPreference}",
+      "    Description: \"${11:String}\"",
+      "    Environment: ${12:Environment}",
+      "    EphemeralStorage: ${13:EphemeralStorage}",
+      "    EventInvokeConfig: ${14:EventInvokeConfiguration}",
+      "    Events: ${15:EventSource}",
+      "    FileSystemConfigs: ${16:List}",
+      "    FunctionName: \"${17:String}\"",
+      "    FunctionUrlConfig: ${18:FunctionUrlConfig}",
+      "    Handler: \"${19:String}\"",
+      "    ImageConfig: ${20:ImageConfig}",
+      "    ImageUri: \"${21:String}\"",
+      "    InlineCode: \"${22:String}\"",
+      "    KmsKeyArn: \"${23:String}\"",
+      "    Layers: ${24:List}",
+      "    LoggingConfig: ${25:LoggingConfig}",
+      "    MemorySize: ${26:Number}",
+      "    PackageType: \"${27:String}\"",
+      "    PermissionsBoundary: \"${28:String}\"",
+      "    Policies: ${29:String|List|Map}",
+      "    PropagateTags: ${30:Boolean}",
+      "    ProvisionedConcurrencyConfig: ${31:ProvisionedConcurrencyConfig}",
+      "    ReservedConcurrentExecutions: ${32:Number}",
+      "    Role: \"${33:String}\"",
+      "    RolePath: \"${34:String}\"",
+      "    Runtime: \"${35:String}\"",
+      "    RuntimeManagementConfig: ${36:RuntimeManagementConfig}",
+      "    SnapStart: ${37:SnapStart}",
+      "    Tags: ${38:Map}",
+      "    Timeout: ${39:Number}",
+      "    Tracing: \"${40:String}\"",
+      "    VersionDescription: \"${41:String}\"",
+      "    VpcConfig: ${42:VpcConfig}"
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html",
+      "Creates an AWS Lambda function, an AWS Identity and Access Management (IAM) execution role, and event source mappings that trigger the function."
+    ],
+    "prefix": "serverless-function",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::GraphQLApi": {
+    "body": [
+      "${1:LogicalId}:",
+      "  Type: AWS::Serverless::GraphQLApi",
+      "  Properties:",
+      "    ApiKeys: ${2:ApiKeys}",
+      "    Auth: \"${3:Auth}\" # Required",
+      "    Cache: ${4:AWS::AppSync::ApiCache}",
+      "    DataSources: \"${5:DataSource}\" # Required",
+      "    DomainName: ${6:AWS::AppSync::DomainName}",
+      "    Functions: \"${7:Function}\" # Required",
+      "    Logging: ${8:LogConfig}",
+      "    Name: \"${9:String}\"",
+      "    Resolvers: \"${10:Resolver}\" # Required",
+      "    SchemaInline: \"${11:String}\"",
+      "    SchemaUri: \"${12:String}\"",
+      "    Tags:",
+      "      - ${13:Tag}",
+      "    XrayEnabled: ${14:Boolean}"
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-graphqlapi.html",
+      "Use the AWS Serverless Application Model (AWS SAM) AWS::Serverless::GraphQLApi resource type to create and configure an AWS AppSync GraphQL API for your serverless application."
+    ],
+    "prefix": "serverless-graphqlapi",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::HttpApi": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::HttpApi",
+      "  Properties:",
+      "    AccessLogSettings: ${2:AccessLogSettings}",
+      "    Auth: ${3:HttpApiAuth}",
+      "    CorsConfiguration: ${4:String|HttpApiCorsConfiguration}",
+      "    DefaultRouteSettings: ${5:RouteSettings}",
+      "    DefinitionBody: ${6:JSON}",
+      "    DefinitionUri: ${7:String|HttpApiDefinition}",
+      "    Description: \"${8:String}\"",
+      "    DisableExecuteApiEndpoint: ${9:Boolean}",
+      "    Domain: ${10:HttpApiDomainConfiguration}",
+      "    FailOnWarnings: ${11:Boolean}",
+      "    Name: \"${12:String}\"",
+      "    PropagateTags: ${13:Boolean}",
+      "    RouteSettings: ${14:RouteSettings}",
+      "    StageName: \"${15:String}\"",
+      "    StageVariables: ${16:Json}",
+      "    Tags: ${17:Map}"
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-httpapi.html",
+      "Creates an Amazon API Gateway HTTP API, which enables you to create RESTful APIs with lower latency and lower costs than REST APIs."
+    ],
+    "prefix": "serverless-httpapi",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::LayerVersion": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::LayerVersion",
+      "  Properties:",
+      "    CompatibleArchitectures: ${2:List}",
+      "    CompatibleRuntimes: ${3:List}",
+      "    ContentUri: \"${4:String|LayerContent}\" # Required",
+      "    Description: \"${5:String}\"",
+      "    LayerName: \"${6:String}\"",
+      "    LicenseInfo: \"${7:String}\"",
+      "    RetentionPolicy: \"${8:String}\""
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-layerversion.html",
+      "Creates a Lambda LayerVersion that contains library or runtime code needed by a Lambda Function."
+    ],
+    "prefix": "serverless-layerversion",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::SimpleTable": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::SimpleTable",
+      "  Properties:",
+      "    PointInTimeRecoverySpecification: ${2:PointInTimeRecoverySpecification}",
+      "    PrimaryKey: ${3:PrimaryKeyObject}",
+      "    ProvisionedThroughput: ${4:ProvisionedThroughput}",
+      "    SSESpecification: ${5:SSESpecification}",
+      "    TableName: \"${6:String}\"",
+      "    Tags: ${7:Map}"
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html",
+      "Creates a DynamoDB table with a single attribute primary key. It is useful when data only needs to be accessed via a primary key."
+    ],
+    "prefix": "serverless-simpletable",
+    "scope": "yaml"
+  },
+  "AWS::Serverless::StateMachine": {
+    "body": [
+      "${1:LogicalID}:",
+      "  Type: AWS::Serverless::StateMachine",
+      "  Properties:",
+      "    AutoPublishAlias: \"${2:String}\"",
+      "    Definition: ${3:Map}",
+      "    DefinitionSubstitutions: ${4:Map}",
+      "    DefinitionUri: ${5:String|S3Location}",
+      "    DeploymentPreference: ${6:DeploymentPreference}",
+      "    Events: ${7:EventSource}",
+      "    Logging: ${8:LoggingConfiguration}",
+      "    Name: \"${9:String}\"",
+      "    PermissionsBoundary: \"${10:String}\"",
+      "    Policies: ${11:String|List|Map}",
+      "    PropagateTags: ${12:Boolean}",
+      "    RolePath: \"${13:String}\"",
+      "    Role: \"${14:String}\"",
+      "    Tags: ${15:Map}",
+      "    Tracing: ${16:TracingConfiguration}",
+      "    Type: \"${17:String}\""
+    ],
+    "description": [
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html",
+      "Creates an AWS Step Functions state machine, which you can use to orchestrate AWS Lambda functions and other AWS resources to form complex and robust workflows."
+    ],
+    "prefix": "serverless-statemachine",
+    "scope": "yaml"
+  }
+}

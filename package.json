@@ -3,11 +3,11 @@
   "displayName": "CloudFormation Snippets",
   "description": "This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.",
   "author": "Danny Steenman",
-  "version": "4.50.0",
+  "version": "5.0.0",
   "publisher": "dannysteenman",
   "icon": "images/cfn-snippets-extension-icon.png",
   "homepage": "https://towardsthecloud.com",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dannysteenman/vscode-cloudformation-snippets.git"
@@ -19,16 +19,8 @@
     "color": "#2B2C33",
     "theme": "dark"
   },
-  "categories": [
-    "Snippets"
-  ],
-  "keywords": [
-    "aws",
-    "cloudformation",
-    "template",
-    "yaml",
-    "yml"
-  ],
+  "categories": ["Snippets"],
+  "keywords": ["aws", "cloudformation", "sam", "template", "yml"],
   "badges": [
     {
       "url": "https://img.shields.io/visual-studio-marketplace/v/dannysteenman.cloudformation-yaml-snippets",
@@ -54,7 +46,7 @@
       },
       {
         "language": "json",
-        "path": "./snippets/json-resource-types.json"
+        "path": "./snippets/json-cfn-resource-types.json"
       },
       {
         "language": "yaml",
@@ -74,7 +66,11 @@
       },
       {
         "language": "yaml",
-        "path": "./snippets/yaml-resource-types.json"
+        "path": "./snippets/yaml-cfn-resource-types.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml-sam-resource-types.json"
       }
     ]
   }
