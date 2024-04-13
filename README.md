@@ -1,4 +1,4 @@
-# CloudFormation Snippets for VS Code
+# AWS CloudFormation Snippets for VS Code
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/dannysteenman.cloudformation-yaml-snippets 'Current Release')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/dannysteenman.cloudformation-yaml-snippets 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
@@ -88,7 +88,7 @@ Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-clo
 ---
 ## Author
 
-**[Danny Steenman](https://towardsthecloud.com)**
+**[Danny Steenman](https://github.com/dannysteenman)**
 
 <p align="left">
   <a href="https://twitter.com/dannysteenman"><img src="https://img.shields.io/twitter/follow/dannysteenman?label=%40dannysteenman&style=social"></a>
