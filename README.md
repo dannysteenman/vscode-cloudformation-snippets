@@ -55,7 +55,7 @@ This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & 
 5. Utilizes placeholders for quick navigation within the properties of each resource.
 6. Provides documentation links for each resource.
 7. Automatically updates weekly with the latest [CloudFormation Resource Specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
-8. Available on the [Open VSX Registry](https://open-vsx.org/extension/dsteenman/cloudformation-yaml-snippets) for [Gitpod support.](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14)
+8. Available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) for [Gitpod support.](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14)
 
 ## Usage
 
