@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+5.2.0 (2024-04-13)
+------------------
+- The following resources were added: <code
+  class="code">AWS::SecurityLake::AwsLogSource</code>, <code
+  class="code">AWS::SecurityLake::DataLake</code>, <code
+  class="code">AWS::SecurityLake::Subscriber</code>. [Github Actions]
+- Chore: enable publish task to open vsx registry. [Danny Steenman]
+
+
 5.1.0 (2024-04-13)
 ------------------
 - The following resources were added: <code
