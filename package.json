@@ -1,7 +1,7 @@
 {
   "name": "cloudformation-yaml-snippets",
   "displayName": "CloudFormation Snippets",
-  "description": "This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.",
+  "description": "Adds snippets for all the AWS CloudFormation resources in VS Code.",
   "author": "Danny Steenman",
   "version": "5.2.0",
   "publisher": "dannysteenman",
