@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+5.1.0 (2024-04-13)
+------------------
+- The following resources were added: <code
+  class="code">AWS::SecurityLake::AwsLogSource</code>, <code
+  class="code">AWS::SecurityLake::DataLake</code>, <code
+  class="code">AWS::SecurityLake::Subscriber</code>. [Github Actions]
+- Feat: Add support for AWS SAM resources. [Danny Steenman]
+
+
 4.50.0 (2024-04-05)
 -------------------
 - The following resources were added: <code
