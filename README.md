@@ -4,7 +4,7 @@
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/dannysteenman.cloudformation-yaml-snippets 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
 [![Rating](https://img.shields.io/visual-studio-marketplace/stars/dannysteenman.cloudformation-yaml-snippets)](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
 
-This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & AWS SAM resources into Visual Studio Code.
+This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & AWS Serverless Application Model (SAM) resources into Visual Studio Code.
 
 > [!TIP]
 > If you're looking for expertise to elevate your cloud infrastructure, then don't hesitate to get in [touch with me](https://towardsthecloud.com/contact)!
@@ -48,14 +48,14 @@ This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & 
 
 ## Features
 
-1. Contains snippets for **all AWS CloudFormation and SAM resources**.
-2. Supports both YAML and JSON CloudFormation templates.
-3. Autocomplete by typing the resource name, e.g., `ec2-instance` loads a snippet for `AWS::EC2::Instance`.
-4. Includes intrinsic functions, conditions, and a variety of parameter types.
-5. Utilizes placeholders for quick navigation within the properties of each resource.
-6. Provides documentation links for each resource.
-7. Automatically updates weekly with the latest [CloudFormation Resource Specification.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html)
-8. Available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) for [Gitpod support.](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14)
+1. **Comprehensive Coverage**: Offers snippets for every AWS CloudFormation and AWS SAM resource available.
+2. **Flexible Template Support**: Seamlessly works with both YAML and JSON CloudFormation templates.
+3. **Efficient Autocomplete**: Simply type the resource name (e.g., `ec2-instance`) to instantly load the corresponding snippet for `AWS::EC2::Instance`.
+4. **Rich Feature Set**: Incorporates intrinsic functions, conditions, and diverse parameter types for robust template creation.
+5. **Enhanced Navigation**: Features placeholders that enable swift movement through resource properties.
+6. **Resource Documentation**: Each snippet is linked to its official AWS documentation, providing quick access to detailed information.
+7. **Up-to-Date**: Regularly refreshed on a weekly basis to reflect the latest [CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html).
+8. **Gitpod Ready**: Made available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) to ensure compatibility with [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14).
 
 ## Usage
 
@@ -72,20 +72,17 @@ This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & 
 ---
 ## AWS CloudFormation Attributes (GetAtt) Cheat Sheet
 
-It can be difficult to find out which attributes are available for each AWS CloudFormation resource type. Therefore I made an [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/aws-cloudformation-resource-attributes) that lists the attributes in a single table overview to easily find the attributes.
+Are you tired of endlessly searching for the available attributes of AWS CloudFormation resource types? Look no further!
+
+I've created the ultimate [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/aws-cloudformation-resource-attributes), designed to save you time and streamline your CloudFormation projects.
+
+This comprehensive guide provides a single table overview of all available (900+) AWS resource types and their attributes, making it easier than ever to find the information you need. Whether a resource type has attributes or not, you'll know immediately with a clear "❌" mark for those without.
 
 ---
 ## Support
 
 If you have a feature request or an issue, please let me know on [Github](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues)
 
-## Contributing
-
-If you want to add more snippets, your contribution is more than welcome!
-
-Review the [Contributing Guidelines](https://github.com/dannysteenman/vscode-cloudformation-snippets/blob/main/.github/CONTRIBUTING.md).
-
----
 ## Author
 
 **[Danny Steenman](https://github.com/dannysteenman)**
