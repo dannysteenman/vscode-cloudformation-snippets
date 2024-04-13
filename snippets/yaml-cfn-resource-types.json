@@ -3794,6 +3794,27 @@
         "prefix": "cleanrooms-membership",
         "scope": "yaml"
     },
+    "AWS::CleanRooms::PrivacyBudgetTemplate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::CleanRooms::PrivacyBudgetTemplate",
+            "  Properties:",
+            "    AutoRefresh: \"${2:String}\" # Required",
+            "    MembershipIdentifier: \"${3:String}\" # Required",
+            "    Parameters:",
+            "      Epsilon: ${4:Number}",
+            "      UsersNoisePerQuery: ${5:Number}",
+            "    PrivacyBudgetType: \"${5:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-privacybudgettemplate.html",
+            "Attributes:\n  CollaborationIdentifier\n  MembershipArn\n  PrivacyBudgetTemplateIdentifier\n  Arn\n  CollaborationArn"
+        ],
+        "prefix": "cleanrooms-privacybudgettemplate",
+        "scope": "yaml"
+    },
     "AWS::CleanRoomsML::TrainingDataset": {
         "body": [
             "${1:LogicalID}:",
@@ -4546,19 +4567,21 @@
             "      MetricTimeZone: \"${3:String}\"",
             "    Dimensions: ",
             "      Dimensions",
+            "    MetricCharacteristics:",
+            "      PeriodicSpikes: ${4|false,true|}",
             "    MetricMathAnomalyDetector:",
             "      MetricDataQueries:",
             "        -",
-            "    MetricName: \"${5:String}\"",
-            "    Namespace: \"${6:String}\"",
+            "    MetricName: \"${6:String}\"",
+            "    Namespace: \"${7:String}\"",
             "    SingleMetricAnomalyDetector:",
-            "      AccountId: \"${7:String}\"",
+            "      AccountId: \"${8:String}\"",
             "      Dimensions:",
             "        -",
-            "      MetricName: \"${9:String}\"",
-            "      Namespace: \"${10:String}\"",
-            "      Stat: \"${11:String}\"",
-            "    Stat: \"${8:String}\""
+            "      MetricName: \"${10:String}\"",
+            "      Namespace: \"${11:String}\"",
+            "      Stat: \"${12:String}\"",
+            "    Stat: \"${9:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-anomalydetector.html"
@@ -8569,11 +8592,12 @@
             "  Type: AWS::EC2::CustomerGateway",
             "  Properties:",
             "    BgpAsn: ${2:Number} # Required",
-            "    DeviceName: \"${3:String}\"",
-            "    IpAddress: \"${4:String}\" # Required",
+            "    CertificateArn: \"${3:String}\"",
+            "    DeviceName: \"${4:String}\"",
+            "    IpAddress: \"${5:String}\" # Required",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${6:String}\" # Required"
+            "    Type: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html",
@@ -27874,7 +27898,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-verifiedpermissions-identitysource.html",
-            "Attributes:\n  Details.DiscoveryUrl\n  Details\n  Details.ClientIds\n  Details.UserPoolArn\n  Details.OpenIdIssuer\n  IdentitySourceId"
+            "Attributes:\n  IdentitySourceId"
         ],
         "prefix": "verifiedpermissions-identitysource",
         "scope": "yaml"

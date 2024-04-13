@@ -3,7 +3,7 @@
   "displayName": "CloudFormation Snippets",
   "description": "This extension adds snippets for all the AWS CloudFormation resources into Visual Studio Code.",
   "author": "Danny Steenman",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "publisher": "dannysteenman",
   "icon": "images/cfn-snippets-extension-icon.png",
   "homepage": "https://towardsthecloud.com",
@@ -19,8 +19,16 @@
     "color": "#2B2C33",
     "theme": "dark"
   },
-  "categories": ["Snippets"],
-  "keywords": ["aws", "cloudformation", "sam", "template", "yml"],
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "aws",
+    "cloudformation",
+    "sam",
+    "template",
+    "yml"
+  ],
   "badges": [
     {
       "url": "https://img.shields.io/visual-studio-marketplace/v/dannysteenman.cloudformation-yaml-snippets",
