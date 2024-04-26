@@ -1678,6 +1678,9 @@
             "    \"Description\": \"${3:String}\",",
             "    \"Name\": \"${4:String}\",",
             "    \"Namespace\": \"${5:String}\",",
+            "    \"Permissions\": [",
+            "      \"Permissions\"",
+            "    ],",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -9945,13 +9948,14 @@
             "  \"Type\": \"AWS::EC2::CustomerGateway\",",
             "  \"Properties\": {",
             "    \"BgpAsn\": \"${2:Number}\",",
-            "    \"CertificateArn\": \"${3:String}\",",
-            "    \"DeviceName\": \"${4:String}\",",
-            "    \"IpAddress\": \"${5:String}\",",
+            "    \"BgpAsnExtended\": \"${3:Number}\",",
+            "    \"CertificateArn\": \"${4:String}\",",
+            "    \"DeviceName\": \"${5:String}\",",
+            "    \"IpAddress\": \"${6:String}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ],",
-            "    \"Type\": \"${7:String}\"",
+            "    \"Type\": \"${8:String}\"",
             "  }",
             "}"
         ],
@@ -12190,6 +12194,36 @@
             "Attributes:\n  RepositoryUri\n  Arn"
         ],
         "prefix": "ecr-repository",
+        "scope": "json"
+    },
+    "AWS::ECR::RepositoryCreationTemplate": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::ECR::RepositoryCreationTemplate\",",
+            "  \"Properties\": {",
+            "    \"AppliedFor\": [",
+            "      \"AppliedFor\"",
+            "    ],",
+            "    \"Description\": \"${3:String}\",",
+            "    \"EncryptionConfiguration\": {",
+            "      \"EncryptionType\": \"${4:String}\",",
+            "      \"KmsKey\": \"${5:String}\"",
+            "    },",
+            "    \"ImageTagMutability\": \"${5:String}\",",
+            "    \"LifecyclePolicy\": \"${6:String}\",",
+            "    \"Prefix\": \"${7:String}\",",
+            "    \"RepositoryPolicy\": \"${8:String}\",",
+            "    \"ResourceTags\": [",
+            "      \"ResourceTags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repositorycreationtemplate.html",
+            "Attributes:\n  CreatedAt\n  UpdatedAt"
+        ],
+        "prefix": "ecr-repositorycreationtemplate",
         "scope": "json"
     },
     "AWS::ECS::CapacityProvider": {
@@ -19428,6 +19462,7 @@
             "    \"MultiRegion\": \"${9|false,true|}\",",
             "    \"Origin\": \"${10:String}\",",
             "    \"PendingWindowInDays\": \"${11:Number}\",",
+            "    \"RotationPeriodInDays\": \"${12:Number}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -20189,7 +20224,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html",
+            "Attributes:\n  AliasArn"
         ],
         "prefix": "lambda-alias",
         "scope": "json"
@@ -23928,10 +23964,12 @@
             "  \"Type\": \"AWS::Oam::Link\",",
             "  \"Properties\": {",
             "    \"LabelTemplate\": \"${2:String}\",",
+            "    \"LinkConfiguration\": {",
+            "    },",
             "    \"ResourceTypes\": [",
             "      \"ResourceTypes\"",
             "    ],",
-            "    \"SinkIdentifier\": \"${4:String}\",",
+            "    \"SinkIdentifier\": \"${5:String}\",",
             "    \"Tags\": {",
             "  }",
             "}"
@@ -26936,6 +26974,9 @@
             "    \"NamespaceName\": \"${13:String}\",",
             "    \"NamespaceResourcePolicy\": \"${14:JSON}\",",
             "    \"RedshiftIdcApplicationArn\": \"${15:String}\",",
+            "    \"SnapshotCopyConfigurations\": [",
+            "      \"SnapshotCopyConfigurations\"",
+            "    ],",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -31885,6 +31926,43 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "timestream-database",
+        "scope": "json"
+    },
+    "AWS::Timestream::InfluxDBInstance": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Timestream::InfluxDBInstance\",",
+            "  \"Properties\": {",
+            "    \"AllocatedStorage\": \"${2:Number}\",",
+            "    \"Bucket\": \"${3:String}\",",
+            "    \"DbInstanceType\": \"${4:String}\",",
+            "    \"DbParameterGroupIdentifier\": \"${5:String}\",",
+            "    \"DbStorageType\": \"${6:String}\",",
+            "    \"DeploymentType\": \"${7:String}\",",
+            "    \"LogDeliveryConfiguration\": {",
+            "    },",
+            "    \"Name\": \"${9:String}\",",
+            "    \"Organization\": \"${10:String}\",",
+            "    \"Password\": \"${11:String}\",",
+            "    \"PubliclyAccessible\": \"${12|false,true|}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"Username\": \"${14:String}\",",
+            "    \"VpcSecurityGroupIds\": [",
+            "      \"VpcSecurityGroupIds\"",
+            "    ],",
+            "    \"VpcSubnetIds\": [",
+            "      \"VpcSubnetIds\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-influxdbinstance.html",
+            "Attributes:\n  Status\n  Endpoint\n  InfluxAuthParametersSecretArn\n  AvailabilityZone\n  SecondaryAvailabilityZone\n  Id\n  Arn"
+        ],
+        "prefix": "timestream-influxdbinstance",
         "scope": "json"
     },
     "AWS::Timestream::ScheduledQuery": {

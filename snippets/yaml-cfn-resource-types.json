@@ -1468,6 +1468,8 @@
             "    Description: \"${3:String}\" # Required",
             "    Name: \"${4:String}\" # Required",
             "    Namespace: \"${5:String}\"",
+            "    Permissions: ",
+            "      Permissions",
             "    Tags: ",
             "      Tags"
         ],
@@ -8591,13 +8593,14 @@
             "${1:LogicalID}:",
             "  Type: AWS::EC2::CustomerGateway",
             "  Properties:",
-            "    BgpAsn: ${2:Number} # Required",
-            "    CertificateArn: \"${3:String}\"",
-            "    DeviceName: \"${4:String}\"",
-            "    IpAddress: \"${5:String}\" # Required",
+            "    BgpAsn: ${2:Number}",
+            "    BgpAsnExtended: ${3:Number}",
+            "    CertificateArn: \"${4:String}\"",
+            "    DeviceName: \"${5:String}\"",
+            "    IpAddress: \"${6:String}\" # Required",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${7:String}\" # Required"
+            "    Type: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html",
@@ -10528,6 +10531,31 @@
             "Attributes:\n  RepositoryUri\n  Arn"
         ],
         "prefix": "ecr-repository",
+        "scope": "yaml"
+    },
+    "AWS::ECR::RepositoryCreationTemplate": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ECR::RepositoryCreationTemplate",
+            "  Properties:",
+            "    AppliedFor: # Required",
+            "      AppliedFor",
+            "    Description: \"${3:String}\"",
+            "    EncryptionConfiguration:",
+            "      EncryptionType: \"${4:String}\"",
+            "      KmsKey: \"${5:String}\"",
+            "    ImageTagMutability: \"${5:String}\"",
+            "    LifecyclePolicy: \"${6:String}\"",
+            "    Prefix: \"${7:String}\" # Required",
+            "    RepositoryPolicy: \"${8:String}\"",
+            "    ResourceTags: ",
+            "      ResourceTags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repositorycreationtemplate.html",
+            "Attributes:\n  CreatedAt\n  UpdatedAt"
+        ],
+        "prefix": "ecr-repositorycreationtemplate",
         "scope": "yaml"
     },
     "AWS::ECS::CapacityProvider": {
@@ -16749,6 +16777,7 @@
             "    MultiRegion: ${9|false,true|}",
             "    Origin: \"${10:String}\"",
             "    PendingWindowInDays: ${11:Number}",
+            "    RotationPeriodInDays: ${12:Number}",
             "    Tags: ",
             "      Tags"
         ],
@@ -17385,7 +17414,8 @@
             "        -"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html",
+            "Attributes:\n  AliasArn"
         ],
         "prefix": "lambda-alias",
         "scope": "yaml"
@@ -20610,9 +20640,10 @@
             "  Type: AWS::Oam::Link",
             "  Properties:",
             "    LabelTemplate: \"${2:String}\"",
+            "    LinkConfiguration:",
             "    ResourceTypes: # Required",
             "      ResourceTypes",
-            "    SinkIdentifier: \"${4:String}\" # Required",
+            "    SinkIdentifier: \"${5:String}\" # Required",
             "    Tags:"
         ],
         "description": [
@@ -23231,6 +23262,8 @@
             "    NamespaceName: \"${13:String}\" # Required",
             "    NamespaceResourcePolicy: ${14:JSON}",
             "    RedshiftIdcApplicationArn: \"${15:String}\"",
+            "    SnapshotCopyConfigurations: ",
+            "      SnapshotCopyConfigurations",
             "    Tags: ",
             "      Tags"
         ],
@@ -27635,6 +27668,37 @@
             "Attributes:\n  Arn"
         ],
         "prefix": "timestream-database",
+        "scope": "yaml"
+    },
+    "AWS::Timestream::InfluxDBInstance": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Timestream::InfluxDBInstance",
+            "  Properties:",
+            "    AllocatedStorage: ${2:Number}",
+            "    Bucket: \"${3:String}\"",
+            "    DbInstanceType: \"${4:String}\"",
+            "    DbParameterGroupIdentifier: \"${5:String}\"",
+            "    DbStorageType: \"${6:String}\"",
+            "    DeploymentType: \"${7:String}\"",
+            "    LogDeliveryConfiguration:",
+            "    Name: \"${9:String}\"",
+            "    Organization: \"${10:String}\"",
+            "    Password: \"${11:String}\"",
+            "    PubliclyAccessible: ${12|false,true|}",
+            "    Tags: ",
+            "      Tags",
+            "    Username: \"${14:String}\"",
+            "    VpcSecurityGroupIds: ",
+            "      VpcSecurityGroupIds",
+            "    VpcSubnetIds: ",
+            "      VpcSubnetIds"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-influxdbinstance.html",
+            "Attributes:\n  Status\n  Endpoint\n  InfluxAuthParametersSecretArn\n  AvailabilityZone\n  SecondaryAvailabilityZone\n  Id\n  Arn"
+        ],
+        "prefix": "timestream-influxdbinstance",
         "scope": "yaml"
     },
     "AWS::Timestream::ScheduledQuery": {
