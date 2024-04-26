@@ -2,6 +2,16 @@ Changelog
 =========
 
 
+5.3.0 (2024-04-26)
+------------------
+- The following resource was updated: <code
+  class="code">AWS::DataSync::Task</code>. [Github Actions]
+- Chore: update package.json. [Danny Steenman]
+- Feat: update readme. [Danny Steenman]
+- Chore: update extension description. [Danny Steenman]
+- Feat: update README.md and package.json. [Danny Steenman]
+
+
 5.2.0 (2024-04-13)
 ------------------
 - The following resources were added: <code
