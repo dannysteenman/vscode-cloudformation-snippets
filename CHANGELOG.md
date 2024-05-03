@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+5.4.0 (2024-05-03)
+------------------
+- The following properties were added to the <code
+  class="code">AWS::DynamoDB::GlobalTable</code> resource: <code
+  class="code">ReadOnDemandThroughputSettings</code> and <code
+  class="code">WriteOnDemandThroughputSettings</code>. [Github Actions]
+
+
 5.3.0 (2024-04-26)
 ------------------
 - The following resource was updated: <code
