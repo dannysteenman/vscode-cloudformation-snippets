@@ -170,7 +170,7 @@
             "        -",
             "      OutcomeAlarms:",
             "        -",
-            "    ResourceIdentifier: \"${3:String}\"",
+            "    ResourceIdentifier: \"${3:String}\" # Required",
             "    ZonalAutoshiftStatus: \"${4:String}\""
         ],
         "description": [
@@ -3250,7 +3250,8 @@
             "      PromptConfigurations:",
             "        -",
             "    SkipResourceInUseCheckOnDelete: ${13|false,true|}",
-            "    Tags:"
+            "    Tags:",
+            "    TestAliasTags:"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agent.html",
@@ -3283,20 +3284,57 @@
             "${1:LogicalID}:",
             "  Type: AWS::Bedrock::DataSource",
             "  Properties:",
+            "    DataDeletionPolicy: \"${2:String}\"",
             "    DataSourceConfiguration:",
-            "      Type: \"${3:String}\"",
-            "    Description: \"${3:String}\"",
-            "    KnowledgeBaseId: \"${4:String}\" # Required",
-            "    Name: \"${5:String}\" # Required",
+            "      Type: \"${4:String}\"",
+            "    Description: \"${4:String}\"",
+            "    KnowledgeBaseId: \"${5:String}\" # Required",
+            "    Name: \"${6:String}\" # Required",
             "    ServerSideEncryptionConfiguration:",
-            "      KmsKeyArn: \"${6:String}\"",
+            "      KmsKeyArn: \"${7:String}\"",
             "    VectorIngestionConfiguration:"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-datasource.html",
-            "Attributes:\n  CreatedAt\n  DataSourceStatus\n  UpdatedAt\n  DataSourceId"
+            "Attributes:\n  CreatedAt\n  DataSourceStatus\n  UpdatedAt\n  FailureReasons\n  DataSourceId"
         ],
         "prefix": "bedrock-datasource",
+        "scope": "yaml"
+    },
+    "AWS::Bedrock::Guardrail": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Bedrock::Guardrail",
+            "  Properties:",
+            "    BlockedInputMessaging: \"${2:String}\" # Required",
+            "    BlockedOutputsMessaging: \"${3:String}\" # Required",
+            "    ContentPolicyConfig:",
+            "      FiltersConfig:",
+            "        -",
+            "    Description: \"${5:String}\"",
+            "    KmsKeyArn: \"${6:String}\"",
+            "    Name: \"${7:String}\" # Required",
+            "    SensitiveInformationPolicyConfig:",
+            "      PiiEntitiesConfig:",
+            "        -",
+            "      RegexesConfig:",
+            "        -",
+            "    Tags: ",
+            "      Tags",
+            "    TopicPolicyConfig:",
+            "      TopicsConfig:",
+            "        -",
+            "    WordPolicyConfig:",
+            "      ManagedWordListsConfig:",
+            "        -",
+            "      WordsConfig:",
+            "        -"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrail.html",
+            "Attributes:\n  FailureRecommendations\n  GuardrailId\n  Status\n  StatusReasons\n  GuardrailArn\n  Version\n  CreatedAt\n  UpdatedAt"
+        ],
+        "prefix": "bedrock-guardrail",
         "scope": "yaml"
     },
     "AWS::Bedrock::KnowledgeBase": {
@@ -7742,6 +7780,7 @@
             "      VerifyMode: \"${22:String}\"",
             "    Schedule:",
             "      ScheduleExpression: \"${9:String}\"",
+            "      Status: \"${10:String}\"",
             "    SourceLocationArn: \"${10:String}\" # Required",
             "    Tags: ",
             "      Tags",
@@ -8375,6 +8414,8 @@
             "    TimeToLiveSpecification:",
             "      AttributeName: \"${11:String}\"",
             "      Enabled: ${12|false,true|}",
+            "    WriteOnDemandThroughputSettings:",
+            "      MaxWriteRequestUnits: ${12:Number}",
             "    WriteProvisionedThroughputSettings:"
         ],
         "description": [
@@ -8407,26 +8448,29 @@
             "      StreamArn: \"${10:String}\"",
             "    LocalSecondaryIndexes: ",
             "      LocalSecondaryIndexes",
+            "    OnDemandThroughput:",
+            "      MaxReadRequestUnits: ${11:Number}",
+            "      MaxWriteRequestUnits: ${12:Number}",
             "    PointInTimeRecoverySpecification:",
-            "      PointInTimeRecoveryEnabled: ${11|false,true|}",
+            "      PointInTimeRecoveryEnabled: ${12|false,true|}",
             "    ProvisionedThroughput:",
-            "      ReadCapacityUnits: ${12:Number}",
-            "      WriteCapacityUnits: ${13:Number}",
+            "      ReadCapacityUnits: ${13:Number}",
+            "      WriteCapacityUnits: ${14:Number}",
             "    ResourcePolicy:",
-            "      PolicyDocument: ${13:JSON}",
+            "      PolicyDocument: ${14:JSON}",
             "    SSESpecification:",
-            "      KMSMasterKeyId: \"${14:String}\"",
-            "      SSEEnabled: ${15|false,true|}",
-            "      SSEType: \"${16:String}\"",
+            "      KMSMasterKeyId: \"${15:String}\"",
+            "      SSEEnabled: ${16|false,true|}",
+            "      SSEType: \"${17:String}\"",
             "    StreamSpecification:",
-            "      StreamViewType: \"${16:String}\"",
-            "    TableClass: \"${16:String}\"",
-            "    TableName: \"${17:String}\"",
+            "      StreamViewType: \"${17:String}\"",
+            "    TableClass: \"${17:String}\"",
+            "    TableName: \"${18:String}\"",
             "    Tags: ",
             "      Tags",
             "    TimeToLiveSpecification:",
-            "      AttributeName: \"${19:String}\"",
-            "      Enabled: ${20|false,true|}"
+            "      AttributeName: \"${20:String}\"",
+            "      Enabled: ${21|false,true|}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html",
@@ -8594,13 +8638,12 @@
             "  Type: AWS::EC2::CustomerGateway",
             "  Properties:",
             "    BgpAsn: ${2:Number}",
-            "    BgpAsnExtended: ${3:Number}",
-            "    CertificateArn: \"${4:String}\"",
-            "    DeviceName: \"${5:String}\"",
-            "    IpAddress: \"${6:String}\" # Required",
+            "    CertificateArn: \"${3:String}\"",
+            "    DeviceName: \"${4:String}\"",
+            "    IpAddress: \"${5:String}\" # Required",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${8:String}\" # Required"
+            "    Type: \"${7:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html",
@@ -12953,6 +12996,28 @@
         "prefix": "gamelift-build",
         "scope": "yaml"
     },
+    "AWS::GameLift::ContainerGroupDefinition": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::GameLift::ContainerGroupDefinition",
+            "  Properties:",
+            "    ContainerDefinitions: # Required",
+            "      ContainerDefinitions",
+            "    Name: \"${3:String}\" # Required",
+            "    OperatingSystem: \"${4:String}\" # Required",
+            "    SchedulingStrategy: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    TotalCpuLimit: ${7:Number} # Required",
+            "    TotalMemoryLimit: ${8:Number} # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-containergroupdefinition.html",
+            "Attributes:\n  ContainerGroupDefinitionArn\n  CreationTime"
+        ],
+        "prefix": "gamelift-containergroupdefinition",
+        "scope": "yaml"
+    },
     "AWS::GameLift::Fleet": {
         "body": [
             "${1:LogicalID}:",
@@ -12965,39 +13030,42 @@
             "    CertificateConfiguration:",
             "      CertificateType: \"${5:String}\"",
             "    ComputeType: \"${6:String}\"",
-            "    Description: \"${7:String}\"",
-            "    DesiredEC2Instances: ${8:Number}",
+            "    ContainerGroupsConfiguration:",
+            "      ContainerGroupDefinitionNames:",
+            "        -",
+            "    Description: \"${8:String}\"",
+            "    DesiredEC2Instances: ${9:Number}",
             "    EC2InboundPermissions: ",
             "      EC2InboundPermissions",
-            "    EC2InstanceType: \"${10:String}\"",
-            "    FleetType: \"${11:String}\"",
-            "    InstanceRoleARN: \"${12:String}\"",
-            "    InstanceRoleCredentialsProvider: \"${13:String}\"",
+            "    EC2InstanceType: \"${11:String}\"",
+            "    FleetType: \"${12:String}\"",
+            "    InstanceRoleARN: \"${13:String}\"",
+            "    InstanceRoleCredentialsProvider: \"${14:String}\"",
             "    Locations: ",
             "      Locations",
-            "    MaxSize: ${15:Number}",
+            "    MaxSize: ${16:Number}",
             "    MetricGroups: ",
             "      MetricGroups",
-            "    MinSize: ${17:Number}",
-            "    Name: \"${18:String}\" # Required",
-            "    NewGameSessionProtectionPolicy: \"${19:String}\"",
-            "    PeerVpcAwsAccountId: \"${20:String}\"",
-            "    PeerVpcId: \"${21:String}\"",
+            "    MinSize: ${18:Number}",
+            "    Name: \"${19:String}\" # Required",
+            "    NewGameSessionProtectionPolicy: \"${20:String}\"",
+            "    PeerVpcAwsAccountId: \"${21:String}\"",
+            "    PeerVpcId: \"${22:String}\"",
             "    ResourceCreationLimitPolicy:",
-            "      NewGameSessionsPerCreator: ${22:Number}",
-            "      PolicyPeriodInMinutes: ${23:Number}",
+            "      NewGameSessionsPerCreator: ${23:Number}",
+            "      PolicyPeriodInMinutes: ${24:Number}",
             "    RuntimeConfiguration:",
-            "      GameSessionActivationTimeoutSeconds: ${23:Number}",
-            "      MaxConcurrentGameSessionActivations: ${24:Number}",
+            "      GameSessionActivationTimeoutSeconds: ${24:Number}",
+            "      MaxConcurrentGameSessionActivations: ${25:Number}",
             "      ServerProcesses:",
             "        -",
             "    ScalingPolicies: ",
             "      ScalingPolicies",
-            "    ScriptId: \"${25:String}\""
+            "    ScriptId: \"${26:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html",
-            "Attributes:\n  FleetId"
+            "Attributes:\n  FleetId\n  ContainerGroupsConfiguration.ContainerGroupsPerInstance.MaxReplicaContainerGroupsPerInstance"
         ],
         "prefix": "gamelift-fleet",
         "scope": "yaml"
@@ -17414,8 +17482,7 @@
             "        -"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html",
-            "Attributes:\n  AliasArn"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html"
         ],
         "prefix": "lambda-alias",
         "scope": "yaml"
@@ -21462,6 +21529,42 @@
         "prefix": "panorama-packageversion",
         "scope": "yaml"
     },
+    "AWS::PaymentCryptography::Alias": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::PaymentCryptography::Alias",
+            "  Properties:",
+            "    AliasName: \"${2:String}\" # Required",
+            "    KeyArn: \"${3:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-alias.html"
+        ],
+        "prefix": "paymentcryptography-alias",
+        "scope": "yaml"
+    },
+    "AWS::PaymentCryptography::Key": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::PaymentCryptography::Key",
+            "  Properties:",
+            "    Enabled: ${2|false,true|}",
+            "    Exportable: ${3|false,true|} # Required",
+            "    KeyAttributes:",
+            "      KeyAlgorithm: \"${4:String}\"",
+            "      KeyClass: \"${5:String}\"",
+            "      KeyUsage: \"${7:String}\"",
+            "    KeyCheckValueAlgorithm: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-key.html",
+            "Attributes:\n  KeyIdentifier\n  KeyState\n  KeyOrigin"
+        ],
+        "prefix": "paymentcryptography-key",
+        "scope": "yaml"
+    },
     "AWS::Personalize::Dataset": {
         "body": [
             "${1:LogicalID}:",
@@ -22131,6 +22234,148 @@
         "prefix": "proton-servicetemplate",
         "scope": "yaml"
     },
+    "AWS::QBusiness::Application": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QBusiness::Application",
+            "  Properties:",
+            "    AttachmentsConfiguration:",
+            "      AttachmentsControlMode: \"${2:String}\"",
+            "    Description: \"${3:String}\"",
+            "    DisplayName: \"${4:String}\" # Required",
+            "    EncryptionConfiguration:",
+            "      KmsKeyId: \"${5:String}\"",
+            "    IdentityCenterInstanceArn: \"${6:String}\"",
+            "    RoleArn: \"${7:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-application.html",
+            "Attributes:\n  Status\n  IdentityCenterApplicationArn\n  ApplicationArn\n  CreatedAt\n  ApplicationId\n  UpdatedAt"
+        ],
+        "prefix": "qbusiness-application",
+        "scope": "yaml"
+    },
+    "AWS::QBusiness::DataSource": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QBusiness::DataSource",
+            "  Properties:",
+            "    ApplicationId: \"${2:String}\" # Required",
+            "    Configuration: ${3:JSON} # Required",
+            "    Description: \"${4:String}\"",
+            "    DisplayName: \"${5:String}\" # Required",
+            "    DocumentEnrichmentConfiguration:",
+            "      InlineConfigurations:",
+            "        -",
+            "    IndexId: \"${7:String}\" # Required",
+            "    RoleArn: \"${8:String}\"",
+            "    SyncSchedule: \"${9:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    VpcConfiguration:",
+            "      SecurityGroupIds:",
+            "        -",
+            "      SubnetIds:",
+            "        -"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-datasource.html",
+            "Attributes:\n  Status\n  DataSourceArn\n  Type\n  CreatedAt\n  UpdatedAt\n  DataSourceId"
+        ],
+        "prefix": "qbusiness-datasource",
+        "scope": "yaml"
+    },
+    "AWS::QBusiness::Index": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QBusiness::Index",
+            "  Properties:",
+            "    ApplicationId: \"${2:String}\" # Required",
+            "    CapacityConfiguration:",
+            "      Units: ${3:Number}",
+            "    Description: \"${4:String}\"",
+            "    DisplayName: \"${5:String}\" # Required",
+            "    DocumentAttributeConfigurations: ",
+            "      DocumentAttributeConfigurations",
+            "    Tags: ",
+            "      Tags",
+            "    Type: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-index.html",
+            "Attributes:\n  Status\n  IndexStatistics\n  IndexStatistics.TextDocumentStatistics.IndexedTextDocumentCount\n  IndexId\n  IndexArn\n  IndexStatistics.TextDocumentStatistics\n  CreatedAt\n  IndexStatistics.TextDocumentStatistics.IndexedTextBytes\n  UpdatedAt"
+        ],
+        "prefix": "qbusiness-index",
+        "scope": "yaml"
+    },
+    "AWS::QBusiness::Plugin": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QBusiness::Plugin",
+            "  Properties:",
+            "    ApplicationId: \"${2:String}\" # Required",
+            "    AuthConfiguration:",
+            "      NoAuthConfiguration: ${4:JSON}",
+            "    CustomPluginConfiguration:",
+            "      ApiSchemaType: \"${5:String}\"",
+            "      Description: \"${6:String}\"",
+            "    DisplayName: \"${5:String}\" # Required",
+            "    ServerUrl: \"${6:String}\"",
+            "    State: \"${7:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    Type: \"${9:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-plugin.html",
+            "Attributes:\n  PluginArn\n  CreatedAt\n  BuildStatus\n  PluginId\n  UpdatedAt"
+        ],
+        "prefix": "qbusiness-plugin",
+        "scope": "yaml"
+    },
+    "AWS::QBusiness::Retriever": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QBusiness::Retriever",
+            "  Properties:",
+            "    ApplicationId: \"${2:String}\" # Required",
+            "    Configuration:",
+            "    DisplayName: \"${4:String}\" # Required",
+            "    RoleArn: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    Type: \"${7:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-retriever.html",
+            "Attributes:\n  Status\n  RetrieverArn\n  CreatedAt\n  RetrieverId\n  UpdatedAt"
+        ],
+        "prefix": "qbusiness-retriever",
+        "scope": "yaml"
+    },
+    "AWS::QBusiness::WebExperience": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::QBusiness::WebExperience",
+            "  Properties:",
+            "    ApplicationId: \"${2:String}\" # Required",
+            "    RoleArn: \"${3:String}\"",
+            "    SamplePromptsControlMode: \"${4:String}\"",
+            "    Subtitle: \"${5:String}\"",
+            "    Tags: ",
+            "      Tags",
+            "    Title: \"${7:String}\"",
+            "    WelcomeMessage: \"${8:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-webexperience.html",
+            "Attributes:\n  Status\n  WebExperienceId\n  DefaultEndpoint\n  WebExperienceArn\n  CreatedAt\n  UpdatedAt"
+        ],
+        "prefix": "qbusiness-webexperience",
+        "scope": "yaml"
+    },
     "AWS::QLDB::Ledger": {
         "body": [
             "${1:LogicalID}:",
@@ -22662,87 +22907,88 @@
             "    AssociatedRoles: ",
             "      AssociatedRoles",
             "    AutoMinorVersionUpgrade: ${5|false,true|}",
-            "    AutomaticBackupReplicationRegion: \"${6:String}\"",
-            "    AvailabilityZone: \"${7:String}\"",
-            "    BackupRetentionPeriod: ${8:Number}",
-            "    CACertificateIdentifier: \"${9:String}\"",
+            "    AutomaticBackupReplicationKmsKeyId: \"${6:String}\"",
+            "    AutomaticBackupReplicationRegion: \"${7:String}\"",
+            "    AvailabilityZone: \"${8:String}\"",
+            "    BackupRetentionPeriod: ${9:Number}",
+            "    CACertificateIdentifier: \"${10:String}\"",
             "    CertificateDetails:",
-            "      CAIdentifier: \"${10:String}\"",
-            "      ValidTill: \"${11:String}\"",
-            "    CertificateRotationRestart: ${11|false,true|}",
-            "    CharacterSetName: \"${12:String}\"",
-            "    CopyTagsToSnapshot: ${13|false,true|}",
-            "    CustomIAMInstanceProfile: \"${14:String}\"",
-            "    DBClusterIdentifier: \"${15:String}\"",
-            "    DBClusterSnapshotIdentifier: \"${16:String}\"",
-            "    DBInstanceClass: \"${17:String}\"",
-            "    DBInstanceIdentifier: \"${18:String}\"",
-            "    DBName: \"${19:String}\"",
-            "    DBParameterGroupName: \"${20:String}\"",
+            "      CAIdentifier: \"${11:String}\"",
+            "      ValidTill: \"${12:String}\"",
+            "    CertificateRotationRestart: ${12|false,true|}",
+            "    CharacterSetName: \"${13:String}\"",
+            "    CopyTagsToSnapshot: ${14|false,true|}",
+            "    CustomIAMInstanceProfile: \"${15:String}\"",
+            "    DBClusterIdentifier: \"${16:String}\"",
+            "    DBClusterSnapshotIdentifier: \"${17:String}\"",
+            "    DBInstanceClass: \"${18:String}\"",
+            "    DBInstanceIdentifier: \"${19:String}\"",
+            "    DBName: \"${20:String}\"",
+            "    DBParameterGroupName: \"${21:String}\"",
             "    DBSecurityGroups: ",
             "      DBSecurityGroups",
-            "    DBSnapshotIdentifier: \"${22:String}\"",
-            "    DBSubnetGroupName: \"${23:String}\"",
-            "    DedicatedLogVolume: ${24|false,true|}",
-            "    DeleteAutomatedBackups: ${25|false,true|}",
-            "    DeletionProtection: ${26|false,true|}",
-            "    Domain: \"${27:String}\"",
-            "    DomainAuthSecretArn: \"${28:String}\"",
+            "    DBSnapshotIdentifier: \"${23:String}\"",
+            "    DBSubnetGroupName: \"${24:String}\"",
+            "    DedicatedLogVolume: ${25|false,true|}",
+            "    DeleteAutomatedBackups: ${26|false,true|}",
+            "    DeletionProtection: ${27|false,true|}",
+            "    Domain: \"${28:String}\"",
+            "    DomainAuthSecretArn: \"${29:String}\"",
             "    DomainDnsIps: ",
             "      DomainDnsIps",
-            "    DomainFqdn: \"${30:String}\"",
-            "    DomainIAMRoleName: \"${31:String}\"",
-            "    DomainOu: \"${32:String}\"",
+            "    DomainFqdn: \"${31:String}\"",
+            "    DomainIAMRoleName: \"${32:String}\"",
+            "    DomainOu: \"${33:String}\"",
             "    EnableCloudwatchLogsExports: ",
             "      EnableCloudwatchLogsExports",
-            "    EnableIAMDatabaseAuthentication: ${34|false,true|}",
-            "    EnablePerformanceInsights: ${35|false,true|}",
+            "    EnableIAMDatabaseAuthentication: ${35|false,true|}",
+            "    EnablePerformanceInsights: ${36|false,true|}",
             "    Endpoint:",
-            "      Address: \"${36:String}\"",
-            "      HostedZoneId: \"${37:String}\"",
-            "      Port: \"${38:String}\"",
-            "    Engine: \"${37:String}\"",
-            "    EngineVersion: \"${38:String}\"",
-            "    Iops: ${39:Number}",
-            "    KmsKeyId: \"${40:String}\"",
-            "    LicenseModel: \"${41:String}\"",
-            "    ManageMasterUserPassword: ${42|false,true|}",
-            "    MasterUserPassword: \"${43:String}\"",
+            "      Address: \"${37:String}\"",
+            "      HostedZoneId: \"${38:String}\"",
+            "      Port: \"${39:String}\"",
+            "    Engine: \"${38:String}\"",
+            "    EngineVersion: \"${39:String}\"",
+            "    Iops: ${40:Number}",
+            "    KmsKeyId: \"${41:String}\"",
+            "    LicenseModel: \"${42:String}\"",
+            "    ManageMasterUserPassword: ${43|false,true|}",
+            "    MasterUserPassword: \"${44:String}\"",
             "    MasterUserSecret:",
-            "      KmsKeyId: \"${44:String}\"",
-            "      SecretArn: \"${45:String}\"",
-            "    MasterUsername: \"${45:String}\"",
-            "    MaxAllocatedStorage: ${46:Number}",
-            "    MonitoringInterval: ${47:Number}",
-            "    MonitoringRoleArn: \"${48:String}\"",
-            "    MultiAZ: ${49|false,true|}",
-            "    NcharCharacterSetName: \"${50:String}\"",
-            "    NetworkType: \"${51:String}\"",
-            "    OptionGroupName: \"${52:String}\"",
-            "    PerformanceInsightsKMSKeyId: \"${53:String}\"",
-            "    PerformanceInsightsRetentionPeriod: ${54:Number}",
-            "    Port: \"${55:String}\"",
-            "    PreferredBackupWindow: \"${56:String}\"",
-            "    PreferredMaintenanceWindow: \"${57:String}\"",
+            "      KmsKeyId: \"${45:String}\"",
+            "      SecretArn: \"${46:String}\"",
+            "    MasterUsername: \"${46:String}\"",
+            "    MaxAllocatedStorage: ${47:Number}",
+            "    MonitoringInterval: ${48:Number}",
+            "    MonitoringRoleArn: \"${49:String}\"",
+            "    MultiAZ: ${50|false,true|}",
+            "    NcharCharacterSetName: \"${51:String}\"",
+            "    NetworkType: \"${52:String}\"",
+            "    OptionGroupName: \"${53:String}\"",
+            "    PerformanceInsightsKMSKeyId: \"${54:String}\"",
+            "    PerformanceInsightsRetentionPeriod: ${55:Number}",
+            "    Port: \"${56:String}\"",
+            "    PreferredBackupWindow: \"${57:String}\"",
+            "    PreferredMaintenanceWindow: \"${58:String}\"",
             "    ProcessorFeatures: ",
             "      ProcessorFeatures",
-            "    PromotionTier: ${59:Number}",
-            "    PubliclyAccessible: ${60|false,true|}",
-            "    ReplicaMode: \"${61:String}\"",
-            "    RestoreTime: \"${62:String}\"",
-            "    SourceDBClusterIdentifier: \"${63:String}\"",
-            "    SourceDBInstanceAutomatedBackupsArn: \"${64:String}\"",
-            "    SourceDBInstanceIdentifier: \"${65:String}\"",
-            "    SourceDbiResourceId: \"${66:String}\"",
-            "    SourceRegion: \"${67:String}\"",
-            "    StorageEncrypted: ${68|false,true|}",
-            "    StorageThroughput: ${69:Number}",
-            "    StorageType: \"${70:String}\"",
+            "    PromotionTier: ${60:Number}",
+            "    PubliclyAccessible: ${61|false,true|}",
+            "    ReplicaMode: \"${62:String}\"",
+            "    RestoreTime: \"${63:String}\"",
+            "    SourceDBClusterIdentifier: \"${64:String}\"",
+            "    SourceDBInstanceAutomatedBackupsArn: \"${65:String}\"",
+            "    SourceDBInstanceIdentifier: \"${66:String}\"",
+            "    SourceDbiResourceId: \"${67:String}\"",
+            "    SourceRegion: \"${68:String}\"",
+            "    StorageEncrypted: ${69|false,true|}",
+            "    StorageThroughput: ${70:Number}",
+            "    StorageType: \"${71:String}\"",
             "    Tags: ",
             "      Tags",
-            "    Timezone: \"${72:String}\"",
-            "    UseDefaultProcessorFeatures: ${73|false,true|}",
-            "    UseLatestRestorableTime: ${74|false,true|}",
+            "    Timezone: \"${73:String}\"",
+            "    UseDefaultProcessorFeatures: ${74|false,true|}",
+            "    UseLatestRestorableTime: ${75|false,true|}",
             "    VPCSecurityGroups: ",
             "      VPCSecurityGroups"
         ],
@@ -23918,6 +24164,58 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html"
         ],
         "prefix": "route53-recordsetgroup",
+        "scope": "yaml"
+    },
+    "AWS::Route53Profiles::Profile": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53Profiles::Profile",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profile.html",
+            "Attributes:\n  Id\n  ClientToken\n  Arn"
+        ],
+        "prefix": "route53profiles-profile",
+        "scope": "yaml"
+    },
+    "AWS::Route53Profiles::ProfileAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53Profiles::ProfileAssociation",
+            "  Properties:",
+            "    Arn: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    ProfileId: \"${4:String}\" # Required",
+            "    ResourceId: \"${5:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profileassociation.html",
+            "Attributes:\n  Id"
+        ],
+        "prefix": "route53profiles-profileassociation",
+        "scope": "yaml"
+    },
+    "AWS::Route53Profiles::ProfileResourceAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Route53Profiles::ProfileResourceAssociation",
+            "  Properties:",
+            "    Name: \"${2:String}\" # Required",
+            "    ProfileId: \"${3:String}\" # Required",
+            "    ResourceArn: \"${4:String}\" # Required",
+            "    ResourceProperties: \"${5:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53profiles-profileresourceassociation.html",
+            "Attributes:\n  ResourceType\n  Id"
+        ],
+        "prefix": "route53profiles-profileresourceassociation",
         "scope": "yaml"
     },
     "AWS::Route53RecoveryControl::Cluster": {
@@ -27812,17 +28110,18 @@
             "      PartnerProfileId: \"${10:String}\"",
             "      SigningAlgorithm: \"${11:String}\"",
             "    LoggingRole: \"${4:String}\"",
+            "    SecurityPolicyName: \"${5:String}\"",
             "    SftpConfig:",
             "      TrustedHostKeys:",
             "        -",
-            "      UserSecretId: \"${6:String}\"",
+            "      UserSecretId: \"${7:String}\"",
             "    Tags: ",
             "      Tags",
-            "    Url: \"${7:String}\" # Required"
+            "    Url: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-connector.html",
-            "Attributes:\n  Arn\n  ConnectorId"
+            "Attributes:\n  Arn\n  ServiceManagedEgressIpAddresses\n  ConnectorId"
         ],
         "prefix": "transfer-connector",
         "scope": "yaml"
@@ -28865,13 +29164,15 @@
             "    BrowserSettingsArn: \"${4:String}\"",
             "    CustomerManagedKey: \"${5:String}\"",
             "    DisplayName: \"${6:String}\"",
-            "    IpAccessSettingsArn: \"${7:String}\"",
-            "    NetworkSettingsArn: \"${8:String}\"",
+            "    InstanceType: \"${7:String}\"",
+            "    IpAccessSettingsArn: \"${8:String}\"",
+            "    MaxConcurrentSessions: ${9:Number}",
+            "    NetworkSettingsArn: \"${10:String}\"",
             "    Tags: ",
             "      Tags",
-            "    TrustStoreArn: \"${10:String}\"",
-            "    UserAccessLoggingSettingsArn: \"${11:String}\"",
-            "    UserSettingsArn: \"${12:String}\""
+            "    TrustStoreArn: \"${12:String}\"",
+            "    UserAccessLoggingSettingsArn: \"${13:String}\"",
+            "    UserSettingsArn: \"${14:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspacesweb-portal.html",
