@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.5.0 (2024-05-10)
+------------------
+- The following resource was updated: AWS::Bedrock::Agent. [Github
+  Actions]
+
+
 5.4.0 (2024-05-03)
 ------------------
 - The following properties were added to the <code
