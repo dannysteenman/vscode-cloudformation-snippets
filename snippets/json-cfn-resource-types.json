@@ -3822,6 +3822,23 @@
         "prefix": "bedrock-guardrail",
         "scope": "json"
     },
+    "AWS::Bedrock::GuardrailVersion": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Bedrock::GuardrailVersion\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"GuardrailIdentifier\": \"${3:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrailversion.html",
+            "Attributes:\n  GuardrailId\n  GuardrailArn\n  Version"
+        ],
+        "prefix": "bedrock-guardrailversion",
+        "scope": "json"
+    },
     "AWS::Bedrock::KnowledgeBase": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -3971,6 +3988,9 @@
             "    },",
             "    \"NotificationsWithSubscribers\": [",
             "      \"NotificationsWithSubscribers\"",
+            "    ],",
+            "    \"ResourceTags\": [",
+            "      \"ResourceTags\"",
             "    ]",
             "  }",
             "}"
@@ -3997,6 +4017,9 @@
             "    },",
             "    \"ExecutionRoleArn\": \"${7:String}\",",
             "    \"NotificationType\": \"${8:String}\",",
+            "    \"ResourceTags\": [",
+            "      \"ResourceTags\"",
+            "    ],",
             "    \"Subscribers\": [",
             "      \"Subscribers\"",
             "    ]",
@@ -10494,7 +10517,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instance.html",
-            "Attributes:\n  PrivateDnsName\n  VpcId\n  PrivateIp\n  InstanceId\n  PublicIp\n  AvailabilityZone\n  PublicDnsName"
+            "Attributes:\n  State.Code\n  PrivateDnsName\n  VpcId\n  PrivateIp\n  InstanceId\n  PublicIp\n  State.Name\n  State\n  AvailabilityZone\n  PublicDnsName"
         ],
         "prefix": "ec2-instance",
         "scope": "json"
@@ -22130,38 +22153,50 @@
             "  \"Type\": \"AWS::MediaConnect::Flow\",",
             "  \"Properties\": {",
             "    \"AvailabilityZone\": \"${2:String}\",",
-            "    \"Name\": \"${3:String}\",",
+            "    \"Maintenance\": {",
+            "      \"MaintenanceDay\": \"${3:String}\",",
+            "      \"MaintenanceStartHour\": \"${4:String}\"",
+            "    },",
+            "    \"MediaStreams\": [",
+            "      \"MediaStreams\"",
+            "    ],",
+            "    \"Name\": \"${5:String}\",",
             "    \"Source\": {",
-            "      \"Description\": \"${5:String}\",",
-            "      \"EntitlementArn\": \"${6:String}\",",
-            "      \"IngestIp\": \"${8:String}\",",
-            "      \"IngestPort\": \"${9:Number}\",",
-            "      \"MaxBitrate\": \"${10:Number}\",",
-            "      \"MaxLatency\": \"${11:Number}\",",
-            "      \"MinLatency\": \"${12:Number}\",",
-            "      \"Name\": \"${13:String}\",",
-            "      \"Protocol\": \"${14:String}\",",
-            "      \"SenderControlPort\": \"${15:Number}\",",
-            "      \"SenderIpAddress\": \"${16:String}\",",
-            "      \"SourceArn\": \"${17:String}\",",
-            "      \"SourceIngestPort\": \"${18:String}\",",
-            "      \"SourceListenerAddress\": \"${19:String}\",",
-            "      \"SourceListenerPort\": \"${20:Number}\",",
-            "      \"StreamId\": \"${21:String}\",",
-            "      \"VpcInterfaceName\": \"${22:String}\",",
-            "      \"WhitelistCidr\": \"${23:String}\"",
+            "      \"Description\": \"${7:String}\",",
+            "      \"EntitlementArn\": \"${8:String}\",",
+            "      \"IngestIp\": \"${10:String}\",",
+            "      \"IngestPort\": \"${11:Number}\",",
+            "      \"MaxBitrate\": \"${12:Number}\",",
+            "      \"MaxLatency\": \"${13:Number}\",",
+            "      \"MaxSyncBuffer\": \"${14:Number}\",",
+            "      \"MediaStreamSourceConfigurations\": [],",
+            "      \"MinLatency\": \"${16:Number}\",",
+            "      \"Name\": \"${17:String}\",",
+            "      \"Protocol\": \"${18:String}\",",
+            "      \"SenderControlPort\": \"${19:Number}\",",
+            "      \"SenderIpAddress\": \"${20:String}\",",
+            "      \"SourceArn\": \"${21:String}\",",
+            "      \"SourceIngestPort\": \"${22:String}\",",
+            "      \"SourceListenerAddress\": \"${23:String}\",",
+            "      \"SourceListenerPort\": \"${24:Number}\",",
+            "      \"StreamId\": \"${25:String}\",",
+            "      \"VpcInterfaceName\": \"${26:String}\",",
+            "      \"WhitelistCidr\": \"${27:String}\"",
             "    },",
             "    \"SourceFailoverConfig\": {",
-            "      \"FailoverMode\": \"${5:String}\",",
-            "      \"RecoveryWindow\": \"${6:Number}\",",
-            "      \"State\": \"${8:String}\"",
+            "      \"FailoverMode\": \"${7:String}\",",
+            "      \"RecoveryWindow\": \"${8:Number}\",",
+            "      \"State\": \"${10:String}\"",
             "    },",
+            "    \"VpcInterfaces\": [",
+            "      \"VpcInterfaces\"",
+            "    ]",
             "  }",
             "}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flow.html",
-            "Attributes:\n  FlowAvailabilityZone\n  Source.SourceIngestPort\n  Source.IngestIp\n  Source.SourceArn\n  FlowArn"
+            "Attributes:\n  FlowAvailabilityZone\n  Source.SourceIngestPort\n  Source.IngestIp\n  Source.SourceArn\n  EgressIp\n  FlowArn"
         ],
         "prefix": "mediaconnect-flow",
         "scope": "json"
@@ -22218,15 +22253,18 @@
             "    },",
             "    \"FlowArn\": \"${6:String}\",",
             "    \"MaxLatency\": \"${7:Number}\",",
-            "    \"MinLatency\": \"${8:Number}\",",
-            "    \"Name\": \"${9:String}\",",
-            "    \"Port\": \"${10:Number}\",",
-            "    \"Protocol\": \"${11:String}\",",
-            "    \"RemoteId\": \"${12:String}\",",
-            "    \"SmoothingLatency\": \"${13:Number}\",",
-            "    \"StreamId\": \"${14:String}\",",
+            "    \"MediaStreamOutputConfigurations\": [",
+            "      \"MediaStreamOutputConfigurations\"",
+            "    ],",
+            "    \"MinLatency\": \"${9:Number}\",",
+            "    \"Name\": \"${10:String}\",",
+            "    \"Port\": \"${11:Number}\",",
+            "    \"Protocol\": \"${12:String}\",",
+            "    \"RemoteId\": \"${13:String}\",",
+            "    \"SmoothingLatency\": \"${14:Number}\",",
+            "    \"StreamId\": \"${15:String}\",",
             "    \"VpcInterfaceAttachment\": {",
-            "      \"VpcInterfaceName\": \"${15:String}\"",
+            "      \"VpcInterfaceName\": \"${16:String}\"",
             "    },",
             "  }",
             "}"
@@ -23372,6 +23410,29 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbsubnetgroup.html"
         ],
         "prefix": "neptune-dbsubnetgroup",
+        "scope": "json"
+    },
+    "AWS::Neptune::EventSubscription": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Neptune::EventSubscription\",",
+            "  \"Properties\": {",
+            "    \"Enabled\": \"${2|false,true|}\",",
+            "    \"EventCategories\": [",
+            "      \"EventCategories\"",
+            "    ],",
+            "    \"SnsTopicArn\": \"${4:String}\",",
+            "    \"SourceIds\": [",
+            "      \"SourceIds\"",
+            "    ],",
+            "    \"SourceType\": \"${6:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-eventsubscription.html"
+        ],
+        "prefix": "neptune-eventsubscription",
         "scope": "json"
     },
     "AWS::NeptuneGraph::Graph": {
@@ -29764,6 +29825,49 @@
         "prefix": "ssmincidents-responseplan",
         "scope": "json"
     },
+    "AWS::SSO::Application": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::SSO::Application\",",
+            "  \"Properties\": {",
+            "    \"ApplicationProviderArn\": \"${2:String}\",",
+            "    \"Description\": \"${3:String}\",",
+            "    \"InstanceArn\": \"${4:String}\",",
+            "    \"Name\": \"${5:String}\",",
+            "    \"PortalOptions\": {",
+            "      \"Visibility\": \"${7:String}\"",
+            "    },",
+            "    \"Status\": \"${7:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-application.html",
+            "Attributes:\n  ApplicationArn"
+        ],
+        "prefix": "sso-application",
+        "scope": "json"
+    },
+    "AWS::SSO::ApplicationAssignment": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::SSO::ApplicationAssignment\",",
+            "  \"Properties\": {",
+            "    \"ApplicationArn\": \"${2:String}\",",
+            "    \"PrincipalId\": \"${3:String}\",",
+            "    \"PrincipalType\": \"${4:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-applicationassignment.html"
+        ],
+        "prefix": "sso-applicationassignment",
+        "scope": "json"
+    },
     "AWS::SSO::Assignment": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -29782,6 +29886,25 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-assignment.html"
         ],
         "prefix": "sso-assignment",
+        "scope": "json"
+    },
+    "AWS::SSO::Instance": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::SSO::Instance\",",
+            "  \"Properties\": {",
+            "    \"Name\": \"${2:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instance.html",
+            "Attributes:\n  Status\n  InstanceArn\n  IdentityStoreId\n  OwnerAccountId"
+        ],
+        "prefix": "sso-instance",
         "scope": "json"
     },
     "AWS::SSO::InstanceAccessControlAttributeConfiguration": {

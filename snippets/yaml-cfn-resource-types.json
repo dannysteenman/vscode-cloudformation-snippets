@@ -3337,6 +3337,21 @@
         "prefix": "bedrock-guardrail",
         "scope": "yaml"
     },
+    "AWS::Bedrock::GuardrailVersion": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Bedrock::GuardrailVersion",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    GuardrailIdentifier: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrailversion.html",
+            "Attributes:\n  GuardrailId\n  GuardrailArn\n  Version"
+        ],
+        "prefix": "bedrock-guardrailversion",
+        "scope": "yaml"
+    },
     "AWS::Bedrock::KnowledgeBase": {
         "body": [
             "${1:LogicalID}:",
@@ -3464,7 +3479,9 @@
             "      PlannedBudgetLimits: ${8:JSON}",
             "      TimeUnit: \"${10:String}\"",
             "    NotificationsWithSubscribers: ",
-            "      NotificationsWithSubscribers"
+            "      NotificationsWithSubscribers",
+            "    ResourceTags: ",
+            "      ResourceTags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-budgets-budget.html"
@@ -3486,6 +3503,8 @@
             "    Definition:",
             "    ExecutionRoleArn: \"${7:String}\" # Required",
             "    NotificationType: \"${8:String}\" # Required",
+            "    ResourceTags: ",
+            "      ResourceTags",
             "    Subscribers: # Required",
             "      Subscribers"
         ],
@@ -9061,7 +9080,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-instance.html",
-            "Attributes:\n  PrivateDnsName\n  VpcId\n  PrivateIp\n  InstanceId\n  PublicIp\n  AvailabilityZone\n  PublicDnsName"
+            "Attributes:\n  State.Code\n  PrivateDnsName\n  VpcId\n  PrivateIp\n  InstanceId\n  PublicIp\n  State.Name\n  State\n  AvailabilityZone\n  PublicDnsName"
         ],
         "prefix": "ec2-instance",
         "scope": "yaml"
@@ -19052,34 +19071,44 @@
             "  Type: AWS::MediaConnect::Flow",
             "  Properties:",
             "    AvailabilityZone: \"${2:String}\"",
-            "    Name: \"${3:String}\" # Required",
+            "    Maintenance:",
+            "      MaintenanceDay: \"${3:String}\"",
+            "      MaintenanceStartHour: \"${4:String}\"",
+            "    MediaStreams: ",
+            "      MediaStreams",
+            "    Name: \"${5:String}\" # Required",
             "    Source:",
-            "      Description: \"${5:String}\"",
-            "      EntitlementArn: \"${6:String}\"",
-            "      IngestIp: \"${8:String}\"",
-            "      IngestPort: ${9:Number}",
-            "      MaxBitrate: ${10:Number}",
-            "      MaxLatency: ${11:Number}",
-            "      MinLatency: ${12:Number}",
-            "      Name: \"${13:String}\"",
-            "      Protocol: \"${14:String}\"",
-            "      SenderControlPort: ${15:Number}",
-            "      SenderIpAddress: \"${16:String}\"",
-            "      SourceArn: \"${17:String}\"",
-            "      SourceIngestPort: \"${18:String}\"",
-            "      SourceListenerAddress: \"${19:String}\"",
-            "      SourceListenerPort: ${20:Number}",
-            "      StreamId: \"${21:String}\"",
-            "      VpcInterfaceName: \"${22:String}\"",
-            "      WhitelistCidr: \"${23:String}\"",
+            "      Description: \"${7:String}\"",
+            "      EntitlementArn: \"${8:String}\"",
+            "      IngestIp: \"${10:String}\"",
+            "      IngestPort: ${11:Number}",
+            "      MaxBitrate: ${12:Number}",
+            "      MaxLatency: ${13:Number}",
+            "      MaxSyncBuffer: ${14:Number}",
+            "      MediaStreamSourceConfigurations:",
+            "        -",
+            "      MinLatency: ${16:Number}",
+            "      Name: \"${17:String}\"",
+            "      Protocol: \"${18:String}\"",
+            "      SenderControlPort: ${19:Number}",
+            "      SenderIpAddress: \"${20:String}\"",
+            "      SourceArn: \"${21:String}\"",
+            "      SourceIngestPort: \"${22:String}\"",
+            "      SourceListenerAddress: \"${23:String}\"",
+            "      SourceListenerPort: ${24:Number}",
+            "      StreamId: \"${25:String}\"",
+            "      VpcInterfaceName: \"${26:String}\"",
+            "      WhitelistCidr: \"${27:String}\"",
             "    SourceFailoverConfig:",
-            "      FailoverMode: \"${5:String}\"",
-            "      RecoveryWindow: ${6:Number}",
-            "      State: \"${8:String}\""
+            "      FailoverMode: \"${7:String}\"",
+            "      RecoveryWindow: ${8:Number}",
+            "      State: \"${10:String}\"",
+            "    VpcInterfaces: ",
+            "      VpcInterfaces"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flow.html",
-            "Attributes:\n  FlowAvailabilityZone\n  Source.SourceIngestPort\n  Source.IngestIp\n  Source.SourceArn\n  FlowArn"
+            "Attributes:\n  FlowAvailabilityZone\n  Source.SourceIngestPort\n  Source.IngestIp\n  Source.SourceArn\n  EgressIp\n  FlowArn"
         ],
         "prefix": "mediaconnect-flow",
         "scope": "yaml"
@@ -19130,15 +19159,17 @@
             "      SecretArn: \"${8:String}\"",
             "    FlowArn: \"${6:String}\" # Required",
             "    MaxLatency: ${7:Number}",
-            "    MinLatency: ${8:Number}",
-            "    Name: \"${9:String}\"",
-            "    Port: ${10:Number}",
-            "    Protocol: \"${11:String}\" # Required",
-            "    RemoteId: \"${12:String}\"",
-            "    SmoothingLatency: ${13:Number}",
-            "    StreamId: \"${14:String}\"",
+            "    MediaStreamOutputConfigurations: ",
+            "      MediaStreamOutputConfigurations",
+            "    MinLatency: ${9:Number}",
+            "    Name: \"${10:String}\"",
+            "    Port: ${11:Number}",
+            "    Protocol: \"${12:String}\" # Required",
+            "    RemoteId: \"${13:String}\"",
+            "    SmoothingLatency: ${14:Number}",
+            "    StreamId: \"${15:String}\"",
             "    VpcInterfaceAttachment:",
-            "      VpcInterfaceName: \"${15:String}\""
+            "      VpcInterfaceName: \"${16:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowoutput.html",
@@ -20128,6 +20159,25 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbsubnetgroup.html"
         ],
         "prefix": "neptune-dbsubnetgroup",
+        "scope": "yaml"
+    },
+    "AWS::Neptune::EventSubscription": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Neptune::EventSubscription",
+            "  Properties:",
+            "    Enabled: ${2|false,true|}",
+            "    EventCategories: ",
+            "      EventCategories",
+            "    SnsTopicArn: \"${4:String}\"",
+            "    SourceIds: ",
+            "      SourceIds",
+            "    SourceType: \"${6:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-eventsubscription.html"
+        ],
+        "prefix": "neptune-eventsubscription",
         "scope": "yaml"
     },
     "AWS::NeptuneGraph::Graph": {
@@ -22585,14 +22635,14 @@
             "    ErrorInfo:",
             "      Message: \"${7:String}\"",
             "      Type: \"${8:String}\"",
-            "    Name: \"${8:String}\"",
+            "    Name: \"${8:String}\" # Required",
             "    Permissions: ",
             "      Permissions",
             "    SslProperties:",
             "      DisableSsl: ${10|false,true|}",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${12:String}\"",
+            "    Type: \"${12:String}\" # Required",
             "    VpcConnectionProperties:",
             "      VpcConnectionArn: \"${13:String}\""
         ],
@@ -25662,6 +25712,43 @@
         "prefix": "ssmincidents-responseplan",
         "scope": "yaml"
     },
+    "AWS::SSO::Application": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSO::Application",
+            "  Properties:",
+            "    ApplicationProviderArn: \"${2:String}\" # Required",
+            "    Description: \"${3:String}\"",
+            "    InstanceArn: \"${4:String}\" # Required",
+            "    Name: \"${5:String}\" # Required",
+            "    PortalOptions:",
+            "      Visibility: \"${7:String}\"",
+            "    Status: \"${7:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-application.html",
+            "Attributes:\n  ApplicationArn"
+        ],
+        "prefix": "sso-application",
+        "scope": "yaml"
+    },
+    "AWS::SSO::ApplicationAssignment": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSO::ApplicationAssignment",
+            "  Properties:",
+            "    ApplicationArn: \"${2:String}\" # Required",
+            "    PrincipalId: \"${3:String}\" # Required",
+            "    PrincipalType: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-applicationassignment.html"
+        ],
+        "prefix": "sso-applicationassignment",
+        "scope": "yaml"
+    },
     "AWS::SSO::Assignment": {
         "body": [
             "${1:LogicalID}:",
@@ -25678,6 +25765,22 @@
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-assignment.html"
         ],
         "prefix": "sso-assignment",
+        "scope": "yaml"
+    },
+    "AWS::SSO::Instance": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SSO::Instance",
+            "  Properties:",
+            "    Name: \"${2:String}\"",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-instance.html",
+            "Attributes:\n  Status\n  InstanceArn\n  IdentityStoreId\n  OwnerAccountId"
+        ],
+        "prefix": "sso-instance",
         "scope": "yaml"
     },
     "AWS::SSO::InstanceAccessControlAttributeConfiguration": {
