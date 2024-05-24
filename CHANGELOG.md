@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+5.6.0 (2024-05-24)
+------------------
+- The following resource was added: <code
+  class="code">AWS::SecurityLake::SubscriptionNotification</code>
+  [Github Actions]
+
+
 5.5.0 (2024-05-10)
 ------------------
 - The following resource was updated: AWS::Bedrock::Agent. [Github
