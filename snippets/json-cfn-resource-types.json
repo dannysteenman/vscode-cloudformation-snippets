@@ -4258,10 +4258,13 @@
             "    \"SnsTopicArns\": [",
             "      \"SnsTopicArns\"",
             "    ],",
-            "    \"TeamId\": \"${7:String}\",",
-            "    \"TeamsChannelId\": \"${8:String}\",",
-            "    \"TeamsTenantId\": \"${9:String}\",",
-            "    \"UserRoleRequired\": \"${10|false,true|}\"",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"TeamId\": \"${8:String}\",",
+            "    \"TeamsChannelId\": \"${9:String}\",",
+            "    \"TeamsTenantId\": \"${10:String}\",",
+            "    \"UserRoleRequired\": \"${11|false,true|}\"",
             "  }",
             "}"
         ],
@@ -4288,7 +4291,10 @@
             "    \"SnsTopicArns\": [",
             "      \"SnsTopicArns\"",
             "    ],",
-            "    \"UserRoleRequired\": \"${9|false,true|}\"",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"UserRoleRequired\": \"${10|false,true|}\"",
             "  }",
             "}"
         ],
@@ -5541,7 +5547,14 @@
             "    \"BaseCapacity\": \"${2:Number}\",",
             "    \"ComputeType\": \"${3:String}\",",
             "    \"EnvironmentType\": \"${4:String}\",",
-            "    \"Name\": \"${5:String}\",",
+            "    \"FleetServiceRole\": \"${5:String}\",",
+            "    \"FleetVpcConfig\": {",
+            "      \"SecurityGroupIds\": [],",
+            "      \"Subnets\": [],",
+            "      \"VpcId\": \"${8:String}\"",
+            "    },",
+            "    \"Name\": \"${7:String}\",",
+            "    \"OverflowBehavior\": \"${8:String}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -9162,6 +9175,24 @@
         "prefix": "datazone-environmentprofile",
         "scope": "json"
     },
+    "AWS::DataZone::GroupProfile": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::GroupProfile\",",
+            "  \"Properties\": {",
+            "    \"DomainIdentifier\": \"${2:String}\",",
+            "    \"GroupIdentifier\": \"${3:String}\",",
+            "    \"Status\": \"${4:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-groupprofile.html",
+            "Attributes:\n  GroupName\n  DomainId\n  Id"
+        ],
+        "prefix": "datazone-groupprofile",
+        "scope": "json"
+    },
     "AWS::DataZone::Project": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -9181,6 +9212,27 @@
             "Attributes:\n  CreatedBy\n  DomainId\n  LastUpdatedAt\n  CreatedAt\n  Id"
         ],
         "prefix": "datazone-project",
+        "scope": "json"
+    },
+    "AWS::DataZone::ProjectMembership": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::ProjectMembership\",",
+            "  \"Properties\": {",
+            "    \"Designation\": \"${2:String}\",",
+            "    \"DomainIdentifier\": \"${3:String}\",",
+            "    \"Member\": {",
+            "      \"GroupIdentifier\": \"${4:String}\",",
+            "      \"UserIdentifier\": \"${5:String}\"",
+            "    },",
+            "    \"ProjectIdentifier\": \"${5:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-projectmembership.html"
+        ],
+        "prefix": "datazone-projectmembership",
         "scope": "json"
     },
     "AWS::DataZone::SubscriptionTarget": {
@@ -9211,6 +9263,25 @@
             "Attributes:\n  UpdatedBy\n  EnvironmentId\n  CreatedBy\n  DomainId\n  CreatedAt\n  ProjectId\n  Id\n  UpdatedAt"
         ],
         "prefix": "datazone-subscriptiontarget",
+        "scope": "json"
+    },
+    "AWS::DataZone::UserProfile": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::DataZone::UserProfile\",",
+            "  \"Properties\": {",
+            "    \"DomainIdentifier\": \"${2:String}\",",
+            "    \"Status\": \"${3:String}\",",
+            "    \"UserIdentifier\": \"${4:String}\",",
+            "    \"UserType\": \"${5:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-userprofile.html",
+            "Attributes:\n  Type\n  Details.Sso\n  Details\n  DomainId\n  Details.Sso.FirstName\n  Details.Iam\n  Details.Sso.Username\n  Id\n  Details.Sso.LastName\n  Details.Iam.Arn"
+        ],
+        "prefix": "datazone-userprofile",
         "scope": "json"
     },
     "AWS::Deadline::Farm": {
@@ -13272,7 +13343,8 @@
             "}"
         ],
         "description": [
-            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html"
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-parametergroup.html",
+            "Attributes:\n  CacheParameterGroupName"
         ],
         "prefix": "elasticache-parametergroup",
         "scope": "json"
@@ -14244,9 +14316,14 @@
             "\"${1:LogicalID}\": {",
             "  \"Type\": \"AWS::Events::EventBus\",",
             "  \"Properties\": {",
-            "    \"EventSourceName\": \"${2:String}\",",
-            "    \"Name\": \"${3:String}\",",
-            "    \"Policy\": \"${4:JSON}\",",
+            "    \"DeadLetterConfig\": {",
+            "      \"Arn\": \"${2:String}\"",
+            "    },",
+            "    \"Description\": \"${3:String}\",",
+            "    \"EventSourceName\": \"${4:String}\",",
+            "    \"KmsKeyIdentifier\": \"${5:String}\",",
+            "    \"Name\": \"${6:String}\",",
+            "    \"Policy\": \"${7:JSON}\",",
             "    \"Tags\": [",
             "      \"Tags\"",
             "    ]",
@@ -15717,19 +15794,20 @@
             "    },",
             "    \"GlueVersion\": \"${9:String}\",",
             "    \"LogUri\": \"${10:String}\",",
-            "    \"MaxCapacity\": \"${11:Number}\",",
-            "    \"MaxRetries\": \"${12:Number}\",",
-            "    \"Name\": \"${13:String}\",",
-            "    \"NonOverridableArguments\": \"${14:JSON}\",",
+            "    \"MaintenanceWindow\": \"${11:String}\",",
+            "    \"MaxCapacity\": \"${12:Number}\",",
+            "    \"MaxRetries\": \"${13:Number}\",",
+            "    \"Name\": \"${14:String}\",",
+            "    \"NonOverridableArguments\": \"${15:JSON}\",",
             "    \"NotificationProperty\": {",
-            "      \"NotifyDelayAfter\": \"${15:Number}\"",
+            "      \"NotifyDelayAfter\": \"${16:Number}\"",
             "    },",
-            "    \"NumberOfWorkers\": \"${16:Number}\",",
-            "    \"Role\": \"${17:String}\",",
-            "    \"SecurityConfiguration\": \"${18:String}\",",
-            "    \"Tags\": \"${19:JSON}\",",
-            "    \"Timeout\": \"${20:Number}\",",
-            "    \"WorkerType\": \"${21:String}\"",
+            "    \"NumberOfWorkers\": \"${17:Number}\",",
+            "    \"Role\": \"${18:String}\",",
+            "    \"SecurityConfiguration\": \"${19:String}\",",
+            "    \"Tags\": \"${20:JSON}\",",
+            "    \"Timeout\": \"${21:Number}\",",
+            "    \"WorkerType\": \"${22:String}\"",
             "  }",
             "}"
         ],
@@ -20614,12 +20692,13 @@
             "    \"CodeSha256\": \"${2:String}\",",
             "    \"Description\": \"${3:String}\",",
             "    \"FunctionName\": \"${4:String}\",",
+            "    \"Policy\": \"${5:JSON}\",",
             "    \"ProvisionedConcurrencyConfig\": {",
-            "      \"ProvisionedConcurrentExecutions\": \"${5:Number}\"",
+            "      \"ProvisionedConcurrentExecutions\": \"${6:Number}\"",
             "    },",
             "    \"RuntimePolicy\": {",
-            "      \"RuntimeVersionArn\": \"${6:String}\",",
-            "      \"UpdateRuntimeOn\": \"${7:String}\"",
+            "      \"RuntimeVersionArn\": \"${7:String}\",",
+            "      \"UpdateRuntimeOn\": \"${8:String}\"",
             "    },",
             "  }",
             "}"
@@ -21059,7 +21138,7 @@
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-instance.html",
-            "Attributes:\n  SshKeyName\n  Networking.MonthlyTransfer.GbPerMonthAllocated\n  Hardware.CpuCount\n  IsStaticIp\n  PrivateIpAddress\n  UserName\n  ResourceType\n  Location.RegionName\n  PublicIpAddress\n  Location.AvailabilityZone\n  State.Code\n  SupportCode\n  State.Name\n  InstanceArn\n  Hardware.RamSizeInGb"
+            "Attributes:\n  SshKeyName\n  Networking.MonthlyTransfer.GbPerMonthAllocated\n  Hardware.CpuCount\n  IsStaticIp\n  PrivateIpAddress\n  UserName\n  ResourceType\n  Ipv6Addresses\n  Location.RegionName\n  PublicIpAddress\n  Location.AvailabilityZone\n  State.Code\n  SupportCode\n  State.Name\n  InstanceArn\n  Hardware.RamSizeInGb"
         ],
         "prefix": "lightsail-instance",
         "scope": "json"
@@ -21877,24 +21956,26 @@
             "    \"KmsKey\": \"${8:String}\",",
             "    \"LoggingConfiguration\": {",
             "    },",
-            "    \"MaxWorkers\": \"${10:Number}\",",
-            "    \"MinWorkers\": \"${11:Number}\",",
-            "    \"Name\": \"${12:String}\",",
+            "    \"MaxWebservers\": \"${10:Number}\",",
+            "    \"MaxWorkers\": \"${11:Number}\",",
+            "    \"MinWebservers\": \"${12:Number}\",",
+            "    \"MinWorkers\": \"${13:Number}\",",
+            "    \"Name\": \"${14:String}\",",
             "    \"NetworkConfiguration\": {",
             "      \"SecurityGroupIds\": [],",
             "      \"SubnetIds\": []",
             "    },",
-            "    \"PluginsS3ObjectVersion\": \"${14:String}\",",
-            "    \"PluginsS3Path\": \"${15:String}\",",
-            "    \"RequirementsS3ObjectVersion\": \"${16:String}\",",
-            "    \"RequirementsS3Path\": \"${17:String}\",",
-            "    \"Schedulers\": \"${18:Number}\",",
-            "    \"SourceBucketArn\": \"${19:String}\",",
-            "    \"StartupScriptS3ObjectVersion\": \"${20:String}\",",
-            "    \"StartupScriptS3Path\": \"${21:String}\",",
-            "    \"Tags\": \"${22:JSON}\",",
-            "    \"WebserverAccessMode\": \"${23:String}\",",
-            "    \"WeeklyMaintenanceWindowStart\": \"${24:String}\"",
+            "    \"PluginsS3ObjectVersion\": \"${16:String}\",",
+            "    \"PluginsS3Path\": \"${17:String}\",",
+            "    \"RequirementsS3ObjectVersion\": \"${18:String}\",",
+            "    \"RequirementsS3Path\": \"${19:String}\",",
+            "    \"Schedulers\": \"${20:Number}\",",
+            "    \"SourceBucketArn\": \"${21:String}\",",
+            "    \"StartupScriptS3ObjectVersion\": \"${22:String}\",",
+            "    \"StartupScriptS3Path\": \"${23:String}\",",
+            "    \"Tags\": \"${24:JSON}\",",
+            "    \"WebserverAccessMode\": \"${25:String}\",",
+            "    \"WeeklyMaintenanceWindowStart\": \"${26:String}\"",
             "  }",
             "}"
         ],
@@ -23029,8 +23110,9 @@
             "  \"Properties\": {",
             "    \"AdDecisionServerUrl\": \"${2:String}\",",
             "    \"AvailSuppression\": {",
-            "      \"Mode\": \"${3:String}\",",
-            "      \"Value\": \"${4:String}\"",
+            "      \"FillPolicy\": \"${3:String}\",",
+            "      \"Mode\": \"${4:String}\",",
+            "      \"Value\": \"${5:String}\"",
             "    },",
             "    \"Bumper\": {",
             "      \"EndUrl\": \"${4:String}\",",
@@ -30137,8 +30219,9 @@
             "    \"AppSecurityGroupManagement\": \"${3:String}\",",
             "    \"AuthMode\": \"${4:String}\",",
             "    \"DefaultSpaceSettings\": {",
-            "      \"ExecutionRole\": \"${5:String}\",",
-            "      \"SecurityGroups\": []",
+            "      \"CustomFileSystemConfigs\": [],",
+            "      \"ExecutionRole\": \"${7:String}\",",
+            "      \"SecurityGroups\": [],",
             "    },",
             "    \"DefaultUserSettings\": {",
             "      \"CustomFileSystemConfigs\": [],",
@@ -31324,6 +31407,24 @@
             "Attributes:\n  ProductSubscriptionArn"
         ],
         "prefix": "securityhub-productsubscription",
+        "scope": "json"
+    },
+    "AWS::SecurityHub::SecurityControl": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::SecurityHub::SecurityControl\",",
+            "  \"Properties\": {",
+            "    \"LastUpdateReason\": \"${2:String}\",",
+            "    \"Parameters\": {",
+            "    \"SecurityControlArn\": \"${4:String}\",",
+            "    \"SecurityControlId\": \"${5:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-securitycontrol.html"
+        ],
+        "prefix": "securityhub-securitycontrol",
         "scope": "json"
     },
     "AWS::SecurityHub::Standard": {
