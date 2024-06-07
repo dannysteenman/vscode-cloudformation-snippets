@@ -8720,12 +8720,13 @@
             "  Type: AWS::EC2::CustomerGateway",
             "  Properties:",
             "    BgpAsn: ${2:Number}",
-            "    CertificateArn: \"${3:String}\"",
-            "    DeviceName: \"${4:String}\"",
-            "    IpAddress: \"${5:String}\" # Required",
+            "    BgpAsnExtended: ${3:Number}",
+            "    CertificateArn: \"${4:String}\"",
+            "    DeviceName: \"${5:String}\"",
+            "    IpAddress: \"${6:String}\" # Required",
             "    Tags: ",
             "      Tags",
-            "    Type: \"${7:String}\" # Required"
+            "    Type: \"${8:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html",
@@ -10987,9 +10988,11 @@
             "    AddonVersion: \"${3:String}\"",
             "    ClusterName: \"${4:String}\" # Required",
             "    ConfigurationValues: \"${5:String}\"",
-            "    PreserveOnDelete: ${6|false,true|}",
-            "    ResolveConflicts: \"${7:String}\"",
-            "    ServiceAccountRoleArn: \"${8:String}\"",
+            "    PodIdentityAssociations: ",
+            "      PodIdentityAssociations",
+            "    PreserveOnDelete: ${7|false,true|}",
+            "    ResolveConflicts: \"${8:String}\"",
+            "    ServiceAccountRoleArn: \"${9:String}\"",
             "    Tags: ",
             "      Tags"
         ],
@@ -19778,19 +19781,21 @@
             "    ChannelGroupName: \"${2:String}\" # Required",
             "    ChannelName: \"${3:String}\" # Required",
             "    ContainerType: \"${4:String}\"",
-            "    Description: \"${5:String}\"",
+            "    DashManifests: ",
+            "      DashManifests",
+            "    Description: \"${6:String}\"",
             "    HlsManifests: ",
             "      HlsManifests",
             "    LowLatencyHlsManifests: ",
             "      LowLatencyHlsManifests",
-            "    OriginEndpointName: \"${8:String}\" # Required",
+            "    OriginEndpointName: \"${9:String}\" # Required",
             "    Segment:",
-            "      IncludeIframeOnlyStreams: ${10|false,true|}",
-            "      SegmentDurationSeconds: ${12:Number}",
-            "      SegmentName: \"${13:String}\"",
-            "      TsIncludeDvbSubtitles: ${14|false,true|}",
-            "      TsUseAudioRenditionGroup: ${15|false,true|}",
-            "    StartoverWindowSeconds: ${10:Number}",
+            "      IncludeIframeOnlyStreams: ${11|false,true|}",
+            "      SegmentDurationSeconds: ${13:Number}",
+            "      SegmentName: \"${14:String}\"",
+            "      TsIncludeDvbSubtitles: ${15|false,true|}",
+            "      TsUseAudioRenditionGroup: ${16|false,true|}",
+            "    StartoverWindowSeconds: ${11:Number}",
             "    Tags: ",
             "      Tags"
         ],
@@ -26963,6 +26968,23 @@
         "prefix": "securityhub-automationrule",
         "scope": "yaml"
     },
+    "AWS::SecurityHub::ConfigurationPolicy": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::ConfigurationPolicy",
+            "  Properties:",
+            "    ConfigurationPolicy:",
+            "    Description: \"${3:String}\"",
+            "    Name: \"${4:String}\" # Required",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-configurationpolicy.html",
+            "Attributes:\n  CreatedAt\n  ServiceEnabled\n  Id\n  Arn\n  UpdatedAt"
+        ],
+        "prefix": "securityhub-configurationpolicy",
+        "scope": "yaml"
+    },
     "AWS::SecurityHub::DelegatedAdmin": {
         "body": [
             "${1:LogicalID}:",
@@ -26975,6 +26997,22 @@
             "Attributes:\n  Status\n  DelegatedAdminIdentifier"
         ],
         "prefix": "securityhub-delegatedadmin",
+        "scope": "yaml"
+    },
+    "AWS::SecurityHub::FindingAggregator": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::FindingAggregator",
+            "  Properties:",
+            "    RegionLinkingMode: \"${2:String}\" # Required",
+            "    Regions: ",
+            "      Regions"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-findingaggregator.html",
+            "Attributes:\n  FindingAggregationRegion\n  FindingAggregatorArn"
+        ],
+        "prefix": "securityhub-findingaggregator",
         "scope": "yaml"
     },
     "AWS::SecurityHub::Hub": {
@@ -27210,6 +27248,38 @@
         "prefix": "securityhub-insight",
         "scope": "yaml"
     },
+    "AWS::SecurityHub::OrganizationConfiguration": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::OrganizationConfiguration",
+            "  Properties:",
+            "    AutoEnable: ${2|false,true|} # Required",
+            "    AutoEnableStandards: \"${3:String}\"",
+            "    ConfigurationType: \"${4:String}\""
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-organizationconfiguration.html",
+            "Attributes:\n  Status\n  OrganizationConfigurationIdentifier\n  MemberAccountLimitReached\n  StatusMessage"
+        ],
+        "prefix": "securityhub-organizationconfiguration",
+        "scope": "yaml"
+    },
+    "AWS::SecurityHub::PolicyAssociation": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityHub::PolicyAssociation",
+            "  Properties:",
+            "    ConfigurationPolicyId: \"${2:String}\" # Required",
+            "    TargetId: \"${3:String}\" # Required",
+            "    TargetType: \"${4:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-policyassociation.html",
+            "Attributes:\n  AssociationStatusMessage\n  AssociationType\n  AssociationIdentifier\n  AssociationStatus\n  UpdatedAt"
+        ],
+        "prefix": "securityhub-policyassociation",
+        "scope": "yaml"
+    },
     "AWS::SecurityHub::ProductSubscription": {
         "body": [
             "${1:LogicalID}:",
@@ -27321,6 +27391,22 @@
             "Attributes:\n  ResourceShareName\n  SubscriberRoleArn\n  ResourceShareArn\n  SubscriberArn\n  S3BucketArn"
         ],
         "prefix": "securitylake-subscriber",
+        "scope": "yaml"
+    },
+    "AWS::SecurityLake::SubscriberNotification": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::SecurityLake::SubscriberNotification",
+            "  Properties:",
+            "    NotificationConfiguration:",
+            "      SqsNotificationConfiguration: ${3:JSON}",
+            "    SubscriberArn: \"${3:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securitylake-subscribernotification.html",
+            "Attributes:\n  SubscriberEndpoint"
+        ],
+        "prefix": "securitylake-subscribernotification",
         "scope": "yaml"
     },
     "AWS::ServiceCatalog::AcceptedPortfolioShare": {
