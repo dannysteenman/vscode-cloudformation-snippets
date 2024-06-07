@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+5.7.0 (2024-06-07)
+------------------
+- The following resource was updated: AWS::AutoScaling::ScalingPolicy.
+  [Github Actions]
+- Feat: add openvsx badge. [Danny Steenman]
+
+
 5.6.0 (2024-05-24)
 ------------------
 - The following resource was added: <code
