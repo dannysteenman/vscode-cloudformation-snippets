@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.8.0 (2024-06-14)
+------------------
+- The following resource was added:
+  AWS::ApplicationSignals::ServiceLevelObjective. [Github Actions]
+
+
 5.7.0 (2024-06-07)
 ------------------
 - The following resource was updated: AWS::AutoScaling::ScalingPolicy.
