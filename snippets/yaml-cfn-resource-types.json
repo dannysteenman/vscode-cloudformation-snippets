@@ -2366,6 +2366,24 @@
         "prefix": "appsync-sourceapiassociation",
         "scope": "yaml"
     },
+    "AWS::AppTest::TestCase": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::AppTest::TestCase",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Name: \"${3:String}\" # Required",
+            "    Steps: # Required",
+            "      Steps",
+            "    Tags:"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apptest-testcase.html",
+            "Attributes:\n  Status\n  LastUpdateTime\n  LatestVersion\n  CreationTime\n  TestCaseId\n  LatestVersion.Version\n  LatestVersion.Status\n  TestCaseVersion\n  TestCaseArn"
+        ],
+        "prefix": "apptest-testcase",
+        "scope": "yaml"
+    },
     "AWS::ApplicationAutoScaling::ScalableTarget": {
         "body": [
             "${1:LogicalID}:",
@@ -2448,6 +2466,29 @@
             "Attributes:\n  ApplicationARN"
         ],
         "prefix": "applicationinsights-application",
+        "scope": "yaml"
+    },
+    "AWS::ApplicationSignals::ServiceLevelObjective": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::ApplicationSignals::ServiceLevelObjective",
+            "  Properties:",
+            "    Description: \"${2:String}\"",
+            "    Goal:",
+            "      AttainmentGoal: ${3:Number}",
+            "      WarningThreshold: ${5:Number}",
+            "    Name: \"${4:String}\" # Required",
+            "    Sli:",
+            "      ComparisonOperator: \"${5:String}\"",
+            "      MetricThreshold: ${6:Number}",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-servicelevelobjective.html",
+            "Attributes:\n  CreatedTime\n  LastUpdatedTime\n  Arn"
+        ],
+        "prefix": "applicationsignals-servicelevelobjective",
         "scope": "yaml"
     },
     "AWS::Athena::CapacityReservation": {
@@ -8046,7 +8087,9 @@
             "  Properties:",
             "    Description: \"${2:String}\"",
             "    DisplayName: \"${3:String}\" # Required",
-            "    KmsKeyArn: \"${4:String}\""
+            "    KmsKeyArn: \"${4:String}\"",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-farm.html",
@@ -8066,7 +8109,9 @@
             "    FarmId: \"${5:String}\"",
             "    MaxWorkerCount: ${6:Number} # Required",
             "    MinWorkerCount: ${7:Number}",
-            "    RoleArn: \"${8:String}\" # Required"
+            "    RoleArn: \"${8:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-fleet.html",
@@ -8084,7 +8129,9 @@
             "      SecurityGroupIds",
             "    SubnetIds: # Required",
             "      SubnetIds",
-            "    VpcId: \"${4:String}\" # Required"
+            "    Tags: ",
+            "      Tags",
+            "    VpcId: \"${5:String}\" # Required"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-licenseendpoint.html",
@@ -8111,6 +8158,23 @@
         "prefix": "deadline-meteredproduct",
         "scope": "yaml"
     },
+    "AWS::Deadline::Monitor": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::Deadline::Monitor",
+            "  Properties:",
+            "    DisplayName: \"${2:String}\" # Required",
+            "    IdentityCenterInstanceArn: \"${3:String}\" # Required",
+            "    RoleArn: \"${4:String}\" # Required",
+            "    Subdomain: \"${5:String}\" # Required"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-monitor.html",
+            "Attributes:\n  IdentityCenterApplicationArn\n  Arn\n  MonitorId\n  Url"
+        ],
+        "prefix": "deadline-monitor",
+        "scope": "yaml"
+    },
     "AWS::Deadline::Queue": {
         "body": [
             "${1:LogicalID}:",
@@ -8129,7 +8193,9 @@
             "      RunAs: \"${9:String}\"",
             "    RequiredFileSystemLocationNames: ",
             "      RequiredFileSystemLocationNames",
-            "    RoleArn: \"${10:String}\""
+            "    RoleArn: \"${10:String}\"",
+            "    Tags: ",
+            "      Tags"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queue.html",
@@ -14351,6 +14417,24 @@
             "Attributes:\n  Id"
         ],
         "prefix": "guardduty-ipset",
+        "scope": "yaml"
+    },
+    "AWS::GuardDuty::MalwareProtectionPlan": {
+        "body": [
+            "${1:LogicalID}:",
+            "  Type: AWS::GuardDuty::MalwareProtectionPlan",
+            "  Properties:",
+            "    Actions:",
+            "    ProtectedResource:",
+            "    Role: \"${4:String}\" # Required",
+            "    Tags: ",
+            "      Tags"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-malwareprotectionplan.html",
+            "Attributes:\n  Status\n  StatusReasons\n  CreatedAt\n  MalwareProtectionPlanId\n  Arn"
+        ],
+        "prefix": "guardduty-malwareprotectionplan",
         "scope": "yaml"
     },
     "AWS::GuardDuty::Master": {
@@ -20822,11 +20906,12 @@
             "      SecurityGroupIds:",
             "        -",
             "      SubnetIds:",
-            "        -"
+            "        -",
+            "      VpcEndpointManagement: \"${12:String}\""
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-osis-pipeline.html",
-            "Attributes:\n  PipelineArn\n  VpcEndpoints\n  IngestEndpointUrls"
+            "Attributes:\n  PipelineArn\n  VpcEndpoints\n  IngestEndpointUrls\n  VpcEndpointService"
         ],
         "prefix": "osis-pipeline",
         "scope": "yaml"

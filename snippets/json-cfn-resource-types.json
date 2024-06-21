@@ -2731,6 +2731,27 @@
         "prefix": "appsync-sourceapiassociation",
         "scope": "json"
     },
+    "AWS::AppTest::TestCase": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::AppTest::TestCase\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"Name\": \"${3:String}\",",
+            "    \"Steps\": [",
+            "      \"Steps\"",
+            "    ],",
+            "    \"Tags\": {",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apptest-testcase.html",
+            "Attributes:\n  Status\n  LastUpdateTime\n  LatestVersion\n  CreationTime\n  TestCaseId\n  LatestVersion.Version\n  LatestVersion.Status\n  TestCaseVersion\n  TestCaseArn"
+        ],
+        "prefix": "apptest-testcase",
+        "scope": "json"
+    },
     "AWS::ApplicationAutoScaling::ScalableTarget": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -2826,6 +2847,34 @@
             "Attributes:\n  ApplicationARN"
         ],
         "prefix": "applicationinsights-application",
+        "scope": "json"
+    },
+    "AWS::ApplicationSignals::ServiceLevelObjective": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::ApplicationSignals::ServiceLevelObjective\",",
+            "  \"Properties\": {",
+            "    \"Description\": \"${2:String}\",",
+            "    \"Goal\": {",
+            "      \"AttainmentGoal\": \"${3:Number}\",",
+            "      \"WarningThreshold\": \"${5:Number}\"",
+            "    },",
+            "    \"Name\": \"${4:String}\",",
+            "    \"Sli\": {",
+            "      \"ComparisonOperator\": \"${5:String}\",",
+            "      \"MetricThreshold\": \"${6:Number}\",",
+            "    },",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-servicelevelobjective.html",
+            "Attributes:\n  CreatedTime\n  LastUpdatedTime\n  Arn"
+        ],
+        "prefix": "applicationsignals-servicelevelobjective",
         "scope": "json"
     },
     "AWS::Athena::CapacityReservation": {
@@ -9292,7 +9341,10 @@
             "  \"Properties\": {",
             "    \"Description\": \"${2:String}\",",
             "    \"DisplayName\": \"${3:String}\",",
-            "    \"KmsKeyArn\": \"${4:String}\"",
+            "    \"KmsKeyArn\": \"${4:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
             "  }",
             "}"
         ],
@@ -9315,7 +9367,10 @@
             "    \"FarmId\": \"${5:String}\",",
             "    \"MaxWorkerCount\": \"${6:Number}\",",
             "    \"MinWorkerCount\": \"${7:Number}\",",
-            "    \"RoleArn\": \"${8:String}\"",
+            "    \"RoleArn\": \"${8:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
             "  }",
             "}"
         ],
@@ -9337,7 +9392,10 @@
             "    \"SubnetIds\": [",
             "      \"SubnetIds\"",
             "    ],",
-            "    \"VpcId\": \"${4:String}\"",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ],",
+            "    \"VpcId\": \"${5:String}\"",
             "  }",
             "}"
         ],
@@ -9368,6 +9426,25 @@
         "prefix": "deadline-meteredproduct",
         "scope": "json"
     },
+    "AWS::Deadline::Monitor": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::Deadline::Monitor\",",
+            "  \"Properties\": {",
+            "    \"DisplayName\": \"${2:String}\",",
+            "    \"IdentityCenterInstanceArn\": \"${3:String}\",",
+            "    \"RoleArn\": \"${4:String}\",",
+            "    \"Subdomain\": \"${5:String}\"",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-monitor.html",
+            "Attributes:\n  IdentityCenterApplicationArn\n  Arn\n  MonitorId\n  Url"
+        ],
+        "prefix": "deadline-monitor",
+        "scope": "json"
+    },
     "AWS::Deadline::Queue": {
         "body": [
             "\"${1:LogicalID}\": {",
@@ -9390,7 +9467,10 @@
             "    \"RequiredFileSystemLocationNames\": [",
             "      \"RequiredFileSystemLocationNames\"",
             "    ],",
-            "    \"RoleArn\": \"${10:String}\"",
+            "    \"RoleArn\": \"${10:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
             "  }",
             "}"
         ],
@@ -16643,6 +16723,29 @@
             "Attributes:\n  Id"
         ],
         "prefix": "guardduty-ipset",
+        "scope": "json"
+    },
+    "AWS::GuardDuty::MalwareProtectionPlan": {
+        "body": [
+            "\"${1:LogicalID}\": {",
+            "  \"Type\": \"AWS::GuardDuty::MalwareProtectionPlan\",",
+            "  \"Properties\": {",
+            "    \"Actions\": {",
+            "    },",
+            "    \"ProtectedResource\": {",
+            "    },",
+            "    \"Role\": \"${4:String}\",",
+            "    \"Tags\": [",
+            "      \"Tags\"",
+            "    ]",
+            "  }",
+            "}"
+        ],
+        "description": [
+            "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-malwareprotectionplan.html",
+            "Attributes:\n  Status\n  StatusReasons\n  CreatedAt\n  MalwareProtectionPlanId\n  Arn"
+        ],
+        "prefix": "guardduty-malwareprotectionplan",
         "scope": "json"
     },
     "AWS::GuardDuty::Master": {
@@ -24171,14 +24274,15 @@
             "    ],",
             "    \"VpcOptions\": {",
             "      \"SecurityGroupIds\": [],",
-            "      \"SubnetIds\": []",
+            "      \"SubnetIds\": [],",
+            "      \"VpcEndpointManagement\": \"${12:String}\"",
             "    },",
             "  }",
             "}"
         ],
         "description": [
             "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-osis-pipeline.html",
-            "Attributes:\n  PipelineArn\n  VpcEndpoints\n  IngestEndpointUrls"
+            "Attributes:\n  PipelineArn\n  VpcEndpoints\n  IngestEndpointUrls\n  VpcEndpointService"
         ],
         "prefix": "osis-pipeline",
         "scope": "json"
