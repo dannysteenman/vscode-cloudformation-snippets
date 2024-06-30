@@ -2,6 +2,16 @@ Changelog
 =========
 
 
+5.10.0 (2024-06-30)
+-------------------
+- The following resource was added: <code
+  class="code">AWS::WorkSpaces::WorkspacesPool</code> [Github Actions]
+- Feat: add autocomplete support for nested arrays for all cfn
+  properties. [Danny Steenman]
+- Chore: Update README.md with AWS expertise and contact information.
+  [Danny Steenman]
+
+
 5.9.0 (2024-06-21)
 ------------------
 - The following resource was added: <code
