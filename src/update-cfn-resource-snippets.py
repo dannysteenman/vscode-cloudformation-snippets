@@ -1,227 +1,372 @@
 import argparse
-import concurrent.futures
 import json
 import os
-from concurrent.futures import ThreadPoolExecutor
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Any, Dict, List
 
 import requests
 
-parser = argparse.ArgumentParser(description="Process CloudFormation Resource Specification")
-parser.add_argument(
-    "--local",
-    dest="local_path",
-    help="Path to local JSON resource specification file (optional)",
-)
-parser.add_argument(
-    "--format",
-    dest="output_format",
-    choices=["json", "yaml"],
-    default="yaml",
-    help="Output format for the snippets (default: %(default)s)",
-)
-args = parser.parse_args()
+CFN_RESOURCE_SPEC_URL = "https://d1uauaxba7bl26.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+MAX_RECURSION_DEPTH = 10
+VALUE_TYPE_MAP = {
+    "Boolean": "|false,true|",
+    "Double": ":Number",
+    "Integer": ":Number",
+    "Json": ":JSON",
+    "Long": ":Number",
+    "String": ":String",
+    "Timestamp": ":Timestamp",
+}
+
+# Thread-safe printing
+log_lock = threading.Lock()
 
 
-# Get the resource specification from a local file or the AWS URL
-def get_resource_spec(local_path=None):
+def safe_print(*args, **kwargs):
+    with log_lock:
+        print(*args, **kwargs)
+
+
+class ResourceParser:
+    def __init__(self, output_format: str):
+        self.output_format = output_format
+        self.counter = [1]
+
+    def parse_body(
+        self, resource_properties: Dict[str, Any], resource_type: str, response_data: Dict[str, Any]
+    ) -> List[str]:
+        body = self._init_body(resource_type)
+        return getattr(self, f"_parse_body_{self.output_format}")(
+            body, resource_properties, resource_type, response_data
+        )
+
+    def _init_body(self, resource_type: str) -> List[str]:
+        if self.output_format == "yaml":
+            return ["${1:LogicalID}:", f"  Type: {resource_type}", "  Properties:"]
+        else:
+            return ['"${1:LogicalID}": {', f'  "Type": "{resource_type}",', '  "Properties": {']
+
+    def _parse_body_yaml(
+        self, body: List[str], resource_properties: Dict[str, Any], resource_type: str, response_data: Dict[str, Any]
+    ) -> List[str]:
+        for resource_property, property_info in sorted(resource_properties.items()):
+            required = property_info.get("Required", False)
+            item = self._get_item_type(property_info)
+
+            if "Type" in property_info:
+                if property_info["Type"] == "List":
+                    body.append(f"    {resource_property}: {'# Required' if required else ''}")
+                    if item != "Tag":
+                        body.append("      -")
+                    self._get_item_type_prop(
+                        body,
+                        property_info.get("ItemType", item),
+                        resource_type,
+                        response_data,
+                        indent=8,
+                        first_item=True,
+                    )
+                else:
+                    body.append(f"    {resource_property}:")
+                    self._get_item_type_prop(body, property_info["Type"], resource_type, response_data, indent=6)
+            else:
+                self._set_value_type(body, resource_property, item, required, indent=4)
+
+        return body
+
+    def _parse_body_json(
+        self, body: List[str], resource_properties: Dict[str, Any], resource_type: str, response_data: Dict[str, Any]
+    ) -> List[str]:
+        for idx, (resource_property, property_info) in enumerate(sorted(resource_properties.items())):
+            required = property_info.get("Required", False)
+            item = self._get_item_type(property_info)
+            is_last = idx == len(resource_properties) - 1
+
+            if "Type" in property_info:
+                if property_info["Type"] == "List":
+                    line = f'    "{resource_property}": ['
+                    if required:
+                        line += " // Required"
+                    body.append(line)
+                    if item != "Tag":
+                        body.append("      {")
+                    self._get_item_type_prop(
+                        body,
+                        property_info.get("ItemType", item),
+                        resource_type,
+                        response_data,
+                        indent=8,
+                        first_item=True,
+                    )
+                    if item != "Tag":
+                        body.append("      }")
+                    body.append("    ]" + ("" if is_last else ","))
+                else:
+                    line = f'    "{resource_property}": {{'
+                    if required:
+                        line += " // Required"
+                    body.append(line)
+                    self._get_item_type_prop(body, property_info["Type"], resource_type, response_data, indent=6)
+                    body.append("    }" + ("" if is_last else ","))
+            else:
+                self._set_value_type(body, resource_property, item, required, indent=4, is_last=is_last)
+
+        body.append("  }")
+        body.append("}")
+        return body
+
+    def _get_item_type_prop(
+        self,
+        body: List[str],
+        item: str,
+        resource_type: str,
+        response_data: Dict[str, Any],
+        indent: int = 6,
+        first_item: bool = False,
+        depth: int = 0,
+    ) -> List[str]:
+        if depth > MAX_RECURSION_DEPTH:
+            return body
+
+        resource_property_name = f"{resource_type}.{item}"
+
+        if resource_property_name in response_data.get("PropertyTypes", {}):
+            properties = response_data["PropertyTypes"][resource_property_name].get("Properties", {})
+            for idx, (property, property_info) in enumerate(sorted(properties.items())):
+                is_last = idx == len(properties) - 1
+                item_type = self._get_item_type(property_info)
+
+                if "Type" in property_info:
+                    if property_info["Type"] == "List":
+                        self._handle_list_type(
+                            body,
+                            property,
+                            property_info,
+                            resource_type,
+                            response_data,
+                            indent,
+                            first_item,
+                            depth,
+                            is_last,
+                        )
+                    elif property_info["Type"] == "Map":
+                        self._handle_map_type(body, property, indent, is_last)
+                    else:
+                        self._handle_other_type(
+                            body,
+                            property,
+                            property_info,
+                            resource_type,
+                            response_data,
+                            indent,
+                            first_item,
+                            depth,
+                            is_last,
+                        )
+                else:
+                    self._set_value_type(body, property, item_type, None, indent, first_item, is_last)
+                first_item = False
+        elif item == "Tag":
+            self._handle_tag_type(body, indent)
+        else:
+            self._set_value_type(body, "", item, None, indent, first_item, True)
+        return body
+
+    def _handle_list_type(
+        self,
+        body: List[str],
+        property: str,
+        property_info: Dict[str, Any],
+        resource_type: str,
+        response_data: Dict[str, Any],
+        indent: int,
+        first_item: bool,
+        depth: int,
+        is_last: bool,
+    ):
+        if self.output_format == "yaml":
+            if first_item:
+                body[-1] += f" {property}:"
+            else:
+                body.append(f"{' ' * indent}{property}:")
+            body.append(f"{' ' * (indent + 2)}-")
+            if property_info.get("ItemType"):
+                self._get_item_type_prop(
+                    body,
+                    property_info["ItemType"],
+                    resource_type,
+                    response_data,
+                    indent=indent + 4,
+                    first_item=True,
+                    depth=depth + 1,
+                )
+            else:
+                self._set_value_type(
+                    body, "", property_info.get("PrimitiveItemType", ""), None, indent=indent + 4, first_item=True
+                )
+        else:
+            body.append(f'{" " * indent}"{property}": [')
+            if property_info.get("PrimitiveItemType") in ["String", "Integer", "Boolean"]:
+                self._set_value_type(
+                    body, "", property_info["PrimitiveItemType"], None, indent=indent + 2, is_last=True
+                )
+            else:
+                body.append(f"{' ' * (indent + 2)}{{")
+                if property_info.get("ItemType"):
+                    self._get_item_type_prop(
+                        body,
+                        property_info["ItemType"],
+                        resource_type,
+                        response_data,
+                        indent=indent + 4,
+                        first_item=True,
+                        depth=depth + 1,
+                    )
+                else:
+                    self._set_value_type(
+                        body,
+                        "",
+                        property_info.get("PrimitiveItemType", ""),
+                        None,
+                        indent=indent + 4,
+                        first_item=True,
+                        is_last=True,
+                    )
+                body.append(f"{' ' * (indent + 2)}}}")
+            body.append(f"{' ' * indent}]" + ("" if is_last else ","))
+
+    def _handle_map_type(self, body: List[str], property: str, indent: int, is_last: bool):
+        if self.output_format == "yaml":
+            body.append(f"{' ' * indent}{property}:")
+            self._set_value_type(body, "", "Json", None, indent=indent + 2, first_item=False)
+        else:
+            body.append(f'{" " * indent}"{property}": {{')
+            self._set_value_type(body, "key", "String", None, indent=indent + 2, is_last=False)
+            self._set_value_type(body, "value", "String", None, indent=indent + 2, is_last=True)
+            body.append(f"{' ' * indent}}}" + ("" if is_last else ","))
+
+    def _handle_other_type(
+        self,
+        body: List[str],
+        property: str,
+        property_info: Dict[str, Any],
+        resource_type: str,
+        response_data: Dict[str, Any],
+        indent: int,
+        first_item: bool,
+        depth: int,
+        is_last: bool,
+    ):
+        if self.output_format == "yaml":
+            if first_item:
+                body[-1] += f" {property}:"
+            else:
+                body.append(f"{' ' * indent}{property}:")
+            self._get_item_type_prop(
+                body, property_info["Type"], resource_type, response_data, indent=indent + 2, depth=depth + 1
+            )
+        else:
+            body.append(f'{" " * indent}"{property}": {{')
+            self._get_item_type_prop(
+                body, property_info["Type"], resource_type, response_data, indent=indent + 2, depth=depth + 1
+            )
+            body.append(f"{' ' * indent}}}" + ("" if is_last else ","))
+
+    def _handle_tag_type(self, body: List[str], indent: int):
+        if self.output_format == "yaml":
+            body.append(f"{' ' * (indent-2)}- Key: \"${{{self._get_next_counter()}:String}}\"")
+            body.append(f"{' ' * indent}Value: \"${{{self._get_next_counter()}:String}}\"")
+        else:
+            body.append(f'{" " * indent}{{')
+            body.append(f'{" " * (indent + 2)}"Key": "${{{self._get_next_counter()}:String}}",')
+            body.append(f'{" " * (indent + 2)}"Value": "${{{self._get_next_counter()}:String}}"')
+            body.append(f'{" " * indent}}}')
+
+    def _set_value_type(
+        self,
+        body: List[str],
+        property: str,
+        item: str,
+        required: bool,
+        indent: int,
+        first_item: bool = False,
+        is_last: bool = False,
+    ) -> List[str]:
+        if item in VALUE_TYPE_MAP:
+            value_type = VALUE_TYPE_MAP[item]
+            if value_type == ":Number":
+                prefix = f'"${{{self._get_next_counter()}:Number}}"'
+            else:
+                prefix = f"${{{self._get_next_counter()}{value_type}}}"
+                if item in ["String", "Json", "Timestamp"]:
+                    prefix = f'"{prefix}"'
+
+            if self.output_format == "yaml":
+                if first_item:
+                    body[-1] += f" {property}{': ' if property else ''}{prefix}"
+                else:
+                    body.append(f"{' ' * indent}{property}{':' if property else ''} {prefix}")
+                if required:
+                    body[-1] += " # Required"
+            else:
+                if property:
+                    body.append(f'{" " * indent}"{property}": {prefix}' + ("" if is_last else ","))
+                else:
+                    body.append(f'{" " * indent}{prefix}' + ("" if is_last else ","))
+                if required:
+                    body[-1] += " // Required"
+        else:
+            if self.output_format == "yaml":
+                body.append(f"{' ' * indent}{property}{':' if property else ''} ")
+            else:
+                body.append(f'{" " * indent}"{property}": null' + ("" if is_last else ","))
+
+        return body
+
+    @staticmethod
+    def _get_item_type(resource_property: Dict[str, Any]) -> str:
+        return resource_property.get(
+            "PrimitiveItemType", resource_property.get("PrimitiveType", resource_property.get("ItemType"))
+        )
+
+    def _get_next_counter(self) -> int:
+        self.counter[0] += 1
+        return self.counter[0]
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="Process CloudFormation Resource Specification")
+    parser.add_argument(
+        "--local",
+        dest="local_path",
+        help="Path to local JSON resource specification file (optional)",
+    )
+    parser.add_argument(
+        "--format",
+        dest="output_format",
+        choices=["json", "yaml"],
+        default="yaml",
+        help="Output format for the snippets (default: %(default)s)",
+    )
+    return parser.parse_args()
+
+
+def get_resource_spec(local_path: str = None) -> Dict[str, Any]:
     if local_path:
         abs_path = os.path.abspath(local_path)
         if os.path.exists(abs_path):
             with open(abs_path, "r") as f:
-                response = json.load(f)
+                return json.load(f)
         else:
             raise FileNotFoundError(f"File not found: {abs_path}")
     else:
-        cfn_resource_spec_url = (
-            "https://d1uauaxba7bl26.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
-        )
-        response = requests.get(cfn_resource_spec_url).json()
-
-    return response
+        response = requests.get(CFN_RESOURCE_SPEC_URL)
+        response.raise_for_status()
+        return response.json()
 
 
-# Get the item type for a resource property
-def get_item_type(resource_property):
-    return resource_property.get(
-        "PrimitiveItemType",
-        resource_property.get("PrimitiveType", resource_property.get("ItemType")),
-    )
-
-
-# Parse the body of the YAML output
-def parse_body_yaml(body, counter, resource_properties, resource_property, resource_type):
-    property_info = resource_properties[resource_property]
-    required = property_info["Required"]
-    item = get_item_type(property_info)
-
-    if "Type" in property_info:
-        if property_info["Type"] == "List":
-            body.extend(
-                [
-                    f"    {resource_property}: {'# Required' if required else ''}",
-                    f"      {resource_property}",
-                ]
-            )
-        else:
-            item = property_info["Type"]
-            body.append(f"    {resource_property}:")
-            get_item_type_prop_yaml(body, item, resource_type, counter)
-    else:
-        set_value_type_yaml(body, resource_property, item, counter, required, indent=4)
-
-    return body
-
-
-# Parse the properties for a YAML item
-def get_item_type_prop_yaml(body, item, resource_type, counter, indent=6):
-    response_data = get_resource_spec()
-    resource_property_name = f"{resource_type}.{item}"
-
-    for property_type, property_data in response_data["PropertyTypes"].items():
-        properties = property_data.get("Properties")
-        if resource_property_name == property_type and properties:
-            for updated_counter, property in enumerate(sorted(properties), start=counter):
-                property_info = properties[property]
-                item = get_item_type(property_info)
-
-                if "Type" in property_info:
-                    if property_info["Type"] == "List":
-                        body.extend([f"{' ' * indent}{property}:", f"{' ' * (indent + 2)}-"])
-                    elif property == (property_info["Type"] or None):
-                        continue
-                else:
-                    set_value_type_yaml(
-                        body,
-                        property,
-                        item,
-                        updated_counter,
-                        required=None,
-                        indent=indent,
-                    )
-    return body
-
-
-# Set the value type for a YAML property
-def set_value_type_yaml(body, property, item, counter, required, indent):
-    value_type = {
-        "Boolean": "|false,true|",
-        "Double": ":Number",
-        "Integer": ":Number",
-        "Json": ":JSON",
-        "Long": ":Number",
-        "String": ":String",
-        "Timestamp": ":Timestamp",
-    }
-
-    if item in value_type:
-        prefix = f"${{{counter}{value_type[item]}}}"
-        if item == "String":
-            prefix = f'"{prefix}"'
-        body.append(f"{' ' * indent}{property}: {prefix}{' # Required' if required else ''}")
-    else:
-        print(f"This property: {property} has an unsupported value: {item}")
-
-    return body
-
-
-# Parse the body of the JSON output
-def parse_body_json(body, counter, resource_properties, resource_property, resource_type):
-    property_info = resource_properties[resource_property]
-    item = get_item_type(property_info)
-
-    is_last_property = resource_property == sorted(resource_properties)[-1]
-
-    if "Type" in property_info:
-        if property_info["Type"] == "List":
-            body.extend(
-                [
-                    f'    "{resource_property}": [',
-                    f'      "{resource_property}"',
-                    "    ]" + ("," if not is_last_property else ""),
-                ]
-            )
-        else:
-            item = property_info["Type"]
-            body.append(f'    "{resource_property}": {{')
-            get_item_type_prop_json(body, item, resource_type, counter)
-    else:
-        set_value_type_json(
-            body,
-            resource_property,
-            item,
-            counter,
-            indent=4,
-            is_last=is_last_property,
-        )
-
-    return body
-
-
-# Parse the properties for a JSON item
-def get_item_type_prop_json(body, item, resource_type, counter, indent=6):
-    response_data = get_resource_spec()
-    resource_property_name = f"{resource_type}.{item}"
-
-    for property_type, property_data in response_data["PropertyTypes"].items():
-        properties = property_data.get("Properties")
-        if resource_property_name == property_type and properties:
-            sorted_properties = sorted(properties)
-            last_property = sorted_properties[-1]
-
-            for updated_counter, property in enumerate(sorted_properties, start=counter):
-                property_info = properties[property]
-                item = get_item_type(property_info)
-                is_last = property == last_property
-
-                if "Type" in property_info:
-                    if property_info["Type"] == "List":
-                        body.extend(
-                            [
-                                f'{" " * indent}"{property}": []' + ("," if not is_last else ""),
-                            ]
-                        )
-                    elif property == (property_info["Type"] or None):
-                        continue
-                else:
-                    set_value_type_json(
-                        body,
-                        property,
-                        item,
-                        updated_counter,
-                        indent=indent,
-                        is_last=is_last,
-                    )
-
-            body.append(f'{" " * 4 }}}{"," if resource_type != last_property else ""}')
-            break
-
-    return body
-
-
-# Set the value type for a JSON property
-def set_value_type_json(body, property, item, counter, indent, is_last=False):
-    value_type = {
-        "Boolean": "|false,true|",
-        "Double": ":Number",
-        "Integer": ":Number",
-        "Json": ":JSON",
-        "Long": ":Number",
-        "String": ":String",
-        "Timestamp": ":Timestamp",
-    }
-
-    if item in value_type:
-        prefix = f"${{{counter}{value_type[item]}}}"
-        prefix = f'"{prefix}"'
-        body.append(f'{" " * indent}"{property}": {prefix}' + ("," if not is_last else ""))
-    else:
-        print(f"This property: {property} has an unsupported value: {item}")
-
-    return body
-
-
-# Fetch the description of a resource type
-def fetch_description(resource_type):
+def fetch_description(resource_type: Dict[str, Any]) -> List[str]:
     description = [resource_type["Documentation"].replace("http://", "https://")]
 
     if "Attributes" in resource_type:
@@ -231,28 +376,18 @@ def fetch_description(resource_type):
     return description
 
 
-# Process a resource type and generate its snippet
-def process_resource_type(resource_type, resource_data, output_format):
+def process_resource_type(
+    resource_type: str, resource_data: Dict[str, Any], output_format: str, response_data: Dict[str, Any]
+) -> tuple:
     prefix = resource_type.replace("AWS::", "").replace("::", "-")
     description = fetch_description(resource_data)
-    resource_properties = resource_data["Properties"]
+    resource_properties = resource_data.get("Properties", {})
 
-    updated_body = []
-    if output_format == "yaml":
-        body = ["${1:LogicalID}:", f"  Type: {resource_type}", "  Properties:"]
-        for counter, resource_property in enumerate(sorted(resource_properties), start=2):
-            updated_body = parse_body_yaml(body, counter, resource_properties, resource_property, resource_type)
-    elif output_format == "json":
-        body = [
-            '"${1:LogicalID}": {',
-            f'  "Type": "{resource_type}",',
-            '  "Properties": {',
-        ]
-        for counter, resource_property in enumerate(sorted(resource_properties), start=2):
-            updated_body = parse_body_json(body, counter, resource_properties, resource_property, resource_type)
-        updated_body.append("  }")
-        updated_body.append("}")
+    parser = ResourceParser(output_format)
+    updated_body = parser.parse_body(resource_properties, resource_type, response_data)
 
+    safe_print(f"Finished processing {resource_type}")
+    safe_print(f"Number of lines in updated_body: {len(updated_body)}")
     return resource_type, {
         "body": updated_body,
         "description": description,
@@ -261,20 +396,29 @@ def process_resource_type(resource_type, resource_data, output_format):
     }
 
 
-# Function to create the CloudFormation snippet based on the resource specification
-def create_cfn_snippet(cloudformation_resource_spec, local_path=None, output_format="yaml"):
+def create_cfn_snippet(
+    cloudformation_resource_spec: Dict[str, Any], local_path: str = None, output_format: str = "yaml"
+) -> None:
     output = {}
     resource_types = cloudformation_resource_spec["ResourceTypes"]
 
-    with ThreadPoolExecutor() as executor:
-        futures = [
-            executor.submit(process_resource_type, resource_type, resource_data, output_format)
-            for resource_type, resource_data in resource_types.items()
-        ]
+    safe_print(f"Total number of resource types: {len(resource_types)}")
 
-        for future in concurrent.futures.as_completed(futures):
-            resource_type, result = future.result()
-            output[resource_type] = result
+    with ThreadPoolExecutor() as executor:
+        future_to_resource = {
+            executor.submit(
+                process_resource_type, resource_type, resource_data, output_format, cloudformation_resource_spec
+            ): resource_type
+            for resource_type, resource_data in resource_types.items()
+        }
+
+        for future in as_completed(future_to_resource):
+            resource_type = future_to_resource[future]
+            try:
+                result = future.result()
+                output[resource_type] = result[1]
+            except Exception as exc:
+                safe_print(f"{resource_type} generated an exception: {exc}")
 
     output_file_name = (
         f"{output_format}-cfn-resource-types-test-output.json"
@@ -285,11 +429,19 @@ def create_cfn_snippet(cloudformation_resource_spec, local_path=None, output_for
     snippet_directory = f"{os.getcwd()}/test" if local_path else f"{os.getcwd()}/snippets"
     output_file_path = os.path.join(snippet_directory, output_file_name)
 
-    print(f"Saving snippets in: {output_file_path}")
+    os.makedirs(snippet_directory, exist_ok=True)
+
+    safe_print(f"Saving snippets in: {output_file_path}")
     with open(output_file_path, "w") as file:
-        file.write(json.dumps(output, sort_keys=True, indent=4))
+        json.dump(output, file, sort_keys=True, indent=4)
+
+
+def main():
+    args = parse_arguments()
+    cloudformation_resource_spec = get_resource_spec(args.local_path)
+
+    create_cfn_snippet(cloudformation_resource_spec, args.local_path, args.output_format)
 
 
 if __name__ == "__main__":
-    cloudformation_resource_spec = get_resource_spec(args.local_path)
-    create_cfn_snippet(cloudformation_resource_spec, args.local_path, args.output_format)
+    main()
