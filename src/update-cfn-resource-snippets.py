@@ -8,7 +8,9 @@ from typing import Any, Dict, List
 import requests
 
 CFN_RESOURCE_SPEC_URL = "https://d1uauaxba7bl26.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
-MAX_RECURSION_DEPTH = 10
+REDUCED_DEPTH = 4
+MAX_DEPTH = 10
+MAX_LINES = 400
 VALUE_TYPE_MAP = {
     "Boolean": "|false,true|",
     "Double": ":Number",
@@ -29,14 +31,17 @@ def safe_print(*args, **kwargs):
 
 
 class ResourceParser:
-    def __init__(self, output_format: str):
+    def __init__(self, output_format: str, max_depth: int):
         self.output_format = output_format
         self.counter = [1]
+        self.nested_types = set()
+        self.max_depth = max_depth
 
     def parse_body(
         self, resource_properties: Dict[str, Any], resource_type: str, response_data: Dict[str, Any]
     ) -> List[str]:
         body = self._init_body(resource_type)
+        self.counter[0] = 1
         return getattr(self, f"_parse_body_{self.output_format}")(
             body, resource_properties, resource_type, response_data
         )
@@ -126,10 +131,21 @@ class ResourceParser:
         first_item: bool = False,
         depth: int = 0,
     ) -> List[str]:
-        if depth > MAX_RECURSION_DEPTH:
+        if depth >= self.max_depth:
             return body
 
         resource_property_name = f"{resource_type}.{item}"
+
+        # Avoid nested repetition of props
+        if resource_property_name in self.nested_types:
+            if self.output_format == "yaml":
+                if body[-1].strip() == "-":
+                    body[-1] = f"{body[-1].rstrip()} Children: # Nested repetition"
+            else:
+                body.append(f'{" " * indent}"Children": "# Nested repetition",')
+            return body
+
+        self.nested_types.add(resource_property_name)
 
         if resource_property_name in response_data.get("PropertyTypes", {}):
             properties = response_data["PropertyTypes"][resource_property_name].get("Properties", {})
@@ -171,6 +187,8 @@ class ResourceParser:
             self._handle_tag_type(body, indent)
         else:
             self._set_value_type(body, "", item, None, indent, first_item, True)
+
+        self.nested_types.remove(resource_property_name)
         return body
 
     def _handle_list_type(
@@ -383,11 +401,24 @@ def process_resource_type(
     description = fetch_description(resource_data)
     resource_properties = resource_data.get("Properties", {})
 
-    parser = ResourceParser(output_format)
+    # First pass with maximum depth
+    parser = ResourceParser(output_format, MAX_DEPTH)
     updated_body = parser.parse_body(resource_properties, resource_type, response_data)
 
+    line_count = len(updated_body)
+    safe_print(f"Resource type {resource_type} initially has {line_count} lines")
+
+    if line_count > MAX_LINES:
+        safe_print(
+            f"Warning: {resource_type} exceeded the maximum number of lines ({MAX_LINES}). Reducing parsing depth to {REDUCED_DEPTH}."
+        )
+        # Second pass with reduced depth
+        parser = ResourceParser(output_format, REDUCED_DEPTH)
+        updated_body = parser.parse_body(resource_properties, resource_type, response_data)
+        line_count = len(updated_body)
+        safe_print(f"After depth reduction, {resource_type} now has {line_count} lines")
+
     safe_print(f"Finished processing {resource_type}")
-    safe_print(f"Number of lines in updated_body: {len(updated_body)}")
     return resource_type, {
         "body": updated_body,
         "description": description,
