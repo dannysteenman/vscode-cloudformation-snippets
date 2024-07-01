@@ -41,7 +41,7 @@ class ResourceParser:
         self, resource_properties: Dict[str, Any], resource_type: str, response_data: Dict[str, Any]
     ) -> List[str]:
         body = self._init_body(resource_type)
-        self.counter[0] = 0
+        self.counter[0] = 1
         return getattr(self, f"_parse_body_{self.output_format}")(
             body, resource_properties, resource_type, response_data
         )
