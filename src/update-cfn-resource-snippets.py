@@ -9,6 +9,7 @@ import requests
 
 CFN_RESOURCE_SPEC_URL = "https://d1uauaxba7bl26.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
 MAX_RECURSION_DEPTH = 10
+MAX_PROPERTIES = 360
 VALUE_TYPE_MAP = {
     "Boolean": "|false,true|",
     "Double": ":Number",
@@ -32,11 +33,13 @@ class ResourceParser:
     def __init__(self, output_format: str):
         self.output_format = output_format
         self.counter = [1]
+        self.nested_types = set()
 
     def parse_body(
         self, resource_properties: Dict[str, Any], resource_type: str, response_data: Dict[str, Any]
     ) -> List[str]:
         body = self._init_body(resource_type)
+        self.counter[0] = 0
         return getattr(self, f"_parse_body_{self.output_format}")(
             body, resource_properties, resource_type, response_data
         )
@@ -131,6 +134,17 @@ class ResourceParser:
 
         resource_property_name = f"{resource_type}.{item}"
 
+        # Avoid nested repetition of props
+        if resource_property_name in self.nested_types:
+            if self.output_format == "yaml":
+                if body[-1].strip() == "-":
+                    body[-1] = f"{body[-1].rstrip()} Children: # Nested repetition"
+            else:
+                body.append(f'{" " * indent}"Children": "# Nested repetition",')
+            return body
+
+        self.nested_types.add(resource_property_name)
+
         if resource_property_name in response_data.get("PropertyTypes", {}):
             properties = response_data["PropertyTypes"][resource_property_name].get("Properties", {})
             for idx, (property, property_info) in enumerate(sorted(properties.items())):
@@ -171,6 +185,8 @@ class ResourceParser:
             self._handle_tag_type(body, indent)
         else:
             self._set_value_type(body, "", item, None, indent, first_item, True)
+
+        self.nested_types.remove(resource_property_name)
         return body
 
     def _handle_list_type(
@@ -385,6 +401,11 @@ def process_resource_type(
 
     parser = ResourceParser(output_format)
     updated_body = parser.parse_body(resource_properties, resource_type, response_data)
+
+    if parser.counter[0] >= MAX_PROPERTIES:
+        safe_print(
+            f"Warning: {resource_type} exceeded the maximum number of properties ({MAX_PROPERTIES}). Output may be truncated."
+        )
 
     safe_print(f"Finished processing {resource_type}")
     safe_print(f"Number of lines in updated_body: {len(updated_body)}")
