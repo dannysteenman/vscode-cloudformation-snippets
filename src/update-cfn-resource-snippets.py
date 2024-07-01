@@ -8,8 +8,9 @@ from typing import Any, Dict, List
 import requests
 
 CFN_RESOURCE_SPEC_URL = "https://d1uauaxba7bl26.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
-MAX_RECURSION_DEPTH = 10
-MAX_PROPERTIES = 360
+REDUCED_DEPTH = 4
+MAX_DEPTH = 10
+MAX_LINES = 400
 VALUE_TYPE_MAP = {
     "Boolean": "|false,true|",
     "Double": ":Number",
@@ -30,10 +31,11 @@ def safe_print(*args, **kwargs):
 
 
 class ResourceParser:
-    def __init__(self, output_format: str):
+    def __init__(self, output_format: str, max_depth: int):
         self.output_format = output_format
         self.counter = [1]
         self.nested_types = set()
+        self.max_depth = max_depth
 
     def parse_body(
         self, resource_properties: Dict[str, Any], resource_type: str, response_data: Dict[str, Any]
@@ -129,7 +131,7 @@ class ResourceParser:
         first_item: bool = False,
         depth: int = 0,
     ) -> List[str]:
-        if depth > MAX_RECURSION_DEPTH:
+        if depth >= self.max_depth:
             return body
 
         resource_property_name = f"{resource_type}.{item}"
@@ -399,16 +401,24 @@ def process_resource_type(
     description = fetch_description(resource_data)
     resource_properties = resource_data.get("Properties", {})
 
-    parser = ResourceParser(output_format)
+    # First pass with maximum depth
+    parser = ResourceParser(output_format, MAX_DEPTH)
     updated_body = parser.parse_body(resource_properties, resource_type, response_data)
 
-    if parser.counter[0] >= MAX_PROPERTIES:
+    line_count = len(updated_body)
+    safe_print(f"Resource type {resource_type} initially has {line_count} lines")
+
+    if line_count > MAX_LINES:
         safe_print(
-            f"Warning: {resource_type} exceeded the maximum number of properties ({MAX_PROPERTIES}). Output may be truncated."
+            f"Warning: {resource_type} exceeded the maximum number of lines ({MAX_LINES}). Reducing parsing depth to {REDUCED_DEPTH}."
         )
+        # Second pass with reduced depth
+        parser = ResourceParser(output_format, REDUCED_DEPTH)
+        updated_body = parser.parse_body(resource_properties, resource_type, response_data)
+        line_count = len(updated_body)
+        safe_print(f"After depth reduction, {resource_type} now has {line_count} lines")
 
     safe_print(f"Finished processing {resource_type}")
-    safe_print(f"Number of lines in updated_body: {len(updated_body)}")
     return resource_type, {
         "body": updated_body,
         "description": description,
