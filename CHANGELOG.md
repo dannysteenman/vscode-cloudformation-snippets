@@ -2,6 +2,26 @@ Changelog
 =========
 
 
+5.11.0 (2024-07-01)
+-------------------
+
+Fix
+~~~
+- Update counter initialization in ResourceParser. [Danny Steenman]
+- Reduce parsing depth for resource types with excessive lines. [Danny
+  Steenman]
+- Avoid nested repetition. [Danny Steenman]
+
+Other
+~~~~~
+- The following resource was added: <code
+  class="code">AWS::WorkSpaces::WorkspacesPool</code> [Github Actions]
+- Merge branch 'fix/nested-repitition-and-set-hardcap' [Danny Steenman]
+- Chore: trigger pipeline update. [Danny Steenman]
+- Chore: update cfn resource specification to version 180.0.0. [Danny
+  Steenman]
+
+
 5.10.0 (2024-06-30)
 -------------------
 - The following resource was added: <code
