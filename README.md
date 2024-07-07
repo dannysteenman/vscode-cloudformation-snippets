@@ -5,7 +5,7 @@
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/dannysteenman.cloudformation-yaml-snippets 'Currently Installed')](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
 [![Rating](https://img.shields.io/visual-studio-marketplace/stars/dannysteenman.cloudformation-yaml-snippets)](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets)
 
-This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & AWS Serverless Application Model (SAM) resources into Visual Studio Code.
+This CloudFormation Snippets extension equips Visual Studio Code with JSON and YAML snippets for **all** AWS CloudFormation and SAM resources - over 1250+ in total. It's your complete toolset for efficient CloudFormation template development.
 
 > [!TIP]
 > Struggling with AWS complexity or stuck on-premise? Let's transform your cloud journey.
@@ -36,32 +36,17 @@ This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & 
 
 ---
 
-## New in version 5!
-
-- Added support for all the AWS SAM resource types:
-
-```YAML
-    AWS::Serverless::Api
-    AWS::Serverless::Application
-    AWS::Serverless::Connector
-    AWS::Serverless::Function
-    AWS::Serverless::GraphQLApi
-    AWS::Serverless::HttpApi
-    AWS::Serverless::LayerVersion
-    AWS::Serverless::SimpleTable
-    AWS::Serverless::StateMachine
-```
-
 ## Features
 
-1. **Comprehensive Coverage**: Offers snippets for every AWS CloudFormation and AWS SAM resource available.
-2. **Flexible Template Support**: Seamlessly works with both YAML and JSON CloudFormation templates.
-3. **Efficient Autocomplete**: Simply type the resource name (e.g., `ec2-instance`) to instantly load the corresponding snippet for `AWS::EC2::Instance`.
-4. **Rich Feature Set**: Incorporates intrinsic functions, conditions, and diverse parameter types for robust template creation.
-5. **Enhanced Navigation**: Features placeholders that enable swift movement through resource properties.
-6. **Resource Documentation**: Each snippet is linked to its official AWS documentation, providing quick access to detailed information.
-7. **Up-to-Date**: Regularly refreshed on a weekly basis to reflect the latest [CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html).
-8. **Gitpod Ready**: Made available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) to ensure compatibility with [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14).
+1. **Comprehensive Coverage**: Offers snippets for **all** AWS CloudFormation and AWS SAM resources available - that's over 1250+ resources snippets at your fingertips!
+2. **Complete Property Support**: Includes all nested properties for each resource, ensuring you have access to every configurable aspect of your AWS resources.
+3. **Flexible Template Support**: Seamlessly works with both YAML and JSON CloudFormation templates.
+4. **Efficient Autocomplete**: Simply type the resource name (e.g., `ec2-instance`) to instantly load the corresponding snippet for `AWS::EC2::Instance`.
+5. **Rich Feature Set**: Incorporates intrinsic functions, conditions, and diverse parameter types for robust template creation.
+6. **Enhanced Navigation**: Features placeholders that enable swift movement through resource properties.
+7. **Resource Documentation**: Each snippet is linked to its official AWS documentation, providing quick access to detailed information.
+8. **Up-to-Date**: Regularly refreshed on a weekly basis to reflect the latest [CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html).
+9. **Gitpod Ready**: Made available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) to ensure compatibility with [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14).
 
 ## Usage
 
@@ -76,13 +61,16 @@ This extension adds JSON and YAML snippets for **all** the AWS CloudFormation & 
 > **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
 ---
-## AWS CloudFormation Attributes (GetAtt) Cheat Sheet
+## AWS CloudFormation Attributes Quick Reference
 
-Are you tired of endlessly searching for the available attributes of AWS CloudFormation resource types? Look no further!
+Streamline your CloudFormation workflow with our comprehensive [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/aws-cloudformation-resource-attributes).
 
-I've created the ultimate [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/aws-cloudformation-resource-attributes), designed to save you time and streamline your CloudFormation projects.
+Key features:
+- Single-table overview of 900+ AWS resource types and their attributes
+- Clear "❌" indicators for resources without attributes
+- Instantly find the information you need, saving valuable development time
 
-This comprehensive guide provides a single table overview of all available (900+) AWS resource types and their attributes, making it easier than ever to find the information you need. Whether a resource type has attributes or not, you'll know immediately with a clear "❌" mark for those without.
+Stop the endless searching. Use this guide to accelerate your CloudFormation projects and boost your productivity.
 
 ---
 ## Support

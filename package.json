@@ -19,16 +19,8 @@
     "color": "#2B2C33",
     "theme": "dark"
   },
-  "categories": [
-    "Snippets"
-  ],
-  "keywords": [
-    "aws",
-    "cloudformation",
-    "sam",
-    "serverless",
-    "yml"
-  ],
+  "categories": ["Snippets"],
+  "keywords": ["aws", "cloudformation", "sam", "template", "yaml"],
   "badges": [
     {
       "url": "https://img.shields.io/visual-studio-marketplace/v/dannysteenman.cloudformation-yaml-snippets",
