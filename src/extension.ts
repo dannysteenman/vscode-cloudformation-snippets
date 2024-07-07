@@ -51,13 +51,14 @@ class LinkMappings {
         if (resourceData && propertyName in resourceData.Properties) {
           const propertyType = resourceData.Properties[propertyName];
           let url: string;
-          if (propertyType === 'Tag' || propertyType.includes('Configuration') || propertyType === 'Grantee') {
-            // For array-like properties
+          // Check if the property type is not a primitive type
+          if (!['String', 'Number', 'Boolean'].includes(propertyType)) {
+            // Use the "aws-properties-" URL structure with the property type
             const baseUrl = 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-';
             const urlSuffix = `${resourceType.split('::')[1].toLowerCase()}-${resourceType.split('::')[2].toLowerCase()}-${propertyType.toLowerCase()}.html`;
             url = baseUrl + urlSuffix;
           } else {
-            // For non-array properties
+            // For primitive types, use the "#cfn-" URL structure with the property name
             url = `${resourceData.Docs}#cfn-${resourceType.split('::')[1].toLowerCase()}-${resourceType.split('::')[2].toLowerCase()}-${propertyName.toLowerCase()}`;
           }
           return `Find documentation for this property at: ${url}`;
