@@ -39,6 +39,18 @@
     }
   ],
   "contributes": {
+    "languages": [
+      {
+        "id": "json",
+        "aliases": ["JSON", "json"],
+        "extensions": [".json", ".template"]
+      },
+      {
+        "id": "yaml",
+        "aliases": ["YAML", "json"],
+        "extensions": [".yaml", ".yml", ".template"]
+      }
+    ],
     "snippets": [
       {
         "language": "json",
