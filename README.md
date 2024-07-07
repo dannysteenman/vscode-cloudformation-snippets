@@ -51,11 +51,13 @@ This CloudFormation Snippets extension equips Visual Studio Code with JSON and Y
 
 ## Usage
 
-* **Step 1.** Install this extension
-* **Step 2.** create a `.yml` file to start working on CloudFormation
-* **Step 3.** Check in the bottom right-hand corner of the VS Code editor that the file type is listed as "YAML".
-* **Step 4.** To start with the basic template structure, type **cfn** to get the YAML formatted template fragment.
-* **Step 5.** Start adding resources in the resource section by using their prefix name e.g. ```autoscaling-autoscalinggroup``` equals resource type ```AWS::AutoScaling::AutoScalingGroup```
+1. Install the extension in VS Code.
+2. Create a new `.yml` or `.json` file.
+3. Ensure the file type is set to "YAML" or "JSON" in the bottom right corner of VS Code.
+4. Type cfn to insert the basic CloudFormation template structure.
+5. Add resources using their short prefix (e.g. `s3-bucket` for `AWS::S3::Bucket`).
+
+Example:
 
 ![CloudFormation Snippets example](https://raw.githubusercontent.com/dannysteenman/vscode-cloudformation-snippets/main/images/cfn-snippets-extension-example.gif)
 
