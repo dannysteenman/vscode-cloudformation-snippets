@@ -2,6 +2,23 @@ Changelog
 =========
 
 
+5.13.0 (2024-07-07)
+-------------------
+
+Fix
+~~~
+- Improve URL generation for property documentation. [Danny Steenman]
+
+Other
+~~~~~
+- The following resource was released: <a href="https://docs.aws.amazon.
+  com/AWSCloudFormation/latest/UserGuide/AWSCloudFormation/latest/UserGu
+  ide/aws-resource-launchwizard-deployment.html" rel="noopener
+  noreferrer" target="_blank"><code
+  class="code">AWS::LaunchWizard::Deployment</code></a>. [Github
+  Actions]
+
+
 5.12.0 (2024-07-07)
 -------------------
 - The following resource was released: <a href="https://docs.aws.amazon.
