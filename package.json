@@ -38,6 +38,18 @@
       "description": "Rating"
     }
   ],
+  "activationEvents": ["onLanguage:yaml", "onLanguage:json"],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^14.x",
+    "@types/vscode": "^1.31.0",
+    "typescript": "^5.x"
+  },
   "contributes": {
     "languages": [
       {
@@ -85,5 +97,6 @@
         "path": "./snippets/yaml-sam-resource-types.json"
       }
     ]
-  }
+  },
+  "extensionDependencies": ["redhat.vscode-yaml"]
 }

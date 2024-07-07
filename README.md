@@ -40,13 +40,14 @@ This CloudFormation Snippets extension equips Visual Studio Code with JSON and Y
 
 1. **Comprehensive Coverage**: Offers snippets for **all** AWS CloudFormation and AWS SAM resources available - that's over 1250+ resources snippets at your fingertips!
 2. **Complete Property Support**: Includes all nested properties for each resource, ensuring you have access to every configurable aspect of your AWS resources.
-3. **Flexible Template Support**: Seamlessly works with both YAML and JSON CloudFormation templates.
-4. **Efficient Autocomplete**: Simply type the resource name (e.g., `ec2-instance`) to instantly load the corresponding snippet for `AWS::EC2::Instance`.
-5. **Rich Feature Set**: Incorporates intrinsic functions, conditions, and diverse parameter types for robust template creation.
-6. **Enhanced Navigation**: Features placeholders that enable swift movement through resource properties.
-7. **Resource Documentation**: Each snippet is linked to its official AWS documentation, providing quick access to detailed information.
-8. **Up-to-Date**: Regularly refreshed on a weekly basis to reflect the latest [CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html).
-9. **Gitpod Ready**: Made available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) to ensure compatibility with [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14).
+3. **Documentation Hover Links**: Quickly access AWS CloudFormation resource and property documentation by hovering over resource types and property names in your templates.
+4. **Flexible Template Support**: Seamlessly works with both YAML and JSON CloudFormation templates.
+5. **Efficient Autocomplete**: Simply type the resource name (e.g., `ec2-instance`) to instantly load the corresponding snippet for `AWS::EC2::Instance`.
+6. **Rich Feature Set**: Incorporates intrinsic functions, conditions, and diverse parameter types for robust template creation.
+7. **Enhanced Navigation**: Features placeholders that enable swift movement through resource properties.
+8. **Resource Documentation**: Each snippet is linked to its official AWS documentation, providing quick access to detailed information.
+9. **Up-to-Date**: Regularly refreshed on a weekly basis to reflect the latest [CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html).
+10. **Gitpod Ready**: Made available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) to ensure compatibility with [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14).
 
 ## Usage
 

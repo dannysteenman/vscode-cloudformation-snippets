@@ -33,6 +33,10 @@ jobs:
         run: |
           echo "Update the json cfn resource type snippets"
           python3 src/update-cfn-resource-snippets.py --format json
+      - name: Update the json cfn resource type snippets
+        run: |
+          echo "Generate raw cfn resources output for link feature"
+          python3 src/create-raw-cfn-resources-output.py
       - name: Commit changes to Github
         run: |
           set -x -e
@@ -41,6 +45,8 @@ jobs:
           npm version minor --force --no-git-tag-version
           package_version=$(cat package.json|grep 'version":'|sed 's/[",]//g'|awk '{print $2}')
           cfn_release_rss_summary=$(python3 src/update-and-parse-feed.py)
+          npm install
+          npm run vscode:prepublish
           git commit -am "$cfn_release_rss_summary"
           git tag $package_version
           gitchangelog|tee "CHANGELOG.md"

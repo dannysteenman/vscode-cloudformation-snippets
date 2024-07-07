@@ -1,3 +1,5 @@
+/out/*
+node_modules
 *.vsix
 .mypy_cache
 
@@ -7,3 +9,4 @@
 # But don't ignore these files
 !test/complete-resource-specification.json
 !test/short-resource-specification.json
+!out/README.md
