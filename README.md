@@ -51,7 +51,7 @@ This CloudFormation Snippets extension equips Visual Studio Code with JSON and Y
 
 ## Usage
 
-1. Install the extension in VS Code.
+1. Install the [CloudFormation Snippets extension](https://marketplace.visualstudio.com/items?itemName=dannysteenman.cloudformation-yaml-snippets) in VS Code.
 2. Create a new `.yml` or `.json` file.
 3. Ensure the file type is set to "YAML" or "JSON" in the bottom right corner of VS Code.
 4. Type cfn to insert the basic CloudFormation template structure.
