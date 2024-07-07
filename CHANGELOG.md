@@ -2,6 +2,21 @@ Changelog
 =========
 
 
+5.12.0 (2024-07-07)
+-------------------
+- The following resource was released: <a href="https://docs.aws.amazon.
+  com/AWSCloudFormation/latest/UserGuide/AWSCloudFormation/latest/UserGu
+  ide/aws-resource-launchwizard-deployment.html" rel="noopener
+  noreferrer" target="_blank"><code
+  class="code">AWS::LaunchWizard::Deployment</code></a>. [Github
+  Actions]
+- Chore: add ability to show links on hover on cfn resources. [Danny
+  Steenman]
+- Chore: add support for JSON and YAML languages in package.json. [Danny
+  Steenman]
+- Chore: update example gif. [Danny Steenman]
+
+
 5.11.0 (2024-07-01)
 -------------------
 
