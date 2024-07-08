@@ -2,6 +2,25 @@ Changelog
 =========
 
 
+5.14.0 (2024-07-08)
+-------------------
+
+Fix
+~~~
+- Disable automatic opening of output channel. [Danny Steenman]
+
+Other
+~~~~~
+- The following resource was released: <a href="https://docs.aws.amazon.
+  com/AWSCloudFormation/latest/UserGuide/AWSCloudFormation/latest/UserGu
+  ide/aws-resource-launchwizard-deployment.html" rel="noopener
+  noreferrer" target="_blank"><code
+  class="code">AWS::LaunchWizard::Deployment</code></a>. [Github
+  Actions]
+- Chore: add link to extension. [Danny Steenman]
+- Chore: update usage instructions. [Danny Steenman]
+
+
 5.13.0 (2024-07-07)
 -------------------
 
