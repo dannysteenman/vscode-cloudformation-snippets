@@ -96,7 +96,7 @@ class LinkMappings {
 
 export function activate(context: vscode.ExtensionContext) {
   outputChannel = vscode.window.createOutputChannel('CloudFormation Snippets');
-  outputChannel.show();
+  // outputChannel.show();
   outputChannel.appendLine('CloudFormation Snippets extension activated');
 
   const linkmappings = new LinkMappings();
