@@ -3937,11 +3937,8 @@
   "AWS::Deadline::MeteredProduct": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-meteredproduct.html",
     "Properties": {
-      "Family": "String",
       "LicenseEndpointId": "String",
-      "Port": "Integer",
-      "ProductId": "String",
-      "Vendor": "String"
+      "ProductId": "String"
     }
   },
   "AWS::Deadline::Monitor": {
@@ -4860,6 +4857,7 @@
       "RuleNumber": "Integer",
       "SourceCidrBlock": "String",
       "SourcePortRange": "TrafficMirrorPortRange",
+      "Tags": "Tag",
       "TrafficDirection": "String",
       "TrafficMirrorFilterId": "String"
     }
@@ -8771,6 +8769,16 @@
       "RuntimePolicy": "RuntimePolicy"
     }
   },
+  "AWS::LaunchWizard::Deployment": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-launchwizard-deployment.html",
+    "Properties": {
+      "DeploymentPatternName": "String",
+      "Name": "String",
+      "Specifications": "Map",
+      "Tags": "Tags",
+      "WorkloadName": "String"
+    }
+  },
   "AWS::Lex::Bot": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lex-bot.html",
     "Properties": {
@@ -11029,6 +11037,7 @@
       "DisplayName": "String",
       "EncryptionConfiguration": "EncryptionConfiguration",
       "IdentityCenterInstanceArn": "String",
+      "QAppsConfiguration": "QAppsConfiguration",
       "RoleArn": "String",
       "Tags": "Tag"
     }
@@ -12451,6 +12460,69 @@
       "EmailIdentity": "String",
       "FeedbackAttributes": "FeedbackAttributes",
       "MailFromAttributes": "MailFromAttributes"
+    }
+  },
+  "AWS::SES::MailManagerAddonInstance": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddoninstance.html",
+    "Properties": {
+      "AddonSubscriptionId": "String",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::SES::MailManagerAddonSubscription": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageraddonsubscription.html",
+    "Properties": {
+      "AddonName": "String",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::SES::MailManagerArchive": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerarchive.html",
+    "Properties": {
+      "ArchiveName": "String",
+      "KmsKeyArn": "String",
+      "Retention": "ArchiveRetention",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::SES::MailManagerIngressPoint": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanageringresspoint.html",
+    "Properties": {
+      "IngressPointConfiguration": "IngressPointConfiguration",
+      "IngressPointName": "String",
+      "RuleSetId": "String",
+      "StatusToUpdate": "String",
+      "Tags": "Tag",
+      "TrafficPolicyId": "String",
+      "Type": "String"
+    }
+  },
+  "AWS::SES::MailManagerRelay": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerrelay.html",
+    "Properties": {
+      "Authentication": "RelayAuthentication",
+      "RelayName": "String",
+      "ServerName": "String",
+      "ServerPort": "Double",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::SES::MailManagerRuleSet": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagerruleset.html",
+    "Properties": {
+      "RuleSetName": "String",
+      "Rules": "Rule",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::SES::MailManagerTrafficPolicy": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-mailmanagertrafficpolicy.html",
+    "Properties": {
+      "DefaultAction": "String",
+      "MaxMessageSizeBytes": "Double",
+      "PolicyStatements": "PolicyStatement",
+      "Tags": "Tag",
+      "TrafficPolicyName": "String"
     }
   },
   "AWS::SES::ReceiptFilter": {
@@ -14365,6 +14437,7 @@
       "DesiredSoftwareSetId": "String",
       "DesktopArn": "String",
       "DesktopEndpoint": "String",
+      "DeviceCreationTags": "Tag",
       "KmsKeyArn": "String",
       "MaintenanceWindow": "MaintenanceWindow",
       "Name": "String",
