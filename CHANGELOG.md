@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.15.0 (2024-07-19)
+-------------------
+- The following resource was updated: AWS::MWAA::Environment. [Github
+  Actions]
+
+
 5.14.0 (2024-07-08)
 -------------------
 
