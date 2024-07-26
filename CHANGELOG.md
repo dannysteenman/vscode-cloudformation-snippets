@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+5.16.0 (2024-07-26)
+-------------------
+- The following resources were updated: <code class="code">
+  AWS::CleanRooms::ConfiguredTable</code>             and <code
+  class="code">AWS::CleanRooms::ConfiguredTableAssociation</code>.
+  [Github Actions]
+
+
 5.15.0 (2024-07-19)
 -------------------
 - The following resource was updated: AWS::MWAA::Environment. [Github
