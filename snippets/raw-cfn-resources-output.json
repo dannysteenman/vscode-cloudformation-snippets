@@ -1670,6 +1670,38 @@
       "VectorIngestionConfiguration": "VectorIngestionConfiguration"
     }
   },
+  "AWS::Bedrock::Flow": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flow.html",
+    "Properties": {
+      "CustomerEncryptionKeyArn": "String",
+      "Definition": "FlowDefinition",
+      "DefinitionS3Location": "S3Location",
+      "DefinitionString": "String",
+      "DefinitionSubstitutions": "Map",
+      "Description": "String",
+      "ExecutionRoleArn": "String",
+      "Name": "String",
+      "Tags": "Map",
+      "TestAliasTags": "Map"
+    }
+  },
+  "AWS::Bedrock::FlowAlias": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flowalias.html",
+    "Properties": {
+      "Description": "String",
+      "FlowArn": "String",
+      "Name": "String",
+      "RoutingConfiguration": "FlowAliasRoutingConfigurationListItem",
+      "Tags": "Map"
+    }
+  },
+  "AWS::Bedrock::FlowVersion": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-flowversion.html",
+    "Properties": {
+      "Description": "String",
+      "FlowArn": "String"
+    }
+  },
   "AWS::Bedrock::Guardrail": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-guardrail.html",
     "Properties": {
@@ -1701,6 +1733,24 @@
       "RoleArn": "String",
       "StorageConfiguration": "StorageConfiguration",
       "Tags": "Map"
+    }
+  },
+  "AWS::Bedrock::Prompt": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-prompt.html",
+    "Properties": {
+      "CustomerEncryptionKeyArn": "String",
+      "DefaultVariant": "String",
+      "Description": "String",
+      "Name": "String",
+      "Tags": "Map",
+      "Variants": "PromptVariant"
+    }
+  },
+  "AWS::Bedrock::PromptVersion": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-promptversion.html",
+    "Properties": {
+      "Description": "String",
+      "PromptArn": "String"
     }
   },
   "AWS::BillingConductor::BillingGroup": {
@@ -5256,6 +5306,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repositorycreationtemplate.html",
     "Properties": {
       "AppliedFor": "String",
+      "CustomRoleArn": "String",
       "Description": "String",
       "EncryptionConfiguration": "EncryptionConfiguration",
       "ImageTagMutability": "String",
@@ -5443,6 +5494,7 @@
       "ResourcesVpcConfig": "ResourcesVpcConfig",
       "RoleArn": "String",
       "Tags": "Tag",
+      "UpgradePolicy": "UpgradePolicy",
       "Version": "String"
     }
   },
@@ -9480,6 +9532,7 @@
       "MediaStreamOutputConfigurations": "MediaStreamOutputConfiguration",
       "MinLatency": "Integer",
       "Name": "String",
+      "OutputStatus": "String",
       "Port": "Integer",
       "Protocol": "String",
       "RemoteId": "String",
@@ -9694,6 +9747,7 @@
       "ChannelGroupName": "String",
       "ChannelName": "String",
       "Description": "String",
+      "InputType": "String",
       "Tags": "Tag"
     }
   },
@@ -9721,6 +9775,7 @@
       "ContainerType": "String",
       "DashManifests": "DashManifestConfiguration",
       "Description": "String",
+      "ForceEndpointErrorConfiguration": "ForceEndpointErrorConfiguration",
       "HlsManifests": "HlsManifestConfiguration",
       "LowLatencyHlsManifests": "LowLatencyHlsManifestConfiguration",
       "OriginEndpointName": "String",
@@ -13074,6 +13129,19 @@
       "Type": "String"
     }
   },
+  "AWS::SageMaker::MlflowTrackingServer": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-mlflowtrackingserver.html",
+    "Properties": {
+      "ArtifactStoreUri": "String",
+      "AutomaticModelRegistration": "Boolean",
+      "MlflowVersion": "String",
+      "RoleArn": "String",
+      "Tags": "Tag",
+      "TrackingServerName": "String",
+      "TrackingServerSize": "String",
+      "WeeklyMaintenanceWindowStart": "String"
+    }
+  },
   "AWS::SageMaker::Model": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-model.html",
     "Properties": {
@@ -13784,6 +13852,7 @@
   "AWS::StepFunctions::Activity": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html",
     "Properties": {
+      "EncryptionConfiguration": "EncryptionConfiguration",
       "Name": "String",
       "Tags": "TagsEntry"
     }
@@ -13795,6 +13864,7 @@
       "DefinitionS3Location": "S3Location",
       "DefinitionString": "String",
       "DefinitionSubstitutions": "Map",
+      "EncryptionConfiguration": "EncryptionConfiguration",
       "LoggingConfiguration": "LoggingConfiguration",
       "RoleArn": "String",
       "StateMachineName": "String",
@@ -14523,6 +14593,7 @@
       "CookieSynchronizationConfiguration": "CookieSynchronizationConfiguration",
       "CopyAllowed": "String",
       "CustomerManagedKey": "String",
+      "DeepLinkAllowed": "String",
       "DisconnectTimeoutInMinutes": "Double",
       "DownloadAllowed": "String",
       "IdleDisconnectTimeoutInMinutes": "Double",
