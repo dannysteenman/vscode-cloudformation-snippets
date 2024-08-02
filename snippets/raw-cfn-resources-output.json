@@ -72,6 +72,12 @@
       "Tags": "Tag"
     }
   },
+  "AWS::ARCZonalShift::AutoshiftObserverNotificationStatus": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arczonalshift-autoshiftobservernotificationstatus.html",
+    "Properties": {
+      "Status": "String"
+    }
+  },
   "AWS::ARCZonalShift::ZonalAutoshiftConfiguration": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-arczonalshift-zonalautoshiftconfiguration.html",
     "Properties": {
@@ -1708,6 +1714,7 @@
       "BlockedInputMessaging": "String",
       "BlockedOutputsMessaging": "String",
       "ContentPolicyConfig": "ContentPolicyConfig",
+      "ContextualGroundingPolicyConfig": "ContextualGroundingPolicyConfig",
       "Description": "String",
       "KmsKeyArn": "String",
       "Name": "String",
@@ -1987,11 +1994,34 @@
   "AWS::CleanRooms::ConfiguredTableAssociation": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-configuredtableassociation.html",
     "Properties": {
+      "ConfiguredTableAssociationAnalysisRules": "ConfiguredTableAssociationAnalysisRule",
       "ConfiguredTableIdentifier": "String",
       "Description": "String",
       "MembershipIdentifier": "String",
       "Name": "String",
       "RoleArn": "String",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::CleanRooms::IdMappingTable": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-idmappingtable.html",
+    "Properties": {
+      "Description": "String",
+      "InputReferenceConfig": "IdMappingTableInputReferenceConfig",
+      "KmsKeyArn": "String",
+      "MembershipIdentifier": "String",
+      "Name": "String",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::CleanRooms::IdNamespaceAssociation": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-idnamespaceassociation.html",
+    "Properties": {
+      "Description": "String",
+      "IdMappingConfig": "IdMappingConfig",
+      "InputReferenceConfig": "IdNamespaceAssociationInputReferenceConfig",
+      "MembershipIdentifier": "String",
+      "Name": "String",
       "Tags": "Tag"
     }
   },
@@ -5149,6 +5179,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnection.html",
     "Properties": {
       "CustomerGatewayId": "String",
+      "EnableAcceleration": "Boolean",
       "StaticRoutesOnly": "Boolean",
       "Tags": "Tag",
       "TransitGatewayId": "String",
@@ -5682,6 +5713,7 @@
       "AutoStopConfiguration": "AutoStopConfiguration",
       "ImageConfiguration": "ImageConfigurationInput",
       "InitialCapacity": "InitialCapacityConfigKeyValuePair",
+      "InteractiveConfiguration": "InteractiveConfiguration",
       "MaximumCapacity": "MaximumAllowedResources",
       "MonitoringConfiguration": "MonitoringConfiguration",
       "Name": "String",
@@ -8580,6 +8612,7 @@
       "ElasticsearchDestinationConfiguration": "ElasticsearchDestinationConfiguration",
       "ExtendedS3DestinationConfiguration": "ExtendedS3DestinationConfiguration",
       "HttpEndpointDestinationConfiguration": "HttpEndpointDestinationConfiguration",
+      "IcebergDestinationConfiguration": "IcebergDestinationConfiguration",
       "KinesisStreamSourceConfiguration": "KinesisStreamSourceConfiguration",
       "MSKSourceConfiguration": "MSKSourceConfiguration",
       "RedshiftDestinationConfiguration": "RedshiftDestinationConfiguration",
@@ -13325,6 +13358,15 @@
       "SpaceName": "String",
       "SpaceSettings": "SpaceSettings",
       "SpaceSharingSettings": "SpaceSharingSettings",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::SageMaker::StudioLifecycleConfig": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-studiolifecycleconfig.html",
+    "Properties": {
+      "StudioLifecycleConfigAppType": "String",
+      "StudioLifecycleConfigContent": "String",
+      "StudioLifecycleConfigName": "String",
       "Tags": "Tag"
     }
   },
