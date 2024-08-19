@@ -64,16 +64,13 @@ Example:
 > **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
 ---
-## AWS CloudFormation Attributes Quick Reference
+## AWS CloudFormation Starterkit
 
-Streamline your CloudFormation workflow with our comprehensive [AWS CloudFormation Attributes cheat sheet](https://towardsthecloud.com/aws-cloudformation-resource-attributes).
+We've developed the [AWS CloudFormation Starterkit](https://github.com/dannysteenman/aws-cloudformation-starterkit) to streamline your infrastructure setup using CloudFormation.
 
-Key features:
-- Single-table overview of 900+ AWS resource types and their attributes
-- Clear "❌" indicators for resources without attributes
-- Instantly find the information you need, saving valuable development time
+It comes with pre-configured templates, automated validation scripts, and seamless integration with CI/CD pipelines, you'll be able to deploy robust, scalable, and secure AWS environments with ease.
 
-Stop the endless searching. Use this guide to accelerate your CloudFormation projects and boost your productivity.
+The starterkit empowers you to adopt best practices effortlessly. By leveraging tools like Checkov for security compliance and cfn-lint for template validation, you ensure that your infrastructure is both reliable and secure.
 
 ---
 ## Support
