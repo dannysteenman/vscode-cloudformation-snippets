@@ -22,9 +22,17 @@ jobs:
           sudo apt install python3-setuptools
           python3 -m pip install --upgrade pip && pip3 install -r src/requirements.txt
       - name: Check if AWS updated the CloudFormation resource specification
+        id: check_spec
         run: |
           echo "Check if the cfn resource spec has been updated"
-          python3 src/check-cfn-resource-spec-hash.py
+          python3 src/check-cfn-resource-spec-hash.py || echo "::set-output name=spec_updated::false"
+        continue-on-error: true
+
+      - name: Stop if no changes
+        if: steps.check_spec.outputs.spec_updated == 'false'
+        run: |
+          echo "No updates to the CloudFormation resource spec. Exiting workflow."
+          exit 0
       - name: Update the yaml cfn resource type snippets
         run: |
           echo "Update the yaml cfn resource type snippets"
