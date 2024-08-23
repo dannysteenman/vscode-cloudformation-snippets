@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+5.18.0 (2024-08-23)
+-------------------
+- The following resource was updated: AWS::IVS::Stage. [Github Actions]
+- Ci: improve AWS resource spec check in workflow. [Danny Steenman]
+- Docs: Update README with CloudFormation Starterkit info. [Danny
+  Steenman]
+
+
 5.17.0 (2024-08-02)
 -------------------
 - AWS CloudFormation Git sync now publishes sync status changes as
