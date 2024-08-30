@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.19.0 (2024-08-30)
+-------------------
+- The following resource was updated:
+  AWS::AutoScaling::AutoScalingGroup. [Github Actions]
+
+
 5.18.0 (2024-08-23)
 -------------------
 - The following resource was updated: AWS::IVS::Stage. [Github Actions]
