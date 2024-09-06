@@ -2498,6 +2498,7 @@
       "EnvironmentType": "String",
       "FleetServiceRole": "String",
       "FleetVpcConfig": "VpcConfig",
+      "ImageId": "String",
       "Name": "String",
       "OverflowBehavior": "String",
       "Tags": "Tag"
@@ -2748,6 +2749,7 @@
       "CognitoStreams": "CognitoStreams",
       "DeveloperProviderName": "String",
       "IdentityPoolName": "String",
+      "IdentityPoolTags": "Tag",
       "OpenIdConnectProviderARNs": "String",
       "PushSync": "PushSync",
       "SamlProviderARNs": "String",
@@ -4471,6 +4473,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipam.html",
     "Properties": {
       "Description": "String",
+      "EnablePrivateGua": "Boolean",
       "OperatingRegions": "IpamOperatingRegion",
       "Tags": "Tag",
       "Tier": "String"
@@ -4884,7 +4887,6 @@
       "Ipv4IpamPoolId": "String",
       "Ipv4NetmaskLength": "Integer",
       "Ipv6CidrBlock": "String",
-      "Ipv6CidrBlocks": "String",
       "Ipv6IpamPoolId": "String",
       "Ipv6Native": "Boolean",
       "Ipv6NetmaskLength": "Integer",
@@ -5180,9 +5182,16 @@
     "Properties": {
       "CustomerGatewayId": "String",
       "EnableAcceleration": "Boolean",
+      "LocalIpv4NetworkCidr": "String",
+      "LocalIpv6NetworkCidr": "String",
+      "OutsideIpAddressType": "String",
+      "RemoteIpv4NetworkCidr": "String",
+      "RemoteIpv6NetworkCidr": "String",
       "StaticRoutesOnly": "Boolean",
       "Tags": "Tag",
       "TransitGatewayId": "String",
+      "TransportTransitGatewayAttachmentId": "String",
+      "TunnelInsideIpVersion": "String",
       "Type": "String",
       "VpnGatewayId": "String",
       "VpnTunnelOptionsSpecifications": "VpnTunnelOptionsSpecification"
@@ -6088,6 +6097,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-entityresolution-matchingworkflow.html",
     "Properties": {
       "Description": "String",
+      "IncrementalRunConfig": "IncrementalRunConfig",
       "InputSourceConfig": "InputSource",
       "OutputSourceConfig": "OutputSource",
       "ResolutionTechniques": "ResolutionTechniques",
@@ -6759,7 +6769,8 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html",
     "Properties": {
       "CatalogId": "String",
-      "DatabaseInput": "DatabaseInput"
+      "DatabaseInput": "DatabaseInput",
+      "DatabaseName": "String"
     }
   },
   "AWS::Glue::DevEndpoint": {
@@ -7403,6 +7414,14 @@
       "Tags": "Tag"
     }
   },
+  "AWS::IVS::PublicKey": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-publickey.html",
+    "Properties": {
+      "Name": "String",
+      "PublicKeyMaterial": "String",
+      "Tags": "Tag"
+    }
+  },
   "AWS::IVS::RecordingConfiguration": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html",
     "Properties": {
@@ -7417,6 +7436,7 @@
   "AWS::IVS::Stage": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-stage.html",
     "Properties": {
+      "AutoParticipantRecordingConfiguration": "AutoParticipantRecordingConfiguration",
       "Name": "String",
       "Tags": "Tag"
     }
@@ -8086,18 +8106,6 @@
       "TargetArn": "String"
     }
   },
-  "AWS::IoTFleetWise::DecoderManifest": {
-    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-decodermanifest.html",
-    "Properties": {
-      "Description": "String",
-      "ModelManifestArn": "String",
-      "Name": "String",
-      "NetworkInterfaces": "NetworkInterfacesItems",
-      "SignalDecoders": "SignalDecodersItems",
-      "Status": "String",
-      "Tags": "Tag"
-    }
-  },
   "AWS::IoTFleetWise::Fleet": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotfleetwise-fleet.html",
     "Properties": {
@@ -8755,6 +8763,7 @@
       "FilterCriteria": "FilterCriteria",
       "FunctionName": "String",
       "FunctionResponseTypes": "String",
+      "KmsKeyArn": "String",
       "MaximumBatchingWindowInSeconds": "Integer",
       "MaximumRecordAgeInSeconds": "Integer",
       "MaximumRetryAttempts": "Integer",
@@ -8789,6 +8798,7 @@
       "LoggingConfig": "LoggingConfig",
       "MemorySize": "Integer",
       "PackageType": "String",
+      "RecursiveLoop": "String",
       "ReservedConcurrentExecutions": "Integer",
       "Role": "String",
       "Runtime": "String",
@@ -9677,6 +9687,7 @@
       "Name": "String",
       "RoleArn": "String",
       "Sources": "InputSourceRequest",
+      "SrtSettings": "SrtSettingsRequest",
       "Tags": "Json",
       "Type": "String",
       "Vpc": "InputVpcRequest"
@@ -9702,7 +9713,6 @@
   "AWS::MediaLive::Multiplexprogram": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html",
     "Properties": {
-      "ChannelId": "String",
       "MultiplexId": "String",
       "MultiplexProgramSettings": "MultiplexProgramSettings",
       "PacketIdentifiersMap": "MultiplexProgramPacketIdentifiersMap",
@@ -10136,7 +10146,9 @@
     "Properties": {
       "CoreNetworkId": "String",
       "EdgeLocation": "String",
+      "NetworkFunctionGroupName": "String",
       "Options": "ConnectAttachmentOptions",
+      "ProposedNetworkFunctionGroupChange": "ProposedNetworkFunctionGroupChange",
       "ProposedSegmentChange": "ProposedSegmentChange",
       "Tags": "Tag",
       "TransportAttachmentId": "String"
@@ -10229,6 +10241,8 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-sitetositevpnattachment.html",
     "Properties": {
       "CoreNetworkId": "String",
+      "NetworkFunctionGroupName": "String",
+      "ProposedNetworkFunctionGroupChange": "ProposedNetworkFunctionGroupChange",
       "ProposedSegmentChange": "ProposedSegmentChange",
       "Tags": "Tag",
       "VpnConnectionArn": "String"
@@ -10252,7 +10266,9 @@
   "AWS::NetworkManager::TransitGatewayRouteTableAttachment": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-transitgatewayroutetableattachment.html",
     "Properties": {
+      "NetworkFunctionGroupName": "String",
       "PeeringId": "String",
+      "ProposedNetworkFunctionGroupChange": "ProposedNetworkFunctionGroupChange",
       "ProposedSegmentChange": "ProposedSegmentChange",
       "Tags": "Tag",
       "TransitGatewayRouteTableArn": "String"
@@ -10263,6 +10279,7 @@
     "Properties": {
       "CoreNetworkId": "String",
       "Options": "VpcOptions",
+      "ProposedNetworkFunctionGroupChange": "ProposedNetworkFunctionGroupChange",
       "ProposedSegmentChange": "ProposedSegmentChange",
       "SubnetArns": "String",
       "Tags": "Tag",
@@ -11121,10 +11138,15 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-application.html",
     "Properties": {
       "AttachmentsConfiguration": "AttachmentsConfiguration",
+      "AutoSubscriptionConfiguration": "AutoSubscriptionConfiguration",
+      "ClientIdsForOIDC": "String",
       "Description": "String",
       "DisplayName": "String",
       "EncryptionConfiguration": "EncryptionConfiguration",
+      "IamIdentityProviderArn": "String",
       "IdentityCenterInstanceArn": "String",
+      "IdentityType": "String",
+      "PersonalizationConfiguration": "PersonalizationConfiguration",
       "QAppsConfiguration": "QAppsConfiguration",
       "RoleArn": "String",
       "Tags": "Tag"
@@ -11185,6 +11207,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-webexperience.html",
     "Properties": {
       "ApplicationId": "String",
+      "IdentityProviderConfiguration": "IdentityProviderConfiguration",
       "RoleArn": "String",
       "SamplePromptsControlMode": "String",
       "Subtitle": "String",
@@ -12051,6 +12074,7 @@
   "AWS::RolesAnywhere::Profile": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rolesanywhere-profile.html",
     "Properties": {
+      "AcceptRoleSessionName": "Boolean",
       "AttributeMappings": "AttributeMapping",
       "DurationSeconds": "Double",
       "Enabled": "Boolean",
@@ -12317,6 +12341,7 @@
   "AWS::Route53Resolver::ResolverRule": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverrule.html",
     "Properties": {
+      "DelegationRecord": "String",
       "DomainName": "String",
       "Name": "String",
       "ResolverEndpointId": "String",
@@ -12924,6 +12949,15 @@
       "Tags": "Tag"
     }
   },
+  "AWS::SSMQuickSetup::ConfigurationManager": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmquicksetup-configurationmanager.html",
+    "Properties": {
+      "ConfigurationDefinitions": "ConfigurationDefinition",
+      "Description": "String",
+      "Name": "String",
+      "Tags": "Map"
+    }
+  },
   "AWS::SSO::Application": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-application.html",
     "Properties": {
@@ -13247,6 +13281,7 @@
       "LastModifiedTime": "String",
       "MetadataProperties": "MetadataProperties",
       "ModelApprovalStatus": "String",
+      "ModelCard": "ModelCard",
       "ModelMetrics": "ModelMetrics",
       "ModelPackageDescription": "String",
       "ModelPackageGroupName": "String",
@@ -13254,8 +13289,10 @@
       "ModelPackageStatusDetails": "ModelPackageStatusDetails",
       "ModelPackageVersion": "Integer",
       "SamplePayloadUrl": "String",
+      "SecurityConfig": "SecurityConfig",
       "SkipModelValidation": "String",
       "SourceAlgorithmSpecification": "SourceAlgorithmSpecification",
+      "SourceUri": "String",
       "Tags": "Tag",
       "Task": "String",
       "ValidationSpecification": "ValidationSpecification"
@@ -13991,6 +14028,7 @@
       "ApplicationId": "String",
       "ApplicationType": "String",
       "Credentials": "Credential",
+      "DatabaseArn": "String",
       "Instances": "String",
       "SapInstanceNumber": "String",
       "Sid": "String",
