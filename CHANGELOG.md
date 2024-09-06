@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.20.0 (2024-09-06)
+-------------------
+- The following resources were updated: AWS::AppSync::GraphQLApi.
+  [Github Actions]
+
+
 5.19.0 (2024-08-30)
 -------------------
 - The following resource was updated:
