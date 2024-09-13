@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+5.21.0 (2024-09-13)
+-------------------
+- The following resource was updated: AWS::Pipes::Pipe. [Github Actions]
+
+
 5.20.0 (2024-09-06)
 -------------------
 - The following resources were updated: AWS::AppSync::GraphQLApi.
