@@ -1552,6 +1552,7 @@
       "RestoreTestingPlanName": "String",
       "ScheduleExpression": "String",
       "ScheduleExpressionTimezone": "String",
+      "ScheduleStatus": "String",
       "StartWindowHours": "Integer",
       "Tags": "Tag"
     }
@@ -1586,6 +1587,7 @@
     "Properties": {
       "ComputeEnvironmentName": "String",
       "ComputeResources": "ComputeResources",
+      "Context": "String",
       "EksConfiguration": "EksConfiguration",
       "ReplaceComputeEnvironment": "Boolean",
       "ServiceRole": "String",
@@ -1757,7 +1759,8 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-promptversion.html",
     "Properties": {
       "Description": "String",
-      "PromptArn": "String"
+      "PromptArn": "String",
+      "Tags": "Map"
     }
   },
   "AWS::BillingConductor::BillingGroup": {
@@ -5213,7 +5216,7 @@
     }
   },
   "AWS::EC2::VPNGatewayRoutePropagation": {
-    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html",
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpngatewayroutepropagation.html",
     "Properties": {
       "RouteTableIds": "String",
       "VpnGatewayId": "String"
@@ -10505,6 +10508,7 @@
       "LogPublishingOptions": "Map",
       "NodeToNodeEncryptionOptions": "NodeToNodeEncryptionOptions",
       "OffPeakWindowOptions": "OffPeakWindowOptions",
+      "SkipShardMigrationWait": "Boolean",
       "SnapshotOptions": "SnapshotOptions",
       "SoftwareUpdateOptions": "SoftwareUpdateOptions",
       "Tags": "Tag",
@@ -11238,43 +11242,6 @@
       "Tags": "Tag"
     }
   },
-  "AWS::QuickSight::Analysis": {
-    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html",
-    "Properties": {
-      "AnalysisId": "String",
-      "AwsAccountId": "String",
-      "Definition": "AnalysisDefinition",
-      "Errors": "AnalysisError",
-      "Name": "String",
-      "Parameters": "Parameters",
-      "Permissions": "ResourcePermission",
-      "Sheets": "Sheet",
-      "SourceEntity": "AnalysisSourceEntity",
-      "Status": "String",
-      "Tags": "Tag",
-      "ThemeArn": "String",
-      "ValidationStrategy": "ValidationStrategy"
-    }
-  },
-  "AWS::QuickSight::Dashboard": {
-    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html",
-    "Properties": {
-      "AwsAccountId": "String",
-      "DashboardId": "String",
-      "DashboardPublishOptions": "DashboardPublishOptions",
-      "Definition": "DashboardVersionDefinition",
-      "LinkEntities": "String",
-      "LinkSharingConfiguration": "LinkSharingConfiguration",
-      "Name": "String",
-      "Parameters": "Parameters",
-      "Permissions": "ResourcePermission",
-      "SourceEntity": "DashboardSourceEntity",
-      "Tags": "Tag",
-      "ThemeArn": "String",
-      "ValidationStrategy": "ValidationStrategy",
-      "VersionDescription": "String"
-    }
-  },
   "AWS::QuickSight::DataSet": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dataset.html",
     "Properties": {
@@ -11320,20 +11287,6 @@
       "AwsAccountId": "String",
       "DataSetId": "String",
       "Schedule": "RefreshScheduleMap"
-    }
-  },
-  "AWS::QuickSight::Template": {
-    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-template.html",
-    "Properties": {
-      "AwsAccountId": "String",
-      "Definition": "TemplateVersionDefinition",
-      "Name": "String",
-      "Permissions": "ResourcePermission",
-      "SourceEntity": "TemplateSourceEntity",
-      "Tags": "Tag",
-      "TemplateId": "String",
-      "ValidationStrategy": "ValidationStrategy",
-      "VersionDescription": "String"
     }
   },
   "AWS::QuickSight::Theme": {
