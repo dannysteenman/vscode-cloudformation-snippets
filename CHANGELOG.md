@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.22.0 (2024-09-20)
+-------------------
+- The following resource was updated: AWS::Synthetics::Canary. [Github
+  Actions]
+
+
 5.21.0 (2024-09-13)
 -------------------
 - The following resource was updated: AWS::Pipes::Pipe. [Github Actions]
