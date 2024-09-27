@@ -539,9 +539,9 @@
       "IntegrationUri": "String",
       "PassthroughBehavior": "String",
       "PayloadFormatVersion": "String",
-      "RequestParameters": "Json",
-      "RequestTemplates": "Json",
-      "ResponseParameters": "Json",
+      "RequestParameters": "Map",
+      "RequestTemplates": "Map",
+      "ResponseParameters": "Map",
       "TemplateSelectionExpression": "String",
       "TimeoutInMillis": "Integer",
       "TlsConfig": "TlsConfig"
@@ -11828,7 +11828,8 @@
       "EngineVersion": "String",
       "GlobalClusterIdentifier": "String",
       "SourceDBClusterIdentifier": "String",
-      "StorageEncrypted": "Boolean"
+      "StorageEncrypted": "Boolean",
+      "Tags": "Tag"
     }
   },
   "AWS::RDS::Integration": {
@@ -12637,6 +12638,7 @@
   "AWS::S3Express::DirectoryBucket": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-directorybucket.html",
     "Properties": {
+      "BucketEncryption": "Json",
       "BucketName": "String",
       "DataRedundancy": "String",
       "LocationName": "String"
@@ -14184,6 +14186,7 @@
       "ExecutionRoleArn": "String",
       "FailureRetentionPeriod": "Integer",
       "Name": "String",
+      "ResourcesToReplicateTags": "String",
       "RunConfig": "RunConfig",
       "RuntimeVersion": "String",
       "Schedule": "Schedule",
