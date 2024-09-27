@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.23.0 (2024-09-27)
+-------------------
+- The following property was added to the AWS::SES::MailManagerRuleSet
+  RuleStringToEvaluate resource: [Github Actions]
+
+
 5.22.0 (2024-09-20)
 -------------------
 - The following resource was updated: AWS::Synthetics::Canary. [Github
