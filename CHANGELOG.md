@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+5.24.0 (2024-10-04)
+-------------------
+- The following resource was updated: AWS::IoT::DomainConfiguration.
+  [Github Actions]
+
+
 5.23.0 (2024-09-27)
 -------------------
 - The following property was added to the AWS::SES::MailManagerRuleSet
