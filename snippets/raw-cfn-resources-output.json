@@ -2078,6 +2078,7 @@
   "AWS::CloudFormation::CustomResource": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html",
     "Properties": {
+      "ServiceTimeout": "Integer",
       "ServiceToken": "String"
     }
   },
@@ -2794,6 +2795,8 @@
       "AutoVerifiedAttributes": "String",
       "DeletionProtection": "String",
       "DeviceConfiguration": "DeviceConfiguration",
+      "EmailAuthenticationMessage": "String",
+      "EmailAuthenticationSubject": "String",
       "EmailConfiguration": "EmailConfiguration",
       "EmailVerificationMessage": "String",
       "EmailVerificationSubject": "String",
@@ -5018,6 +5021,7 @@
       "DnsSupport": "String",
       "MulticastSupport": "String",
       "PropagationDefaultRouteTableId": "String",
+      "SecurityGroupReferencingSupport": "String",
       "Tags": "Tag",
       "TransitGatewayCidrBlocks": "String",
       "VpnEcmpSupport": "String"
@@ -5574,7 +5578,8 @@
       "RoleArn": "String",
       "Tags": "Tag",
       "UpgradePolicy": "UpgradePolicy",
-      "Version": "String"
+      "Version": "String",
+      "ZonalShiftConfig": "ZonalShiftConfig"
     }
   },
   "AWS::EKS::FargateProfile": {
@@ -5671,6 +5676,7 @@
       "InstanceTypeConfigs": "InstanceTypeConfig",
       "LaunchSpecifications": "InstanceFleetProvisioningSpecifications",
       "Name": "String",
+      "ResizeSpecifications": "InstanceFleetResizingSpecifications",
       "TargetOnDemandCapacity": "Integer",
       "TargetSpotCapacity": "Integer"
     }
@@ -6845,6 +6851,7 @@
       "ExecutionProperty": "ExecutionProperty",
       "GlueVersion": "String",
       "JobMode": "String",
+      "JobRunQueuingEnabled": "Boolean",
       "LogUri": "String",
       "MaintenanceWindow": "String",
       "MaxCapacity": "Double",
@@ -6962,6 +6969,15 @@
       "Tags": "Json",
       "Type": "String",
       "WorkflowName": "String"
+    }
+  },
+  "AWS::Glue::UsageProfile": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-usageprofile.html",
+    "Properties": {
+      "Configuration": "ProfileConfiguration",
+      "Description": "String",
+      "Name": "String",
+      "Tags": "Tag"
     }
   },
   "AWS::Glue::Workflow": {
@@ -11483,6 +11499,19 @@
       "VpcConnectionProperties": "VpcConnectionProperties"
     }
   },
+  "AWS::QuickSight::Folder": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-folder.html",
+    "Properties": {
+      "AwsAccountId": "String",
+      "FolderId": "String",
+      "FolderType": "String",
+      "Name": "String",
+      "ParentFolderArn": "String",
+      "Permissions": "ResourcePermission",
+      "SharingModel": "String",
+      "Tags": "Tag"
+    }
+  },
   "AWS::QuickSight::RefreshSchedule": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-refreshschedule.html",
     "Properties": {
@@ -13345,7 +13374,8 @@
       "Processor": "String",
       "ProgrammingLang": "String",
       "ReleaseNotes": "String",
-      "VendorGuidance": "String"
+      "VendorGuidance": "String",
+      "Version": "Integer"
     }
   },
   "AWS::SageMaker::InferenceComponent": {
@@ -14794,7 +14824,8 @@
       "IdentityProviderDetails": "Map",
       "IdentityProviderName": "String",
       "IdentityProviderType": "String",
-      "PortalArn": "String"
+      "PortalArn": "String",
+      "Tags": "Tag"
     }
   },
   "AWS::WorkSpacesWeb::IpAccessSettings": {
