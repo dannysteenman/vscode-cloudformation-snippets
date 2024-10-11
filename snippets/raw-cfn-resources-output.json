@@ -1466,6 +1466,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-partnership.html",
     "Properties": {
       "Capabilities": "String",
+      "CapabilityOptions": "CapabilityOptions",
       "Email": "String",
       "Name": "String",
       "Phone": "String",
@@ -1487,11 +1488,11 @@
   "AWS::B2BI::Transformer": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-b2bi-transformer.html",
     "Properties": {
-      "EdiType": "EdiType",
-      "FileFormat": "String",
-      "MappingTemplate": "String",
+      "InputConversion": "InputConversion",
+      "Mapping": "Mapping",
       "Name": "String",
-      "SampleDocument": "String",
+      "OutputConversion": "OutputConversion",
+      "SampleDocuments": "SampleDocuments",
       "Status": "String",
       "Tags": "Tag"
     }
@@ -3605,6 +3606,7 @@
       "EngineVersion": "String",
       "KmsKeyId": "String",
       "MultiAZ": "Boolean",
+      "NetworkType": "String",
       "PreferredMaintenanceWindow": "String",
       "PubliclyAccessible": "Boolean",
       "ReplicationInstanceClass": "String",
@@ -7851,7 +7853,10 @@
   "AWS::IoT::DomainConfiguration": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-domainconfiguration.html",
     "Properties": {
+      "ApplicationProtocol": "String",
+      "AuthenticationType": "String",
       "AuthorizerConfig": "AuthorizerConfig",
+      "ClientCertificateConfig": "ClientCertificateConfig",
       "DomainConfigurationName": "String",
       "DomainConfigurationStatus": "String",
       "DomainName": "String",
@@ -8601,6 +8606,13 @@
       "Description": "String",
       "Name": "String",
       "Tags": "Tag"
+    }
+  },
+  "AWS::Kinesis::ResourcePolicy": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-resourcepolicy.html",
+    "Properties": {
+      "ResourceArn": "String",
+      "ResourcePolicy": "Json"
     }
   },
   "AWS::Kinesis::Stream": {
@@ -12667,7 +12679,7 @@
   "AWS::S3Express::DirectoryBucket": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3express-directorybucket.html",
     "Properties": {
-      "BucketEncryption": "Json",
+      "BucketEncryption": "BucketEncryption",
       "BucketName": "String",
       "DataRedundancy": "String",
       "LocationName": "String"
