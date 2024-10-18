@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+5.26.0 (2024-10-18)
+-------------------
+- Added <code class="code">EMAIL_OTP</code> to <code
+  class="code">EnabledMfas</code> in user pool resource. [Github
+  Actions]
+
+
 5.25.0 (2024-10-11)
 -------------------
 - The following resource was updated: AWS::IoT::DomainConfiguration.
