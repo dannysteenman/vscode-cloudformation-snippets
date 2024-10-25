@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+5.27.0 (2024-10-25)
+-------------------
+- Added <code class="code">EMAIL_OTP</code> to <code
+  class="code">EnabledMfas</code> in user pool resource. [Github
+  Actions]
+
+
 5.26.0 (2024-10-18)
 -------------------
 - Added <code class="code">EMAIL_OTP</code> to <code
