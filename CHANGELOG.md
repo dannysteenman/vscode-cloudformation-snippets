@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+- Ci(workflows): update GitHub Actions workflow steps. [Danny Steenman]
+- Chore: update vscode extension icon. [Danny Steenman]
+
+
 5.27.0 (2024-10-25)
 -------------------
 - Added <code class="code">EMAIL_OTP</code> to <code
