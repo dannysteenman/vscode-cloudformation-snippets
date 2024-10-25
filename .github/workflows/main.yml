@@ -48,18 +48,28 @@ jobs:
       - name: Commit changes to Github
         run: |
           set -x -e
+          # Configure git
           git config --global user.name 'Github Actions'
           git config --global user.email 'danny@towardsthecloud.com'
+
+          # Update version
           npm version minor --force --no-git-tag-version
-          package_version=$(cat package.json|grep 'version":'|sed 's/[",]//g'|awk '{print $2}')
+          package_version=$(cat package.json | grep 'version":' | sed 's/[",]//g' | awk '{print $2}')
           cfn_release_rss_summary=$(python3 src/update-and-parse-feed.py)
+
+          # Install dependencies and prepare for publishing
           npm install
           npm run vscode:prepublish
-          git commit -am "$cfn_release_rss_summary"
-          git tag $package_version
-          gitchangelog|tee "CHANGELOG.md"
-          git commit -am "Changelog version: $package_version"
+
+          # Generate changelog
+          gitchangelog | tee "CHANGELOG.md"
+
+          # Commit and push changes
+          git commit -am "build: auto-update snippets to version: $package_version"
           git push
+
+          # Create and push tag
+          git tag $package_version
           git push origin --tags
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
