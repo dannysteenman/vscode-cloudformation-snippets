@@ -8,6 +8,7 @@ from typing import Any, Dict
 import requests
 
 CFN_RESOURCE_SPEC_URL = "https://d1uauaxba7bl26.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json"
+MAX_DEPTH = 10
 
 # Thread-safe printing
 log_lock = threading.Lock()
@@ -19,27 +20,49 @@ def safe_print(*args, **kwargs):
 
 
 class RawResourceParser:
+    def __init__(self, response_data: Dict[str, Any]):
+        self.response_data = response_data
+        self.nested_types = set()
+
     def parse_resource(self, resource_type: str, resource_data: Dict[str, Any]) -> Dict[str, Any]:
-        properties = self._parse_properties(resource_data.get("Properties", {}))
+        properties = self._parse_properties(resource_data.get("Properties", {}), resource_type)
         return {"Properties": properties, "Docs": resource_data["Documentation"]}
 
-    def _parse_properties(self, properties: Dict[str, Any]) -> Dict[str, str]:
+    def _parse_properties(self, properties: Dict[str, Any], resource_type: str, depth: int = 0) -> Dict[str, Any]:
+        if depth >= MAX_DEPTH:
+            return {"MAX_DEPTH_REACHED": True}
+
         result = {}
         for prop, prop_info in properties.items():
             prop_type = self._get_property_type(prop_info)
-            result[prop] = prop_type
+            if prop_type == "List" and "ItemType" in prop_info:
+                result[prop] = self._parse_nested_type(prop_info["ItemType"], resource_type, depth + 1)
+            elif prop_type not in ["String", "Integer", "Boolean", "Double", "Long", "Timestamp", "Json"]:
+                result[prop] = self._parse_nested_type(prop_type, resource_type, depth + 1)
+            else:
+                result[prop] = prop_type
+        return result
+
+    def _parse_nested_type(self, nested_type: str, resource_type: str, depth: int) -> Dict[str, Any]:
+        resource_property_name = f"{resource_type}.{nested_type}"
+
+        if resource_property_name in self.nested_types:
+            return {"NESTED_REPETITION": True}
+
+        self.nested_types.add(resource_property_name)
+
+        if resource_property_name in self.response_data.get("PropertyTypes", {}):
+            properties = self.response_data["PropertyTypes"][resource_property_name].get("Properties", {})
+            result = self._parse_properties(properties, resource_type, depth)
+        else:
+            result = {"Type": nested_type}
+
+        self.nested_types.remove(resource_property_name)
         return result
 
     @staticmethod
     def _get_property_type(prop_info: Dict[str, Any]) -> str:
         if "Type" in prop_info:
-            if prop_info["Type"] == "List":
-                if "ItemType" in prop_info:
-                    return f"{prop_info['ItemType']}"
-                elif "PrimitiveItemType" in prop_info:
-                    return f"{prop_info['PrimitiveItemType']}"
-                else:
-                    return "List"
             return prop_info["Type"]
         elif "PrimitiveType" in prop_info:
             return prop_info["PrimitiveType"]
@@ -71,8 +94,8 @@ def get_resource_spec(local_path: str = None) -> Dict[str, Any]:
         return response.json()
 
 
-def process_resource_type(resource_type: str, resource_data: Dict[str, Any]) -> tuple:
-    parser = RawResourceParser()
+def process_resource_type(resource_type: str, resource_data: Dict[str, Any], response_data: Dict[str, Any]) -> tuple:
+    parser = RawResourceParser(response_data)
     parsed_resource = parser.parse_resource(resource_type, resource_data)
     safe_print(f"Finished processing {resource_type}")
     return resource_type, parsed_resource
@@ -86,7 +109,9 @@ def create_raw_cfn_output(cloudformation_resource_spec: Dict[str, Any], local_pa
 
     with ThreadPoolExecutor() as executor:
         future_to_resource = {
-            executor.submit(process_resource_type, resource_type, resource_data): resource_type
+            executor.submit(
+                process_resource_type, resource_type, resource_data, cloudformation_resource_spec
+            ): resource_type
             for resource_type, resource_data in resource_types.items()
         }
 

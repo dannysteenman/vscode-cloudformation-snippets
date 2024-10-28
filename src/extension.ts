@@ -1,7 +1,11 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as vscode from 'vscode';
-import { type Disposable, Hover, languages } from 'vscode';
+import { CompletionItem, CompletionItemKind, type Disposable, Hover, languages } from 'vscode';
+
+interface CloudFormationTemplate {
+  Resources?: { [key: string]: any };
+}
 
 let outputChannel: vscode.OutputChannel;
 
@@ -16,16 +20,45 @@ class LinkMappings {
   constructor() {
     this.loadResourceMap();
   }
+  public getResourceSnippet(resourceType: string): string {
+    const resourceData = this.resourceMap.get(resourceType);
+    if (!resourceData) return '';
+
+    let snippet = `LogicalID:\n  Type: ${resourceType}\n  Properties:\n`;
+    snippet += this.generatePropertiesSnippet(resourceData.Properties, 4);
+    return snippet;
+  }
+
+  private generatePropertiesSnippet(properties: any, indent: number): string {
+    let snippet = '';
+    for (const [key, value] of Object.entries(properties)) {
+      const indentation = ' '.repeat(indent);
+      if (typeof value === 'object') {
+        snippet += `${indentation}${key}:\n`;
+        snippet += this.generatePropertiesSnippet(value, indent + 2);
+      } else {
+        snippet += `${indentation}${key}: "${value}"\n`;
+      }
+    }
+    return snippet;
+  }
 
   private loadResourceMap() {
     const filePath = path.join(__dirname, '..', 'snippets', 'raw-cfn-resources-output.json');
-    const rawData = fs.readFileSync(filePath, 'utf8');
-    const resources: { [key: string]: ResourceData } = JSON.parse(rawData);
+    outputChannel.appendLine(`Loading resource map from: ${filePath}`);
 
-    for (const [resourceName, resourceData] of Object.entries(resources)) {
-      this.resourceMap.set(resourceName, resourceData);
+    try {
+      const rawData = fs.readFileSync(filePath, 'utf8');
+      const resources: { [key: string]: ResourceData } = JSON.parse(rawData);
+
+      for (const [resourceName, resourceData] of Object.entries(resources)) {
+        this.resourceMap.set(resourceName, resourceData);
+      }
+      outputChannel.appendLine(`Loaded ${this.resourceMap.size} resources`);
+      outputChannel.appendLine(`Resource names: ${Array.from(this.resourceMap.keys()).join(', ')}`);
+    } catch (error) {
+      outputChannel.appendLine(`Error loading resource map: ${error}`);
     }
-    outputChannel.appendLine(`Loaded ${this.resourceMap.size} resources`);
   }
 
   public getLink(document: vscode.TextDocument, position: vscode.Position): string | null {
@@ -82,7 +115,7 @@ class LinkMappings {
     return match ? match[1] : null;
   }
 
-  private findNearestResourceType(document: vscode.TextDocument, position: vscode.Position): string | null {
+  public findNearestResourceType(document: vscode.TextDocument, position: vscode.Position): string | null {
     for (let i = position.line; i >= 0; i--) {
       const lineText = document.lineAt(i).text;
       const resourceType = this.extractResourceType(lineText);
@@ -92,21 +125,89 @@ class LinkMappings {
     }
     return null;
   }
+
+  public getResourceTypeCompletions(): CompletionItem[] {
+    const completions = Array.from(this.resourceMap.keys()).map((resourceType) => {
+      const item = new CompletionItem(resourceType, CompletionItemKind.Class);
+      item.detail = 'CloudFormation Resource Type';
+      item.documentation = new vscode.MarkdownString(`[Documentation](${this.resourceMap.get(resourceType)?.Docs})`);
+      item.insertText = new vscode.SnippetString(this.getResourceSnippet(resourceType));
+      return item;
+    });
+    outputChannel.appendLine(`Providing ${completions.length} resource type completions`);
+    return completions;
+  }
+
+  public getResourcePropertyCompletions(resourceType: string): CompletionItem[] {
+    const resourceData = this.resourceMap.get(resourceType);
+    if (!resourceData) {
+      outputChannel.appendLine(`No resource data found for ${resourceType}`);
+      return [];
+    }
+
+    const completions = Object.entries(resourceData.Properties).map(([propertyName, propertyType]) => {
+      const item = new CompletionItem(propertyName, CompletionItemKind.Property);
+      item.detail = `${propertyType}`;
+      item.documentation = new vscode.MarkdownString(`Property of ${resourceType}`);
+      return item;
+    });
+    outputChannel.appendLine(`Providing ${completions.length} property completions for ${resourceType}`);
+    return completions;
+  }
+}
+
+function isUnderResourcesKey(document: vscode.TextDocument, position: vscode.Position): boolean {
+  const text = document.getText();
+  const lines = text.split('\n');
+  let inResources = false;
+  let resourcesIndentation = -1;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.trim().startsWith('Resources:')) {
+      inResources = true;
+      resourcesIndentation = line.indexOf('Resources:');
+    } else if (inResources && line.trim() !== '' && line.indexOf(line.trim()) <= resourcesIndentation) {
+      inResources = false;
+    }
+
+    if (i === position.line) {
+      return inResources;
+    }
+  }
+
+  return false;
 }
 
 export function activate(context: vscode.ExtensionContext) {
   outputChannel = vscode.window.createOutputChannel('CloudFormation Snippets');
-  // outputChannel.show();
+  outputChannel.show(); // Uncomment this line to show the output channel
   outputChannel.appendLine('CloudFormation Snippets extension activated');
 
   const linkmappings = new LinkMappings();
   const disposable: Disposable[] = [];
 
   disposable.push(
-    languages.registerHoverProvider(['yaml', 'yml', 'json'], {
-      provideHover(document, position, token) {
-        outputChannel.appendLine(`Hover triggered at position: ${position.line}:${position.character}`);
-        return getLink(document, position, linkmappings);
+    languages.registerCompletionItemProvider(['yaml', 'yml', 'json'], {
+      provideCompletionItems(document, position, token, context) {
+        outputChannel.appendLine(`Autocomplete triggered at position: ${position.line}:${position.character}`);
+
+        const lineText = document.lineAt(position.line).text;
+        const linePrefix = lineText.substr(0, position.character);
+        outputChannel.appendLine(`Line prefix: ${linePrefix}`);
+
+        // Always provide resource type completions
+        const resourceTypeCompletions = linkmappings.getResourceTypeCompletions();
+        outputChannel.appendLine(`Providing ${resourceTypeCompletions.length} resource type completions`);
+
+        const resourceType = linkmappings.findNearestResourceType(document, position);
+        if (resourceType) {
+          const propertyCompletions = linkmappings.getResourcePropertyCompletions(resourceType);
+          outputChannel.appendLine(`Providing ${propertyCompletions.length} property completions for ${resourceType}`);
+          return [...resourceTypeCompletions, ...propertyCompletions];
+        }
+
+        return resourceTypeCompletions;
       },
     }),
   );

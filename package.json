@@ -3,7 +3,7 @@
   "displayName": "AWS CloudFormation Snippets",
   "description": "Adds snippets for all the AWS CloudFormation resources in VS Code.",
   "author": "Danny Steenman",
-  "version": "5.28.0",
+  "version": "6.0.5",
   "publisher": "dannysteenman",
   "icon": "images/cfn-snippets-extension-icon.png",
   "homepage": "https://towardsthecloud.com",
@@ -19,16 +19,8 @@
     "color": "#2B2C33",
     "theme": "dark"
   },
-  "categories": [
-    "Snippets"
-  ],
-  "keywords": [
-    "aws",
-    "cloudformation",
-    "sam",
-    "iac",
-    "yaml"
-  ],
+  "categories": ["Snippets"],
+  "keywords": ["aws", "cloudformation", "sam", "iac", "yaml"],
   "badges": [
     {
       "url": "https://img.shields.io/visual-studio-marketplace/v/dannysteenman.cloudformation-yaml-snippets",
@@ -46,10 +38,7 @@
       "description": "Rating"
     }
   ],
-  "activationEvents": [
-    "onLanguage:yaml",
-    "onLanguage:json"
-  ],
+  "activationEvents": ["onLanguage:yaml", "onLanguage:yml", "onLanguage:json"],
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -65,36 +54,19 @@
     "languages": [
       {
         "id": "json",
-        "aliases": [
-          "JSON",
-          "json"
-        ],
-        "extensions": [
-          ".json",
-          ".template"
-        ]
+        "aliases": ["JSON", "json"],
+        "extensions": [".json", ".template"]
       },
       {
         "id": "yaml",
-        "aliases": [
-          "YAML",
-          "json"
-        ],
-        "extensions": [
-          ".yaml",
-          ".yml",
-          ".template"
-        ]
+        "aliases": ["YAML", "yaml"],
+        "extensions": [".yaml", ".yml", ".template"]
       }
     ],
     "snippets": [
       {
         "language": "json",
         "path": "./snippets/json-general.json"
-      },
-      {
-        "language": "json",
-        "path": "./snippets/json-cfn-resource-types.json"
       },
       {
         "language": "yaml",
@@ -114,15 +86,9 @@
       },
       {
         "language": "yaml",
-        "path": "./snippets/yaml-cfn-resource-types.json"
-      },
-      {
-        "language": "yaml",
         "path": "./snippets/yaml-sam-resource-types.json"
       }
     ]
   },
-  "extensionDependencies": [
-    "redhat.vscode-yaml"
-  ]
+  "extensionDependencies": ["redhat.vscode-yaml"]
 }
