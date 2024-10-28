@@ -457,7 +457,7 @@ def create_cfn_snippet(
         else f"{output_format}-cfn-resource-types.json"
     )
 
-    snippet_directory = f"{os.getcwd()}/test" if local_path else f"{os.getcwd()}/snippets"
+    snippet_directory = f"{os.getcwd()}/.vscode-test" if local_path else f"{os.getcwd()}/snippets"
     output_file_path = os.path.join(snippet_directory, output_file_name)
 
     os.makedirs(snippet_directory, exist_ok=True)

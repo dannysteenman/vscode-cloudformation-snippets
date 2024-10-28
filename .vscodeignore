@@ -1,8 +1,10 @@
 .gitchangelog.rc
+.github/**
 .gitignore
+.pytest_cache/**
+.venv/**
 .vscode-test/**
 .vscode/**
 **/*.ts
-azure-pipelines.yml
+out/README.md
 src/**
-vsc-extension-quickstart.md

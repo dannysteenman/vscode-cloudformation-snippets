@@ -99,7 +99,7 @@ def create_raw_cfn_output(cloudformation_resource_spec: Dict[str, Any], local_pa
                 safe_print(f"{resource_type} generated an exception: {exc}")
 
     if local_path:
-        output_directory = os.path.join(os.getcwd(), "test")
+        output_directory = os.path.join(os.getcwd(), ".vscode-test")
         output_file_name = "raw-cfn-resources-test-output.json"
     else:
         output_directory = os.path.join(os.getcwd(), "snippets")
