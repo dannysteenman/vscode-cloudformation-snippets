@@ -57,9 +57,13 @@ This CloudFormation Snippets extension equips Visual Studio Code with JSON and Y
 4. Type cfn to insert the basic CloudFormation template structure.
 5. Add resources using their short prefix (e.g. `s3-bucket` for `AWS::S3::Bucket`).
 
-Example:
+Example of auto-completion in action:
 
 ![CloudFormation Snippets example](https://raw.githubusercontent.com/dannysteenman/vscode-cloudformation-snippets/main/images/cfn-snippets-extension-example.gif)
+
+and an example of the hover information:
+
+![IAM Actions Snippets Hover Example](https://raw.githubusercontent.com/dannysteenman/vscode-cloudformation-snippets/main/images/cfn-snippets-hover-example.gif)
 
 > **Note:** Once you start typing a prefix (explained in step 5), the corresponding snippet will show up in the dropdown menu. If this doesn't happen automatically, press `ctrl + space` to invoke IntelliSense and search for the prefix of the resource type that you want to add (as listed in step 5).
 
