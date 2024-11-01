@@ -4,6 +4,15 @@ Changelog
 
 (unreleased)
 ------------
+- Docs: update README with hover example image. [Danny Steenman]
+- Ci: update GitHub Actions to latest versions. [Danny Steenman]
+- Chore: update vscodeignore and move files to correct location. [Danny
+  Steenman]
+
+
+5.28.0 (2024-10-25)
+-------------------
+- Build: auto-update snippets to version: 5.28.0. [Github Actions]
 - Ci(workflows): update GitHub Actions workflow steps. [Danny Steenman]
 - Chore: update vscode extension icon. [Danny Steenman]
 
