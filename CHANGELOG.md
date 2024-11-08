@@ -2,8 +2,9 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+5.29.0 (2024-11-01)
+-------------------
+- Build: auto-update snippets to version: 5.29.0. [Github Actions]
 - Docs: update README with hover example image. [Danny Steenman]
 - Ci: update GitHub Actions to latest versions. [Danny Steenman]
 - Chore: update vscodeignore and move files to correct location. [Danny
