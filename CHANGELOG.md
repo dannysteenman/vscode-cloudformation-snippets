@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+5.34.0 (2024-12-06)
+-------------------
+- Build: auto-update snippets to version: 5.34.0. [Github Actions]
+
+
 5.33.0 (2024-11-29)
 -------------------
 - Build: auto-update snippets to version: 5.33.0. [Github Actions]
