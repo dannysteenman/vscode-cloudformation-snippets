@@ -686,7 +686,7 @@
       "DynamicExtensionParameters": "DynamicExtensionParameters",
       "EnvironmentId": "String",
       "KmsKeyIdentifier": "String",
-      "Tags": "Tags"
+      "Tags": "Tag"
     }
   },
   "AWS::AppConfig::DeploymentStrategy": {
@@ -1606,9 +1606,7 @@
       "BackupVaultTags": "Map",
       "MaxRetentionDays": "Integer",
       "MinRetentionDays": "Integer",
-      "Notifications": "NotificationObjectType",
-      "VaultState": "String",
-      "VaultType": "String"
+      "Notifications": "NotificationObjectType"
     }
   },
   "AWS::Backup::ReportPlan": {
@@ -2079,6 +2077,7 @@
     "Properties": {
       "AnalyticsEngine": "String",
       "CreatorDisplayName": "String",
+      "CreatorMLMemberAbilities": "MLMemberAbilities",
       "CreatorMemberAbilities": "String",
       "CreatorPaymentConfiguration": "PaymentConfiguration",
       "DataEncryptionMetadata": "DataEncryptionMetadata",
@@ -3599,6 +3598,19 @@
       "Uri": "String"
     }
   },
+  "AWS::CustomerProfiles::EventTrigger": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventtrigger.html",
+    "Properties": {
+      "Description": "String",
+      "DomainName": "String",
+      "EventTriggerConditions": "EventTriggerCondition",
+      "EventTriggerLimits": "EventTriggerLimits",
+      "EventTriggerName": "String",
+      "ObjectTypeName": "String",
+      "SegmentFilter": "String",
+      "Tags": "Tag"
+    }
+  },
   "AWS::CustomerProfiles::Integration": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html",
     "Properties": {
@@ -4605,6 +4617,7 @@
       "ClientLoginBannerOptions": "ClientLoginBannerOptions",
       "ConnectionLogOptions": "ConnectionLogOptions",
       "Description": "String",
+      "DisconnectOnSessionTimeout": "Boolean",
       "DnsServers": "String",
       "SecurityGroupIds": "String",
       "SelfServicePortal": "String",
@@ -9303,6 +9316,7 @@
       "Description": "String",
       "IdleSessionTTLInSeconds": "Integer",
       "Name": "String",
+      "Replication": "Replication",
       "RoleArn": "String",
       "TestBotAliasSettings": "TestBotAliasSettings",
       "TestBotAliasTags": "Tag"
@@ -10877,6 +10891,60 @@
       "Subtype": "String",
       "Tags": "Map",
       "Type": "String"
+    }
+  },
+  "AWS::Notifications::ChannelAssociation": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-channelassociation.html",
+    "Properties": {
+      "Arn": "String",
+      "NotificationConfigurationArn": "String"
+    }
+  },
+  "AWS::Notifications::EventRule": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-eventrule.html",
+    "Properties": {
+      "EventPattern": "String",
+      "EventType": "String",
+      "NotificationConfigurationArn": "String",
+      "Regions": "String",
+      "Source": "String"
+    }
+  },
+  "AWS::Notifications::ManagedNotificationAccountContactAssociation": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-managednotificationaccountcontactassociation.html",
+    "Properties": {
+      "ContactIdentifier": "String",
+      "ManagedNotificationConfigurationArn": "String"
+    }
+  },
+  "AWS::Notifications::ManagedNotificationAdditionalChannelAssociation": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-managednotificationadditionalchannelassociation.html",
+    "Properties": {
+      "ChannelArn": "String",
+      "ManagedNotificationConfigurationArn": "String"
+    }
+  },
+  "AWS::Notifications::NotificationConfiguration": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-notificationconfiguration.html",
+    "Properties": {
+      "AggregationDuration": "String",
+      "Description": "String",
+      "Name": "String",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::Notifications::NotificationHub": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notifications-notificationhub.html",
+    "Properties": {
+      "Region": "String"
+    }
+  },
+  "AWS::NotificationsContacts::EmailContact": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-notificationscontacts-emailcontact.html",
+    "Properties": {
+      "EmailAddress": "String",
+      "Name": "String",
+      "Tags": "Tag"
     }
   },
   "AWS::OSIS::Pipeline": {
@@ -12659,6 +12727,7 @@
       "EventSubscriptions": "EventSubscription",
       "Name": "String",
       "PermissionModel": "PermissionModel",
+      "RegulatoryPolicyArn": "String",
       "ResiliencyPolicyArn": "String",
       "ResourceMappings": "ResourceMapping",
       "Tags": "Map"
@@ -13422,6 +13491,7 @@
       "DataProtectionPolicy": "Json",
       "DeliveryStatusLogging": "LoggingConfig",
       "DisplayName": "String",
+      "FifoThroughputScope": "String",
       "FifoTopic": "Boolean",
       "KmsMasterKeyId": "String",
       "SignatureVersion": "String",

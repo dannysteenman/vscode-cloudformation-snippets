@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+5.40.0 (2025-01-17)
+-------------------
+- Build: auto-update snippets to version: 5.40.0. [Github Actions]
+
+
 5.39.0 (2025-01-10)
 -------------------
 - Build: auto-update snippets to version: 5.39.0. [Github Actions]
