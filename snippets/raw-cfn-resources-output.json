@@ -2460,6 +2460,13 @@
       "Tags": "Tag"
     }
   },
+  "AWS::CloudFront::VpcOrigin": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-vpcorigin.html",
+    "Properties": {
+      "Tags": "Tag",
+      "VpcOriginEndpointConfig": "VpcOriginEndpointConfig"
+    }
+  },
   "AWS::CloudTrail::Channel": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-channel.html",
     "Properties": {
@@ -4142,6 +4149,7 @@
     "Properties": {
       "AssetFormsInput": "FormInput",
       "Configuration": "DataSourceConfigurationInput",
+      "ConnectionIdentifier": "String",
       "Description": "String",
       "DomainIdentifier": "String",
       "EnableSetting": "String",
@@ -4562,6 +4570,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html",
     "Properties": {
       "AvailabilityZone": "String",
+      "AvailabilityZoneId": "String",
       "EbsOptimized": "Boolean",
       "EndDate": "String",
       "EndDateType": "String",
@@ -5544,6 +5553,7 @@
     "Properties": {
       "ApplicationDomain": "String",
       "AttachmentType": "String",
+      "CidrOptions": "CidrOptions",
       "Description": "String",
       "DomainCertificateArn": "String",
       "EndpointDomainPrefix": "String",
@@ -5552,6 +5562,7 @@
       "NetworkInterfaceOptions": "NetworkInterfaceOptions",
       "PolicyDocument": "String",
       "PolicyEnabled": "Boolean",
+      "RdsOptions": "RdsOptions",
       "SecurityGroupIds": "String",
       "SseSpecification": "SseSpecification",
       "Tags": "Tag",
@@ -5572,6 +5583,7 @@
   "AWS::EC2::VerifiedAccessInstance": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-verifiedaccessinstance.html",
     "Properties": {
+      "CidrEndpointsCustomSubDomain": "String",
       "Description": "String",
       "FipsEnabled": "Boolean",
       "LoggingConfigurations": "VerifiedAccessLogs",
@@ -5586,6 +5598,7 @@
       "Description": "String",
       "DeviceOptions": "DeviceOptions",
       "DeviceTrustProviderType": "String",
+      "NativeApplicationOidcOptions": "NativeApplicationOidcOptions",
       "OidcOptions": "OidcOptions",
       "PolicyReferenceName": "String",
       "SseSpecification": "SseSpecification",
@@ -6679,6 +6692,7 @@
       "PolicyName": "String",
       "RemediationEnabled": "Boolean",
       "ResourceSetIds": "String",
+      "ResourceTagLogicalOperator": "String",
       "ResourceTags": "ResourceTag",
       "ResourceType": "String",
       "ResourceTypeList": "String",
@@ -11907,6 +11921,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-qbusiness-webexperience.html",
     "Properties": {
       "ApplicationId": "String",
+      "BrowserExtensionConfiguration": "BrowserExtensionConfiguration",
       "CustomizationConfiguration": "CustomizationConfiguration",
       "IdentityProviderConfiguration": "IdentityProviderConfiguration",
       "Origins": "String",
@@ -12082,8 +12097,10 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-topic.html",
     "Properties": {
       "AwsAccountId": "String",
+      "ConfigOptions": "TopicConfigOptions",
       "DataSets": "DatasetMetadata",
       "Description": "String",
+      "FolderArns": "String",
       "Name": "String",
       "TopicId": "String",
       "UserExperienceVersion": "String"
@@ -12727,7 +12744,6 @@
       "EventSubscriptions": "EventSubscription",
       "Name": "String",
       "PermissionModel": "PermissionModel",
-      "RegulatoryPolicyArn": "String",
       "ResiliencyPolicyArn": "String",
       "ResourceMappings": "ResourceMapping",
       "Tags": "Map"
@@ -14880,8 +14896,10 @@
       "DeploymentType": "String",
       "LogDeliveryConfiguration": "LogDeliveryConfiguration",
       "Name": "String",
+      "NetworkType": "String",
       "Organization": "String",
       "Password": "String",
+      "Port": "Integer",
       "PubliclyAccessible": "Boolean",
       "Tags": "Tag",
       "Username": "String",
