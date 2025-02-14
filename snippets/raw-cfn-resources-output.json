@@ -57,6 +57,7 @@
     "Properties": {
       "Alias": "String",
       "Destination": "Destination",
+      "RoleConfiguration": "RoleConfiguration",
       "ScrapeConfiguration": "ScrapeConfiguration",
       "Source": "Source",
       "Tags": "Tag"
@@ -3278,6 +3279,13 @@
       "Tags": "Tag"
     }
   },
+  "AWS::Connect::ContactFlowVersion": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-contactflowversion.html",
+    "Properties": {
+      "ContactFlowId": "String",
+      "Description": "String"
+    }
+  },
   "AWS::Connect::EmailAddress": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-emailaddress.html",
     "Properties": {
@@ -4106,7 +4114,12 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datasync-locationsmb.html",
     "Properties": {
       "AgentArns": "String",
+      "AuthenticationType": "String",
+      "DnsIpAddresses": "String",
       "Domain": "String",
+      "KerberosKeytab": "String",
+      "KerberosKrb5Conf": "String",
+      "KerberosPrincipal": "String",
       "MountOptions": "MountOptions",
       "Password": "String",
       "ServerHostname": "String",
@@ -4303,6 +4316,16 @@
       "VpcId": "String"
     }
   },
+  "AWS::Deadline::Limit": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-limit.html",
+    "Properties": {
+      "AmountRequirementName": "String",
+      "Description": "String",
+      "DisplayName": "String",
+      "FarmId": "String",
+      "MaxCount": "Integer"
+    }
+  },
   "AWS::Deadline::MeteredProduct": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-meteredproduct.html",
     "Properties": {
@@ -4349,6 +4372,14 @@
     "Properties": {
       "FarmId": "String",
       "FleetId": "String",
+      "QueueId": "String"
+    }
+  },
+  "AWS::Deadline::QueueLimitAssociation": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queuelimitassociation.html",
+    "Properties": {
+      "FarmId": "String",
+      "LimitId": "String",
       "QueueId": "String"
     }
   },
@@ -4530,7 +4561,6 @@
       "GlobalSecondaryIndexes": "GlobalSecondaryIndex",
       "KeySchema": "KeySchema",
       "LocalSecondaryIndexes": "LocalSecondaryIndex",
-      "PointInTimeRecoverySpecification": "PointInTimeRecoverySpecification",
       "Replicas": "ReplicaSpecification",
       "SSESpecification": "SSESpecification",
       "StreamSpecification": "StreamSpecification",
@@ -6054,6 +6084,7 @@
     "Properties": {
       "ContainerProvider": "ContainerProvider",
       "Name": "String",
+      "SecurityConfigurationId": "String",
       "Tags": "Tag"
     }
   },
@@ -7765,8 +7796,10 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-channel.html",
     "Properties": {
       "Authorized": "Boolean",
+      "ContainerFormat": "String",
       "InsecureIngest": "Boolean",
       "LatencyMode": "String",
+      "MultitrackInputConfiguration": "MultitrackInputConfiguration",
       "Name": "String",
       "Preset": "String",
       "RecordingConfigurationArn": "String",
@@ -8576,6 +8609,7 @@
       "DecoderManifestArn": "String",
       "ModelManifestArn": "String",
       "Name": "String",
+      "StateTemplates": "StateTemplateAssociation",
       "Tags": "Tag"
     }
   },
@@ -8628,6 +8662,7 @@
       "GatewayCapabilitySummaries": "GatewayCapabilitySummary",
       "GatewayName": "String",
       "GatewayPlatform": "GatewayPlatform",
+      "GatewayVersion": "String",
       "Tags": "Tag"
     }
   },
@@ -9059,6 +9094,7 @@
       "DeliveryStreamEncryptionConfigurationInput": "DeliveryStreamEncryptionConfigurationInput",
       "DeliveryStreamName": "String",
       "DeliveryStreamType": "String",
+      "DirectPutSourceConfiguration": "DirectPutSourceConfiguration",
       "ElasticsearchDestinationConfiguration": "ElasticsearchDestinationConfiguration",
       "ExtendedS3DestinationConfiguration": "ExtendedS3DestinationConfiguration",
       "HttpEndpointDestinationConfiguration": "HttpEndpointDestinationConfiguration",
@@ -10147,7 +10183,9 @@
       "AnywhereSettings": "AnywhereSettings",
       "CdiInputSpecification": "CdiInputSpecification",
       "ChannelClass": "String",
+      "ChannelEngineVersion": "ChannelEngineVersionRequest",
       "Destinations": "OutputDestination",
+      "DryRun": "Boolean",
       "EncoderSettings": "EncoderSettings",
       "InputAttachments": "InputAttachment",
       "InputSpecification": "InputSpecification",
@@ -12236,6 +12274,7 @@
     "Properties": {
       "AllocatedStorage": "String",
       "AllowMajorVersionUpgrade": "Boolean",
+      "ApplyImmediately": "Boolean",
       "AssociatedRoles": "DBInstanceRole",
       "AutoMinorVersionUpgrade": "Boolean",
       "AutomaticBackupReplicationKmsKeyId": "String",
@@ -13205,6 +13244,7 @@
       "InventoryConfigurations": "InventoryConfiguration",
       "LifecycleConfiguration": "LifecycleConfiguration",
       "LoggingConfiguration": "LoggingConfiguration",
+      "MetadataTableConfiguration": "MetadataTableConfiguration",
       "MetricsConfigurations": "MetricsConfiguration",
       "NotificationConfiguration": "NotificationConfiguration",
       "ObjectLockConfiguration": "ObjectLockConfiguration",
@@ -14939,8 +14979,10 @@
       "AccessRole": "String",
       "BaseDirectory": "String",
       "Description": "String",
+      "EnforceMessageSigning": "String",
       "LocalProfileId": "String",
       "PartnerProfileId": "String",
+      "PreserveFilename": "String",
       "ServerId": "String",
       "Status": "String",
       "Tags": "Tag"
@@ -15014,6 +15056,16 @@
       "SshPublicKeys": "String",
       "Tags": "Tag",
       "UserName": "String"
+    }
+  },
+  "AWS::Transfer::WebApp": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-webapp.html",
+    "Properties": {
+      "AccessEndpoint": "String",
+      "IdentityProviderDetails": "IdentityProviderDetails",
+      "Tags": "Tag",
+      "WebAppCustomization": "WebAppCustomization",
+      "WebAppUnits": "WebAppUnits"
     }
   },
   "AWS::Transfer::Workflow": {
