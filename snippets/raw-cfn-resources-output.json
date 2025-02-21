@@ -1715,9 +1715,12 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-agent.html",
     "Properties": {
       "ActionGroups": "AgentActionGroup",
+      "AgentCollaboration": "String",
+      "AgentCollaborators": "AgentCollaborator",
       "AgentName": "String",
       "AgentResourceRoleArn": "String",
       "AutoPrepare": "Boolean",
+      "CustomOrchestration": "CustomOrchestration",
       "CustomerEncryptionKeyArn": "String",
       "Description": "String",
       "FoundationModel": "String",
@@ -1725,6 +1728,8 @@
       "IdleSessionTTLInSeconds": "Double",
       "Instruction": "String",
       "KnowledgeBases": "AgentKnowledgeBase",
+      "MemoryConfiguration": "MemoryConfiguration",
+      "OrchestrationType": "String",
       "PromptOverrideConfiguration": "PromptOverrideConfiguration",
       "SkipResourceInUseCheckOnDelete": "Boolean",
       "Tags": "Map",
@@ -4801,6 +4806,7 @@
   "AWS::EC2::IPAM": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipam.html",
     "Properties": {
+      "DefaultResourceDiscoveryOrganizationalUnitExclusions": "IpamOrganizationalUnitExclusion",
       "Description": "String",
       "EnablePrivateGua": "Boolean",
       "OperatingRegions": "IpamOperatingRegion",
@@ -4851,6 +4857,7 @@
     "Properties": {
       "Description": "String",
       "OperatingRegions": "IpamOperatingRegion",
+      "OrganizationalUnitExclusions": "IpamResourceDiscoveryOrganizationalUnitExclusion",
       "Tags": "Tag"
     }
   },
@@ -10406,7 +10413,9 @@
       "ChannelGroupName": "String",
       "ChannelName": "String",
       "Description": "String",
+      "InputSwitchConfiguration": "InputSwitchConfiguration",
       "InputType": "String",
+      "OutputHeaderConfiguration": "OutputHeaderConfiguration",
       "Tags": "Tag"
     }
   },
@@ -10928,21 +10937,6 @@
       "SubnetArns": "String",
       "Tags": "Tag",
       "VpcArn": "String"
-    }
-  },
-  "AWS::NimbleStudio::StudioComponent": {
-    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-nimblestudio-studiocomponent.html",
-    "Properties": {
-      "Configuration": "StudioComponentConfiguration",
-      "Description": "String",
-      "Ec2SecurityGroupIds": "String",
-      "InitializationScripts": "StudioComponentInitializationScript",
-      "Name": "String",
-      "ScriptParameters": "ScriptParameterKeyValue",
-      "StudioId": "String",
-      "Subtype": "String",
-      "Tags": "Map",
-      "Type": "String"
     }
   },
   "AWS::Notifications::ChannelAssociation": {
@@ -15711,6 +15705,7 @@
       "PasteAllowed": "String",
       "PrintAllowed": "String",
       "Tags": "Tag",
+      "ToolbarConfiguration": "ToolbarConfiguration",
       "UploadAllowed": "String"
     }
   },
