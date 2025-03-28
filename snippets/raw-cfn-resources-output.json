@@ -1171,7 +1171,8 @@
     "Properties": {
       "CertificateArn": "String",
       "Description": "String",
-      "DomainName": "String"
+      "DomainName": "String",
+      "Tags": "Tag"
     }
   },
   "AWS::AppSync::DomainNameApiAssociation": {
@@ -1315,11 +1316,16 @@
       "Tags": "Tag"
     }
   },
+  "AWS::ApplicationSignals::Discovery": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-discovery.html",
+    "Properties": {}
+  },
   "AWS::ApplicationSignals::ServiceLevelObjective": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-servicelevelobjective.html",
     "Properties": {
       "BurnRateConfigurations": "BurnRateConfiguration",
       "Description": "String",
+      "ExclusionWindows": "ExclusionWindow",
       "Goal": "Goal",
       "Name": "String",
       "RequestBasedSli": "RequestBasedSli",
@@ -1339,9 +1345,12 @@
   "AWS::Athena::DataCatalog": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-datacatalog.html",
     "Properties": {
+      "ConnectionType": "String",
       "Description": "String",
+      "Error": "String",
       "Name": "String",
       "Parameters": "Map",
+      "Status": "String",
       "Tags": "Tag",
       "Type": "String"
     }
@@ -1673,9 +1682,19 @@
       "UpdatePolicy": "UpdatePolicy"
     }
   },
+  "AWS::Batch::ConsumableResource": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-consumableresource.html",
+    "Properties": {
+      "ConsumableResourceName": "String",
+      "ResourceType": "String",
+      "Tags": "Map",
+      "TotalQuantity": "Integer"
+    }
+  },
   "AWS::Batch::JobDefinition": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html",
     "Properties": {
+      "ConsumableResourceProperties": "ConsumableResourceProperties",
       "ContainerProperties": "ContainerProperties",
       "EcsProperties": "EcsProperties",
       "EksProperties": "EksProperties",
@@ -1752,6 +1771,30 @@
       "Description": "String",
       "InferenceProfileName": "String",
       "ModelSource": "InferenceProfileModelSource",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::Bedrock::Blueprint": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-blueprint.html",
+    "Properties": {
+      "BlueprintName": "String",
+      "KmsEncryptionContext": "Map",
+      "KmsKeyId": "String",
+      "Schema": "Json",
+      "Tags": "Tag",
+      "Type": "String"
+    }
+  },
+  "AWS::Bedrock::DataAutomationProject": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-dataautomationproject.html",
+    "Properties": {
+      "CustomOutputConfiguration": "CustomOutputConfiguration",
+      "KmsEncryptionContext": "Map",
+      "KmsKeyId": "String",
+      "OverrideConfiguration": "OverrideConfiguration",
+      "ProjectDescription": "String",
+      "ProjectName": "String",
+      "StandardOutputConfiguration": "StandardOutputConfiguration",
       "Tags": "Tag"
     }
   },
@@ -1951,7 +1994,8 @@
       "Name": "String",
       "RuleVersion": "String",
       "Rules": "String",
-      "SplitChargeRules": "String"
+      "SplitChargeRules": "String",
+      "Tags": "ResourceTag"
     }
   },
   "AWS::CUR::ReportDefinition": {
@@ -2047,6 +2091,7 @@
       "Tags": "Tag",
       "TeamId": "String",
       "TeamsChannelId": "String",
+      "TeamsChannelName": "String",
       "TeamsTenantId": "String",
       "UserRoleRequired": "Boolean"
     }
@@ -4162,6 +4207,17 @@
       "TaskReportConfig": "TaskReportConfig"
     }
   },
+  "AWS::DataZone::Connection": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-connection.html",
+    "Properties": {
+      "AwsLocation": "AwsLocation",
+      "Description": "String",
+      "DomainIdentifier": "String",
+      "EnvironmentIdentifier": "String",
+      "Name": "String",
+      "Props": "ConnectionPropertiesInput"
+    }
+  },
   "AWS::DataZone::DataSource": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-datasource.html",
     "Properties": {
@@ -4185,8 +4241,10 @@
     "Properties": {
       "Description": "String",
       "DomainExecutionRole": "String",
+      "DomainVersion": "String",
       "KmsKeyIdentifier": "String",
       "Name": "String",
+      "ServiceRole": "String",
       "SingleSignOn": "SingleSignOn",
       "Tags": "Tag"
     }
@@ -5514,6 +5572,8 @@
       "GatewayLoadBalancerArns": "String",
       "NetworkLoadBalancerArns": "String",
       "PayerResponsibility": "String",
+      "SupportedIpAddressTypes": "String",
+      "SupportedRegions": "String",
       "Tags": "Tag"
     }
   },
@@ -5682,9 +5742,11 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pullthroughcacherule.html",
     "Properties": {
       "CredentialArn": "String",
+      "CustomRoleArn": "String",
       "EcrRepositoryPrefix": "String",
       "UpstreamRegistry": "String",
-      "UpstreamRegistryUrl": "String"
+      "UpstreamRegistryUrl": "String",
+      "UpstreamRepositoryPrefix": "String"
     }
   },
   "AWS::ECR::RegistryPolicy": {
@@ -6383,6 +6445,7 @@
       "EnablePrefixForIpv6SourceNat": "String",
       "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic": "String",
       "IpAddressType": "String",
+      "Ipv4IpamPoolId": "String",
       "LoadBalancerAttributes": "LoadBalancerAttribute",
       "MinimumLoadBalancerCapacity": "MinimumLoadBalancerCapacity",
       "Name": "String",
@@ -7619,6 +7682,15 @@
       "Status": "String"
     }
   },
+  "AWS::GuardDuty::PublishingDestination": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-publishingdestination.html",
+    "Properties": {
+      "DestinationProperties": "CFNDestinationProperties",
+      "DestinationType": "String",
+      "DetectorId": "String",
+      "Tags": "TagItem"
+    }
+  },
   "AWS::GuardDuty::ThreatIntelSet": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html",
     "Properties": {
@@ -7738,7 +7810,11 @@
   "AWS::IAM::SAMLProvider": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html",
     "Properties": {
+      "AddPrivateKey": "String",
+      "AssertionEncryptionMode": "String",
       "Name": "String",
+      "PrivateKeyList": "SAMLPrivateKey",
+      "RemovePrivateKey": "String",
       "SamlMetadataDocument": "String",
       "Tags": "Tag"
     }
@@ -8381,9 +8457,12 @@
   "AWS::IoT::SoftwarePackageVersion": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html",
     "Properties": {
+      "Artifact": "PackageVersionArtifact",
       "Attributes": "Map",
       "Description": "String",
       "PackageName": "String",
+      "Recipe": "String",
+      "Sbom": "Sbom",
       "Tags": "Tag",
       "VersionName": "String"
     }
@@ -9909,7 +9988,6 @@
   "AWS::MSK::Replicator": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-replicator.html",
     "Properties": {
-      "CurrentVersion": "String",
       "Description": "String",
       "KafkaClusters": "KafkaCluster",
       "ReplicationInfoList": "ReplicationInfo",
@@ -10065,9 +10143,11 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flow.html",
     "Properties": {
       "AvailabilityZone": "String",
+      "FlowSize": "String",
       "Maintenance": "Maintenance",
       "MediaStreams": "MediaStream",
       "Name": "String",
+      "NdiConfig": "NdiConfig",
       "Source": "Source",
       "SourceFailoverConfig": "FailoverConfig",
       "SourceMonitoringConfig": "SourceMonitoringConfig",
@@ -10098,6 +10178,8 @@
       "MediaStreamOutputConfigurations": "MediaStreamOutputConfiguration",
       "MinLatency": "Integer",
       "Name": "String",
+      "NdiProgramName": "String",
+      "NdiSpeedHqQuality": "Integer",
       "OutputStatus": "String",
       "Port": "Integer",
       "Protocol": "String",
@@ -11108,6 +11190,15 @@
       "StandbyReplicas": "String",
       "Tags": "Tag",
       "Type": "String"
+    }
+  },
+  "AWS::OpenSearchServerless::Index": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-index.html",
+    "Properties": {
+      "CollectionEndpoint": "String",
+      "IndexName": "String",
+      "Mappings": "Mappings",
+      "Settings": "IndexSettings"
     }
   },
   "AWS::OpenSearchServerless::LifecyclePolicy": {
@@ -12273,10 +12364,10 @@
       "AutoMinorVersionUpgrade": "Boolean",
       "AutomaticBackupReplicationKmsKeyId": "String",
       "AutomaticBackupReplicationRegion": "String",
+      "AutomaticBackupReplicationRetentionPeriod": "Integer",
       "AvailabilityZone": "String",
       "BackupRetentionPeriod": "Integer",
       "CACertificateIdentifier": "String",
-      "CertificateDetails": "CertificateDetails",
       "CertificateRotationRestart": "Boolean",
       "CharacterSetName": "String",
       "CopyTagsToSnapshot": "Boolean",
@@ -12303,7 +12394,6 @@
       "EnableCloudwatchLogsExports": "String",
       "EnableIAMDatabaseAuthentication": "Boolean",
       "EnablePerformanceInsights": "Boolean",
-      "Endpoint": "Endpoint",
       "Engine": "String",
       "EngineLifecycleSupport": "String",
       "EngineVersion": "String",
@@ -12452,7 +12542,6 @@
       "EngineLifecycleSupport": "String",
       "EngineVersion": "String",
       "GlobalClusterIdentifier": "String",
-      "GlobalEndpoint": "GlobalEndpoint",
       "SourceDBClusterIdentifier": "String",
       "StorageEncrypted": "Boolean",
       "Tags": "Tag"
@@ -12488,8 +12577,11 @@
       "AppMonitorConfiguration": "AppMonitorConfiguration",
       "CustomEvents": "CustomEvents",
       "CwLogEnabled": "Boolean",
+      "DeobfuscationConfiguration": "DeobfuscationConfiguration",
       "Domain": "String",
+      "DomainList": "String",
       "Name": "String",
+      "ResourcePolicy": "ResourcePolicy",
       "Tags": "Tag"
     }
   },
@@ -12688,6 +12780,8 @@
       "SecurityGroupIds": "String",
       "SubnetIds": "String",
       "Tags": "Tag",
+      "TrackName": "String",
+      "Workgroup": "Workgroup",
       "WorkgroupName": "String"
     }
   },
@@ -14028,6 +14122,7 @@
   "AWS::SageMaker::InferenceComponent": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-inferencecomponent.html",
     "Properties": {
+      "DeploymentConfig": "InferenceComponentDeploymentConfig",
       "EndpointArn": "String",
       "EndpointName": "String",
       "InferenceComponentName": "String",
@@ -14972,6 +15067,7 @@
     "Properties": {
       "AccessRole": "String",
       "BaseDirectory": "String",
+      "CustomDirectories": "CustomDirectories",
       "Description": "String",
       "EnforceMessageSigning": "String",
       "LocalProfileId": "String",
@@ -15426,6 +15522,7 @@
       "CaptchaConfig": "CaptchaConfig",
       "ChallengeConfig": "ChallengeConfig",
       "CustomResponseBodies": "Map",
+      "DataProtectionConfig": "DataProtectionConfig",
       "DefaultAction": "DefaultAction",
       "Description": "String",
       "Name": "String",
@@ -15731,6 +15828,12 @@
     "Properties": {
       "SamplingRule": "SamplingRule",
       "Tags": "Tag"
+    }
+  },
+  "AWS::XRay::TransactionSearchConfig": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-xray-transactionsearchconfig.html",
+    "Properties": {
+      "IndexingPercentage": "Double"
     }
   },
   "Alexa::ASK::Skill": {
