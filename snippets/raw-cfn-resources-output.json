@@ -149,6 +149,7 @@
       "BasicAuthConfig": "BasicAuthConfig",
       "BuildSpec": "String",
       "CacheConfig": "CacheConfig",
+      "ComputeRoleArn": "String",
       "CustomHeaders": "String",
       "CustomRules": "CustomRule",
       "Description": "String",
@@ -170,10 +171,12 @@
       "BasicAuthConfig": "BasicAuthConfig",
       "BranchName": "String",
       "BuildSpec": "String",
+      "ComputeRoleArn": "String",
       "Description": "String",
       "EnableAutoBuild": "Boolean",
       "EnablePerformanceMode": "Boolean",
       "EnablePullRequestPreview": "Boolean",
+      "EnableSkewProtection": "Boolean",
       "EnvironmentVariables": "EnvironmentVariable",
       "Framework": "String",
       "PullRequestEnvironmentName": "String",
@@ -5964,6 +5967,7 @@
       "BootstrapSelfManagedAddons": "Boolean",
       "ComputeConfig": "ComputeConfig",
       "EncryptionConfig": "EncryptionConfig",
+      "Force": "Boolean",
       "KubernetesNetworkConfig": "KubernetesNetworkConfig",
       "Logging": "Logging",
       "Name": "String",
@@ -8742,6 +8746,15 @@
       "Tags": "Tag"
     }
   },
+  "AWS::IoTSiteWise::Dataset": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-dataset.html",
+    "Properties": {
+      "DatasetDescription": "String",
+      "DatasetName": "String",
+      "DatasetSource": "DatasetSource",
+      "Tags": "Tag"
+    }
+  },
   "AWS::IoTSiteWise::Gateway": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-gateway.html",
     "Properties": {
@@ -10819,6 +10832,7 @@
     "Properties": {
       "DeleteProtection": "Boolean",
       "Description": "String",
+      "EnabledAnalysisTypes": "String",
       "FirewallName": "String",
       "FirewallPolicyArn": "String",
       "FirewallPolicyChangeProtection": "Boolean",
@@ -11142,9 +11156,13 @@
   "AWS::Omics::SequenceStore": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-sequencestore.html",
     "Properties": {
+      "AccessLogLocation": "String",
       "Description": "String",
+      "ETagAlgorithmFamily": "String",
       "FallbackLocation": "String",
       "Name": "String",
+      "PropagatedSetLevelTags": "String",
+      "S3AccessPolicy": "Json",
       "SseConfig": "SseConfig",
       "Tags": "Map"
     }
@@ -12147,7 +12165,8 @@
       "PhysicalTableMap": "Map",
       "RowLevelPermissionDataSet": "RowLevelPermissionDataSet",
       "RowLevelPermissionTagConfiguration": "RowLevelPermissionTagConfiguration",
-      "Tags": "Tag"
+      "Tags": "Tag",
+      "UseAs": "String"
     }
   },
   "AWS::QuickSight::DataSource": {
@@ -13120,6 +13139,7 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53recoverycontrol-cluster.html",
     "Properties": {
       "Name": "String",
+      "NetworkType": "String",
       "Tags": "Tag"
     }
   },
@@ -14998,6 +15018,7 @@
     "Properties": {
       "ApplicationId": "String",
       "ApplicationType": "String",
+      "ComponentsInfo": "ComponentInfo",
       "Credentials": "Credential",
       "DatabaseArn": "String",
       "Instances": "String",
