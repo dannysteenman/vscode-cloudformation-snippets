@@ -497,6 +497,7 @@
       "DisableExecuteApiEndpoint": "Boolean",
       "DisableSchemaValidation": "Boolean",
       "FailOnWarnings": "Boolean",
+      "IpAddressType": "String",
       "Name": "String",
       "ProtocolType": "String",
       "RouteKey": "String",
@@ -1639,7 +1640,6 @@
       "RestoreTestingPlanName": "String",
       "ScheduleExpression": "String",
       "ScheduleExpressionTimezone": "String",
-      "ScheduleStatus": "String",
       "StartWindowHours": "Integer",
       "Tags": "Tag"
     }
@@ -2122,7 +2122,9 @@
       "Format": "String",
       "MembershipIdentifier": "String",
       "Name": "String",
+      "Schema": "AnalysisSchema",
       "Source": "AnalysisSource",
+      "SourceMetadata": "AnalysisSourceMetadata",
       "Tags": "Tag"
     }
   },
@@ -2136,6 +2138,7 @@
       "CreatorPaymentConfiguration": "PaymentConfiguration",
       "DataEncryptionMetadata": "DataEncryptionMetadata",
       "Description": "String",
+      "JobLogStatus": "String",
       "Members": "MemberSpecification",
       "Name": "String",
       "QueryLogStatus": "String",
@@ -2150,6 +2153,7 @@
       "AnalysisRules": "AnalysisRule",
       "Description": "String",
       "Name": "String",
+      "SelectedAnalysisMethods": "String",
       "TableReference": "TableReference",
       "Tags": "Tag"
     }
@@ -2192,7 +2196,9 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-membership.html",
     "Properties": {
       "CollaborationIdentifier": "String",
+      "DefaultJobResultConfiguration": "MembershipProtectedJobResultConfiguration",
       "DefaultResultConfiguration": "MembershipProtectedQueryResultConfiguration",
+      "JobLogStatus": "String",
       "PaymentConfiguration": "MembershipPaymentConfiguration",
       "QueryLogStatus": "String",
       "Tags": "Tag"
@@ -3904,6 +3910,7 @@
       "AllowMajorVersionUpgrade": "Boolean",
       "AutoMinorVersionUpgrade": "Boolean",
       "AvailabilityZone": "String",
+      "DnsNameServers": "String",
       "EngineVersion": "String",
       "KmsKeyId": "String",
       "MultiAZ": "Boolean",
@@ -3943,6 +3950,13 @@
       "Tags": "Tag",
       "TargetEndpointArn": "String",
       "TaskData": "String"
+    }
+  },
+  "AWS::DSQL::Cluster": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dsql-cluster.html",
+    "Properties": {
+      "DeletionProtectionEnabled": "Boolean",
+      "Tags": "Tag"
     }
   },
   "AWS::DataBrew::Dataset": {
@@ -5209,6 +5223,47 @@
       "TransitGatewayId": "String",
       "VpcEndpointId": "String",
       "VpcPeeringConnectionId": "String"
+    }
+  },
+  "AWS::EC2::RouteServer": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserver.html",
+    "Properties": {
+      "AmazonSideAsn": "Integer",
+      "PersistRoutes": "String",
+      "PersistRoutesDuration": "Integer",
+      "SnsNotificationsEnabled": "Boolean",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::EC2::RouteServerAssociation": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverassociation.html",
+    "Properties": {
+      "RouteServerId": "String",
+      "VpcId": "String"
+    }
+  },
+  "AWS::EC2::RouteServerEndpoint": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverendpoint.html",
+    "Properties": {
+      "RouteServerId": "String",
+      "SubnetId": "String",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::EC2::RouteServerPeer": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverpeer.html",
+    "Properties": {
+      "BgpOptions": "BgpOptions",
+      "PeerAddress": "String",
+      "RouteServerEndpointId": "String",
+      "Tags": "Tag"
+    }
+  },
+  "AWS::EC2::RouteServerPropagation": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routeserverpropagation.html",
+    "Properties": {
+      "RouteServerId": "String",
+      "RouteTableId": "String"
     }
   },
   "AWS::EC2::RouteTable": {
@@ -6984,7 +7039,8 @@
     "Properties": {
       "Description": "String",
       "Name": "String",
-      "RoutingStrategy": "RoutingStrategy"
+      "RoutingStrategy": "RoutingStrategy",
+      "Tags": "Tag"
     }
   },
   "AWS::GameLift::Build": {
@@ -6994,6 +7050,7 @@
       "OperatingSystem": "String",
       "ServerSdkVersion": "String",
       "StorageLocation": "StorageLocation",
+      "Tags": "Tag",
       "Version": "String"
     }
   },
@@ -9111,6 +9168,7 @@
   "AWS::Kinesis::Stream": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html",
     "Properties": {
+      "DesiredShardLevelMetrics": "String",
       "Name": "String",
       "RetentionPeriodHours": "Integer",
       "ShardCount": "Integer",
@@ -10658,9 +10716,11 @@
       "Engine": "String",
       "EngineVersion": "String",
       "FinalSnapshotName": "String",
+      "IpDiscovery": "String",
       "KmsKeyId": "String",
       "MaintenanceWindow": "String",
       "MultiRegionClusterName": "String",
+      "NetworkType": "String",
       "NodeType": "String",
       "NumReplicasPerShard": "Integer",
       "NumShards": "Integer",
@@ -12796,7 +12856,11 @@
       "Port": "Integer",
       "PricePerformanceTarget": "PerformanceTarget",
       "PubliclyAccessible": "Boolean",
+      "RecoveryPointId": "String",
       "SecurityGroupIds": "String",
+      "SnapshotArn": "String",
+      "SnapshotName": "String",
+      "SnapshotOwnerAccount": "String",
       "SubnetIds": "String",
       "Tags": "Tag",
       "TrackName": "String",
@@ -13272,7 +13336,8 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverqueryloggingconfig.html",
     "Properties": {
       "DestinationArn": "String",
-      "Name": "String"
+      "Name": "String",
+      "Tags": "Tag"
     }
   },
   "AWS::Route53Resolver::ResolverQueryLoggingConfigAssociation": {
@@ -14345,6 +14410,7 @@
       "AuthType": "String",
       "EnableIamSessionBasedIdentity": "Boolean",
       "ExecutionRoleArn": "String",
+      "KmsKeyId": "String",
       "MaintenanceConfig": "PartnerAppMaintenanceConfig",
       "Name": "String",
       "Tags": "Tag",

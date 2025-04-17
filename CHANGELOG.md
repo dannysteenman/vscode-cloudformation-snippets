@@ -2,6 +2,17 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+- Chore: update repository links to reflect new ownership by
+  'towardsthecloud' [Danny Steenman]
+
+
+5.52.0 (2025-04-11)
+-------------------
+- Build: auto-update snippets to version: 5.52.0. [Github Actions]
+
+
 5.51.0 (2025-04-04)
 -------------------
 - Build: auto-update snippets to version: 5.51.0. [Github Actions]
