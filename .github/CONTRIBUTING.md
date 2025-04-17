@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-Thank you for your interest in contributing to the [CloudFormation Snippets.](https://github.com/dannysteenman/vscode-cloudformation-snippets)
+Thank you for your interest in contributing to the [CloudFormation Snippets.](https://github.com/towardsthecloud/vscode-cloudformation-snippets)
 
 Please read through this document before submitting any issues or pull requests to ensure we have all the necessary information to effectively respond to your issue or contribution.
 
@@ -8,7 +8,7 @@ Please read through this document before submitting any issues or pull requests 
 
 We welcome you to use the GitHub issue tracker to report bugs or suggest features.
 
-When filing an issue, please check [existing open](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues), or [recently closed](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20), issues to make sure somebody else hasn't already reported the issue. Please try to include as much information as you can.
+When filing an issue, please check [existing open](https://github.com/towardsthecloud/vscode-cloudformation-snippets/issues), or [recently closed](https://github.com/towardsthecloud/vscode-cloudformation-snippets/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20), issues to make sure somebody else hasn't already reported the issue. Please try to include as much information as you can.
 
 ## Contributing new changes via Pull Requests
 
@@ -35,4 +35,4 @@ If the maintainers notice anything that we'd like changed, we'll ask you to edit
 
 ## Licensing
 
-See the [LICENSE](https://github.com/dannysteenman/vscode-cloudformation-snippets/blob/main/LICENSE) file for our project's licensing. We will ask you to confirm the licensing of your contribution.
+See the [LICENSE](https://github.com/towardsthecloud/vscode-cloudformation-snippets/blob/main/LICENSE) file for our project's licensing. We will ask you to confirm the licensing of your contribution.

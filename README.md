@@ -47,7 +47,7 @@ This CloudFormation Snippets extension equips Visual Studio Code with JSON and Y
 7. **Enhanced Navigation**: Features placeholders that enable swift movement through resource properties.
 8. **Resource Documentation**: Each snippet is linked to its official AWS documentation, providing quick access to detailed information.
 9. **Up-to-Date**: Regularly refreshed on a weekly basis to reflect the latest [CloudFormation Resource Specification](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html).
-10. **Gitpod Ready**: Made available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) to ensure compatibility with [Gitpod](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues/14).
+10. **Gitpod Ready**: Made available on the [Open VSX Registry](https://open-vsx.org/extension/dannysteenman/cloudformation-yaml-snippets) to ensure compatibility with [Gitpod](https://github.com/towardsthecloud/vscode-cloudformation-snippets/issues/14).
 
 ## Usage
 
@@ -70,7 +70,7 @@ and an example of the hover information:
 ---
 ## AWS CloudFormation Starterkit
 
-We've developed the [AWS CloudFormation Starterkit](https://github.com/dannysteenman/aws-cloudformation-starterkit) to streamline your infrastructure setup using CloudFormation.
+We've developed the [AWS CloudFormation Starterkit](https://github.com/towardsthecloud/aws-cloudformation-starterkit) to streamline your infrastructure setup using CloudFormation.
 
 It comes with pre-configured templates, automated validation scripts, and seamless integration with CI/CD pipelines, you'll be able to deploy robust, scalable, and secure AWS environments with ease.
 
@@ -79,12 +79,12 @@ The starterkit empowers you to adopt best practices effortlessly. By leveraging 
 ---
 ## Support
 
-If you have a feature request or an issue, please let me know on [Github](https://github.com/dannysteenman/vscode-cloudformation-snippets/issues)
+If you have a feature request or an issue, please let me know on [Github](https://github.com/towardsthecloud/vscode-cloudformation-snippets/issues)
 
 ## Author
 
 [Danny Steenman](https://towardsthecloud.com/about)
 
-[![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dannysteenman)
+[![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/towardsthecloud)
 [![](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/dannysteenman)
-[![](https://img.shields.io/badge/GitHub-2b3137?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dannysteenman)
+[![](https://img.shields.io/badge/GitHub-2b3137?style=for-the-badge&logo=github&logoColor=white)](https://github.com/towardsthecloud)

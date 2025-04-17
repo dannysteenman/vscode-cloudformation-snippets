@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dannysteenman/vscode-cloudformation-snippets.git"
+    "url": "https://github.com/towardsthecloud/vscode-cloudformation-snippets.git"
   },
   "engines": {
     "vscode": "^1.31.0"
@@ -19,16 +19,8 @@
     "color": "#2B2C33",
     "theme": "dark"
   },
-  "categories": [
-    "Snippets"
-  ],
-  "keywords": [
-    "aws",
-    "cloudformation",
-    "sam",
-    "iac",
-    "yaml"
-  ],
+  "categories": ["Snippets"],
+  "keywords": ["aws", "cloudformation", "sam", "iac", "yaml"],
   "badges": [
     {
       "url": "https://img.shields.io/visual-studio-marketplace/v/dannysteenman.cloudformation-yaml-snippets",
@@ -46,10 +38,7 @@
       "description": "Rating"
     }
   ],
-  "activationEvents": [
-    "onLanguage:yaml",
-    "onLanguage:json"
-  ],
+  "activationEvents": ["onLanguage:yaml", "onLanguage:json"],
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -65,26 +54,13 @@
     "languages": [
       {
         "id": "json",
-        "aliases": [
-          "JSON",
-          "json"
-        ],
-        "extensions": [
-          ".json",
-          ".template"
-        ]
+        "aliases": ["JSON", "json"],
+        "extensions": [".json", ".template"]
       },
       {
         "id": "yaml",
-        "aliases": [
-          "YAML",
-          "json"
-        ],
-        "extensions": [
-          ".yaml",
-          ".yml",
-          ".template"
-        ]
+        "aliases": ["YAML", "json"],
+        "extensions": [".yaml", ".yml", ".template"]
       }
     ],
     "snippets": [
@@ -122,7 +98,5 @@
       }
     ]
   },
-  "extensionDependencies": [
-    "redhat.vscode-yaml"
-  ]
+  "extensionDependencies": ["redhat.vscode-yaml"]
 }
