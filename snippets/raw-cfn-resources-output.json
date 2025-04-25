@@ -70,7 +70,8 @@
       "Alias": "String",
       "KmsKeyArn": "String",
       "LoggingConfiguration": "LoggingConfiguration",
-      "Tags": "Tag"
+      "Tags": "Tag",
+      "WorkspaceConfiguration": "WorkspaceConfiguration"
     }
   },
   "AWS::ARCZonalShift::AutoshiftObserverNotificationStatus": {
@@ -2434,6 +2435,16 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html",
     "Properties": {
       "CloudFrontOriginAccessIdentityConfig": "CloudFrontOriginAccessIdentityConfig"
+    }
+  },
+  "AWS::CloudFront::ConnectionGroup": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-connectiongroup.html",
+    "Properties": {
+      "AnycastIpListId": "String",
+      "Enabled": "Boolean",
+      "Ipv6Enabled": "Boolean",
+      "Name": "String",
+      "Tags": "Tag"
     }
   },
   "AWS::CloudFront::ContinuousDeploymentPolicy": {
@@ -5607,6 +5618,7 @@
       "SecurityGroupIds": "String",
       "ServiceName": "String",
       "ServiceNetworkArn": "String",
+      "ServiceRegion": "String",
       "SubnetIds": "String",
       "Tags": "Tag",
       "VpcEndpointType": "String",
@@ -6687,6 +6699,7 @@
       "ArchiveName": "String",
       "Description": "String",
       "EventPattern": "Json",
+      "KmsKeyIdentifier": "String",
       "RetentionDays": "Integer",
       "SourceArn": "String"
     }
@@ -6698,6 +6711,7 @@
       "AuthorizationType": "String",
       "Description": "String",
       "InvocationConnectivityParameters": "InvocationConnectivityParameters",
+      "KmsKeyIdentifier": "String",
       "Name": "String"
     }
   },
@@ -11677,6 +11691,7 @@
   "AWS::PaymentCryptography::Key": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-key.html",
     "Properties": {
+      "DeriveKeyUsage": "String",
       "Enabled": "Boolean",
       "Exportable": "Boolean",
       "KeyAttributes": "KeyAttributes",
@@ -12461,6 +12476,7 @@
       "DBSnapshotIdentifier": "String",
       "DBSubnetGroupName": "String",
       "DBSystemId": "String",
+      "DatabaseInsightsMode": "String",
       "DedicatedLogVolume": "Boolean",
       "DeleteAutomatedBackups": "Boolean",
       "DeletionProtection": "Boolean",
@@ -13537,6 +13553,7 @@
   "AWS::S3Tables::TableBucket": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablebucket.html",
     "Properties": {
+      "EncryptionConfiguration": "EncryptionConfiguration",
       "TableBucketName": "String",
       "UnreferencedFileRemoval": "UnreferencedFileRemoval"
     }
@@ -13628,6 +13645,7 @@
     "Properties": {
       "IngressPointConfiguration": "IngressPointConfiguration",
       "IngressPointName": "String",
+      "NetworkConfiguration": "NetworkConfiguration",
       "RuleSetId": "String",
       "StatusToUpdate": "String",
       "Tags": "Tag",
@@ -15242,6 +15260,7 @@
       "IdentityProviderDetails": "IdentityProviderDetails",
       "Tags": "Tag",
       "WebAppCustomization": "WebAppCustomization",
+      "WebAppEndpointPolicy": "String",
       "WebAppUnits": "WebAppUnits"
     }
   },
