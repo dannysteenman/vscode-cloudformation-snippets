@@ -1147,6 +1147,7 @@
       "ApiId": "String",
       "CodeHandlers": "String",
       "CodeS3Location": "String",
+      "HandlerConfigs": "HandlerConfigs",
       "Name": "String",
       "PublishAuthModes": "AuthMode",
       "SubscribeAuthModes": "AuthMode",
@@ -2460,6 +2461,20 @@
       "Tags": "Tag"
     }
   },
+  "AWS::CloudFront::DistributionTenant": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distributiontenant.html",
+    "Properties": {
+      "ConnectionGroupId": "String",
+      "Customizations": "Customizations",
+      "DistributionId": "String",
+      "Domains": "String",
+      "Enabled": "Boolean",
+      "ManagedCertificateRequest": "ManagedCertificateRequest",
+      "Name": "String",
+      "Parameters": "Parameter",
+      "Tags": "Tag"
+    }
+  },
   "AWS::CloudFront::Function": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html",
     "Properties": {
@@ -3083,6 +3098,7 @@
       "LogoutURLs": "String",
       "PreventUserExistenceErrors": "String",
       "ReadAttributes": "String",
+      "RefreshTokenRotation": "RefreshTokenRotation",
       "RefreshTokenValidity": "Integer",
       "SupportedIdentityProviders": "String",
       "TokenValidityUnits": "TokenValidityUnits",
@@ -4745,6 +4761,7 @@
       "ClientCidrBlock": "String",
       "ClientConnectOptions": "ClientConnectOptions",
       "ClientLoginBannerOptions": "ClientLoginBannerOptions",
+      "ClientRouteEnforcementOptions": "ClientRouteEnforcementOptions",
       "ConnectionLogOptions": "ConnectionLogOptions",
       "Description": "String",
       "DisconnectOnSessionTimeout": "Boolean",
@@ -5823,6 +5840,13 @@
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registrypolicy.html",
     "Properties": {
       "PolicyText": "Json"
+    }
+  },
+  "AWS::ECR::RegistryScanningConfiguration": {
+    "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registryscanningconfiguration.html",
+    "Properties": {
+      "Rules": "ScanningRule",
+      "ScanType": "String"
     }
   },
   "AWS::ECR::ReplicationConfiguration": {
@@ -10673,6 +10697,7 @@
   "AWS::MediaTailor::PlaybackConfiguration": {
     "Docs": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediatailor-playbackconfiguration.html",
     "Properties": {
+      "AdConditioningConfiguration": "AdConditioningConfiguration",
       "AdDecisionServerUrl": "String",
       "AvailSuppression": "AvailSuppression",
       "Bumper": "Bumper",
