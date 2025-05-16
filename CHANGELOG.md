@@ -2,6 +2,16 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+- Chore: update readme. [Danny Steenman]
+
+
+5.57.0 (2025-05-09)
+-------------------
+- Build: auto-update snippets to version: 5.57.0. [Github Actions]
+
+
 5.56.0 (2025-05-02)
 -------------------
 - Build: auto-update snippets to version: 5.56.0. [Github Actions]
